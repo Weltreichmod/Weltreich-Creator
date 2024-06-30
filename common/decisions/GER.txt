@@ -1,0 +1,1052 @@
+#Category only allowed for GER
+political_situation = {
+	GER_dismissal_of_Chancellor_1 = {
+		days_mission_timeout = 77
+		activation = {
+			original_tag = GER
+		}
+		allowed = {
+			original_tag = GER
+		}
+		available = {
+			NOT = { has_idea = GER_idea_Wilhelm_Marx }
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			GER = {
+				news_event = {
+					id = Germany.1
+				}
+			}
+		}
+	}
+	
+	GER_dismissal_of_Chancellor_2 = {
+		days_mission_timeout = 7
+		activation = {
+			has_idea = GER_idea_political_turmoil
+		}
+		allowed = {
+			original_tag = GER
+		}
+		visible = {
+			has_war_with = GER
+		}
+		available = {
+			NOT = { has_idea = GER_idea_Wilhelm_Marx }
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			GER = {
+				news_event = {
+					id = Germany.2
+				}
+			}
+		}
+	}
+}
+
+GER_triple_alliance = {
+	alliance_with_AUH = {
+		icon = triple_alliance
+		allowed = {
+			original_tag = GER
+		}
+		available = {
+			GER = { OR = { has_war_with = FRA has_war_with = ENG has_war_with = SOV } }
+			has_global_flag = GER_and_AUH
+		}
+		cost = 25
+		complete_effect = {
+			AUH = { country_event = { days = 1 id = AUH.4 } }
+		}
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 200
+		}
+		visible = {
+			has_completed_focus = Friends_of_the_South
+			GER = { NOT = { is_in_faction_with = AUH } }
+		}
+	}
+	alliance_with_ITA = {
+		icon = triple_alliance
+		allowed = {
+			original_tag = GER
+		}
+		available = {
+			GER = { OR = { has_war_with = FRA has_war_with = ENG has_war_with = SOV } }
+			has_global_flag = anzio_negotiations
+		}
+		cost = 25
+		complete_effect = {
+			ITA = { country_event = { days = 1 id = italy.8 } }
+		}
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 200
+		}
+		visible = {
+			has_completed_focus = Friends_of_the_South
+			GER = { NOT = { is_in_faction_with = ITA } }
+		}
+	}
+}
+
+GER_AUH_military_alliance = {
+	Call_AUH = {
+		allowed = {
+			original_tag = GER
+		}
+		available = {
+			GER = { OR = { has_war_with = FRA has_war_with = ENG has_war_with = SOV } }
+			has_completed_focus = Hanging_out_with_Austria
+		}
+		cost = 25
+		complete_effect = {
+			AUH = { country_event = { days = 1 id = AUH.4 } }
+		}
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 200
+		}
+		visible = {
+			has_completed_focus = Hanging_out_with_Austria
+			GER = { NOT = { is_in_faction_with = AUH } }
+		}
+	}
+}
+
+#occupied_territory_management = {
+#	occupied_territory_management_HOL = {
+#		icon = GFX_decision_generic_nationalism
+#		allowed = {
+#			original_tag = GER
+#		}
+#		available = {
+#			has_completed_focus = Punishment_Netherlands
+#			OR = {
+#				has_full_control_of_state = 36
+#				any_other_country = {
+#					is_in_faction_with = PREV
+#					has_full_control_of_state = 36
+#				}
+#			}
+#			OR = {
+#				has_full_control_of_state = 7
+#				any_other_country = {
+#					is_in_faction_with = PREV
+#					has_full_control_of_state = 7
+#				}
+#			}
+#			OR = {
+#				has_full_control_of_state = 35
+#				any_other_country = {
+#					is_in_faction_with = PREV
+#					has_full_control_of_state = 35
+#				}
+#			}
+#		}
+#		visible = {
+#			OR = {
+#				has_full_control_of_state = 36
+#				any_other_country = {
+#					is_in_faction_with = PREV
+#					has_full_control_of_state = 36
+#				}
+#			}
+#			OR = {
+#				has_full_control_of_state = 7
+#				any_other_country = {
+#					is_in_faction_with = PREV
+#					has_full_control_of_state = 7
+#				}
+#			}
+#			OR = {
+#				has_full_control_of_state = 35
+#				any_other_country = {
+#					is_in_faction_with = PREV
+#					has_full_control_of_state = 35
+#				}
+#			}
+#		}
+#		fire_only_once = yes
+#		complete_effect = {
+#			HOL = {
+#				transfer_state = 36
+#				transfer_state = 7
+#				transfer_state = 35
+#			}
+#			if = {
+#				limit = {
+#					has_dlc = "Together for Victory"
+#				}
+#				set_autonomy = {
+#					target = HOL
+#					autonomous_state = autonomy_puppet
+#					freedom_level = 0.45
+#				}
+#				else = {
+#					puppet = HOL
+#				}
+#			}
+#		}
+#		ai_will_do = { 
+#			base = 100
+#		}
+#	}
+#	occupied_territory_management_DEN = {
+#		icon = GFX_decision_generic_nationalism
+#		allowed = {
+#			original_tag = GER
+#		}
+#		fire_only_once = yes
+#		available = {
+#			has_country_flag = kill_den
+#			OR = {
+#				has_full_control_of_state = 99
+#				any_other_country = {
+#					is_in_faction_with = PREV
+#					has_full_control_of_state = 99
+#				}
+#			}
+#			OR = {
+#				has_full_control_of_state = 37
+#				any_other_country = {
+#					is_in_faction_with = PREV
+#					has_full_control_of_state = 37
+#				}
+#			}
+#		}
+#		visible = {
+#			OR = {
+#				has_full_control_of_state = 99
+#				any_other_country = {
+#					is_in_faction_with = PREV
+#					has_full_control_of_state = 99
+#				}
+#			}
+#			OR = {
+#				has_full_control_of_state = 37
+#				any_other_country = {
+#					is_in_faction_with = PREV
+#					has_full_control_of_state = 37
+#				}
+#			}
+#		}
+#		complete_effect = {
+#			DEN = {
+#				transfer_state = 99
+#				transfer_state = 37
+#			}
+#			if = {
+#				limit = {
+#					has_dlc = "Together for Victory"
+#				}
+#				set_autonomy = {
+#					target = DEN
+#					autonomous_state = autonomy_puppet
+#					freedom_level = 0.45
+#				}
+#				else = {
+#					puppet = DEN
+#				}
+#			}
+#		}
+#		ai_will_do = { 
+#			base = 100
+#		}
+#	}
+#}
+
+GER_railway_of_mittelafrika = {
+	build_railway_of_leopoldville = {
+		allowed = {
+			original_tag = GER
+		}
+		icon = generic_construction
+		available = {
+			OR = {
+				NOT = {
+					has_country_flag = start_of_build_railway_of_leopoldville
+				}
+				NOT = {
+					GER = {
+						controls_state = 295
+						controls_state = 888
+					}
+				}
+			}
+		}
+		fire_only_once = no
+		is_good = yes
+		activation = {
+			has_completed_focus = mittelafrika_transcontinental_railroad
+			has_country_flag = start_of_build_railway_of_leopoldville
+		}
+		visible = {
+			has_completed_focus = mittelafrika_transcontinental_railroad
+			has_country_flag = start_of_build_railway_of_leopoldville
+			GER = {
+				controls_state = 295
+				controls_state = 888
+			}
+		}
+		days_mission_timeout = 50
+		timeout_effect = {
+			build_railway = {
+				level = 2
+				path = { 5117 12775 8016 1731 10858 }
+			}
+			clr_country_flag = start_of_build_railway_of_leopoldville
+			set_country_flag = start_of_build_railway_of_tanganyika
+		}
+	}
+	build_railway_of_tanganyika = {
+		allowed = {
+			original_tag = GER
+		}
+		icon = generic_construction
+		available = {
+			OR = {
+				NOT = {
+					has_country_flag = start_of_build_railway_of_tanganyika
+				}
+				NOT = {
+					GER = {
+						controls_state = 890
+						controls_state = 769
+						controls_state = 546
+					}
+				}
+			}
+		}
+		fire_only_once = no
+		is_good = yes
+		activation = {
+			has_completed_focus = mittelafrika_transcontinental_railroad
+			has_country_flag = start_of_build_railway_of_tanganyika
+		}
+		visible = {
+			has_completed_focus = mittelafrika_transcontinental_railroad
+			has_country_flag = start_of_build_railway_of_tanganyika
+			GER = {
+				controls_state = 890
+				controls_state = 769
+				controls_state = 546
+			}
+		}
+		days_mission_timeout = 50
+		timeout_effect = {
+			build_railway = {
+				level = 2
+				path = { 10858 7161 4941 2220 8144 2176 10988 }
+			}
+			clr_country_flag = start_of_build_railway_of_tanganyika
+			set_country_flag = start_of_build_railway_of_zambia
+		}
+	}
+	build_railway_of_zambia = {
+		allowed = {
+			original_tag = GER
+		}
+		icon = generic_construction
+		available = {
+			OR = {
+				NOT = {
+					has_country_flag = start_of_build_railway_of_zambia
+				}
+				NOT = {
+					GER = {
+						controls_state = 771
+						controls_state = 889
+					}
+				}
+			}
+		}
+		fire_only_once = no
+		is_good = yes
+		activation = {
+			has_completed_focus = mittelafrika_transcontinental_railroad
+			has_country_flag = start_of_build_railway_of_zambia
+		}
+		visible = {
+			has_completed_focus = mittelafrika_transcontinental_railroad
+			has_country_flag = start_of_build_railway_of_zambia
+			GER = {
+				controls_state = 771
+				controls_state = 889
+			}
+		}
+		days_mission_timeout = 50
+		timeout_effect = {
+			build_railway = {
+				level = 2
+				path = { 10988 1846 10594 191 }
+			}
+			clr_country_flag = start_of_build_railway_of_zambia
+		}
+	}
+}
+
+help_UKR = {
+	first_ukraine_assistance_plan = {
+		ai_will_do = { 
+			base = 100
+		}
+		cost = 50
+		icon = GFX_decision_political
+		allowed = {
+			original_tag = GER
+		}
+		available = {
+			UKR = {
+				has_idea = The_Holodomor
+				is_subject_of = GER
+			}
+			has_completed_focus = Support_Oststaat
+		}
+		visible = {
+			has_completed_focus = Support_Oststaat
+			UKR = { has_idea = The_Holodomor }
+		}
+		fire_only_once = yes
+		days_remove = 75
+		remove_effect = {
+			UKR = {
+				swap_ideas = {
+					remove_idea = The_Holodomor
+					add_idea = The_Holodomor2
+				}
+				country_event = ukraine.10
+			}
+			set_country_flag = end_of_FUAP
+		}
+	}
+	second_ukraine_assistance_plan = {
+		ai_will_do = { 
+			base = 100
+		}
+		cost = 50
+		icon = GFX_decision_political
+		allowed = {
+			original_tag = GER
+		}
+		available = {
+			UKR = {
+				has_idea = The_Holodomor2
+				is_subject_of = GER
+			}
+			has_completed_focus = Support_Oststaat
+			has_country_flag = end_of_FUAP
+		}
+		visible = {
+			has_completed_focus = Support_Oststaat
+			UKR = { has_idea = The_Holodomor2 }
+		}
+		fire_only_once = yes
+		days_remove = 75
+		remove_effect = {
+			UKR = {
+				remove_ideas = {
+					add_idea = The_Holodomor2
+				}
+				country_event = ukraine.11
+				country_lock_all_division_template = no
+			}
+		}
+	}
+}
+
+intervention_in_civil_war = {
+	Intervention_in_ukraines_civil_war = {
+		allowed = {
+			original_tag = GER
+		}
+		available = {
+			OR = {
+				GER = {
+					OR = {
+						has_war_with = SOV
+						has_war_with = FRA
+						has_war_with = ENG
+					}
+				}
+				AND = {
+					NOT = {
+						has_war_with = USS
+					}
+					NOT = {
+						has_war_with = UPR
+					}
+				}
+			}
+		}
+		visible = {
+			has_global_flag = ukraine_civil_war
+		}
+		fire_only_once = yes
+		activation = {
+			has_global_flag = ukraine_civil_war
+		}
+		days_mission_timeout = 250
+		timeout_effect = {
+			add_stability = -0.05
+			add_war_support = -0.05
+			GER = {
+				end_puppet = UKR
+				remove_from_faction = UKR
+			}
+			white_peace = USS
+			white_peace = UPR
+		}
+	}
+}
+
+War_in_Eastern_Europe = {
+	GER_german_ukrainian_war = {
+		allowed = {
+			original_tag = GER
+		}
+		available = {
+			OR = {
+				GER = {
+					OR = {
+						has_war_with = SOV
+						has_war_with = FRA
+						has_war_with = ENG
+					}
+				}
+				NOT = {
+					has_war_with = UKR
+				}
+			}
+		}
+		visible = {
+			has_global_flag = german_ukrainian_war
+		}
+		fire_only_once = yes
+		activation = {
+			has_global_flag = german_ukrainian_war
+		}
+		days_mission_timeout = 250
+		timeout_effect = {
+			clr_global_flag = german_ukrainian_war
+			add_stability = -0.05
+			add_war_support = -0.05
+			white_peace = UKR
+			UKR = { set_country_flag = independent_from_germany remove_ideas = country_isolation }
+		}
+	}
+}
+
+Oberbefehlshaberiat = {
+	Moskau_Oberbefehlshaberiat = {
+		available = {
+			has_completed_focus = Neu_Septemberprogramm
+			OR = {
+				has_full_control_of_state = 195
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 195
+				}
+			}
+			OR = {
+				has_full_control_of_state = 208
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 208
+				}
+			}
+			OR = {
+				has_full_control_of_state = 244
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 244
+				}
+			}
+			OR = {
+				has_full_control_of_state = 209
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 209
+				}
+			}
+			OR = {
+				has_full_control_of_state = 263
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 263
+				}
+			}
+			OR = {
+				has_full_control_of_state = 210
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 210
+				}
+			}
+			OR = {
+				has_full_control_of_state = 246
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 246
+				}
+			}
+			OR = {
+				has_full_control_of_state = 242
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 242
+				}
+			}
+			OR = {
+				has_full_control_of_state = 243
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 243
+				}
+			}
+			OR = {
+				has_full_control_of_state = 247
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 247
+				}
+			}
+			OR = {
+				has_full_control_of_state = 264
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 264
+				}
+			}
+			OR = {
+				has_full_control_of_state = 219
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 219
+				}
+			}
+			OR = {
+				has_full_control_of_state = 205
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 205
+				}
+			}
+			OR = {
+				has_full_control_of_state = 248
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 248
+				}
+			}
+			OR = {
+				has_full_control_of_state = 253
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 253
+				}
+			}
+			OR = {
+				has_full_control_of_state = 224
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 224
+				}
+			}
+			OR = {
+				has_full_control_of_state = 254
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 254
+				}
+			}
+			OR = {
+				has_full_control_of_state = 223
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 223
+				}
+			}
+			OR = {
+				has_full_control_of_state = 222
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 222
+				}
+			}
+			OR = {
+				has_full_control_of_state = 220
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 220
+				}
+			}
+			OR = {
+				has_full_control_of_state = 258
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 258
+				}
+			}
+			OR = {
+				has_full_control_of_state = 257
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 257
+				}
+			}
+			OR = {
+				has_full_control_of_state = 260
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 260
+				}
+			}
+			OR = {
+				has_full_control_of_state = 252
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 252
+				}
+			}
+			OR = {
+				has_full_control_of_state = 255
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 255
+				}
+			}
+			OR = {
+				has_full_control_of_state = 239
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 239
+				}
+			}
+			OR = {
+				has_full_control_of_state = 265
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 265
+				}
+			}
+			OR = {
+				has_full_control_of_state = 829
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 829
+				}
+			}
+		}
+		visible = {
+			MOS = { exists = no }
+			has_completed_focus = Neu_Septemberprogramm
+		}
+		allowed = {
+			original_tag = GER
+		}
+		fire_only_once = yes
+		cost = 50
+		complete_effect = {
+			GER = {
+				if = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+					set_autonomy = {
+						target = MOS
+						autonomous_state = autonomy_oberbefehlshaberiat
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = MOS
+					}
+				}
+			}
+			MOS = { inherit_technology = GER }
+			every_state = {
+				limit = {
+					OR = {
+						state = 195
+						state = 208
+						state = 244
+						state = 209
+						state = 263
+						state = 210
+						state = 246
+						state = 242
+						state = 243
+						state = 247
+						state = 264
+						state = 219
+						state = 205
+						state = 248
+						state = 253
+						state = 224
+						state = 254
+						state = 223
+						state = 222
+						state = 220
+						state = 258
+						state = 257
+						state = 260
+						state = 252
+						state = 255
+						state = 239
+						state = 265
+						state = 829
+					}
+				}
+				add_core_of = MOS
+			}
+			every_state = {
+				limit = {
+					is_core_of = MOS
+				}
+				transfer_state_to = MOS
+			}
+			931 = { transfer_state_to = BLR }
+			207 = { transfer_state_to = BLR }
+			810 = { transfer_state_to = UBD }
+		}
+		ai_will_do = { 
+			base = 100
+		}
+	}
+	Wolgograd_Oberbefehlshaberiat = {
+		available = {
+			has_completed_focus = Neu_Septemberprogramm
+			OR = {
+				has_full_control_of_state = 217
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 217
+				}
+			}
+			OR = {
+				has_full_control_of_state = 245
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 245
+				}
+			}
+			OR = {
+				has_full_control_of_state = 218
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 218
+				}
+			}
+			OR = {
+				has_full_control_of_state = 236
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 236
+				}
+			}
+			OR = {
+				has_full_control_of_state = 237
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 237
+				}
+			}
+			OR = {
+				has_full_control_of_state = 238
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 238
+				}
+			}
+			OR = {
+				has_full_control_of_state = 234
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 234
+				}
+			}
+			OR = {
+				has_full_control_of_state = 235
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 235
+				}
+			}
+			OR = {
+				has_full_control_of_state = 233
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 233
+				}
+			}
+			OR = {
+				has_full_control_of_state = 827
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 827
+				}
+			}
+			OR = {
+				has_full_control_of_state = 828
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 828
+				}
+			}
+			OR = {
+				has_full_control_of_state = 232
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 232
+				}
+			}
+			OR = {
+				has_full_control_of_state = 821
+				any_other_country = {
+					is_in_faction_with = PREV
+					has_full_control_of_state = 821
+				}
+			}
+		}
+		visible = {
+			WOL = { exists = no }
+			has_completed_focus = Neu_Septemberprogramm
+		}
+		allowed = {
+			original_tag = GER
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			GER = {
+				if = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+					set_autonomy = {
+						target = WOL
+						autonomous_state = autonomy_oberbefehlshaberiat
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = WOL
+					}
+				}
+			}
+			WOL = { inherit_technology = GER }
+			every_state = {
+				limit = {
+					OR = {
+						state = 217
+						state = 245
+						state = 218
+						state = 236
+						state = 237
+						state = 238
+						state = 234
+						state = 235
+						state = 233
+						state = 827
+						state = 828
+						state = 232
+						state = 821
+					}
+				}
+				add_core_of = WOL
+			}
+			every_state = {
+				limit = {
+					is_core_of = WOL
+				}
+				transfer_state_to = WOL
+			}
+		}
+		ai_will_do = { 
+			base = 100
+		}
+	}
+}
+
+peace_deal = {
+	Treaty_of_Kazan = {
+		days_mission_timeout = 30
+		activation = {
+			OR = {
+				original_tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+				original_tag = SOV
+				is_subject_of = SOV
+			}
+			has_global_flag = Armistice_of_Gorky
+		}
+		allowed = {
+			OR = {
+				original_tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+				original_tag = SOV
+				is_subject_of = SOV
+			}
+		}
+		visible = {
+			OR = {
+				original_tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+				original_tag = SOV
+				is_subject_of = SOV
+			}
+		}
+		available = {
+			NOT = { has_global_flag = Armistice_of_Gorky }
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			country_event = Germany.71
+		}
+	}
+	Treaty_of_Nizhny_Novgorod = {
+		days_mission_timeout = 30
+		activation = {
+			OR = {
+				original_tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+				original_tag = RUS
+				is_subject_of = RUS
+			}
+			has_global_flag = RUS_Armistice_of_Gorky
+		}
+		allowed = {
+			OR = {
+				original_tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+				original_tag = RUS
+				is_subject_of = RUS
+			}
+		}
+		visible = {
+			OR = {
+				original_tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+				original_tag = RUS
+				is_subject_of = RUS
+			}
+		}
+		available = {
+			NOT = { has_global_flag = RUS_Armistice_of_Gorky }
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			country_event = Germany.88
+		}
+	}
+}

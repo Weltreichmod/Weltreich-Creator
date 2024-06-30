@@ -1,0 +1,755 @@
+##################
+#### CONSTANTS ###
+##################
+# Used for the Merge Plant traits for easier maintenance
+
+### TANKS
+#POSITION
+@tank_1_X = 9
+@tank_1_Y = 2
+@tank_2_X = 9
+@tank_2_Y = 3
+@tank_3_X = 9
+@tank_3_Y = 4
+#BONUSES
+@tank_max_speed = 0.05
+@tank_production_capacity_factor = 0.05
+@tank_soft_attack = 0.05
+
+
+### SHIPS
+#POISTION
+@ship_1_X = 9
+@ship_1_Y = 3
+@ship_2_X = 9
+@ship_2_Y = 4
+@ship_3_X = 8
+@ship_3_Y = 4
+#BONUSES
+@ship_cruiser_production_cost_factor = -0.1
+@ship_destroyer_production_cost_factor = -0.1
+@ship_submarine_production_cost_factor = -0.1
+@ship_production_capacity_factor = -0.05
+@ship_mines_sweeping = 0.1
+@ship_mines_planting = 0.1
+
+### AIRCRAFT
+#POSITION
+@aircraft_1_X = 9
+@aircraft_1_Y = 2
+@aircraft_2_X = 9
+@aircraft_2_Y = 3
+@aircraft_3_X = 9
+@aircraft_3_Y = 4
+#BONUSES
+@aircraft_production_cost_factor = -0.05
+@aircraft_air_agility = 0.05
+@aircraft_air_defence = 0.1
+@aircraft_surface_detection = 0.15
+@aircraft_sub_detection = 0.15
+
+### MATERIEL
+#POSITION
+@materiel_1_X = 9
+@materiel_1_Y = 2
+@materiel_2_X = 9
+@materiel_2_Y = 3
+@materiel_3_X = 9
+@materiel_3_Y = 4
+#BONUSES
+@artillery_production_cost_factor = -0.1
+@infantry_equipment_production_cost_factor = -0.1
+@motorized_production_cost_factor = -0.1
+@materiel_production_efficiency_cap_factor = 0.1
+@materiel_production_capacity_factor = 0.1
+
+
+########    ###    ##    ## ##    ##  ######  
+   ##      ## ##   ###   ## ##   ##  ##    ## 
+   ##     ##   ##  ####  ## ##  ##   ##       
+   ##    ##     ## ## ## ## #####     ######  
+   ##    ######### ##  #### ##  ##         ## 
+   ##    ##     ## ##   ### ##   ##  ##    ## 
+   ##    ##     ## ##    ## ##    ##  ######  
+
+
+SOV_morozov_design_bureau_organization = {
+	include = generic_mobile_tank_organization
+	icon = GFX_idea_morozov_design_bureau
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+	}
+
+	add_trait = { 
+		token = SOV_mio_trait_merge_ural_heavy_machine_building_plant
+		name = SOV_merge_tank_plant
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_maximum_speed
+		special_trait_background = yes
+
+		position = { x=@tank_1_X y=@tank_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+		}
+
+		equipment_bonus = {
+			maximum_speed = @tank_max_speed
+		}
+	}
+}
+
+SOV_astrov_design_bureau_organization = {
+	include = generic_medium_tank_organization
+	icon = GFX_idea_astrov_design_bureau
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+	}
+
+	add_trait = { 
+		token = SOV_mio_trait_merge_ural_heavy_machine_building_plant
+		name = SOV_merge_tank_plant_2
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_production_capacity
+		special_trait_background = yes
+
+		position = { x=@tank_1_X y=@tank_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+		}
+
+		production_bonus = {
+			production_capacity_factor = @tank_production_capacity_factor
+		}
+	}
+}
+
+SOV_okmo_organization = {
+	include = generic_infantry_tank_organization
+	icon = GFX_idea_okmo
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+	}
+
+	add_trait = { 
+		token = SOV_mio_trait_merge_ural_heavy_machine_building_plant
+		name = SOV_merge_tank_plant_3
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_soft_attack
+		special_trait_background = yes
+
+		position = { x=@tank_1_X y=@tank_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+		}
+
+		equipment_bonus = {
+			soft_attack = @tank_soft_attack
+		}
+	}
+}
+
+ ######  ##     ## #### ########   ######  
+##    ## ##     ##  ##  ##     ## ##    ## 
+##       ##     ##  ##  ##     ## ##       
+ ######  #########  ##  ########   ######  
+      ## ##     ##  ##  ##              ## 
+##    ## ##     ##  ##  ##        ##    ## 
+ ######  ##     ## #### ##         ######  
+
+SOV_nevskoye_design_bureau_organization = {
+	include = generic_battle_line_ship_organization
+	icon = GFX_idea_nevskoye_design_bureau
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+	}
+
+	add_trait = { #MTG version
+		token = SOV_mio_trait_merge_plant_no_370
+		name = SOV_merge_ship_plant_4_baltic
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_mines
+		special_trait_background = yes
+
+		position = { x=@ship_1_X y=@ship_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+			has_dlc = "Man the Guns"
+		}
+
+		on_complete = {
+			FROM = {
+				add_tech_bonus = {
+					name = SOV_merge_ship_plant_2_baltic
+					bonus = 1
+					uses = 1
+					category = naval_mines
+				}
+			}
+		}
+
+		limit_to_equipment_type = { mio_cat_eq_all_cruiser }
+		
+		production_bonus = {
+			production_cost_factor = @ship_production_capacity_factor
+		}
+
+		equipment_bonus = {
+			mines_planting = @ship_mines_planting
+		}
+	}
+
+	add_trait = { #No-MTG version
+		token = SOV_mio_trait_merge_plant_no_370_no_mtg
+		name = SOV_merge_ship_plant_4_baltic
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_mines
+		special_trait_background = yes
+
+		position = { x=@ship_1_X y=@ship_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+			NOT = { has_dlc = "Man the Guns" }
+		}
+
+		limit_to_equipment_type = { mio_cat_eq_all_cruiser }
+		
+		production_bonus = {
+			production_cost_factor = @ship_production_capacity_factor
+		}
+	}
+}
+
+SOV_rubin_design_bureau_organization = {
+	include = generic_raider_ship_organization
+	icon = GFX_idea_SOV_rubin_design_bureau
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+	}
+
+	add_trait = { #MTG version
+		token = SOV_mio_trait_merge_plant_no_370
+		name = SOV_merge_ship_plant_4_baltic
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_mines
+		special_trait_background = yes
+
+		position = { x=@ship_1_X y=@ship_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+			has_dlc = "Man the Guns"
+		}
+
+		on_complete = {
+			FROM = {
+				add_tech_bonus = {
+					name = SOV_merge_ship_plant_2_baltic
+					bonus = 1
+					uses = 1
+					category = naval_mines
+				}
+			}
+		}
+
+		limit_to_equipment_type = { mio_cat_eq_all_cruiser mio_cat_eq_all_destroyer ship_hull_submarine }
+		
+		production_bonus = {
+			production_cost_factor = @ship_production_capacity_factor
+		}
+
+		equipment_bonus = {
+			mines_planting = @ship_mines_planting
+		}
+	}
+
+	add_trait = { #No-MTG version
+		token = SOV_mio_trait_merge_plant_no_370_no_mtg
+		name = SOV_merge_ship_plant_4_baltic
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_mines
+		special_trait_background = yes
+
+		position = { x=@ship_1_X y=@ship_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+			NOT = { has_dlc = "Man the Guns" }
+		}
+
+		limit_to_equipment_type = { mio_cat_eq_all_cruiser mio_cat_eq_all_destroyer ship_hull_submarine }
+		
+		production_bonus = {
+			production_cost_factor = @ship_production_capacity_factor
+		}
+	}
+}
+
+SOV_black_sea_shipyard_organization = {
+	include = generic_black_sea_fleet_organization
+	icon = GFX_idea_SOV_black_sea_shipyard
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+	}
+
+	tree_header_text = {
+		text = mio_header_systems
+		x = 1
+	}
+
+	tree_header_text = {
+		text = mio_header_weapons
+		x = 4
+	}
+
+	tree_header_text = {
+		text = mio_header_production
+		x = 7
+	}
+
+	override_trait = {
+		token = generic_mio_advanced_periscope
+
+		position = { x=1 y=1 }
+		relative_position_id = generic_mio_trait_anti_air_defense
+	}
+
+	override_trait = {
+		token = generic_mio_trait_state_sponsored_growth
+
+		position = { x=3 y=0 }
+		relative_position_id = generic_mio_trait_anti_air_defense
+	}
+
+	add_trait = { #MTG version
+		token = SOV_mio_trait_merge_mariupol_plant
+		name = SOV_merge_ship_plant_4_black_sea
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_mines
+		special_trait_background = yes
+
+		position = { x=@ship_1_X y=@ship_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+			has_dlc = "Man the Guns"
+		}
+
+		on_complete = {
+			FROM = {
+				add_tech_bonus = {
+					name = SOV_merge_ship_plant_2_baltic
+					bonus = 1
+					uses = 1
+					category = naval_mines
+				}
+			}
+		}
+
+		limit_to_equipment_type = { mio_cat_eq_all_cruiser mio_cat_eq_all_destroyer ship_hull_submarine }
+		
+		production_bonus = {
+			production_cost_factor = @ship_production_capacity_factor
+		}
+
+		equipment_bonus = {
+			mines_planting = @ship_mines_planting
+		}
+	}
+
+	add_trait = { #No-MTG version
+		token = SOV_mio_trait_merge_mariupol_plant_no_mtg
+		name = SOV_merge_ship_plant_4_black_sea
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_mines
+		special_trait_background = yes
+
+		position = { x=@ship_1_X y=@ship_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+			NOT = { has_dlc = "Man the Guns" }
+		}
+
+		limit_to_equipment_type = { mio_cat_eq_all_cruiser mio_cat_eq_all_destroyer ship_hull_submarine }
+		
+		production_bonus = {
+			production_cost_factor = @ship_production_capacity_factor
+		}
+	}
+}
+
+########  ##          ###    ##    ## ########  ######  
+##     ## ##         ## ##   ###   ## ##       ##    ## 
+##     ## ##        ##   ##  ####  ## ##       ##       
+########  ##       ##     ## ## ## ## ######    ######  
+##        ##       ######### ##  #### ##             ## 
+##        ##       ##     ## ##   ### ##       ##    ## 
+##        ######## ##     ## ##    ## ########  ######  
+
+SOV_mig_design_bureau_organization = {
+	include = generic_light_aircraft_organization
+	icon = GFX_idea_mig_design_bureau
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+	}
+
+	add_trait = { 
+		token = SOV_mio_trait_merge_vef_plant
+		name = SOV_merge_aircraft_plant_1
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_build_cost_ic
+		special_trait_background = yes
+
+		position = { x=@aircraft_1_X y=@aircraft_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+		}
+		
+		on_complete = {
+			FROM = {
+				add_tech_bonus = {
+					name = SOV_mio_trait_merge_vef_plant
+					bonus = 1
+					uses = 1
+					category = radar_tech
+				}
+			}
+		}
+
+		production_bonus = {
+			production_cost_factor = @aircraft_production_cost_factor
+		}
+	}
+}
+
+SOV_ilyushin_design_bureau_organization = {
+	include = generic_medium_aircraft_organization
+	icon = GFX_idea_ilyushin_design_bureau
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+	}
+
+	add_trait = { 
+		token = SOV_mio_trait_merge_vef_plant
+		name = SOV_merge_aircraft_plant_1
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_build_cost_ic
+		special_trait_background = yes
+
+		position = { x=@aircraft_1_X y=@aircraft_1_Y }
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+		}
+		
+		on_complete = {
+			FROM = {
+				add_tech_bonus = {
+					name = SOV_mio_trait_merge_vef_plant
+					bonus = 1
+					uses = 1
+					category = radar_tech
+				}
+			}
+		}
+
+		production_bonus = {
+			production_cost_factor = @aircraft_production_cost_factor
+		}
+	}
+}
+
+SOV_yakovlev_design_bureau_organization = {
+	include = generic_naval_aircraft_organization
+	icon = GFX_idea_yakovlev_design_bureau
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+	}
+
+	add_trait = { 
+		token = SOV_mio_trait_merge_vef_plant
+		name = SOV_merge_aircraft_plant_3
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_detection
+		special_trait_background = yes
+
+		position = { x=@aircraft_1_X y=@aircraft_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+		}
+
+		on_complete = {
+			FROM = {
+				add_tech_bonus = {
+					name = SOV_mio_trait_merge_vef_plant
+					bonus = 1
+					uses = 1
+					category = radar_tech
+				}
+			}
+		}
+
+		equipment_bonus = {
+			production_cost_factor = @aircraft_production_cost_factor
+		}
+	}
+}
+
+##     ##    ###    ######## ######## ########  #### ######## ##       
+###   ###   ## ##      ##    ##       ##     ##  ##  ##       ##       
+#### ####  ##   ##     ##    ##       ##     ##  ##  ##       ##       
+## ### ## ##     ##    ##    ######   ########   ##  ######   ##       
+##     ## #########    ##    ##       ##   ##    ##  ##       ##       
+##     ## ##     ##    ##    ##       ##    ##   ##  ##       ##       
+##     ## ##     ##    ##    ######## ##     ## #### ######## ######## 
+
+
+
+SOV_grabin_design_bureau_organization = {
+	include = generic_artillery_organization
+	icon = GFX_idea_grabin_design_bureau
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+			original_tag = GRE
+		}
+	}
+	
+	available = {
+		if = {
+			limit = {
+				FROM = { original_tag = GRE }
+			}
+			FROM = { NOT = { has_war_with = SOV } }
+			FROM = { NOT = { has_war_with = RUS } }
+		}
+	}
+
+	add_trait = { 
+		token = SOV_mio_trait_merge_magnitogorsk_metallurgical_plant
+		name = SOV_merge_materiel_plant_3
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_production_capacity
+		special_trait_background = yes
+
+		position = { x=@materiel_1_X y=@materiel_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+		}
+
+		production_bonus = {
+			production_capacity_factor = @materiel_production_capacity_factor
+		}
+	}
+}
+
+SOV_tula_arms_plant_organization = {
+	include = generic_infantry_equipment_organization	
+	icon = GFX_idea_tula_arms_plant
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+	}
+
+	tree_header_text = {
+		text = mio_header_design_and_production
+		x = 2.5
+	}
+
+	tree_header_text = {
+		text = mio_header_anti_tank
+		x = 7
+	}
+
+	override_trait = {
+		token = generic_mio_trait_armor_piercing_rounds
+		
+		position = { x=0 y=2 }
+		relative_position_id = generic_mio_trait_quality_materials
+	}
+
+	override_trait = {
+		token = generic_mio_trait_advanced_barrel_forging
+		
+		position = { x=1 y=2 }
+		relative_position_id = generic_mio_trait_drum_pattern_sights
+	}
+
+	override_trait = {
+		token = generic_mio_trait_reinforced_stocks
+		
+		position = { x=3 y=0 }
+		relative_position_id = generic_mio_trait_drum_pattern_sights
+	}
+
+	add_trait = { 
+		token = SOV_mio_trait_merge_magnitogorsk_metallurgical_plant
+		name = SOV_merge_materiel_plant_3
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_trait_icon_production_capacity
+		special_trait_background = yes
+
+		position = { x=@materiel_1_X y=@materiel_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+		}
+
+		production_bonus = {
+			production_capacity_factor = @materiel_production_capacity_factor
+		}
+	}
+}
+
+SOV_gaz_organization = {
+	include = generic_motorized_mechanized_organization
+	icon = GFX_idea_gaz
+	
+	allowed = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+	}
+
+	add_trait = { 
+		token = SOV_mio_trait_merge_automobile_tool_plant
+		name = SOV_merge_materiel_plant_1_motorized
+		#icon = GFX_generic_mio_department_icon_facilities
+		icon = GFX_generic_mio_department_icon_motorized_mechanized_production
+		special_trait_background = yes
+
+		position = { x=@materiel_1_X y=@materiel_1_Y }
+		
+		visible = {
+			FROM = {
+				OR = {
+					original_tag = SOV
+					original_tag = RUS
+				}
+			}
+		}
+
+		production_bonus = {
+			production_cost_factor = @motorized_production_cost_factor
+		}
+	}
+}

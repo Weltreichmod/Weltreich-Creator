@@ -1,0 +1,70 @@
+﻿###########################
+# Finland Events
+###########################
+
+add_namespace = Finland
+
+country_event = {
+	id = Finland.1
+	title = Finland.1.t
+	desc = Finland.1.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = Finland.1.a
+		GER = {
+			news_event = { days = 1 id = Germany.52 }
+			add_to_faction = FIN
+		}
+		ai_chance = {
+			factor = 3
+		}
+	}
+	option = {
+		name = Finland.1.b
+		GER = { country_event = { days = 1 id = Germany.53 } }
+		ai_chance = {
+			factor = 2
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = Finland.2
+	title = Finland.2.t
+	desc = Finland.2.d
+	picture = event_normal_1
+	trigger = {
+		has_war_with = SOV
+		tag = FIN
+	}
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						is_owned_by = SOV
+						is_owned_by = FIN
+					}
+					OR = {
+						state = 213
+						state = 215
+						state = 216
+					}
+				}
+				add_claim_by = FIN
+			}
+			set_country_flag = FIN_claim_Karelia
+		}
+	}
+	option = {
+		name = Finland.2.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}

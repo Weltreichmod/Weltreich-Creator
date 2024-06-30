@@ -1,0 +1,788 @@
+peace_deal = {
+	peace_for_anti_ottoman = {
+		icon = peace
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_global_flag = Middle_East_War
+			surrender_progress > 0.5
+		}
+		visible = {
+			has_global_flag = Middle_East_War
+			surrender_progress > 0.5
+		}
+		days_remove = 7
+		remove_effect = {
+			TUR = { news_event = turkey.24 }
+			set_country_flag = fall_of_Ottoman
+		}
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 4000
+		}
+	}
+	peace_for_greece = {
+		icon = peace
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_global_flag = greece_ottoman_war
+			has_war_with = GRE
+			is_in_faction = no
+			OR = {
+				surrender_progress > 0.25
+				AND = {
+					GRE = { controls_state = 797 }
+					casualties > 300000
+				}
+			}
+		}
+		visible = {
+			has_global_flag = greece_ottoman_war
+			has_war_with = GRE
+			is_in_faction = no
+			OR = {
+				surrender_progress > 0.25
+				AND = {
+					GRE = { controls_state = 797 }
+					casualties > 300000
+				}
+			}
+		}
+		days_remove = 7
+		remove_effect = {
+			GRE = { country_event = greece.18 }
+		}
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 4000
+		}
+	}
+}
+Middle_East_War = {
+	peace_for_anti_ottoman_mission = {
+		icon = peace
+		allowed = {
+			original_tag = TUR
+		}
+		activation = {
+			has_global_flag = Middle_East_War
+		}
+		available = {
+			SYR = { exists = no }
+			IRQ = { exists = no }
+			KUR = { exists = no }
+			KUW = { exists = no }
+			HJZ = { exists = no }
+		}
+		visible = {
+			has_global_flag = Middle_East_War
+		}
+		days_mission_timeout = 270
+		timeout_effect = {
+			if = {
+				limit = {
+					AND = {
+						SYR = { exists = yes }
+						IRQ = { exists = yes }
+					}
+				}
+				TUR = { news_event = turkey.24 }
+				set_country_flag = fall_of_Ottoman
+			}
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							SYR = { exists = no }
+							IRQ = { exists = yes }
+						}
+						AND = {
+							IRQ = { exists = no }
+							SYR = { exists = yes }
+						}
+					}
+				}
+				TUR = { news_event = turkey.67 }
+				set_country_flag = half_victory_of_Ottoman
+			}
+			else = {
+				every_country = {
+					limit = {
+						has_idea = Anti_Ottoman_Union
+					}
+					remove_ideas = Anti_Ottoman_Union
+					add_ideas = Fallen_Anti_Ottoman_Union
+				}
+			}
+		}
+		fire_only_once = yes
+	}
+}
+	
+conscription_of_troops = {
+	recruitment_of_Ankara = {
+		icon = category_eng_organize_the_blackshirts
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			TUR = {
+				has_full_control_of_state = 49
+			}
+		}
+		visible = {
+			has_global_flag = Middle_East_War
+			has_completed_focus = conscription_of_troops
+		}
+		fire_only_once = yes
+		days_remove = 7
+		cost = 10
+		remove_effect = {
+			TUR = {
+				49 = {
+					create_unit = {
+						division = "name = \"1. Ottoman Liberation Army\" division_template = \"Ottoman Liberation Army\" start_experience_factor = 0.1"
+						owner = TUR
+					}
+					create_unit = {
+						division = "name = \"2. Ottoman Liberation Army\" division_template = \"Ottoman Liberation Army\" start_experience_factor = 0.1"
+						owner = TUR
+					}
+				}
+			}
+		}
+		ai_will_do = { 
+			base = 100
+		}
+	}
+	recruitment_of_Kayseri = {
+		icon = category_eng_organize_the_blackshirts
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			TUR = {
+				has_full_control_of_state = 348
+			}
+		}
+		visible = {
+			has_global_flag = Middle_East_War
+			has_completed_focus = conscription_of_troops
+		}
+		fire_only_once = yes
+		days_remove = 7
+		cost = 10
+		remove_effect = {
+			TUR = {
+				348 = {
+					create_unit = {
+						division = "name = \"1. Ottoman Liberation Army\" division_template = \"Ottoman Liberation Army\" start_experience_factor = 0.1"
+						owner = TUR
+					}
+					create_unit = {
+						division = "name = \"2. Ottoman Liberation Army\" division_template = \"Ottoman Liberation Army\" start_experience_factor = 0.1"
+						owner = TUR
+					}
+				}
+			}
+		}
+		ai_will_do = { 
+			base = 100
+		}
+	}
+	recruitment_of_Samsun = {
+		icon = category_eng_organize_the_blackshirts
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			TUR = {
+				has_full_control_of_state = 355
+			}
+		}
+		visible = {
+			has_global_flag = Middle_East_War
+			has_completed_focus = conscription_of_troops
+		}
+		fire_only_once = yes
+		days_remove = 7
+		cost = 10
+		remove_effect = {
+			TUR = {
+				355 = {
+					create_unit = {
+						division = "name = \"1. Ottoman Liberation Army\" division_template = \"Ottoman Liberation Army\" start_experience_factor = 0.1"
+						owner = TUR
+					}
+					create_unit = {
+						division = "name = \"2. Ottoman Liberation Army\" division_template = \"Ottoman Liberation Army\" start_experience_factor = 0.1"
+						owner = TUR
+					}
+				}
+			}
+		}
+		ai_will_do = { 
+			base = 100
+		}
+	}
+	recruitment_of_Kostantiniyye = {
+		icon = category_eng_organize_the_blackshirts
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			TUR = {
+				has_full_control_of_state = 797
+			}
+		}
+		visible = {
+			has_global_flag = Middle_East_War
+			has_completed_focus = conscription_of_troops
+		}
+		fire_only_once = yes
+		days_remove = 7
+		cost = 10
+		remove_effect = {
+			TUR = {
+				797 = {
+					create_unit = {
+						division = "name = \"1. Ottoman Liberation Army\" division_template = \"Ottoman Liberation Army\" start_experience_factor = 0.1"
+						owner = TUR
+					}
+					create_unit = {
+						division = "name = \"2. Ottoman Liberation Army\" division_template = \"Ottoman Liberation Army\" start_experience_factor = 0.1"
+						owner = TUR
+					}
+				}
+			}
+		}
+		ai_will_do = { 
+			base = 100
+		}
+	}
+	recruitment_of_izmir = {
+		icon = category_eng_organize_the_blackshirts
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			TUR = {
+				has_full_control_of_state = 339
+			}
+		}
+		visible = {
+			has_global_flag = Middle_East_War
+			has_completed_focus = conscription_of_troops
+		}
+		fire_only_once = yes
+		days_remove = 7
+		cost = 10
+		remove_effect = {
+			TUR = {
+				339 = {
+					create_unit = {
+						division = "name = \"1. Ottoman Liberation Army\" division_template = \"Ottoman Liberation Army\" start_experience_factor = 0.1"
+						owner = TUR
+					}
+					create_unit = {
+						division = "name = \"2. Ottoman Liberation Army\" division_template = \"Ottoman Liberation Army\" start_experience_factor = 0.1"
+						owner = TUR
+					}
+				}
+			}
+		}
+		ai_will_do = { 
+			base = 100
+		}
+	}
+}
+#Preparations_for_the_Second_Middle_East_War = {
+#	surprise attack on Syria = {
+#		icon = category_border_conflicts
+#		allowed = {
+#			original_tag = TUR
+#		}
+#		visible = {
+#			has_completed_focus = Syria_Iraq_Plan
+#		}
+#		fire_only_once = yes
+#		days_remove = 7
+#		cost = 50
+#		remove_effect = {
+#			declare_war_on = { target = SYR    type = take_core_state }
+#		}
+#	}
+#}
+Supporting_National_Laboratory = {
+	focus_on_industry = {
+		icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_completed_focus = TUR_emulate_the_west
+			NOT = { has_country_flag = Does_not_support_other_researches }
+		}
+		visible = {
+			has_completed_focus = TUR_emulate_the_west
+		}
+		cost = 50
+		complete_effect = {
+			set_country_flag = Does_not_support_other_researches
+			add_ideas = focus_on_industry
+		}
+		remove_effect = {
+			clr_country_flag = Does_not_support_other_researches
+			remove_ideas = focus_on_industry
+		}
+		days_remove = 150
+		ai_will_do = { 
+			base = 10
+		}
+	}
+	focus_on_electronics = {
+		icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_completed_focus = TUR_emulate_the_west
+			NOT = { has_country_flag = Does_not_support_other_researches }
+		}
+		visible = {
+			has_completed_focus = TUR_emulate_the_west
+		}
+		cost = 50
+		complete_effect = {
+			set_country_flag = Does_not_support_other_researches
+			add_ideas = focus_on_industry
+		}
+		remove_effect = {
+			clr_country_flag = Does_not_support_other_researches
+			remove_ideas = focus_on_electronics
+		}
+		days_remove = 150
+		ai_will_do = { 
+			base = 10
+		}
+	}
+}
+TUR_educational_reforms = {
+	TUR_alphabet_reform = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		visible = {
+			has_completed_focus = TUR_educational_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.72
+		}
+	}
+	TUR_establish_national_schools = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_first_educational_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_educational_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.73
+		}
+	}
+	TUR_abolish_madrasa = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_second_educational_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_educational_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.74
+		}
+	}
+	TUR_organize_education_system = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_third_educational_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_educational_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.75
+		}
+	}
+	TUR_modern_educational_institutions = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_fourth_educational_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_educational_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.76
+		}
+	}
+}
+TUR_political_reforms = {
+	TUR_reorganize_administrative_districts = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.77
+		}
+	}
+	TUR_law_of_takriri_sukun = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_first_political_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.78
+		}
+	}
+	TUR_establishment_of_political_parties = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_second_political_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.79
+		}
+	}
+	TUR_the_introduction_of_secularism_into_the_constitution = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_third_political_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.80
+		}
+	}
+	TUR_The_right_for_women_to_vote_and_be_elected = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_fourth_political_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.81
+		}
+	}
+}
+TUR_social_refroms = {
+	TUR_hat_revolution = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.82
+		}
+	}
+	TUR_closing_of_lodges_and_zawiyas = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_first_social_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.83
+		}
+	}
+	TUR_Changes_in_calendar = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_second_social_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.84
+		}
+	}
+	TUR_Surname_law = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_third_social_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.85
+		}
+	}
+	TUR_Law_on_the_Abolition_of_Nicknames_and_Titles = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_fourth_social_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.86
+		}
+	}
+}
+TUR_constitutional_reforms = {
+	TUR_Closing_of_Seriye_ve_Evkaf_Vekaleti = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.87
+		}
+	}
+	TUR_Adoption_of_the_new_Constitution = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_first_constitutional_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.88
+		}
+	}
+	TUR_Abolition_of_the_mecelle = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_second_constitutional_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.89
+		}
+	}
+	TUR_Turkish_civil_code = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_third_constitutional_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.90
+		}
+	}
+	TUR_Turkish_penal_code = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = TUR
+		}
+		available = {
+			has_country_flag = TUR_completion_of_third_constitutional_refrom
+		}
+		visible = {
+			has_completed_focus = TUR_political_reforms
+		}
+		cost = 10
+		days_remove = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = turkey.91
+		}
+	}
+}

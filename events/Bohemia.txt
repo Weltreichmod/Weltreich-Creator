@@ -1,0 +1,150 @@
+﻿###########################
+# French Events
+###########################
+
+add_namespace = bohemia
+
+country_event = {
+	id = bohemia.1
+	title = bohemia.1.t
+	desc = bohemia.1.d
+	picture = sudetenland_1
+	is_triggered_only = yes
+	option = {
+		name = bohemia.1.a
+		GER = {
+			transfer_state = 69
+			transfer_state = 74
+			country_event = { days = 1 id = Germany.30 }
+		}
+		ai_chance = {
+			base = 50
+		}
+	}
+	option = {
+		name = bohemia.1.b
+		GER = {
+			country_event = { days = 1 id = Germany.31 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = bohemia.2
+	title = bohemia.2.t
+	desc = bohemia.2.d
+	picture = Ukranie.1
+	trigger = {
+		original_tag = CZE
+		CZE = { is_subject = no }
+		country_exists = CZE
+		CZE = {
+			controls_state = 69
+			controls_state = 9
+			controls_state = 75
+			controls_state = 74
+		}
+		NOT = {
+			has_country_flag = independent_by_dissatisfaction
+		}
+	}
+	fire_only_once = yes
+	option = {
+		name = bohemia.2.a
+		CZE = {
+			division_template = {
+				name = "Infantry-Division"
+				regiments = {
+					infantry = {
+						x = 0
+						y = 0
+					}
+					infantry = {
+						x = 0
+						y = 1
+					}
+					infantry = {
+						x = 0
+						y = 2
+					}
+					infantry = {
+						x = 1
+						y = 0
+					}
+				}
+				support = {
+					military_police = {
+						x = 0
+						y = 0
+					}
+				}
+			}
+			9 = {
+				create_unit = {
+					division = "name = \"1. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+					owner = CZE
+				}
+				create_unit = {
+					division = "name = \"2. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+					owner = CZE
+				}
+				create_unit = {
+					division = "name = \"3. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+					owner = CZE
+				}
+				create_unit = {
+					division = "name = \"4. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+					owner = CZE
+				}
+			}
+			75 = {
+				create_unit = {
+					division = "name = \"5. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+					owner = CZE
+				}
+				create_unit = {
+					division = "name = \"6. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+					owner = CZE
+				}
+				create_unit = {
+					division = "name = \"7. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+					owner = CZE
+				}
+				create_unit = {
+					division = "name = \"8. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+					owner = CZE
+				}
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = bohemia.3
+	title = bohemia.3.t
+	desc = bohemia.3.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = bohemia.3.a
+		GER = { annex_country = { target = CZE transfer_troops = yes } }
+		GER = { news_event = { days = 1 id = Germany.58 } }
+		ai_chance = {
+			factor = 3
+		}
+	}
+	option = {
+		name = bohemia.3.b
+		GER = { create_wargoal = { type = annex_everything target = CZE } }
+		GER = { country_event = { days = 1 id = Germany.59 } }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}

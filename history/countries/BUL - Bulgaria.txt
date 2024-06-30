@@ -1,0 +1,217 @@
+﻿capital = 48
+set_country_flag = bul_political_confusion
+#TROOPS
+oob = "BUL_1936" #VANILLA & DLC
+set_naval_oob = "BUL_1936_naval"
+if = {
+	limit = { has_dlc = "By Blood Alone" }
+		set_air_oob = "BUL_1936_air_bba"
+		set_technology = {
+			aa_lmg = 1
+			engines_1 = 1
+			aircraft_construction = 1
+			iw_small_airframe = 1
+		}
+	else = {
+		set_air_oob = "BUL_1936_air_legacy"
+		set_technology = {
+			early_fighter = 1
+		}
+	}
+}
+set_convoys = 5 #VANILLA & DLC
+
+add_ideas = {
+	limited_conscription
+	victor_of_the_Balkan_War
+}
+country_event = { id = bulgaria.4 days = 220 }
+country_event = { id = bulgaria.10 days = 1168 }
+#TECHNOLOGY
+set_research_slots = 3
+
+#SET UP IDEAS
+add_ideas = { #VANILLA
+}
+
+#POLITICS
+set_popularities = { #VANILLA
+	democratic = 30
+	fascism = 20
+	neutrality = 50
+}
+set_politics = { #VANILLA
+	ruling_party = neutrality
+	last_election = "1935.6.21"
+	election_frequency = 48
+	elections_allowed = yes
+}
+if = {
+	limit = { not = { has_dlc = "Man the Guns" } }
+	set_technology = {
+		early_submarine = 1
+		early_destroyer = 1
+		early_light_cruiser = 1
+		early_heavy_cruiser = 1
+		early_battleship = 1
+		transport = 1
+	}
+}
+if = {
+	limit = { has_dlc = "Man the Guns" }
+	set_technology = {
+		basic_naval_mines = 1
+		submarine_mine_laying = 1
+		early_ship_hull_light = 1
+		basic_ship_hull_light = 1
+		early_ship_hull_submarine = 1
+		basic_ship_hull_submarine = 1
+		early_ship_hull_cruiser = 1
+		early_ship_hull_heavy = 1
+		basic_battery = 1
+		basic_cruiser_armor_scheme = 1
+		basic_torpedo = 1
+		coastal_defense_ships = 1
+		pre_dreadnoughts = 1
+		mtg_transport = 1
+	}
+}
+recruit_character = BUL_ferdinand_i
+recruit_character = BUL_boris_iii
+recruit_character = BUL_kimon_georgiev
+recruit_character = BUL_yanko_sakazov
+recruit_character = BUL_georgi_dimitrov
+recruit_character = BUL_nikola_mushanov
+recruit_character = BUL_atanas_shalapatov
+recruit_character = BUL_nikola_mihov
+recruit_character = BUL_georgi_popov
+recruit_character = BUL_ivan_markov
+recruit_character = BUL_georgi_markov
+recruit_character = BUL_vasil_boydev
+recruit_character = BUL_asen_nikolov
+recruit_character = BUL_georgi_petsov
+recruit_character = BUL_atanas_zhilkov
+recruit_character = BUL_bonyu_stoev_pironkov
+recruit_character = BUL_ivan_gaidimitriv
+recruit_character = BUL_kiril_stanchev
+recruit_character = BUL_blagoi_ivanov
+recruit_character = BUL_stoyan_stoyanov
+recruit_character = BUL_nikola_hadzipetkov
+recruit_character = BUL_kiril_dimitrov_yanchulev
+recruit_character = BUL_nikola_totev_markov
+recruit_character = BUL_georgi_ivanov_kyoseivanov
+recruit_character = BUL_dobri_bozhilov
+recruit_character = BUL_konstantin_muraviev
+recruit_character = BUL_konstantin_lukash
+recruit_character = BUL_georgi_drenikov
+recruit_character = BUL_sava_ivanov
+recruit_character = BUL_theodosi_daskalov
+recruit_character = BUL_asen_toshev
+recruit_character = BUL_ivan_variklechkov
+recruit_character = BUL_dimitr_ayryanov
+recruit_character = BUL_gancho_manchev
+recruit_character = BUL_zachari_zacharievr
+recruit_character = BUL_stefan_tsanev
+recruit_character = BUL_ivan_sapundzhiev
+recruit_character = BUL_trifon_trifonov
+recruit_character = BUL_ferdinand_kozovski
+recruit_character = BUL_stoyan_trendafilov
+recruit_character = BUL_vladimir_stoychev
+recruit_character = BUL_stefan_nedev
+recruit_character = BUL_stoycho_mushanov
+recruit_character = BUL_stefan_stefanov
+recruit_character = BUL_dimitrana_ivanova
+recruit_character = BUL_aleksandar_tsankov
+recruit_character = BUL_nikola_zhekov
+recruit_character = BUL_andrey_lyapchev
+
+set_technology = { #VANILLA & DLC
+	infantry_weapons = 1
+	infantry_weapons1 = 1
+	tech_support = 1		
+	tech_engineers = 1
+	motorised_infantry = 1
+	tech_trucks = 1
+	fuel_silos = 1
+	basic_train = 1
+	gw_artillery = 1
+}
+
+if = {
+	limit = {
+		has_dlc = "By Blood Alone"
+	}
+	create_equipment_variant = {
+		name = "He 51" #also covers Ar 68
+		type = small_plane_airframe_0
+		modules = {
+			fixed_main_weapon_slot = light_mg_2x
+			engine_type_slot = engine_1_1x
+			special_type_slot_1 = empty
+		}
+	}
+}
+
+if = {
+	limit = { has_dlc = "Man the Guns" }
+	create_equipment_variant = {
+		name = "Druzki Class"
+		type = ship_hull_light_1
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_battery_1
+			fixed_ship_anti_air_slot = empty
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = light_ship_engine_2
+			fixed_ship_torpedo_slot = empty
+			mid_1_custom_slot = ship_torpedo_1
+			rear_1_custom_slot = ship_torpedo_1
+		}
+		obsolete = yes
+	}
+	create_equipment_variant = {
+		name = "Hrabar Class"
+		type = ship_hull_cruiser_1
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_medium_battery_1
+			fixed_ship_anti_air_slot = ship_anti_air_1
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = cruiser_ship_engine_1
+			fixed_ship_armor_slot = ship_armor_cruiser_1
+			fixed_ship_secondaries_slot = dp_ship_secondaries_1
+			mid_1_custom_slot = ship_airplane_launcher_0
+			mid_2_custom_slot = ship_torpedo_1
+			rear_1_custom_slot = ship_medium_battery_1
+		}
+		obsolete = yes
+	}
+	create_equipment_variant = {
+		name = "Iskar Class"
+		type = ship_hull_cruiser_1
+		parent_version = 0
+		modules = {
+			fixed_ship_battery_slot = ship_light_medium_battery_1
+			fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+			fixed_ship_radar_slot = empty
+			fixed_ship_engine_slot = cruiser_ship_engine_1
+			fixed_ship_armor_slot = ship_armor_cruiser_1
+			fixed_ship_secondaries_slot = dp_ship_secondaries_1
+			mid_1_custom_slot = ship_torpedo_1
+			mid_2_custom_slot = empty
+			rear_1_custom_slot = empty
+		}
+	}
+	create_equipment_variant = {
+		name = "Slava Class"
+		type = ship_hull_submarine_1
+		parent_version = 0
+		modules = {
+			fixed_ship_torpedo_slot = ship_torpedo_sub_1
+			fixed_ship_engine_slot = sub_ship_engine_2
+			rear_1_custom_slot = empty
+		}
+	}
+}

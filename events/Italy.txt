@@ -1,0 +1,1582 @@
+﻿###########################
+# Italian Events
+###########################
+
+add_namespace = italy
+
+country_event = {
+	picture = Singing
+	id = italy.1
+	title = italy.1.t
+	desc = italy.1.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.1.a
+		ITA = { country_event = italy.2 }
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.2
+	title = italy.2.t
+	desc = italy.2.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.2.a
+		GER = { country_event = { days = 1 id = Germany.11 } }
+		ai_chance = {
+			factor = 15
+		}
+	}
+	option = {
+		name = italy.2.b
+		GER = { country_event = { days = 1 id = Germany.12 } }
+		ai_chance = {
+			factor = 0.5
+		}
+	}
+	option = {
+		name = italy.2.c
+		GER = { country_event = { days = 1 id = Germany.13 } }
+		ai_chance = {
+			factor = 0.1
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.3
+	title = italy.3.t
+	desc = italy.3.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.3.a
+		GER = { country_event = { days = 1 id = Germany.16 } }
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = italy.3.b
+		GER = { country_event = { days = 1 id = Germany.13 } }
+		ai_chance = {
+			factor = 4
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.4
+	title = italy.4.t
+	desc = italy.4.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.4.a
+		set_global_flag = anzio_negotiations_economic_aid
+		ITA = { add_timed_idea = { idea = ITA_idea_German_economic_aid days = 150 } }
+		ITA = {
+			add_opinion_modifier = {
+				target = GER
+				modifier = small_increase
+			}
+		}
+		GER = {
+			add_opinion_modifier = {
+				target = ITA
+				modifier = small_increase
+			}
+		}
+		#GER = { give_guarantee = ITA }
+		#ITA = { give_guarantee = GER }
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.5
+	title = italy.5.t
+	desc = italy.5.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.5.a
+		GER = { country_event = { days = 1 id = Germany.15 } }
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = italy.5.b
+		GER = { country_event = { days = 1 id = Germany.13 } }
+		ai_chance = {
+			factor = 2
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.6
+	title = italy.6.t
+	desc = italy.6.d
+	is_triggered_only = yes
+	option = {
+		name = italy.6.a
+		GER = { country_event = { days = 1 id = Germany.13 } }
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.7
+	title = italy.7.t
+	desc = italy.7.d
+	is_triggered_only = yes
+	option = {
+		name = italy.7.a
+		set_global_flag = anzio_negotiations_LBV
+		ITA = {
+			annex_country = { target = LBV transfer_troops = no }
+		}
+		ITA = {
+			add_opinion_modifier = {
+				target = AUH
+				modifier = large_increase
+			}
+		}
+		AUH = {
+			add_opinion_modifier = {
+				target = ITA
+				modifier = large_increase
+			}
+		}
+		#GER = { give_guarantee = ITA }
+		#ITA = { give_guarantee = GER }
+		every_state = {
+			limit = {
+				is_core_of = LBV
+			}
+			remove_core_of = LBV
+			add_core_of = ITA
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.8
+	title = italy.8.t
+	desc = italy.8.d
+	is_triggered_only = yes
+	option = {
+		name = italy.8.a
+		GER = { 
+			country_event = { id = Germany.19 }
+			add_to_faction = ITA
+			add_opinion_modifier = {
+				target = ITA
+				modifier = large_increase
+			}
+		}
+		ITA = {
+			add_opinion_modifier = {
+				target = GER
+				modifier = large_increase
+			}
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 100
+				ITA = {
+					OR = {
+						has_full_control_of_state = 159
+						has_full_control_of_state = 160
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = italy.8.b
+		GER = { country_event = { id = Germany.20 } }
+		ai_chance = {
+			base = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.9
+	title = italy.9.t
+	desc = italy.9.d
+	is_triggered_only = yes
+	option = {
+		name = italy.9.a
+		GER = { country_event = { days = 1 id = Germany.26 } }
+		set_global_flag = NG_flag
+		ai_chance = {
+			base = 100
+			modifier = {	
+				factor = 0
+				OR = {
+					GER = {
+						OR = {
+							has_wargoal_against = ITA
+							is_justifying_wargoal_against = ITA
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = italy.9.b
+		GER = { country_event = { days = 1 id = Germany.27 } }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.10
+	title = italy.10.t
+	desc = italy.10.d
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			create_dynamic_country = {
+				original_tag = ITA
+				every_state = {
+					limit = {
+						is_core_of = ITD
+					}
+					add_core_of = ITF
+				}
+				set_capital = { state = 2 }
+				set_politics = {
+					ruling_party = fascism
+					elections_allowed = no
+				}
+				set_popularities = {
+					democratic = 1
+					neutrality = 9
+					fascism = 86
+					communism = 4
+				}
+				set_country_flag = roma_march
+				set_country_flag = civilwar_italy_fascism
+				set_cosmetic_tag = ITF
+				load_focus_tree = {
+					tree = italian_focus
+					keep_completed = yes
+				}
+				add_ideas = lowquality_army
+				add_ideas = broken_industry1
+				add_ideas = Questione_meridionale
+				reserve_dynamic_country = yes
+				every_possible_country = {
+					limit = {
+						original_tag = ITA
+						OR = {
+							has_character = ITA_benito_mussolini
+							has_character = ITA_rodolfo_graziani
+							has_character = ITA_ubaldo_soddu
+							has_character = ITA_ettore_bastico
+							has_character = ITA_alfredo_guzzoni
+							has_character = ITA_pietro_pintor
+							has_character = ITA_giuseppe_tellera
+							has_character = ITA_francesco_zingales
+							has_character = ITA_alessandro_pirzio_biroli
+							has_character = ITA_ettore_baldassarre
+							has_character = ITA_angelo_iachino
+							has_character = ITA_arturo_riccardi
+							has_character = ITA_giuseppe_bottai
+							has_character = ITA_renato_ricci
+							has_character = ITA_adelchi_serena
+						}
+					}
+					ITA_benito_mussolini = {
+						set_nationality = ITF
+					}
+					ITA_rodolfo_graziani = {
+						set_nationality = ITF
+					}
+					ITA_ubaldo_soddu = {
+						set_nationality = ITF
+					}
+					ITA_ettore_bastico = {
+						set_nationality = ITF
+					}
+					ITA_alfredo_guzzoni = {
+						set_nationality = ITF
+					}
+					ITA_pietro_pintor = {
+						set_nationality = ITF
+					}
+					ITA_giuseppe_tellera = {
+						set_nationality = ITF
+					}
+					ITA_francesco_zingales = {
+						set_nationality = ITF
+					}
+					ITA_alessandro_pirzio_biroli = {
+						set_nationality = ITF
+					}
+					ITA_ettore_baldassarre = {
+						set_nationality = ITF
+					}
+					ITA_angelo_iachino = {
+						set_nationality = ITF
+					}
+					ITA_arturo_riccardi = {
+						set_nationality = ITF
+					}
+					ITA_giuseppe_bottai = {
+						set_nationality = ITF
+					}
+					ITA_renato_ricci = {
+						set_nationality = ITF
+					}
+					ITA_adelchi_serena = {
+						set_nationality = ITF
+					}
+				}
+				ITA_benito_mussolini = {
+					promote_character = yes
+				}
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 157
+						state = 117
+						state = 849
+						state = 156
+						state = 115
+					}
+				}
+				transfer_state_to = ITF
+			}
+			ITF = {
+				leave_faction = yes
+				set_rule = {
+					can_join_factions = no
+				}
+				inherit_technology = ITD
+				add_country_leader_role = {
+					character = ITA_benito_mussolini
+					promote_leader = yes
+					country_leader = {
+						ideology = fascism_ideology
+						traits = { il_duce }
+					}
+				}
+				division_template = {
+					name = "Guardie Rosse"
+					division_names_group = ITA_INF_01
+					regiments = {
+						infantry = {
+							x = 0
+							y = 0
+						}
+						infantry = {
+							x = 0
+							y = 1
+						}
+						infantry = {
+							x = 0
+							y = 2
+						}
+						infantry = {
+							x = 1
+							y = 0
+						}
+						infantry = {
+							x = 1
+							y = 1
+						}
+						infantry = {
+							x = 1
+							y = 2
+						}
+					}
+				}
+			}
+			ITD = {
+				transfer_units_fraction = {
+					target = ITF
+					size = 0.4
+					stockpile_ratio = 0.7
+					army_ratio = 0.5
+					navy_ratio = 0.4
+					air_ratio = 0.3
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+				set_rule = {
+					can_join_factions = no
+				}
+				declare_war_on = {
+					target = ITF
+					type = civil_war
+				}
+			}
+			set_global_flag = Italy_in_Divided
+			news_event = italy.39
+			country_event = { id = italy.40 days = 365 }
+			add_named_threat = {
+				threat = 2
+				name = civilwar_italy_fascism
+			}
+		}
+	}
+	option = {
+		name = italy.10.a
+		ai_chance = {
+			factor = 4
+		}
+	}
+	option = {
+		name = italy.10.b
+		ITF = {
+			change_tag_from = ROOT
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.11
+	title = italy.11.t
+	desc = italy.11.d
+	is_triggered_only = yes
+	option = {
+		name = italy.11.a
+		FRA = { country_event = { days = 3 id = france.17 } add_to_faction = ITA }
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = italy.11.b
+		FRA = { country_event = { days = 3 id = france.18 } }
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = 4000
+				has_global_flag = NG_flag
+			}
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.12
+	title = italy.11.t
+	desc = italy.11.d
+	is_triggered_only = yes
+	option = {
+		name = italy.11.a
+		FRA = { country_event = { days = 3 id = france.17 } add_to_faction = IRE }
+		ai_chance = {
+			factor = 15
+		}
+	}
+	option = {
+		name = italy.11.b
+		FRA = { country_event = { days = 3 id = france.18 } }
+		ai_chance = {
+			base = 4	
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.13
+	title = italy.11.t
+	desc = italy.11.d
+	is_triggered_only = yes
+	option = {
+		name = italy.11.a
+		FRA = { country_event = { days = 3 id = france.17 } add_to_faction = SWI }
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		name = italy.11.b
+		FRA = { country_event = { days = 3 id = france.18 } }
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.14
+	title = italy.11.t
+	desc = italy.11.d
+	is_triggered_only = yes
+	option = {
+		name = italy.11.a
+		FRA = { country_event = { days = 3 id = france.17 } add_to_faction = SPR }
+		ai_chance = {
+			factor = 15
+		}
+	}
+	option = {
+		name = italy.11.b
+		FRA = { country_event = { days = 3 id = france.18 } }
+		ai_chance = {
+			base = 4	
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.15
+	title = italy.11.t
+	desc = italy.11.d
+	is_triggered_only = yes
+	option = {
+		name = italy.11.a
+		FRA = { country_event = { days = 3 id = france.17 } add_to_faction = ITA }
+		ai_chance = {
+			factor = 15
+			modifier = {
+				has_country_flag = NG_flag
+				add = -15
+			}
+		}
+	}
+	option = {
+		name = italy.11.b
+		FRA = { country_event = { days = 3 id = france.18 } }
+		ai_chance = {
+			base = 4
+			modifier = {
+				add = 4000
+				has_global_flag = NG_flag
+			}
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.16
+	title = italy.16.t
+	desc = italy.16.d
+	is_triggered_only = yes
+	option = {
+		name = italy.16.a
+		FRA = { country_event = { days = 3 id = france.19 } }
+		ai_chance = {
+			factor = 15
+		}
+	}
+	option = {
+		name = italy.16.b
+		FRA = { country_event = { days = 3 id = france.20 } }
+		ai_chance = {
+			base = 4	
+		}
+	}
+}
+
+country_event = {
+	picture = train
+	id = italy.17
+	title = italy.17.t
+	desc = italy.17.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.17.a
+		country_event = { days = 7 id = italy.18 }
+		ai_chance = {
+			base = 4
+			modifier = {
+				has_game_rule = {
+					rule = ITA_ai_behavior 
+					option = FASCISM
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = italy.17.b
+		country_event = { days = 7 id = italy.19 }
+		ai_chance = {
+			base = 4
+			modifier = {
+				OR  ={
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = ITA_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = ITA_ai_behavior 
+						option = DEMOCRATIC
+					}
+				}
+				factor = 0
+			}			
+		}
+	}	
+}
+
+country_event = {
+	picture = GFX_report_event_generic_rally_3
+	id = italy.18
+	title = italy.18.t
+	desc = italy.18.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.18.a
+		add_stability = 0.05
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.05
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = GFX_report_event_generic_riot
+	id = italy.19
+	title = italy.19.t
+	desc = italy.19.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.19.a
+		add_stability = -0.05
+		retire_character = ITA_giovanni_gentile
+		news_event = italy.36
+		ai_chance = {
+			factor = 4
+		}
+	}
+}
+
+country_event = {
+	picture = italy_election
+	id = italy.20
+	title = italy.20.t
+	desc = italy.20.d
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+		date > 1973.3.1
+		has_government = democratic
+		has_country_flag = fail_roma_march
+	}
+	immediate = {
+		hidden_effect = {
+			set_politics = {
+				ruling_party = democratic
+				election_frequency = 48
+				elections_allowed = yes
+			}
+		}
+	}
+	option = {
+		name = italy.20.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = italy_election
+	id = italy.21
+	title = italy.21.t
+	desc = italy.21.d
+	fire_only_once = yes
+	trigger = {
+		original_tag = ITA
+		date > 1973.3.1
+		has_country_flag = civilwar_italy_democratic
+	}
+	immediate = {
+		hidden_effect = {
+			set_politics = {
+				ruling_party = democratic
+				election_frequency = 48
+				elections_allowed = yes
+			}
+		}
+	}
+	option = {
+		name = italy.21.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.22
+	title = italy.22.t
+	desc = italy.22.d
+	is_triggered_only = yes
+	option = {
+		name = italy.22.a
+		ITA = { country_event = { days = 3 id = italy.23 } }
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.23
+	title = italy.23.t
+	desc = italy.23.d
+	is_triggered_only = yes
+	option = {
+		name = italy.23.a
+		unlock_decision_category_tooltip = invasion_somalia
+		set_global_flag = treaty_of_rome
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.24
+	title = italy.24.t
+	desc = italy.24.d
+	is_triggered_only = yes
+	option = {
+		name = italy.24.a
+		declare_war_on = { target = SOM  type = annex_everything }
+		news_event = italy.26
+		ai_chance = {
+			factor = 6
+		}
+		add_named_threat = {
+			threat = 3
+			name = Ethiopian_Somalian_War
+		}
+	}
+}
+
+news_event = {
+	picture = italy_somali
+	id = italy.25
+	title = italy.25.t
+	desc = italy.25.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.25.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	picture = eth_somali
+	id = italy.26
+	title = italy.26.t
+	desc = italy.26.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.26.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.27
+	title = italy.27.t
+	desc = italy.27.d
+	major = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			clr_global_flag = ita_som_war
+			every_state = {
+				limit = {
+					OR = {
+						is_owned_by = ITA
+						is_owned_by = ETH
+						is_owned_by = SOM
+					}
+					OR = {
+						state = 269
+						state = 559
+						state = 835
+					}
+					is_claimed_by = ITA
+				}
+				transfer_state_to = ITA
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_owned_by = ITA
+						is_owned_by = ETH
+						is_owned_by = SOM
+					}
+					OR = {
+						state = 269
+						state = 559
+						state = 835
+					}
+					is_claimed_by = ETH
+				}
+				transfer_state_to = ETH
+			}
+			news_event = italy.28
+		}
+	}
+	option = {
+		name = italy.27.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	picture = end_somal
+	id = italy.28
+	title = italy.28.t
+	desc = italy.28.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.28.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	picture = ita_otto_war
+	id = italy.29
+	title = italy.29.t
+	desc = italy.29.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.29.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = ottoman_uprising
+	id = italy.30
+	title = italy.30.t
+	desc = italy.30.d
+	is_triggered_only = yes
+	option = {
+		name = italy.30.a
+		hidden_effect = {
+			clr_global_flag = second_ita_otto_war
+		}
+		every_state = {
+			limit = {
+				is_owned_by = TUR
+				is_claimed_by = ITA
+			}
+			transfer_state_to = ITA
+		}
+		if = {
+			limit = {
+				LBA = { is_subject_of = TUR }
+			}
+			ITA = { annex_country = { target = LBA transfer_troops = no } }
+		}
+		TUR = {
+			if = {
+				limit = {
+					is_faction_leader = yes
+				}
+				dismantle_faction = yes
+				else_if = {
+					limit = {
+						is_in_faction = yes
+					}
+					leave_faction = yes
+				}
+			}
+		}
+		every_country = {
+			limit = {
+				OR = {
+					is_subject_of = TUR
+					original_tag = TUR
+				}
+			}
+			every_country = {
+				limit = {
+					OR = {
+						is_in_faction_with = ITA
+						original_tag = ITA
+						is_subject_of = ITA
+					}
+				}
+				white_peace = {
+					tag = PREV
+				}
+			}
+		}
+		news_event = italy.31
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = italy.30.b
+		TUR = { country_event = turkey.17 }
+		hidden_effect = {
+			clr_global_flag = second_ita_otto_war
+			set_global_flag = second_ita_otto_war_refuse
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+news_event = {
+	picture = ita_otto_war
+	id = italy.31
+	title = italy.31.t
+	desc = italy.31.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.31.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	picture = ita_otto_war
+	id = italy.32
+	title = italy.32.t
+	desc = italy.32.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.32.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.33
+	title = italy.33.t
+	desc = italy.33.d
+	is_triggered_only = yes
+	option = {
+		name = italy.33.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.34
+	title = italy.34.t
+	desc = italy.34.d
+	is_triggered_only = yes
+	option = {
+		name = italy.34.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	picture = rom_march
+	id = italy.35
+	title = italy.35.t
+	desc = italy.35.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.35.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	picture = giovanni_gentile
+	id = italy.36
+	title = italy.36.t
+	desc = italy.36.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.36.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	picture = ita_eth_war
+	id = italy.37
+	title = italy.37.t
+	desc = italy.37.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.37.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	id = italy.38
+	title = italy.38.t
+	desc = italy.38.d
+	picture = second_ita_otto_war_refuse
+	major = yes
+	mean_time_to_happen = {
+		days = 1
+	}
+	is_triggered_only = yes
+	immediate = {
+		clr_global_flag = second_ita_otto_war_refuse
+	}
+	option = {
+		name = italy.38.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	picture = italian_civilwar
+	id = italy.39
+	title = italy.39.t
+	desc = italy.39.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.39.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.40
+	title = italy.40.t
+	desc = italy.40.d
+	major = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.40.a
+		ITF = { country_event = italy.41 days = 3 }
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = italy.40.b
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.41
+	title = italy.41.t
+	desc = italy.41.d
+	major = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.41.a
+		ITD = {
+			every_state = {
+				limit = {
+					is_owned_by = ITF
+					is_controlled_by = ITD
+				}
+				transfer_state_to = ITD
+			}
+			set_rule = {
+				can_join_factions = yes
+			}
+		}
+		ITF = {
+			every_state = {
+				limit = {
+					is_owned_by = ITD
+					is_controlled_by = ITF
+				}
+				transfer_state_to = ITF
+			}
+			set_rule = {
+				can_join_factions = yes
+			}
+		}
+		ITD = { white_peace = ITF }
+		ITF = { white_peace = ITD }
+		news_event = italy.42
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = italy.41.b
+		ITD = { country_event = { id = italy.43 days = 2 } }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+news_event = {
+	picture = italian_civilwar_peace
+	id = italy.42
+	title = italy.42.t
+	desc = italy.42.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.42.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.43
+	title = italy.43.t
+	desc = italy.43.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.43.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = italy.44
+	title = italy.44.t
+	desc = italy.44.d
+	hidden = yes
+	mean_time_to_happen = {
+		days = 1
+	}
+	fire_only_once = yes
+	trigger = {
+		OR = {
+			AND = {
+				ITF = { exists = no }
+				ITD = { exists = yes }
+			}
+			AND = {
+				ITF = { exists = yes }
+				ITD = { exists = no }
+			}
+		}
+		has_global_flag = Italy_in_Divided
+	}
+	immediate = {
+		clr_global_flag = Italy_in_Divided
+		news_event = italy.45
+	}
+	option = {
+		name = italy.44.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	picture = italian_civilwar_unified
+	id = italy.45
+	title = italy.45.t
+	desc = italy.45.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = italy.45.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.46
+	title = italy.46.t
+	desc = italy.46.d
+	is_triggered_only = yes
+	option = {
+		name = italy.46.a
+		FRA = { country_event = { id = italy.47 days = 2 } }
+		add_timed_idea = { idea = arms_purchase days = 40 }
+		custom_effect_tooltip = FRA_ITA_equipment
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = italy.46.b
+		FRA = { country_event = { id = italy.48 days = 2 } }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.47
+	title = italy.47.t
+	desc = italy.47.d
+	is_triggered_only = yes
+	option = {
+		name = italy.47.a
+		send_equipment = {
+			target = ITA
+			type = infantry_equipment
+			amount = 1000
+		}
+		add_timed_idea = { idea = arms_sales days = 40 }
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.48
+	title = italy.48.t
+	desc = italy.48.d
+	is_triggered_only = yes
+	option = {
+		name = italy.48.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	id = italy.49
+	title = italy.49.t
+	desc = italy.49.d
+	picture = second_italo_ethiopian_War
+	major = yes
+	mean_time_to_happen = {
+		days = 1
+	}
+	is_triggered_only = yes
+	immediate = {
+		clr_global_flag = Second_Italo_Ethiopian_War
+	}
+	option = {
+		name = italy.49.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = italy.50
+	title = italy.50.t
+	desc = italy.50.d
+	trigger = {
+		tag = ITA
+		ITA = {
+			controls_state = 159
+			controls_state = 160
+			controls_state = 945
+		}
+	}
+	fire_only_once = yes
+	mean_time_to_happen = { days = 7 }
+	option = {
+		name = italy.50.a
+		random_owned_controlled_state = {
+			prioritize = { 159 }
+			limit = {
+				industrial_complex > 0
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 160 }
+			limit = {
+				industrial_complex > 0
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 945 }
+			limit = {
+				industrial_complex > 0
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 159 }
+			limit = {
+				industrial_complex > 0
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 160 }
+			limit = {
+				industrial_complex > 0
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 945 }
+			limit = {
+				industrial_complex > 0
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 159 }
+			limit = {
+				industrial_complex > 3
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 160 }
+			limit = {
+				industrial_complex > 3
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 945 }
+			limit = {
+				industrial_complex > 3
+			}
+			remove_building = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 159 }
+			limit = {
+				arms_factory > 0
+			}
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 160 }
+			limit = {
+				arms_factory > 0
+			}
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 945 }
+			limit = {
+				arms_factory > 0
+			}
+			remove_building = {
+				type = arms_factory
+				level = 1
+			}
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = GFX_report_event_generic_sign_treaty2
+	id = italy.51
+	title = italy.51.t
+	desc = italy.51.d
+	is_triggered_only = yes
+	option = {
+		name = italy.51.a
+		set_cosmetic_tag = ITF
+		set_politics = {
+			ruling_party = democratic
+			elections_allowed = yes
+			election_frequency = 60
+		}
+		add_popularity = {
+			ideology = democratic
+			popularity = 0.1
+		}
+		remove_ideas = italian_fascism
+		set_country_flag = ITA_democratic_tree_flag
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = GFX_report_event_generic_sign_treaty2
+	id = italy.52
+	title = italy.52.t
+	desc = italy.52.d
+	is_triggered_only = yes
+	option = {
+		name = italy.52.a
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.1
+		}
+		set_country_flag = ITA_fascism_tree_flag
+		hidden_effect = {
+			country_event = { id = italy.53 days = 7 }
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	picture = italy_election
+	id = italy.53
+	title = italy.53.t
+	desc = italy.53.d
+	is_triggered_only = yes
+	option = {
+		name = italy.53.a
+		ITA_italo_balbo = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = ethnic_nationalism
+				}
+				traits = { aviation_hero }
+			}
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}

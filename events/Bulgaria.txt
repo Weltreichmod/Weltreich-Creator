@@ -1,0 +1,957 @@
+﻿###########################
+# Bulgarian Events
+###########################
+
+add_namespace = bulgaria
+
+country_event = {
+	id = bulgaria.1
+	title = bulgaria.1.t
+	desc = bulgaria.1.d
+	picture = BUL
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = bulgaria.1.a
+		GER = {
+			country_event = {
+				days = 1 id = Germany.32
+			}
+			add_to_faction = BUL
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = bulgaria.1.b
+		GER = { country_event = { days = 1 id = Germany.33 } }
+		ai_chance = {
+			factor = 3
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.2
+	title = bulgaria.2.t
+	desc = bulgaria.2.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.2.a
+		AUH = { country_event = { days = 1 id = AUH.24 } }
+		BUL = {
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 1000
+			}
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = bulgaria.2.b
+		AUH = {
+			country_event = { days = 1 id = AUH.25 }
+		}
+		BUL = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 2000
+			}
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.3
+	title = bulgaria.3.t
+	desc = bulgaria.3.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.3.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.4
+	title = bulgaria.4.t
+	desc = bulgaria.4.d
+	picture = mercedonia_uprising
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			set_country_flag = BUL_macedonia_crisis_flag
+			106 = {
+				set_demilitarized_zone = yes
+			}
+			731 = {
+				set_demilitarized_zone = yes
+			}
+		}
+	}
+	option = {
+		name = bulgaria.4.a
+		activate_mission = The_days_left_before_Emergency_Meeting_in_Parliament_is_held
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.5
+	title = bulgaria.5.t
+	desc = {
+		text = bulgaria.5.d.a
+		trigger = {
+			has_country_flag = to_prepare_to_crush_the_riot_flag
+		}
+	}
+	desc = {
+		text = bulgaria.5.d.b
+		trigger = {
+			has_country_flag = try_to_negotiate_flag
+		}
+	}
+	picture = mercedonia_uprising
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.5.a
+		custom_effect_tooltip = BUL_Loyalist_5_increase_effect
+		custom_effect_tooltip = BUL_Zveno_5_increase_effect
+		hidden_effect = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			country_event = { id = bulgaria.6 days = 7 }
+		}
+		trigger = {
+			has_country_flag = to_prepare_to_crush_the_riot_flag
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = bulgaria.5.b
+		custom_effect_tooltip = BUL_Agrian_National_Union_5_increase_effect
+		hidden_effect = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			country_event = { id = bulgaria.7 days = 5 }
+		}
+		trigger = {
+			has_country_flag = try_to_negotiate_flag
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.6
+	title = bulgaria.6.t
+	desc = bulgaria.6.d
+	picture = mercedonia_uprising
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			clr_country_flag = BUL_macedonia_crisis_flag
+			106 = {
+				set_demilitarized_zone = no
+			}
+			731 = {
+				set_demilitarized_zone = no
+			}
+		}
+	}
+	option = {
+		name = bulgaria.6.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.7
+	title = bulgaria.7.t
+	desc = bulgaria.7.d
+	picture = mercedonia_uprising
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.7.a
+		hidden_effect = {
+			country_event = { id = bulgaria.8 days = 7 }
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = BUL_ai_behavior 
+					option = BUL_coup_of_zveno
+				}
+			}
+		}
+	}
+	option = {
+		name = bulgaria.7.b
+		hidden_effect = {
+			country_event = { id = bulgaria.9 days = 4 }
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.8
+	title = bulgaria.8.t
+	desc = bulgaria.8.d
+	picture = mercedonia_uprising
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			clr_country_flag = BUL_macedonia_crisis_flag
+			106 = {
+				set_demilitarized_zone = no
+			}
+			731 = {
+				set_demilitarized_zone = no
+			}
+		}
+	}
+	option = {
+		name = bulgaria.8.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.9
+	title = bulgaria.9.t
+	desc = bulgaria.9.d
+	picture = mercedonia_uprising
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.9.a
+		set_politics = {
+			ruling_party = fascism
+			election_frequency = 48
+			elections_allowed = yes
+		}
+		custom_effect_tooltip = ENG_focus_tree_change
+		hidden_effect = {
+			country_event = { id = bulgaria.6 days = 7 }
+			set_country_flag = coup_of_zveno
+			add_ideas = BUL_ferdinand_i_wr
+			complete_national_focus = BUL_Zveno
+			mark_focus_tree_layout_dirty = yes
+			if = {
+				limit = {
+					has_completed_focus = BUL_the_way_of_democracy
+				}
+				uncomplete_national_focus = {
+					focus = BUL_the_way_of_democracy
+					uncomplete_children = yes
+				}
+				clr_country_flag = BUL_the_way_of_democracy
+				set_country_flag = BUL_the_radicals
+				complete_national_focus = BUL_remaining_days_of_the_general_election
+				complete_national_focus = BUL_the_radicals
+			}
+			if = {
+				limit = {
+					has_completed_focus = BUL_remaining_days_of_the_general_election
+				}
+				uncomplete_national_focus = {
+					focus = BUL_remaining_days_of_the_general_election
+					uncomplete_children = yes
+				}
+				clr_country_flag = BUL_remaining_days_of_the_general_election
+				set_country_flag = BUL_the_radicals
+				complete_national_focus = BUL_remaining_days_of_the_general_election
+				complete_national_focus = BUL_the_radicals
+			}
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.10
+	title = bulgaria.10.t
+	desc = bulgaria.10.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	trigger = {
+		NOT = {
+			has_country_flag = coup_of_zveno
+		}
+	}
+	immediate = {
+		hidden_effect = {
+			set_country_flag = before_1939_vote
+		}
+	}
+	option = {
+		name = bulgaria.10.a
+		custom_effect_tooltip = before_1939_vote_effect
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.11
+	title = bulgaria.11.t
+	desc = bulgaria.11.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = bulgaria.11.a
+		set_country_flag = BUL_subject_of_His_Majesty_the_King
+		trigger = {
+			NOT = { has_country_flag = coup_of_zveno }
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_game_rule = {
+						rule = BUL_ai_behavior 
+						option = BUL_the_way_of_democracy
+					}
+					has_game_rule = {
+						rule = BUL_ai_behavior 
+						option = BUL_the_radicals
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = bulgaria.11.b
+		set_country_flag = BUL_the_way_of_democracy
+		trigger = {
+			NOT = { has_country_flag = coup_of_zveno }
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = BUL_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = BUL_ai_behavior 
+						option = BUL_subject_of_His_Majesty_the_King
+					}
+					has_game_rule = {
+						rule = BUL_ai_behavior 
+						option = BUL_the_radicals
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = bulgaria.11.c
+		set_country_flag = BUL_the_radicals
+		ai_chance = {
+			base = 1
+			modifier = {
+				factor = 0
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = BUL_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = BUL_ai_behavior 
+						option = BUL_subject_of_His_Majesty_the_King
+					}
+					has_game_rule = {
+						rule = BUL_ai_behavior 
+						option = BUL_the_way_of_democracy
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.12
+	title = bulgaria.12.t
+	desc = bulgaria.12.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.12.a
+		set_country_flag = had_1939_general_election
+		clr_country_flag = before_1939_vote
+		hidden_effect = {
+			set_politics = {
+				ruling_party = neutrality
+				election_frequency = 48
+				elections_allowed = yes
+			}
+		}
+		complete_national_focus = BUL_Loyalist
+		trigger = {
+			OR = {
+				neutrality = party_popularity@democratic
+				neutrality > party_popularity@democratic
+			}
+			OR = {
+				neutrality = party_popularity@fascism
+				neutrality > party_popularity@fascism
+			}
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = bulgaria.12.b
+		set_country_flag = had_1939_general_election
+		clr_country_flag = before_1939_vote
+		set_politics = {
+			ruling_party = democratic
+			election_frequency = 48
+			elections_allowed = yes
+		}
+		complete_national_focus = BUL_Agrian_National_Union
+		add_ideas = BUL_ferdinand_i_wr
+		trigger = {
+			democratic > party_popularity@neutrality
+			OR = {
+				democratic = party_popularity@fascism
+				democratic > party_popularity@fascism
+			}
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = bulgaria.12.c
+		set_country_flag = had_1939_general_election
+		clr_country_flag = before_1939_vote
+		set_politics = {
+			ruling_party = fascism
+			election_frequency = 48
+			elections_allowed = yes
+		}
+		complete_national_focus = BUL_Zveno
+		add_ideas = BUL_ferdinand_i_wr
+		trigger = {
+			fascism > party_popularity@democratic
+			fascism > party_popularity@neutrality
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.13
+	title = bulgaria.13.t
+	desc = bulgaria.13.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.13.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = bulgaria.13.b
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.14
+	title = bulgaria.14.t
+	desc = bulgaria.14.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.14.a
+		add_to_faction = BUL
+		if = {
+			limit = {
+				ROOT = { original_tag = GER }
+			}
+			news_event = bulgaria.15
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = FRA }
+			}
+			news_event = bulgaria.16
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = SOV }
+			}
+			news_event = bulgaria.22
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = bulgaria.14.b
+		BUL = { country_event = bulgaria.17 }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+news_event = {
+	id = bulgaria.15
+	title = bulgaria.15.t
+	desc = bulgaria.15.d
+	picture = bulgaria_join
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.15.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	id = bulgaria.16
+	title = bulgaria.16.t
+	desc = bulgaria.16.d
+	picture = bulgaria_join
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.16.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.17
+	title = bulgaria.17.t
+	desc = bulgaria.17.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.17.a
+		trigger = {
+			NOT = { has_country_flag = hard_way }
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = bulgaria.21.b
+		trigger = {
+			has_country_flag = hard_way
+		}
+		BUL = {
+			set_rule = {
+				can_create_factions = yes
+			}
+		}
+		ROOT = { create_faction = Balkan_Socialist_Federation }
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.18
+	title = bulgaria.18.t
+	desc = bulgaria.18.d
+	picture = GFX_death_of_tasr
+	trigger = {
+		date > 1948.9.10
+		OR = {
+			AND = {
+				has_government = neutrality
+				has_country_leader = {
+					character = BUL_ferdinand_i
+					ruling_only = yes
+				}
+			}
+			has_idea = BUL_ferdinand_i_wr
+		}
+		original_tag = BUL
+	}
+	mean_time_to_happen = { days = 1 }
+	option = {
+		name = bulgaria.18.a
+		retire_character = BUL_ferdinand_i
+		if = {
+			limit = {
+				has_idea = BUL_ferdinand_i_wr
+			}
+			swap_ideas = {
+				remove_idea = BUL_ferdinand_i_wr
+				add_idea = BUL_boris_iii
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.19
+	title = bulgaria.19.t
+	desc = bulgaria.19.d
+	picture = GFX_report_event_bul_soviet_army_sofia
+	trigger = {
+		original_tag = BUL
+		has_idea = BUL_idea_second_national_catastrophe
+	}
+	mean_time_to_happen = { days = 50 }
+	option = {
+		name = bulgaria.19.a
+		add_popularity = {
+			ideology = communism
+			popularity = 0.05
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = bulgaria.19.b
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { id = bulgaria.20 days = 14 }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.20
+	title = bulgaria.20.t
+	desc = bulgaria.20.d
+	picture = GFX_report_event_bul_soviet_army_sofia
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.20.a
+		add_popularity = {
+			ideology = communism
+			popularity = 0.1
+		}
+		set_politics = {
+			ruling_party = communism
+			election_frequency = 48
+			elections_allowed = yes
+		}
+		mark_focus_tree_layout_dirty = yes
+		custom_effect_tooltip = ENG_focus_tree_change
+		set_country_flag = communist_bulgaria
+		hidden_effect = {
+			uncomplete_national_focus = {
+			  focus = BUL_Agrian_National_Union
+			  uncomplete_children = yes
+			  refund_political_power = no
+			}
+			uncomplete_national_focus = {
+			  focus = BUL_Loyalist
+			  uncomplete_children = yes
+			  refund_political_power = no
+			}
+			uncomplete_national_focus = {
+			  focus = BUL_Zveno
+			  uncomplete_children = yes
+			  refund_political_power = no
+			}
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.21
+	title = bulgaria.21.t
+	desc = bulgaria.21.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.21.a
+		trigger = {
+			SOV = { exists = yes }
+			SOV = { has_government = communism }
+			NOT = { has_global_flag = second_russian_civilwar }
+		}
+		SOV = { country_event = bulgaria.14 }
+		set_country_flag = hard_way
+		mark_focus_tree_layout_dirty = yes
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = bulgaria.21.b
+		BUL = {
+			set_rule = {
+				can_create_factions = yes
+			}
+		}
+		ROOT = { create_faction = Balkan_Socialist_Federation }
+		set_country_flag = hard_way
+		mark_focus_tree_layout_dirty = yes
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = bulgaria.21.c
+		set_country_flag = quiet_way
+		mark_focus_tree_layout_dirty = yes
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+news_event = {
+	id = bulgaria.22
+	title = bulgaria.22.t
+	desc = bulgaria.22.d
+	picture = bulgaria_join
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.22.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.23
+	title = bulgaria.23.t
+	desc = bulgaria.23.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.23.a
+		BUL = {
+			country_event = { id = bulgaria.25 days = 3 }
+			transfer_state = 930
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+				strength_ratio = {
+					tag = BUL
+					ratio > 1
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = bulgaria.23.b
+		BUL = { country_event = { id = bulgaria.24 days = 3 } }
+		ai_chance = {
+			factor = 5
+			modifier = {
+				strength_ratio = {
+					tag = BUL
+					ratio < 1
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.24
+	title = bulgaria.24.t
+	desc = bulgaria.24.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.24.a
+		create_wargoal = { type = take_state_focus target = GRE generator = 930 }
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.25
+	title = bulgaria.25.t
+	desc = bulgaria.25.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.25.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+news_event = {
+	id = bulgaria.26
+	title = bulgaria.26.t
+	desc = bulgaria.26.d
+	picture = GFX_yugo_bul
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = bulgaria.26.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.27
+	title = bulgaria.27.t
+	desc = bulgaria.27.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.27.a
+		BUL = { leave_faction = yes }
+		every_country = {
+			limit = {
+				OR = {
+					original_tag = AUH
+					is_in_faction_with = AUH
+				}
+				has_war_with = BUL
+			}
+			white_peace = BUL
+		}
+		every_country = {
+			limit = {
+				OR = {
+					original_tag = AUH
+					is_subject_of = AUH
+					is_in_faction_with = AUH
+				}
+			}
+			every_state = {
+				limit = {
+					is_core_of = BUL
+					is_owned_by = PREV
+				}
+				transfer_state_to = BUL
+			}
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = bulgaria.27.b
+		ai_chance = {
+			factor = 0
+		}
+		AUH = { country_event = bulgaria.29 }
+	}
+}
+
+country_event = {
+	id = bulgaria.28
+	title = bulgaria.28.t
+	desc = bulgaria.28.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = bulgaria.28.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = bulgaria.100
+	title = bulgaria.100.t
+	desc = bulgaria.100.d
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		clr_country_flag = check_decision_in_10_days
+	}
+	option = {
+		name = bulgaria.100.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}

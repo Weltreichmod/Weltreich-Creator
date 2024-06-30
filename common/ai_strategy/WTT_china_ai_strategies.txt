@@ -1,0 +1,70 @@
+# befriend
+# conquer
+# antagonize
+# build_ship
+# build_army
+# unit_ratio
+# build_building
+# research_tech
+# garrison
+# protect
+# influence
+
+# make warlords support china better
+WTT_all_warlords_support_china_in_war = {
+	reversed = yes
+
+	enable = {
+		CHI = { is_faction_leader = yes }
+		is_in_faction_with = CHI
+		has_war = yes
+	}
+	abort = {
+		OR = {
+			CHI = { is_faction_leader = no }
+			NOT = { is_in_faction_with = CHI }
+			has_war = no
+		}		
+	}
+	
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = CHI
+		value = 50
+	}
+}
+
+# make warlords support china better part 2
+WTT_all_warlords_support_china_in_war = {
+	enable = {
+		CHI = { is_faction_leader = yes }
+		is_in_faction_with = CHI
+		has_war = yes
+	}
+	abort = {
+		OR = {
+			CHI = { is_faction_leader = no }
+			NOT = { is_in_faction_with = CHI }
+			has_war = no
+		}		
+	}
+	
+	ai_strategy = {
+		type = spare_unit_factor
+		value = 50
+	}
+}
+
+WTT_all_warlords_ally_china_in_war = {
+	enable = {
+		CHI = { is_faction_leader = yes }
+		is_chinese_country = yes
+		has_war_with = JAP
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = alliance
+		id = CHI
+		value = 1000
+	}
+}

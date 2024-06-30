@@ -1,0 +1,102 @@
+﻿###########################
+# Hungarian Events
+###########################
+
+add_namespace = hungary
+
+country_event = {
+	id = hungary.1
+	title = hungary.1.t
+	desc = hungary.1.d
+	picture = Singing
+	
+	is_triggered_only = yes
+	
+	option = {
+		GER = {
+			add_to_faction = HUN
+			country_event = { days = 1 id = Germany.64 }
+		}
+		name = hungary.1.a
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		GER = { country_event = { days = 1 id = Germany.65 } }
+		name = hungary.1.b
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = hungary.2
+	title = hungary.2.t
+	desc = hungary.2.d
+	picture = Singing
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hungary.2.a
+		GER = { country_event = { days = 1 id = Germany.64 } }
+		GER = { transfer_state = 933 }
+		SLO = {
+			transfer_state = 70
+			transfer_state = 71
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		name = hungary.2.b
+		GER = { create_wargoal = { type = puppet_wargoal_focus target = HUN } }
+		GER = { country_event = { days = 1 id = Germany.65 } }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = hungary.3
+	title = hungary.3.t
+	desc = hungary.3.d
+	picture = Singing
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = hungary.3.a
+		GER = {
+			country_event = { days = 1 id = Germany.64 }
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = HUN
+					autonomous_state = autonomy_colony
+					freedom_level = 0.3
+				}
+				else = {
+					puppet = HUN
+				}
+			}
+		}
+		ai_chance = {
+			factor = 1
+		}
+	}
+	option = {
+		name = hungary.3.b
+		GER = { create_wargoal = { type = puppet_wargoal_focus target = HUN } }
+		GER = { country_event = { days = 1 id = Germany.65 } }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}

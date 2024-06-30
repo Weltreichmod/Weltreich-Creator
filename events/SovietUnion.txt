@@ -1,0 +1,2315 @@
+﻿###########################
+# Soviet Events
+###########################
+
+add_namespace = Soviet
+
+country_event = {
+	id = Soviet.1
+	title = Soviet.1.t
+	desc = Soviet.1.d
+	picture = Koni
+	major = no
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = Soviet.1.a
+		GER = { country_event = { days = 1 id = Germany.4 } }
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 0
+				GER = {
+					OR = {
+						has_wargoal_against = SOV
+						is_justifying_wargoal_against = SOV
+					}
+					NOT = {
+						is_in_faction_with = SOV
+					}
+				}
+			}
+		}
+	}	
+	option = {
+		name = Soviet.1.b
+		GER = { country_event = { days = 1 id = Germany.5 } }
+		SOV = { add_political_power = -50 }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.2
+	title = Soviet.2.t
+	desc = Soviet.2.d
+	picture = Koni
+	major = no
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = Soviet.2.a
+		FRA = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = medium_increase
+			}
+			diplomatic_relation = {
+				country = SOV
+				relation = non_aggression_pact
+			}
+		}
+		SOV = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = medium_increase
+			}
+		}
+		FRA = { country_event = { days = 1 id = france.12 } }
+		ai_chance = {
+			factor = 6
+		}
+	}	
+	option = {
+		name = Soviet.2.b
+		FRA = { country_event = { days = 1 id = france.13 } }
+		ai_chance = {
+			factor = 2
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.3
+	title = Soviet.3.t
+	desc = Soviet.3.d
+	picture = Singing
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = Soviet.3.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.4
+	title = Soviet.4.t
+	desc = Soviet.4.d
+	picture = Singing
+	is_triggered_only = yes
+	option = {
+		name = Soviet.4.a
+		if = {
+			limit = {
+				is_subject = yes
+			}
+			OVERLORD = {
+				end_puppet = ROOT
+				ROOT = {
+					leave_faction = yes
+				}
+			}
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.5
+	title = Soviet.5.t
+	desc = Soviet.5.d
+	picture = GFX_report_event_generic_sign_treaty2
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = Soviet.5.a
+		ENG = { country_event = { id = britain.21 days = 3 } }
+		army_experience = 30
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.5.b
+		ENG = { country_event = { id = britain.22 days = 3 } }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.6
+	title = Soviet.6.t
+	desc = Soviet.6.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = Soviet.6.a
+		ENG = { country_event = { id = britain.24 days = 1 } }
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.6.b
+		ENG = { country_event = { id = britain.25 days = 1 } }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.7
+	title = Soviet.7.t
+	desc = Soviet.7.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = Soviet.7.a
+		ENG = { country_event = { id = britain.26 days = 1 } }
+		set_country_flag = ENG_SOV_millitary
+		add_political_power = -25
+		ai_chance = {
+			factor = 4
+		}
+	}
+	option = {
+		name = Soviet.7.b
+		ENG = { country_event = { id = britain.27 days = 1 } }
+		ai_chance = {
+			factor = 2
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.8
+	title = Soviet.8.t
+	desc = Soviet.8.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = Soviet.8.a
+		ENG = { country_event = { id = britain.28 days = 1 } }
+		set_country_flag = ENG_SOV_scientific
+		add_political_power = -25
+		ai_chance = {
+			factor = 4
+		}
+	}
+	option = {
+		name = Soviet.8.b
+		ENG = { country_event = { id = britain.29 days = 1 } }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.9
+	title = Soviet.9.t
+	desc = Soviet.9.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = britain.32 days = 5 }
+			ENG = { country_event = { id = britain.32 days = 5 } }
+		}
+	}
+	option = {
+		name = Soviet.9.a
+		ENG = { country_event = { id = britain.30 days = 1 } }
+		set_country_flag = ENG_SOV_economic
+		add_political_power = -25
+		ai_chance = {
+			factor = 4
+		}
+	}
+	option = {
+		name = Soviet.9.b
+		ENG = { country_event = { id = britain.31 days = 1 } }
+		ai_chance = {
+			factor = 2
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.10
+	title = Soviet.10.t
+	desc = Soviet.10.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = Soviet.10.a
+		add_to_faction = ENG
+		news_event = Soviet.12
+		add_named_threat = {
+			threat = 2
+			name = eng_sov_ally
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.10.b
+		ENG = { country_event = { id = Soviet.13 days = 1 } }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.11
+	title = Soviet.10.t
+	desc = Soviet.10.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = Soviet.10.a
+		ENG = { add_to_faction = SOV }
+		news_event = Soviet.12
+		add_named_threat = {
+			threat = 2
+			name = eng_sov_ally
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.10.b
+		ENG = { country_event = { id = Soviet.13 days = 1 } }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+news_event = {
+	id = Soviet.12
+	title = Soviet.12.t
+	desc = Soviet.12.d
+	picture = britain_soviet
+	is_triggered_only = yes
+	option = {
+		name = Soviet.12.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.13
+	title = Soviet.13.t
+	desc = Soviet.13.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = Soviet.13.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.14
+	title = Soviet.14.t
+	desc = Soviet.14.d
+	picture = SOV_stalin
+	is_triggered_only = yes
+	option = {
+		name = Soviet.14.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.15
+	title = Soviet.15.t
+	desc = Soviet.15.d
+	picture = SOV_bukharin
+	is_triggered_only = yes
+	option = {
+		name = Soviet.15.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.16
+	title = Soviet.16.t
+	desc = Soviet.16.d
+	picture = SOV_trotsky
+	is_triggered_only = yes
+	option = {
+		name = Soviet.16.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.17
+	title = Soviet.17.t
+	desc = Soviet.17.d
+	picture = SOV_white
+	is_triggered_only = yes
+	option = {
+		name = Soviet.17.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.18
+	title = Soviet.18.t
+	desc = Soviet.18.d
+	picture = GFX_report_event_SOV_negotiations_japan_bukharin
+	is_triggered_only = yes
+	option = {
+		name = Soviet.18.a
+		complete_national_focus = SOV_heart_of_iron
+		set_country_flag = select_play_character
+		ai_chance = {
+			base = 1
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = CLIQUE_OF_BUKHARIN
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = TROTZKISM_ADVOCACY
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = WAY_TO_RUSSIAN_REPUBLIC
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = WAY_TO_RUSSIAN_STATE
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Soviet.18.b
+		complete_national_focus = SOV_clique_of_bukharin
+		set_country_flag = select_play_character
+		ai_chance = {
+			base = 1
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = SOV_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = TROTZKISM_ADVOCACY
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = HEART_OF_IRON
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = WAY_TO_RUSSIAN_REPUBLIC
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = WAY_TO_RUSSIAN_STATE
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Soviet.18.c
+		complete_national_focus = SOV_trotzkism_advocacy
+		set_country_flag = select_play_character
+		ai_chance = {
+			base = 1
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = SOV_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = CLIQUE_OF_BUKHARIN
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = HEART_OF_IRON
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = WAY_TO_RUSSIAN_REPUBLIC
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = WAY_TO_RUSSIAN_STATE
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Soviet.18.e
+		complete_national_focus = SOV_debris_of_the_russian_republic
+		set_country_flag = select_play_character
+		ai_chance = {
+			base = 1
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = SOV_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = CLIQUE_OF_BUKHARIN
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = TROTZKISM_ADVOCACY
+					}
+					has_game_rule = {
+						rule = SOV_ai_behavior
+						option = HEART_OF_IRON
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.19
+	title = Soviet.19.t
+	desc = Soviet.19.d
+	picture = zinoviev_purge
+	is_triggered_only = yes
+	option = {
+		name = Soviet.19.a
+		if = {
+			limit = {
+				check_variable = { 	SOV_political_purging_progress < 0.95 }
+			}
+			add_to_variable = { SOV_political_purge_main_meter = 1 }
+			add_to_variable = { SOV_political_purging_progress = 0.05 }
+			custom_effect_tooltip = Zinoviev_purge
+		}
+		else = {
+			set_variable = { SOV_political_purge_main_meter = 21 }
+			set_variable = { SOV_political_purging_progress = 1 }
+			custom_effect_tooltip = purge_complete
+		}
+		retire_character = SOV_grigory_zinovyev
+		retire_character = SOV_lev_kamenev
+		retire_character = SOV_ivan_smirnov
+		retire_character = SOV_aleksandr_shlyapnikov
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.20
+	title = Soviet.20.t
+	desc = Soviet.20.d
+	picture = trotsky_purge
+	is_triggered_only = yes
+	option = {
+		name = Soviet.20.a
+		add_to_variable = { SOV_political_purge_main_meter = 2 }
+		add_to_variable = { SOV_political_purging_progress = 0.1 }
+		custom_effect_tooltip = Trotsky_purge
+		retire_character = SOV_lev_trotsky
+		retire_character = SOV_karl_radek
+		retire_character = SOV_ivar_smilga
+		retire_character = SOV_yevgeny_preobrazhensky
+		retire_character = SOV_martemyan_ryutin
+		retire_character = SOV_nikolay_ustryalov
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.21
+	title = Soviet.21.t
+	desc = Soviet.21.d
+	picture = officer_purge
+	is_triggered_only = yes
+	option = {
+		name = Soviet.21.a
+		if = {
+			limit = {
+				check_variable = { 	SOV_political_purging_progress < 0.9 }
+			}
+			add_to_variable = { SOV_political_purge_main_meter = 2 }
+			add_to_variable = { SOV_political_purging_progress = 0.1 }
+			custom_effect_tooltip = Trotsky_purge
+		}
+		else = {
+			set_variable = { SOV_political_purge_main_meter = 21 }
+			set_variable = { SOV_political_purging_progress = 1 }
+			custom_effect_tooltip = purge_complete
+		}
+		retire_character = SOV_mikhail_tukhachevsky
+		retire_character = SOV_ivan_konev
+		retire_character = SOV_yakov_cherevichenko
+		retire_character = SOV_andrey_vlasov
+		retire_character = SOV_arseny_golovko
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.22
+	title = Soviet.22.t
+	desc = Soviet.22.d
+	picture = bukharin_purge
+	is_triggered_only = yes
+	option = {
+		name = Soviet.22.a
+		if = {
+			limit = {
+				check_variable = { SOV_political_purging_progress < 0.85 }
+			}
+			add_to_variable = { SOV_political_purge_main_meter = 3 }
+			add_to_variable = { SOV_political_purging_progress = 0.15 }
+			custom_effect_tooltip = Bukharin_purge
+		}
+		else = {
+			set_variable = { SOV_political_purge_main_meter = 21 }
+			set_variable = { SOV_political_purging_progress = 1 }
+			custom_effect_tooltip = purge_complete
+		}
+		retire_character = SOV_nikolay_bukharin
+		retire_character = SOV_aleksey_rykov
+		retire_character = SOV_mikhail_tomsky
+		retire_character = SOV_maksim_litvinov
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.23
+	title = Soviet.23.t
+	desc = Soviet.23.d
+	picture = bukharin_purge
+	is_triggered_only = yes
+	option = {
+		name = Soviet.23.a
+		bukharin_takes_power_effect = yes
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.24
+	title = Soviet.24.t
+	desc = Soviet.24.d
+	picture = trotsky_purge
+	is_triggered_only = yes
+	option = {
+		name = Soviet.24.a
+		trotsky_takes_power_effect = yes
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.25
+	title = Soviet.25.t
+	desc = Soviet.25.d
+	picture = bukharin_purge
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			bukharin_civilwar_large = yes
+		}
+	}
+	option = {
+		name = Soviet.25.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.25.b
+		SOB = {
+			change_tag_from = ROOT
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.26
+	title = Soviet.26.t
+	desc = Soviet.26.d
+	picture = trotsky_purge
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			trotsky_civilwar_large = yes
+		}
+	}
+	option = {
+		name = Soviet.26.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.26.b
+		SOT = {
+			change_tag_from = ROOT
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.27
+	title = Soviet.25.t
+	desc = Soviet.25.d
+	picture = bukharin_purge
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			bukharin_civilwar_small = yes
+		}
+	}
+	option = {
+		name = Soviet.25.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.25.b
+		SOB = {
+			change_tag_from = ROOT
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.28
+	title = Soviet.26.t
+	desc = Soviet.26.d
+	picture = trotsky_purge
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			trotsky_civilwar_small = yes
+		}
+	}
+	option = {
+		name = Soviet.26.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.26.b
+		SOT = {
+			change_tag_from = ROOT
+		}
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.29
+	title = Soviet.29.t
+	desc = Soviet.29.d
+	picture = GFX_report_event_france_victory_syria
+	is_triggered_only = yes
+	option = {
+		name = Soviet.29.a
+		swap_ideas = {
+			remove_idea = sov_political_purge
+			add_idea = sov_political_purge_1
+		}
+		country_event = { id = Soviet.30 days = 100 }
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.30
+	title = Soviet.29.t
+	desc = Soviet.29.d
+	picture = GFX_report_event_france_victory_syria
+	is_triggered_only = yes
+	option = {
+		name = Soviet.29.a
+		remove_ideas = sov_political_purge_1
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.31
+	title = Soviet.31.t
+	desc = Soviet.31.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = Soviet.31.a
+		SOV = { country_event = Soviet.32 }
+		add_political_power = -100
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.31.b
+		SOV = { country_event = Soviet.33 }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.32
+	title = Soviet.32.t
+	desc = Soviet.32.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = Soviet.32.a
+		set_country_flag = germany_help_more
+		custom_effect_tooltip = germany_help_more_effect
+		if = {
+			limit = {
+				check_variable = { var = SOV_stalins_influence value = 0.03 compare = greater_than_or_equals }
+				check_variable = { var = SOV_trotskys_influence value = 0.02 compare = greater_than_or_equals }
+			}
+			SOV_stalins_influence_three_decrease = yes
+			SOV_bukharins_influence_five_increase = yes
+			SOV_trotskys_influence_two_decrease = yes
+		}
+		else_if = {
+			limit = {
+				check_variable = { SOV_stalins_influence > 0.03 }
+				check_variable = { SOV_trotskys_influence = 0.01 }
+			}
+			SOV_stalins_influence_four_decrease = yes
+			SOV_bukharins_influence_five_increase = yes
+			SOV_trotskys_influence_one_decrease = yes
+		}
+		else_if = {
+			limit = {
+				check_variable = { SOV_stalins_influence > 0.03 }
+				check_variable = { SOV_trotskys_influence = 0 }
+			}
+			SOV_stalins_influence_five_decrease = yes
+			SOV_bukharins_influence_five_increase = yes
+		}
+		else_if = {
+			limit = {
+				check_variable = { SOV_stalins_influence = 0.02 }
+				check_variable = { SOV_trotskys_influence > 0.02 }
+			}
+			SOV_stalins_influence_two_decrease = yes
+			SOV_bukharins_influence_five_increase = yes
+			SOV_trotskys_influence_three_decrease = yes
+		}
+		else_if = {
+			limit = {
+				check_variable = { SOV_stalins_influence = 0.01 }
+				check_variable = { SOV_trotskys_influence > 0.02 }
+			}
+			SOV_stalins_influence_one_decrease = yes
+			SOV_bukharins_influence_five_increase = yes
+			SOV_trotskys_influence_four_decrease = yes
+		}
+		else_if = {
+			limit = {
+				check_variable = { SOV_stalins_influence = 0 }
+				check_variable = { SOV_trotskys_influence > 0.02 }
+			}
+			SOV_bukharins_influence_five_increase = yes
+			SOV_trotskys_influence_five_decrease = yes
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.33
+	title = Soviet.33.t
+	desc = Soviet.33.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = Soviet.33.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.34
+	title = Soviet.34.t
+	desc = Soviet.34.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = Soviet.34.a
+		if = {
+			limit = {
+				check_variable = { SOV_bukharin_coup_preparation_progress < 0.95 }
+			}
+			add_to_variable = { SOV_bukharin_prepare_coup_main_bar = 1 }
+			add_to_variable = { SOV_bukharin_coup_preparation_progress = 0.05 }
+			custom_effect_tooltip = SOV_bukharin_coup_preparation_progress_5
+		}
+		else = {
+			set_variable = { SOV_bukharin_prepare_coup_main_bar = 21 }
+			set_variable = { SOV_bukharin_coup_preparation_progress = 1 }
+			custom_effect_tooltip = SOV_bukharin_coup_preparation_progress_complete
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	id = Soviet.35
+	title = Soviet.35.t
+	desc = Soviet.35.d
+	picture = bukharin_coup
+	major = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			set_country_flag = end_of_political_struggle
+		}
+	}
+	option = {
+		trigger = {
+			tag = SOV
+		}
+		name = Soviet.35.a
+		bukharin_takes_power_effect = yes
+		remove_ideas = SOV_divided_government
+		swap_ideas = {
+			remove_idea = SOV_precarious_country_high
+			add_idea = SOV_precarious_country_low
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		trigger = {
+			tag = GER
+		}
+		name = Soviet.35.b
+		country_event = { id = Soviet.36 days = 14 }
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				tag = SOV
+				tag = GER
+			}
+		}
+		name = Soviet.35.c
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.36
+	title = Soviet.36.t
+	desc = Soviet.36.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = Soviet.36.a
+		hidden_effect = {
+			SOV = { set_country_flag = demand_arms_factory }
+			SOV = { country_event = { id = Soviet.37 days = 14 } }
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.36.b
+		hidden_effect = {
+			SOV = { set_country_flag = demand_civilian_factory }
+			SOV = { country_event = { id = Soviet.37 days = 14 } }
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.36.c
+		hidden_effect = {
+			SOV = { set_country_flag = demand_resource_factory }
+			SOV = { country_event = { id = Soviet.37 days = 14 } }
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.37
+	title = Soviet.37.t
+	desc = {
+		text = Soviet.37.d_1
+		trigger = { has_country_flag = demand_arms_factory }
+	}
+	desc = {
+		text = Soviet.37.d_2
+		trigger = { has_country_flag = demand_civilian_factory }
+	}
+	desc = {
+		text = Soviet.37.d_3
+		trigger = { has_country_flag = demand_resource_factory }
+	}
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = Soviet.37.a
+		trigger = {
+			has_country_flag = demand_arms_factory
+		}
+		GER = { country_event = { id = Soviet.38 days = 7 } }
+		if = {
+			limit = {
+				SOV = { has_country_flag = germany_help_more }
+			}
+			custom_effect_tooltip = demand_arms_factory_effect_large
+		}
+		else = {
+			custom_effect_tooltip = demand_arms_factory_effect
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.37.a
+		trigger = {
+			has_country_flag = demand_civilian_factory
+		}
+		GER = { country_event = { id = Soviet.38 days = 7 } }
+		if = {
+			limit = {
+				SOV = { has_country_flag = germany_help_more }
+			}
+			custom_effect_tooltip = demand_civilian_factory_effect_large
+		}
+		else = {
+			custom_effect_tooltip = demand_civilian_factory_effect
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.37.a
+		trigger = {
+			has_country_flag = demand_resource_factory
+		}
+		GER = { country_event = { id = Soviet.38 days = 7 } }
+		custom_effect_tooltip = demand_resource_factory_effect
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.37.b
+		GER = { country_event = { id = Soviet.38 days = 7 } }
+		set_country_flag = sov_refuse_ger
+		ai_chance = {
+			factor = 2
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.38
+	title = Soviet.38.t
+	desc = {
+		text = Soviet.38.d_1
+		trigger = { NOT = { SOV = { has_country_flag = sov_refuse_ger } } }
+	}
+	desc = {
+		text = Soviet.38.d_2
+		trigger = { SOV = { has_country_flag = sov_refuse_ger } }
+	}
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = Soviet.38.a
+		trigger = { NOT = { SOV = { has_country_flag = sov_refuse_ger } } }
+		if = {
+			limit = {
+				SOV = { has_country_flag = demand_arms_factory }
+				NOT = { SOV = { has_country_flag = sov_refuse_ger } }
+			}
+			random_state = {
+				limit = {
+					is_owned_by = SOV
+					arms_factory > 1
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_state = {
+				limit = {
+					is_owned_by = SOV
+					arms_factory > 1
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_state = {
+				limit = {
+					is_owned_by = SOV
+					arms_factory > 1
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_state = {
+				limit = {
+					is_owned_by = SOV
+					arms_factory > 1
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_state = {
+				limit = {
+					is_owned_by = SOV
+					arms_factory > 1
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			if = {
+				limit = {
+					SOV = { has_country_flag = germany_help_more }
+				}
+				random_state = {
+					limit = {
+						is_owned_by = SOV
+						arms_factory > 1
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				random_state = {
+					limit = {
+						is_owned_by = SOV
+						arms_factory > 1
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				random_state = {
+					limit = {
+						is_owned_by = SOV
+						arms_factory > 1
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+					}
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+		if = {
+			limit = {
+				SOV = { has_country_flag = demand_civilian_factory }
+				NOT = { SOV = { has_country_flag = sov_refuse_ger } }
+			}
+			random_state = {
+				limit = {
+					is_owned_by = SOV
+					industrial_complex > 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_state = {
+				limit = {
+					is_owned_by = SOV
+					industrial_complex > 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_state = {
+				limit = {
+					is_owned_by = SOV
+					industrial_complex > 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_state = {
+				limit = {
+					is_owned_by = SOV
+					industrial_complex > 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_state = {
+				limit = {
+					is_owned_by = SOV
+					industrial_complex > 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			if = {
+				limit = {
+					SOV = { has_country_flag = germany_help_more }
+				}
+				random_state = {
+					limit = {
+						is_owned_by = SOV
+						industrial_complex > 1
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_state = {
+					limit = {
+						is_owned_by = SOV
+						industrial_complex > 1
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_state = {
+					limit = {
+						is_owned_by = SOV
+						industrial_complex > 1
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+		if = {
+			limit = {
+				SOV = { has_country_flag = demand_resource_factory }
+				NOT = { SOV = { has_country_flag = sov_refuse_ger } }
+			}
+			SOV = { give_resource_rights = { receiver = GER state = 233 } }
+			SOV = { give_resource_rights = { receiver = GER state = 234 } }
+			if = {
+				limit = {
+					SOV = { has_country_flag = germany_help_more }
+				}
+				SOV = { give_resource_rights = { receiver = GER state = 235 } }
+				SOV = { give_resource_rights = { receiver = GER state = 821 } }
+			}
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Soviet.38.b
+		trigger = { SOV = { has_country_flag = sov_refuse_ger } }
+		every_country = {
+			limit = {
+				OR = {
+					tag = GER
+					is_subject_of = GER
+				}
+			}
+			send_embargo = SOV
+		}
+		add_opinion_modifier = {
+			target = SOV
+			modifier = large_decrease
+		}
+		SOV = {
+			add_opinion_modifier = {
+				target = GER
+				modifier = large_decrease
+			}
+			add_timed_idea = { idea = Germanys_lockdown_measures days = 500 }
+			country_event = Soviet.39
+		}
+		ai_chance = {
+			factor = 2
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.39
+	title = Soviet.39.t
+	desc = Soviet.39.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = Soviet.39.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.40
+	title = Soviet.40.t
+	desc = Soviet.40.d
+	picture = GFX_report_event_SOV_purge_administration
+	is_triggered_only = yes
+	option = {
+		name = Soviet.40a
+		set_country_flag = bukharins_coup_prepare
+		unlock_decision_category_tooltip = the_threat_of_a_coup_by_the_Bukharin_Clique
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	id = Soviet.41
+	title = Soviet.41.t
+	desc = Soviet.41.d
+	picture = bukharin_coup
+	is_triggered_only = yes
+	option = {
+		name = Soviet.41a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	id = Soviet.42
+	title = Soviet.42.t
+	desc = Soviet.42.d
+	picture = GFX_news_event_006
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			every_country = {
+				limit = { original_tag = SOV }
+				delete_unit_template_and_units = {
+					division_template = "Extrany Diviziya"
+					disband = yes
+				}
+			}
+			every_state = {
+				limit = {
+					is_core_of = SOS
+				}
+				remove_core_of = SOS
+			}
+			every_state = {
+				limit = {
+					is_core_of = SOB
+				}
+				remove_core_of = SOB
+			}
+		}
+	}
+	option = {
+		name = Soviet.42a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.43
+	title = Soviet.43.t
+	desc = Soviet.43.d
+	picture = GFX_report_event_spr_franco_victory
+	trigger = {
+		OR = {
+			has_idea = SOV_third_five_year_plan_WK
+			has_idea = SOV_third_five_year_plan_WK_heavy
+		}
+		original_tag = SOV
+		num_of_factories > 129
+	}
+	mean_time_to_happen = { days = 1 }
+	option = {
+		name = Soviet.43a
+		if = {
+			limit = { has_idea = SOV_third_five_year_plan_WK }
+			remove_ideas = SOV_third_five_year_plan_WK
+		}
+		else = {
+			remove_ideas = SOV_third_five_year_plan_WK_heavy
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.44
+	title = Soviet.44.t
+	desc = Soviet.44.d
+	picture = Koni
+	major = no
+	fire_only_once = yes
+	is_triggered_only = yes
+	option = {
+		name = Soviet.44.a
+		GER = { country_event = { days = 1 id = Germany.82 } }
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 0
+				GER = {
+					OR = {
+						has_wargoal_against = RUS
+						is_justifying_wargoal_against = RUS
+					}
+					NOT = {
+						is_in_faction_with = RUS
+					}
+				}
+			}
+		}
+	}	
+	option = {
+		name = Soviet.44.b
+		GER = { country_event = { days = 1 id = Germany.83 } }
+		RUS = { add_political_power = -50 }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+news_event = {
+	id = Soviet.45
+	title = Soviet.45.t
+	desc = Soviet.45.d
+	picture = russian_revolution
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Soviet.45a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	id = Soviet.46
+	title = Soviet.46.t
+	desc = Soviet.46.d
+	picture = GFX_news_event_006
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			every_country = {
+				limit = { original_tag = SOV }
+				delete_unit_template_and_units = {
+					division_template = "Extrany Diviziya"
+					disband = yes
+				}
+			}
+			every_state = {
+				limit = {
+					is_core_of = SOT
+				}
+				remove_core_of = SOT
+			}
+			every_state = {
+				limit = {
+					is_core_of = SOB
+				}
+				remove_core_of = SOB
+			}
+		}
+	}
+	option = {
+		name = Soviet.46a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	id = Soviet.47
+	title = Soviet.47.t
+	desc = Soviet.47.d
+	picture = GFX_news_event_006
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			every_country = {
+				limit = { original_tag = SOV }
+				delete_unit_template_and_units = {
+					division_template = "Extrany Diviziya"
+					disband = yes
+				}
+			}
+			every_state = {
+				limit = {
+					is_core_of = SOS
+				}
+				remove_core_of = SOS
+			}
+			every_state = {
+				limit = {
+					is_core_of = SOT
+				}
+				remove_core_of = SOT
+			}
+		}
+	}
+	option = {
+		name = Soviet.47a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.48
+	title = Soviet.48.t
+	desc = Soviet.48.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = Soviet.48.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.49
+	title = Soviet.49.t
+	desc = Soviet.49.d
+	picture = GFX_report_event_gre_city_devastated
+	is_triggered_only = yes
+	option = {
+		name = Soviet.49.a
+		add_manpower = -100
+		add_stability = -0.05
+		219 = {
+			damage_building = {
+				type = infrastructure
+				damage = 0.5
+			}
+			damage_building = {
+				type = industrial_complex
+				damage = 1
+			}
+			damage_building = {
+				type = arms_factory
+				damage = 1
+			}
+			damage_building = {
+				type = industrial_complex
+				damage = 1
+			}
+			damage_building = {
+				type = arms_factory
+				damage = 1
+			}
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	id = Soviet.50
+	title = Soviet.50.t
+	desc = Soviet.50.d
+	picture = GFX_news_event_004
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					is_owned_by = SOV
+					OR = {
+						state = 220
+						state = 224
+						state = 931
+						state = 207
+						state = 222
+						state = 243
+						state = 205
+						state = 242
+						state = 810
+						state = 210
+						state = 246
+						state = 223
+						state = 258
+						state = 209
+						state = 263
+						state = 260
+						state = 265
+						state = 829
+						state = 208
+					}
+				}
+				transfer_state_to = RUS
+				add_core_of = RUS
+			}
+			220 = {
+				create_unit = {
+					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
+					owner = RUS
+					count = 4
+				}
+			}
+			224 = {
+				create_unit = {
+					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
+					owner = RUS
+					count = 3
+				}
+			}
+			810 = {
+				create_unit = {
+					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
+					owner = RUS
+					count = 4
+				}
+			}
+			210 = {
+				create_unit = {
+					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
+					owner = RUS
+					count = 3
+				}
+			}
+			931 = {
+				create_unit = {
+					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
+					owner = RUS
+					count = 4
+				}
+			}
+			263 = {
+				create_unit = {
+					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
+					owner = RUS
+					count = 3
+				}
+			}
+			209 = {
+				create_unit = {
+					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
+					owner = RUS
+					count = 4
+				}
+			}
+			258 = {
+				create_unit = {
+					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
+					owner = RUS
+					count = 3
+				}
+			}
+			260 = {
+				create_unit = {
+					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
+					owner = RUS
+					count = 4
+				}
+			}
+		}
+	}
+	option = {
+		name = Soviet.50.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	id = Soviet.51
+	title = Soviet.51.t
+	desc = Soviet.51.d
+	picture = GFX_news_event_004
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			every_country = {
+				limit = { original_tag = RUS }
+				delete_unit_template_and_units = {
+					division_template = "White Guard Corps"
+					disband = yes
+				}
+				delete_unit_template_and_units = {
+					division_template = "White Guard Cavalry"
+					disband = yes
+				}
+				delete_unit_template_and_units = {
+					division_template = "Extrany Diviziya"
+					disband = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = Soviet.51.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+news_event = {
+	id = Soviet.52
+	title = Soviet.52.t
+	desc = Soviet.52.d
+	picture = GFX_news_event_004
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = RUS
+						original_tag = SOV
+					}
+				}
+				delete_unit_template_and_units = {
+					division_template = "White Guard Corps"
+					disband = yes
+				}
+				delete_unit_template_and_units = {
+					division_template = "White Guard Cavalry"
+					disband = yes
+				}
+				delete_unit_template_and_units = {
+					division_template = "Extrany Diviziya"
+					disband = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = Soviet.52.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.53
+	title = Soviet.53.t
+	desc = Soviet.53.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	option = {
+		name = Soviet.53.a
+		add_to_variable = { klochak_vote = 1 }
+		hidden_effect = {
+			country_event = { id = Soviet.54 days = 7 }
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				has_game_rule = {
+					rule = SOV_ai_behavior
+					option = WAY_TO_RUSSIAN_REPUBLIC
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Soviet.53.b
+		add_to_variable = { krensky_vote = 1 }
+		hidden_effect = {
+			country_event = { id = Soviet.54 days = 7 }
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				has_game_rule = {
+					rule = SOV_ai_behavior
+					option = WAY_TO_RUSSIAN_STATE
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.54
+	title = Soviet.54.t
+	desc = Soviet.54.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	option = {
+		name = Soviet.54.a
+		add_to_variable = { klochak_vote = 1 }
+		hidden_effect = {
+			country_event = { id = Soviet.55 days = 7 }
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				has_game_rule = {
+					rule = SOV_ai_behavior
+					option = WAY_TO_RUSSIAN_REPUBLIC
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Soviet.54.b
+		add_to_variable = { krensky_vote = 1 }
+		hidden_effect = {
+			country_event = { id = Soviet.55 days = 7 }
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				has_game_rule = {
+					rule = SOV_ai_behavior
+					option = WAY_TO_RUSSIAN_STATE
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.55
+	title = Soviet.55.t
+	desc = Soviet.55.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	option = {
+		name = Soviet.55.a
+		add_to_variable = { klochak_vote = 1 }
+		hidden_effect = {
+			country_event = { id = Soviet.56 days = 7 }
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				has_game_rule = {
+					rule = SOV_ai_behavior
+					option = WAY_TO_RUSSIAN_REPUBLIC
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Soviet.55.b
+		add_to_variable = { krensky_vote = 1 }
+		hidden_effect = {
+			country_event = { id = Soviet.56 days = 7 }
+		}
+		ai_chance = {
+			factor = 1
+			modifier = {
+				has_game_rule = {
+					rule = SOV_ai_behavior
+					option = WAY_TO_RUSSIAN_STATE
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.56
+	title = Soviet.56.t
+	desc = Soviet.56.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	option = {
+		name = Soviet.56.a
+		if = {
+			limit = {
+				check_variable = { krensky_vote > klochak_vote }
+			}
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.3
+			}
+			set_politics = {
+				ruling_party = democratic
+				election_frequency = 60
+				elections_allowed = yes
+			}
+			complete_national_focus = RUS_victory_of_krensky
+			krensky_increase_effect = yes
+		}
+		if = {
+			limit = {
+				check_variable = { krensky_vote < klochak_vote }
+			}
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.3
+			}
+			set_politics = {
+				ruling_party = fascism
+				election_frequency = 60
+				elections_allowed = yes
+			}
+			complete_national_focus = RUS_victory_of_klochak
+			kolchak_increase_effect = yes
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.57
+	title = Soviet.57.t
+	desc = Soviet.57.d
+	picture = GFX_report_event_SWE_defense_act
+	is_triggered_only = yes
+	option = { # Accept
+		name = Soviet.57.a
+		ai_chance = { factor = 100 }
+		RUS = {
+			country_event = { id = Soviet.58 }
+		}
+		if = {
+			limit = { original_tag = TAN }
+			RUS = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = TAN
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.4
+					}
+					else = {
+						puppet = TAN
+					}
+				}
+			}
+		}
+		else = {
+			RUS = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = MON
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = MON
+					}
+				}
+			}
+		}
+	}
+	option = { # Refuse
+		name = Soviet.57.b
+		RUS = {
+			country_event = { id = Soviet.59 }
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.58
+	title = Soviet.58.t
+	desc = Soviet.58.d
+	picture = GFX_report_event_SWE_defense_act
+	is_triggered_only = yes
+	option = {
+		name = Soviet.58.a
+	}
+}
+
+country_event = {
+	id = Soviet.59
+	title = Soviet.59.t
+	desc = Soviet.59.d
+	picture = GFX_report_event_SWE_defense_act
+	is_triggered_only = yes
+	option = {
+		RUS = {	create_wargoal = { type = annex_everything target = FROM } }
+		name = Soviet.59.a
+	}
+}
+
+#army in confusion
+
+country_event = {
+	id = Soviet.60
+	title = Soviet.60.t
+	desc = Soviet.60.d
+	picture = GFX_report_event_yugoslavia_partisans
+	trigger = {
+		OR = {
+			original_tag = SOV
+			original_tag = RUS
+		}
+		#has_offensive_war_with = GER
+		has_war_with = GER
+		OR = {
+			AND = {
+				surrender_progress > 0.65
+				casualties > 3000000
+			}
+			AND = {
+				surrender_progress > 0.6
+				casualties > 3500000
+			}
+			AND = {
+				surrender_progress > 0.55
+				casualties > 4000000
+			}
+			AND = {
+				surrender_progress > 0.5
+				casualties > 4500000
+			}
+		}
+		NOT = { has_idea = SOV_army_in_confusion }
+		NOT = { has_idea = SOV_collapsing_army }
+	}
+	mean_time_to_happen = { days = 3 }
+	option = {
+		name = Soviet.60.a
+		add_ideas = SOV_army_in_confusion
+		activate_mission = SOV_collapsing_army_decision
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.100
+	title = Soviet.100.t
+	desc = Soviet.100.d
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		clr_country_flag = political_decision
+	}
+	option = {
+		name = Soviet.100.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = Soviet.101
+	title = Soviet.101.t
+	desc = Soviet.101.d
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		clr_country_flag = start_purge
+	}
+	option = {
+		name = Soviet.101.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}

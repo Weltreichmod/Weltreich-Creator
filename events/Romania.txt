@@ -1,0 +1,71 @@
+﻿###########################
+# Romanian Events
+###########################
+
+add_namespace = romania
+
+country_event = {
+	picture = Singing
+	id = romania.1
+	title = romania.1.t
+	desc = romania.1.d
+	is_triggered_only = yes
+	option = {
+		name =romania.1.a
+		GER = { country_event = { days = 1 id = Germany.28 } }
+		set_global_flag = NGR_flag
+		ai_chance = {
+			base = 100
+			modifier = {
+				factor = 0
+				OR = {
+					GER = {
+						OR = {
+							has_wargoal_against = ROM
+							is_justifying_wargoal_against = ROM
+						}
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = romania.1.b
+		GER = { country_event = { days = 1 id = Germany.29 } }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = romania.2
+	title = romania.2.t
+	desc = romania.2.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = romania.2.a
+		GER = {
+			give_guarantee = ROM
+		}
+		ROM = {
+			give_guarantee = GER
+		}
+		GER = { country_event = { days = 1 id = Germany.56 } }
+		ai_chance = {
+			factor = 2
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = romania.2.b
+		GER = { country_event = { days = 1 id = Germany.57 } }
+		ai_chance = {
+			factor = 2
+		}
+	}
+}

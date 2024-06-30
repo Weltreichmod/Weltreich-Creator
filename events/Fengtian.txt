@@ -1,0 +1,372 @@
+﻿###########################
+# Fengtian Events
+###########################
+
+add_namespace = fentian
+
+country_event = {
+	id = fentian.1
+	title = fentian.1.t
+	desc = fentian.1.d
+	picture = japan_men_in_suit
+	trigger = {
+		original_tag = FNG
+		date > 1937.1.1
+		NOT = { has_war_with = JAP }
+	}
+	fire_only_once = yes
+	option = {
+		name = fentian.1.a
+		add_timed_idea = { idea = investment_of_japanese_investors days = 200 }
+		if = {
+			limit = {
+				FNG = { has_variable = fng_legitimacy_var check_variable = { fng_legitimacy_var > 0.02 } }
+			}
+			custom_effect_tooltip = fng_legitimacy_var_remove_two_effect
+			hidden_effect = {
+				add_to_variable = { fng_legitimacy_var = -0.02 }
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = fentian.1.b
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = fentian.2
+	title = fentian.2.t
+	desc = fentian.2.d
+	picture = GFX_report_event_japan_army_mountainside
+	is_triggered_only = yes
+	option = {
+		name = fentian.2.a
+		effect_tooltip = {
+			FROM = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Waking the Tiger"
+						}
+					}
+					set_autonomy = {
+						target = ROOT
+						autonomous_state = autonomy_province_government
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = ROOT
+					}
+				}
+			}
+		}
+		FROM = { country_event = { id = fentian.3 days = 1 } }
+		ai_chance = {
+			base = 0.1
+			modifier = {
+				FNG = { check_variable = { fng_legitimacy_var < 0.5 } }
+				add = 10
+			}
+			modifier = {
+				OR = {
+					FNG = { check_variable = { fng_legitimacy_var > 0.5 } }
+					FNG = { check_variable = { fng_legitimacy_var = 0.5 } }
+				}
+				FNG = { check_variable = { fng_legitimacy_var < 0.85 } }
+				add = 40
+			}
+			modifier = {
+				OR = {
+					FNG = { check_variable = { fng_legitimacy_var > 0.85 } }
+					FNG = { check_variable = { fng_legitimacy_var = 0.85 } }
+				}
+				add = 80
+			}
+		}
+	}
+	option = {
+		name = fentian.2.b
+		effect_tooltip = { FROM = { create_wargoal = { type = annex_everything target = ROOT } } }
+		FROM = { country_event = { id = fentian.4 days = 1 } }
+		ai_chance = {
+			base = 0.1
+			modifier = {
+				FNG = { check_variable = { fng_legitimacy_var < 0.5 } }
+				add = 160
+			}
+			modifier = {
+				OR = {
+					FNG = { check_variable = { fng_legitimacy_var > 0.5 } }
+					FNG = { check_variable = { fng_legitimacy_var = 0.5 } }
+				}
+				FNG = { check_variable = { fng_legitimacy_var < 0.85 } }
+				add = 40
+			}
+			modifier = {
+				OR = {
+					FNG = { check_variable = { fng_legitimacy_var > 0.85 } }
+					FNG = { check_variable = { fng_legitimacy_var = 0.85 } }
+				}
+				add = 20
+			}
+		}
+	}
+}
+
+country_event = {
+	id = fentian.3
+	title = fentian.3.t
+	desc = fentian.3.d
+	picture = GFX_report_event_japan_army_mountainside
+	is_triggered_only = yes
+	option = {
+		name = fentian.3.a
+		ROOT = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+				}
+				set_autonomy = {
+					target = FROM
+					autonomous_state = autonomy_province_government
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = FROM
+				}
+			}
+			FROM = {
+				set_country_flag = color_changed
+				set_cosmetic_tag = FNG_puppet
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = fentian.4
+	title = fentian.4.t
+	desc = fentian.4.d
+	picture = GFX_report_event_japan_army_mountainside
+	is_triggered_only = yes
+	option = {
+		name = fentian.4.a
+		create_wargoal = { type = annex_everything target = FROM }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = fentian.5
+	title = fentian.5.t
+	desc = fentian.5.d
+	picture = GFX_report_event_japanese_chinese_surrender
+	is_triggered_only = yes
+	option = {
+		name = fentian.5.a
+		effect_tooltip = {
+			send_equipment = {
+				target = FNG
+				type = infantry_equipment
+				amount = 800
+			}
+		}
+		FNG = { country_event = { id = fentian.6 days = 7 } }
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = fentian.5.b
+		effect_tooltip = {
+			send_equipment = {
+				target = FNG
+				type = support_equipment
+				amount = 500
+			}
+		}
+		FNG = { country_event = { id = fentian.7 days = 7 } }
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = fentian.5.c
+		effect_tooltip = {
+			send_equipment = {
+				target = FNG
+				type = artillery_equipment
+				amount = 300
+			}
+		}
+		FNG = { country_event = { id = fentian.8 days = 7 } }
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = fentian.5.dd
+		FNG = { country_event = { id = fentian.9 days = 7 } }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = fentian.6
+	title = fentian.6.t
+	desc = fentian.6.d
+	picture = GFX_report_event_japanese_chinese_surrender
+	is_triggered_only = yes
+	option = {
+		name = fentian.6.a
+		JAP = {
+			send_equipment = {
+				target = FNG
+				type = infantry_equipment
+				amount = 800
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = fentian.7
+	title = fentian.6.t
+	desc = fentian.6.d
+	picture = GFX_report_event_japanese_chinese_surrender
+	is_triggered_only = yes
+	option = {
+		name = fentian.6.a
+		JAP = {
+			send_equipment = {
+				target = FNG
+				type = support_equipment
+				amount = 500
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = fentian.8
+	title = fentian.6.t
+	desc = fentian.6.d
+	picture = GFX_report_event_japanese_chinese_surrender
+	is_triggered_only = yes
+	option = {
+		name = fentian.6.a
+		JAP = {
+			send_equipment = {
+				target = FNG
+				type = artillery_equipment
+				amount = 300
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = fentian.9
+	title = fentian.9.t
+	desc = fentian.9.d
+	picture = GFX_report_event_japanese_chinese_surrender
+	is_triggered_only = yes
+	option = {
+		name = fentian.9.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = fentian.10
+	title = fentian.10.t
+	desc = fentian.10.d
+	picture = GFX_report_event_japanese_soldiers_02
+	trigger = {
+		original_tag = FNG
+		NOT = { has_country_flag = FNG_strong_influence_of_japan }
+		FNG = {
+			has_variable = FNG_influence_of_japan
+			check_variable = { FNG_influence_of_japan > 0.8 }
+		}
+	}
+	option = {
+		name = fentian.10.a
+		if = {
+			limit = {
+				FNG = { has_variable = fng_legitimacy_var check_variable = { fng_legitimacy_var > 0.3 } }
+			}
+			custom_effect_tooltip = fng_legitimacy_var_remove_30_effect
+			hidden_effect = {
+				add_to_variable = { fng_legitimacy_var = -0.3 }
+			}
+		}
+		else_if = {
+			limit = {
+				FNG = { has_variable = fng_legitimacy_var }
+			}
+			custom_effect_tooltip = fng_legitimacy_var_zero_effect
+			hidden_effect = {
+				set_variable = { fng_legitimacy_var = 0 }
+			}
+		}
+		set_country_flag = FNG_strong_influence_of_japan
+		custom_effect_tooltip = FNG_strong_influence_of_japan_flag_tt
+		add_ideas = FNG_kawagoe_shigeru
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = fentian.11
+	title = fentian.11.t
+	desc = fentian.11.d
+	picture = GFX_report_event_japanese_soldiers_02
+	trigger = {
+		original_tag = FNG
+		has_country_flag = FNG_strong_influence_of_japan
+		FNG = {
+			has_variable = FNG_influence_of_japan
+			check_variable = { FNG_influence_of_japan < 0.7 }
+		}
+	}
+	option = {
+		name = fentian.11.a
+		clr_country_flag = FNG_strong_influence_of_japan
+		custom_effect_tooltip = FNG_strong_influence_of_fengtian_flag_tt
+		remove_ideas = FNG_kawagoe_shigeru
+		ai_chance = {
+			base = 1
+		}
+	}
+}

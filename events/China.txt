@@ -1,0 +1,780 @@
+﻿###########################
+# Chinese Events
+###########################
+
+add_namespace = china_wr
+
+country_event = {
+	id = china_wr.1
+	title = china_wr.1.t
+	desc = china_wr.1.d
+	picture = GFX_report_event_china_politicians_captured
+	trigger = {
+		CHI = { has_war_with = JAP }
+	}
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			create_faction = United_Fronts
+			save_global_event_target_as = leader_of_United_Fronts
+			news_event = { id = news.159 }
+		}
+	}
+	mean_time_to_happen = { days = 1 }
+	fire_only_once = yes
+	option = {
+		name = china_wr.1.a
+		add_war_support = 0.1
+		add_stability = 0.1
+		every_country = {
+			limit = {
+				has_country_flag = Chinese_warlord
+				is_neighbor_of = CHI
+				NOT = {
+					original_tag = FNG
+					original_tag = SIK
+					original_tag = CHI
+					is_subject = yes
+					is_in_faction = yes
+					has_war_with = CHI
+				}
+			}
+			country_event = { id = china_wr.2 days = 3 }
+			news_event = china_wr.15
+		}
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.2
+	title = china_wr.2.t
+	desc = china_wr.2.d
+	picture = GFX_report_event_china_politicians_captured
+	is_triggered_only = yes
+	option = {
+		name = china_wr.2.a
+		CHI = { country_event = china_wr.3 }
+		effect_tooltip = { CHI = { add_to_faction = ROOT } }
+		add_war_support = 0.1
+		add_stability = 0.1
+		ai_chance = {
+			base = 50
+		}
+	}
+	option = {
+		name = china_wr.2.b
+		CHI = { country_event = china_wr.4 }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.3
+	title = china_wr.3.t
+	desc = china_wr.3.d
+	picture = GFX_report_event_china_politicians_captured
+	is_triggered_only = yes
+	option = {
+		name = china_wr.3.a
+		CHI = { add_to_faction = FROM }
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.4
+	title = china_wr.4.t
+	desc = china_wr.4.d
+	picture = GFX_report_event_china_politicians_captured
+	is_triggered_only = yes
+	option = {
+		name = china_wr.4.a
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.5
+	title = china_wr.5.t
+	desc = china_wr.5.d
+	trigger = {
+		original_tag = CHI
+		date > 1936.5.10
+	}
+	fire_only_once = yes
+	option = {
+		name = china_wr.5.a
+		retire_character = CHI_hu_hanmin
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+news_event = {
+	id = china_wr.6
+	title = china_wr.6.t
+	desc = china_wr.6.d
+	picture = wuhan_government_picture
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = china_wr.6.a
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.7
+	title = china_wr.7.t
+	desc = china_wr.7.d
+	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
+	option = {
+		name = china_wr.7.a
+		effect_tooltip = {
+			CHI = { add_ideas = CHI_german_advisors }
+		}
+		CHI = { country_event = china_wr.8 }
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = china_wr.7.b
+		CHI = { country_event = china_wr.9 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.8
+	title = china_wr.8.t
+	desc = china_wr.8.d
+	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
+	option = {
+		name = china_wr.8.a
+		add_ideas = CHI_german_advisors
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.9
+	title = china_wr.9.t
+	desc = china_wr.9.d
+	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
+	option = {
+		name = china_wr.9.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.10
+	title = china_wr.10.t
+	desc = china_wr.10.d
+	is_triggered_only = yes
+	picture = democratic_pre_cand
+	option = {
+		name = china_wr.10.a
+		effect_tooltip = {
+			send_equipment = {
+				target = CHI
+				type = infantry_equipment
+				amount = 1000
+			}
+		}
+		CHI = { country_event = china_wr.11 }
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 99
+				has_opinion = { target = CHI value > 0 }
+				has_war = no
+			}
+			modifier = {
+				add = 99
+				has_opinion = { target = JAP value < -20 }
+				has_opinion = { target = CHI value > -15 }
+				has_war = no
+			}
+		}
+	}
+	option = {
+		name = china_wr.10.b
+		effect_tooltip = {
+			send_equipment = {
+				target = CHI
+				type = artillery_equipment
+				amount = 100
+			}
+		}
+		CHI = { country_event = china_wr.12 }
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 99
+				has_opinion = { target = CHI value > 0 }
+				has_war = no
+			}
+			modifier = {
+				add = 99
+				has_opinion = { target = JAP value < -20 }
+				has_opinion = { target = CHI value > -15 }
+				has_war = no
+			}
+		}
+	}
+	option = {
+		name = china_wr.10.c
+		CHI = { country_event = china_wr.13 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.11
+	title = china_wr.11.t
+	desc = china_wr.11.d
+	is_triggered_only = yes
+	picture = democratic_pre_cand
+	option = {
+		name = china_wr.11.a
+		FROM = {
+			send_equipment = {
+				target = CHI
+				type = infantry_equipment
+				amount = 1000
+			}
+		}
+		add_opinion_modifier = {
+			target = FROM
+			modifier = weapon_support
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.12
+	title = china_wr.12.t
+	desc = china_wr.12.d
+	is_triggered_only = yes
+	picture = democratic_pre_cand
+	option = {
+		name = china_wr.11.a
+		FROM = {
+			send_equipment = {
+				target = CHI
+				type = artillery_equipment
+				amount = 100
+			}
+		}
+		add_opinion_modifier = {
+			target = FROM
+			modifier = weapon_support
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.13
+	title = china_wr.13.t
+	desc = china_wr.13.d
+	is_triggered_only = yes
+	picture = democratic_pre_cand
+	option = {
+		name = china_wr.13.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.14
+	title = china_wr.14.t
+	desc = {
+		text = china_wr.14.d1
+		trigger = {
+			NOT = { FNG = { has_country_flag = FNG_hanjian } }
+		}
+	}
+	desc = {
+		text = china_wr.14.d2
+		trigger = {
+			FNG = { has_country_flag = FNG_hanjian }
+		}
+	}
+	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
+	option = {
+		name = china_wr.14.a
+		trigger = {
+			NOT = { FNG = { has_country_flag = FNG_hanjian } }
+		}
+		add_political_power = -50
+		FNG = {
+			FNG_zhang_zuolin = {
+				set_nationality = PREV.PREV
+			}
+			FNG_zhang_xueliang = {
+				set_nationality = PREV.PREV
+			}
+			FNG_zhang_jinghui = {
+				set_nationality = PREV.PREV
+			}
+			FNG_pan_fu = {
+				set_nationality = PREV.PREV
+			}
+			FNG_wu_jinglian = {
+				set_nationality = PREV.PREV
+			}
+			FNG_zhang_zuoxiang = {
+				set_nationality = PREV.PREV
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.14.b
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = china_wr.14.c
+		trigger = {
+			FNG = { has_country_flag = FNG_hanjian }
+		}
+		add_stability = -0.05
+		add_war_support = 0.05
+		effect_tooltip = {
+			retire_character = FNG_zhang_zuolin
+			retire_character = FNG_zhang_xueliang
+			retire_character = FNG_zhang_jinghui
+			retire_character = FNG_pan_fu
+			retire_character = FNG_wu_jinglian
+			retire_character = FNG_zhang_zuoxiang
+		}
+		hidden_effect = {
+			FNG = {
+				retire_character = FNG_zhang_zuolin
+				retire_character = FNG_zhang_xueliang
+				retire_character = FNG_zhang_jinghui
+				retire_character = FNG_pan_fu
+				retire_character = FNG_wu_jinglian
+				retire_character = FNG_zhang_zuoxiang
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+news_event = {
+	id = china_wr.15
+	title = china_wr.15.t
+	desc = china_wr.15.d
+	is_triggered_only = yes
+	picture = United_Front
+	option = {
+		name = china_wr.15.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.16
+	title = china_wr.16.t
+	desc = china_wr.16.d
+	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
+	option = {
+		name = china_wr.16.a
+		CHI = { country_event = { id = china_wr.17 hours = 5 } }
+		effect_tooltip = {
+			add_ideas = Profits_from_China
+			if = {
+				limit = {
+					ROOT = { original_tag = GER }
+				}
+				CHI = {
+					add_ideas = reinforced_cooperation_with_Germany
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = { original_tag = ENG }
+				}
+				CHI = {
+					add_ideas = CHI_research_innovation_idea
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = { original_tag = USA }
+				}
+				CHI = {
+					add_ideas = CHI_American_advisory_group_idea
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.16.b
+		CHI = { country_event = { id = china_wr.18 hours = 5 } }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.17
+	title = china_wr.17.t
+	desc = china_wr.17.d
+	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
+	option = {
+		name = china_wr.17.a
+		if = {
+			limit = {
+				FROM = { original_tag = GER }
+			}
+			add_ideas = reinforced_cooperation_with_Germany
+		}
+		else_if = {
+			limit = {
+				FROM = { original_tag = ENG }
+			}
+			add_ideas = CHI_research_innovation_idea
+		}
+		else_if = {
+			limit = {
+				FROM = { original_tag = USA }
+			}
+			add_ideas = CHI_American_advisory_group_idea
+		}
+		FROM = {
+			add_ideas = Profits_from_China
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.18
+	title = china_wr.18.t
+	desc = china_wr.18.d
+	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
+	option = {
+		name = china_wr.18.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.19
+	title = china_wr.19.t
+	desc = china_wr.19.d
+	is_triggered_only = yes
+	picture = GFX_report_event_japan_army_mountainside
+	option = {
+		name = china_wr.19.a
+		FROM = { annex_country = { target = ROOT transfer_troops = yes } }
+		ai_chance = {
+			base = 1
+			modifier = {
+				OR = {
+					original_tag = GXC
+					original_tag = GUD
+				}
+				add = 9
+			}
+		}
+	}
+	option = {
+		name = china_wr.19.b
+		FROM = { create_wargoal = { type = annex_everything target = ROOT } }
+		if = {
+			limit = {
+				ROOT = { is_subject_of = FROM }
+			}
+			FROM = { end_puppet = ROOT }
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				OR = {
+					original_tag = GXC
+					original_tag = GUD
+				}
+				add = -8
+			}
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.20
+	title = china_wr.20.t
+	desc = china_wr.20.d
+	is_triggered_only = yes
+	picture = tibet_map
+	option = {
+		name = china_wr.20.a
+		TIB = {	country_event = china_wr.21 }
+		set_global_flag = friend_with_tibet
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = china_wr.20.b
+		TIB = {	country_event = china_wr.21 }
+		set_global_flag = attack_with_tibet
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.21
+	title = china_wr.21.t
+	desc = {
+		text = china_wr.21.d1
+		trigger = {
+			has_global_flag = friend_with_tibet
+		}
+	}
+	desc = {
+		text = china_wr.21.d2
+		trigger = {
+			has_global_flag = attack_with_tibet
+		}
+	}
+	is_triggered_only = yes
+	picture = tibet_map
+	option = {
+		name = china_wr.21.a
+		if = {
+			limit = {
+				has_global_flag = friend_with_tibet
+			}
+			effect_tooltip = {
+				CHI = {
+					give_guarantee = TIB
+					add_opinion_modifier = {
+						target = TIB
+						modifier = medium_increase
+					}
+				}
+				TIB = {
+					add_opinion_modifier = {
+						target = CHI
+						modifier = medium_increase
+					}
+				}
+			}
+			CHI = { country_event = china_wr.22 }
+		}
+		if = {
+			limit = {
+				has_global_flag = attack_with_tibet
+			}
+			effect_tooltip = {
+				CHI = { annex_country = { target = TIB transfer_troops = yes } }
+			}
+			CHI = { country_event = china_wr.22 }
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				base = 10
+				has_global_flag = friend_with_tibet
+			}
+		}
+	}
+	option = {
+		name = china_wr.21.b
+		if = {
+			limit = {
+				has_global_flag = friend_with_tibet
+			}
+			CHI = { country_event = china_wr.23 }
+		}
+		if = {
+			limit = {
+				has_global_flag = attack_with_tibet
+			}
+			effect_tooltip = {
+				CHI = { create_wargoal = { type = annex_everything target = TIB } }
+			}
+			CHI = { country_event = china_wr.23 }
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				base = 10
+				has_global_flag = attack_with_tibet
+			}
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.22
+	title = china_wr.22.t
+	desc = {
+		text = china_wr.22.d1
+		trigger = {
+			has_global_flag = friend_with_tibet
+		}
+	}
+	desc = {
+		text = china_wr.22.d2
+		trigger = {
+			has_global_flag = attack_with_tibet
+		}
+	}
+	is_triggered_only = yes
+	picture = tibet_map
+	option = {
+		name = china_wr.22.a
+		if = {
+			limit = {
+				has_global_flag = friend_with_tibet
+			}
+			CHI = {
+				give_guarantee = TIB
+				add_opinion_modifier = {
+					target = TIB
+					modifier = medium_increase
+				}
+			}
+			TIB = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = medium_increase
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_global_flag = attack_with_tibet
+			}
+			annex_country = { target = TIB transfer_troops = yes }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.23
+	title = china_wr.23.t
+	desc = {
+		text = china_wr.23.d1
+		trigger = {
+			has_global_flag = friend_with_tibet
+		}
+	}
+	desc = {
+		text = china_wr.23.d2
+		trigger = {
+			has_global_flag = attack_with_tibet
+		}
+	}
+	is_triggered_only = yes
+	picture = tibet_map
+	option = {
+		name = china_wr.23.a
+		if = {
+			limit = {
+				has_global_flag = friend_with_tibet
+			}
+		}
+		if = {
+			limit = {
+				has_global_flag = attack_with_tibet
+			}
+			create_wargoal = { type = annex_everything target = TIB }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.24
+	title = china_wr.24.t
+	desc = china_wr.24.d
+	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
+	option = {
+		name = china_wr.24.a
+		add_ideas = MON_China_Mongolia_Trade_Agreement_idea
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.25
+	title = china_wr.25.t
+	desc = china_wr.25.d
+	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
+	option = {
+		name = china_wr.25.a
+		dismantle_faction = yes
+		ai_chance = {
+			base = 5
+		}
+	}
+}

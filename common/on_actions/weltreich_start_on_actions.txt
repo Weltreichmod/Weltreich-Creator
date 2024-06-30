@@ -1,0 +1,182 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			random_country = {
+				limit = {
+					tag = TUR
+				}
+				
+				country_event = turkey.18
+			}
+			#Romania oil concessions
+			ROM = {
+				give_resource_rights = { receiver = GER state = 46 }
+			}
+			#FRA hate GER
+			FRA = {
+				add_opinion_modifier = {
+					target = GER
+					modifier = FRA_anti_german_sentiment
+				}
+			}
+			#GER hate FRA
+			GER = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = GER_anti_france_sentiment
+				}
+				add_opinion_modifier = {
+					target = AUH
+					modifier = GER_AUH_cooperation
+				}
+			}
+			AUH = {
+				add_opinion_modifier = {
+					target = GER
+					modifier = GER_AUH_cooperation
+				}
+			}
+			#Austria-Hungary
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = auh_fragmentation_status
+						option = AUH_AUS_AND_HUN
+					}
+				}
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						OR = {
+							is_core_of = HUN
+							is_claimed_by = HUN
+						}
+					}
+					transfer_state_to = HUN
+				}
+				AUH = {
+					transfer_units_fraction = {
+						target = HUN
+						size = 0.4
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = auh_fragmentation_status
+						option = AUH_ETHNIC
+					}
+				}
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						OR = {
+							is_core_of = POL
+						}
+					}
+					transfer_state_to = POL
+				}
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						OR = {
+							is_core_of = UKR
+						}
+					}
+					transfer_state_to = UKR
+				}
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						OR = {
+							is_core_of = ROM
+						}
+					}
+					transfer_state_to = ROM
+				}
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						state = 764
+					}
+					transfer_state_to = SER
+				}
+				AUH = {
+					set_cosmetic_tag = AUH_EMP
+					release = CZE
+					release = CRO
+					release = BOS
+					release = MNT
+					release = SLO
+					release = HUN
+					transfer_units_fraction = {
+						target = CZE
+						size = 0.1
+					}
+					transfer_units_fraction = {
+						target = CRO
+						size = 0.1
+					}
+					transfer_units_fraction = {
+						target = BOS
+						size = 0.1
+					}
+					transfer_units_fraction = {
+						target = MNT
+						size = 0.1
+					}
+					transfer_units_fraction = {
+						target = SLO
+						size = 0.1
+					}
+					transfer_units_fraction = {
+						target = HUN
+						size = 0.2
+					}
+				}
+			}
+			#Italy
+			if = {
+				limit = {
+					has_game_rule = {
+						rule = ita_fragmentation_status
+						option = ITA_FRAGMENTED
+					}
+				}
+				ITA = {
+					release = PAP
+					release = TOS
+					release = SPM
+					release = TTS
+					release = EMI
+					transfer_units_fraction = {
+						target = PAP
+						size = 0.1
+					}
+					transfer_units_fraction = {
+						target = TOS
+						size = 0.1
+					}
+					transfer_units_fraction = {
+						target = EMI
+						size = 0.1
+					}
+					transfer_units_fraction = {
+						target = TTS
+						size = 0.2
+					}
+				}
+				SPM =  {
+					change_tag_from = ITA
+				}
+				SPM = {
+					annex_country = {
+						target = ITA
+						transfer_troops = yes
+					}
+				}
+			}
+		}
+	}
+}

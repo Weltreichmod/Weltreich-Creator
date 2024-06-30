@@ -1,0 +1,83 @@
+UKR_German_economic_aid = {
+	UKR_German_economic_aid = {
+		icon = GFX_decision_political
+		days_mission_timeout = 150
+		allowed = {
+			original_tag = UKR	
+			has_idea = The_Holodomor
+			UKR = { is_subject_of = GER }
+		}
+		available = {
+			NOT = {
+				has_idea = The_Holodomor
+			}
+		}
+		activation = {
+			has_idea = UKR_idea_German_economic_aid
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			remove_ideas = The_Holodomor
+			remove_ideas = UKR_idea_German_economic_aid
+		}
+	}
+}
+
+#german_ukrainian_war = {
+#	Persuading_Belarus = {
+#		allowed = {
+#			original_tag = UKR
+#		}
+#		available = {
+#			NOT = {
+#				is_neighbor_of = BLR
+#				has_war_with = BLR
+#				is_subject = yes
+#			}
+#		}
+#		activation = {
+#			BLR = {
+#				exists = yes
+#				is_subject_of = GER
+#			}
+#			NOT = { has_war_with = GER }
+#			has_country_flag = independent_from_germany
+#		}
+#		fire_only_once = yes
+#		days_mission_timeout = 10
+#		timeout_effect = {
+#			BLR = { country_event = ukraine.19 }
+#		}
+#		ai_will_do = {
+#			base = 100
+#		}
+#	}
+#}
+
+peace_deal = {
+	peace_for_ger1 = {
+		icon = peace
+		allowed = {
+			original_tag = UKR
+		}
+		available = {
+			surrender_progress > 0.3
+		}
+		visible = {
+			has_war_with = GER
+			NOT = {
+				has_war_with = SOV
+			}
+			has_global_flag = german_ukrainian_war
+		}
+		fire_only_once = yes
+		days_remove = 5
+		remove_effect = {
+			GER = { country_event = Germany.67 }
+		}
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 4000
+		}
+	}
+}

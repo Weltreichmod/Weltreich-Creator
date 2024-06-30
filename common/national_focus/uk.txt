@@ -1,0 +1,5499 @@
+﻿### search_filters = {FOCUS_FILTER_POLITICAL}
+### search_filters = {FOCUS_FILTER_RESEARCH}
+### search_filters = {FOCUS_FILTER_INDUSTRY}
+### search_filters = {FOCUS_FILTER_STABILITY}
+### search_filters = {FOCUS_FILTER_WAR_SUPPORT}
+### search_filters = {FOCUS_FILTER_MANPOWER}
+### search_filters = {FOCUS_FILTER_ANNEXATION}
+
+focus_tree = {
+	id = british_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = ENG
+		}
+	}
+	continuous_focus_position = {
+		x = 3500
+		y = 1600
+	}
+	default = no
+	
+	### before election ###
+
+	focus = {
+		id = Baldwin_cabinet
+		icon = focus_Baldwin_cabinet
+		x = 10
+		y = 0
+		cost = 8.6
+		ai_will_do = {
+			factor = 6
+		}
+		allow_branch = {
+			NOT = { has_country_flag = ENG_1936_general_election }
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		id = democratic_propaganda
+		icon = GFX_goal_generic_propaganda
+		relative_position_id = Baldwin_cabinet
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Baldwin_cabinet
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = eradication_of_British_defeatism
+		icon = GFX_focus_CZE_german_puppet
+		relative_position_id = Baldwin_cabinet
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 100
+		}
+		prerequisite = {
+			focus = Baldwin_cabinet
+		}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			remove_ideas = British_defeatism
+		}
+	}
+	
+	focus = {
+		id = preparations_for_the_general_election
+		icon = GFX_goal_generic_territory_or_war
+		relative_position_id = Baldwin_cabinet
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Baldwin_cabinet
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = preparations_for_the_general_election
+		}
+	}
+	
+	### fascism focus tree ###
+	
+	focus = {
+		id = Prime_Minister_Mosley
+		icon = Prime_Minister_Mosley
+		allow_branch = {
+			ENG_focus_tree_change_fascism_trigger = yes
+		}
+		x = 10
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 30
+		}
+	}
+	
+	focus = {
+		id = power_concentration
+		icon = GFX_goal_generic_political_pressure
+		relative_position_id = Prime_Minister_Mosley
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Prime_Minister_Mosley
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = concentrated_power
+		}
+	}
+	
+	focus = {
+		id = Big_Ben_arson_case
+		icon = GFX_goal_generic_more_territorial_claims
+		relative_position_id = power_concentration
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = power_concentration
+		}
+		cost = 5
+		completion_reward = {
+			country_event = { id = britain.13 days = 7 }
+		}
+	}
+	
+	focus = {
+		id = The_greatest_happiness_of_the_greatest_number
+		icon = GFX_goal_generic_demand_territory
+		relative_position_id = Prime_Minister_Mosley
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Prime_Minister_Mosley
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_timed_idea = {idea = public_welfare_policy days = 300 }
+		}
+	}
+	
+	focus = {
+		id = introduction_of_political_police
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = The_greatest_happiness_of_the_greatest_number
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = The_greatest_happiness_of_the_greatest_number
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_ideas = political_police
+		}
+	}
+	
+	focus = {
+		id = absolute_power
+		icon = GFX_focus_generic_military_dictatorship
+		relative_position_id = Big_Ben_arson_case
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = Big_Ben_arson_case
+		}
+		prerequisite = {
+			focus = introduction_of_political_police
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 5
+		completion_reward = {
+			add_country_leader_trait = protector_of_the_realm
+		}
+	}
+	
+	focus = {
+		id = rearmament_policy
+		icon = GFX_focus_generic_fascist_troops
+		relative_position_id = absolute_power
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = absolute_power
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			add_ideas = rearmament_policy
+		}
+	}
+	
+	focus = {
+		id = operate_dockyards
+		icon = GFX_goal_continuous_naval_production
+		relative_position_id = absolute_power
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = absolute_power
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = operate_dockyards
+		}
+	}
+	
+	focus = {
+		id = people_control
+		icon = GFX_focus_eng_move_to_secure_the_dominions
+		relative_position_id = absolute_power
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = absolute_power
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_political_power = -50
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = Engage_in_Continental_Affairs
+		icon = GFX_focus_generic_strike_at_democracy2
+		relative_position_id = rearmament_policy
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = rearmament_policy
+		}
+		prerequisite = {
+			focus = operate_dockyards
+		}
+		prerequisite = {
+			focus = people_control
+		}
+		mutually_exclusive = {
+			focus = colony_integration_policy
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+			hidden_effect = {
+				ROOT = {
+					country_event = {
+						id = france.30
+						hours = 0
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = reorganization_of_the_Commonwealth
+		icon = GFX_focus_chi_british_cooperation
+		relative_position_id = Engage_in_Continental_Affairs
+		x = -5
+		y = 1
+		prerequisite = {
+			focus = Engage_in_Continental_Affairs
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		cost = 10
+		completion_reward = {
+			every_country = {
+				limit = {
+					is_subject_of = ENG
+				}
+				add_stability = 0.05
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = West_Indies_Integration
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		relative_position_id = reorganization_of_the_Commonwealth
+		x = -4
+		y = 1
+		prerequisite = {
+			focus = reorganization_of_the_Commonwealth
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		cost = 10
+		completion_reward = {
+			add_ideas = Last_pride
+		}
+	}
+	
+	focus = {
+		id = Canada_Influence
+		icon = Canada_Influence
+		relative_position_id = reorganization_of_the_Commonwealth
+		x = -2
+		y = 1
+		prerequisite = {
+			focus = reorganization_of_the_Commonwealth
+		}
+		available = {
+			CAN = { is_subject_of = ENG }
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		cost = 10
+		completion_reward = {
+			CAN = { add_ideas = influence_of_Briton }
+		}
+	}
+	
+	focus = {
+		id = Britain_in_the_Americas
+		icon = GFX_focus_ETH_the_one_true_heir_of_solomon
+		relative_position_id = Canada_Influence
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = Canada_Influence
+		}
+		available = {
+			OR = {
+				CAN = {
+					is_subject_of = ENG
+					has_full_control_of_state = 276
+					has_full_control_of_state = 468
+				}
+				has_full_control_of_state = 276
+				has_full_control_of_state = 468
+			}
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		cost = 10
+		completion_reward = {
+			CAN = {
+				random_owned_controlled_state = {
+					prioritize = { 276 }
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 468 }
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Australia_Influence
+		icon = Australia_Influence
+		relative_position_id = reorganization_of_the_Commonwealth
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = reorganization_of_the_Commonwealth
+		}
+		available = {
+			AST = { is_subject_of = ENG }
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		cost = 10
+		completion_reward = {
+			AST = { add_ideas = influence_of_Briton }
+		}
+	}
+	
+	focus = {
+		id = New_Zealand_Influence
+		icon = New_Zealand_Influence
+		relative_position_id = reorganization_of_the_Commonwealth
+		x = 3
+		y = 1
+		prerequisite = {
+			focus = reorganization_of_the_Commonwealth
+		}
+		available = {
+			NZL = { is_subject_of = ENG }
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		cost = 10
+		completion_reward = {
+			NZL = { add_ideas = influence_of_Briton }
+		}
+	}
+	
+	focus = {
+		id = Britain_in_the_Oceania
+		icon = GFX_focus_ETH_the_one_true_heir_of_solomon
+		relative_position_id = Australia_Influence
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = Australia_Influence
+		}
+		prerequisite = {
+			focus = New_Zealand_Influence
+		}
+		available = {
+			AND = {
+				OR = {
+					AST = {
+						is_subject_of = ENG
+						has_full_control_of_state = 285
+						has_full_control_of_state = 517
+					}
+					has_full_control_of_state = 285
+					has_full_control_of_state = 517
+				}
+				OR = {
+					NZL = {
+						is_subject_of = ENG
+						has_full_control_of_state = 284
+					}
+					has_full_control_of_state = 284
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		cost = 10
+		completion_reward = {
+			AST = {
+				random_owned_controlled_state = {
+					prioritize = { 285 }
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 517 }
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+			NZL = {
+				random_owned_controlled_state = {
+					prioritize = { 284 }
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Britain_in_the_Africa
+		icon = GFX_goal_tfv_saf_secure_interests_in_africa
+		relative_position_id = Britain_in_the_Americas
+		x = 2
+		y = 0
+		prerequisite = {
+			focus = reorganization_of_the_Commonwealth
+		}
+		available = {
+			has_full_control_of_state = 700
+			has_full_control_of_state = 701
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		cost = 10
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 700 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 701 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = reorganized_Commonwealth
+		icon = GFX_focus_generic_commonwealth_build_infantry
+		relative_position_id = Britain_in_the_Africa
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Britain_in_the_Americas
+		}
+		prerequisite = {
+			focus = Britain_in_the_Africa
+		}
+		prerequisite = {
+			focus = Britain_in_the_Oceania
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		completion_reward = {
+			add_ideas = leader_of_the_commonwealth
+			every_country = {
+				limit = {
+					is_subject_of = ENG
+				}
+				add_ideas = leader_of_the_commonwealth_sub
+			}
+		}
+	}
+	
+	focus = {
+		id = our_enemy
+		icon = GFX_goal_generic_major_war
+		relative_position_id = Engage_in_Continental_Affairs
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = Engage_in_Continental_Affairs
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 10
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = Franco_British_alliance_resumes
+		icon = focus_ENG_alliance
+		relative_position_id = our_enemy
+		x = 0
+		y = 1
+		cost = 10
+		bypass = {
+			FRA = { is_in_faction_with = ENG }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = our_enemy
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					FRA = {
+						is_faction_leader = yes
+					}
+				}
+				FRA = { country_event = { days = 7 id = france.27 } }
+			}
+			if = {
+				limit = {
+					FRA = {
+						is_faction_leader = no
+					}
+				}
+				ENG = {
+					set_rule = {
+						can_create_factions = yes
+					}
+				}
+				create_faction = ENG_Allies
+				FRA = { country_event = { days = 7 id = france.29 } }
+			}
+		}
+	}
+	
+	focus = {
+		id = our_old_territory
+		icon = GFX_focus_generic_fascist_propaganda
+		relative_position_id = Franco_British_alliance_resumes
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Franco_British_alliance_resumes
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			893 = { add_claim_by = ENG }
+			541 = { add_claim_by = ENG }
+			894 = { add_claim_by = ENG }
+			895 = { add_claim_by = ENG }
+			771 = { add_claim_by = ENG }
+			770 = { add_claim_by = ENG }
+			546 = { add_claim_by = ENG }
+			769 = { add_claim_by = ENG }
+			768 = { add_claim_by = ENG }
+			548 = { add_claim_by = ENG }
+			905 = { add_claim_by = ENG }
+			904 = { add_claim_by = ENG }
+			547 = { add_claim_by = ENG }
+			903 = { add_claim_by = ENG }
+			884 = { add_claim_by = ENG }
+			274 = { add_claim_by = ENG }
+			558 = { add_claim_by = ENG }
+			900 = { add_claim_by = ENG }
+			902 = { add_claim_by = ENG }
+			901 = { add_claim_by = ENG }
+			707 = { add_claim_by = ENG }
+			709 = { add_claim_by = ENG }
+			704 = { add_claim_by = ENG }
+			703 = { add_claim_by = ENG }
+			844 = { add_claim_by = ENG }
+			917 = { add_claim_by = ENG }
+			737 = { add_claim_by = ENG }
+			634 = { add_claim_by = ENG }
+			333 = { add_claim_by = ENG }
+			336 = { add_claim_by = ENG }
+			643 = { add_claim_by = ENG }
+			636 = { add_claim_by = ENG }
+			726 = { add_claim_by = ENG }
+			270 = { add_claim_by = ENG }
+			712 = { add_claim_by = ENG }
+			711 = { add_claim_by = ENG }
+		}
+	}
+	
+	focus = {
+		id = all_the_way
+		icon = GFX_focus_focus_fra_down_marianne
+		relative_position_id = our_old_territory
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = our_old_territory
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			add_manpower = 10000
+			add_ideas = Army_Strategy_Office
+		}
+	}
+	
+	focus = {
+		id = Demand_Hanover
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = Franco_British_alliance_resumes
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Franco_British_alliance_resumes
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			942 = { add_claim_by = ENG }
+			56 = { add_claim_by = ENG }
+			59 = { add_claim_by = ENG }
+		}
+	}
+	
+	focus = {
+		id = ENG_enact_the_mosley_manifesto
+		icon = GFX_goal_generic_construct_mil_factory
+		relative_position_id = Demand_Hanover
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Demand_Hanover
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 132 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 128 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Attack_on_Germany
+		icon = GFX_focus_POL_reassert_silesian_claims
+		relative_position_id = all_the_way
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = all_the_way
+		}
+		prerequisite = {
+			focus = ENG_enact_the_mosley_manifesto
+		}
+		available = {
+			has_war_with = GER
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with = GER
+			}
+		}
+		completion_reward = {
+			add_timed_idea { idea = anti_germany_propaganda days = 365 }
+		}
+	}
+	
+	focus = {
+		id = Montgomery_plan
+		icon = GFX_focus_ETH_re-convene_the_parliament
+		relative_position_id = Attack_on_Germany
+		x = -3
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Attack_on_Germany
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+		}
+		completion_reward = {
+			add_ideas = Montgomery_plan
+		}
+	}
+	
+	focus = {
+		id = British_staff_officer
+		icon = GFX_focus_generic_military_mission
+		relative_position_id = Montgomery_plan
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Attack_on_Germany
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+		}
+		completion_reward = {
+			add_ideas = British_staff_officer
+		}
+	}
+	
+	focus = {
+		id = Total_Mobilization_order
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = Attack_on_Germany
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Attack_on_Germany
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+		}
+		completion_reward  ={
+			add_ideas = tot_economic_mobilisation
+		}
+	}
+	
+	focus = {
+		id = British_militarism
+		icon = GFX_focus_eng_organise_the_blackshirts
+		relative_position_id = Total_Mobilization_order
+		x = 0
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = Total_Mobilization_order
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+		}
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = war_poetry_factory_switch
+		icon = GFX_goal_generic_positive_trade_relations
+		relative_position_id = Attack_on_Germany
+		x = 0
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = Attack_on_Germany
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					industrial_complex > 0
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					industrial_complex > 0
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					industrial_complex > 0
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = navy_mobilization
+		icon = GFX_focus_generic_midget_submarines
+		relative_position_id = Attack_on_Germany
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Attack_on_Germany
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+		}
+		completion_reward = {
+			add_timed_idea = { idea = navy_mobilization days = 365 }
+		}
+	}
+	
+	focus = {
+		id = Access_to_greece
+		icon = GFX_focus_generic_befriend_greece
+		relative_position_id = navy_mobilization
+		x = 0
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = navy_mobilization
+		}
+		available = {
+			has_war_with_major = yes
+			GRE = {
+				is_subject = no
+			}
+			country_exists = GRE
+			NOT = { has_war_with = GRE }
+			GRE = { is_in_faction = no }
+			OR = {
+				has_war_with = BUL
+				has_war_with = TUR
+			}
+			is_in_faction_with = FRA
+		}
+		bypass = {
+			GRE = { is_in_faction_with = ENG }
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+		}
+		completion_reward = {
+			GRE = { country_event = greece.4 }
+		}
+	}
+	
+	focus = {
+		id = colony_integration_policy
+		icon = GFX_focus_generic_annex_country
+		relative_position_id = operate_dockyards
+		x = 2
+		y = 1
+		prerequisite = {
+			focus = rearmament_policy
+		}
+		prerequisite = {
+			focus = operate_dockyards
+		}
+		prerequisite = {
+			focus = people_control
+		}
+		mutually_exclusive = {
+			focus = Engage_in_Continental_Affairs
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+		cost = 2
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = the_great_country
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		relative_position_id = colony_integration_policy
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = colony_integration_policy
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 10
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_stability = 0.025
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = Fortification_of_London
+		icon = GFX_goal_generic_fortify_city
+		relative_position_id = the_great_country
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = the_great_country
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_full_control_of_state = 126
+		}
+		cost = 10
+		completion_reward = {
+			126 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6103
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 11333
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 11374
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = unbreakable_barrier
+		icon = GFX_goal_generic_defence
+		relative_position_id = the_great_country
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = the_great_country
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 10
+		available = {
+			has_full_control_of_state = 126
+			has_full_control_of_state = 127
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 126 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 127 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = British_Shipbuilding_Association
+		icon = GFX_goal_generic_air_naval_bomber
+		relative_position_id = Fortification_of_London
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Fortification_of_London
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = British_Shipbuilding_Association
+		}
+	}
+	
+	
+	focus = {
+		id = preparation_for_landing
+		icon = GFX_goal_generic_amphibious_assault
+		relative_position_id = unbreakable_barrier
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = unbreakable_barrier
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = preparation_for_landing
+				category = marine_tech
+				uses = 1
+				bonus = 1
+			}
+			add_tech_bonus = {
+				name = preparation_for_landing
+				category = tp_tech
+				uses = 1
+				bonus = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = British_warriors
+		icon = GFX_goal_support_fascism
+		relative_position_id = British_Shipbuilding_Association
+		x = 1
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = British_Shipbuilding_Association
+		}
+		prerequisite = {
+			focus = preparation_for_landing
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			add_ideas = empiricism
+		}
+	}
+	
+	focus = {
+		id = British_Reprisalism
+		icon = British_Reprisalism
+		relative_position_id = British_warriors
+		x = 5
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = British_warriors
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				factor = 10
+				FRA = { has_war_with = GER }
+			}
+			modifier = {
+				factor = 10
+				date > 1941.1.1
+			}
+		}
+		completion_reward = {
+			add_timed_idea = { idea = British_Reprisalism days = 450 }
+			893 = { add_claim_by = ENG }
+			541 = { add_claim_by = ENG }
+			894 = { add_claim_by = ENG }
+			895 = { add_claim_by = ENG }
+			771 = { add_claim_by = ENG }
+			770 = { add_claim_by = ENG }
+			546 = { add_claim_by = ENG }
+			769 = { add_claim_by = ENG }
+			768 = { add_claim_by = ENG }
+			548 = { add_claim_by = ENG }
+			905 = { add_claim_by = ENG }
+			904 = { add_claim_by = ENG }
+			547 = { add_claim_by = ENG }
+			903 = { add_claim_by = ENG }
+			884 = { add_claim_by = ENG }
+			274 = { add_claim_by = ENG }
+			558 = { add_claim_by = ENG }
+			900 = { add_claim_by = ENG }
+			902 = { add_claim_by = ENG }
+			901 = { add_claim_by = ENG }
+			707 = { add_claim_by = ENG }
+			709 = { add_claim_by = ENG }
+			704 = { add_claim_by = ENG }
+			703 = { add_claim_by = ENG }
+			844 = { add_claim_by = ENG }
+			917 = { add_claim_by = ENG }
+			737 = { add_claim_by = ENG }
+			634 = { add_claim_by = ENG }
+			333 = { add_claim_by = ENG }
+			336 = { add_claim_by = ENG }
+			643 = { add_claim_by = ENG }
+			636 = { add_claim_by = ENG }
+			726 = { add_claim_by = ENG }
+			270 = { add_claim_by = ENG }
+			712 = { add_claim_by = ENG }
+			711 = { add_claim_by = ENG }
+		}
+	}
+	
+	focus = {
+		id = against_the_weltreich
+		icon = GFX_focus_ger_accept_british_naval_dominance
+		relative_position_id = British_Reprisalism
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = British_Reprisalism
+		}
+		ai_will_do = {
+			factor = 2
+			modifier = {
+				factor = 10
+				FRA = { has_war_with = GER }
+			}
+			modifier = {
+				factor = 10
+				date > 1941.1.1
+			}
+		}
+		will_lead_to_war_with = GER
+		bypass = {
+			has_war_with = GER
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			add_threat = 20
+			declare_war_on = { target = GER type = annex_everything }
+		}
+	}
+	
+	focus = {
+		id = reorganization_of_officers
+		icon = GFX_focus_generic_vatican_agents
+		relative_position_id = against_the_weltreich
+		x = -2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = against_the_weltreich
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = new_officers
+		}
+	}
+	
+	focus = {
+		id = conquest_of_the_sea
+		icon = GFX_goal_generic_navy_cruiser
+		relative_position_id = against_the_weltreich
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = against_the_weltreich
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_timed_idea = { idea = navy_mobilization days = 365 }
+		}
+	}
+	
+	focus = {
+		id = Battle_of_Britain
+		icon = GFX_focus_chi_flying_tigers
+		relative_position_id = against_the_weltreich
+		x = 2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = against_the_weltreich
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = Battle_of_Britain
+		}
+	}
+	
+	focus = {
+		id = nation_mobilization
+		icon = GFX_goal_generic_production
+		relative_position_id = British_warriors
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = British_warriors
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+		}
+		completion_reward = {
+			add_ideas = nation_mobilization
+			random_owned_controlled_state = {
+				prioritize = { 122 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 2
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = tank_war
+		icon = GFX_focus_generic_army_tanks2
+		relative_position_id = nation_mobilization
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = nation_mobilization
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_manpower = -10000
+			126 = {
+				create_unit = {
+					division = "name = \"1. Tank Brigade\" division_template = \"Tank Brigade\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"2. Tank Brigade\" division_template = \"Tank Brigade\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"3. Tank Brigade\" division_template = \"Tank Brigade\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "name = \"4. Tank Brigade\" division_template = \"Tank Brigade\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+			}
+		}
+	}
+			
+	focus = {
+		id = Consolidating_Scotland
+		icon = Consolidating_Scotland
+		relative_position_id = British_warriors
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = British_warriors
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			remove_ideas = ENG_scottish_separatism
+			add_stability = -0.05
+		}
+	}
+	
+	focus = {
+		id = England_Wales_relations
+		icon = GFX_goal_generic_major_alliance
+		relative_position_id = British_warriors
+		x = 3
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = British_warriors
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		id = Integrating_Ireland
+		icon = GFX_focus_focus_fra_ratify_stresa
+		relative_position_id = Consolidating_Scotland
+		x = 1
+		y = 1
+		cost = 10
+		will_lead_to_war_with = IRE
+		prerequisite = {
+			focus = Consolidating_Scotland
+		}
+		prerequisite = {
+			focus = England_Wales_relations
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 100
+				date > 1940.1.1
+			}
+		}
+		completion_reward = {
+			add_threat = 3
+			declare_war_on = { target = IRE type = annex_everything }
+			134 = { add_claim_by = ENG }
+			113 = { add_claim_by = ENG }
+			135 = { add_claim_by = ENG }
+			119 = { add_claim_by = ENG }
+		}
+	}
+	
+	focus = {
+		id = Integration_Preparation
+		icon = GFX_focus_generic_diplomatic_treaty
+		relative_position_id = colony_integration_policy
+		x = 6
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = colony_integration_policy
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = Look_Oceania
+		icon = GFX_goal_generic_secret_weapon
+		relative_position_id = Integration_Preparation
+		x = -2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Integration_Preparation
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			AST = {
+				add_stability = -0.05
+				add_political_power = -100
+			}
+			NZL = {
+				add_stability = -0.05
+				add_political_power = -100
+			}
+		}
+	}
+	
+	focus = {
+		id = New_Zealand_coercion
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = Look_Oceania
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Look_Oceania
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			NZL = { add_ideas = coercion_of_Britain }
+		}
+	}
+	
+	focus = {
+		id = New_Zealand_Consolidation
+		icon = GFX_goal_generic_major_war
+		relative_position_id = New_Zealand_coercion
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = New_Zealand_coercion
+		}
+		available = {
+			NZL = {
+				fascism > 0.7
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			annex_country = { target = NZL transfer_troops = yes }
+		}
+	}
+	
+	focus = {
+		id = Australia_coercion
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = Look_Oceania
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Look_Oceania
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			AST = { add_ideas = coercion_of_Britain }
+		}
+	}
+	
+	focus = {
+		id = Australia_Consolidation
+		icon = GFX_goal_generic_major_war
+		relative_position_id = Australia_coercion
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Australia_coercion
+		}
+		available = {
+			AST = {
+				fascism > 0.7
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			annex_country = { target = AST transfer_troops = yes }
+		}
+	}
+	
+	focus = {
+		id = Look_Africa
+		icon = GFX_goal_generic_positive_trade_relations
+		relative_position_id = Integration_Preparation
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Integration_Preparation
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+			add_resource = {
+				type = steel
+				amount = 10
+				state = 701
+			}
+		}
+	}
+	
+	focus = {
+		id = Look_Canada
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = Integration_Preparation
+		x = 2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Integration_Preparation
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			CAN = {
+				add_stability = -0.05
+				add_political_power = -100
+			}
+		}
+	}
+	
+	focus = {
+		id = Canada_coercion
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = Look_Canada
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Look_Canada
+		}
+		ai_will_do = {
+			factor = 4.5
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			CAN = { add_ideas = coercion_of_Britain }
+		}
+	}
+	
+	focus = {
+		id = Canada_Consolidation
+		icon = GFX_goal_generic_major_war
+		relative_position_id = Canada_coercion
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Canada_coercion
+		}
+		available = {
+			CAN = {
+				fascism > 0.7
+			}
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			annex_country = { target = CAN transfer_troops = yes }
+		}
+	}
+	
+	focus = {
+		id = ENG_the_empire
+		icon = GFX_focus_AST_never_gallipoli
+		relative_position_id = Canada_Consolidation
+		x = -3
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = New_Zealand_Consolidation
+		}
+		prerequisite = {
+			focus = Australia_Consolidation
+		}
+		prerequisite = {
+			focus = Canada_Consolidation
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			set_cosmetic_tag = ENG_imperial_federation_unified
+		}
+	}
+	
+	focus = {
+		id = Newfoundland_Development
+		icon = GFX_goal_generic_intelligence_exchange
+		relative_position_id = Look_Canada
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Look_Canada
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			has_full_control_of_state = 331
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 331 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+				}
+			}
+		}
+	}
+	
+	### communism focus tree ###
+	focus = {
+		id = triumph_of_communism
+		icon = GFX_focus_ETH_callout_to_the_world
+		allow_branch = {
+			ENG_focus_tree_change_communism_trigger = yes
+		}
+		x = 10
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 30
+		}
+	}
+	
+	focus = {
+		id = Harry_Pollitt_Remains_in_Government
+		icon = Harry_Pollitt_Remains_in_Government
+		relative_position_id = triumph_of_communism
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = triumph_of_communism
+		}
+		mutually_exclusive = {
+			focus = Government_of_Ben_Tillett
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		id = Dictatorship_of_the_proletariat
+		icon = GFX_focus_ITA_corpo_volontari_della_liberta
+		relative_position_id = Harry_Pollitt_Remains_in_Government
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Harry_Pollitt_Remains_in_Government
+		}
+		completion_reward = {
+			add_ideas = Dictatorship_of_the_proletariat
+		}
+	}
+	
+	focus = {
+		id = industrial_nationalization
+		icon = GFX_goal_generic_production
+		relative_position_id = Dictatorship_of_the_proletariat
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Dictatorship_of_the_proletariat
+		}
+		completion_reward = {
+			add_ideas = nationalized_industry
+		}
+	}
+	
+	focus = {
+		id = secret_police
+		icon = GFX_focus_SWI_neutrality_on_the_move
+		relative_position_id = Dictatorship_of_the_proletariat
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Dictatorship_of_the_proletariat
+		}
+		completion_reward = {
+			add_ideas = secret_police
+		}
+	}
+	
+	focus = {
+		id = one_party_communist_dictatorship
+		icon = GFX_focus_generic_soviet_politics
+		relative_position_id = industrial_nationalization
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = industrial_nationalization
+		}
+		prerequisite = {
+			focus = secret_police
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.3
+			}
+			add_stability = -0.04
+		}
+	}
+	
+	focus = {
+		id = Government_of_Ben_Tillett
+		icon = Government_of_Ben_Tillett
+		relative_position_id = triumph_of_communism
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = triumph_of_communism
+		}
+		mutually_exclusive = {
+			focus = Harry_Pollitt_Remains_in_Government
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			promote_character = ENG_ben_tillett
+			set_party_name = {
+				ideology = communism
+				long_name = ENG_communism_Independent_Labour_Party_long
+				name = ENG_communism_Independent_Labour_Party
+			}
+		}
+	}
+	
+	focus = {
+		id = Wealth_tax
+		icon = GFX_focus_eng_concessions_to_the_trade_unions
+		relative_position_id = Government_of_Ben_Tillett
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Government_of_Ben_Tillett
+		}
+		completion_reward = {
+			add_ideas = Wealth_tax
+		}
+	}
+	
+	focus = {
+		id = superiority_of_the_workers
+		icon = GFX_goal_generic_consumer_goods
+		relative_position_id = Wealth_tax
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Wealth_tax
+		}
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+			add_stability = 0.07
+		}
+	}
+	
+	focus = {
+		id = Eight_hour_day
+		icon = GFX_goal_generic_production2
+		relative_position_id = Wealth_tax
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Wealth_tax
+		}
+		prerequisite = {
+			focus = superiority_of_the_workers
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = Eight_hour_day
+		}
+	}
+	
+	focus = {
+		id = multiparty_system
+		icon = GFX_goal_generic_national_unity
+		relative_position_id = superiority_of_the_workers
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = superiority_of_the_workers
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+			add_stability = 0.03
+			add_ideas = liberal_socialism
+		}
+	}
+	
+	focus = {
+		id = propagation_of_revolution
+		icon = GFX_focus_generic_join_comintern
+		relative_position_id = Harry_Pollitt_Remains_in_Government
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Harry_Pollitt_Remains_in_Government
+			focus = Government_of_Ben_Tillett
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = suppressing_extremists
+		icon = GFX_goal_generic_major_war
+		relative_position_id = Government_of_Ben_Tillett
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Harry_Pollitt_Remains_in_Government
+			focus = Government_of_Ben_Tillett
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.05
+			}
+			add_stability = -0.055
+		}
+	}
+	
+	focus = {
+		id = British_Red_Flag
+		icon = GFX_goal_generic_war_with_comintern
+		relative_position_id = propagation_of_revolution
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = propagation_of_revolution
+		}
+		prerequisite = {
+			focus = suppressing_extremists
+		}
+		completion_reward = {
+			remove_ideas = fascists_backlash
+		}
+	}
+	
+	focus = {
+		id = british_royal_family_issue
+		icon = GFX_goal_tfv_burn_the_royal_portraits
+		relative_position_id = British_Red_Flag
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = British_Red_Flag
+		}
+		completion_reward = {
+			country_event = britain.16
+		}
+	}
+	
+	focus = {
+		id = friend_of_the_East
+		icon = GFX_focus_SOV_socialism_in_one_country
+		relative_position_id = one_party_communist_dictatorship
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 6
+				OR = {
+					has_completed_focus = Harry_Pollitt_Remains_in_Government
+					FRA = { exists = no }
+				}
+			}
+		}
+		prerequisite = {
+			focus = one_party_communist_dictatorship
+			focus = multiparty_system
+		}
+		prerequisite = {
+			focus = british_royal_family_issue
+		}
+		mutually_exclusive = {
+			focus = familiar_friendship
+		}
+		available = {
+			SOV = { exists = yes }
+			NOT = { has_global_flag = second_russian_civilwar }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			ENG = {
+				add_opinion_modifier = {
+					target = SOV
+					modifier = medium_increase
+				}
+			}
+			SOV = {
+				add_opinion_modifier = {
+					target = ENG
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Proposing_britain_soviet_joint_training
+		icon = GFX_focus_generic_manpower
+		relative_position_id = friend_of_the_East
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = friend_of_the_East
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		completion_reward = {
+			SOV = { country_event = Soviet.5 }
+		}
+	}
+	
+	focus = {
+		id = mass_production
+		icon = GFX_focus_focus_fra_maquis
+		relative_position_id = friend_of_the_East
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = friend_of_the_East
+		}
+		completion_reward = {
+			add_ideas = mass_production_of_infantry_equipment
+		}
+	}
+	
+	focus = {
+		id = Meeting_in_Leningrad
+		icon = GFX_focus_SOV_third_rome
+		relative_position_id = friend_of_the_East
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = friend_of_the_East
+		}
+		completion_reward = {
+			country_event = britain.23
+		}
+	}
+	
+	focus = {
+		id = Joining_the_Comintern
+		icon = GFX_focus_chi_mission_to_the_soviet_union
+		relative_position_id = mass_production
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = Proposing_britain_soviet_joint_training
+		}
+		prerequisite = {
+			focus = mass_production
+		}
+		prerequisite = {
+			focus = Meeting_in_Leningrad
+		}
+		available = {
+			NOT = {
+				has_war_with = SOV
+			}
+		}
+		bypass = {
+			SOV = { exists = no }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = {
+					SOV = {
+						is_faction_leader = yes
+					}
+				}
+				SOV = { country_event = { days = 7 id = Soviet.10 } }
+			}
+			if = {
+				limit = {
+					SOV = {
+						is_faction_leader = no
+					}
+				}
+				ENG = {
+					set_rule = {
+						can_create_factions = yes
+					}
+				}
+				create_faction = Comintern
+				SOV = { country_event = { days = 7 id = Soviet.11 } }
+			}
+		}
+	}
+	
+	focus = {
+		id = familiar_friendship
+		icon = ENG_familiar_friendship
+		relative_position_id = multiparty_system
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 6
+				OR = {
+					has_completed_focus = Government_of_Ben_Tillett
+					SOV = { exists = no }
+					has_global_flag = second_russian_civilwar
+				}
+			}
+		}
+		prerequisite = {
+			focus = multiparty_system
+			focus = one_party_communist_dictatorship
+		}
+		prerequisite = {
+			focus = british_royal_family_issue
+		}
+		mutually_exclusive = {
+			focus = friend_of_the_East
+		}
+		available = {
+			FRA = { exists = yes }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			ENG = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = medium_increase
+				}
+			}
+			FRA = {
+				add_opinion_modifier = {
+					target = ENG
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = officer_of_france_and_britain
+		icon = GFX_focus_generic_military_mission
+		relative_position_id = familiar_friendship
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = familiar_friendship
+		}
+		completion_reward = {
+			FRA = { country_event = { id = britain.33 days = 4 } }
+		}
+	}
+	
+	focus = {
+		id = the_final_battle
+		icon = GFX_focus_prc_agrarian_socialism
+		relative_position_id = familiar_friendship
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = familiar_friendship
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = the_final_battle
+		}
+	}
+	
+	focus = {
+		id = ENG_Meeting_in_Paris
+		icon = GFX_focus_por_workers_of_iberia
+		relative_position_id = familiar_friendship
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = familiar_friendship
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = britain.52
+		}
+	}
+	
+	focus = {
+		id = with_france
+		icon = GFX_focus_chi_reach_out_to_france
+		relative_position_id = the_final_battle
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		bypass = {
+			FRA = { exists = no }
+		}
+		prerequisite = {
+			focus = officer_of_france_and_britain
+		}
+		prerequisite = {
+			focus = the_final_battle
+		}
+		prerequisite = {
+			focus = ENG_Meeting_in_Paris
+		}
+		available = {
+			NOT = {
+				has_war_with = FRA
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = {
+					FRA = {
+						is_faction_leader = yes
+					}
+				}
+				FRA = { country_event = { days = 7 id = france.27 } }
+			}
+			if = {
+				limit = {
+					FRA = {
+						is_faction_leader = no
+					}
+				}
+				ENG = {
+					set_rule = {
+						can_create_factions = yes
+					}
+				}
+				create_faction = ENG_Allies
+				FRA = { country_event = { days = 7 id = france.29 } }
+			}
+		}
+	}
+	
+	focus = {
+		id = fight_against_germany
+		icon = GFX_focus_focus_fra_revolution_utmost
+		relative_position_id = british_royal_family_issue
+		x = 0
+		y = 4
+		cost = 10
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 6
+				OR = {
+					date > 1942.1.1
+					has_war_with = GER
+				}
+			}
+			modifier = {
+				factor = 6
+				OR = {
+					date > 1940.6.1
+					has_war_with = GER
+					FRA = { has_war_with = GER }
+				}
+			}
+		}
+		available = {
+			NOT = {
+				is_in_faction_with = GER
+			}
+		}
+		prerequisite = {
+			focus = Joining_the_Comintern
+			focus = with_france
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			if = {
+				limit = {
+					has_war_with = GER
+				}
+				942 = { add_claim_by = ENG }
+				56 = { add_claim_by = ENG }
+				59 = { add_claim_by = ENG }
+				893 = { add_claim_by = ENG }
+				541 = { add_claim_by = ENG }
+				894 = { add_claim_by = ENG }
+				895 = { add_claim_by = ENG }
+				771 = { add_claim_by = ENG }
+				770 = { add_claim_by = ENG }
+				546 = { add_claim_by = ENG }
+				769 = { add_claim_by = ENG }
+				768 = { add_claim_by = ENG }
+				548 = { add_claim_by = ENG }
+				905 = { add_claim_by = ENG }
+				904 = { add_claim_by = ENG }
+				547 = { add_claim_by = ENG }
+				903 = { add_claim_by = ENG }
+				884 = { add_claim_by = ENG }
+				274 = { add_claim_by = ENG }
+				558 = { add_claim_by = ENG }
+				900 = { add_claim_by = ENG }
+				902 = { add_claim_by = ENG }
+				901 = { add_claim_by = ENG }
+				707 = { add_claim_by = ENG }
+				709 = { add_claim_by = ENG }
+				704 = { add_claim_by = ENG }
+				703 = { add_claim_by = ENG }
+				844 = { add_claim_by = ENG }
+				917 = { add_claim_by = ENG }
+				737 = { add_claim_by = ENG }
+				634 = { add_claim_by = ENG }
+				333 = { add_claim_by = ENG }
+				336 = { add_claim_by = ENG }
+				643 = { add_claim_by = ENG }
+				636 = { add_claim_by = ENG }
+				726 = { add_claim_by = ENG }
+				270 = { add_claim_by = ENG }
+				712 = { add_claim_by = ENG }
+				711 = { add_claim_by = ENG }
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_war_with = GER
+					}
+				}
+				942 = { add_claim_by = ENG }
+				56 = { add_claim_by = ENG }
+				59 = { add_claim_by = ENG }
+				893 = { add_claim_by = ENG }
+				541 = { add_claim_by = ENG }
+				894 = { add_claim_by = ENG }
+				895 = { add_claim_by = ENG }
+				771 = { add_claim_by = ENG }
+				770 = { add_claim_by = ENG }
+				546 = { add_claim_by = ENG }
+				769 = { add_claim_by = ENG }
+				768 = { add_claim_by = ENG }
+				548 = { add_claim_by = ENG }
+				905 = { add_claim_by = ENG }
+				904 = { add_claim_by = ENG }
+				547 = { add_claim_by = ENG }
+				903 = { add_claim_by = ENG }
+				884 = { add_claim_by = ENG }
+				274 = { add_claim_by = ENG }
+				558 = { add_claim_by = ENG }
+				900 = { add_claim_by = ENG }
+				902 = { add_claim_by = ENG }
+				901 = { add_claim_by = ENG }
+				707 = { add_claim_by = ENG }
+				709 = { add_claim_by = ENG }
+				704 = { add_claim_by = ENG }
+				703 = { add_claim_by = ENG }
+				844 = { add_claim_by = ENG }
+				917 = { add_claim_by = ENG }
+				737 = { add_claim_by = ENG }
+				634 = { add_claim_by = ENG }
+				333 = { add_claim_by = ENG }
+				336 = { add_claim_by = ENG }
+				643 = { add_claim_by = ENG }
+				636 = { add_claim_by = ENG }
+				726 = { add_claim_by = ENG }
+				270 = { add_claim_by = ENG }
+				712 = { add_claim_by = ENG }
+				711 = { add_claim_by = ENG }
+				add_threat = 20
+				declare_war_on = { target = GER type = annex_everything }
+			}
+		}
+	}
+	
+	focus = {
+		id = british_ocean
+		icon = GFX_focus_generic_mine_warfare
+		relative_position_id = fight_against_germany
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		prerequisite = {
+			focus = fight_against_germany
+		}
+		completion_reward = {
+			add_timed_idea = { idea = navy_mobilization days = 365 }
+		}
+	}
+	
+	focus = {
+		id = emergency_mobilization
+		icon = GFX_focus_SOV_mobilization_plan
+		relative_position_id = fight_against_germany
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		prerequisite = {
+			focus = fight_against_germany
+		}
+		completion_reward = {
+			add_ideas = emergency_mobilization
+		}
+	}
+	
+	focus = {
+		id = anti_aircraft_defense
+		icon = GFX_goal_generic_fortify_city
+		relative_position_id = fight_against_germany
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war_with_major = yes
+			has_full_control_of_state = 125
+			has_full_control_of_state = 126
+			has_full_control_of_state = 127
+		}
+		prerequisite = {
+			focus = fight_against_germany
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 127 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 126 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 125 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = combined_command
+		icon = GFX_focus_generic_military_academy
+		relative_position_id = fight_against_germany
+		x = -1
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war_with_major = yes
+			is_in_faction = yes
+		}
+		prerequisite = {
+			focus = fight_against_germany
+		}
+		completion_reward = {
+			every_country = {
+				limit = {
+					is_in_faction_with = ENG
+					is_major = yes
+				}
+				add_ideas = combined_command
+			}
+			add_ideas = combined_command
+		}
+	}
+	
+	focus = {
+		id = Operation_Burgundy
+		icon = GFX_focus_generic_provoke_border_clashes
+		relative_position_id = fight_against_germany
+		x = 1
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war_with = GER
+		}
+		prerequisite = {
+			focus = fight_against_germany
+		}
+		completion_reward = {
+			add_ideas = Operation_Burgundy
+		}
+	}
+	
+	### democratic & neutrality focus ###
+	
+	focus = {
+		id = Pyrrhic_Victory
+		icon = GFX_goal_support_democracy
+		allow_branch = {
+			ENG_focus_tree_change_democratic_trigger = yes
+		}
+		x = 11
+		y = 0
+		cost = 3.6
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = the_woes
+		icon = GFX_goal_tfv_sever_ties_with_uk
+		relative_position_id = Pyrrhic_Victory
+		x = -2
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = Pyrrhic_Victory
+		}
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		id = of_the
+		icon = GFX_goal_generic_attack_allies
+		relative_position_id = Pyrrhic_Victory
+		x = 0
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = Pyrrhic_Victory
+		}
+		completion_reward = {
+			add_timed_idea = { idea = political_violence days = 100 }
+		}
+	}
+	
+	focus = {
+		id = ENG_inside
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = Pyrrhic_Victory
+		x = 2
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		prerequisite = {
+			focus = Pyrrhic_Victory
+		}
+		completion_reward = {
+			add_war_support = 0.04
+		}
+	}
+	
+	focus = {
+		id = ENG_Populism
+		icon = GFX_goal_generic_dangerous_deal
+		relative_position_id = the_woes
+		x = 1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = the_woes
+		}
+		prerequisite = {
+			focus = of_the
+		}
+		prerequisite = {
+			focus = ENG_inside
+		}
+		mutually_exclusive = {
+			focus = the_way_for_the_nation
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_timed_idea = { idea = ENG_Populism days = 100 }
+			add_days_mission_timeout = {
+				mission = the_threat_of_fascism
+				days = 5
+			}
+			add_days_mission_timeout = {
+				mission = the_threat_of_communism
+				days = 5
+			}
+		}
+	}
+	
+	focus = {
+		id = welfare_policy
+		icon = GFX_goal_generic_consumer_goods
+		relative_position_id = ENG_Populism
+		x = -4
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = ENG_Populism
+		}
+		completion_reward = {
+			add_ideas = welfare_policy
+			add_days_mission_timeout = {
+				mission = the_threat_of_fascism
+				days = 15
+			}
+			add_days_mission_timeout = {
+				mission = the_threat_of_communism
+				days = 15
+			}
+		}
+	}
+	
+	focus = {
+		id = hiring_of_government_officials
+		icon = GFX_focus_generic_diplomatic_treaty
+		relative_position_id = ENG_Populism
+		x = -2
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = ENG_Populism
+		}
+		completion_reward = {
+			add_ideas = a_greater_number_of_civil_servants_than_is_necessary
+		}
+	}
+	
+	focus = {
+		id = tax_cut
+		icon = GFX_focus_renounce_the_treaty_of_trianon
+		relative_position_id = ENG_Populism
+		x = 0
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = ENG_Populism
+		}
+		completion_reward = {
+			add_ideas = tax_cut
+			add_days_mission_timeout = {
+				mission = the_threat_of_fascism
+				days = 20
+			}
+			add_days_mission_timeout = {
+				mission = the_threat_of_communism
+				days = 20
+			}
+		}
+	}
+	
+	focus = {
+		id = appease_their_dissatisfaction
+		icon = GFX_focus_ETH_adopt_the_lira
+		relative_position_id = hiring_of_government_officials
+		x = 0
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = welfare_policy
+		}
+		prerequisite = {
+			focus = hiring_of_government_officials
+		}
+		prerequisite = {
+			focus = tax_cut
+		}
+		ai_will_do = {
+			factor = 20
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			unlock_decision_category_tooltip = ENG_coping_with_a_crisis
+			remove_ideas = an_unpopular_government
+		}
+	}
+	
+	focus = {
+		id = the_way_for_the_nation
+		icon = GFX_goal_generic_political_pressure
+		relative_position_id = ENG_inside
+		x = -1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = ENG_Populism
+		}
+		prerequisite = {
+			focus = the_woes
+		}
+		prerequisite = {
+			focus = of_the
+		}
+		prerequisite = {
+			focus = ENG_inside
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 30
+		}
+	}
+	
+	focus = {
+		id = handling_extremism
+		icon = GFX_goal_generic_dangerous_deal
+		relative_position_id = the_way_for_the_nation
+		x = 0
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = the_way_for_the_nation
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.1
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = -0.1
+			}
+			add_days_mission_timeout = {
+				mission = the_threat_of_fascism
+				days = -30
+			}
+			add_days_mission_timeout = {
+				mission = the_threat_of_communism
+				days = -30
+			}
+		}
+	}
+	
+	focus = {
+		id = revision_of_the_Economic_and_Financial_Act
+		icon = GFX_goal_generic_trade
+		relative_position_id = the_way_for_the_nation
+		x = 2
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = the_way_for_the_nation
+		}
+		completion_reward = {
+			add_ideas = tight_economy
+		}
+	}
+	
+	focus = {
+		id = market_control
+		icon = GFX_goal_generic_positive_trade_relations
+		relative_position_id = the_way_for_the_nation
+		x = 4
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = the_way_for_the_nation
+		}
+		completion_reward = {
+			add_ideas = market_control
+			add_days_mission_timeout = {
+				mission = the_threat_of_fascism
+				days = -10
+			}
+			add_days_mission_timeout = {
+				mission = the_threat_of_communism
+				days = -10
+			}
+		}
+	}
+	
+	focus = {
+		id = a_strong_sally
+		icon = GFX_focus_generic_air_defense
+		relative_position_id = revision_of_the_Economic_and_Financial_Act
+		x = 0
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = handling_extremism
+		}
+		prerequisite = {
+			focus = revision_of_the_Economic_and_Financial_Act
+		}
+		prerequisite = {
+			focus = market_control
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.1
+			}
+			unlock_decision_category_tooltip = ENG_coping_with_a_crisis
+			remove_ideas = an_unpopular_government
+		}
+	}
+	
+	focus = {
+		id = domestic_politics
+		icon = GFX_focus_eng_the_sun_never_sets
+		relative_position_id = of_the
+		x = 0
+		y = 3
+		ai_will_do = {
+			factor = 20
+		}
+		allow_branch = {
+			has_country_flag = democratic_in_ENG
+		}
+		cost = 2
+		available = {
+			has_country_leader = {
+				character = ENG_neville_chamberlain
+				ruling_only = yes
+			}
+		}
+		allow_branch = {
+			has_country_flag = democratic_in_ENG
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 30
+		}
+	}
+	
+	focus = {
+		id = along_a_familiar_path
+		icon = GFX_focus_eng_decolonization
+		relative_position_id = domestic_politics
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = ENG_ai_behavior 
+					option = NEUTRILITY
+				}
+			}
+		}
+		cost = 2
+		prerequisite = {
+			focus = domestic_politics
+		}
+		mutually_exclusive = {
+			focus = the_road_to_the_restoration_of_the_monarchy
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = ENG_ai_behavior 
+					option = NEUTRILITY
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = the_importance_of_elections
+		icon = GFX_focus_generic_treaty
+		relative_position_id = along_a_familiar_path
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 5
+		prerequisite = {
+			focus = along_a_familiar_path
+		}
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = firm_parliament
+		icon = GFX_goal_generic_demand_territory
+		relative_position_id = along_a_familiar_path
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 5
+		prerequisite = {
+			focus = along_a_familiar_path
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = firm_parliament
+		}
+	}
+	
+	focus = {
+		id = preparation_for_war
+		icon = GFX_focus_generic_commonwealth_build_infantry
+		relative_position_id = firm_parliament
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 10
+		prerequisite = {
+			focus = firm_parliament
+		}
+		prerequisite = {
+			focus = the_importance_of_elections
+		}
+		completion_reward = {
+			add_ideas = preparation_for_war
+		}
+	}
+	
+	focus = {
+		id = expansion_of_infantry_equipment
+		icon = GFX_goal_generic_small_arms
+		relative_position_id = preparation_for_war
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 5
+		prerequisite = {
+			focus = preparation_for_war
+		}
+		completion_reward = {
+			add_ideas = mass_production_of_infantry_equipment
+		}
+	}
+	
+	focus = {
+		id = establishment_of_a_naval_commission
+		icon = GFX_goal_generic_intelligence_exchange
+		relative_position_id = expansion_of_infantry_equipment
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 5
+		prerequisite = {
+			focus = expansion_of_infantry_equipment
+		}
+		completion_reward = {
+			add_ideas = naval_commission
+		}
+	}
+	
+	focus = {
+		id = expansion_of_anti_aircraft_guns
+		icon = GFX_goal_generic_fortify_city
+		relative_position_id = preparation_for_war
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 9
+		}
+		available = {
+			has_full_control_of_state = 125
+			has_full_control_of_state = 126
+			has_full_control_of_state = 127
+		}
+		prerequisite = {
+			focus = preparation_for_war
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 127 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 126 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 125 }
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Coastal_Defence_Concentration
+		icon = GFX_focus_generic_coastal_fort
+		relative_position_id = expansion_of_anti_aircraft_guns
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 10
+		prerequisite = {
+			focus = expansion_of_anti_aircraft_guns
+		}
+		completion_reward = {
+			127 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					province = 9458
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					province = 3501
+					instant_build = yes
+				}
+			}
+			126 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					province = 11374
+					instant_build = yes
+				}
+			}
+			125 = {
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					province = 271
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = expansion_of_field_artillery
+		icon = GFX_goal_generic_army_artillery2
+		relative_position_id = expansion_of_infantry_equipment
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 5
+		prerequisite = {
+			focus = expansion_of_infantry_equipment
+		}
+		prerequisite = {
+			focus = expansion_of_anti_aircraft_guns
+		}
+		completion_reward = {
+			add_ideas = expansion_of_field_artillery
+		}
+	}
+	
+	focus = {
+		id = Eternal_British_autonomy
+		icon = GFX_goal_tfv_sever_ties_with_uk
+		relative_position_id = expansion_of_field_artillery
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 10
+		prerequisite = {
+			focus = expansion_of_field_artillery
+		}
+		prerequisite = {
+			focus = Coastal_Defence_Concentration
+		}
+		prerequisite = {
+			focus = establishment_of_a_naval_commission
+		}
+		completion_reward = {
+			every_country = {
+				limit = {
+					is_subject_of = ENG
+				}
+				add_ideas = Eternal_British_autonomy
+			}
+		}
+	}
+	
+	focus = {
+		id = the_road_to_the_restoration_of_the_monarchy
+		icon = GFX_focus_eng_god_save_the_king
+		relative_position_id = domestic_politics
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = ENG_ai_behavior 
+					option = DEMOCRATIC
+				}
+			}
+		}
+		cost = 2
+		prerequisite = {
+			focus = domestic_politics
+		}
+		mutually_exclusive = {
+			focus = along_a_familiar_path
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.1
+			}
+			add_ideas = for_the_king
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = ENG_ai_behavior 
+					option = DEMOCRATIC
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = strengthening_of_royal_authority
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		relative_position_id = the_road_to_the_restoration_of_the_monarchy
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 5
+		prerequisite = {
+			focus = the_road_to_the_restoration_of_the_monarchy
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.2
+			}
+			hidden_effect = {
+				country_event = { id = britain.42 days = 2 }
+			}
+		}
+	}
+	
+	focus = {
+		id = reduction_in_the_Cabinet
+		icon = GFX_focus_eng_move_to_secure_the_dominions
+		relative_position_id = the_road_to_the_restoration_of_the_monarchy
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 5
+		prerequisite = {
+			focus = the_road_to_the_restoration_of_the_monarchy
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = -0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = the_return_of_the_king
+		icon = GFX_focus_generic_home_defense
+		relative_position_id = strengthening_of_royal_authority
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 15
+		}
+		cost = 5
+		prerequisite = {
+			focus = strengthening_of_royal_authority
+		}
+		prerequisite = {
+			focus = reduction_in_the_Cabinet
+		}
+		available = {
+			has_country_leader = {
+				character = ENG_emergency_cabinet
+				ruling_only = yes
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			set_politics = {
+				ruling_party = neutrality
+				elections_allowed = no
+			}
+		}
+	}
+	
+	focus = {
+		id = Dissolution_of_the_Parliament_rights
+		icon = GFX_focus_generic_monarchy_1
+		relative_position_id = the_return_of_the_king
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 5
+		prerequisite = {
+			focus = the_return_of_the_king
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = -0.05
+			}
+			add_ideas = powerful_royal_authority
+		}
+	}
+	
+	focus = {
+		id = dominion_absorption
+		icon = GFX_focus_eng_global_defense
+		relative_position_id = the_return_of_the_king
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 5
+		prerequisite = {
+			focus = the_return_of_the_king
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = Annexing_Canada
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		relative_position_id = dominion_absorption
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 10
+		prerequisite = {
+			focus = dominion_absorption
+		}
+		available = { CAN = { is_subject_of = ENG } }
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			CAN = { country_event = { id = britain.45 days = 4 } }
+		}
+	}
+	
+	focus = {
+		id = Annexing_Australia
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		relative_position_id = dominion_absorption
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 10
+		prerequisite = {
+			focus = dominion_absorption
+		}
+		available = { AST = { is_subject_of = ENG } }
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			AST = { country_event = { id = britain.45 days = 4 } }
+		}
+	}
+	
+	focus = {
+		id = Annexing_New_Zealand
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		relative_position_id = dominion_absorption
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 10
+		prerequisite = {
+			focus = dominion_absorption
+		}
+		available = { NZL = { is_subject_of = ENG } }
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			NZL = { country_event = { id = britain.45 days = 4 } }
+		}
+	}
+	
+	focus = {
+		id = ENG_complete_colonial_integration
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = Annexing_Australia
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 10
+		prerequisite = {
+			focus = Annexing_Australia
+		}
+		prerequisite = {
+			focus = Annexing_Canada
+		}
+		prerequisite = {
+			focus = Annexing_New_Zealand
+		}
+		available = {
+			CAN = { exists = no }
+			AST = { exists = no }
+			NZL = { exists = no }
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_owned_by = ENG
+					is_core_of = CAN
+				}
+				add_core_of = ENG
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ENG
+					is_core_of = AST
+				}
+				add_core_of = ENG
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ENG
+					is_core_of = NZL
+				}
+				add_core_of = ENG
+			}
+		}
+	}
+	
+	focus = {
+		id = the_empire
+		icon = GFX_focus_eng_imperial_federation
+		relative_position_id = Dissolution_of_the_Parliament_rights
+		x = 0
+		y = 2
+		ai_will_do = {
+			factor = 9
+		}
+		cost = 10
+		prerequisite = {
+			focus = Annexing_Australia
+		}
+		prerequisite = {
+			focus = Annexing_Canada
+		}
+		prerequisite = {
+			focus = Annexing_New_Zealand
+		}
+		prerequisite = {
+			focus = Dissolution_of_the_Parliament_rights
+		}
+		available = {
+			CAN = { exists = no }
+			AST = { exists = no }
+			NZL = { exists = no }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			set_cosmetic_tag = ENG_imperial_federation_unified
+		}
+	}
+	
+	focus = {
+		id = Supporting_France
+		icon = GFX_focus_chi_reach_out_to_france
+		relative_position_id = Eternal_British_autonomy
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 10
+				has_government = democratic
+			}
+		}
+		cost = 10
+		prerequisite = {
+			focus = Eternal_British_autonomy
+			focus = the_empire
+		}
+		available = {
+			NOT = {
+				is_in_faction_with = GER
+			}
+		}
+		mutually_exclusive = {
+			focus = negotiations_with_the_German_Empire
+		}
+		bypass = {
+			is_in_faction_with = FRA
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			ENG = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = large_increase
+				}
+				add_opinion_modifier = {
+					target = GER
+					modifier = medium_decrease
+				}
+			}
+			if = {
+				limit = {
+					FRA = {
+						is_faction_leader = yes
+					}
+				}
+				FRA = { country_event = { days = 5 id = france.27 } }
+			}
+			if = {
+				limit = {
+					FRA = {
+						is_faction_leader = no
+					}
+				}
+				ENG = {
+					set_rule = {
+						can_create_factions = yes
+					}
+				}
+				create_faction = ENG_Allies
+				FRA = { country_event = { days = 5 id = france.29 } }
+			}
+		}
+	}
+	
+	focus = {
+		id = Lost_African_Territory
+		icon = GFX_goal_generic_major_war
+		relative_position_id = Supporting_France
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+			modifier = {
+				factor = 10
+				date > 1941.1.1
+			}
+		}
+		cost = 10
+		prerequisite = {
+			focus = Supporting_France
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			893 = { add_claim_by = ENG }
+			541 = { add_claim_by = ENG }
+			894 = { add_claim_by = ENG }
+			895 = { add_claim_by = ENG }
+			771 = { add_claim_by = ENG }
+			770 = { add_claim_by = ENG }
+			546 = { add_claim_by = ENG }
+			769 = { add_claim_by = ENG }
+			768 = { add_claim_by = ENG }
+			548 = { add_claim_by = ENG }
+			905 = { add_claim_by = ENG }
+			904 = { add_claim_by = ENG }
+			547 = { add_claim_by = ENG }
+			903 = { add_claim_by = ENG }
+			884 = { add_claim_by = ENG }
+			274 = { add_claim_by = ENG }
+			558 = { add_claim_by = ENG }
+			900 = { add_claim_by = ENG }
+			902 = { add_claim_by = ENG }
+			901 = { add_claim_by = ENG }
+			707 = { add_claim_by = ENG }
+			709 = { add_claim_by = ENG }
+			704 = { add_claim_by = ENG }
+			703 = { add_claim_by = ENG }
+			844 = { add_claim_by = ENG }
+		}
+	}
+	
+	focus = {
+		id = Recapturing_Pacific_Island
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = Supporting_France
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+			modifier = {
+				factor = 10
+				date > 1941.1.1
+			}
+		}
+		cost = 10
+		prerequisite = {
+			focus = Supporting_France
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			917 = { add_claim_by = ENG }
+			737 = { add_claim_by = ENG }
+			634 = { add_claim_by = ENG }
+			333 = { add_claim_by = ENG }
+			336 = { add_claim_by = ENG }
+			643 = { add_claim_by = ENG }
+			636 = { add_claim_by = ENG }
+			726 = { add_claim_by = ENG }
+			270 = { add_claim_by = ENG }
+			712 = { add_claim_by = ENG }
+			711 = { add_claim_by = ENG }
+		}
+	}
+	
+	focus = {
+		id = the_last_battle
+		icon = focus_attack_germany
+		relative_position_id = Lost_African_Territory
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+			modifier = {
+				factor = 10
+				date > 1941.1.1
+			}
+		}
+		cost = 10
+		prerequisite = {
+			focus = Lost_African_Territory
+		}
+		prerequisite = {
+			focus = Recapturing_Pacific_Island
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_war_with = GER
+				}
+				942 = { add_claim_by = ENG }
+				56 = { add_claim_by = ENG }
+				59 = { add_claim_by = ENG }
+			}
+			if = {
+				limit = {
+					NOT = { has_war_with = GER }
+				}
+				942 = { add_claim_by = ENG }
+				56 = { add_claim_by = ENG }
+				59 = { add_claim_by = ENG }
+				add_threat = 20
+				create_wargoal = { type = annex_everything target = GER }
+			}
+		}
+	}
+	
+	focus = {
+		id = negotiations_with_the_German_Empire
+		icon = focus_deal_with_german_empire
+		relative_position_id = the_empire
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 10
+		prerequisite = {
+			focus = Eternal_British_autonomy
+			focus = the_empire
+		}
+		mutually_exclusive = {
+			focus = Supporting_France
+		}
+		available = {
+			NOT = {
+				is_in_faction_with = FRA
+			}
+		}
+		bypass = {
+			is_in_faction_with = GER
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			ENG = {
+				add_opinion_modifier = {
+					target = GER
+					modifier = large_increase
+				}
+				add_opinion_modifier = {
+					target = FRA
+					modifier = medium_decrease
+				}
+			}
+			if = {
+				limit = {
+					GER = {
+						is_faction_leader = yes
+					}
+				}
+				GER = { country_event = { days = 5 id = britain.48 } }
+			}
+			if = {
+				limit = {
+					FRA = {
+						is_faction_leader = no
+					}
+				}
+				ENG = {
+					set_rule = {
+						can_create_factions = yes
+					}
+				}
+				create_faction = ENG_Allies
+				GER = { country_event = { days = 5 id = britain.49 } }
+			}
+		}
+	}
+	
+	focus = {
+		id = Demand_French_territorial
+		icon = GFX_focus_attack_france
+		relative_position_id = negotiations_with_the_German_Empire
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+			modifier = {
+				factor = 10
+				date > 1941.1.1
+			}
+		}
+		cost = 10
+		prerequisite = {
+			focus = negotiations_with_the_German_Empire
+		}
+		available = {
+			FRA = { exists = yes }
+			NOT = { FRA = { is_subject_of = ROOT } }
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			if = {
+				limit = {
+					has_war_with = FRA
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 14
+							state = 15
+							state = 30
+							state = 23
+							state = 19
+							state = 806
+						}
+					}
+					add_claim_by = ENG
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_war_with = FRA }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 14
+							state = 15
+							state = 30
+							state = 23
+							state = 19
+							state = 806
+						}
+					}
+					add_claim_by = ENG
+					add_threat = 20
+					create_wargoal = { type = annex_everything target = FRA }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Attack_on_South_Africa
+		icon = GFX_goal_tfv_saf_secure_interests_in_africa
+		relative_position_id = negotiations_with_the_German_Empire
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				has_war_with_major = yes
+			}
+			modifier = {
+				factor = 10
+				date > 1941.1.1
+			}
+		}
+		cost = 10
+		prerequisite = {
+			focus = negotiations_with_the_German_Empire
+		}
+		available = {
+			SAF = { exists = yes }
+			NOT = { SAF = { is_subject_of = ROOT } }
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			if = {
+				limit = {
+					has_war_with = SAF
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 681
+							state = 719
+							state = 275
+							state = 542
+							state = 545
+						}
+					}
+					add_claim_by = ENG
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_war_with = SAF }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 681
+							state = 719
+							state = 275
+							state = 542
+							state = 545
+						}
+					}
+					add_claim_by = ENG
+					add_threat = 10
+					create_wargoal = { type = annex_everything target = SAF }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = subjugating_east
+		icon = GFX_focus_eng_expose_the_belly_of_the_bear
+		relative_position_id = Demand_French_territorial
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 10
+				date > 1941.9.1
+			}
+		}
+		available = {
+			if = {
+				limit = {
+					SOV = { exists = yes }
+				}
+				NOT = { SOV = { is_subject_of = ROOT } }
+			}
+			if = {
+				limit = {
+					RUS = { exists = yes }
+				}
+				NOT = { RUS = { is_subject_of = ROOT } }
+			}
+		}
+		cost = 10
+		prerequisite = {
+			focus = negotiations_with_the_German_Empire
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			add_threat = 15
+			if = {
+				limit = {
+					SOV = { exists = yes }
+				}
+				create_wargoal = { type = annex_everything target = SOV }
+			}
+			if = {
+				limit = {
+					RUS = { exists = yes }
+				}
+				create_wargoal = { type = annex_everything target = RUS }
+			}
+		}
+	}
+
+	### generic focus ###
+	
+	focus = {
+		id = the_legacy_of_the_Great_War
+		icon = GFX_goal_tfv_saf_anti_colonialist_crusade
+		x = 30
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			has_country_flag = ENG_1936_general_election
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_stability = 0.03
+		}
+	}
+	
+	focus = {
+		id = ENG_rearmament
+		icon = GFX_focus_generic_army_tanks2
+		relative_position_id = the_legacy_of_the_Great_War
+		x = 9
+		y = 1
+		cost = 5
+		prerequisite = {
+			focus = the_legacy_of_the_Great_War
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_political_power = -10
+			add_war_support = 0.03
+		}
+	}
+	
+	focus = {
+		id = rearmament_of_the_army
+		icon = GFX_goal_generic_axis_build_infantry
+		relative_position_id = ENG_rearmament
+		x = -5
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = ENG_rearmament
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		completion_reward = {
+			army_experience = 25
+		}
+	}
+	
+	focus = {
+		id = Field_Artillery_Innovation
+		icon = GFX_goal_generic_army_artillery2
+		relative_position_id = rearmament_of_the_army
+		x = -4
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = rearmament_of_the_army
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		mutually_exclusive = {
+			focus = Tank_Innovation
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Field_Artillery_Innovation
+				bonus = 1
+				category = artillery
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = firepower_advantage
+		icon = GFX_goal_generic_army_artillery
+		relative_position_id = Field_Artillery_Innovation
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Field_Artillery_Innovation
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		mutually_exclusive = {
+			focus = strategic_advantage
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = firepower_advantage
+				cost_reduction = 0.5
+				uses = 1
+				category = cat_superior_firepower
+			}
+		}
+	}
+	
+	focus = {
+		id = strategic_advantage
+		icon = GFX_goal_generic_position_armies
+		relative_position_id = Field_Artillery_Innovation
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Field_Artillery_Innovation
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		mutually_exclusive = {
+			focus = firepower_advantage
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = strategic_advantage
+				cost_reduction = 0.5
+				uses = 1
+				category = cat_grand_battle_plan
+			}
+		}
+	}
+	
+	focus = {
+		id = Tank_Innovation
+		icon = GFX_goal_generic_army_tanks
+		relative_position_id = rearmament_of_the_army
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = rearmament_of_the_army
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		mutually_exclusive = {
+			focus = Field_Artillery_Innovation
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Tank_Innovation
+				bonus = 1
+				category = armor
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = Preparation_for_mobile_warfare
+		icon = GFX_focus_generic_tank_production
+		relative_position_id = Tank_Innovation
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Tank_Innovation
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = strategic_advantage
+				cost_reduction = 0.5
+				uses = 1
+				category = cat_mobile_warfare
+			}
+		}
+	}
+	
+	focus = {
+		id = armor_company_invitation
+		icon = GFX_goal_generic_cavalry
+		relative_position_id = Preparation_for_mobile_warfare
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Preparation_for_mobile_warfare
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			country_event = britain.15
+			show_ideas_tooltip = Vauxhall_eng
+			show_ideas_tooltip = Vickers_eng
+		}
+	}
+	
+	focus = {
+		id = Support_Equipment_Innovation
+		icon = GFX_goal_generic_build_tank
+		relative_position_id = rearmament_of_the_army
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = rearmament_of_the_army
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Support_Equipment_Innovation
+				bonus = 1
+				category = engineers_tech
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = infantry_equipment_Innovation
+		icon = GFX_goal_generic_military_sphere
+		relative_position_id = rearmament_of_the_army
+		x = 3
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = rearmament_of_the_army
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = infantry_equipment_Innovation
+				bonus = 0.5
+				category = infantry_weapons
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = motorized_unit
+		icon = GFX_goal_generic_army_motorized
+		relative_position_id = Support_Equipment_Innovation
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Support_Equipment_Innovation
+		}
+		prerequisite = {
+			focus = infantry_equipment_Innovation
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = motorized_unit
+				bonus = 0.5
+				category = motorized_equipment
+				category = cat_mechanized_equipment
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = rearmament_of_the_air_force
+		icon = GFX_goal_generic_build_airforce
+		relative_position_id = ENG_rearmament
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = ENG_rearmament
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		completion_reward = {
+			air_experience = 25
+		}
+	}
+	
+	focus = {
+		id = Fighter_Command
+		icon = GFX_goal_generic_air_fighter
+		relative_position_id = rearmament_of_the_air_force
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = rearmament_of_the_air_force
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Fighter_Command
+				category = light_fighter
+				uses = 1
+				bonus = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = coastal_Command
+		icon = GFX_goal_generic_air_naval_bomber
+		relative_position_id = Fighter_Command
+		x = 0
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = Fighter_Command
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = coastal_Command
+				category = naval_bomber
+				uses = 1
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = Bomber_Command
+		icon = GFX_goal_generic_air_bomber
+		relative_position_id = rearmament_of_the_air_force
+		x = -1
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = rearmament_of_the_air_force
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Bomber_Command
+				category = cat_strategic_bomber
+				uses = 1
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = study_of_doctrines
+		icon = GFX_goal_generic_CAS
+		relative_position_id = Bomber_Command
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = Bomber_Command
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = study_of_doctrines
+				cost_reduction = 0.5
+				uses = 2
+				category = air_doctrine
+			}
+		}
+	}
+	
+	focus = {
+		id = avro
+		icon = GFX_goal_generic_air_production
+		relative_position_id = Bomber_Command
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = Bomber_Command
+		}
+		prerequisite = {
+			focus = coastal_Command
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		mutually_exclusive = {
+			focus = hawker
+		}
+		completion_reward = {
+			show_ideas_tooltip = avro
+		}
+	}
+	
+	focus = {
+		id = CAS_Command
+		icon = GFX_goal_poland_goal
+		relative_position_id = rearmament_of_the_air_force
+		x = 1
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = rearmament_of_the_air_force
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAS_Command
+				category = cas_bomber
+				uses = 1
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = hawker
+		icon = GFX_goal_generic_air_production
+		relative_position_id = CAS_Command
+		x = 0
+		y = 2
+		prerequisite = {
+			focus = CAS_Command
+		}
+		prerequisite = {
+			focus = coastal_Command
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		mutually_exclusive = {
+			focus = avro
+		}
+		completion_reward = {
+			show_ideas_tooltip = hawker
+		}
+	}
+	
+	focus = {
+		id = ENG_transport
+		icon = GFX_goal_generic_CAS
+		relative_position_id = CAS_Command
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = CAS_Command
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			add_ideas = ENG_transport
+		}
+	}
+	
+	focus = {
+		id = rearmament_of_the_Navy
+		icon = GFX_goal_generic_build_navy
+		relative_position_id = ENG_rearmament
+		x = 6
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = ENG_rearmament
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		completion_reward = {
+			navy_experience = 25
+		}
+	}
+	
+	focus = {
+		id = Destroyer_Focus
+		icon = GFX_focus_generic_destroyer
+		relative_position_id = rearmament_of_the_Navy
+		x = -3
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = rearmament_of_the_Navy
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Destroyer_Focus
+				category = dd_tech
+				uses = 1
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = Submarine_Focus
+		icon = GFX_goal_generic_navy_anti_submarine
+		relative_position_id = Destroyer_Focus
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Destroyer_Focus
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Submarine_Focus
+				category = ss_tech
+				uses = 1
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = Carrier_Focus
+		icon = GFX_goal_generic_navy_carrier
+		relative_position_id = rearmament_of_the_Navy
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = rearmament_of_the_Navy
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		mutually_exclusive = {
+			focus = battleship_Focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Carrier_Focus
+				category = cv_tech
+				uses = 1
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = harland_wolff
+		icon = GFX_focus_generic_cryptologic_bomb
+		relative_position_id = Carrier_Focus
+		x = -1
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = Carrier_Focus
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			show_ideas_tooltip = harland_wolff
+		}
+	}
+	
+	focus = {
+		id = fly_over_the_sea
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		relative_position_id = Carrier_Focus
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Carrier_Focus
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = fly_over_the_sea
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_base_strike
+			}
+		}
+	}
+	
+	focus = {
+		id = battleship_Focus
+		icon = GFX_goal_generic_navy_battleship
+		relative_position_id = rearmament_of_the_Navy
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = rearmament_of_the_Navy
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		mutually_exclusive = {
+			focus = Carrier_Focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = battleship_Focus
+				category = bb_tech
+				uses = 1
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = cammell_laird
+		icon = GFX_focus_generic_navy_battleship2
+		relative_position_id = battleship_Focus
+		x = 1
+		y = 2
+		cost = 10
+		prerequisite = {
+			focus = battleship_Focus
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			show_ideas_tooltip = cammell_laird
+		}
+	}
+	
+	focus = {
+		id = giant_ship_and_gun
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		relative_position_id = battleship_Focus
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = battleship_Focus
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = fly_over_the_sea
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_fleet_in_being
+			}
+		}
+	}
+	
+	focus = {
+		id = Cruiser_Focus
+		icon = GFX_focus_generic_cruiser2
+		relative_position_id = fly_over_the_sea
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = fly_over_the_sea
+			focus = giant_ship_and_gun
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Cruiser_Focus
+				category = ca_tech
+				category = cl_tech
+				uses = 2
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = Another_Industrial_Revolution
+		icon = GFX_focus_generic_industry_3
+		relative_position_id = the_legacy_of_the_Great_War
+		x = -5
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = the_legacy_of_the_Great_War
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Another_Industrial_Revolution
+				category = industry
+				uses = 1
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = ENG_University_of_Oxford
+		icon = GFX_focus_research
+		prerequisite = { focus = Another_Industrial_Revolution }
+		x = 0
+		y = 1
+		relative_position_id = Another_Industrial_Revolution
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	
+	focus = {
+		id = Focus_on_England
+		icon = GFX_goal_generic_construct_civ_factory
+		relative_position_id = Another_Industrial_Revolution
+		x = -2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Another_Industrial_Revolution
+		}
+		available = {
+			has_full_control_of_state = 128
+			has_full_control_of_state = 123
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 128 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 123 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Focus_on_Scotland
+		icon = GFX_goal_generic_construct_civ_factory
+		relative_position_id = Focus_on_England
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Focus_on_England
+		}
+		available = {
+			has_full_control_of_state = 121
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 121 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Focus_on_Wales
+		icon = GFX_goal_generic_construct_civ_factory
+		relative_position_id = Focus_on_England
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Focus_on_England
+		}
+		available = {
+			has_full_control_of_state = 122
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 122 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = foundation_of_industrial_committee
+		icon = foundation_of_industrial_committee
+		relative_position_id = Focus_on_Scotland
+		x = -2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Focus_on_Scotland
+		}
+		prerequisite = {
+			focus = Focus_on_Wales
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			add_ideas = industrial_committee
+		}
+	}
+	
+	focus = {
+		id = convoy_production
+		icon = GFX_goal_generic_wolf_pack
+		relative_position_id = Focus_on_Scotland
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Focus_on_Scotland
+		}
+		prerequisite = {
+			focus = Focus_on_Wales
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			add_timed_idea { idea = convoy_production days = 365 }
+		}
+	}
+	
+	focus = {
+		id = marconi
+		icon = GFX_marconi
+		relative_position_id = Focus_on_Wales
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Focus_on_Scotland
+		}
+		prerequisite = {
+			focus = Focus_on_Wales
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			show_ideas_tooltip = marconi
+		}
+	}
+	
+	focus = {
+		id = construction_of_arms_factories
+		icon = GFX_focus_generic_combined_arms
+		relative_position_id = convoy_production
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Focus_on_Scotland
+		}
+		prerequisite = {
+			focus = Focus_on_Wales
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			show_ideas_tooltip = ENG_maxwell_aitken
+		}
+	}
+	
+	focus = {
+		id = Mainland_arms_factory
+		icon = GFX_goal_generic_construct_mil_factory
+		relative_position_id = construction_of_arms_factories
+		x = -2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = construction_of_arms_factories
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			has_full_control_of_state = 123
+			has_full_control_of_state = 130
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 123 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 130 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Africa_arms_factory
+		icon = GFX_goal_generic_construct_mil_factory
+		relative_position_id = construction_of_arms_factories
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = construction_of_arms_factories
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			has_full_control_of_state = 700
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 700 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = Caribbean_Sea_arms_factory
+		icon = GFX_goal_generic_construct_mil_factory
+		relative_position_id = construction_of_arms_factories
+		x = 2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = construction_of_arms_factories
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			has_full_control_of_state = 687
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 687 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = train_improvement
+		icon = GFX_goal_generic_construction
+		relative_position_id = Another_Industrial_Revolution
+		x = 2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Another_Industrial_Revolution
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = train_improvement
+				category = train_tech
+				uses = 1
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = extending_road
+		icon = GFX_goal_generic_construction
+		relative_position_id = train_improvement
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = train_improvement
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			has_full_control_of_state = 125
+			has_full_control_of_state = 126
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 125 }
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 126 }
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = extending_port
+		icon = GFX_goal_generic_construct_naval_dockyard
+		relative_position_id = train_improvement
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = train_improvement
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			has_full_control_of_state = 127
+			has_full_control_of_state = 126
+			has_full_control_of_state = 125
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			127 = {
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 9458
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					province = 3501
+					instant_build = yes
+				}
+			}
+			126 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					province = 11374
+					instant_build = yes
+				}
+			}
+			125 = {
+				add_building_construction = {
+					type = naval_base
+					level = 2
+					province = 271
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = electromagnetic_engineering
+		icon = GFX_goal_generic_production2
+		relative_position_id = extending_road
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = extending_port
+		}
+		prerequisite = {
+			focus = extending_road
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = electromagnetic_engineering
+				category = electronics
+				uses = 1
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = radio_wave
+		icon = GFX_focus_generic_spread_fascism
+		relative_position_id = electromagnetic_engineering
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = electromagnetic_engineering
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = radio_wave
+				category = radar_tech
+				uses = 1
+				bonus = 0.5
+			}
+		}
+	}
+	
+	focus = {
+		id = dockyard_extension
+		icon = GFX_focus_generic_refit_civilian_ships
+		relative_position_id = electromagnetic_engineering
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = electromagnetic_engineering
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			has_full_control_of_state = 122
+			has_full_control_of_state = 130
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 122 }
+				add_building_construction = {
+					type = dockyard
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 130 }
+				add_building_construction = {
+					type = dockyard
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = construction_of_Chain_Home
+		icon = GFX_goal_generic_radar
+		relative_position_id = radio_wave
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = radio_wave
+		}
+		prerequisite = {
+			focus = dockyard_extension
+		}
+		available = {
+			has_full_control_of_state = 127
+			has_full_control_of_state = 126
+			has_full_control_of_state = 125
+			has_full_control_of_state = 123
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 127 }
+				add_building_construction = {
+					type = radar_station
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 126 }
+				add_building_construction = {
+					type = radar_station
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 125 }
+				add_building_construction = {
+					type = radar_station
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 123 }
+				add_building_construction = {
+					type = radar_station
+					level = 1
+				}
+			}
+		}
+	}
+}

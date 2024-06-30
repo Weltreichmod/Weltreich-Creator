@@ -1,0 +1,164 @@
+# Scripted AI desire for peace actions.
+# See documentation.info file for more detailed scripting information.
+
+peace_ai_desires = {
+	germany_puppet_possible_subjects = {
+		peace_action_type = puppet
+		enable = {
+			FROM.FROM.FROM = {
+				OR = {
+				#Oststaat
+					is_core_of = POL
+					is_core_of = UBD
+					is_core_of = COU
+					is_core_of = LIT
+					is_core_of = LAT
+					is_core_of = EST
+					is_core_of = UKR
+					is_core_of = BLR
+					is_core_of = FIN
+				#Kaukasien
+					is_core_of = GEO
+					is_core_of = ARM
+					is_core_of = AZR
+				#Northern Europe
+					is_core_of = DEN
+					is_core_of = SWE
+					is_core_of = NOR
+					is_core_of = SWI
+				#Benelux
+					is_core_of = BEL
+					is_core_of = HOL
+				#German Asia
+					is_core_of = INS
+				#Middle Europe
+					is_core_of = HUN
+					is_core_of = CRO
+					is_core_of = SLO
+				}
+			}
+			ROOT = {
+				original_tag = GER
+			}
+		}
+		ai_desire = 75
+	}
+	#Liberate French Africa
+	Liberate_French_England_Africa = {
+		peace_action_type = liberate
+		enable = {
+            FROM.FROM.FROM = {
+				OR = {
+					is_owned_by = FRA
+					is_owned_by = ENG
+				}
+				OR = {
+					is_core_of = ALG
+					is_core_of = TUN
+					is_core_of = CHA
+					is_core_of = NGR
+					is_core_of = MLI
+					is_core_of = VOL
+					is_core_of = MRT
+					is_core_of = SEN
+					is_core_of = GAM
+					is_core_of = GNA
+					is_core_of = SIE
+				}
+            }
+            ROOT = {
+                original_tag = GER
+            }
+		}
+		ai_desire = 300
+	}
+	#Take IVO
+	Take_IVO = {
+		peace_action_type = take_states
+		enable = {
+            FROM.FROM.FROM = {
+				is_core_of = IVO
+            }
+            ROOT = {
+                original_tag = GER
+            }
+		}
+		ai_desire = 100
+	}
+	#Second Great War historical
+	Puppet_France_after_ww2 = {
+		peace_action_type = puppet
+		enable = {
+            FROM.FROM.FROM = {
+				is_core_of = FRA
+            }
+            ROOT = {
+                original_tag = GER
+            }
+		}
+		ai_desire = 100
+	}
+	#Second Great War with Italy
+	Puppet_France_after_ww2_with_italy = {
+		peace_action_type = { take_states puppet liberate force_government }
+		enable = {
+            FROM.FROM.FROM = {
+				OR = {
+					state = 735
+					state = 934
+				}
+            }
+            ROOT = {
+                original_tag = GER
+				is_in_faction_with = ITA
+            }
+		}
+		ai_desire = -500
+	}
+	germany_annex_deutschland = {
+		peace_action_type = take_states
+		enable = {
+			FROM.FROM.FROM = {
+				OR = {
+					is_core_of = GER
+					is_core_of = BAY
+					is_core_of = HAN
+					is_core_of = WUR
+					is_core_of = SAX
+					is_core_of = MEK
+					is_core_of = SHL
+					is_core_of = PRE
+					is_core_of = RHN
+					is_core_of = DNZ
+					is_core_of = AUS
+					is_core_of = LUX
+					is_core_of = OLD
+					is_core_of = DNZ
+				}
+			}
+			ROOT = {
+				original_tag = GER
+			}
+		}
+		ai_desire = 75
+	}
+
+	germany_annex_bohemia = {
+		peace_action_type = take_states
+		enable = {
+			FROM.FROM.FROM = {
+				OR = {
+					is_core_of = CZE
+				}
+			}
+			ROOT = {
+				original_tag = GER
+			}
+			ROOT.FROM = { tag = ROOT }
+			ROOT = {
+				has_completed_focus = Sudeten_Crisis
+			}
+		}
+		ai_desire = 500
+	}
+}

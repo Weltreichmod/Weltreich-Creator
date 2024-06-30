@@ -1,0 +1,498 @@
+political_situation = {
+	ITA_milano_party_convention = {
+		icon = GFX_decision_generic_speech
+		days_mission_timeout = 30
+		priority = 100
+		allowed = {
+			original_tag = ITA
+		}
+		activation = {
+			has_country_leader = {
+				character = ITA_giovanni_gentile
+				ruling_only = yes
+			}
+		}
+		available = {
+			NOT = {
+				has_country_leader = {
+					character = ITA_giovanni_gentile
+					ruling_only = yes
+				}
+			}
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			set_country_flag = ITA_milano_party_convention_ended
+			if = {
+				limit = {
+					has_country_flag = ITA_tightening_security_of_milano_flag
+				}
+				country_event = italy.18
+			}
+			else = {
+				country_event = italy.19
+				set_country_flag = death_of_gentile_flag
+				set_variable = {
+					var = TOG_var
+					value = 50
+				}
+				hidden_effect = {
+					if = {
+						limit = {
+							has_game_rule = {
+								rule = ITA_AI_BEHAVIOR
+								option = FASCISM_2
+							}
+						}
+						set_country_flag = ITA_fascism_government
+					}
+					else_if = {
+						limit = {
+							has_game_rule = {
+								rule = ITA_AI_BEHAVIOR
+								option = DEMOCRATIC
+							}
+						}
+						set_country_flag = ITA_democratic_government
+					}
+					else = {
+						random_list = {
+							50 = {
+								set_country_flag = ITA_fascism_government
+							}
+							50 = {
+								set_country_flag = ITA_democratic_government
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	ITA_tightening_security_of_milano = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			original_tag = ITA
+		}
+		visible = {
+			NOT = { has_country_flag = ITA_milano_party_convention_ended }
+		}
+		ai_will_do = { 
+			base = 50
+			modifier = {
+				add = 4000
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = ITA_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = ITA_AI_BEHAVIOR
+						option = FASCISM_1
+					}
+				}
+			}
+			modifier = {
+				add = -50
+				OR = {
+					has_game_rule = {
+						rule = ITA_AI_BEHAVIOR
+						option = FASCISM_2
+					}
+					has_game_rule = {
+						rule = ITA_AI_BEHAVIOR
+						option = DEMOCRATIC
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = ITA_tightening_security_of_milano_flag
+		}
+	}
+}
+ITA_threat_of_overthrowing_government = {
+	ITA_before_the_coup = {
+		icon = GFX_decision_generic_speech
+		days_mission_timeout = 40
+		priority = 100
+		allowed = {
+			original_tag = ITA
+		}
+		activation = {
+			has_country_flag = death_of_gentile_flag
+		}
+		available = {
+			always = no
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						check_variable = { TOG_var < 10 }
+					}
+					random_list = {
+						90 = {
+							country_event = italy.51 #fall of government
+						}
+						10 = {
+							country_event = italy.52 #maintain government
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TOG_var < 40 }
+					}
+					random_list = {
+						70 = {
+							country_event = italy.51 #fall of government
+						}
+						30 = {
+							country_event = italy.52 #maintain government
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TOG_var < 60 }
+					}
+					random_list = {
+						50 = {
+							country_event = italy.51 #fall of government
+						}
+						50 = {
+							country_event = italy.52 #maintain government
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TOG_var < 90 }
+					}
+					random_list = {
+						30 = {
+							country_event = italy.51 #fall of government
+						}
+						70 = {
+							country_event = italy.52 #maintain government
+						}
+					}
+				}
+				else = {
+					random_list = {
+						10 = {
+							country_event = italy.51 #fall of government
+						}
+						90 = {
+							country_event = italy.52 #maintain government
+						}
+					}
+				}
+			}
+		}
+	}
+	ITA_oppression_of_antigovernmentists = {
+		icon = GFX_decision_generic_political_discourse
+		allowed = {
+			original_tag = ITA
+		}
+		visible = {
+			has_country_flag = death_of_gentile_flag
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 80
+				has_country_flag = ITA_fascism_government
+			}
+		}
+		days_remove = 7
+		remove_effect = {
+			add_to_temp_variable = { TOG_var = 15 }
+			custom_effect_tooltip = fascism_stronger
+		}
+	}
+	ITA_consolidation_of_government_power = {
+		icon = GFX_decision_generic_political_discourse
+		allowed = {
+			original_tag = ITA
+		}
+		visible = {
+			has_country_flag = death_of_gentile_flag
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 80
+				has_country_flag = ITA_fascism_government
+			}
+		}
+		days_remove = 7
+		remove_effect = {
+			add_to_temp_variable = { TOG_var = 15 }
+			custom_effect_tooltip = fascism_stronger
+		}
+	}
+	ITA_preparations_for_a_coup = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = ITA
+		}
+		visible = {
+			has_country_flag = death_of_gentile_flag
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 80
+				has_country_flag = ITA_democratic_government
+			}
+		}
+		days_remove = 7
+		remove_effect = {
+			add_to_temp_variable = { TOG_var = -15 }
+			custom_effect_tooltip = democratic_stronger
+		}
+	}
+	ITA_drive_a_wedge_between_the_government_and_the_military = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = ITA
+		}
+		visible = {
+			has_country_flag = death_of_gentile_flag
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 80
+				has_country_flag = ITA_democratic_government
+			}
+		}
+		days_remove = 7
+		remove_effect = {
+			add_to_temp_variable = { TOG_var = -15 }
+			custom_effect_tooltip = democratic_stronger
+		}
+	}
+}
+ITA_help_ger = {
+	participation_in_the_AUH_GER_war = {
+		icon = GFX_decision_political
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			GER = { has_war_with = AUH }
+			has_global_flag = NG_flag
+			has_global_flag = Deutscher_Krieg
+			has_war_with_major = no
+		}
+		cost = 10
+		complete_effect = {
+			GER = { add_to_faction = ITA }
+			declare_war_on = { target = AUH type = take_core_state }
+			set_country_flag = join_brothers_war
+		}
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 4000
+		}
+		visible = {
+			has_global_flag = NG_flag
+			GER = { has_war_with = AUH }
+			has_global_flag = Deutscher_Krieg
+		}
+	}
+}
+invasion_somalia = {
+	operation_mogadiscio = {
+		icon = infiltration
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			has_global_flag = treaty_of_rome
+		}
+		visible = {
+			has_global_flag = treaty_of_rome
+		}
+		complete_effect = {
+			declare_war_on = { target = SOM  type = annex_everything }
+			news_event = italy.25
+			add_named_threat = {
+				threat = 5
+				name = somalia_war
+			}
+			set_global_flag = ita_som_war
+			ETH = { country_event = { days = 3 id = italy.24 } }
+			269 = { add_claim_by = ITA }
+			559 = { add_claim_by = ITA }
+			835 = { add_claim_by = ETH }
+			hidden_effect = {
+				if = {
+					limit = {
+						SOM = {
+							owns_state = 269
+						}
+					}
+					set_province_controller = 12991
+				}
+				if = {
+					limit = {
+						SOM = {
+							owns_state = 559
+						}
+					}
+					set_province_controller = 10833
+				}
+				if = {
+					limit = {
+						SOM = {
+							owns_state = 269
+						}
+					}
+					269 = {
+						create_unit = {
+							division = "name = \"I. Divisione di Fanteria\" division_template = \"Divisione di Fanteria\" start_experience_factor = 0.3"
+							owner = ITA
+							prioritize_location = 12991
+							allow_spawning_on_enemy_provs = yes
+						}
+						create_unit = {
+							division = "name = \"II. Divisione di Fanteria\" division_template = \"Divisione di Fanteria\" start_experience_factor = 0.3"
+							owner = ITA
+							prioritize_location = 12991
+							allow_spawning_on_enemy_provs = yes
+						}
+					}
+				}
+				if = {
+					limit = {
+						SOM = {
+							owns_state = 559
+						}
+					}
+					559 = {
+						create_unit = {
+							division = "name = \"I. Divisione di Fanteria\" division_template = \"Divisione di Fanteria\" start_experience_factor = 0.3"
+							owner = ITA
+							prioritize_location = 10833
+							allow_spawning_on_enemy_provs = yes
+						}
+						create_unit = {
+							division = "name = \"II. Divisione di Fanteria\" division_template = \"Divisione di Fanteria\" start_experience_factor = 0.3"
+							owner = ITA
+							prioritize_location = 10833
+							allow_spawning_on_enemy_provs = yes
+						}
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 4000
+		}
+	}
+}
+Second_Italo_Ethiopian_War = {
+	continuance_of_the_war_eth = {
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			OR = {
+				NOT = {
+					has_war_with = ETH
+				}
+			}
+		}
+		visible = {
+			has_war_with = ETH
+			has_global_flag = Second_Italo_Ethiopian_War
+		}
+		fire_only_once = yes
+		activation = {
+			has_war_with = ETH
+			has_global_flag = Second_Italo_Ethiopian_War
+		}
+		days_mission_timeout = 400
+		timeout_effect = {
+			clr_global_flag = Second_Italo_Ethiopian_War
+			add_stability = -0.05
+			add_war_support = -0.05
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = ITA
+						is_in_faction_with = ITA
+						is_subject_of = ITA
+					}
+				}
+				white_peace = ETH
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ETH
+					OR = {
+						is_core_of = ITA
+						is_claimed_by = ITA
+					}
+				}
+				remove_core_of = ITA
+				remove_claim_by = ITA
+			}
+			news_event = italy.37
+		}
+	}
+}
+
+ITA_italian_irredentism_wr = {
+	ITA_attack_lombardo_veneto = {
+		allowed = {
+			original_tag = ITA
+		}
+		available = {
+			LBV = {
+				exists = yes
+				is_subject = no
+			}
+		}
+		visible = {
+			LBV = {
+				exists = yes
+				is_subject = no
+			}
+		}
+		fire_only_once = yes
+		cost = 20
+		ai_will_do = { 
+			base = 4000
+		}
+		complete_effect = {
+			every_state = {
+				limit = {
+					is_owned_by = LBV
+					OR = {
+						state = 159
+						state = 160
+						state = 945
+					}
+				}
+				add_core_of = ITA
+			}
+			create_wargoal = {
+				type = take_state_focus
+				target = LBV
+				generator = { 159 160 945 }
+			}
+		}
+	}
+}

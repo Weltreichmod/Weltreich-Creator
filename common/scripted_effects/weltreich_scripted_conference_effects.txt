@@ -1,0 +1,2527 @@
+peace_conference_effect = {
+	every_country = {
+		limit = {
+			has_country_flag = second_great_war_loser
+		}
+		every_state = {
+			limit = {
+				is_claimed_by = PREV
+			}
+			remove_claim_by = PREV
+		}
+		every_other_country = {
+			diplomatic_relation = {
+				country = PREV
+				relation = guarantee
+				active = no
+			}
+			diplomatic_relation = {
+				country = PREV
+				relation = military_access
+				active = no
+			}
+			diplomatic_relation = {
+				country = PREV
+				relation = docking_rights
+				active = no
+			}
+			PREV = {
+				diplomatic_relation = {
+					country = PREV
+					relation = guarantee
+					active = no
+				}
+				diplomatic_relation = {
+					country = PREV
+					relation = military_access
+					active = no
+				}
+				diplomatic_relation = {
+					country = PREV
+					relation = docking_rights
+					active = no
+				}
+			}
+		}
+	}
+	every_country = {
+		limit = {
+			exists = yes
+			has_country_flag = second_great_war_winner
+		}
+		every_other_country = {
+			limit = { has_country_flag = second_great_war_loser }
+			PREV = {
+				every_state = {
+					limit = {
+						is_owned_by = PREV.PREV
+						OR = {
+							is_claimed_by = PREV
+							is_core_of = PREV
+						}
+					}
+					PREV = {
+						transfer_state = PREV
+					}
+				}
+			}
+		}
+	}
+	#fate of china
+	if = {
+		limit = {
+			CHI = { has_country_flag = second_great_war_winner }
+			any_country = {
+				is_chinese_country = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		if = {
+			limit = {
+				FNG = { has_country_flag = second_great_war_loser }
+			}
+			CHI = { annex_country = { target = FNG transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				PRC = { has_country_flag = second_great_war_loser }
+			}
+			CHI = { annex_country = { target = PRC transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				GXC = { has_country_flag = second_great_war_loser }
+			}
+			CHI = { annex_country = { target = GXC transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				YUN = { has_country_flag = second_great_war_loser }
+			}
+			CHI = { annex_country = { target = YUN transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				SHX = { has_country_flag = second_great_war_loser }
+			}
+			CHI = { annex_country = { target = SHX transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				XSM = { has_country_flag = second_great_war_loser }
+			}
+			CHI = { annex_country = { target = XSM transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				SIK = { has_country_flag = second_great_war_loser }
+			}
+			CHI = { annex_country = { target = SIK transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				GUD = { has_country_flag = second_great_war_loser }
+			}
+			CHI = { annex_country = { target = GUD transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				SIC = { has_country_flag = second_great_war_loser }
+			}
+			CHI = { annex_country = { target = SIC transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				XIK = { has_country_flag = second_great_war_loser }
+			}
+			CHI = { annex_country = { target = XIK transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				GZC = { has_country_flag = second_great_war_loser }
+			}
+			CHI = { annex_country = { target = GZC transfer_troops = no } }
+		}
+	}
+	if = {
+		limit = {
+			FNG = { has_country_flag = second_great_war_winner }
+			any_country = {
+				is_chinese_country = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		if = {
+			limit = {
+				CHI = { has_country_flag = second_great_war_loser }
+			}
+			FNG = { annex_country = { target = CHI transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				PRC = { has_country_flag = second_great_war_loser }
+			}
+			FNG = { annex_country = { target = PRC transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				GXC = { has_country_flag = second_great_war_loser }
+			}
+			FNG = { annex_country = { target = GXC transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				YUN = { has_country_flag = second_great_war_loser }
+			}
+			FNG = { annex_country = { target = YUN transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				SHX = { has_country_flag = second_great_war_loser }
+			}
+			FNG = { annex_country = { target = SHX transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				XSM = { has_country_flag = second_great_war_loser }
+			}
+			FNG = { annex_country = { target = XSM transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				SIK = { has_country_flag = second_great_war_loser }
+			}
+			FNG = { annex_country = { target = SIK transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				GUD = { has_country_flag = second_great_war_loser }
+			}
+			FNG = { annex_country = { target = GUD transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				SIC = { has_country_flag = second_great_war_loser }
+			}
+			FNG = { annex_country = { target = SIC transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				XIK = { has_country_flag = second_great_war_loser }
+			}
+			FNG = { annex_country = { target = XIK transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				GZC = { has_country_flag = second_great_war_loser }
+			}
+			FNG = { annex_country = { target = GZC transfer_troops = no } }
+		}
+	}
+	#free german puppet
+	german_puppet_effect = yes
+	#fate of germany
+	if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_loser }
+		}
+		if = {
+			limit = {
+				FRA = { has_country_flag = second_great_war_winner }
+				NOT = { SOV = { has_country_flag = second_great_war_winner } }
+				NOT = { RUS = { has_country_flag = second_great_war_winner } }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					state = 188
+				}
+				add_core_of = LIT
+				transfer_state_to = LIT
+			}
+			FRA = {
+				every_state = {
+					limit = {
+						is_owned_by = GER
+						is_core_of = GER
+					}
+					transfer_state_to = FRA
+				}
+				FRA = { country_event = wrwpe.14 }
+			}
+		}
+		#free austria
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				OR = {
+					state = 848
+					state = 153
+					state = 152
+					state = 4
+					state = 933
+					state = 102
+					state = 853
+					state = 736
+					state = 852
+					state = 39
+					state = 850
+				}
+			}
+			add_core_of = AUS
+			transfer_state_to = AUS
+		}
+		if = {
+			limit = {
+				FRA = { has_country_flag = second_great_war_winner }
+				SOV = { has_country_flag = second_great_war_winner }
+			}
+			if = {
+				limit = {
+					SOV = { has_global_flag = fall_of_berlin_by_SOV }
+				}
+				every_state = {
+					limit = {
+						is_owned_by = GER
+						OR = {
+							state = 188
+							state = 68
+							state = 63
+							state = 66
+							state = 67
+							state = 762
+							state = 86
+							state = 85
+							state = 807
+							state = 5
+							state = 763
+							#eastern germany
+							state = 957
+							state = 64
+							state = 61
+							state = 62
+							state = 60
+							state = 65
+						}
+					}
+					transfer_state_to = SOV
+				}
+				else = {
+					every_state = {
+						limit = {
+							is_owned_by = GER
+							OR = {
+								state = 188
+								state = 68
+								state = 63
+								state = 66
+								state = 67
+								state = 762
+								state = 86
+								state = 85
+								state = 807
+								state = 5
+								state = 763
+							}
+						}
+						transfer_state_to = SOV
+					}
+				}
+			}
+			SOV = { country_event = wrwpe.13 }
+			FRA = {
+				every_state = {
+					limit = {
+						is_owned_by = GER
+						is_core_of = GER
+					}
+					transfer_state_to = FRA
+				}
+				FRA = { country_event = wrwpe.14 }
+			}
+		}
+		if = {
+			limit = {
+				FRA = { has_country_flag = second_great_war_winner }
+				RUS = { has_country_flag = second_great_war_winner }
+			}
+			if = {
+				limit = {
+					RUS = { has_global_flag = fall_of_berlin_by_RUS }
+				}
+				every_state = {
+					limit = {
+						is_owned_by = GER
+						OR = {
+							state = 188
+							state = 68
+							state = 63
+							state = 66
+							state = 67
+							state = 762
+							state = 86
+							state = 85
+							state = 807
+							state = 5
+							state = 763
+							#eastern germany
+							state = 957
+							state = 64
+							state = 61
+							state = 62
+							state = 60
+							state = 65
+						}
+					}
+					transfer_state_to = RUS
+				}
+				else = {
+					every_state = {
+						limit = {
+							is_owned_by = GER
+							OR = {
+								state = 188
+								state = 68
+								state = 63
+								state = 66
+								state = 67
+								state = 762
+								state = 86
+								state = 85
+								state = 807
+								state = 5
+								state = 763
+							}
+						}
+						transfer_state_to = RUS
+					}
+				}
+			}
+			RUS = { country_event = wrwpe.13 }
+			FRA = {
+				every_state = {
+					limit = {
+						is_owned_by = GER
+						is_core_of = GER
+					}
+					transfer_state_to = FRA
+				}
+				FRA = { country_event = wrwpe.14 }
+			}
+		}
+	}
+	#fate of france
+	if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_winner }
+			FRA = { has_country_flag = second_great_war_loser }
+		}
+		if = {
+			limit = {
+				GER = { is_subject = yes }
+			}
+			every_country = {
+				limit = {
+					has_subject = GER
+				}
+				country_event = wrwpe.5
+			}
+			else = {
+				GER = { country_event = wrwpe.5 }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = CAN
+			}
+			transfer_state_to = CAN
+		}
+		if = {
+			limit = {
+				SPA = {
+					exists = yes
+				}
+			}
+			FRA = {
+				every_state = {
+					limit = {
+						is_owned_by = FRA
+						OR = {
+							is_core_of = SPA
+							state = 290
+							state = 699
+							state = 783
+							state = 178
+							state = 297
+						}
+					}
+					transfer_state_to = SPA
+				}
+			}
+		}
+		else = {
+			FRA = {
+				every_state = {
+					limit = {
+						is_owned_by = FRA
+						OR = {
+							is_core_of = SPR
+							state = 290
+							state = 699
+							state = 783
+							state = 178
+							state = 297
+						}
+					}
+					transfer_state_to = SPR
+				}
+			}
+		}
+	}
+	#fate of italy
+	if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_winner }
+			AUH = { has_country_flag = second_great_war_winner }
+			ITA = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_italy_flag }
+			}
+		}
+		AUH = { country_event = wrwpe.6 }
+	}
+	else_if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_winner }
+			NOT = { AUH = { has_country_flag = second_great_war_winner } }
+			ITA = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_italy_flag }
+			}
+		}
+		ITA = { retire_country_leader = yes }
+		GER = { country_event = wrwpe.6 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			ITA = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_italy_flag }
+			}
+		}
+		ITA = { retire_country_leader = yes }
+		ENT = { country_event = wrwpe.6 }
+	}
+	else_if = {
+		limit = {
+			ITA = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_italy_flag
+			}
+		}
+		ITA = { retire_country_leader = yes }
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_italy_flag
+			}
+			country_event = wrwpe.6
+		}
+	}
+	#free british colonies
+	if = {
+		limit = {
+			ENG = { has_country_flag = second_great_war_loser }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = CAN
+			}
+			transfer_state_to = CAN
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = AST
+			}
+			transfer_state_to = AST
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = NZL
+			}
+			transfer_state_to = NZL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = GYA
+			}
+			transfer_state_to = GYA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = BLZ
+			}
+			transfer_state_to = BLZ
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = BAH
+			}
+			transfer_state_to = BAH
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = JAM
+			}
+			transfer_state_to = JAM
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = TRI
+			}
+			transfer_state_to = TRI
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = BAS
+			}
+			transfer_state_to = BAS
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = TRI
+			}
+			transfer_state_to = TRI
+		}
+	}
+	#fate of britain
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			ENG = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_britain_flag }
+			}
+		}
+		REI = { country_event = wrwpe.7 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			ENG = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_britain_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.7 }
+	}
+	else_if = {
+		limit = {
+			ENG = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_britain_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_britain_flag
+			}
+			country_event = wrwpe.7
+		}
+	}
+	#fate of canada
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			NOT = { USA = { has_country_flag = second_great_war_winner } }
+			CAN = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_canada_flag }
+			}
+		}
+		REI = { country_event = wrwpe.15 }
+	}
+	else_if = {
+		limit = {
+			USA = { has_country_flag = second_great_war_winner }
+			OR = {
+				has_global_flag = USA_cap_CAN
+				CAN = { has_country_flag = second_great_war_loser }
+			}
+			all_country = {
+				NOT = { has_country_flag = defeat_canada_flag }
+			}
+		}
+		USA = { country_event = wrwpe.15 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			CAN = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_canada_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.15 }
+	}
+	else_if = {
+		limit = {
+			CAN = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_canada_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_canada_flag
+			}
+			country_event = wrwpe.15
+		}
+	}
+	#fate of Australia
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			AST = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_australia_flag }
+			}
+		}
+		REI = { country_event = wrwpe.16 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			AST = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_australia_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.16 }
+	}
+	else_if = {
+		limit = {
+			AST = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_australia_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_australia_flag
+			}
+			country_event = wrwpe.16
+		}
+	}
+	#fate of New Zealand
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			NZL = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_new_zealand_flag }
+			}
+		}
+		REI = { country_event = wrwpe.17 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			NZL = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_new_zealand_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.17 }
+	}
+	else_if = {
+		limit = {
+			NZL = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_new_zealand_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_new_zealand_flag
+			}
+			country_event = wrwpe.17
+		}
+	}
+	#fate of austria hungary
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			AUH = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_austria_hungary_flag }
+			}
+		}
+		REI = { country_event = wrwpe.8 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			AUH = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_austria_hungary_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.8 }
+	}
+	else_if = {
+		limit = {
+			AUH = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_austria_hungary_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_austria_hungary_flag
+			}
+			country_event = wrwpe.8
+		}
+	}
+	#fate of US
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			USA = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_usa_flag }
+			}
+		}
+		REI = { country_event = wrwpe.10 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			USA = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_usa_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.10 }
+	}
+	else_if = {
+		limit = {
+			USA = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_usa_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_usa_flag
+			}
+			country_event = wrwpe.10
+		}
+	}
+	#fate of ottoman
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			TUR = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_ottoman_flag }
+			}
+		}
+		REI = { country_event = wrwpe.11 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			TUR = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_ottoman_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.11 }
+	}
+	else_if = {
+		limit = {
+			TUR = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_ottoman_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_ottoman_flag
+			}
+			country_event = wrwpe.11
+		}
+	}
+	#fate of SPA
+	if = {
+		limit = {
+			SPA = { exists = yes }
+		}
+		if = {
+			limit = {
+				REI = { has_country_flag = second_great_war_winner }
+				SPA = { has_country_flag = second_great_war_loser }
+				all_country = {
+					NOT = { has_country_flag = defeat_spain_flag }
+				}
+			}
+			REI = { country_event = wrwpe.12 }
+		}
+		else_if = {
+			limit = {
+				ENT = { has_country_flag = second_great_war_winner }
+				SPA = { has_country_flag = second_great_war_loser }
+				all_country = {
+					NOT = { has_country_flag = defeat_spain_flag }
+				}
+			}
+			ENT = { country_event = wrwpe.12 }
+		}
+		else_if = {
+			limit = {
+				SPR = { has_country_flag = second_great_war_loser }
+				any_country = {
+					has_country_flag = defeat_spain_flag
+				}
+			}
+			every_country = {
+				limit = {
+					has_country_flag = second_great_war_winner
+					has_country_flag = defeat_spain_flag
+				}
+				country_event = wrwpe.12
+			}
+		}
+	}
+	#fate of SPR
+	if = {
+		limit = {
+			SPR = { exists = yes }
+		}
+		if = {
+			limit = {
+				REI = { has_country_flag = second_great_war_winner }
+				SPR = { has_country_flag = second_great_war_loser }
+				all_country = {
+					NOT = { has_country_flag = defeat_spain_flag }
+				}
+			}
+			REI = { country_event = wrwpe.12 }
+		}
+		else_if = {
+			limit = {
+				ENT = { has_country_flag = second_great_war_winner }
+				SPR = { has_country_flag = second_great_war_loser }
+				all_country = {
+					NOT = { has_country_flag = defeat_spain_flag }
+				}
+			}
+			ENT = { country_event = wrwpe.12 }
+		}
+		else_if = {
+			limit = {
+				SPR = { has_country_flag = second_great_war_loser }
+				any_country = {
+					has_country_flag = defeat_spain_flag
+				}
+			}
+			every_country = {
+				limit = {
+					has_country_flag = second_great_war_winner
+					has_country_flag = defeat_spain_flag
+				}
+				country_event = wrwpe.12
+			}
+		}
+	}
+	#fate of Ireland
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			IRE = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_ireland_flag }
+			}
+		}
+		REI = { country_event = wrwpe.18 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			IRE = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_ireland_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.18 }
+	}
+	else_if = {
+		limit = {
+			IRE = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_ireland_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_ireland_flag
+			}
+			country_event = wrwpe.18
+		}
+	}
+	#fate of denmark
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			DEN = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_denmark_flag }
+			}
+		}
+		REI = { country_event = wrwpe.19 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			DEN = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_denmark_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.19 }
+	}
+	else_if = {
+		limit = {
+			DEN = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_denmark_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_denmark_flag
+			}
+			country_event = wrwpe.19
+		}
+	}
+	#fate of norway
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			NOR = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_norway_flag }
+			}
+		}
+		REI = { country_event = wrwpe.20 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			NOR = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_norway_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.20 }
+	}
+	else_if = {
+		limit = {
+			NOR = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_norway_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_norway_flag
+			}
+			country_event = wrwpe.20
+		}
+	}
+	#fate of sweden
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			SWE = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_sweden_flag }
+			}
+		}
+		REI = { country_event = wrwpe.21 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			SWE = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_sweden_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.21 }
+	}
+	else_if = {
+		limit = {
+			SWE = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_sweden_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_sweden_flag
+			}
+			country_event = wrwpe.21
+		}
+	}
+	#fate of finland
+	if = {
+		limit = {
+			REI = { has_country_flag = second_great_war_winner }
+			FIN = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_finland_flag }
+			}
+		}
+		REI = { country_event = wrwpe.22 }
+	}
+	else_if = {
+		limit = {
+			ENT = { has_country_flag = second_great_war_winner }
+			FIN = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_finland_flag }
+			}
+		}
+		ENT = { country_event = wrwpe.22 }
+	}
+	else_if = {
+		limit = {
+			FIN = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_finland_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_finland_flag
+			}
+			country_event = wrwpe.22
+		}
+	}
+	#INS drop cosmetic tag when free
+	if = {
+		limit = {
+			HOL = { has_country_flag = second_great_war_loser }
+		}
+		HOL = { end_puppet = INS }
+		INS = { abandon_colony_tag = yes }
+		every_state = {
+			limit = {
+				is_owned_by = HOL
+				is_core_of = SUR
+			}
+			transfer_state_to = SUR
+		}
+		every_state = {
+			limit = {
+				is_owned_by = HOL
+				is_core_of = CRC
+			}
+			transfer_state_to = CRC
+		}
+	}
+	#for balkan
+	if = {
+		limit = {
+			OR = {
+				BUL = { has_country_flag = second_great_war_loser }
+				BUL = { has_country_flag = second_great_war_winner }
+			}
+			OR = {
+				GRE = { has_country_flag = second_great_war_loser }
+				GRE = { has_country_flag = second_great_war_winner }
+			}
+			has_global_flag = fourth_balkan_war
+		}
+		clr_global_flag = fourth_balkan_war
+	}
+	if = {
+		limit = {
+			BUL = { has_country_flag = second_great_war_winner }
+			GRE = { has_country_flag = second_great_war_loser }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GRE
+				state = 930
+			}
+			transfer_state_to = BUL
+		}
+		BUL = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = GRE
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = GRE
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			BUL = { has_country_flag = second_great_war_loser }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = BUL
+				is_core_of = GRE
+			}
+			transfer_state_to = GRE
+		}
+		every_state = {
+			limit = {
+				is_owned_by = BUL
+				is_core_of = ROM
+			}
+			transfer_state_to = ROM
+		}
+	}
+	if = {
+		limit = {
+			BUL = { has_country_flag = second_great_war_winner }
+			SER = { has_country_flag = second_great_war_loser }
+			NOT = { AUH = { has_country_flag = second_great_war_winner } }
+		}
+		BUL = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SER
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SER
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			BUL = { has_country_flag = second_great_war_winner }
+			ROM = { has_country_flag = second_great_war_loser }
+			AUH = { has_country_flag = second_great_war_winner }
+		}
+		AUH = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = ROM
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = ROM
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			BUL = { has_country_flag = second_great_war_winner }
+			ROM = { has_country_flag = second_great_war_loser }
+			NOT = { AUH = { has_country_flag = second_great_war_winner } }
+		}
+		BUL = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = ROM
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = ROM
+				}
+			}
+		}
+	}
+}
+german_puppet_effect = {
+	every_country = {
+		limit = {
+			is_subject_of = GER
+			NOT = { original_tag = GOA }
+		}
+		end_puppet = PREV
+	}
+	if = {
+		limit = {
+			POL = {
+				has_country_flag = second_great_war_loser
+			}
+		}
+		POL = { retire_character = POL_albrecht_wurttemberg }
+	}
+	if = {
+		limit = {
+			UBD = {
+				has_country_flag = second_great_war_loser
+			}
+		}
+		UBD = { retire_character = UBD_Adolf_Friedrich_zu_Mecklenburg }
+	}
+	if = {
+		limit = {
+			LIT = {
+				has_country_flag = second_great_war_loser
+			}
+		}
+		LIT = { retire_character = LIT_wilhelm_urach }
+	}
+	if = {
+		limit = {
+			UBD = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		if = {
+			limit = {
+				EST = { exists = no }
+				OR = {
+					SOV = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = second_great_war_winner }
+				}
+			}
+			EST = { set_country_flag = puppet_to_sov_or_rus }
+		}
+		if = {
+			limit = {
+				LAT = { exists = no }
+				OR = {
+					SOV = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = second_great_war_winner }
+				}
+			}
+			LAT = { set_country_flag = puppet_to_sov_or_rus }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = UBD
+				is_core_of = EST
+			}
+			transfer_state_to = EST
+		}
+		every_state = {
+			limit = {
+				is_owned_by = UBD
+				is_core_of = LAT
+			}
+			transfer_state_to = LAT
+		}
+	}
+	#transfer state to poland
+	if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_loser }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				is_core_of = POL
+				NOT = { state = 762 }
+			}
+			transfer_state_to = POL
+		}
+	}
+	if = {
+		limit = {
+			LIT = { has_country_flag = second_great_war_loser }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = LIT
+				state = 97
+			}
+			transfer_state_to = POL
+		}
+	}
+	#to soviet eastern puppets
+	if = {
+		limit = {
+			SOV = { has_country_flag = second_great_war_winner }
+			POL = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		SOV = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = POL
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = POL
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			SOV = { has_country_flag = second_great_war_winner }
+			UBD = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		SOV = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = UBD
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = UBD
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			SOV = { has_country_flag = second_great_war_winner }
+			EST = {
+				exists = yes
+				has_country_flag = puppet_to_sov_or_rus
+			}
+		}
+		SOV = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = EST
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = EST
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			SOV = { has_country_flag = second_great_war_winner }
+			LAT = {
+				exists = yes
+				has_country_flag = puppet_to_sov_or_rus
+			}
+		}
+		SOV = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = LAT
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = LAT
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			SOV = { has_country_flag = second_great_war_winner }
+			BLR = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		SOV = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = BLR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = BLR
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			SOV = { has_country_flag = second_great_war_winner }
+			LIT = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		SOV = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = LIT
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = LIT
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			SOV = { has_country_flag = second_great_war_winner }
+			UKR = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		SOV = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = UKR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = UKR
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			SOV = { has_country_flag = second_great_war_winner }
+			USS = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		SOV = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = USS
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = USS
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			SOV = { has_country_flag = second_great_war_winner }
+			UPR = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		SOV = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = UPR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = UPR
+				}
+			}
+		}
+	}
+	#to russia eastern puppets
+	if = {
+		limit = {
+			RUS = { has_country_flag = second_great_war_winner }
+			POL = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		RUS = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = POL
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = POL
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			RUS = { has_country_flag = second_great_war_winner }
+			UBD = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		RUS = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = UBD
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = UBD
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			RUS = { has_country_flag = second_great_war_winner }
+			EST = {
+				exists = yes
+				has_country_flag = puppet_to_sov_or_rus
+			}
+		}
+		RUS = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = EST
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = EST
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			RUS = { has_country_flag = second_great_war_winner }
+			LAT = {
+				exists = yes
+				has_country_flag = puppet_to_sov_or_rus
+			}
+		}
+		RUS = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = LAT
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = LAT
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			RUS = { has_country_flag = second_great_war_winner }
+			BLR = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		RUS = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = BLR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = BLR
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			RUS = { has_country_flag = second_great_war_winner }
+			LIT = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		RUS = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = LIT
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = LIT
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			RUS = { has_country_flag = second_great_war_winner }
+			UKR = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		RUS = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = UKR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = UKR
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			RUS = { has_country_flag = second_great_war_winner }
+			USS = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		RUS = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = USS
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = USS
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			RUS = { has_country_flag = second_great_war_winner }
+			UPR = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		RUS = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = UPR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = UPR
+				}
+			}
+		}
+	}
+	#bel to france
+	if = {
+		limit = {
+			FRA = { has_country_flag = second_great_war_winner }
+			BEL = {
+				exists = yes
+				has_country_flag = second_great_war_loser
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				is_core_of = BEL
+			}
+			transfer_state_to = BEL
+		}
+		FRA = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = BEL
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = BEL
+				}
+			}
+		}
+	}
+	#hol to france
+	if = {
+		limit = {
+			FRA = { has_country_flag = second_great_war_winner }
+			HOL = {
+				has_country_flag = second_great_war_loser
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = HOL
+				NOT = { is_core_of = HOL }
+			}
+			transfer_state_to = FRA
+		}
+		if = {
+			limit = {
+				HOL = { exists = yes }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = HOL
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = HOL
+					}
+				}
+			}
+		}
+	}
+	#free lux
+	if = {
+		limit = {
+			FRA = { has_country_flag = second_great_war_winner }
+			GER = { has_country_flag = second_great_war_loser }
+			8 = { is_owned_by = GER }
+		}
+		FRA = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = LUX
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = LUX
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				is_core_of = LUX
+			}
+			transfer_state_to = LUX
+		}
+		LUX = { inherit_technology = FRA }
+	}
+	#islands
+	if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_loser }
+			ENG = { has_country_flag = second_great_war_winner }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				OR = {
+					state = 703
+					state = 704
+					state = 707
+					state = 709
+					state = 710
+				}
+			}
+			transfer_state_to = ENG
+		}
+	}
+	else_if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_loser }
+			FRA = { has_country_flag = second_great_war_winner }
+			NOT = { ENG = { has_country_flag = second_great_war_winner } }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				OR = {
+					state = 703
+					state = 704
+					state = 707
+					state = 709
+					state = 710
+				}
+			}
+			transfer_state_to = FRA
+		}
+	}
+	#free mld
+	if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_loser }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				is_core_of = MLD
+			}
+			transfer_state_to = MLD
+		}
+	}
+	#morocco
+	if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_loser }
+			FRA = { has_country_flag = second_great_war_winner }
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = MOR
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = MOR
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				is_core_of = MOR
+			}
+			transfer_state_to = MOR
+		}
+	}
+	#mittel afrika
+	if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_loser }
+			FRA = { has_country_flag = second_great_war_winner }
+		}
+		if = {
+			limit = {
+				FRA = { has_completed_focus = domination_Equatorial_Africa }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					is_core_of = GHA
+				}
+				transfer_state_to = GHA
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					is_core_of = NGA
+				}
+				transfer_state_to = NGA
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					is_core_of = COG
+				}
+				transfer_state_to = COG
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					is_core_of = ANG
+				}
+				transfer_state_to = ANG
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						GHA = { exists = yes }
+					}
+					set_autonomy = {
+						target = GHA
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = GHA
+					}
+				}
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						NGA = { exists = yes }
+					}
+					set_autonomy = {
+						target = NGA
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = NGA
+					}
+				}
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						COG = { exists = yes }
+					}
+					set_autonomy = {
+						target = COG
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = COG
+					}
+				}
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						ANG = { exists = yes }
+					}
+					set_autonomy = {
+						target = ANG
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = ANG
+					}
+				}
+			}
+			else = {
+				FRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = WAA
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = WAA
+						}
+					}
+				}
+				every_state = {
+					limit = {
+						is_owned_by = GER
+						OR = {
+							state = 274
+							state = 777
+							state = 776
+							state = 902
+							state = 558
+							state = 901
+							state = 900
+							state = 773
+							state = 774
+							state = 660
+							state = 772
+							state = 539
+							state = 538
+							state = 295
+							state = 718
+							state = 890
+							state = 888
+							state = 889
+							state = 796
+						}
+					}
+					transfer_state_to = WAA
+					add_core_of = WAA
+				}
+			}
+		}
+		FRA = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SAA
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SAA
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				OR = {
+					state = 893
+					state = 541
+					state = 894
+					state = 895
+					state = 891
+					state = 892
+					state = 540
+					state = 771
+				}
+			}
+			transfer_state_to = SAA
+			add_core_of = SAA
+		}
+		if = {
+			limit = {
+				ENG = { has_country_flag = second_great_war_winner }
+			}
+			ENG = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = EAA
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = EAA
+					}
+				}
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					OR = {
+						state = 770
+						state = 546
+						state = 768
+						state = 548
+						state = 904
+						state = 769
+						state = 905
+						state = 547
+						state = 903
+						state = 844
+						state = 708
+						state = 543
+						state = 706
+						state = 713
+						state = 268
+					}
+				}
+				transfer_state_to = EAA
+				add_core_of = EAA
+			}
+			else = {
+				FRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = EAA
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = EAA
+						}
+					}
+				}
+				every_state = {
+					limit = {
+						is_owned_by = GER
+						OR = {
+							state = 770
+							state = 546
+							state = 768
+							state = 548
+							state = 904
+							state = 769
+							state = 905
+							state = 547
+							state = 903
+							state = 844
+							state = 708
+							state = 543
+							state = 706
+							state = 713
+							state = 268
+						}
+					}
+					transfer_state_to = EAA
+					add_core_of = EAA
+				}
+			}
+		}
+	}
+	#fall of goa
+	if = {
+		limit = {
+			GOA = { has_country_flag = second_great_war_loser }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				is_core_of = FSM
+			}
+			transfer_state_to = FSM
+		}
+		FSM = { inherit_technology = GOA }
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				is_core_of = SAM
+			}
+			transfer_state_to = SAM
+		}
+		SAM = { inherit_technology = GOA }
+		if = {
+			limit = {
+				USA = { has_country_flag = second_great_war_winner }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GOA
+					is_core_of = GUM
+				}
+				transfer_state_to = FRA
+			}
+			else = {
+				every_state = {
+					limit = {
+						is_owned_by = GOA
+						is_core_of = GUM
+					}
+					transfer_state_to = GUM
+				}
+			}
+		}
+		GUM = { inherit_technology = GOA }
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				is_core_of = FIJ
+			}
+			transfer_state_to = FIJ
+		}
+		FIJ = { inherit_technology = GOA }
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				is_core_of = PNG
+			}
+			transfer_state_to = PNG
+		}
+		PNG = { inherit_technology = GOA }
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				is_core_of = SOL
+			}
+			transfer_state_to = SOL
+		}
+		SOL = { inherit_technology = GOA }
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				is_core_of = TAH
+			}
+			transfer_state_to = TAH
+		}
+		TAH = { inherit_technology = GOA }
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				is_core_of = CAM
+			}
+			transfer_state_to = CAM
+		}
+		CAM = { inherit_technology = GOA }
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				is_core_of = MAL
+			}
+			transfer_state_to = MAL
+		}
+		MAL = { inherit_technology = GOA }
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				is_core_of = VIN
+			}
+			transfer_state_to = VIN
+		}
+		VIN = { inherit_technology = GOA }
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				is_core_of = LAO
+			}
+			transfer_state_to = LAO
+		}
+		LAO = { inherit_technology = GOA }
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				state = 270
+			}
+			transfer_state_to = CHL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GOA
+				OR = {
+					state = 712
+					state = 711
+				}
+			}
+			transfer_state_to = INS
+		}
+		if = {
+			limit = {
+				JAP = { has_country_flag = second_great_war_winner }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GOA
+					state = 743
+				}
+				transfer_state_to = JAP
+			}
+		}
+		else_if = {
+			limit = {
+				FNG = { controls_state = 743 }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GOA
+					state = 743
+				}
+				transfer_state_to = FNG
+			}
+		}
+		else = {
+			every_state = {
+				limit = {
+					is_owned_by = GOA
+					state = 743
+				}
+				transfer_state_to = CHI
+			}
+		}
+	}
+	#if sov-rus defeated before germany fall
+	if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_loser }
+			OR = {
+				SOV = { has_country_flag = anti_russia_war_loser }
+				RUS = { has_country_flag = anti_russia_war_loser }
+			}
+		}
+		if = {
+			limit = {
+				MOS = { exists = yes }
+			}
+			if = {
+				limit = {
+					SOV = { exists = yes }
+				}
+				SOV = { annex_country = { target = MOS transfer_troops = no } }
+			}
+			else = {
+				RUS = { annex_country = { target = MOS transfer_troops = no } }
+			}
+		}
+		if = {
+			limit = {
+				WOL = { exists = yes }
+			}
+			if = {
+				limit = {
+					SOV = { exists = yes }
+				}
+				SOV = { annex_country = { target = WOL transfer_troops = no } }
+			}
+			else = {
+				RUS = { annex_country = { target = WOL transfer_troops = no } }
+			}
+		}
+	}
+}
+peace_conference_effect_for_russia = {
+	every_country = {
+		limit = {
+			has_country_flag = anti_russia_war_loser
+		}
+		every_state = {
+			limit = {
+				is_claimed_by = PREV
+			}
+			remove_claim_by = PREV
+		}
+		every_other_country = {
+			diplomatic_relation = {
+				country = PREV
+				relation = guarantee
+				active = no
+			}
+			diplomatic_relation = {
+				country = PREV
+				relation = military_access
+				active = no
+			}
+			diplomatic_relation = {
+				country = PREV
+				relation = docking_rights
+				active = no
+			}
+			PREV = {
+				diplomatic_relation = {
+					country = PREV
+					relation = guarantee
+					active = no
+				}
+				diplomatic_relation = {
+					country = PREV
+					relation = military_access
+					active = no
+				}
+				diplomatic_relation = {
+					country = PREV
+					relation = docking_rights
+					active = no
+				}
+			}
+		}
+	}
+	every_country = {
+		limit = {
+			exists = yes
+			has_country_flag = anti_russia_war_winner
+		}
+		every_other_country = {
+			limit = { has_country_flag = anti_russia_war_loser }
+			PREV = {
+				every_state = {
+					limit = {
+						is_owned_by = PREV.PREV
+						OR = {
+							is_claimed_by = PREV
+							is_core_of = PREV
+						}
+					}
+					PREV = {
+						transfer_state = PREV
+					}
+				}
+			}
+		}
+	}
+}

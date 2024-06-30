@@ -1,0 +1,674 @@
+on_actions = {
+	#ROOT is new controller #FROM is old controller #FROM.FROM is state ID
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					FROM.FROM = { state = 28 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = FRA } }
+					28 = {
+						set_state_name = ALSACE_LORRAINE_STATE
+					}
+					set_province_name = {
+						id = 9503
+						name = STRASBOURG_PROV
+					}
+					set_province_name = {
+						id = 678
+						name = MULHOUSE_PROV
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							OR = { 
+								original_tag = GER
+								original_tag = AUH
+							}
+						}
+					}
+					28 = { reset_state_name = yes }
+					reset_province_name = 9503	
+					reset_province_name = 678	
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 909 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = FRA } }
+					909 = {
+						set_state_name = NANCY_STATE
+					}
+					set_province_name = { id = 11516 name = NANCY_STATE }
+				}
+				if = {
+					limit = {
+						ROOT = {
+							OR = { 
+								original_tag = GER
+								original_tag = AUH
+							}
+						}
+					}
+					909 = { reset_state_name = yes }
+					reset_province_name = 11516
+				}				
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 797 }
+				}
+				if = {
+					limit = {
+						ROOT = {
+							original_tag = TUR
+							
+						}
+					}
+					797 = { reset_state_name = yes }
+					reset_province_name = 9833			
+				}
+				if = {
+					limit = {
+						ROOT = {
+							original_tag = GRE
+						}
+					}
+					797 = { set_state_name = KONSTANTINOUPOLIS_STATE }
+					set_province_name = { id = 9833 name = KONSTANTINOUPOLIS_STATE }
+				}
+				if = {
+					limit = {
+						ROOT = {
+							original_tag = SOV
+						}
+					}
+					797 = { set_state_name = KONSTANTINOPOL_STATE }
+					set_province_name = { id = 9833 name = KONSTANTINOPOL_STATE }
+				}
+				if = {
+					limit = {
+						ROOT = {
+							OR = {
+								original_tag = BUL
+								original_tag = SLV 
+							}
+						}
+					}
+					797 = { set_state_name = TSARGRAD_STATE }
+					set_province_name = { id = 9833 name = TSARGRAD_STATE }
+				}
+				if = {
+					limit = {
+						ROOT = {
+							OR = { 
+								original_tag = SER
+								original_tag = MNT
+								original_tag = CRO
+								original_tag = BOS
+							}
+						}
+					}
+					797 = { set_state_name = CARIGRAD_STATE }
+					set_province_name = { id = 9833 name = CARIGRAD_STATE }
+				}
+				if = {
+					limit = {
+						ROOT = {
+							NOT = {
+								original_tag = TUR
+								original_tag = GRE
+								original_tag = RUS
+								original_tag = SOV
+								original_tag = BUL
+								original_tag = MAC
+								original_tag = SLV 
+								original_tag = SER
+								original_tag = MNT
+								original_tag = CRO
+								original_tag = BOS
+							}
+						}
+					}
+					797 = { set_state_name = CONSTANTINOPLE_STATE }
+					set_province_name = { id = 9833 name = CONSTANTINOPLE_STATE }
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 70 }
+				}
+				if = {
+					limit = {
+						ROOT = {
+							OR = {
+								original_tag = SLO
+								original_tag = CZE
+							}
+						}
+					}
+					set_province_name = { id = 9692 name = BRATISLAVA_PROVINCE }
+				}
+				if = {
+					limit = {
+						ROOT = {
+							original_tag = HUN
+						}
+					}
+					set_province_name = { id = 9692 name = POZSONY_PROVINCE }
+				}
+				if = {
+					limit = {
+						ROOT = {
+							OR = {
+								original_tag = AUH
+								original_tag = GER
+							}
+						}
+					}
+					reset_province_name = 9692
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 202 }
+				}
+				if = {
+					limit = {
+						ROOT = {
+							OR = {
+								original_tag = SOV
+								original_tag = RUS
+							}
+						}
+					}
+					202 = { set_state_name = KIEV_STATE }
+					set_province_name = { id = 525 name = KIEV_STATE }
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 202 }
+				}
+				if = {
+					limit = {
+						ROOT = {
+							original_tag = UKR
+						}
+					}
+					202 = { reset_state_name = yes }
+					reset_province_name = 525
+				}
+			}
+			#CZE-AUH PROV
+			if = {
+				limit = {
+					FROM.FROM = { state = 69 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = CZE } }
+					set_province_name = {
+						id = 11401
+						name = LIBEREC_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { OR = { original_tag = AUH original_tag = GER } } }
+					reset_province_name = 11401
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 9 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = CZE } }
+					9 = { set_state_name = BOHEMIA_STATE }
+					set_province_name = {
+						id = 6418
+						name = PLZEN_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { OR = { original_tag = AUH original_tag = GER } } }
+					9 = { reset_state_name = yes }
+					reset_province_name = 6418
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 74 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = CZE } }
+					set_province_name = {
+						id = 3583
+						name = OSTRAVA_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { OR = { original_tag = AUH original_tag = GER } } }
+					reset_province_name = 3583
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 75 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = CZE } }
+					75 = { set_state_name = MORAVIA_STATE }
+					set_province_name = {
+						id = 3569
+						name = BRNO_PROV
+					}
+					set_province_name = {
+						id = 6562
+						name = OLOMOUC_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { OR = { original_tag = AUH original_tag = GER } } }
+					75 = { reset_state_name = yes }
+					reset_province_name = 3569
+					reset_province_name = 6562
+				}
+			}
+			#SLO-AUH PROV
+			if = {
+				limit = {
+					FROM.FROM = { state = 70 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = SLO } }
+					set_province_name = {
+						id = 11539
+						name = ZILINA_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = HUN } }
+					set_province_name = {
+						id = 11539
+						name = ZSOLNA_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { OR = { original_tag = SLO original_tag = AUH original_tag = GER } } }
+					reset_province_name = 11539
+				}
+			}
+			#SLV-AUH PROV
+			if = {
+				limit = {
+					FROM.FROM = { state = 102 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = SLV } }
+					set_province_name = {
+						id = 665
+						name = MARIBOR_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { OR = { original_tag = AUH original_tag = GER } } }
+					reset_province_name = 665
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 853 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = SLV } }
+					853 = { set_state_name = LJUBLJANA_PROV }
+					set_province_name = {
+						id = 9627
+						name = LJUBLJANA_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { OR = { original_tag = AUH original_tag = GER } } }
+					853 = { reset_state_name = yes }
+					reset_province_name = 9627
+				}
+			}
+			#CRO-AUH PROV
+			if = {
+				limit = {
+					FROM.FROM = { state = 109 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = CRO } }
+					set_province_name = {
+						id = 11581
+						name = ZAGREB_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { OR = { original_tag = AUH original_tag = GER } } }
+					reset_province_name = 11581
+				}
+			}
+			#Korea-Japan PROV
+			if = {
+				limit = {
+					FROM.FROM = { state = 527 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					527 = { set_state_name = HWANGHAEDO_STATE }
+					set_province_name = {
+						id = 4107
+						name = HAEJU_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					527 = { reset_state_name = yes }
+					reset_province_name = 4107
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 525 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					525 = { set_state_name = JEOLLANAMDO_STATE }
+					set_province_name = {
+						id = 10110
+						name = GWANGJU_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					525 = { reset_state_name = yes }
+					reset_province_name = 10110
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 946 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					946 = { set_state_name = HAMGYEONGBUKDO_STATE }
+					set_province_name = {
+						id = 6944
+						name = NASEON_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					946 = { reset_state_name = yes }
+					reset_province_name = 6944
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 947 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					947 = { set_state_name = HAMGYEONGNAMDO_STATE }
+					set_province_name = {
+						id = 3981
+						name = HAMHEUNG_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					947 = { reset_state_name = yes }
+					reset_province_name = 3981
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 948 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					948 = { set_state_name = PYEONGANBUKDO_STATE }
+					set_province_name = {
+						id = 11835
+						name = SHINUIJU_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					948 = { reset_state_name = yes }
+					reset_province_name = 11835
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 949 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					949 = { set_state_name = PYEONGANNAMDO_STATE }
+					set_province_name = {
+						id = 10065
+						name = PYONGYANG_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					949 = { reset_state_name = yes }
+					reset_province_name = 10065
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 950 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					950 = { set_state_name = GYEONGGIDO_STATE }
+					set_province_name = {
+						id = 7125
+						name = SEOUL_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					950 = { reset_state_name = yes }
+					reset_province_name = 7125
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 951 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					951 = { set_state_name = GANGWONDO_STATE }
+					set_province_name = {
+						id = 1148
+						name = GANGNEUNG_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					951 = { reset_state_name = yes }
+					reset_province_name = 1148
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 952 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					952 = { set_state_name = GYEONGSANGBUKDO_STATE }
+					set_province_name = {
+						id = 4086
+						name = DAEGU_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					952 = { reset_state_name = yes }
+					reset_province_name = 4086
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 953 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					953 = { set_state_name = GYEONGSANGNAMDO_STATE }
+					set_province_name = {
+						id = 13259
+						name = BUSAN_PROV
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					953 = { reset_state_name = yes }
+					reset_province_name = 13259
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 954 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					954 = { set_state_name = CHUNGCHEONGNAMDO_STATE }
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					954 = { reset_state_name = yes }
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 955 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					955 = { set_state_name = CHUNGCHEONGBUKDO_STATE }
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					955 = { reset_state_name = yes }
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 956 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = KOR } }
+					956 = { set_state_name = JEOLLABUKDO_STATE }
+				}
+				if = {
+					limit = { ROOT = { original_tag = JAP } }
+					956 = { reset_state_name = yes }
+				}
+			}
+			#Rrssia-Soviet PROV
+			if = {
+				limit = {
+					FROM.FROM = { state = 195 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = RUS } }
+					195 = { set_state_name = PETROGRAD_STATE }
+					set_province_name = {
+						id = 3151
+						name = PETROGRAD_STATE
+					}
+				}
+				if = {
+					limit = { ROOT = { original_tag = SOV } }
+					195 = { reset_state_name = yes }
+					reset_province_name = 3151
+				}
+			}
+			#POL PROV
+			if = {
+				limit = {
+					FROM.FROM = { state = 88 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = POL } }
+					88 = { set_state_name = KRAKOW_STATE }
+					set_province_name = {
+						id = 442
+						name = TARNOW_PROV
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							OR = {
+								original_tag = GER
+								original_tag = AUH
+							}
+						}
+					}
+					88 = { reset_state_name = yes }
+					reset_province_name = 442
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 98 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = POL } }
+					98 = { set_state_name = PLOCK_STATE }
+					set_province_name = {
+						id = 3230
+						name = PLOCK_STATE
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							OR = {
+								original_tag = GER
+								original_tag = AUH
+							}
+						}
+					}
+					98 = { reset_state_name = yes }
+					reset_province_name = 3230
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = { state = 87 }
+				}
+				if = {
+					limit = { ROOT = { original_tag = POL } }
+					87 = { set_state_name = LEZIONA_STATE }
+					set_province_name = {
+						id = 9427
+						name = LEZIONA_STATE
+					}
+				}
+				if = {
+					limit = {
+						ROOT = {
+							OR = {
+								original_tag = GER
+								original_tag = AUH
+							}
+						}
+					}
+					87 = { reset_state_name = yes }
+					reset_province_name = 9427
+				}
+			}
+		}
+	}
+}

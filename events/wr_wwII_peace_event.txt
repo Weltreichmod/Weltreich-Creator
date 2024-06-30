@@ -1,0 +1,3295 @@
+##################
+#Peace Event WWII
+##################
+
+add_namespace = wrwpe
+
+country_event = {
+	id = wrwpe.1
+	title = wrwpe.1.t
+	desc = wrwpe.1.d
+	picture = agreement_picture
+	trigger = {
+		tag = ENT
+		has_war_with = REI
+		surrender_progress < 0.10
+		is_faction_leader = yes
+		OR = {
+			original_tag = ENG
+			NOT = { capital_scope = { is_on_continent = europe } }
+		}
+		NOT = {
+			any_allied_country = {
+				capital_scope = { is_on_continent = europe }
+				has_capitulated = no
+				NOT = { original_tag = ENG }
+				NOT = { original_tag = ICE }
+				NOT = { original_tag = IRE }
+			}
+		}
+		REI = {
+			surrender_progress < 0.15
+			is_faction_leader = yes
+		}
+	}
+	mean_time_to_happen = {
+		days = 100
+		modifier = {
+			OR = {
+				USA = { is_in_faction_with = ENT }
+				ENT = { original_tag = USA }
+			}
+			days = 700
+		}
+	}
+	fire_only_once = yes
+	option = { #Peace
+		name = wrwpe.1.a
+		REI = { country_event = wrwpe.2 }
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = { #No peace
+		name = wrwpe.1.b
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = 100
+				original_tag = USA
+			}
+		}
+	}
+}
+
+country_event = {
+	id = wrwpe.2
+	title = wrwpe.2.t
+	desc = wrwpe.2.d
+	picture = agreement_picture
+	is_triggered_only = yes
+	option = { #Peace
+		name = wrwpe.2.a
+		effect_tooltip = {
+			every_country = {
+				limit = {
+					is_in_faction_with = ENT
+					has_capitulated = no
+				}
+				white_peace = {
+					tag = REI
+					message = honorable_peace
+				}
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = ENT
+					has_capitulated = yes
+					NOT = {
+						has_country_flag = second_great_war_winner
+					}
+				}
+				set_country_flag = second_great_war_loser
+				leave_faction = yes
+			}
+		}
+		ENT = { country_event = wrwpe.3 }
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = { #No peace
+		name = wrwpe.2.b
+		ENT = { country_event = wrwpe.4 }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = wrwpe.3
+	title = wrwpe.3.t
+	desc = wrwpe.3.d
+	picture = agreement_picture
+	is_triggered_only = yes
+	option = { #Peace
+		name = wrwpe.3.a
+		set_global_flag = honorable_peace_flag
+		clr_global_flag = second_world_war
+		set_global_flag = second_great_war_ends
+		every_country = {
+			limit = {
+				is_in_faction_with = ENT
+				has_capitulated = yes
+				NOT = {
+					has_country_flag = second_great_war_winner
+				}
+			}
+			set_country_flag = second_great_war_loser
+		}
+		every_country = {
+			limit = {
+				OR = {
+					tag = REI
+					is_in_faction_with = REI
+					is_subject_of = REI
+					has_war_with = ENT
+				}
+				NOT = {
+					has_country_flag = second_great_war_loser
+				}
+			}
+			set_country_flag = second_great_war_winner
+		}
+		every_country = {
+			limit = {
+				is_in_faction_with = ENT
+				is_government_in_exile = yes
+			}
+			end_exile = yes
+		}
+		every_country = {
+			limit = {
+				is_in_faction_with = ENT
+			}
+			white_peace = {
+				tag = REI
+				message = honorable_peace
+			}
+		}
+		every_country = {
+			limit = {
+				is_in_faction_with = ENT
+				has_country_flag = second_great_war_loser
+			}
+			leave_faction = yes
+		}
+		hidden_effect = {
+			if = {
+				limit = {
+					any_country = {
+						original_tag = USA
+						controls_state = 276
+						controls_state = 468
+						controls_state = 473
+					}
+					all_country = {
+						NOT = { has_country_flag = defeat_canada_flag }
+					}
+				}
+				set_global_flag = USA_cap_CAN
+			}
+			every_country = {
+				limit = {
+					has_country_flag = second_great_war_loser
+					is_subject = no
+				}
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+			}
+			if = {
+				limit = {
+					FRA = { has_country_flag = second_great_war_loser }
+				}
+				FRA = {
+					retire_country_leader = yes
+					FRA_philippe_petain = {
+						add_country_leader_role = {
+							promote_leader = yes
+							country_leader = {
+								ideology = despotism
+							}
+						}
+					}
+					set_politics = {
+						ruling_party = neutrality
+						election_frequency = 48
+						elections_allowed = yes
+					}
+					add_popularity = {
+						ideology = neutrality
+						popularity = 0.15
+					}
+					set_cosmetic_tag = FRA_petain
+				}
+			}
+			news_event = wr_news.4
+		}
+		peace_conference_effect = yes
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+country_event = {
+	id = wrwpe.4
+	title = wrwpe.4.t
+	desc = wrwpe.4.d
+	picture = agreement_picture
+	is_triggered_only = yes
+	option = { #No Peace
+		name = wrwpe.4.a
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+#fate of france
+country_event = {
+	id = wrwpe.5
+	title = wrwpe.5.t
+	desc = wrwpe.5.d
+	picture = france_map
+	is_triggered_only = yes
+	option = {
+		name = wrwpe.5.a
+		create_dynamic_country = {
+			original_tag = FRA
+			set_capital = { state = 928 }
+			set_cosmetic_tag = FRG
+			if = {
+				limit = {
+					GER = {
+						has_government = neutrality
+					}
+				}
+				create_country_leader = {
+					name = "GER_victoria"
+					picture = "gfx/leaders/GER/GER_Victoria_Louise.png"
+					ideology = autocracy
+					traits = { Imperial_connections }
+				}
+			}
+			create_country_leader = {
+				name = "GER_alfred_jodl"
+				picture = "GFX_portrait_GER_alfred_jodl" 
+				ideology = fascism_ideology
+				traits = { foreign_leader allegiance_to_germany }
+			}
+			create_country_leader = {
+				name = "FRA_gouvernement_provisoire"
+				picture = "gfx/leaders/FRA/FRA_provisional_government.png"
+				ideology = conservatism
+				traits = {
+					allegiance_to_germany
+				}
+			}
+			create_country_leader = {
+				name = "FRA_gouvernement_provisoire"
+				picture = "gfx/leaders/FRA/FRA_provisional_government.png"
+				ideology = syndicalism
+				traits = {
+					allegiance_to_germany
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				OR = {
+					state = 17
+					state = 18
+					state = 785
+					state = 928
+					state = 27
+					state = 16
+					state = 24
+					state = 15
+					state = 30
+					state = 14
+					state = 23
+				}
+			}
+			transfer_state_to = FRG
+			add_core_of = FRG
+			remove_core_of = FRA
+		}
+		FRG = {
+			inherit_technology = FRA
+			division_template = {
+				name = "Infantry Division"
+				division_names_group = FRA_INF_01
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 } 
+					engineer = { x = 0 y = 1 }
+				}
+			}
+			division_template = {
+				name = "Cavalry Division"
+				division_names_group = FRA_CAV_01
+				regiments = {
+					cavalry = { x = 0 y = 0 }
+					cavalry = { x = 0 y = 1 }
+					cavalry = { x = 1 y = 0 }
+					cavalry = { x = 1 y = 1 }
+				}
+				support = {
+					recon = { x = 0 y = 0 }
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = FRG
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = FRG
+			}
+		}
+		country_event = wrwpe.9
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.5.b
+		FRA = {
+			set_capital = { state = 26 }
+		}
+		create_dynamic_country = {
+			original_tag = FRA
+			set_capital = { state = 928 }
+			set_cosmetic_tag = FRG
+			if = {
+				limit = {
+					GER = {
+						has_government = neutrality
+					}
+				}
+				create_country_leader = {
+					name = "GER_victoria"
+					picture = "gfx/leaders/GER/GER_Victoria_Louise.png"
+					ideology = autocracy
+					traits = { Imperial_connections }
+				}
+			}
+			create_country_leader = {
+				name = "GER_alfred_jodl"
+				picture = "GFX_portrait_GER_alfred_jodl" 
+				ideology = fascism_ideology
+				traits = { foreign_leader allegiance_to_germany }
+			}
+			create_country_leader = {
+				name = "FRA_gouvernement_provisoire"
+				picture = "gfx/leaders/FRA/FRA_provisional_government.png"
+				ideology = conservatism
+				traits = {
+					allegiance_to_germany
+				}
+			}
+			create_country_leader = {
+				name = "FRA_gouvernement_provisoire"
+				picture = "gfx/leaders/FRA/FRA_provisional_government.png"
+				ideology = syndicalism
+				traits = {
+					allegiance_to_germany
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+			}
+			transfer_state_to = FRG
+			add_core_of = FRG
+			remove_core_of = FRA
+		}
+		FRG = {
+			inherit_technology = FRA
+			division_template = {
+				name = "Infantry Division"
+				division_names_group = FRA_INF_01
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 } 
+					engineer = { x = 0 y = 1 }
+				}
+			}
+			division_template = {
+				name = "Cavalry Division"
+				division_names_group = FRA_CAV_01
+				regiments = {
+					cavalry = { x = 0 y = 0 }
+					cavalry = { x = 0 y = 1 }
+					cavalry = { x = 1 y = 0 }
+					cavalry = { x = 1 y = 1 }
+				}
+				support = {
+					recon = { x = 0 y = 0 }
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = FRG
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = FRG
+			}
+		}
+		country_event = wrwpe.9
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = wrwpe.5.c
+		annex_country = { target = FRA transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of italy
+country_event = {
+	id = wrwpe.6
+	title = wrwpe.6.t
+	desc = wrwpe.6.d
+	picture = italy_map
+	is_triggered_only = yes
+	option = {
+		name = wrwpe.6.a
+		#free coloies
+		every_state = {
+			limit = {
+				is_owned_by = ITA
+				is_core_of = ETH
+			}
+			transfer_state_to = ETH
+			remove_core_of = ITA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ITA
+				is_core_of = SOM
+			}
+			transfer_state_to = SOM
+			remove_core_of = ITA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ITA
+				is_core_of = PAP
+			}
+			transfer_state_to = PAP
+			remove_core_of = ITA
+		}
+		SPM = {
+			inherit_technology = ITA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ITA
+				is_core_of = EMI
+			}
+			transfer_state_to = EMI
+			remove_core_of = ITA
+		}
+		EMI = {
+			inherit_technology = ITA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ITA
+				is_core_of = TOS
+			}
+			transfer_state_to = TOS
+			remove_core_of = ITA
+		}
+		TOS = {
+			inherit_technology = ITA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ITA
+				is_core_of = TTS
+			}
+			transfer_state_to = TTS
+			remove_core_of = ITA
+		}
+		TTS = {
+			inherit_technology = ITA
+		}
+		SPM = { annex_country = { target = ITA transfer_troops = no } }
+		every_state = {
+			limit = {
+				is_core_of = ITA
+			}
+			remove_core_of = ITA
+		}
+		if = {
+			limit = {
+				SPM = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SPM
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SPM
+				}
+			}
+		}
+		if = {
+			limit = {
+				EMI = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = EMI
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = EMI
+				}
+			}
+		}
+		if = {
+			limit = {
+				TOS = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = TOS
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = TOS
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				OR = {
+					tag = REI
+					is_in_faction_with = REI
+				}
+				base = 100
+			}
+		}
+	}
+	option = {
+		name = wrwpe.6.b
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = ITA
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = ITA
+			}
+		}
+		#free coloies
+		every_state = {
+			limit = {
+				is_owned_by = ITA
+				is_core_of = ETH
+			}
+			transfer_state_to = ETH
+			remove_core_of = ITA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ITA
+				is_core_of = SOM
+			}
+			transfer_state_to = SOM
+			remove_core_of = ITA
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				OR = {
+					tag = ENT
+					is_in_faction_with = ENT
+				}
+				base = 100
+			}
+		}
+	}
+	option = {
+		name = wrwpe.6.c
+		annex_country = { target = ITA transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+#fate of britain
+country_event = {
+	id = wrwpe.7
+	title = wrwpe.7.t
+	desc = wrwpe.7.d
+	picture = britain_map
+	is_triggered_only = yes
+	option = {
+		name = wrwpe.7.a
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = ENG
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = ENG
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = SCO
+			}
+			transfer_state_to = SCO
+		}
+		SCO = {
+			inherit_technology = ENG
+		}
+		ENG = {
+			set_cosmetic_tag = ENG_SUB
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.7.b
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = ENG
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = ENG
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = SCO
+			}
+			transfer_state_to = SCO
+		}
+		SCO = {
+			inherit_technology = ENG
+		}
+		if = {
+			limit = {
+				SCO = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SCO
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SCO
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = WLS
+			}
+			transfer_state_to = WLS
+		}
+		WLS = {
+			inherit_technology = ENG
+		}
+		if = {
+			limit = {
+				WLS = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = WLS
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = WLS
+				}
+			}
+		}
+		ENG = {
+			set_cosmetic_tag = ENG_SUB
+		}
+		ai_chance = {
+			base = 50
+		}
+	}
+	option = {
+		name = wrwpe.7.c
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = ENG
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = ENG
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = wrwpe.7.e
+		annex_country = { target = ENG transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+#fate of austria hungary
+country_event = {
+	id = wrwpe.8
+	title = wrwpe.8.t
+	desc = wrwpe.8.d
+	picture = austria_hungary_map
+	is_triggered_only = yes
+	option = {
+		name = wrwpe.8.a
+		if = {
+			limit = {
+				SER = {
+					is_subject_of = AUH
+				}
+				AUH = {
+					end_puppet = SER
+				}
+			}
+		}
+		if = {
+			limit = {
+				SER = {
+					is_subject_of = ALB
+				}
+				ALB = {
+					end_puppet = SER
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = CZE
+			}
+			transfer_state_to = CZE
+		}
+		CZE = {
+			inherit_technology = AUH
+			set_politics = {
+				ruling_party = democratic
+				election_frequency = 48
+				elections_allowed = yes
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = SLO
+			}
+			transfer_state_to = SLO
+		}
+		SLO = {
+			inherit_technology = AUH
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = POL
+			}
+			transfer_state_to = POL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = UKR
+			}
+			transfer_state_to = UKR
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = ROM
+			}
+			transfer_state_to = ROM
+		}
+		if = {
+			limit = {
+				SER = {
+					exists = yes
+					NOT = { has_country_flag = second_great_war_loser }
+				}
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					OR = {
+						state = 764
+						state = 45
+						state = 109
+						state = 104
+						state = 804
+						state = 105
+						state = 103
+						state = 163
+					}
+				}
+				add_core_of = SER
+				transfer_state_to = SER
+			}
+			else = {
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						is_core_of = CRO
+					}
+					transfer_state_to = CRO
+				}
+				CRO = {
+					inherit_technology = AUH
+				}
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						is_core_of = BOS
+					}
+					transfer_state_to = BOS
+				}
+				BOS = {
+					inherit_technology = AUH
+				}
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						is_core_of = MNT
+					}
+					transfer_state_to = MNT
+				}
+				MNT = {
+					inherit_technology = AUH
+				}
+				if = {
+					limit = {
+						SER = { exists = yes }
+					}
+					every_state = {
+						limit = {
+							is_owned_by = AUH
+							state = 764
+						}
+						transfer_state_to = SER
+					}
+					else = {
+						every_state = {
+							limit = {
+								is_owned_by = AUH
+								state = 764
+							}
+							transfer_state_to = HUN
+						}
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = HUN
+				NOT = { state = 933 }
+			}
+			transfer_state_to = HUN
+		}
+		HUN = {
+			inherit_technology = AUH
+		}
+		if = {
+			limit = {
+				AUH = { exists = yes }
+			}
+			AUS = {
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				annex_country = { target = AUH transfer_troops = yes }
+				inherit_technology = AUH
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUS
+				}
+				add_core_of = AUS
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = AUS
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = AUS
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = AUH
+			}
+			remove_core_of = AUH
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.8.b
+		if = {
+			limit = {
+				SER = {
+					is_subject_of = AUH
+				}
+				AUH = {
+					end_puppet = SER
+				}
+			}
+		}
+		if = {
+			limit = {
+				SER = {
+					is_subject_of = ALB
+				}
+				ALB = {
+					end_puppet = SER
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = CZE
+			}
+			transfer_state_to = CZE
+		}
+		CZE = {
+			inherit_technology = AUH
+			set_politics = {
+				ruling_party = democratic
+				election_frequency = 48
+				elections_allowed = yes
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = SLO
+			}
+			transfer_state_to = SLO
+		}
+		SLO = {
+			inherit_technology = AUH
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = POL
+			}
+			transfer_state_to = POL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = UKR
+			}
+			transfer_state_to = UKR
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = ROM
+			}
+			transfer_state_to = ROM
+		}
+		if = {
+			limit = {
+				SER = {
+					exists = yes
+					NOT = { has_country_flag = second_great_war_loser }
+				}
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					OR = {
+						state = 764
+						state = 45
+						state = 109
+						state = 104
+						state = 804
+						state = 105
+						state = 103
+						state = 163
+					}
+				}
+				add_core_of = SER
+				transfer_state_to = SER
+			}
+			else = {
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						is_core_of = CRO
+					}
+					transfer_state_to = CRO
+				}
+				CRO = {
+					inherit_technology = AUH
+				}
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						is_core_of = BOS
+					}
+					transfer_state_to = BOS
+				}
+				BOS = {
+					inherit_technology = AUH
+				}
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						is_core_of = MNT
+					}
+					transfer_state_to = MNT
+				}
+				MNT = {
+					inherit_technology = AUH
+				}
+				if = {
+					limit = {
+						SER = { exists = yes }
+					}
+					every_state = {
+						limit = {
+							is_owned_by = AUH
+							state = 764
+						}
+						transfer_state_to = SER
+					}
+					else = {
+						every_state = {
+							limit = {
+								is_owned_by = AUH
+								state = 764
+							}
+							transfer_state_to = HUN
+						}
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				is_core_of = HUN
+				NOT = { state = 933 }
+			}
+			transfer_state_to = HUN
+		}
+		if = {
+			limit = {
+				AUH = { exists = yes }
+			}
+			AUS = {
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				annex_country = { target = AUH transfer_troops = yes }
+				inherit_technology = AUH
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUS
+				}
+				add_core_of = AUS
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = AUS
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = AUS
+				}
+			}
+		}
+		if = {
+			limit = {
+				HUN = { exists = yes }
+			}
+			HUN = {
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				inherit_technology = AUH
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = HUN
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = HUN
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_core_of = AUH
+			}
+			remove_core_of = AUH
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.8.c
+		annex_country = { target = AUH transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of french africa
+country_event = {
+	id = wrwpe.9
+	title = wrwpe.9.t
+	desc = wrwpe.9.d
+	picture = GFX_report_event_african_soldiers
+	is_triggered_only = yes
+	option = {
+		name = wrwpe.9.a
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				OR = {
+					state = 779
+					state = 780
+					state = 778
+					state = 556
+					state = 781
+					state = 967
+					state = 775
+					state = 515
+					state = 898
+					state = 899
+					state = 272
+					state = 557
+					state = 786
+					state = 782
+					state = 514
+					state = 513
+					state = 665
+					state = 458
+					state = 460
+					state = 459
+				}
+			}
+			transfer_state_to = WAA
+			add_core_of = WAA
+		}
+		if = {
+			limit = {
+				ENG = { has_country_flag = second_great_war_loser }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ENG
+					OR = {
+						state = 700
+						state = 701
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				WAA = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = WAA
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = WAA
+				}
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = wrwpe.9.b
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = ALG
+			}
+			transfer_state_to = ALG
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = TUN
+			}
+			transfer_state_to = TUN
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				OR = {
+					state = 779
+					state = 780
+					state = 778
+					state = 556
+					state = 781
+					state = 967
+					state = 775
+					state = 515
+					state = 898
+					state = 899
+					state = 272
+					state = 557
+					state = 786
+					state = 782
+				}
+			}
+			transfer_state_to = WAA
+			add_core_of = WAA
+		}
+		if = {
+			limit = {
+				ENG = { has_country_flag = second_great_war_loser }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ENG
+					OR = {
+						state = 700
+						state = 701
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				WAA = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = WAA
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = WAA
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = wrwpe.9.c
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = ALG
+			}
+			transfer_state_to = ALG
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = TUN
+			}
+			transfer_state_to = TUN
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = MRT
+			}
+			transfer_state_to = MRT
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = SEN
+			}
+			transfer_state_to = SEN
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = MLI
+			}
+			transfer_state_to = MLI
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = GNA
+			}
+			transfer_state_to = GNA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = IVO
+			}
+			transfer_state_to = IVO
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = VOL
+			}
+			transfer_state_to = VOL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = NGR
+			}
+			transfer_state_to = NGR
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = CHA
+			}
+			transfer_state_to = CHA
+		}
+		if = {
+			limit = {
+				ENG = { has_country_flag = second_great_war_loser }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ENG
+					is_core_of = GAM
+				}
+				transfer_state_to = GAM
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ENG
+					is_core_of = SIE
+				}
+				transfer_state_to = SIE
+			}
+		}
+		ai_chance = {
+			base = 1
+			modifier = {
+				base = 100
+				has_government = democratic
+			}
+		}
+	}
+}
+
+#fate of usa
+country_event = {
+	id = wrwpe.10
+	title = wrwpe.10.t
+	desc = wrwpe.10.d
+	is_triggered_only = yes
+	picture = usa_map
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					is_owned_by = USA
+					state = 685
+				}
+				transfer_state_to = ROOT
+			}
+		}
+	}
+	option = {
+		name = wrwpe.10.a
+		create_dynamic_country = {
+			original_tag = USA
+			every_state = {
+				limit = {
+					is_core_of = USA
+				}
+				add_core_of = SFF
+			}
+			inherit_technology = USA
+			set_capital = { state = 375 }
+			set_cosmetic_tag = SFF
+			add_timed_idea = { idea = war_reparations days = 1000 }
+			add_ideas = peace_treaty
+			hidden_effect = {
+				create_country_leader = {
+					name = "SFF_government"
+					picture = "gfx/leaders/USA/SFF_government.png"
+					expire = "1965.1.1"
+					ideology = liberalism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "SFF_government"
+					picture = "gfx/leaders/USA/SFF_government.png"
+					expire = "1965.1.1"
+					ideology = marxism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "SFF_government"
+					picture = "gfx/leaders/USA/SFF_government.png"
+					expire = "1965.1.1"
+					ideology = ethnic_nationalism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "SFF_government"
+					picture = "gfx/leaders/USA/SFF_government.png"
+					expire = "1965.1.1"
+					ideology = despotism
+					traits = {
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = USA
+				OR = {
+					state = 375
+					state = 371
+					state = 370
+					state = 367
+					state = 366
+					state = 365
+					state = 364
+					state = 374
+					state = 372
+					state = 368
+					state = 363
+					state = 362
+				}
+			}
+			transfer_state_to = SFF
+		}
+		create_dynamic_country = {
+			original_tag = USA
+			every_state = {
+				limit = {
+					is_core_of = USA
+				}
+				add_core_of = UWS
+			}
+			inherit_technology = USA
+			set_capital = { state = 378 }
+			set_cosmetic_tag = UWS
+			add_timed_idea = { idea = war_reparations days = 1000 }
+			add_ideas = peace_treaty
+			hidden_effect = {
+				create_country_leader = {
+					name = "UWS_government"
+					picture = "gfx/leaders/USA/UWS_government.png"
+					expire = "1965.1.1"
+					ideology = liberalism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "UWS_government"
+					picture = "gfx/leaders/USA/UWS_government.png"
+					expire = "1965.1.1"
+					ideology = marxism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "UWS_government"
+					picture = "gfx/leaders/USA/UWS_government.png"
+					expire = "1965.1.1"
+					ideology = ethnic_nationalism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "UWS_government"
+					picture = "gfx/leaders/USA/UWS_government.png"
+					expire = "1965.1.1"
+					ideology = despotism
+					traits = {
+					}
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = USA
+				OR = {
+					state = 378
+					state = 377
+					state = 376
+					state = 379
+					state = 380
+					state = 382
+					state = 385
+					state = 387
+					state = 386
+					state = 381
+					state = 388
+					state = 463
+					state = 650
+					state = 629
+					state = 727
+					state = 630
+					state = 642
+					state = 631
+					state = 632
+					state = 638
+				}
+			}
+			transfer_state_to = UWS
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = USA
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = USA
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = SFF
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = SFF
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = UWS
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = UWS
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.10.b
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = USA
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = USA
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = wrwpe.10.c
+		annex_country = { target = USA transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of ottoman
+country_event = {
+	id = wrwpe.11
+	title = wrwpe.11.t
+	desc = wrwpe.11.d
+	is_triggered_only = yes
+	picture = ottoman_map
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					is_owned_by = TUR
+					is_core_of = HJZ
+				}
+				transfer_state_to = HJZ
+			}
+			every_state = {
+				limit = {
+					is_owned_by = TUR
+					is_core_of = SYR
+				}
+				transfer_state_to = SYR
+			}
+			every_state = {
+				limit = {
+					is_owned_by = TUR
+					is_core_of = IRQ
+				}
+				transfer_state_to = IRQ
+			}
+			every_state = {
+				limit = {
+					is_owned_by = TUR
+					is_core_of = KUW
+				}
+				transfer_state_to = KUW
+			}
+			every_state = {
+				limit = {
+					is_owned_by = TUR
+					is_core_of = QAT
+				}
+				transfer_state_to = QAT
+			}
+			every_state = {
+				limit = {
+					is_owned_by = TUR
+					is_core_of = UAE
+				}
+				transfer_state_to = UAE
+			}
+			every_state = {
+				limit = {
+					is_owned_by = TUR
+					is_core_of = YEM
+				}
+				transfer_state_to = YEM
+			}
+			every_state = {
+				limit = {
+					is_owned_by = TUR
+					is_core_of = LBA
+				}
+				transfer_state_to = LBA
+			}
+			every_state = {
+				limit = {
+					is_owned_by = TUR
+					is_core_of = EGY
+				}
+				transfer_state_to = EGY
+			}
+		}
+	}
+	option = {
+		name = wrwpe.11.a
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = TUR
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = TUR
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = wrwpe.11.b
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = TUR
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = TUR
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = TUR
+				is_core_of = KUR
+			}
+			transfer_state_to = KUR
+		}
+		every_state = {
+			limit = {
+				is_owned_by = TUR
+				is_core_of = ARM
+			}
+			transfer_state_to = ARM
+		}
+		every_state = {
+			limit = {
+				is_owned_by = TUR
+				is_core_of = GEO
+			}
+			transfer_state_to = GEO
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.11.c
+		annex_country = { target = TUR transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of spain
+country_event = {
+	id = wrwpe.12
+	title = wrwpe.12.t
+	desc = wrwpe.12.d
+	is_triggered_only = yes
+	picture = spain_map
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					has_global_flag = nationalist_victory
+					SPA = { exists = yes }
+				}
+				every_state = {
+					limit = {
+						is_owned_by = SPA
+						OR = {
+							NOT = { is_core_of = SPA }
+							state = 118
+						}
+					}
+					transfer_state_to = ROOT
+				}
+			}
+			else = {
+				every_state = {
+					limit = {
+						is_owned_by = SPR
+						OR = {
+							NOT = { is_core_of = SPR }
+							state = 118
+						}
+					}
+					transfer_state_to = ROOT
+				}
+			}
+		}
+	}
+	option = {
+		name = wrwpe.12.a
+		trigger = {
+			any_state = {
+				is_core_of = CAT
+				OR = {
+					is_owned_by = SPA
+					is_owned_by = SPR
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_global_flag = nationalist_victory
+				SPA = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SPA
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SPA
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SPR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SPR
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					is_owned_by = SPA
+					is_owned_by = SPR
+				}
+				is_core_of = CAT
+			}
+			transfer_state_to = CAT
+		}
+		if = {
+			limit = {
+				has_global_flag = nationalist_victory
+			}
+			CAT = {
+				inherit_technology = SPA
+			}
+		}
+		else = {
+			CAT = {
+				inherit_technology = SPR
+			}
+		}
+		if = {
+			limit = {
+				CAT = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = CAT
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = CAT
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = wrwpe.12.b
+		if = {
+			limit = {
+				has_global_flag = nationalist_victory
+				SPA = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SPA
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SPA
+				}
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SPR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SPR
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.12.c
+		annex_country = { target = SPR transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of germany - sov rus
+country_event = {
+	id = wrwpe.13
+	title = wrwpe.13.t
+	desc = wrwpe.13.d
+	is_triggered_only = yes
+	picture = germany_map
+	option = {
+		name = wrwpe.13.a
+		trigger = {
+			if = {
+				limit = {
+					original_tag = SOV
+				}
+				has_global_flag = fall_of_berlin_by_SOV
+			}
+			if = {
+				limit = {
+					original_tag = RUS
+				}
+				has_global_flag = fall_of_berlin_by_RUS
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ROOT
+				OR = {
+					state = 68
+					state = 63
+					state = 66
+					state = 67
+					state = 762
+					state = 86
+					state = 85
+					state = 807
+					state = 5
+				}
+			}
+			transfer_state_to = POL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ROOT
+				is_core_of = GER
+				NOT = {
+					state = 188
+					state = 763
+				}
+			}
+			add_core_of = DDR
+			remove_core_of = DDR
+			transfer_state_to = DDR
+		}
+		if = {
+			limit = {
+				DDR = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = DDR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = DDR
+				}
+			}
+			DDR = {
+				inherit_technology = GER
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+			}
+			if = {
+				limit = { ROOT = { original_tag = RUS } }
+				DDR = { set_cosmetic_tag = GER_prussia }
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.13.b
+		trigger = {
+			if = {
+				limit = {
+					original_tag = SOV
+				}
+				NOT = { has_global_flag = fall_of_berlin_by_SOV }
+			}
+			if = {
+				limit = {
+					original_tag = RUS
+				}
+				NOT = { has_global_flag = fall_of_berlin_by_RUS }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ROOT
+				OR = {
+					state = 68
+					state = 63
+					state = 66
+					state = 67
+					state = 762
+					state = 86
+					state = 85
+					state = 807
+					state = 5
+				}
+			}
+			transfer_state_to = POL
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.13.c
+		every_state = {
+			limit = {
+				is_owned_by = ROOT
+				is_core_of = GER
+				NOT = { state = 188 }
+			}
+			add_core_of = DDR
+			remove_core_of = DDR
+			transfer_state_to = DDR
+		}
+		if = {
+			limit = {
+				DDR = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = DDR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = DDR
+				}
+			}
+			DDR = {
+				inherit_technology = GER
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+			}
+			if = {
+				limit = { ROOT = { original_tag = RUS } }
+				DDR = { set_cosmetic_tag = GER_prussia }
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.13.e
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of germany - fra
+country_event = {
+	id = wrwpe.14
+	title = wrwpe.14.t
+	desc = wrwpe.14.d
+	is_triggered_only = yes
+	picture = germany_map
+	option = {
+		name = wrwpe.14.a
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				NOT = {
+					is_core_of = FRA
+					is_claimed_by = FRA
+				}
+				is_core_of = BAY
+			}
+			transfer_state_to = BAY
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				NOT = {
+					is_core_of = FRA
+					is_claimed_by = FRA
+				}
+				is_core_of = WUR
+			}
+			transfer_state_to = WUR
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				NOT = {
+					is_core_of = FRA
+					is_claimed_by = FRA
+				}
+				is_core_of = BAD
+			}
+			transfer_state_to = BAD
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				NOT = {
+					is_core_of = FRA
+					is_claimed_by = FRA
+				}
+				OR = {
+					is_core_of = HAN
+					is_core_of = OLD
+				}
+			}
+			transfer_state_to = HAN
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				NOT = {
+					is_core_of = FRA
+					is_claimed_by = FRA
+				}
+				is_core_of = SHL
+			}
+			transfer_state_to = SHL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				NOT = {
+					is_core_of = FRA
+					is_claimed_by = FRA
+				}
+				is_core_of = GER
+			}
+			transfer_state_to = GER
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = GER
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = GER
+			}
+		}
+		if = {
+			limit = {
+				USA = { has_country_flag = second_great_war_winner }
+			}
+			USA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = BAY
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = BAY
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = BAY
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = BAY
+			}
+		}
+		if = {
+			limit = {
+				BAY = { exists = yes }
+				BAY = { is_subject_of = USA }
+			}
+			BAY = {
+				inherit_technology = GER
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				retire_country_leader = BAY_Rupprecht
+				hidden_effect = {
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = liberalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = marxism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = ethnic_nationalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = despotism
+						traits = {
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				BAY = { exists = yes }
+				BAY = { is_subject_of = FRA }
+			}
+			BAY = {
+				inherit_technology = GER
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				retire_country_leader = BAY_Rupprecht
+				hidden_effect = {
+					create_country_leader = {
+						name = "BAY_Paul_Ely"
+						picture = "gfx/leaders/BAY/BAY_Paul_Ely.png"
+						expire = "1965.1.1"
+						ideology = liberalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "BAY_Paul_Ely"
+						picture = "gfx/leaders/BAY/BAY_Paul_Ely.png"
+						expire = "1965.1.1"
+						ideology = marxism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "BAY_Paul_Ely"
+						picture = "gfx/leaders/BAY/BAY_Paul_Ely.png"
+						expire = "1965.1.1"
+						ideology = ethnic_nationalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "BAY_Paul_Ely"
+						picture = "gfx/leaders/BAY/BAY_Paul_Ely.png"
+						expire = "1965.1.1"
+						ideology = despotism
+						traits = {
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				WUR = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = WUR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = WUR
+				}
+			}
+			WUR = {
+				inherit_technology = GER
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				retire_country_leader = WUR_Robert_von_Wurttemberg
+				hidden_effect = {
+					create_country_leader = {
+						name = "WUR_Henri_Hoppenot"
+						picture = "gfx/leaders/WUR/WUR_Henri_Hoppenot.png"
+						expire = "1965.1.1"
+						ideology = liberalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "WUR_Henri_Hoppenot"
+						picture = "gfx/leaders/WUR/WUR_Henri_Hoppenot.png"
+						expire = "1965.1.1"
+						ideology = marxism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "WUR_Henri_Hoppenot"
+						picture = "gfx/leaders/WUR/WUR_Henri_Hoppenot.png"
+						expire = "1965.1.1"
+						ideology = ethnic_nationalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "WUR_Henri_Hoppenot"
+						picture = "gfx/leaders/WUR/WUR_Henri_Hoppenot.png"
+						expire = "1965.1.1"
+						ideology = despotism
+						traits = {
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				BAD = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = BAD
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = BAD
+				}
+			}
+			BAD = {
+				inherit_technology = GER
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				retire_country_leader = BAD_Maximilian_von_Baden
+				hidden_effect = {
+					create_country_leader = {
+						name = "BAD_Louis_Joxe"
+						picture = "gfx/leaders/FRA/BAD_Louis_Joxe.png"
+						expire = "1965.1.1"
+						ideology = liberalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "BAD_Louis_Joxe"
+						picture = "gfx/leaders/FRA/BAD_Louis_Joxe.png"
+						expire = "1965.1.1"
+						ideology = marxism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "BAD_Louis_Joxe"
+						picture = "gfx/leaders/FRA/BAD_Louis_Joxe.png"
+						expire = "1965.1.1"
+						ideology = ethnic_nationalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "BAD_Louis_Joxe"
+						picture = "gfx/leaders/FRA/BAD_Louis_Joxe.png"
+						expire = "1965.1.1"
+						ideology = despotism
+						traits = {
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				ENG = { has_country_flag = second_great_war_winner }
+			}
+			ENG = {
+				if = {
+					limit = {
+						HAN = { exists = yes }
+					}
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = HAN
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = HAN
+						}
+					}
+				}
+				if = {
+					limit = {
+						SHL = { exists = yes }
+					}
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = SHL
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = SHL
+						}
+					}
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						HAN = { exists = yes }
+					}
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = HAN
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = HAN
+						}
+					}
+				}
+				if = {
+					limit = {
+						SHL = { exists = yes }
+					}
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = SHL
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = SHL
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				SHL = { exists = yes }
+			}
+			SHL = {
+				inherit_technology = GER
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+			}
+		}
+		if = {
+			limit = {
+				HAN = { exists = yes }
+			}
+			HAN = {
+				inherit_technology = GER
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				retire_country_leader = HAN_Ernst_August_IV
+				if = {
+					limit = {
+						HAN = { is_subject_of = ENG }
+					}
+					hidden_effect = {
+						create_country_leader = {
+							name = "HAN_William_Hare"
+							picture = "gfx/leaders/ENG/HAN_William_Hare.png"
+							expire = "1965.1.1"
+							ideology = liberalism
+							traits = {
+							}
+						}
+						create_country_leader = {
+							name = "HAN_William_Hare"
+							picture = "gfx/leaders/ENG/HAN_William_Hare.png"
+							expire = "1965.1.1"
+							ideology = marxism
+							traits = {
+							}
+						}
+						create_country_leader = {
+							name = "HAN_William_Hare"
+							picture = "gfx/leaders/ENG/HAN_William_Hare.png"
+							expire = "1965.1.1"
+							ideology = ethnic_nationalism
+							traits = {
+							}
+						}
+						create_country_leader = {
+							name = "HAN_William_Hare"
+							picture = "gfx/leaders/ENG/HAN_William_Hare.png"
+							expire = "1965.1.1"
+							ideology = despotism
+							traits = {
+							}
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						HAN = { is_subject_of = FRA }
+					}
+					hidden_effect = {
+						create_country_leader = {
+							name = "HAN_Christian_Fouchet"
+							picture = "gfx/leaders/FRA/HAN_Christian_Fouchet.png"
+							expire = "1965.1.1"
+							ideology = liberalism
+							traits = {
+							}
+						}
+						create_country_leader = {
+							name = "HAN_Christian_Fouchet"
+							picture = "gfx/leaders/FRA/HAN_Christian_Fouchet.png"
+							expire = "1965.1.1"
+							ideology = marxism
+							traits = {
+							}
+						}
+						create_country_leader = {
+							name = "HAN_Christian_Fouchet"
+							picture = "gfx/leaders/FRA/HAN_Christian_Fouchet.png"
+							expire = "1965.1.1"
+							ideology = ethnic_nationalism
+							traits = {
+							}
+						}
+						create_country_leader = {
+							name = "HAN_Christian_Fouchet"
+							picture = "gfx/leaders/FRA/HAN_Christian_Fouchet.png"
+							expire = "1965.1.1"
+							ideology = despotism
+							traits = {
+							}
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				NOT = { SOV = { has_country_flag = second_great_war_winner } }
+				NOT = { RUS = { has_country_flag = second_great_war_winner } }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					OR = {
+						state = 68
+						state = 63
+						state = 66
+						state = 67
+						state = 762
+						state = 86
+						state = 85
+						state = 807
+						state = 5
+						state = 763
+						state = 62
+						state = 61
+						state = 64
+						state = 957
+						state = 65
+						state = 60
+					}
+				}
+				transfer_state_to = DDR
+			}
+			if = {
+				limit = {
+					DDR = { exists = yes }
+				}
+				DDR = {
+					inherit_technology = GER
+					add_timed_idea = { idea = war_reparations days = 1000 }
+					add_ideas = peace_treaty
+					set_cosmetic_tag = GER_prussia
+				}
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = DDR
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = DDR
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.14.b
+		if = {
+			limit = {
+				USA = { has_country_flag = second_great_war_winner }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					NOT = {
+						is_core_of = FRA
+						is_claimed_by = FRA
+					}
+					is_core_of = BAY
+				}
+				transfer_state_to = BAY
+			}
+			USA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = BAY
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = BAY
+					}
+				}
+			}
+			BAY = {
+				inherit_technology = GER
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				retire_country_leader = BAY_Rupprecht
+				hidden_effect = {
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = liberalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = marxism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = ethnic_nationalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = despotism
+						traits = {
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = GER
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = GER
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				NOT = {
+					is_core_of = FRA
+					is_claimed_by = FRA
+				}
+				is_core_of = GER
+			}
+			transfer_state_to = GER
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = wrwpe.13.e
+		if = {
+			limit = {
+				USA = { has_country_flag = second_great_war_winner }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					NOT = {
+						is_core_of = FRA
+						is_claimed_by = FRA
+					}
+					is_core_of = BAY
+				}
+				transfer_state_to = BAY
+			}
+			USA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = BAY
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = BAY
+					}
+				}
+			}
+			BAY = {
+				inherit_technology = GER
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				retire_country_leader = BAY_Rupprecht
+				hidden_effect = {
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = liberalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = marxism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = ethnic_nationalism
+						traits = {
+						}
+					}
+					create_country_leader = {
+						name = "USA_george_marshall"
+						picture = "gfx/leaders/BAY/USA_george_marshall.png"
+						expire = "1965.1.1"
+						ideology = despotism
+						traits = {
+						}
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of canada
+country_event = {
+	id = wrwpe.15
+	title = wrwpe.15.t
+	desc = wrwpe.15.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.15.a
+		if = {
+			limit = {
+				CAN = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = CAN
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = CAN
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.15.b
+		annex_country = { target = CAN transfer_troops = no }
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = USA
+			}
+		}
+	}
+}
+
+#fate of Australia
+country_event = {
+	id = wrwpe.16
+	title = wrwpe.16.t
+	desc = wrwpe.16.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.16.a
+		if = {
+			limit = {
+				AST = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = AST
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = AST
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.16.b
+		annex_country = { target = AST transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of New Zealand
+country_event = {
+	id = wrwpe.17
+	title = wrwpe.17.t
+	desc = wrwpe.17.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.17.a
+		if = {
+			limit = {
+				NZL = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = NZL
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = NZL
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.17.b
+		annex_country = { target = NZL transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of Ireland
+country_event = {
+	id = wrwpe.18
+	title = wrwpe.18.t
+	desc = wrwpe.18.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.18.a
+		if = {
+			limit = {
+				IRE = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = IRE
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = IRE
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.18.b
+		annex_country = { target = IRE transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of Denmark
+country_event = {
+	id = wrwpe.19
+	title = wrwpe.19.t
+	desc = wrwpe.19.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.19.a
+		if = {
+			limit = {
+				DEN = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = DEN
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = DEN
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.19.b
+		annex_country = { target = DEN transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of Norway
+country_event = {
+	id = wrwpe.20
+	title = wrwpe.20.t
+	desc = wrwpe.20.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.20.a
+		if = {
+			limit = {
+				NOR = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = NOR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = NOR
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.20.b
+		annex_country = { target = NOR transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+
+#fate of Sweden
+country_event = {
+	id = wrwpe.21
+	title = wrwpe.21.t
+	desc = wrwpe.21.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.21.a
+		if = {
+			limit = {
+				SWE = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SWE
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SWE
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.21.b
+		annex_country = { target = SWE transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of Finland
+country_event = {
+	id = wrwpe.22
+	title = wrwpe.22.t
+	desc = wrwpe.22.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.22.a
+		if = {
+			limit = {
+				FIN = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = FIN
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = FIN
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.22.b
+		annex_country = { target = FIN transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}

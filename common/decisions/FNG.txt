@@ -1,0 +1,380 @@
+FNG_legitimacy = {
+	FNG_condemnation_on_kuomintang = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		allowed = {
+			original_tag = FNG
+		}
+		visible = {
+			has_completed_focus = FNG_legitimacy_of_Beijing_government
+		}
+		available = {
+			NOT = { has_country_flag = FNG_strong_influence_of_japan }
+		}
+		cost = 40
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = { fng_legitimacy_var < 1 }
+			}
+		}
+		days_remove = 90
+		remove_effect = {
+			if = {
+				limit = {
+					FNG = { has_variable = fng_legitimacy_var check_variable = { fng_legitimacy_var < 0.98 } }
+				}
+				custom_effect_tooltip = fng_legitimacy_var_add_two_effect
+				hidden_effect = {
+					add_to_variable = { fng_legitimacy_var = 0.02 }
+				}
+			}
+			else_if = {
+				limit = {
+					FNG = { has_variable = fng_legitimacy_var }
+				}
+				custom_effect_tooltip = fng_legitimacy_var_hundred_effect
+				hidden_effect = {
+					set_variable = { fng_legitimacy_var = 1 }
+				}
+			}
+		}
+	}
+	FNG_to_claim_that_we_are_Sun_Yat_sens_successor = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = FNG
+		}
+		visible = {
+			has_completed_focus = FNG_legitimacy_of_Beijing_government
+		}
+		available = {
+			NOT = { has_country_flag = FNG_strong_influence_of_japan }
+		}
+		cost = 70
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = { fng_legitimacy_var < 1 }
+			}
+		}
+		days_remove = 150
+		remove_effect = {
+			if = {
+				limit = {
+					FNG = { has_variable = fng_legitimacy_var check_variable = { fng_legitimacy_var < 0.95 } }
+				}
+				custom_effect_tooltip = fng_legitimacy_var_add_five_effect
+				hidden_effect = {
+					add_to_variable = { fng_legitimacy_var = 0.05 }
+				}
+			}
+			else_if = {
+				limit = {
+					FNG = { has_variable = fng_legitimacy_var }
+				}
+				custom_effect_tooltip = fng_legitimacy_var_hundred_effect
+				hidden_effect = {
+					set_variable = { fng_legitimacy_var = 1 }
+				}
+			}
+		}
+	}
+	FNG_unification_war_propaganda = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = FNG
+		}
+		visible = {
+			has_completed_focus = FNG_legitimacy_of_Beijing_government
+		}
+		available = {
+			NOT = { has_country_flag = FNG_strong_influence_of_japan }
+		}
+		cost = 25
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1000
+				check_variable = { has_war_support < 0.71 }
+			}
+		}
+		days_remove = 180
+		modifier = {
+			war_support_weekly = 0.005
+		}
+	}
+	FNG_Call_Military_Assistance_to_Japan = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			original_tag = FNG
+			has_war = yes
+		}
+		visible = {
+			has_completed_focus = FNG_legitimacy_of_Beijing_government
+		}
+		available = {
+			NOT = { has_country_flag = FNG_strong_influence_of_japan }
+		}
+		cost = 150
+		days_re_enable = 100
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				check_variable = { has_war_support > 0.55 }
+				has_war = yes
+			}
+			modifier = {
+				add = 50
+				check_variable = { has_war_support > 0.55 }
+				has_war = yes
+				surrender_progress > 0.1
+			}
+		}
+		complete_effect = {
+			JAP = { country_event = fentian.5 }
+			if = {
+				limit = {
+					FNG = { has_variable = fng_legitimacy_var check_variable = { fng_legitimacy_var > 0.02 } }
+				}
+				custom_effect_tooltip = fng_legitimacy_var_remove_two_effect
+				hidden_effect = {
+					add_to_variable = { fng_legitimacy_var = -0.02 }
+				}
+			}
+			else_if = {
+				limit = {
+					FNG = { has_variable = fng_legitimacy_var }
+				}
+				custom_effect_tooltip = fng_legitimacy_var_zero_effect
+				hidden_effect = {
+					set_variable = { fng_legitimacy_var = 0 }
+				}
+			}
+		}
+	}
+	FNG_Declaration_of_the_Unification_of_China = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = FNG
+		}
+		visible = {
+			has_completed_focus = FNG_legitimacy_of_Beijing_government
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		available = {
+			NOT = { has_country_flag = FNG_strong_influence_of_japan }
+			custom_trigger_tooltip = {
+				tooltip = FNG_unified_china_trigger_tt
+				hidden_trigger = {
+					check_variable = { fng_legitimacy_var > 0.8 }
+				}
+			}
+			has_capitulated = no
+			is_subject = no
+			has_war = no
+			CHI = { exists = no }
+			XSM = { exists = no }
+			PRC = { exists = no }
+			SHX = { exists = no }
+			SIC = { exists = no }
+			XIK = { exists = no }
+			GZC = { exists = no }
+			YUN = { exists = no }
+			GXC = { exists = no }
+			GUD = { exists = no }
+			for_unify_china = yes
+		}
+		complete_effect = {
+			set_cosmetic_tag = CHI_REP
+			set_country_flag = complete_of_unification_cahina
+		}
+	}
+}
+
+FNG_influence_of_japan = {
+	FNG_extending_the_privileges_of_mantetsu = {
+		icon = GFX_extending_the_privileges_of_mantetsu
+		allowed = {
+			original_tag = FNG
+		}
+		visible = {
+			has_variable = FNG_influence_of_japan
+		}
+		available = {
+			NOT = { has_war_with = JAP }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 50
+				check_variable = { FNG_influence_of_japan < 0.2 }
+				NOT = { has_country_flag = complete_of_unification_cahina }
+			}
+			modifier = {
+				add = 10
+				check_variable = { FNG_influence_of_japan < 0.3 }
+				NOT = { has_country_flag = complete_of_unification_cahina }
+			}
+			modifier = {
+				add = 100
+				has_country_flag = FNG_under_JAP
+				check_variable = { FNG_influence_of_japan < 0.5 }
+			}
+		}
+		cost = 30
+		complete_effect = {
+			custom_effect_tooltip = FNG_extending_the_privileges_of_mantetsu_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						FNG = { check_variable = { FNG_influence_of_japan < 0.97 } }
+					}
+					add_to_variable = { FNG_influence_of_japan = 0.03 }
+				}
+				else = {
+					set_variable = { FNG_influence_of_japan = 1 }
+				}
+			}
+		}
+	}
+	FNG_attracting_Japanese_businessmens = {
+		icon = GFX_decision_generic_fundraising
+		allowed = {
+			original_tag = FNG
+		}
+		visible = {
+			has_variable = FNG_influence_of_japan
+		}
+		available = {
+			NOT = { has_war_with = JAP }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 50
+				check_variable = { FNG_influence_of_japan < 0.2 }
+				NOT = { has_country_flag = complete_of_unification_cahina }
+			}
+			modifier = {
+				add = 10
+				check_variable = { FNG_influence_of_japan < 0.3 }
+				NOT = { has_country_flag = complete_of_unification_cahina }
+			}
+			modifier = {
+				add = 100
+				has_country_flag = FNG_under_JAP
+				check_variable = { FNG_influence_of_japan < 0.5 }
+			}
+		}
+		cost = 25
+		complete_effect = {
+			custom_effect_tooltip = FNG_attracting_Japanese_businessmens_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						FNG = { check_variable = { FNG_influence_of_japan < 0.98 } }
+					}
+					add_to_variable = { FNG_influence_of_japan = 0.02 }
+				}
+				else = {
+					set_variable = { FNG_influence_of_japan = 1 }
+				}
+			}
+		}
+	}
+	FNG_supporting_chinese_corporations = {
+		icon = GFX_decision_generic_merge_plant_materiel
+		allowed = {
+			original_tag = FNG
+		}
+		visible = {
+			has_variable = FNG_influence_of_japan
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = { FNG_influence_of_japan > 0.3 }
+				NOT = { has_country_flag = FNG_under_JAP }
+			}
+			modifier = {
+				add = 4000
+				has_country_flag = complete_of_unification_cahina
+				NOT = { has_country_flag = FNG_under_JAP }
+			}
+		}
+		cost = 30
+		complete_effect = {
+			custom_effect_tooltip = FNG_supporting_chinese_corporations_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						FNG = { check_variable = { FNG_influence_of_japan > 0.02 } }
+					}
+					add_to_variable = { FNG_influence_of_japan = -0.02 }
+				}
+				else = {
+					set_variable = { FNG_influence_of_japan = 0 }
+				}
+			}
+		}
+	}
+	FNG_restricting_Japanese_from_entering_and_leaving_the_country = {
+		icon = GFX_decision_oppression
+		allowed = {
+			original_tag = FNG
+		}
+		visible = {
+			has_variable = FNG_influence_of_japan
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = { FNG_influence_of_japan > 0.3 }
+				NOT = { has_country_flag = FNG_under_JAP }
+			}
+			modifier = {
+				add = 4000
+				has_country_flag = complete_of_unification_cahina
+				NOT = { has_country_flag = FNG_under_JAP }
+			}
+		}
+		cost = 40
+		complete_effect = {
+			custom_effect_tooltip = FNG_restricting_Japanese_from_entering_and_leaving_the_country_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						FNG = { check_variable = { FNG_influence_of_japan > 0.04 } }
+					}
+					add_to_variable = { FNG_influence_of_japan = -0.04 }
+				}
+				else = {
+					set_variable = { FNG_influence_of_japan = 0 }
+				}
+			}
+		}
+	}
+	FNG_completely_remove_influence_of_japan = {
+		icon = GFX_decision_eng_trade_unions_demand
+		allowed = {
+			original_tag = FNG
+		}
+		visible = {
+			has_variable = FNG_influence_of_japan
+			check_variable = { FNG_influence_of_japan = 0 }
+		}
+		complete_effect = {
+			custom_effect_tooltip = FNG_completely_remove_influence_of_japan_tt
+			hidden_effect = {
+				clear_variable = FNG_influence_of_japan
+			}
+		}
+	}
+}

@@ -1,0 +1,3934 @@
+﻿###########################
+# USA Events
+###########################
+
+add_namespace = usa
+
+country_event = {
+	id = usa.1
+	title = usa.1.t
+	desc = usa.1.d
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		clr_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted
+	}
+	option = {
+		name = usa.1.a
+	}
+}
+
+country_event = {
+	id = usa.2
+	title = usa.2.t
+	desc = usa.2.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = usa.2.a
+		custom_effect_tooltip = The_power_of_the_Democratic_Party_will_be_strong
+		set_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+		hidden_effect = {
+			country_event = { id = usa.20 days = 100 }
+		}
+		custom_effect_tooltip = USA_Wagner_Steagall_Act_event2_effect
+		ai_chance = {
+			base = 5
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = USA_AI_BEHAVIOR
+						option = PRESIDENT_WENDELL_WILLKIE
+					}
+					has_game_rule = {
+						rule = USA_AI_BEHAVIOR
+						option = PRESIDENT_ROBERT_TAFT
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = usa.2.b
+		custom_effect_tooltip = The_power_of_the_Reupblican_Party_will_be_strong
+		set_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		ai_chance = {
+			base = 5
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = USA_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = USA_AI_BEHAVIOR
+						option = PRESIDENT_FRANKLIN_ROOSEVELT
+					}
+					has_game_rule = {
+						rule = USA_AI_BEHAVIOR
+						option = PRESIDENT_NORMAN_THOMAS
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = usa.3
+	title = usa.3.t
+	desc = {
+		text = usa.3.d1
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+		}
+	}
+	desc = {
+		text = usa.3.d2
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+	}
+	picture = GFX_report_event_generic_rally_3
+	is_triggered_only = yes
+	option = {
+		name = usa.3.a
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 0 }
+		set_variable = { var = Democratic_Party value = 334 } 
+		set_variable = { var = Progressive_Party value = 8 } 
+		set_variable = { var = Farmer_Labor_Party value = 5 } 
+		set_variable = { var = Republican_Party value = 88 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 76 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 18 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_will_be_strong_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 77 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 19 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_will_be_strong_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 75 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 17 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_will_be_strong_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1936_election
+		country_event = usa.5
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.3.b
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 0 }
+		set_variable = { var = Democratic_Party value = 269 } 
+		set_variable = { var = Progressive_Party value = 8 } 
+		set_variable = { var = Farmer_Labor_Party value = 5 } 
+		set_variable = { var = Republican_Party value = 153 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 60 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 34 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_will_be_strong_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 61 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 35 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_will_be_strong_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 59 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 33 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_will_be_strong_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		country_event = usa.5
+		set_country_flag = the_end_of_the_1936_election
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.4
+	title = usa.4.t
+	desc = usa.4.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = usa.4.a
+		add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+		custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.5
+	title = usa.5.t
+	desc = usa.5.d
+	picture = GFX_report_event_usa_election_landon_roosevelt
+	is_triggered_only = yes
+	option = {
+		name = usa.5.a
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.6
+	title = usa.6.t
+	desc = usa.6.d
+	picture = GFX_United_States_Congress
+	is_triggered_only = yes
+	option = {
+		name = usa.6.a
+		ai_chance = {
+			base = 6
+		}
+	}
+}
+
+country_event = {
+	id = usa.7
+	title = usa.7.t
+	desc = usa.7.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = usa.4.a
+		add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+		custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.8
+	title = usa.8.t
+	desc = {
+		text = usa.8.d1
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+		}
+	}
+	desc = {
+		text = usa.8.d2
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.8.d3
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+	}
+	picture = GFX_report_event_generic_rally_3
+	is_triggered_only = yes
+	option = {
+		name = usa.8.a
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 262 } 
+		set_variable = { var = Progressive_Party value = 2 } 
+		set_variable = { var = Farmer_Labor_Party value = 1 } 
+		set_variable = { var = Republican_Party value = 169 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 70 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 24 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1938_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 71 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 25 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1938_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 69 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 23 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1938_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1938_election
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.8.b
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 154 } 
+		set_variable = { var = Progressive_Party value = 2 } 
+		set_variable = { var = Farmer_Labor_Party value = 1 } 
+		set_variable = { var = Republican_Party value = 277 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 31 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 63 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1938_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 32 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 64 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1938_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 30 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 62 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1938_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1938_election
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.8.a
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 262 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 0 } 
+		set_variable = { var = Progressive_Party value = 2 } 
+		set_variable = { var = Farmer_Labor_Party value = 1 } 
+		set_variable = { var = Republican_Party value = 169 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 70 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 24 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1938_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 71 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 25 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1938_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 69 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 2 } 
+			set_variable = { var = Senate_Republican_Party value = 23 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1938_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Socialist_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Socialist_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1938_election
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.9
+	title = usa.9.t
+	desc = usa.9.d
+	picture = Ukranie.1
+	is_triggered_only = yes
+	option = {
+		name = usa.9.a
+		add_to_variable = { USA_great_depression_consumer_goods_factor = 0.2 }
+		custom_effect_tooltip = Recession_Of_1937_effect
+		set_country_flag = Recession_Of_1937
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.10
+	title = usa.10.t
+	desc = usa.10.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = usa.4.a
+		add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+		custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.11
+	title = usa.11.t
+	desc = usa.11.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = usa.4.a
+		add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+		custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.12
+	title = usa.12.t
+	desc = usa.12.d
+	picture = GFX_United_States_Congress
+	is_triggered_only = yes
+	option = {
+		name = usa.12.a
+		custom_effect_tooltip = new_deal_end_effect
+		hidden_effect = {
+			country_event = { id = usa.13 days = 19 }
+			country_event = { id = usa.14 days = 38 }
+			country_event = { id = usa.15 days = 57 }
+			country_event = { id = usa.16 days = 76 }
+			country_event = { id = usa.17 days = 95 }
+			country_event = { id = usa.18 days = 100 }
+		}
+		set_variable = { var = total_right value = 0 }
+		set_variable = { var = middle_right value = 0 }
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.13
+	title = usa.13.t
+	desc = usa.13.d
+	picture = GFX_Works_Progress_Administration
+	is_triggered_only = yes
+	option = {
+		name = usa.13.a
+		add_to_variable = { total_right = 1 }
+		ai_chance = {
+			base = 3.5
+			modifier = {
+				has_game_rule = {
+					rule = USA_AI_BEHAVIOR
+					option = PRESIDENT_WENDELL_WILLKIE
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = usa.13.b
+		add_to_variable = { middle_right = 1 }
+		ai_chance = {
+			base = 5
+			modifier = {
+				has_game_rule = {
+					rule = USA_AI_BEHAVIOR
+					option = PRESIDENT_ROBERT_TAFT
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = usa.14
+	title = usa.14.t
+	desc = usa.14.d
+	picture = GFX_Social_Security_Act
+	is_triggered_only = yes
+	option = {
+		name = usa.13.a
+		add_to_variable = { total_right = 1 }
+		ai_chance = {
+			base = 4
+			modifier = {
+				has_game_rule = {
+					rule = USA_AI_BEHAVIOR
+					option = PRESIDENT_WENDELL_WILLKIE
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = usa.13.b
+		add_to_variable = { middle_right = 1 }
+		ai_chance = {
+			base = 5
+			modifier = {
+				has_game_rule = {
+					rule = USA_AI_BEHAVIOR
+					option = PRESIDENT_ROBERT_TAFT
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = usa.15
+	title = usa.15.t
+	desc = usa.15.d
+	picture = GFX_Wealth_Tax_Act
+	is_triggered_only = yes
+	option = {
+		name = usa.13.a
+		add_to_variable = { total_right = 1 }
+		ai_chance = {
+			base = 4.5
+			modifier = {
+				has_game_rule = {
+					rule = USA_AI_BEHAVIOR
+					option = PRESIDENT_WENDELL_WILLKIE
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = usa.13.b
+		add_to_variable = { middle_right = 1 }
+		ai_chance = {
+			base = 5
+			modifier = {
+				has_game_rule = {
+					rule = USA_AI_BEHAVIOR
+					option = PRESIDENT_ROBERT_TAFT
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = usa.16
+	title = usa.16.t
+	desc = usa.16.d
+	picture = GFX_Farm_and_rural_programs
+	is_triggered_only = yes
+	option = {
+		name = usa.16.a
+		add_to_variable = { total_right = 1 }
+		ai_chance = {
+			base = 4
+			modifier = {
+				has_game_rule = {
+					rule = USA_AI_BEHAVIOR
+					option = PRESIDENT_WENDELL_WILLKIE
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = usa.16.b
+		add_to_variable = { middle_right = 1 }
+		ai_chance = {
+			base = 5
+			modifier = {
+				has_game_rule = {
+					rule = USA_AI_BEHAVIOR
+					option = PRESIDENT_ROBERT_TAFT
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = usa.17
+	title = usa.17.t
+	desc = usa.17.d
+	picture = GFX_National_Housing_Act
+	is_triggered_only = yes
+	option = {
+		name = usa.13.a
+		add_to_variable = { total_right = 1 }
+		ai_chance = {
+			base = 4.5
+			modifier = {
+				has_game_rule = {
+					rule = USA_AI_BEHAVIOR
+					option = PRESIDENT_WENDELL_WILLKIE
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = usa.13.b
+		add_to_variable = { middle_right = 1 }
+		ai_chance = {
+			base = 5
+			modifier = {
+				has_game_rule = {
+					rule = USA_AI_BEHAVIOR
+					option = PRESIDENT_ROBERT_TAFT
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = usa.18
+	title = usa.18.t
+	desc = usa.18.d
+	picture = GFX_National_Housing_Act
+	is_triggered_only = yes
+	option = {
+		name = usa.18.a
+		trigger = {
+			check_variable = {
+				total_right > middle_right
+			}
+		}
+		remove_ideas = new_deal
+		set_country_flag = USA_total_right
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.18.b
+		trigger = {
+			check_variable = {
+				total_right < middle_right
+			}
+		}
+		swap_ideas = {
+			remove_idea = new_deal
+			add_idea = curtailed_new_deal
+		}
+		set_country_flag = USA_middle_right
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.19
+	title = usa.19.t
+	desc = usa.19.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = usa.4.a
+		add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+		custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.20
+	title = usa.20.t
+	desc = usa.20.d
+	hidden = yes
+	is_triggered_only = yes
+	immediate = {
+		add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+	}
+	option = {
+		name = usa.20.a
+	}
+}
+
+country_event = {
+	id = usa.21
+	title = usa.21.t
+	desc = usa.21.d
+	picture = GFX_report_event_generic_rally_3
+	is_triggered_only = yes
+	option = {
+		name = usa.21.a
+		set_party_name = { ideology = democratic long_name = USA_social_democratic_party name = USA_social_democratic_party }
+		set_party_name = { ideology = communism long_name = USA_social_democratic_party name = USA_social_democratic_party }
+		set_country_flag = social_annex_demo
+		set_variable = { var = Communist_Party value = Communist_Party } 
+		set_variable = { var = Socialist_Party value = Socialist_Party }
+		add_to_variable = { var = Socialist_Party value = Democratic_Party }
+		set_variable = { var = American_Labor_Party value = American_Labor_Party }
+		clear_variable = Democratic_Party
+		set_variable = { var = Progressive_Party value = Progressive_Party } 
+		set_variable = { var = Farmer_Labor_Party value = Farmer_Labor_Party } 
+		set_variable = { var = Republican_Party value = Republican_Party } 
+		set_variable = { var = Townsend_Party value = Townsend_Party } 
+		set_variable = { var = Independents value = Independents } 
+		set_variable = { var = vacant value = vacant }
+		set_variable = { var = seatNumbers value = 435 }
+
+		set_variable = { var = Senate_Communist_Party value = Senate_Communist_Party } 
+		set_variable = { var = Senate_Socialist_Party value = Senate_Socialist_Party } 
+		add_to_variable = { var = Senate_Socialist_Party value = Senate_Democratic_Party }
+		set_variable = { var = Senate_American_Labor_Party value = Senate_American_Labor_Party }
+		clear_variable = Senate_Democratic_Party
+		set_variable = { var = Senate_Progressive_Party value = Senate_Progressive_Party } 
+		set_variable = { var = Senate_Farmer_Labor_Party value = Senate_Farmer_Labor_Party } 
+		set_variable = { var = Senate_Republican_Party value = Senate_Republican_Party } 
+		set_variable = { var = Senate_Townsend_Party value = Senate_Townsend_Party } 
+		set_variable = { var = Senate_Independents value = Senate_Independents }
+		set_variable = { var = Senate_vacant value = Senate_vacant }
+		set_variable = { var = Senate_seatNumbers value = 96 }
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Socialist_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Socialist_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		custom_effect_tooltip = USA_Democratic_Society_Party_Integration_effect
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.22
+	title = usa.22.t
+	desc = usa.22.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = usa.4.a
+		add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+		custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.23
+	title = usa.23.t
+	desc = usa.23.d
+	picture = GFX_Heat_Wave_Crops
+	is_triggered_only = yes
+	option = {
+		name = usa.23.a
+		add_stability = -0.05
+		add_ideas = the_great_heat_wave
+		hidden_effect = {
+			country_event = { id = usa.24 days = 80 }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.24
+	title = usa.24.t
+	desc = usa.24.d
+	picture = GFX_Heat_Wave_Crops
+	is_triggered_only = yes
+	option = {
+		name = usa.24.a
+		swap_ideas = {
+			remove_idea = the_great_heat_wave
+			add_idea = the_aftermath_of_great_heat_wave
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.25
+	title = usa.25.t
+	desc = usa.25.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = usa.4.a
+		if = {
+			limit = {
+				check_variable = {
+					USA_great_depression_consumer_goods_factor > 0.05
+				}
+			}
+			add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+			custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+			country_event = { id = usa.25 days = 100 }
+			else = {
+				remove_dynamic_modifier = { modifier = great_depression }
+				set_country_flag = USA_end_of_great_depression
+			}
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.26
+	title = usa.26.t
+	desc = usa.26.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = usa.4.a
+		add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+		custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.27
+	title = usa.27.t
+	desc = usa.27.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = usa.4.a
+		add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+		custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.28
+	title = usa.28.t
+	desc = usa.28.d
+	picture = GFX_republican_pre_cand
+	is_triggered_only = yes
+	trigger = {
+		has_completed_focus = USA_Refusing_new_executive_orders
+	}
+	option = {
+		name = usa.28.a
+		trigger = {
+			NOT = { has_country_flag = USA_total_right }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.28.b
+		trigger = {
+			has_country_flag = USA_total_right
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.29
+	title = usa.29.t
+	desc = {
+		text = usa.29.d1
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+		}
+	}
+	desc = {
+		text = usa.29.d2
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.29.d3
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+	}
+	picture = GFX_report_event_generic_rally_3
+	is_triggered_only = yes
+	option = {
+		name = usa.29.a
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 267 } 
+		set_variable = { var = Progressive_Party value = 3 } 
+		set_variable = { var = Farmer_Labor_Party value = 1 } 
+		set_variable = { var = Republican_Party value = 162 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 1 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 67 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 29 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1940_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 68 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 30 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1940_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 66 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 28 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1940_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1940_election
+		country_event = usa.31
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.29.b
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 150 } 
+		set_variable = { var = Progressive_Party value = 3 } 
+		set_variable = { var = Farmer_Labor_Party value = 1 } 
+		set_variable = { var = Republican_Party value = 280 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 27 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 1 } 
+			set_variable = { var = Senate_Republican_Party value = 68 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1940_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 28 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 1 } 
+			set_variable = { var = Senate_Republican_Party value = 69 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1940_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 26 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 1 } 
+			set_variable = { var = Senate_Republican_Party value = 67 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1940_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1940_election
+		country_event = usa.31
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.29.a
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 267 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 0 } 
+		set_variable = { var = Progressive_Party value = 3 } 
+		set_variable = { var = Farmer_Labor_Party value = 1 } 
+		set_variable = { var = Republican_Party value = 162 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 1 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 67 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 29 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1940_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 68 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 30 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1940_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 66 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 28 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1940_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Socialist_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Socialist_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1940_election
+		country_event = usa.31
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.30
+	title = usa.30.t
+	desc = {
+		text = usa.30.d1
+		trigger = {
+			NOT = { has_completed_focus = USA_supporting_Progressives }
+		}
+	}
+	desc = {
+		text = usa.30.d2
+		trigger = {
+			has_completed_focus = USA_supporting_Progressives
+		}
+	}
+	picture = GFX_democratic_pre_cand
+	is_triggered_only = yes
+	trigger = {
+		has_completed_focus = USA_Wagner_Steagall_Act
+	}
+	option = {
+		name = usa.30.a
+		trigger = {
+			NOT = { has_completed_focus = USA_supporting_Progressives }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.30.b
+		trigger = {
+			has_completed_focus = USA_supporting_Progressives
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.31
+	title = usa.31.t
+	desc = {
+		text = usa.31.d1
+		trigger = {
+			NOT = { has_completed_focus = USA_supporting_Progressives }
+			has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.31.d2
+		trigger = {
+			has_completed_focus = USA_supporting_Progressives
+			has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.31.d3
+		trigger = {
+			NOT = { has_country_flag = USA_total_right }
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.31.d4
+		trigger = {
+			has_country_flag = USA_total_right
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+	}
+	picture = GFX_democratic_pre_cand
+	is_triggered_only = yes
+	option = {
+		name = usa.31.a
+		set_country_flag = the_end_of_the_1940_election_pre
+		if = {
+			limit = {
+				has_completed_focus = USA_supporting_Progressives
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = communism
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+			#complete_national_focus = USA_president_norman_thomas
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = USA_supporting_Progressives }
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = democratic
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+			#complete_national_focus = USA_president_franklin_roosevelt
+		}
+		else_if = {
+			limit = {
+				NOT = { has_country_flag = USA_total_right }
+				has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = democratic
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+			USA_Wendell_Lewis_Willkie = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = liberalism
+					}
+				}
+			}
+			remove_ideas = USA_Opposition_of_Republican_Party
+			#complete_national_focus = USA_president_wendell_willkie
+			set_party_name = { ideology = democratic long_name = USA_republican_party name = USA_republican_party }
+			set_variable = { var = Senate_democrat_alliance value = 0 }
+			add_to_variable = { var = Senate_democrat_alliance value = Senate_Republican_Party }
+			set_variable = { var = democrat_alliance value = 0 }
+			add_to_variable = { var = democrat_alliance value = Republican_Party }
+			set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+			set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+			multiply_variable = { democrat_alliance_percent = 100 }
+			divide_variable = { democrat_alliance_percent = seatNumbers }
+			multiply_variable = { Senate_democrat_alliance_percent = 100 }
+			divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		}
+		else_if = {
+			limit = {
+				has_country_flag = USA_total_right
+				has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = democratic
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+			USA_Robert_Alphonso_Taft = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = conservatism
+					}
+				}
+			}
+			remove_ideas = USA_Opposition_of_Republican_Party
+			#complete_national_focus = USA_president_robert_taft
+			set_party_name = { ideology = democratic long_name = USA_republican_party name = USA_republican_party }
+			set_party_name = { ideology = democratic long_name = USA_republican_party name = USA_republican_party }
+			set_variable = { var = Senate_democrat_alliance value = 0 }
+			add_to_variable = { var = Senate_democrat_alliance value = Senate_Republican_Party }
+			set_variable = { var = democrat_alliance value = 0 }
+			add_to_variable = { var = democrat_alliance value = Republican_Party }
+			set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+			set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+			multiply_variable = { democrat_alliance_percent = 100 }
+			divide_variable = { democrat_alliance_percent = seatNumbers }
+			multiply_variable = { Senate_democrat_alliance_percent = 100 }
+			divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+# United States sell rifles
+country_event = {
+	id = usa.32
+	title = usa.32.t
+	desc = usa.32.d
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = usa.32.a
+		trigger = {
+			has_political_power > 75
+			has_equipment = {
+				infantry_equipment < 1000
+			}
+		}
+		effect_tooltip = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = 2000
+			}
+		}
+		add_political_power = -75
+		FROM = { country_event = usa.33 }
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 0
+				stockpile_ratio = {
+					archetype = infantry_equipment
+					ratio > 0.5
+				}
+			}
+		}
+	}
+	option = {
+		name = usa.32.b
+		FROM = { country_event = usa.34 }
+	}
+}
+
+# Payment
+country_event = {
+	id = usa.33
+	title = usa.33.t
+	desc = usa.33.d
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = usa.33.a
+		send_equipment = {
+			target = FROM
+			type = infantry_equipment
+			amount = 2000
+		}
+		add_political_power = 50
+	}
+}
+
+# Not buying
+country_event = {
+	id = usa.34
+	title = usa.34.t
+	desc = usa.34.d
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = usa.34.a
+	}
+}
+
+
+# United States sell artilleries
+country_event = {
+	id = usa.35
+	title = usa.35.t
+	desc = usa.35.d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	option = {
+		name = usa.32.a
+		effect_tooltip = {
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 100
+			}
+		}
+		trigger = {
+			has_political_power > 200
+		}
+		add_political_power = -200
+		FROM = { country_event = usa.36 }
+		ai_chance = {
+			factor = 100
+			modifier = {
+				factor = 0
+				stockpile_ratio = {
+					archetype = artillery_equipment
+					ratio > 0.5
+				}
+			}
+		}
+	}
+	option = {
+		name = usa.32.b
+		FROM = { country_event = usa.37 }
+	}
+}
+
+# Payment
+country_event = {
+	id = usa.36
+	title = usa.36.t
+	desc = usa.33.d
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = usa.33.a
+		send_equipment = {
+			target = FROM
+			type = artillery_equipment
+			amount = 100
+		}
+		add_political_power = 120
+	}
+}
+
+# Not buying
+country_event = {
+	id = usa.37
+	title = usa.37.t
+	desc = usa.37.d
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = usa.34.a
+	}
+}
+
+country_event = {
+	id = usa.38
+	title = usa.38.t
+	desc = {
+		text = usa.38.d1
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+		}
+	}
+	desc = {
+		text = usa.38.d2
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.38.d3
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+	}
+	picture = GFX_report_event_generic_rally_3
+	is_triggered_only = yes
+	option = {
+		name = usa.38.a
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 222 } 
+		set_variable = { var = Progressive_Party value = 2 } 
+		set_variable = { var = Farmer_Labor_Party value = 1 } 
+		set_variable = { var = Republican_Party value = 209 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 58 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 39 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1942_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 59 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 40 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1942_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 57 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 38 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1942_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1942_election
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.38.a
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 156 } 
+		set_variable = { var = Progressive_Party value = 2 } 
+		set_variable = { var = Farmer_Labor_Party value = 1 } 
+		set_variable = { var = Republican_Party value = 275 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 31 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 1 } 
+			set_variable = { var = Senate_Republican_Party value = 64 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1942_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 32 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 1 } 
+			set_variable = { var = Senate_Republican_Party value = 65 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1942_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 30 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 1 } 
+			set_variable = { var = Senate_Republican_Party value = 63 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1942_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Republican_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Republican_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1942_election
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.38.a
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 222 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 0 } 
+		set_variable = { var = Progressive_Party value = 2 } 
+		set_variable = { var = Farmer_Labor_Party value = 1 } 
+		set_variable = { var = Republican_Party value = 209 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 58 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 39 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1942_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 59 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 40 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1942_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 57 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 38 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1942_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Socialist_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Socialist_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1942_election
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.39
+	title = usa.39.t
+	desc = {
+		text = usa.39.d1
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+		}
+	}
+	desc = {
+		text = usa.39.d2
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.39.d3
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+	}
+	picture = GFX_report_event_generic_rally_3
+	is_triggered_only = yes
+	option = {
+		name = usa.39.a
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 242 } 
+		set_variable = { var = Progressive_Party value = 1 } 
+		set_variable = { var = Farmer_Labor_Party value = 0 } 
+		set_variable = { var = Republican_Party value = 191 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 58 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 39 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1944_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 59 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 40 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1944_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 57 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 38 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Democratic_Party_1944_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		country_event = usa.40
+		set_country_flag = the_end_of_the_1944_election
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.39.a
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 136 } 
+		set_variable = { var = Progressive_Party value = 1 } 
+		set_variable = { var = Farmer_Labor_Party value = 1 } 
+		set_variable = { var = Republican_Party value = 296 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 31 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 1 } 
+			set_variable = { var = Senate_Republican_Party value = 64 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1944_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 32 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 1 } 
+			set_variable = { var = Senate_Republican_Party value = 65 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1944_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 30 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 1 } 
+			set_variable = { var = Senate_Republican_Party value = 63 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 1 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Reupblican_Party_1944_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Republican_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Republican_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		country_event = usa.40
+		set_country_flag = the_end_of_the_1944_election
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.39.a
+		trigger = {
+			OR = {
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				AND = {
+					NOT = { has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong }
+					NOT = { has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong }
+				}
+			}
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 242 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 0 } 
+		set_variable = { var = Progressive_Party value = 1 } 
+		set_variable = { var = Farmer_Labor_Party value = 0 } 
+		set_variable = { var = Republican_Party value = 191 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 58 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 39 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1944_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 59 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 40 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1944_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 57 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 1 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 38 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1944_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Socialist_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Socialist_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		country_event = usa.40
+		set_country_flag = the_end_of_the_1944_election
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.40
+	title = usa.40.t
+	desc = {
+		text = usa.40.d1
+		trigger = {
+			NOT = { has_completed_focus = USA_supporting_Progressives }
+			has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.40.d2
+		trigger = {
+			has_completed_focus = USA_supporting_Progressives
+			has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.40.d3
+		trigger = {
+			NOT = { has_country_flag = USA_total_right }
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.40.d4
+		trigger = {
+			has_country_flag = USA_total_right
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+	}
+	picture = GFX_democratic_pre_cand
+	is_triggered_only = yes
+	option = {
+		name = usa.40.a
+		if = {
+			limit = {
+				has_government = democratic
+			}
+			hidden_effect = {
+				set_politics = {	
+					ruling_party = democratic
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_government = communism
+			}
+			hidden_effect = {
+				set_politics = {	
+					ruling_party = communism
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+# Roosevelt Dies
+news_event = {
+	id = usa.41
+	title = usa.41.t
+	desc = usa.41.d
+	picture = GFX_Roosevelt_Dies
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = usa.41.a
+		trigger = {
+			original_tag = USA
+		}
+		add_political_power = -40
+		if = {
+			limit = {
+				has_country_leader = {			
+					character = USA_franklin_delano_roosevelt
+					ruling_only = yes 
+				}
+			}
+			kill_country_leader = yes
+			USA_harry_truman_wr = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = liberalism
+						traits = { }
+					}
+				}						
+			}
+		}
+	}
+	option = {
+		name = usa.41.a
+		trigger = {
+			NOT = { original_tag = USA }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #dummy data - this moved to decision
+	id = usa.42
+	title = usa.42.t
+	desc = usa.42.d
+	picture = GFX_report_event_usa_election_generic
+	#trigger = {
+	#	JAP = {
+	#		has_war_with = GOA
+	#		has_war_with = CHI
+	#	}
+	#}
+	is_triggered_only = yes
+	mean_time_to_happen = { days = 7 }
+	fire_only_once = yes
+	option = {
+		name = usa.42.a
+		every_country = {
+			limit = {
+				OR = {
+					original_tag = USA
+					is_subject_of = USA
+					is_in_faction_with = USA
+				}
+			}
+			send_embargo = JAP
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.43
+	title = usa.43.t
+	desc = {
+		text = usa.43.d1
+		trigger = {
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+	}
+	desc = {
+		text = usa.43.d2
+		trigger = {
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+	}
+	picture = GFX_report_event_generic_rally_3
+	is_triggered_only = yes
+	option = {
+		name = usa.39.a
+		trigger = {
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 188 } 
+		set_variable = { var = Progressive_Party value = 0 } 
+		set_variable = { var = Farmer_Labor_Party value = 0 } 
+		set_variable = { var = Republican_Party value = 246 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 47 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 51 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_general_election_1946_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 47 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 53 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_general_election_1946_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 45 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 51 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_general_election_1946_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1946_election
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.39.a
+		trigger = {
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 188 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 0 } 
+		set_variable = { var = Progressive_Party value = 0 } 
+		set_variable = { var = Farmer_Labor_Party value = 0 } 
+		set_variable = { var = Republican_Party value = 246 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 47 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 51 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1946_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 47 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 53 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1946_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 45 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 51 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1946_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Socialist_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Socialist_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1946_election
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.44
+	title = usa.44.t
+	desc = {
+		text = usa.44.d1
+		trigger = {
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+	}
+	desc = {
+		text = usa.44.d2
+		trigger = {
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+	}
+	picture = GFX_report_event_generic_rally_3
+	is_triggered_only = yes
+	option = {
+		name = usa.39.a
+		trigger = {
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 263 } 
+		set_variable = { var = Progressive_Party value = 0 } 
+		set_variable = { var = Farmer_Labor_Party value = 0 } 
+		set_variable = { var = Republican_Party value = 171 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 56 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 42 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_general_election_1948_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 56 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 44 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_general_election_1948_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 54 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 42 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_general_election_1948_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		country_event = usa.45
+		set_country_flag = the_end_of_the_1948_election
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.39.a
+		trigger = {
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 263 } 
+		set_variable = { var = American_Labor_Party value = 1 }
+		set_variable = { var = Democratic_Party value = 0 } 
+		set_variable = { var = Progressive_Party value = 0 } 
+		set_variable = { var = Farmer_Labor_Party value = 0 } 
+		set_variable = { var = Republican_Party value = 171 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 0 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 56 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 42 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1948_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 56 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 44 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1948_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 54 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 42 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1948_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Socialist_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Socialist_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		country_event = usa.45
+		set_country_flag = the_end_of_the_1948_election
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.45
+	title = usa.45.t
+	desc = {
+		text = usa.45.d1
+		trigger = {
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+			has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.45.d2
+		trigger = {
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+			has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.45.d3
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+	}
+	picture = GFX_democratic_pre_cand
+	is_triggered_only = yes
+	option = {
+		name = usa.31.a
+		set_country_flag = the_end_of_the_1948_election_pre
+		if = {
+			limit = {
+				has_completed_focus = USA_Democratic_Society_Party_Integration
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = communism
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+			USA_Henry_Agard_Wallace = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = socialism
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = democratic
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = democratic
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+			USA_Thomas_Dewey = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = conservatism
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.46
+	title = usa.46.t
+	desc = {
+		text = usa.46.d1
+		trigger = {
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+	}
+	desc = {
+		text = usa.46.d2
+		trigger = {
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+	}
+	picture = GFX_report_event_generic_rally_3
+	is_triggered_only = yes
+	option = {
+		name = usa.39.a
+		trigger = {
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 0 }
+		set_variable = { var = Democratic_Party value = 235 } 
+		set_variable = { var = Progressive_Party value = 0 } 
+		set_variable = { var = Farmer_Labor_Party value = 0 } 
+		set_variable = { var = Republican_Party value = 199 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 1 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 51 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 47 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_general_election_1950_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 51 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 49 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_general_election_1950_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 49 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 47 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_general_election_1950_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1950_election
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.39.a
+		trigger = {
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 235 } 
+		set_variable = { var = American_Labor_Party value = 0 }
+		set_variable = { var = Democratic_Party value = 0 } 
+		set_variable = { var = Progressive_Party value = 0 } 
+		set_variable = { var = Farmer_Labor_Party value = 0 } 
+		set_variable = { var = Republican_Party value = 199 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 1 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 51 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 47 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1950_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 51 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 49 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1950_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 49 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 47 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1950_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Socialist_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Socialist_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		set_country_flag = the_end_of_the_1950_election
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.47
+	title = usa.47.t
+	desc = {
+		text = usa.47.d1
+		trigger = {
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+	}
+	desc = {
+		text = usa.47.d2
+		trigger = {
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+	}
+	picture = GFX_report_event_generic_rally_3
+	is_triggered_only = yes
+	option = {
+		name = usa.39.a
+		trigger = {
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 0 } 
+		set_variable = { var = American_Labor_Party value = 0 }
+		set_variable = { var = Democratic_Party value = 213 } 
+		set_variable = { var = Progressive_Party value = 0 } 
+		set_variable = { var = Farmer_Labor_Party value = 0 } 
+		set_variable = { var = Republican_Party value = 221 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 1 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 49 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 49 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_general_election_1952_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 49 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 51 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_general_election_1952_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 0 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 47 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 49 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_general_election_1952_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Democratic_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Democratic_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		country_event = usa.48
+		set_country_flag = the_end_of_the_1952_election
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = usa.39.a
+		trigger = {
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+		}
+		set_variable = { var = Communist_Party value = 0 } 
+		set_variable = { var = Socialist_Party value = 213 } 
+		set_variable = { var = American_Labor_Party value = 0 }
+		set_variable = { var = Democratic_Party value = 0 } 
+		set_variable = { var = Progressive_Party value = 0 } 
+		set_variable = { var = Farmer_Labor_Party value = 0 } 
+		set_variable = { var = Republican_Party value = 221 } 
+		set_variable = { var = Townsend_Party value = 0 } 
+		set_variable = { var = Independents value = 1 } 
+		set_variable = { var = vacant value = 20 }
+		set_variable = { var = seatNumbers value = 435 }
+
+		if = {
+			limit = {
+				check_variable = { check_state = 1 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 49 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 49 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 2 }
+			set_variable = { var = Senate_seatNumbers value = 98 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1952_effect_add_one
+		}
+		else_if = {
+			limit = {
+				check_variable = { check_state = 2 }
+			}
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 49 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 51 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 0 }
+			set_variable = { var = Senate_seatNumbers value = 100 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1952_effect_add_two
+		}
+		else = {
+			set_variable = { var = Senate_Communist_Party value = 0 } 
+			set_variable = { var = Senate_Socialist_Party value = 47 } 
+			set_variable = { var = Senate_American_Labor_Party value = 0 }
+			set_variable = { var = Senate_Democratic_Party value = 0 } 
+			set_variable = { var = Senate_Progressive_Party value = 0 } 
+			set_variable = { var = Senate_Farmer_Labor_Party value = 0 } 
+			set_variable = { var = Senate_Republican_Party value = 49 } 
+			set_variable = { var = Senate_Townsend_Party value = 0 } 
+			set_variable = { var = Senate_Independents value = 0 }
+			set_variable = { var = Senate_vacant value = 4 }
+			set_variable = { var = Senate_seatNumbers value = 96 }
+			custom_effect_tooltip = USA_The_power_of_the_Social_Democratic_Party_1952_effect
+		}
+		
+		set_variable = { parliament_seat_array^0 = Communist_Party }
+		set_variable = { parliament_seat_array^1 = Socialist_Party }
+		set_variable = { parliament_seat_array^2 = American_Labor_Party }
+		set_variable = { parliament_seat_array^3 = Democratic_Party }
+		set_variable = { parliament_seat_array^4 = Progressive_Party }
+		set_variable = { parliament_seat_array^5 = Farmer_Labor_Party }
+		set_variable = { parliament_seat_array^6 = Republican_Party }
+		set_variable = { parliament_seat_array^7 = Townsend_Party }
+		set_variable = { parliament_seat_array^8 = Independents }
+		set_variable = { parliament_seat_array^9 = vacant }
+		
+		set_variable = { Senate_parliament_seat_array^0 = Senate_Communist_Party }
+		set_variable = { Senate_parliament_seat_array^1 = Senate_Socialist_Party }
+		set_variable = { Senate_parliament_seat_array^2 = Senate_American_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^3 = Senate_Democratic_Party }
+		set_variable = { Senate_parliament_seat_array^4 = Senate_Progressive_Party }
+		set_variable = { Senate_parliament_seat_array^5 = Senate_Farmer_Labor_Party }
+		set_variable = { Senate_parliament_seat_array^6 = Senate_Republican_Party }
+		set_variable = { Senate_parliament_seat_array^7 = Senate_Townsend_Party }
+		set_variable = { Senate_parliament_seat_array^8 = Senate_Independents }
+		set_variable = { Senate_parliament_seat_array^9 = Senate_vacant }
+		
+		set_variable = { var = Senate_democrat_alliance value = 0 }
+		add_to_variable = { var = Senate_democrat_alliance value = Senate_Socialist_Party }
+		set_variable = { var = democrat_alliance value = 0 }
+		add_to_variable = { var = democrat_alliance value = Socialist_Party }
+		set_variable = { var = democrat_alliance_percent value = democrat_alliance }
+		set_variable = { var = Senate_democrat_alliance_percent value = Senate_democrat_alliance }
+		multiply_variable = { democrat_alliance_percent = 100 }
+		divide_variable = { democrat_alliance_percent = seatNumbers }
+		multiply_variable = { Senate_democrat_alliance_percent = 100 }
+		divide_variable = { Senate_democrat_alliance_percent = Senate_seatNumbers }
+		reload_parliament_gui = yes
+		country_event = usa.48
+		set_country_flag = the_end_of_the_1952_election
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.48
+	title = usa.48.t
+	desc = {
+		text = usa.48.d1
+		trigger = {
+			NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+			has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.48.d2
+		trigger = {
+			has_completed_focus = USA_Democratic_Society_Party_Integration
+			has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+		}
+	}
+	desc = {
+		text = usa.48.d3
+		trigger = {
+			has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+		}
+	}
+	picture = GFX_democratic_pre_cand
+	is_triggered_only = yes
+	option = {
+		name = usa.31.a
+		set_country_flag = the_end_of_the_1952_election_pre
+		if = {
+			limit = {
+				has_completed_focus = USA_Democratic_Society_Party_Integration
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = communism
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = { has_completed_focus = USA_Democratic_Society_Party_Integration }
+				has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = democratic
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+			USA_dwight_d_eisenhower = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = liberalism
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = democratic
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = usa.49
+	title = usa.49.t
+	desc = usa.49.d
+	is_triggered_only = yes
+	immediate = {
+		clr_country_flag = count_365
+	}
+	option = {
+		name = usa.49.a
+	}
+}

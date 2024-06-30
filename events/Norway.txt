@@ -1,0 +1,41 @@
+﻿###########################
+# Norway Events
+###########################
+
+add_namespace = Norway
+country_event = {
+	id = Norway.1
+	title = Norway.1.t
+	desc = Norway.1.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = Norway.1.a
+		GER = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = NOR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.65
+				}
+				else = {
+					puppet = NOR
+				}
+			}
+		}
+		ai_chance = {
+			factor = 3
+		}
+	}
+	option = {
+		name = Norway.1.b
+		GER = { country_event = { days = 1 id = Germany.50 } }
+		GER = { create_wargoal = { type = puppet_wargoal_focus target = NOR } }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}

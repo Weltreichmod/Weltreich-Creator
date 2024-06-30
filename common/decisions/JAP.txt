@@ -1,0 +1,1169 @@
+JAP_fengtian_problem = {
+	JAP_Expanding_the_Influence_in_Fengtian_Government = {
+		icon = GFX_decision_CHL_mapuche_reorganize_the_bolivian_government
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_completed_focus = JAP_with_fengtian
+			is_subject = no
+			custom_trigger_tooltip = {
+				tooltip = FNG_has_influence_of_japan
+				hidden_trigger = {
+					FNG = { has_variable = FNG_influence_of_japan }
+				}
+			}
+		}
+		available = {
+			NOT = { has_war_with = FNG }
+			custom_trigger_tooltip = {
+				tooltip = FNG_has_influence_of_japan
+				hidden_trigger = {
+					FNG = { has_variable = FNG_influence_of_japan }
+				}
+			}
+		}
+		days_remove = 80
+		cost = 60
+		ai_will_do = {
+			base = 10
+		}
+		remove_effect = {
+			custom_effect_tooltip = JAP_Expanding_the_Influence_in_Fengtian_Government_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						FNG = { check_variable = { FNG_influence_of_japan < 0.98 } }
+					}
+					add_to_variable = { FNG_influence_of_japan = 0.02 }
+				}
+				else = {
+					set_variable = { FNG_influence_of_japan = 1 }
+				}
+			}
+		}
+	}
+	JAP_financial_aid_to_Fengtian = {
+		icon = GFX_decision_generic_welfare
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_completed_focus = JAP_with_fengtian
+			is_subject = no
+			custom_trigger_tooltip = {
+				tooltip = FNG_has_influence_of_japan
+				hidden_trigger = {
+					FNG = { has_variable = FNG_influence_of_japan }
+				}
+			}
+		}
+		available = {
+			NOT = { has_war_with = FNG }
+			NOT = { FNG = { has_idea = JAP_economic_support_of_japan } }
+			custom_trigger_tooltip = {
+				tooltip = FNG_has_influence_of_japan
+				hidden_trigger = {
+					FNG = { has_variable = FNG_influence_of_japan }
+				}
+			}
+		}
+		cost = 100
+		ai_will_do = {
+			base = 5
+		}
+		complete_effect = {
+			FNG = { country_event = japan_wr.38 }
+			custom_effect_tooltip = JAP_financial_aid_to_Fengtian_tt
+			effect_tooltip = {
+				FNG = {
+					add_timed_idea = { idea = JAP_economic_support_of_japan days = 600 }
+				}
+			}
+		}
+	}
+	JAP_inviting_fengtian = {
+		icon = GFX_decision_hol_exchange_intelligence_data
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_completed_focus = JAP_with_fengtian
+			is_subject = no
+			NOT = { has_war_with = FNG }
+			NOT = { FNG = { is_in_faction_with = JAP } }
+			NOT = { has_global_flag = end_of_mukden_incident_flag }
+			ROOT = { is_faction_leader = yes }
+			custom_trigger_tooltip = {
+				tooltip = FNG_has_influence_of_japan
+				hidden_trigger = {
+					FNG = { has_variable = FNG_influence_of_japan }
+				}
+			}
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = JAP_inviting_fengtian_trigger_tt
+				hidden_trigger = {
+					FNG = { check_variable = { FNG_influence_of_japan > 0.8 } }
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = FNG_has_influence_of_japan
+				hidden_trigger = {
+					FNG = { has_variable = FNG_influence_of_japan }
+				}
+			}
+		}
+		cost = 100
+		ai_will_do = {
+			base = 4000
+		}
+		complete_effect = {
+			add_to_faction = FNG
+		}
+	}
+	JAP_attack_fengtian = {
+		icon = GFX_decision_generic_prepare_civil_war
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_completed_focus = JAP_with_fengtian
+			is_subject = no
+			NOT = { has_war_with = FNG }
+			NOT = { FNG = { is_in_faction_with = JAP } }
+			NOT = { has_global_flag = end_of_mukden_incident_flag }
+		}
+		available = {
+			if = {
+				limit = {
+					has_completed_focus = JAP_prime_minister_Fumimaro_Konoe
+				}
+				custom_trigger_tooltip = {
+					tooltip = JAP_attack_fengtian_Fumimaro_Konoe_trigger_tt
+					hidden_trigger = {
+						FNG = { check_variable = { FNG_influence_of_japan < 0.4 } }
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_completed_focus = JAP_prime_minister_Keisuke_Okada
+				}
+				custom_trigger_tooltip = {
+					tooltip = JAP_attack_fengtian_Fumimaro_Keisuke_Okada_tt
+					hidden_trigger = {
+						FNG = { check_variable = { FNG_influence_of_japan < 0.2 } }
+					}
+				}
+			}
+		}
+		cost = 50
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		complete_effect = {
+			declare_war_on = { target = FNG  type = puppet_wargoal_focus }
+			add_named_threat = {
+				threat = 5
+				name = JAP_Mukden_incident
+			}
+			set_global_flag = JAP_Mukden_incident_flag
+			add_ideas = JAP_unplanned_attack_high
+			news_event = japan_wr.15
+		}
+	}
+}
+
+JAP_interservice_rivalry_wr = {
+	JAP_army_aircraft_research_support = {
+		icon = GFX_decision_generic_intelligence_operation
+		allowed = {
+			original_tag = JAP
+		}
+		available = {
+			NOT = {
+				has_country_flag = JAP_war_conferences_cd
+			}
+			NOT = {
+				has_idea = JAP_army_aircraft_research_support_bba
+			}
+		}
+		cost = 30
+		ai_will_do = {
+			factor = 1
+		}
+		complete_effect = {
+			add_ideas = JAP_army_aircraft_research_support_bba
+			if = {
+				limit = {
+					has_idea = JAP_navy_aircraft_research_support_bba
+				}
+				remove_ideas = JAP_navy_aircraft_research_support_bba
+			}
+			set_country_flag = { flag = JAP_war_conferences_cd value = 1 days = 180 }
+			JAP_interservice_rivalry_towards_army = yes
+		}
+	}
+	JAP_focus_on_army_equipment_production = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			original_tag = JAP
+		}
+		available = {
+			NOT = {
+				has_country_flag = JAP_war_conferences_cd
+			}
+		}
+		cost = 30
+		days_remove = 180
+		ai_will_do = {
+			factor = 1
+		}
+		complete_effect = {
+			set_country_flag = { flag = JAP_war_conferences_cd value = 1 days = 180 }
+			JAP_interservice_rivalry_towards_army = yes
+		}
+		modifier = {
+			industrial_capacity_factory = 0.05
+			industrial_capacity_dockyard = -0.05
+		}
+	}
+	JAP_navy_aircraft_research_support = {
+		icon = GFX_decision_SWE_set_air_budget
+		allowed = {
+			original_tag = JAP
+		}
+		available = {
+			NOT = {
+				has_country_flag = JAP_war_conferences_cd
+			}
+			NOT = {
+				has_idea = JAP_navy_aircraft_research_support_bba
+			}
+		}
+		cost = 30
+		ai_will_do = {
+			factor = 1
+		}
+		complete_effect = {
+			add_ideas = JAP_navy_aircraft_research_support_bba
+			if = {
+				limit = {
+					has_idea = JAP_army_aircraft_research_support_bba
+				}
+				remove_ideas = JAP_army_aircraft_research_support_bba
+			}
+			set_country_flag = { flag = JAP_war_conferences_cd value = 1 days = 180 }
+			JAP_interservice_rivalry_towards_navy = yes
+		}
+	}
+	JAP_focus_on_navy_equipment_production = {
+		icon = GFX_decision_SWE_set_navy_budget
+		allowed = {
+			original_tag = JAP
+		}
+		available = {
+			NOT = {
+				has_country_flag = JAP_war_conferences_cd
+			}
+		}
+		cost = 30
+		days_remove = 180
+		ai_will_do = {
+			factor = 1
+		}
+		complete_effect = {
+			set_country_flag = { flag = JAP_war_conferences_cd value = 1 days = 180 }
+			JAP_interservice_rivalry_towards_navy = yes
+		}
+		modifier = {
+			industrial_capacity_factory = -0.05
+			industrial_capacity_dockyard = 0.05
+		}
+	}
+}
+
+JAP_Demolition_of_Zaibatsu = {
+	JAP_oppress_mitsubishi = {
+		icon = GFX_decision_eng_trade_unions_demand
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_idea = JAP_zaibatsus_challenged
+			check_variable = { mitsubishi_var > 0 }
+		}
+		cost = 20
+		days_remove = 30
+		ai_will_do = {
+			base = 1000
+			modifier = {
+				add = -1000
+				OR = {
+					has_idea = JAP_unplanned_attack_high
+					has_idea = JAP_unplanned_attack_middle
+					has_idea = JAP_unplanned_attack_low
+				}
+			}
+		}
+		remove_effect = {
+			add_to_variable = { var = mitsubishi_var value = -0.05 }
+			custom_effect_tooltip = JAP_oppress_mitsubishi_effect
+		}
+	}
+	JAP_dismantle_mitsubishi = {
+		icon = GFX_decision_generic_break_treaty
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_idea = JAP_zaibatsus_challenged
+			check_variable = { mitsubishi_var = 0 }
+		}
+		cost = 20
+		days_remove = 50
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			set_country_flag = JAP_dismantled_mitsubishi_flag
+			add_timed_idea = { idea = JAP_dismantled_mitsubishi days = 365 }
+			if = {
+				limit = {
+					has_country_flag = JAP_dismantled_sumitomo_flag
+					has_country_flag = JAP_dismantled_mitsui_flag
+					has_country_flag = JAP_dismantled_yasuda_flag
+				}
+				remove_ideas = JAP_zaibatsus_challenged
+				country_event = { id = japan_wr.5 days = 366 }
+			}
+		}
+	}
+	JAP_oppress_sumitomo = {
+		icon = GFX_decision_eng_trade_unions_demand
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_idea = JAP_zaibatsus_challenged
+			check_variable = { sumitomo_var > 0 }
+		}
+		cost = 20
+		days_remove = 30
+		ai_will_do = {
+			base = 1000
+			modifier = {
+				add = -1000
+				OR = {
+					has_idea = JAP_unplanned_attack_high
+					has_idea = JAP_unplanned_attack_middle
+					has_idea = JAP_unplanned_attack_low
+				}
+			}
+		}
+		remove_effect = {
+			add_to_variable = { var = sumitomo_var value = -0.05 }
+			custom_effect_tooltip = JAP_oppress_sumitomo_effect
+		}
+	}
+	JAP_dismantle_sumitomo = {
+		icon = GFX_decision_generic_break_treaty
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_idea = JAP_zaibatsus_challenged
+			check_variable = { sumitomo_var = 0 }
+		}
+		cost = 20
+		days_remove = 50
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			set_country_flag = JAP_dismantled_sumitomo_flag
+			add_timed_idea = { idea = JAP_dismantled_sumitomo days = 365 }
+			if = {
+				limit = {
+					has_country_flag = JAP_dismantled_mitsubishi_flag
+					has_country_flag = JAP_dismantled_mitsui_flag
+					has_country_flag = JAP_dismantled_yasuda_flag
+				}
+				remove_ideas = JAP_zaibatsus_challenged
+				country_event = { id = japan_wr.5 days = 366 }
+			}
+		}
+	}
+	JAP_oppress_mitsui = {
+		icon = GFX_decision_eng_trade_unions_demand
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_idea = JAP_zaibatsus_challenged
+			check_variable = { mitsui_var > 0 }
+		}
+		cost = 20
+		days_remove = 30
+		ai_will_do = {
+			base = 1000
+			modifier = {
+				add = -1000
+				OR = {
+					has_idea = JAP_unplanned_attack_high
+					has_idea = JAP_unplanned_attack_middle
+					has_idea = JAP_unplanned_attack_low
+				}
+			}
+		}
+		remove_effect = {
+			add_to_variable = { var = mitsui_var value = -0.05 }
+			custom_effect_tooltip = JAP_oppress_mitsui_effect
+		}
+	}
+	JAP_dismantle_mitsui = {
+		icon = GFX_decision_generic_break_treaty
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_idea = JAP_zaibatsus_challenged
+			check_variable = { mitsui_var = 0 }
+		}
+		cost = 20
+		days_remove = 50
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			set_country_flag = JAP_dismantled_mitsui_flag
+			add_timed_idea = { idea = JAP_dismantled_mitsui days = 365 }
+			if = {
+				limit = {
+					has_country_flag = JAP_dismantled_mitsubishi_flag
+					has_country_flag = JAP_dismantle_sumitomo
+					has_country_flag = JAP_dismantled_yasuda_flag
+				}
+				remove_ideas = JAP_zaibatsus_challenged
+				country_event = { id = japan_wr.5 days = 366 }
+			}
+		}
+	}
+	JAP_oppress_yasuda = {
+		icon = GFX_decision_eng_trade_unions_demand
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_idea = JAP_zaibatsus_challenged
+			check_variable = { yasuda_var > 0 }
+		}
+		cost = 20
+		days_remove = 30
+		ai_will_do = {
+			base = 1000
+			modifier = {
+				add = -1000
+				OR = {
+					has_idea = JAP_unplanned_attack_high
+					has_idea = JAP_unplanned_attack_middle
+					has_idea = JAP_unplanned_attack_low
+				}
+			}
+		}
+		remove_effect = {
+			add_to_variable = { var = yasuda_var value = -0.05 }
+			custom_effect_tooltip = JAP_oppress_yasuda_effect
+		}
+	}
+	JAP_dismantle_yasuda = {
+		icon = GFX_decision_generic_break_treaty
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_idea = JAP_zaibatsus_challenged
+			check_variable = { yasuda_var = 0 }
+		}
+		cost = 20
+		days_remove = 50
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			set_country_flag = JAP_dismantled_yasuda_flag
+			add_timed_idea = { idea = JAP_dismantled_yasuda days = 365 }
+			if = {
+				limit = {
+					has_country_flag = JAP_dismantled_mitsubishi_flag
+					has_country_flag = JAP_dismantle_sumitomo
+					has_country_flag = JAP_dismantled_mitsui_flag
+				}
+				remove_ideas = JAP_zaibatsus_challenged
+				country_event = { id = japan_wr.5 days = 366 }
+			}
+		}
+	}
+}
+
+JAP_Ikki_Kita_Kodoha_struggle_decisions = {
+	JAP_attempt_to_take_full_control_of_the_administration = {
+		icon = GFX_decision_SOV_place_hq
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_country_flag = JAP_Ikki_Kita_Kodoha_struggle
+		}
+		cost = 35
+		days_remove = 20
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1000
+				has_country_flag = JAP_Ikki_Kita_Kodoha_struggle_Kita
+				power_balance_value = {
+					id = JAP_Ikki_Kita_Kodoha_struggle
+					value > -0.5
+				}
+			}
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = JAP_Ikki_Kita_Kodoha_struggle
+				value = -0.025
+			}
+		}
+	}
+	JAP_purge_of_political_officer = {
+		icon = GFX_decision_generic_assassination
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_country_flag = JAP_Ikki_Kita_Kodoha_struggle
+		}
+		available = {
+			NOT = { has_idea = JAP_purged_officers }
+		}
+		cost = 40
+		days_remove = 30
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1000
+				has_country_flag = JAP_Ikki_Kita_Kodoha_struggle_Kita
+				power_balance_value = {
+					id = JAP_Ikki_Kita_Kodoha_struggle
+					value > -0.5
+				}
+			}
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = JAP_Ikki_Kita_Kodoha_struggle
+				value = -0.1
+			}
+			add_timed_idea = { idea = JAP_purged_officers days = 300 }
+		}
+	}
+	JAP_make_use_of_Emperor = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_country_flag = JAP_Ikki_Kita_Kodoha_struggle
+		}
+		cost = 40
+		days_remove = 40
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1000
+				has_country_flag = JAP_Ikki_Kita_Kodoha_struggle_Kita
+				power_balance_value = {
+					id = JAP_Ikki_Kita_Kodoha_struggle
+					value > -0.5
+				}
+			}
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = JAP_Ikki_Kita_Kodoha_struggle
+				value = -0.05
+			}
+		}
+	}
+	JAP_deprive_the_emperors_real_power = {
+		icon = GFX_decision_generic_break_treaty
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_country_flag = JAP_Ikki_Kita_Kodoha_struggle
+		}
+		cost = 40
+		days_remove = 40
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1000
+				has_country_flag = JAP_Ikki_Kita_Kodoha_struggle_Kita
+				power_balance_value = {
+					id = JAP_Ikki_Kita_Kodoha_struggle
+					value > -0.5
+				}
+			}
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = JAP_Ikki_Kita_Kodoha_struggle
+				value = -0.05
+			}
+		}
+	}
+	JAP_pressure_prime_minister_kita = {
+		icon = GFX_decision_generic_speech
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_country_flag = JAP_Ikki_Kita_Kodoha_struggle
+		}
+		cost = 20
+		days_remove = 20
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1000
+				has_country_flag = JAP_Ikki_Kita_Kodoha_struggle_Kodoha
+				power_balance_value = {
+					id = JAP_Ikki_Kita_Kodoha_struggle
+					value < 0.5
+				}
+			}
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = JAP_Ikki_Kita_Kodoha_struggle
+				value = 0.025
+			}
+		}
+	}
+	JAP_try_to_gain_control_of_the_parliament = {
+		icon = GFX_decision_gre_faction_management_category
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_country_flag = JAP_Ikki_Kita_Kodoha_struggle
+		}
+		cost = 30
+		days_remove = 30
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1000
+				has_country_flag = JAP_Ikki_Kita_Kodoha_struggle_Kodoha
+				power_balance_value = {
+					id = JAP_Ikki_Kita_Kodoha_struggle
+					value < 0.5
+				}
+			}
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = JAP_Ikki_Kita_Kodoha_struggle
+				value = 0.05
+			}
+		}
+	}
+	JAP_complete_Restoration_of_imperial_rule_in_Japan = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_country_flag = JAP_Ikki_Kita_Kodoha_struggle
+		}
+		cost = 40
+		days_remove = 30
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1000
+				has_country_flag = JAP_Ikki_Kita_Kodoha_struggle_Kodoha
+				power_balance_value = {
+					id = JAP_Ikki_Kita_Kodoha_struggle
+					value < 0.5
+				}
+			}
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = JAP_Ikki_Kita_Kodoha_struggle
+				value = 0.075
+			}
+		}
+	}
+	JAP_persuade_emperor = {
+		icon = GFX_decision_generic_political_address
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_country_flag = JAP_Ikki_Kita_Kodoha_struggle
+		}
+		cost = 40
+		days_remove = 40
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1000
+				has_country_flag = JAP_Ikki_Kita_Kodoha_struggle_Kodoha
+				power_balance_value = {
+					id = JAP_Ikki_Kita_Kodoha_struggle
+					value < 0.5
+				}
+			}
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = JAP_Ikki_Kita_Kodoha_struggle
+				value = 0.075
+			}
+		}
+	}
+}
+
+JAP_Mukden_incident_decision = {
+	JAP_improvement_in_the_ability_to_carry_out_army_operations = {
+		icon = GFX_decision_generic_tank
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			OR = {
+				has_idea = JAP_unplanned_attack_high
+				has_idea = JAP_unplanned_attack_middle
+				has_idea = JAP_unplanned_attack_low
+			}
+		}
+		available = {
+			has_army_experience > 59
+		}
+		cost = 60
+		days_remove = 70
+		ai_will_do = {
+			base = 4000
+		}
+		remove_effect = {
+			USA = { add_war_support = 0.02 }
+			GER = { add_war_support = 0.02 }
+			if = {
+				limit = { has_idea = JAP_unplanned_attack_high }
+				swap_ideas = {
+					remove_idea = JAP_unplanned_attack_high
+					add_idea = JAP_unplanned_attack_middle
+				}
+			}
+			else_if = {
+				limit = { has_idea = JAP_unplanned_attack_middle }
+				swap_ideas = {
+					remove_idea = JAP_unplanned_attack_middle
+					add_idea = JAP_unplanned_attack_low
+				}
+			}
+			else_if = {
+				limit = { has_idea = JAP_unplanned_attack_low }
+				remove_ideas = JAP_unplanned_attack_low
+			}
+		}
+		complete_effect = {
+			army_experience = -60						
+		}		
+	}
+}
+
+peace_deal = {
+	JAP_offer_peace_to_china = {
+		available = {
+			OR = {
+				surrender_progress > 0.3
+				AND = {
+					custom_trigger_tooltip = {
+						tooltip = JAP_all_owned_korean_states_occupied
+						NOT = { KOR = { any_core_state = { controller = { OR = { is_ally_with = JAP original_tag = JAP } } } } }
+					}
+					if = {
+						limit = {
+							country_exists = MAN
+							is_ally_with = MAN
+						}
+						MAN = { has_capitulated = yes }
+					}
+					else_if = {
+						limit = { NOT = { has_war_with = FNG } }
+						OR = {
+							NOT = { country_exists = FNG }
+							FNG = { has_capitulated = yes }
+						}
+					}
+					custom_trigger_tooltip = {
+						tooltip = JAP_all_chinese_allies_capitulated
+						NOT = {
+							any_allied_country = {
+								NOT = { has_country_flag = Chinese_warlord }
+								has_capitulated = no
+							}
+						}
+					}
+					custom_trigger_tooltip = {
+						tooltip = JAP_all_owned_chinese_states_occupied
+						NOT = {
+							any_owned_state = {
+								is_chinese_area = yes
+								is_controlled_by = ROOT
+							}
+						}
+					}
+				}
+			}
+		}
+		visible = {
+			#is_faction_leader = yes
+			is_subject = no
+			any_enemy_country = {
+				has_country_flag = Chinese_warlord
+				OR = {
+					is_in_faction = no
+					is_faction_leader = yes
+				}
+			}
+			original_tag = JAP
+			has_capitulated = no
+		}
+		cost = 0
+		#fire_only_once = yes
+
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 1000
+				#NOT = { has_government = fascism }
+				OR = {
+					has_global_flag = JAP_will_surrender
+					surrender_progress > 0.15 #Japan was directly invaded
+				}
+			}
+		}
+		complete_effect = {
+			every_country = {
+				limit = {
+					has_country_flag = Chinese_warlord
+					has_war_with = JAP
+					is_subject = no
+					OR = {
+						is_in_faction = no
+						is_faction_leader = yes
+					}
+				}
+				country_event = japan_wr.32
+			}
+			if = {
+				limit = {
+					has_global_flag = JAP_will_surrender
+				}
+				clr_global_flag = JAP_will_surrender
+			}
+		}
+	}
+}
+
+JAP_sino_japanese_war = {
+	JAP_Planning_to_Attack_China = {
+		icon = GFX_decision_generic_tank
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			OR = {
+				has_idea = JAP_intervene_in_china_5
+				has_idea = JAP_intervene_in_china_4
+				has_idea = JAP_intervene_in_china_3
+				has_idea = JAP_intervene_in_china_2
+				has_idea = JAP_intervene_in_china_1
+			}
+		}
+		available = {
+			has_army_experience > 59
+		}
+		cost = 60
+		days_remove = 70
+		ai_will_do = {
+			base = 4000
+		}
+		remove_effect = {
+			USA = { add_war_support = 0.02 }
+			GER = { add_war_support = 0.02 }
+			if = {
+				limit = { has_idea = JAP_intervene_in_china_5 }
+				swap_ideas = {
+					remove_idea = JAP_intervene_in_china_5
+					add_idea = JAP_intervene_in_china_4
+				}
+			}
+			else_if = {
+				limit = { has_idea = JAP_intervene_in_china_4 }
+				swap_ideas = {
+					remove_idea = JAP_intervene_in_china_4
+					add_idea = JAP_intervene_in_china_3
+				}
+			}
+			else_if = {
+				limit = { has_idea = JAP_intervene_in_china_3 }
+				swap_ideas = {
+					remove_idea = JAP_intervene_in_china_3
+					add_idea = JAP_intervene_in_china_2
+				}
+			}
+			else_if = {
+				limit = { has_idea = JAP_intervene_in_china_2 }
+				swap_ideas = {
+					remove_idea = JAP_intervene_in_china_2
+					add_idea = JAP_intervene_in_china_1
+				}
+			}
+			else_if = {
+				limit = { has_idea = JAP_intervene_in_china_1 }
+				remove_ideas = JAP_intervene_in_china_1
+			}
+		}
+		complete_effect = {
+			army_experience = -60						
+		}	
+	}
+	JAP_shanghai_landing_operation = {
+		icon = GFX_decision_generic_operation
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_war_with = CHI
+			NOT = {
+				controls_state = 613
+			}
+		}
+		available = {
+			CHI = {
+				owns_state = 613
+			}
+		}
+		fire_only_once = yes
+		cost = 50
+		days_remove = 70
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				NOT = {
+					has_idea = JAP_intervene_in_china_3
+					has_idea = JAP_intervene_in_china_4
+					has_idea = JAP_intervene_in_china_5
+				}
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					CHI = {
+						owns_state = 613
+					}
+				}
+				set_province_controller = 7014
+			}
+			if = {
+				limit = {
+					CHI = {
+						owns_state = 613
+					}
+				}
+				613 = {
+					create_unit = {
+						division = "name = \"I. Hohei Shidan\" division_template = \"Hohei Shidan\" start_experience_factor = 0.3"
+						owner = JAP
+						prioritize_location = 7014
+						allow_spawning_on_enemy_provs = yes
+					}
+					create_unit = {
+						division = "name = \"II. Hohei Shidan\" division_template = \"Hohei Shidan\" start_experience_factor = 0.3"
+						owner = JAP
+						prioritize_location = 7014
+						allow_spawning_on_enemy_provs = yes
+					}
+					create_unit = {
+						division = "name = \"III. Hohei Shidan\" division_template = \"Hohei Shidan\" start_experience_factor = 0.3"
+						owner = JAP
+						prioritize_location = 7014
+						allow_spawning_on_enemy_provs = yes
+					}
+					create_unit = {
+						division = "name = \"IV. Hohei Shidan\" division_template = \"Hohei Shidan\" start_experience_factor = 0.3"
+						owner = JAP
+						prioritize_location = 7014
+						allow_spawning_on_enemy_provs = yes
+					}
+					create_unit = {
+						division = "name = \"V. Hohei Shidan\" division_template = \"Hohei Shidan\" start_experience_factor = 0.3"
+						owner = JAP
+						prioritize_location = 7014
+						allow_spawning_on_enemy_provs = yes
+					}
+					create_unit = {
+						division = "name = \"VI. Hohei Shidan\" division_template = \"Hohei Shidan\" start_experience_factor = 0.3"
+						owner = JAP
+						prioritize_location = 7014
+						allow_spawning_on_enemy_provs = yes
+					}
+					create_unit = {
+						division = "name = \"VII. Hohei Shidan\" division_template = \"Hohei Shidan\" start_experience_factor = 0.3"
+						owner = JAP
+						prioritize_location = 7014
+						allow_spawning_on_enemy_provs = yes
+					}
+				}
+			}
+		}
+	}
+}
+
+JAP_operation_southern = {
+	JAP_Operation_Indochina_Liberation = {
+		icon = GFX_decision_generic_tank
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			has_country_flag = JAP_start_operation_southern_flag
+			is_subject = no
+			NOT = { has_war_with = GOA }
+		}
+		cost = 50
+		days_remove = 20
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			if = {
+				limit = {
+					NOT = { has_war_with = GOA }
+				}
+				declare_war_on = {
+					target = GOA
+					type = puppet_wargoal_focus
+				}
+			}
+		}
+	}
+	JAP_Operation_Indonesian_Liberation = {
+		icon = GFX_decision_generic_tank
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			OR = {
+				has_completed_focus = JAP_operation_southern
+				has_country_flag = JAP_start_operation_southern_flag
+			}
+			is_subject = no
+			NOT = { has_war_with = INS }
+		}
+		cost = 50
+		days_remove = 20
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			if = {
+				limit = {
+					NOT = { has_war_with = INS }
+				}
+				declare_war_on = {
+					target = INS
+					type = puppet_wargoal_focus
+				}
+			}
+		}
+	}
+	JAP_Operation_Philippine_Liberation = {
+		icon = GFX_decision_generic_tank
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			OR = {
+				has_completed_focus = JAP_operation_southern
+				has_country_flag = JAP_start_operation_southern_flag
+			}
+			is_subject = no
+			NOT = { has_war_with = PHL }
+		}
+		cost = 50
+		days_remove = 20
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			if = {
+				limit = {
+					NOT = { has_war_with = PHI }
+				}
+				declare_war_on = {
+					target = PHI
+					type = puppet_wargoal_focus
+				}
+			}
+		}
+	}
+	JAP_conciliate_Siam = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = JAP
+		}
+		visible = {
+			OR = {
+				has_completed_focus = JAP_operation_southern
+				has_country_flag = JAP_start_operation_southern_flag
+			}
+			is_subject = no
+			NOT = { has_war_with = SIA }
+			NOT = { is_in_faction_with = SIA }
+			SIA = { is_subject = no }
+		}
+		available = {
+			has_full_control_of_state = 671
+			has_full_control_of_state = 670
+			has_full_control_of_state = 741
+			has_full_control_of_state = 286
+		}
+		cost = 50
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		complete_effect = {
+			SIA = { country_event = { id = japan_wr.26 days = 3 } }
+		}
+	}
+}

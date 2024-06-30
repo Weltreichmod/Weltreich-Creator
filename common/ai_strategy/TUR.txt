@@ -1,0 +1,108 @@
+# befriend
+# conquer
+# antagonize
+# build_ship
+# build_army
+# unit_ratio
+# build_building
+# research_tech
+# garrison
+# protect
+# influence
+# send_volunteers_desire
+
+TUR_dont_want_landing = {
+	allowed = {
+		original_tag = TUR
+	}
+	enable = {
+		has_global_flag = Middle_East_War
+	}
+	abort = {
+		OR = {
+			AND = {
+				has_war_with = HJZ
+				SYR = { exists = no }
+				IRQ = { exists = no }
+			}
+			NOT = { has_global_flag = Middle_East_War }
+		}
+	}
+
+#	ai_strategy = {
+#		type = naval_invasion_focus
+#		value = -2000
+#	}
+
+	ai_strategy = {
+		type = invasion_unit_request
+		area = middle_east
+		value = -2000
+	}
+}
+
+TUR_join_france = {
+	allowed = {
+		original_tag = TUR
+	}
+	enable = {
+		has_war_with = GER
+		FRA = { has_war_with = GER }
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = alliance
+		id = FRA
+		value = 100
+	}
+}
+
+TUR_join_germany = {
+	allowed = {
+		original_tag = TUR
+	}
+	enable = {
+		has_war_with = FRA
+		GER = { has_war_with = FRA }
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = alliance
+		id = GER
+		value = 100
+	}
+}
+
+TUR_why_ai_try_to_join_japan_when_war_with_GER = {
+	allowed = {
+		original_tag = TUR
+	}
+	enable = {
+		has_war_with = GER
+		JAP = { has_war_with = GER }
+		FRA = { has_war_with = GER }
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = alliance
+		id = JAP
+		value = -100
+	}
+}
+
+TUR_why_ai_try_to_join_japan_when_war_with_FRA = {
+	allowed = {
+		original_tag = TUR
+	}
+	enable = {
+		has_war_with = FRA
+		JAP = { has_war_with = FRA }
+		GER = { has_war_with = FRA }
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = alliance
+		id = JAP
+		value = -100
+	}
+}

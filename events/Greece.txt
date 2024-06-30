@@ -1,0 +1,599 @@
+﻿###########################
+# Greek Events
+###########################
+
+add_namespace = greece
+
+country_event = {
+	id = greece.1
+	title = greece.1.t
+	desc = greece.1.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = greece.1.a
+		GER = { news_event = { days = 1 id = Germany.41 } }
+		GER = { add_to_faction = GRE }
+		add_threat = 2
+		ai_chance = {
+			factor = 5
+			modifier = {
+				factor = 0
+				GER = {
+					OR = {
+						has_wargoal_against = GRE
+						is_justifying_wargoal_against = GRE
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = greece.1.b
+		GER = { country_event = { days = 1 id = Germany.42 } }
+		ai_chance = {
+			factor = 2
+		}
+	}
+}
+
+country_event = {
+	id = greece.2
+	title = greece.2.t
+	desc = greece.2.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = greece.2.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = greece.3
+	title = greece.3.t
+	desc = greece.3.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = greece.3.a
+		AUH = { country_event = { days = 1 id = AUH.20 } }
+		AUH = { add_ideas = Austria_Greek_Trade_Agreement }
+		GRE = { add_ideas = Austria_Greek_Trade_Agreement_GRE }
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = greece.3.b
+		AUH = { country_event = { days = 1 id = AUH.21 } }
+		AUH = {
+			give_guarantee = GRE
+		}
+		ai_chance = {
+			factor = 5
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+#	option = {
+#		name = greece.3.c
+#		AUH = { add_to_faction = GRE }
+#		AUH = { country_event = { days = 1 id = AUH.22 } }
+#		ai_chance = {
+#			factor = 5
+#			modifier = {
+#				is_historical_focus_on = yes
+#				factor = 0
+#			}
+#		}
+#	}
+}
+
+country_event = {
+	id = greece.4
+	title = greece.4.t
+	desc = greece.4.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = greece.4.a
+		unlock_decision_category_tooltip = second_national_schism
+		hidden_effect = {
+			set_country_flag = second_national_schism
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = greece.4.b
+		FRA = { add_to_faction = GRE }
+		news_event = faction.3
+		ai_chance = {
+			factor = 1
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = greece.5
+	title = greece.5.t
+	desc = greece.5.d
+	picture = death_of_georgios_kondylis
+	is_triggered_only = yes
+	option = {
+		name = greece.5.a
+		retire_character = GRE_georgios_kondylis
+		promote_character = GRE_ioannis_metaxas
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = greece.6
+	title = greece.6.t
+	desc = greece.6.d
+	picture = death_of_eleftherios_venizelos
+	is_triggered_only = yes
+	option = {
+		name = greece.6.a
+		retire_character = GRE_eleftherios_venizelos
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+news_event = {
+	id = greece.7
+	title = greece.7.t
+	desc = greece.7.d
+	picture = greece_revolution
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = greece.7.a
+		if = {
+			limit = {
+				tag = GRE
+			}
+			hidden_effect = {
+				set_politics = {
+					ruling_party = democratic
+					election_frequency = 48
+					elections_allowed = yes
+				}
+				set_popularities = {
+					democratic = 70
+					fascism = 10
+					communism = 10
+					neutrality = 10
+				}
+			}
+			if = {
+				limit = {
+					OR = {
+						power_balance_value = {
+							id = GRE_Republicans_Royalists_struggle
+							value > 0.1
+						}
+						power_balance_value = {
+							id = GRE_Republicans_Royalists_struggle
+							value = 0.1
+						}
+					}
+				}
+				country_event = { id = greece.8 days = 7 }
+			}
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = greece.8
+	title = greece.8.t
+	desc = greece.8.d
+	picture = border_dispute
+	is_triggered_only = yes
+	option = {
+		name = greece.8.a
+		start_civil_war = {
+			ideology = neutrality
+			size = 0.3
+			set_popularities = {
+				democratic = 11
+				neutrality = 76
+				fascism = 9
+				communism = 4
+			}
+			states = {
+				185
+				930
+			}
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+news_event = {
+	id = greece.9
+	title = greece.9.t
+	desc = greece.9.d
+	picture = broke_treaty_greece
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = greece.9.a
+		trigger = {
+			tag = GRE
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = greece.9.b
+		trigger = {
+			tag = BUL
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = greece.9.c
+		trigger = {
+			NOT = {
+				tag = GRE
+				tag = BUL
+			}
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = greece.10
+	title = greece.10.t
+	desc = greece.10.d
+	picture = border_dispute
+	is_triggered_only = yes
+	option = {
+		name = greece.10.a
+		start_civil_war = {
+			ideology = democratic
+			size = 0.3
+			set_popularities = {
+				democratic = 76
+				neutrality = 11
+				fascism = 9
+				communism = 4
+			}
+			states = {
+				185
+				930
+			}
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = greece.11
+	title = greece.11.t
+	desc = greece.11.d
+	picture = second_blakan_league
+	is_triggered_only = yes
+	option = {
+		name = greece.11.a
+		GRE = { country_event = greece.12 }
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = greece.11.b
+		GRE = { country_event = greece.13 }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = greece.12
+	title = greece.12.t
+	desc = greece.12.d
+	picture = second_blakan_league
+	is_triggered_only = yes
+	option = {
+		name = greece.12.a
+		add_to_faction = FROM
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = greece.13
+	title = greece.13.t
+	desc = greece.13.d
+	picture = second_blakan_league
+	is_triggered_only = yes
+	option = {
+		name = greece.13.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = greece.14
+	title = greece.14.t
+	desc = greece.14.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = greece.14.a
+		add_to_faction = GRE
+		GRE = { country_event = greece.12 }
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = greece.14.b
+		GRE = { country_event = greece.13 }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = greece.15
+	title = greece.15.t
+	desc = greece.15.d
+	picture = second_blakan_league
+	is_triggered_only = yes
+	option = {
+		name = greece.15.a
+		news_event = greece.16
+		if = {
+			limit = {
+				GRE = { is_faction_leader = yes }
+			}
+			GRE = { dismantle_faction = yes }
+		}
+		if = {
+			limit = {
+				ROM = { is_faction_leader = yes }
+				GRE = { is_in_faction_with = ROM }
+			}
+			ROM = { dismantle_faction = yes }
+		}
+		if = {
+			limit = {
+				SER = { is_faction_leader = yes }
+				GRE = { is_in_faction_with = ROM }
+			}
+			SER = { dismantle_faction = yes }
+		}
+		every_country = {
+			limit = {
+				has_country_flag = victory_against_bulgaria
+			}
+			every_state = {
+				limit = {
+					is_owned_by = BUL
+					OR = {
+						is_core_of = PREV
+						is_claimed_by = PREV
+					}
+				}
+				transfer_state_to = PREV
+			}
+		}
+		if = {
+			limit = {
+				SER = { has_country_flag = victory_against_bulgaria }
+				106 = {
+					is_owned_by = BUL
+				}
+			}
+			106 = { transfer_state_to = SER }
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+news_event = {
+	id = greece.16
+	title = greece.16.t
+	desc = greece.16.d
+	picture = treaty_of_sofia
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = greece.16.a
+		if = {
+			limit = { original_tag = BUL }
+			mark_focus_tree_layout_dirty = yes
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = greece.17
+	title = greece.17.t
+	desc = greece.17.d
+	picture = GFX_report_event_generic_read_write
+	fire_only_once = yes
+	trigger = {
+		tag = GRE
+		has_war_with = TUR
+		NOT = { has_completed_focus = GRE_Prepare_to_attack_the_Ottomans }
+		has_completed_focus = GRE_megali_idea
+	}
+	mean_time_to_happen = { days = 7 }
+	option = {
+		name = greece.17.a
+		341 = { add_claim_by = GRE }
+		797 = { add_claim_by = GRE }
+		184 = { add_claim_by = GRE }
+		944 = { add_claim_by = GRE }
+		339 = { add_claim_by = GRE }
+		187 = { add_claim_by = GRE }
+		164 = { add_claim_by = GRE }
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = greece.18
+	title = greece.18.t
+	desc = greece.18.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = greece.18.a
+		every_state = {
+			limit = {
+				is_owned_by = TUR
+				OR = {
+					is_core_of = GRE
+					is_claimed_by = GRE
+				}
+			}
+			transfer_state_to = GRE
+		}
+		every_country = {
+			limit = {
+				OR = {
+					original_tag = TUR
+					is_subject_of = TUR
+				}
+			}
+			white_peace = { tag = GRE }
+		}
+		remove_ideas = GRE_anti_Ottoman_sentiment
+		clr_global_flag = greece_ottoman_war
+		TUR = { set_capital = { state = 49 } }
+		ai_chance = {
+			factor = 5
+		}
+	}
+	option = {
+		name = greece.18.b
+		TUR = { country_event = greece.19 }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = greece.19
+	title = greece.19.t
+	desc = greece.19.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = greece.19.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+news_event = {
+	id = greece.20
+	title = greece.20.t
+	desc = greece.20.d
+	picture = GFX_fourth_balkan_war
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = greece.20.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+news_event = {
+	id = greece.21
+	title = greece.21.t
+	desc = greece.21.d
+	picture = GFX_second_greece_ottoman_war
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = greece.21.a
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+news_event = {
+	id = greece.22
+	title = greece.22.t
+	desc = greece.22.d
+	picture = treaty_of_sofia
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = greece.22.a
+		hidden_effect = {
+			GRE = { dismantle_faction = yes }
+		}
+		ai_chance = {
+			factor = 5
+		}
+	}
+}
+
+country_event = {
+	id = greece.23
+	title = greece.23.t
+	desc = greece.23.d
+	picture = Ioannis_Metaxas
+	is_triggered_only = yes
+	option = {
+		name = greece.23.a
+		retire_character = GRE_ioannis_metaxas
+		ai_chance = {
+			factor = 5
+		}
+	}
+}

@@ -1,0 +1,286 @@
+SAF_Attract_Colourred_decision = {
+	urged_to_uprise_in_681 = {
+		allowed = {
+			original_tag = SAF
+		}
+		icon = GFX_decision_eng_blackshirt_march
+		cost = 30
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 200
+		}
+		visible = {
+			has_completed_focus = SAF_Attract_Colourred
+			681 = { is_owned_by = SAF }
+		}
+		complete_effect = {
+			custom_effect_tooltip = SAF_urged_to_uprise_tt
+			set_country_flag = SAF_urged_to_uprise_in_681_flag
+		}
+	}
+	urged_to_uprise_in_969 = {
+		allowed = {
+			original_tag = SAF
+		}
+		icon = GFX_decision_eng_blackshirt_march
+		cost = 30
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 200
+		}
+		visible = {
+			has_completed_focus = SAF_Attract_Colourred
+			681 = { is_owned_by = SAF }
+		}
+		complete_effect = {
+			custom_effect_tooltip = SAF_urged_to_uprise_tt
+			set_country_flag = SAF_urged_to_uprise_in_969_flag
+		}
+	}
+	urged_to_uprise_in_970 = {
+		allowed = {
+			original_tag = SAF
+		}
+		icon = GFX_decision_eng_blackshirt_march
+		cost = 30
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 200
+		}
+		visible = {
+			has_completed_focus = SAF_Attract_Colourred
+			681 = { is_owned_by = SAF }
+		}
+		complete_effect = {
+			custom_effect_tooltip = SAF_urged_to_uprise_tt
+			set_country_flag = SAF_urged_to_uprise_in_970_flag
+		}
+	}
+}
+
+SAF_dissatisfaction_of_people_of_color = {
+	SAF_dissatisfaction_of_people_of_color_days = {
+		allowed = {
+			original_tag = SAF
+		}
+		icon = GFX_decision_generic_civil_support
+		activation = {
+			has_completed_focus = SAF_apartheid
+			has_variable = SAF_Discontent_var
+			NOT = { has_country_flag = SAF_no_complaints_flag }
+		}
+		days_mission_timeout = 17
+		visible = {
+			has_completed_focus = SAF_apartheid
+			has_variable = SAF_Discontent_var
+		}
+		available = {
+			NOT = {
+				has_variable = SAF_Discontent_var
+			}
+			has_country_flag = SAF_no_complaints_flag
+		}
+		priority = 50
+		timeout_effect = {
+			custom_effect_tooltip = SAF_dissatisfaction_of_people_of_color_days_effect_tt
+			if = {
+				limit = {
+					check_variable = {
+						SAF_Discontent_var < 0.94
+					}
+				}
+				add_to_variable = { var = SAF_Discontent_var value = 0.06 }
+				else = {
+					set_variable = {
+						var = SAF_Discontent_var
+						value = 1
+					}
+				}
+			}
+		}
+	}
+	SAF_dissatisfaction_of_people_of_color_days_low = {
+		allowed = {
+			original_tag = SAF
+		}
+		icon = GFX_decision_generic_civil_support
+		activation = {
+			has_completed_focus = SAF_apartheid
+			has_variable = SAF_Discontent_var
+			has_country_flag = SAF_no_complaints_flag
+		}
+		days_mission_timeout = 27
+		visible = {
+			has_completed_focus = SAF_apartheid
+			has_variable = SAF_Discontent_var
+		}
+		available = {
+			NOT = {
+				has_variable = SAF_Discontent_var
+			}
+		}
+		priority = 50
+		timeout_effect = {
+			custom_effect_tooltip = SAF_dissatisfaction_of_people_of_color_days_low_effect_tt
+			if = {
+				limit = {
+					check_variable = {
+						SAF_Discontent_var < 0.97
+					}
+				}
+				add_to_variable = { var = SAF_Discontent_var value = 0.03 }
+				else = {
+					set_variable = {
+						var = SAF_Discontent_var
+						value = 1
+					}
+				}
+			}
+		}
+	}
+	SAF_smash_black_militants = {
+		allowed = {
+			original_tag = SAF
+		}
+		icon = GFX_decision_generic_civil_support
+		cost = 20
+		ai_will_do = { 
+			base = 2000
+			modifier = {
+				check_variable = {
+					SAF_Discontent_var = 0
+				}
+				add = -2000
+			}
+		}
+		visible = {
+			has_completed_focus = SAF_apartheid
+		}
+		days_remove = 7
+		priority = 20
+		remove_effect = {
+			custom_effect_tooltip = SAF_smash_black_militants_effect_tt
+			if = {
+				limit = {
+					check_variable = {
+						SAF_Discontent_var > 0.04
+					}
+				}
+				add_to_variable = { var = SAF_Discontent_var value = -0.04 }
+				else = {
+					set_variable = {
+						var = SAF_Discontent_var
+						value = 0
+					}
+				}
+			}
+		}
+	}
+	SAF_suppress_demonstration = {
+		allowed = {
+			original_tag = SAF
+		}
+		icon = GFX_decision_generic_assassination
+		cost = 20
+		ai_will_do = { 
+			base = 2000
+			modifier = {
+				check_variable = {
+					SAF_Discontent_var = 0
+				}
+				add = -2000
+			}
+		}
+		visible = {
+			has_completed_focus = SAF_apartheid
+		}
+		days_remove = 7
+		priority = 20
+		remove_effect = {
+			custom_effect_tooltip = SAF_smash_black_militants_effect_tt
+			if = {
+				limit = {
+					check_variable = {
+						SAF_Discontent_var > 0.04
+					}
+				}
+				add_to_variable = { var = SAF_Discontent_var value = -0.04 }
+				else = {
+					set_variable = {
+						var = SAF_Discontent_var
+						value = 0
+					}
+				}
+			}
+		}
+	}
+	SAF_arrest_impure_element = {
+		allowed = {
+			original_tag = SAF
+		}
+		icon = GFX_decision_generic_arrest
+		cost = 20
+		ai_will_do = { 
+			base = 2000
+			modifier = {
+				check_variable = {
+					SAF_Discontent_var = 0
+				}
+				add = -2000
+			}
+		}
+		visible = {
+			has_completed_focus = SAF_apartheid
+		}
+		days_remove = 7
+		priority = 20
+		remove_effect = {
+			custom_effect_tooltip = SAF_smash_black_militants_effect_tt
+			if = {
+				limit = {
+					check_variable = {
+						SAF_Discontent_var > 0.04
+					}
+				}
+				add_to_variable = { var = SAF_Discontent_var value = -0.04 }
+				else = {
+					set_variable = {
+						var = SAF_Discontent_var
+						value = 0
+					}
+				}
+			}
+		}
+	}
+	SAF_imminent_rebellion = {
+		allowed = {
+			original_tag = SAF
+		}
+		icon = GFX_decision_generic_civil_support
+		activation = {
+			check_variable = {
+				var = SAF_Discontent_var
+				value = 0.9
+				compare = greater_than_or_equals 
+			}
+			has_variable = SAF_Discontent_var
+		}
+		days_mission_timeout = 7
+		visible = {
+			has_variable = SAF_Discontent_var
+		}
+		available = {
+			check_variable = {
+				var = SAF_Discontent_var
+				value = 0.9
+				compare = less_than
+			}
+		}
+		priority = 10
+		timeout_effect = {
+			country_event = { id = south_africa_wr.12 days = 30 }
+			set_country_flag = fail_to_apa
+			clear_variable = SAF_Discontent_var
+		}
+	}
+}

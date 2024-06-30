@@ -1,0 +1,2906 @@
+﻿###########################
+# German Events
+###########################
+
+add_namespace = Germany
+
+news_event = {
+	id = Germany.1
+	title = Germany.1.t
+	desc = Germany.1.d
+	picture = Marx_Scandal
+	major = no
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+		add_stability = -0.1
+		add_ideas = GER_idea_political_turmoil
+		}
+	}
+	is_triggered_only = yes
+	option = {
+		name = Germany.1.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	id = Germany.2
+	title = Germany.2.t
+	desc = Germany.2.d
+	picture = Dismissal_of_Chancellor
+	major = yes
+	immediate = {
+		hidden_effect = {
+		remove_ideas = GER_idea_Wilhelm_Marx
+		add_stability = -0.1
+		}
+	}
+	is_triggered_only = yes
+	option = {
+		name = Germany.2.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = Germany.3
+	title = Germany.3.t
+	desc = Germany.3.d
+	picture = NewChancellor
+	is_triggered_only = yes
+	option = {
+		name = Germany.3.a
+		complete_national_focus = GER_chancellor_Schacht
+		set_global_flag = GER_CHAN
+		ai_chance = {
+			factor = 1
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = GER_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = GER_ai_behavior
+						option = ANSCHLUSS
+					}
+					has_game_rule = {
+						rule = GER_ai_behavior
+						option = Friendship_with_Austria
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Germany.3.b
+		complete_national_focus = GER_chancellor_Baden
+		set_global_flag = GER_CHAN
+		ai_chance = {
+			factor = 1
+			modifier = {
+				has_game_rule = {
+					rule = GER_ai_behavior
+					option = Hjalmar_Schacht
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = Germany.4
+	title = Germany.4.t
+	desc = Germany.4.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.4.a
+		diplomatic_relation = { country = SOV relation = non_aggression_pact }
+		SOV = { add_timed_idea = { idea = SOV_idea_German_economic_aid days = 150 } }
+		SOV = { add_timed_idea = { idea = SOV_Treaty_of_Konigsberg days = 1095 } }
+		GER = { add_timed_idea = { idea = GER_Treaty_of_Konigsberg days = 1095 } }
+		GER = { news_event = { days = 1 id = Germany.9 } }
+		SOV = {
+			add_opinion_modifier = {
+				target = GER
+				modifier = medium_increase
+			}
+		}
+		GER = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = medium_increase
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = Germany.5
+	title = Germany.5.t
+	desc = Germany.5.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.5.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = Germany.6
+	title = Germany.6.t
+	desc = Germany.6.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.6.a
+		GER = { give_guarantee = AUH }
+		AUH = { give_guarantee = GER }
+		GER = { give_military_access = AUH }
+		AUH = { give_military_access = GER }
+		GER = {
+			add_opinion_modifier = {
+				target = AUH
+				modifier = large_increase
+			}
+		}
+		AUH = {
+			add_opinion_modifier = {
+				target = GER
+				modifier = large_increase
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = Germany.7
+	title = Germany.7.t
+	desc = Germany.7.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.7.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	id = Germany.8
+	title = Germany.8.t
+	desc = Germany.8.d
+	picture = GFX_news_event_generic_sign_treaty2
+	major = yes
+	mean_time_to_happen = { days = 1 }
+	trigger = {
+		tag = GER
+		GER = { has_idea = GER_Treaty_of_Konigsberg }
+		SOV = { has_idea = SOV_Treaty_of_Konigsberg }
+		SOV = { NOT = { has_non_aggression_pact_with = GER } }
+	}
+	immediate = {
+		hidden_effect = {
+			GER = {
+				diplomatic_relation = {
+					country = SOV
+					relation = non_aggression_pact
+				}
+			}
+		}
+	}
+	option = {
+		name = Germany.8.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	id = Germany.9
+	title = Germany.9.t
+	desc = Germany.9.d
+	is_triggered_only = yes
+	major = yes
+	picture = Konigsburg
+	option = {
+		name = Germany.9.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.10
+	title = Germany.10.t
+	desc = Germany.10.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		ITA = { country_event = { days = 1 id = italy.1 } }
+		name = Germany.10.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.11
+	title = Germany.11.t
+	desc = Germany.11.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.11.a
+		AUH = { country_event = { days = 1 id = AUH.2 } }
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.12
+	title = Germany.12.t
+	desc = Germany.12.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.12.a
+		ITA = { country_event = { days = 1 id = italy.4 } }
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = Germany.12.b
+		ITA = { country_event = { days = 1 id = italy.3 } }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.13
+	title = Germany.13.t
+	desc = Germany.13.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.13.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.14
+	title = Germany.14.t
+	desc = Germany.14.d
+	fire_only_once = yes
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.14.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.15
+	title = Germany.12.t
+	desc = Germany.12.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.15.a
+		ITA = { country_event = { days = 1 id = italy.4 } }
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = Germany.15.b
+		ITA = { country_event = { days = 1 id = italy.6 } }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.16
+	title = Germany.11.t
+	desc = Germany.11.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.16.a
+		AUH = { country_event = { days = 1 id = AUH.3 } }
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.17
+	title = Germany.17.t
+	desc = Germany.17.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.17.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.18
+	title = Germany.18.t
+	desc = Germany.18.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.18.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.19
+	title = Germany.19.t
+	desc = Germany.19.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.19.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.20
+	title = Germany.20.t
+	desc = Germany.20.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.20.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = dock
+	id = Germany.21
+	title = Germany.21.t
+	desc = Germany.21.d
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			GER = {
+				give_guarantee = MLT
+				diplomatic_relation = {
+				country = MLT
+				relation = docking_rights
+				active = yes
+				}
+			}
+		}
+	}
+	option = {
+		name = Germany.21.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = dock
+	id = Germany.22
+	title = Germany.22.t
+	desc = Germany.22.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.22.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.23
+	title = Germany.23.t
+	desc = Germany.23.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.23.a
+		AUH = { country_event = { days = 1 id = AUH.5 } }
+		ai_chance = {
+			factor = 6
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = GER_ai_behavior
+					option = ANSCHLUSS
+				}
+			}
+		}
+	}
+	option = {
+		name = Germany.23.b
+		complete_national_focus = Preparing_for_the_Deutscher_Krieg
+		set_global_flag = END_AUH_CONF
+		ai_chance = {
+			factor = 4
+			modifier = {
+				factor = 0
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = GER_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = GER_ai_behavior
+						option = Friendship_with_Austria
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.24
+	title = Germany.6.t
+	desc = Germany.6.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.6.a
+		complete_national_focus = Hanging_out_with_Austria
+		set_global_flag = END_AUH_CONF
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.25
+	title = Germany.7.t
+	desc = Germany.7.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.7.a
+		complete_national_focus = Preparing_for_the_Deutscher_Krieg
+		set_global_flag = END_AUH_CONF
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.26
+	title = Germany.26.t
+	desc = Germany.26.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.26.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.27
+	title = Germany.27.t
+	desc = Germany.27.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.27.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.28
+	title = Germany.28.t
+	desc = Germany.28.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.28.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.29
+	title = Germany.29.t
+	desc = Germany.29.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.29.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	picture = second_brothers_war
+	id = Germany.38
+	title = Germany.38.t
+	desc = Germany.38.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.38.a
+		if = {
+			limit = {
+				original_tag = GER
+			}
+			add_named_threat = {
+				threat = 5
+				name = GERAUH_WAR
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = sudetenland_1
+	id = Germany.30
+	title = Germany.30.t
+	desc = Germany.30.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.30.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = sudetenland_1
+	id = Germany.31
+	title = Germany.31.t
+	desc = Germany.31.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.31.a
+		GER = { declare_war_on = { target = CZE    type = take_core_state } }
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = BUL
+	id = Germany.32
+	title = Germany.32.t
+	desc = Germany.32.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.32.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = BUL
+	id = Germany.33
+	title = Germany.33.t
+	desc = Germany.33.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.33.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = SER
+	id = Germany.34
+	title = Germany.34.t
+	desc = Germany.34.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.34.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = SER
+	id = Germany.35
+	title = Germany.35.t
+	desc = Germany.35.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.35.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.36
+	title = Germany.36.t
+	desc = Germany.36.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.36.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.37
+	title = Germany.37.t
+	desc = Germany.37.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.37.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = event_normal_1
+	id = Germany.40
+	title = Germany.40.t
+	desc = Germany.40.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.40.a
+		GER = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = GEO
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.8
+				}
+				else = {
+					puppet = GEO
+				}
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = event_normal_1
+	id = Germany.39
+	title = Germany.39.t
+	desc = Germany.39.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.39.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	picture = ger_gre_friend
+	id = Germany.41
+	title = Germany.41.t
+	desc = Germany.41.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.41.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = ger_gre_friend
+	id = Germany.42
+	title = Germany.42.t
+	desc = Germany.42.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.42.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	picture = ger_tur_friend
+	id = Germany.43
+	title = Germany.43.t
+	desc = Germany.43.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.43.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = ger_tur_friend
+	id = Germany.44
+	title = Germany.44.t
+	desc = Germany.44.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.44.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = ukraine
+	id = Germany.45
+	title = Germany.45.t
+	desc = Germany.45.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.45.a
+		ai_chance = {
+			factor = 1
+		}
+		241 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 9288
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 9342
+				instant_build = yes
+			}
+		}
+		193 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 11298
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 11325
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 371
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 343
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 315
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 238
+				instant_build = yes
+			}
+		}
+		225 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 3225
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 11553
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 9542
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 3520
+				instant_build = yes
+			}
+		}
+		240 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 3492
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 9518
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 11500
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 9489
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 11475
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 11412
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 3567
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 6591
+				instant_build = yes
+			}
+		}
+		228 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 547
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 523
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 6519
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 9461
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 6505
+				instant_build = yes
+			}
+		}
+		227 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 6474
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 3421
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 6420
+				instant_build = yes
+			}
+		}
+	}
+	option = {
+		name = Germany.45.b
+		ai_chance = {
+			factor = 2
+		}
+		194 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 6319
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 9249
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 3507
+				instant_build = yes
+			}
+		}
+		202 = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 9568
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 3543
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 525
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 3494
+				instant_build = yes
+			}
+		}
+		203 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 11454
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 488
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 3468
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 6478
+				instant_build = yes
+			}
+		}
+		226 = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 9433
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 11437
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 11422
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 9419
+				instant_build = yes
+			}
+		}
+		196 = {
+			add_building_construction = {
+				type = bunker
+				level = 2
+				province = 11715
+				instant_build = yes
+			}
+		}
+		197 = {
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 3755
+				instant_build = yes
+			}
+			add_building_construction = {
+				type = bunker
+				level = 1
+				province = 11683
+				instant_build = yes
+			}
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.46
+	title = Germany.46.t
+	desc = Germany.46.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.46.a
+		DEN = { country_event = { days = 1 id = Denmark.1 } }
+		set_country_flag = friend_with_den
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = Germany.46.b
+		GER = { create_wargoal = { type = puppet_wargoal_focus target = DEN } }
+		set_country_flag = kill_den
+		ai_chance = {
+			base = 1
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+}
+
+news_event = {
+	picture = ger_den_friend
+	id = Germany.47
+	title = Germany.47.t
+	desc = Germany.47.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.47.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.48
+	title = Germany.48.t
+	desc = Germany.48.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.48.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.49
+	title = Germany.49.t
+	desc = Germany.49.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.49.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = event_normal_1
+	id = Germany.50
+	title = Germany.50.t
+	desc = Germany.50.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.50.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = event_normal_1
+	id = Germany.51
+	title = Germany.51.t
+	desc = Germany.51.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.51.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	picture = germany_finland
+	id = Germany.52
+	title = Germany.52.t
+	desc = Germany.52.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.52.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = event_normal_1
+	id = Germany.53
+	title = Germany.53.t
+	desc = Germany.53.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.53.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = event_normal_1
+	id = Germany.54
+	title = Germany.54.t
+	desc = Germany.54.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.54.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = event_normal_1
+	id = Germany.55
+	title = Germany.55.t
+	desc = Germany.55.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.55.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = event_normal_1
+	id = Germany.56
+	title = Germany.56.t
+	desc = Germany.56.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.56.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = event_normal_1
+	id = Germany.57
+	title = Germany.57.t
+	desc = Germany.57.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.57.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	picture = end_of_cze
+	id = Germany.58
+	title = Germany.58.t
+	desc = Germany.58.d
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = Germany.58.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = event_normal_1
+	id = Germany.59
+	title = Germany.59.t
+	desc = Germany.59.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.59.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = siam
+	id = Germany.60
+	title = Germany.60.t
+	desc = Germany.60.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.60.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = siam
+	id = Germany.61
+	title = Germany.61.t
+	desc = Germany.61.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.61.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	picture = independent
+	id = Germany.62
+	title = Germany.62.t
+	desc = Germany.62.d
+	is_triggered_only = yes
+	major = yes
+	immediate = {
+		hidden_effect = {
+		SAF = {
+			add_stability = -0.1
+		}
+		}
+	}
+	option = {
+		name = Germany.62.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.63
+	title = Germany.63.t
+	desc = Germany.63.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.63.a
+		HUN = { country_event = { days = 3 id = hungary.1 } }
+		ai_chance = {
+			factor = 2
+		}
+	}
+	option = {
+		name = Germany.63.b
+		HUN = { country_event = { days = 3 id = hungary.2 } }
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = Germany.63.c
+		HUN = { country_event = { days = 3 id = hungary.3 } }
+		ai_chance = {
+			factor = 2
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.64
+	title = Germany.64.t
+	desc = Germany.64.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.64.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.65
+	title = Germany.65.t
+	desc = Germany.65.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.65.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Ukranie.2
+	id = Germany.66
+	title = Germany.66.t
+	desc = Germany.66.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.66.a
+		ai_chance = {
+			base = 4
+		}
+		declare_war_on = { target = UKR type = puppet_wargoal_focus }
+		set_global_flag = german_ukrainian_war
+	}
+	option = {
+		name = Germany.66.b
+		UKR = { country_event = ukraine.23 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.67
+	title = Germany.67.t
+	desc = Germany.67.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.67.a
+		ai_chance = {
+			factor = 4
+		}
+		white_peace = UKR
+		GER = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = UKR
+					autonomous_state = autonomy_colony
+					freedom_level = 0.45
+				}
+				else = {
+					puppet = UKR
+				}
+			}
+		}
+		UKR = {
+			set_politics = {
+				ruling_party = democratic
+				elections_allowed = yes
+			}
+			set_rule = { can_join_factions = yes }
+			country_event = { days = 1 id = ukraine.7 }
+		}
+		clr_global_flag = german_ukrainian_war
+	}
+	option = {
+		name = Germany.67.b
+		ai_chance = {
+			factor = 0
+		}
+		UKR = { country_event = ukraine.3 set_rule = { can_join_factions = yes } }
+		clr_global_flag = german_ukrainian_war
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.68
+	title = Germany.68.t
+	desc = Germany.68.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.68.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.69
+	title = Germany.69.t
+	desc = Germany.69.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.69.a
+		set_global_flag = Armistice_of_Gorky
+		news_event = Germany.70
+		SOV = {
+			if = {
+				limit = {
+					SOV = { NOT = { is_faction_leader = yes } }
+				}
+				leave_faction = yes
+			}
+			if = {
+				limit = {
+					SOV = { is_faction_leader = yes }
+				}
+				dismantle_faction = yes
+			}
+			add_ideas = Armistice_of_Gorky1
+			remove_ideas = home_of_revolution
+			white_peace = GER
+			OR = {
+				tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = Germany.69.b
+		SOV = { country_event = Soviet.3 }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+news_event = {
+	picture = gorky
+	id = Germany.70
+	title = Germany.70.t
+	desc = Germany.70.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.70.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = kazan
+	id = Germany.71
+	title = Germany.71.t
+	desc = Germany.71.d
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			SOV = { set_cosmetic_tag = SOV_RUS }
+			if = {
+				limit = {
+					tag = GER
+				}
+				news_event = Germany.72
+			}
+			every_country = {
+				limit = {
+					is_subject_of = SOV
+				}
+				country_event = Soviet.4
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = SOV
+				}
+				remove_claim_by = SOV
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_owned_by = GER
+						is_owned_by = UBD
+						is_owned_by = LAT
+						is_owned_by = EST
+						is_owned_by = LIT
+						is_owned_by = POL
+						is_owned_by = UKR
+					}
+				}
+				remove_core_of = SOV
+			}
+			if = {
+				limit = {
+					MOS = { exists = no }
+				}
+				GER = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = MOS
+							autonomous_state = autonomy_oberbefehlshaberiat
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = MOS
+						}
+					}
+				}
+				MOS = { inherit_technology = GER }
+				every_state = {
+					limit = {
+						is_owned_by = SOV
+						OR = {
+							state = 195
+							state = 208
+							state = 244
+							state = 209
+							state = 263
+							state = 210
+							state = 246
+							state = 242
+							state = 243
+							state = 247
+							state = 264
+							state = 214
+							state = 219
+							state = 205
+							state = 248
+							state = 250
+							state = 253
+							state = 224
+							state = 254
+							state = 256
+							state = 223
+							state = 222
+							state = 220
+							state = 258
+							state = 257
+							state = 260
+							state = 252
+							state = 255
+							state = 239
+							state = 265
+							state = 351
+							state = 829
+							state = 879
+							state = 880
+						}
+					}
+					add_core_of = MOS
+					transfer_state_to = MOS
+				}
+				if = {
+					limit = {
+						FIN = {
+							NOT = {
+								is_in_faction_with = GER
+								has_country_flag = FIN_claim_Karelia
+							}
+						}
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SOV
+							OR = {
+								state = 213
+								state = 215
+								state = 216
+							}
+						}
+						add_core_of = MOS
+						transfer_state_to = MOS
+					}
+					else = {
+						every_state = {
+							limit = {
+								is_owned_by = SOV
+								OR = {
+									is_claimed_by = FIN
+									state = 213
+									state = 215
+									state = 216
+								}
+							}
+							transfer_state_to = FIN
+						}
+					}
+				}
+				931 = { transfer_state_to = BLR }
+				207 = { transfer_state_to = BLR }
+				810 = { transfer_state_to = UBD }
+			}
+			if = {
+				limit = {
+					WOL = exists
+				}
+				GER = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = WOL
+							autonomous_state = autonomy_oberbefehlshaberiat
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = WOL
+						}
+					}
+				}
+				WOL = { inherit_technology = GER }
+				every_state = {
+					limit = {
+						is_owned_by = SOV
+						OR = {
+							state = 217
+							state = 245
+							state = 218
+							state = 236
+							state = 237
+							state = 238
+							state = 234
+							state = 235
+							state = 233
+							state = 827
+							state = 828
+							state = 232
+							state = 821
+						}
+					}
+					add_core_of = WOL
+				}
+				every_state = {
+					limit = {
+						is_core_of = WOL
+					}
+					transfer_state_to = WOL
+				}
+			}
+#			if = {
+#				limit = {
+#					URL = { exists = no }
+#				}
+#				GER = {
+#					if = {
+#						limit = {
+#							OR = {
+#								has_dlc = "Together for Victory"
+#								has_dlc = "Waking the Tiger"
+#							}
+#						}
+#						set_autonomy = {
+#							target = URL
+#							autonomous_state = autonomy_Military_District
+#							freedom_level = 0.3
+#						}
+#						else = {
+#							puppet = URL
+#						}
+#					}
+#				}
+#				URL = { inherit_technology = GER }
+#				every_state = {
+#					limit = {
+#						is_owned_by = SOV
+#						OR = {
+#							state = 401
+#							state = 251
+#							state = 249
+#							state = 652
+#							state = 833
+#							state = 400
+#							state = 397
+#							state = 651
+#							state = 399
+#							state = 398
+#							state = 582
+#							state = 573
+#							state = 262
+#							state = 958
+#							state = 825
+#							state = 581
+#						}
+#					}
+#					add_core_of = URL
+#				}
+#				every_state = {
+#					limit = {
+#						is_core_of = URL
+#					}
+#					transfer_state_to = URL
+#				}
+#			}
+			every_state = {
+				limit = {
+					is_owned_by = SOV
+					is_core_of = KAZ
+				}
+				transfer_state_to = KAZ
+			}
+			every_state = {
+				limit = {
+					is_owned_by = SOV
+					is_core_of = UZB
+				}
+				transfer_state_to = UZB
+			}
+			every_state = {
+				limit = {
+					is_owned_by = SOV
+					is_core_of = UZB
+				}
+				transfer_state_to = UZB
+			}
+			every_state = {
+				limit = {
+					is_owned_by = SOV
+					is_core_of = KYR
+				}
+				transfer_state_to = KYR
+			}
+			every_state = {
+				limit = {
+					is_owned_by = SOV
+					is_core_of = BUK
+				}
+				transfer_state_to = BUK
+			}
+			every_state = {
+				limit = {
+					is_owned_by = SOV
+					is_core_of = TMS
+				}
+				transfer_state_to = TMS
+			}
+		}
+	}
+	option = {
+		name = Germany.71.a
+		trigger = {
+			NOT = {
+				original_tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+				original_tag = SOV
+				is_subject_of = SOV
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = Germany.71.b
+		trigger = {
+			OR = {
+				original_tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = Germany.71.c
+		trigger = {
+			OR = {
+				original_tag = SOV
+				is_subject_of = SOV
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	picture = kazan1
+	id = Germany.72
+	title = Germany.72.t
+	desc = Germany.72.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.72.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = Germany.73
+	title = Germany.73.t
+	desc = Germany.73.d
+	picture = Singing
+	is_triggered_only = yes
+	option = {
+		name = Germany.73.a
+		news_event = { days = 1 id = Germany.74 }
+		add_to_faction = ITA
+		add_named_threat = {
+			threat = 2
+			name = ger_ita_ally
+		}
+		ai_chance = {
+			base = 50
+		}
+	}
+	option = {
+		name = Germany.73.b
+		ITA = { country_event = { days = 3 id = italy.34 } }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+news_event = {
+	id = Germany.74
+	title = Germany.74.t
+	desc = Germany.74.d
+	picture = deal
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.74.a
+		trigger = {
+			NOT = {
+				tag = ITA
+				tag = GER
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = Germany.74.b
+		trigger = {
+			OR = {
+				tag = GER
+				tag = ITA
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.75
+	title = Germany.75.t
+	desc = Germany.75.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.75.a
+		TUR = { add_timed_idea = { idea = German_Ottoman_Arms_Production_Agreement days = 200 } }
+		GER = { add_timed_idea = { idea = German_Ottoman_Arms_Production_Agreement_GER days = 200 } }
+		TUR = { country_event = turkey.26 }
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = Germany.75.b
+		TUR = { country_event = turkey.27 }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+news_event = {
+	id = Germany.76
+	title = Germany.76.t
+	desc = Germany.76.d
+	picture = death_of_kaiser_wilhelm_ii
+	major = yes
+	trigger = {
+		original_tag = GER
+		date > 1941.5.31
+		has_country_leader = {
+			character = GER_wilhelm_ii
+			ruling_only = yes
+		}
+	}
+	option = {
+		name = Germany.76.a
+		trigger = {
+			NOT = {
+				tag = FRA
+			}
+		}
+		if = {
+			limit = {
+				original_tag = GER
+			}
+			kill_country_leader = yes
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = Germany.76.b
+		trigger = {
+			tag = FRA
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+country_event = {
+	id = Germany.77
+	title = Germany.77.t
+	desc = Germany.77.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			clr_global_flag = Deutscher_Krieg
+			set_global_flag = END_GERAUH_WAR
+			every_state = {
+				limit = {
+					is_core_of = AUH
+				}
+				remove_core_of = AUH
+			}
+			SER = {
+				leave_faction = yes
+			}
+			BOS = {
+				leave_faction = yes
+			}
+			MNT = {
+				leave_faction = yes
+			}
+			ALB = {
+				leave_faction = yes
+			}
+#			ITA = {
+#				if = {
+#					limit = {
+#						has_country_flag = join_brothers_war
+#						is_in_faction_with = GER
+#					}
+#					leave_faction = yes
+#				}
+#			}
+#			ROM = {
+#				if = {
+#					limit = {
+#						has_country_flag = join_brothers_war
+#						is_in_faction_with = GER
+#					}
+#					leave_faction = yes
+#				}
+#			}
+			every_country = {
+				limit = {
+					OR = {
+						original_tag = AUH
+						is_in_faction_with = AUH
+						is_subject_of = AUH
+					}
+				}
+				every_country = {
+					limit = {
+						has_war_with = AUH
+					}
+					white_peace = { tag = PREV }
+				}
+			}
+		}
+	}
+	option = {
+		name = Germany.77.a
+		news_event = AUH.7
+		AUH = {
+			if = {
+				limit = {
+					AUH = { NOT = { is_faction_leader = yes } }
+				}
+				leave_faction = yes
+				LBV = {
+					leave_faction = yes
+				}
+			}
+			if = {
+				limit = {
+					AUH = { is_faction_leader = yes }
+				}
+				dismantle_faction = yes
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				OR = {
+					state = 848
+					state = 153
+					state = 39
+					state = 152
+					state = 4
+					state = 102
+					state = 853
+				}
+			}
+			transfer_state_to = GER
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				OR = {
+					state = 91
+					state = 89
+				}
+			}
+			transfer_state_to = UKR
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				OR = {
+					state = 88
+					state = 72
+				}
+			}
+			transfer_state_to = POL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				OR = {
+					state = 69
+					state = 9
+					state = 75
+					state = 74
+				}
+			}
+			transfer_state_to = CZE
+		}
+		every_state = {
+			limit = {
+				is_owned_by = AUH
+				OR = {
+					state = 103
+					state = 109
+					state = 163
+				}
+			}
+			transfer_state_to = CRO
+		}
+		if = {
+			limit = {
+				BOS = { exists = no }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					is_core_of = BOS
+				}
+				transfer_state_to = BOS
+			}
+		}
+		if = {
+			limit = {
+				MNT = { exists = no }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					is_core_of = MNT
+				}
+				transfer_state_to = MNT
+			}
+		}
+		CZE = {
+			inherit_technology = AUH
+			set_politics = {
+				ruling_party = democratic
+				last_election = "1935.5.19"
+				election_frequency = 60
+				elections_allowed = yes
+			}
+			set_popularities = {
+				democratic = 65
+				neutrality = 20
+				fascism = 5
+				communism = 10
+			}
+		}
+		CRO = {
+			inherit_technology = AUH
+		}
+		every_country = {
+			limit = {
+				tag = ITA
+				has_country_flag = join_brothers_war
+			}
+			clr_country_flag = join_brothers_war
+			every_state = {
+				limit = {
+					OR = {
+						is_owned_by = LBV
+						is_owned_by = AUH
+					}
+					OR = {
+						state = 159
+						state = 160
+						state = 945
+						state = 850
+						state = 736
+						state = 852
+					}
+				}
+				transfer_state_to = ITA
+				remove_core_of = AUH
+				remove_core_of = LBV
+				add_core_of = ITA
+			}
+		}
+		every_country = {
+			limit = {
+				tag = ITA
+				NOT = { has_country_flag = join_brothers_war }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					OR = {
+						state = 850
+						state = 736
+						state = 852
+					}
+				}
+				transfer_state_to = GER
+			}
+		}
+		every_country = {
+			limit = {
+				tag = ROM
+				has_country_flag = join_brothers_war
+			}
+			clr_country_flag = join_brothers_war
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					OR = {
+						state = 80
+						state = 84
+						state = 83
+						state = 82
+						state = 975
+					}
+				}
+				transfer_state_to = ROM
+			}
+		}
+		every_country = {
+			limit = {
+				tag = ROM
+				NOT = { has_country_flag = join_brothers_war }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					state = 80
+				}
+				transfer_state_to = UKR
+			}
+		}
+		HUN = {
+			annex_country = { target = AUH transfer_troops = yes }
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = CRO
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.45
+				}
+				else = {
+					puppet = CRO
+				}
+			}
+			inherit_technology = AUH
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+country_event = {
+	id = Germany.78
+	title = Germany.78.t
+	desc = Germany.78.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = Germany.78.a
+		set_global_flag = Deutscher_Krieg
+		declare_war_on = { target = AUH type = take_core_state }
+		news_event = Germany.38
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+country_event = {
+	id = Germany.79
+	title = Germany.79.t
+	desc = Germany.79.d
+	picture = GFX_report_event_generic_read_write
+	trigger = {
+		original_tag = GER
+		has_global_flag = Deutscher_Krieg
+		NOT = { has_war_with = AUH }
+	}
+	immediate = {
+		hidden_effect = {
+			clr_global_flag = Deutscher_Krieg
+			set_global_flag = END_GERAUH_WAR
+		}
+	}
+	fire_only_once = yes
+	option = {
+		name = Germany.79.a
+		news_event = AUH.7
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+country_event = {
+	id = Germany.80
+	title = Germany.80.t
+	desc = Germany.80.d
+	picture = german_empire_speech
+	trigger = {
+		original_tag = GER
+		has_war_with = FRA
+	}
+	mean_time_to_happen = { days = 15 }
+	fire_only_once = yes
+	option = {
+		name = Germany.80.a
+		#add_timed_idea = { idea = Operation_Bulldozer days = 55 }
+		add_war_support = 0.1
+		ai_chance = {
+			factor = 10
+		}
+	}
+}
+
+news_event = {
+	picture = ger_tur_friend
+	id = Germany.81
+	title = Germany.81.t
+	desc = Germany.81.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.81.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = Germany.82
+	title = Germany.82.t
+	desc = Germany.82.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.82.a
+		diplomatic_relation = { country = RUS relation = non_aggression_pact }
+		RUS = { add_timed_idea = { idea = SOV_idea_German_economic_aid days = 150 } }
+		RUS = { add_timed_idea = { idea = RUS_Treaty_of_Hamburg days = 1095 } }
+		GER = { add_timed_idea = { idea = GER_Treaty_of_Hamburg days = 1095 } }
+		GER = { news_event = { days = 1 id = Germany.84 } }
+		RUS = {
+			add_opinion_modifier = {
+				target = GER
+				modifier = medium_increase
+			}
+		}
+		GER = {
+			add_opinion_modifier = {
+				target = RUS
+				modifier = medium_increase
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = Germany.83
+	title = Germany.83.t
+	desc = Germany.83.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.83
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	id = Germany.84
+	title = Germany.84.t
+	desc = Germany.84.d
+	is_triggered_only = yes
+	major = yes
+	picture = Konigsburg
+	option = {
+		name = Germany.84.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	id = Germany.85
+	title = Germany.85.t
+	desc = Germany.85.d
+	picture = GFX_news_event_generic_sign_treaty2
+	major = yes
+	mean_time_to_happen = { days = 1 }
+	trigger = {
+		tag = GER
+		GER = { has_idea = GER_Treaty_of_Hamburg }
+		RUS = { has_idea = RUS_Treaty_of_Hamburg }
+		RUS = { NOT = { has_non_aggression_pact_with = GER } }
+	}
+	immediate = {
+		hidden_effect = {
+			GER = {
+				diplomatic_relation = {
+					country = RUS
+					relation = non_aggression_pact
+				}
+			}
+		}
+	}
+	option = {
+		name = Germany.85.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Singing
+	id = Germany.86
+	title = Germany.86.t
+	desc = Germany.86.d
+	is_triggered_only = yes
+	option = {
+		name = Germany.86.a
+		set_global_flag = RUS_Armistice_of_Gorky
+		news_event = Germany.87
+		RUS = {
+			if = {
+				limit = {
+					RUS = { NOT = { is_faction_leader = yes } }
+				}
+				leave_faction = yes
+			}
+			if = {
+				limit = {
+					RUS = { is_faction_leader = yes }
+				}
+				dismantle_faction = yes
+			}
+			add_ideas = Armistice_of_Gorky1
+			white_peace = GER
+			OR = {
+				tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = Germany.86.b
+		RUS = { country_event = Soviet.3 }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+news_event = {
+	picture = gorky
+	id = Germany.87
+	title = Germany.87.t
+	desc = Germany.87.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.87.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = kazan
+	id = Germany.88
+	title = Germany.88.t
+	desc = Germany.88.d
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					tag = GER
+				}
+				news_event = Germany.89
+			}
+			every_country = {
+				limit = {
+					is_subject_of = RUS
+				}
+				country_event = Soviet.4
+			}
+			every_state = {
+				limit = {
+					is_claimed_by = RUS
+				}
+				remove_claim_by = RUS
+			}
+			every_state = {
+				limit = {
+					OR = {
+						is_owned_by = GER
+						is_owned_by = UBD
+						is_owned_by = LAT
+						is_owned_by = EST
+						is_owned_by = LIT
+						is_owned_by = POL
+						is_owned_by = UKR
+					}
+				}
+				remove_core_of = RUS
+			}
+			if = {
+				limit = {
+					MOS = { exists = no }
+				}
+				GER = {
+					if = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Waking the Tiger"
+						}
+						set_autonomy = {
+							target = MOS
+							autonomous_state = autonomy_oberbefehlshaberiat
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = MOS
+						}
+					}
+				}
+				MOS = { inherit_technology = GER }
+				every_state = {
+					limit = {
+						is_owned_by = RUS
+						OR = {
+							state = 195
+							state = 208
+							state = 244
+							state = 209
+							state = 263
+							state = 210
+							state = 246
+							state = 242
+							state = 243
+							state = 247
+							state = 264
+							state = 214
+							state = 219
+							state = 205
+							state = 248
+							state = 250
+							state = 253
+							state = 224
+							state = 254
+							state = 256
+							state = 223
+							state = 222
+							state = 220
+							state = 258
+							state = 257
+							state = 260
+							state = 252
+							state = 255
+							state = 239
+							state = 265
+							state = 351
+							state = 829
+							state = 879
+							state = 880
+						}
+					}
+					add_core_of = MOS
+					transfer_state_to = MOS
+				}
+				if = {
+					limit = {
+						FIN = {
+							NOT = {
+								is_in_faction_with = GER
+								has_country_flag = FIN_claim_Karelia
+							}
+						}
+					}
+					every_state = {
+						limit = {
+							is_owned_by = RUS
+							OR = {
+								state = 213
+								state = 215
+								state = 216
+							}
+						}
+						add_core_of = MOS
+						transfer_state_to = MOS
+					}
+					else = {
+						every_state = {
+							limit = {
+								is_owned_by = SOV
+								OR = {
+									is_claimed_by = FIN
+									state = 213
+									state = 215
+									state = 216
+								}
+							}
+							transfer_state_to = FIN
+						}
+					}
+				}
+				931 = { transfer_state_to = BLR }
+				207 = { transfer_state_to = BLR }
+				810 = { transfer_state_to = UBD }
+			}
+			if = {
+				limit = {
+					WOL = exists
+				}
+				GER = {
+					if = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Waking the Tiger"
+						}
+						set_autonomy = {
+							target = WOL
+							autonomous_state = autonomy_oberbefehlshaberiat
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = WOL
+						}
+					}
+				}
+				WOL = { inherit_technology = GER }
+				every_state = {
+					limit = {
+						is_owned_by = RUS
+						OR = {
+							state = 217
+							state = 245
+							state = 218
+							state = 236
+							state = 237
+							state = 238
+							state = 234
+							state = 235
+							state = 233
+							state = 827
+							state = 828
+							state = 232
+							state = 821
+						}
+					}
+					add_core_of = WOL
+				}
+				every_state = {
+					limit = {
+						is_core_of = WOL
+					}
+					transfer_state_to = WOL
+				}
+			}
+			every_state = {
+				limit = {
+					is_owned_by = RUS
+					is_core_of = KAZ
+				}
+				transfer_state_to = KAZ
+			}
+			every_state = {
+				limit = {
+					is_owned_by = RUS
+					is_core_of = UZB
+				}
+				transfer_state_to = UZB
+			}
+			every_state = {
+				limit = {
+					is_owned_by = RUS
+					is_core_of = UZB
+				}
+				transfer_state_to = UZB
+			}
+			every_state = {
+				limit = {
+					is_owned_by = RUS
+					is_core_of = KYR
+				}
+				transfer_state_to = KYR
+			}
+			every_state = {
+				limit = {
+					is_owned_by = RUS
+					is_core_of = BUK
+				}
+				transfer_state_to = BUK
+			}
+			every_state = {
+				limit = {
+					is_owned_by = RUS
+					is_core_of = TMS
+				}
+				transfer_state_to = TMS
+			}
+		}
+	}
+	option = {
+		name = Germany.88.a
+		trigger = {
+			NOT = {
+				original_tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+				original_tag = RUS
+				is_subject_of = RUS
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = Germany.88.b
+		trigger = {
+			OR = {
+				original_tag = GER
+				is_in_faction_with = GER
+				is_subject_of = GER
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = Germany.88.c
+		trigger = {
+			OR = {
+				original_tag = RUS
+				is_subject_of = RUS
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	picture = kazan1
+	id = Germany.89
+	title = Germany.89.t
+	desc = Germany.89.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = Germany.89.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	picture = Siegtag
+	id = Germany.1000
+	title = Germany.1000.t
+	desc = Germany.1000.d
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			country_event = { id = Germany.1000 days = 365 }
+		}
+	}
+	option = {
+		name = Germany.1000.a
+		add_political_power = 10
+		ai_chance = {
+			factor = 100
+		}
+	}
+}

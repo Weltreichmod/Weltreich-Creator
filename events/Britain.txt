@@ -1,0 +1,1565 @@
+﻿add_namespace = britain
+
+# King dies
+country_event = {
+	id = britain.1
+	title = britain.1.t
+	desc = britain.1.d
+	picture = GFX_report_event_europe_funeral
+	is_triggered_only = yes	
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			set_country_flag = ENG_king_died
+			remove_ideas = george_v
+			add_ideas = ENG_king_edward
+			retire_character = ENG_george_v
+		}		
+	}
+	
+	option = {
+		name = britain.1.a
+		effect_tooltip = {
+			remove_ideas = george_v		
+			add_ideas = ENG_king_edward
+		}
+	}
+}
+
+# King abdicates
+country_event = {
+	id = britain.2
+	title = britain.2.t
+	desc = britain.2.d
+	picture = GFX_report_event_generic_sign_treaty2
+	trigger = {
+		tag = ENG
+		has_country_flag = ENG_king_died
+		date > 1936.12.1
+		NOT = {
+			has_government = communism
+		}
+	}
+	fire_only_once = yes
+	mean_time_to_happen = { days = 14 }
+	immediate = {
+		hidden_effect = {
+			remove_ideas = ENG_king_edward
+			add_ideas = ENG_george_vi	
+			set_country_flag = change_king_to_VI
+			retire_character = ENG_king_edward
+		}
+	}
+	option = {
+		name = britain.2.a
+		effect_tooltip = {
+			remove_ideas = ENG_king_edward
+			add_ideas = ENG_george_vi		
+		}
+	}
+}
+
+country_event = {
+	id = britain.3
+	title = britain.3.t
+	desc = britain.3.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes	
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			remove_ideas = preparations_for_the_general_election
+			remove_ideas = rise_of_fascism
+			remove_ideas = the_Communist_uprising
+			set_country_flag = ENG_1936_general_election
+		}
+	}
+	option = {
+		name = britain.3.a
+		set_politics = {
+			ruling_party = democratic
+			election_frequency = 48
+			elections_allowed = yes
+		}
+		hidden_effect = {
+			set_country_flag = democratic_in_ENG
+			country_event = { id = britain.11 days = 10 }
+			country_event = { id = britain.40 days = 350 }
+			mark_focus_tree_layout_dirty = yes
+		}
+		custom_effect_tooltip = ENG_focus_tree_change
+		news_event = britain.6
+		ai_chance = {
+			factor = 1.5
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = ENG_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = FASCISM_ENGAGE_IN_CONTINENTAL_AFFAIRS
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = FASCISM_COLONY_INTEGRATION_POLICY
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = COMMUNIST_BEN
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = COMMUNIST_HARRY
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = britain.3.b
+		set_politics = {
+			ruling_party = fascism
+			election_frequency = 48
+			elections_allowed = yes
+		}
+		hidden_effect = {
+			set_country_flag = fascism_in_ENG
+			country_event = { id = britain.10 days = 10 }
+			mark_focus_tree_layout_dirty = yes
+		}
+		remove_ideas = an_unpopular_government
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.3
+		}
+		custom_effect_tooltip = ENG_focus_tree_change
+		news_event = britain.7
+		ai_chance = {
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = DEMOCRATIC
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = NEUTRILITY
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = COMMUNIST_BEN
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = COMMUNIST_HARRY
+					}
+				}
+				factor = 0
+			}
+			factor = 4.5
+		}
+	}
+	option = {
+		name = britain.3.c
+		set_politics = {
+			ruling_party = communism
+			election_frequency = 48
+			elections_allowed = yes
+		}
+		hidden_effect = {
+			set_country_flag = communism_in_ENG
+			country_event = { id = britain.12 days = 10 }
+		}
+		add_popularity = {
+			ideology = communism
+			popularity = 0.3
+		}
+		remove_ideas = an_unpopular_government
+		hidden_effect = {
+			country_event = { id = britain.18 days = 7 }
+			country_event = { id = britain.19 days = 10 }
+			country_event = { id = britain.20 days = 5 }
+			mark_focus_tree_layout_dirty = yes
+		}
+		custom_effect_tooltip = ENG_focus_tree_change
+		news_event = britain.8
+		ai_chance = {
+			factor = 2.5
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = ENG_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = FASCISM_ENGAGE_IN_CONTINENTAL_AFFAIRS
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = FASCISM_COLONY_INTEGRATION_POLICY
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = DEMOCRATIC
+					}
+					has_game_rule = {
+						rule = ENG_ai_behavior 
+						option = NEUTRILITY
+					}
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = britain.4
+	title = britain.4.t
+	desc = britain.4.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.4.a
+		FRA = {
+			news_event = france.6
+			add_to_faction = ENG
+		}
+		set_global_flag = FRA_ENG_AA
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.5
+	title = britain.5.t
+	desc = britain.5.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.5.a
+		FRA = { country_event = france.8 }
+		FRA = {
+			add_opinion_modifier = {
+				target = ENG
+				modifier = medium_increase
+			}
+			diplomatic_relation = {
+				country = ENG
+				relation = non_aggression_pact
+			}
+		}
+		ENG = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = medium_increase
+			}
+		}
+		ai_chance = {
+			factor = 7
+		}
+	}
+	option = {
+		name = britain.5.b
+		FRA = { country_event = france.9 }
+		ai_chance = {
+			factor = 3
+		}
+	}
+}
+
+news_event = {
+	id = britain.6
+	title = britain.6.t
+	desc = britain.6.d
+	picture = eng_democracy
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = britain.6.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	id = britain.7
+	title = britain.7.t
+	desc = britain.7.d
+	picture = eng_fascism
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = britain.7.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+news_event = {
+	id = britain.8
+	title = britain.8.t
+	desc = britain.8.d
+	picture = eng_communism
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = britain.8.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.9
+	title = britain.9.t
+	desc = britain.9.d
+	picture = Chamberlain
+	fire_only_once = yes
+	trigger = {
+		tag = ENG
+		has_global_flag = democratic_in_ENG
+		has_government = democratic
+		date > 1937.5.15
+		NOT = {
+			has_country_leader = {
+				character = ENG_neville_chamberlain
+				ruling_only = yes
+			}
+		}
+	}
+	option = {
+		name = britain.9.a
+		promote_character = ENG_neville_chamberlain
+		retire_character = ENG_stanley_baldwin
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.10
+	title = britain.10.t
+	desc = britain.10.d
+	picture = communism_eng
+	is_triggered_only = yes
+	option = {
+		name = britain.10.a
+		add_ideas = communists_backlash
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.11
+	title = britain.11.t
+	desc = britain.11.d
+	picture = massive_backlash
+	is_triggered_only = yes
+	option = {
+		name = britain.11.a
+		add_ideas = massive_backlash
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.12
+	title = britain.12.t
+	desc = britain.12.d
+	picture = fascism_eng
+	is_triggered_only = yes
+	option = {
+		name = britain.12.a
+		add_ideas = fascists_backlash
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.13
+	title = britain.13.t
+	desc = britain.13.d
+	picture = big_ben_burn
+	is_triggered_only = yes
+	option = {
+		name = britain.13.a
+		country_event = { id = britain.14 days = 5 hours = 3 }
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.14
+	title = britain.14.t
+	desc = britain.14.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = britain.14.a
+		remove_ideas = communists_backlash
+		add_popularity = {
+			ideology = communism
+			popularity = -1.0
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.15
+	title = britain.15.t
+	desc = britain.15.d
+	picture = Singing
+	is_triggered_only = yes
+	option = {
+		name = britain.15.a
+		show_ideas_tooltip = Vauxhall_eng
+		set_country_flag = Vauxhall_eng
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = britain.15.b
+		show_ideas_tooltip = Vickers_eng
+		set_country_flag = Vickers_eng
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.16
+	title = britain.16.t
+	desc = britain.16.d
+	picture = british_royal
+	is_triggered_only = yes
+	option = {
+		name = britain.16.a
+		trigger = {
+			has_completed_focus = Harry_Pollitt_Remains_in_Government
+		}
+		if = {
+			limit = {
+				has_idea = ENG_king_edward
+			}
+			remove_ideas = ENG_king_edward
+		}
+		if = {
+			limit = {
+				has_idea = ENG_george_vi
+			}
+			remove_ideas = ENG_george_vi
+		}
+		add_stability = -0.05
+		add_political_power = -25
+		ai_chance = {
+			factor = 100
+		}
+	}
+	option = {
+		name = britain.16.b
+		trigger = {
+			has_completed_focus = Government_of_Ben_Tillett
+		}
+		if = {
+			limit = {
+				has_idea = ENG_king_edward
+			}
+			remove_ideas = ENG_king_edward
+		}
+		if = {
+			limit = {
+				has_idea = ENG_george_vi
+			}
+			remove_ideas = ENG_george_vi
+		}
+		CAN = { country_event = britain.17 }
+		add_stability = -0.025
+		add_political_power = -50
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.17
+	title = britain.17.t
+	desc = britain.17.d
+	picture = british_royal
+	is_triggered_only = yes
+	option = {
+		name = britain.17.a
+		if = {
+			limit = {
+				ENG = { has_country_flag = change_king_to_VI }
+			}
+			add_ideas = CAN_george_vi
+		}
+		else = {
+			add_ideas = CAN_king_edward
+		}
+		add_stability = 0.05
+		add_political_power = 25
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.18
+	title = britain.18.t
+	desc = britain.18.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.18.a
+		end_puppet = CAN
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.19
+	title = britain.19.t
+	desc = britain.19.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.19.a
+		end_puppet = AST
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.20
+	title = britain.20.t
+	desc = britain.20.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.20.a
+		end_puppet = NZL
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.21
+	title = britain.21.t
+	desc = britain.21.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.21.a
+		army_experience = 30
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.22
+	title = britain.22.t
+	desc = britain.22.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.22.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.23
+	title = britain.23.t
+	desc = britain.23.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.23.a
+		SOV = { country_event = { id = Soviet.6 days = 7 } }
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.24
+	title = britain.24.t
+	desc = britain.24.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.24.a
+		hidden_effect = {
+			SOV = { country_event = { id = Soviet.7 days = 4 } }
+			SOV = { country_event = { id = Soviet.8 days = 10 } }
+			SOV = { country_event = { id = Soviet.9 days = 16 } }
+		}
+		custom_effect_tooltip = britain_soviet_propose
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.25
+	title = britain.25.t
+	desc = britain.25.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.25.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.26
+	title = britain.26.t
+	desc = britain.26.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.26.a
+		set_country_flag = ENG_SOV_millitary
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.27
+	title = britain.27.t
+	desc = britain.27.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.27.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.28
+	title = britain.28.t
+	desc = britain.28.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.28.a
+		set_country_flag = ENG_SOV_scientific
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.29
+	title = britain.29.t
+	desc = britain.29.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.29.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.30
+	title = britain.30.t
+	desc = britain.30.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.30.a
+		set_country_flag = ENG_SOV_economic
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.31
+	title = britain.31.t
+	desc = britain.31.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.31.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.32
+	title = britain.32.t
+	desc = britain.32.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		if = {
+			limit = {
+				has_country_flag = ENG_SOV_millitary
+				original_tag = ENG
+			}
+			add_ideas = ENG_Britain_Soviet_military_cooperation
+		}
+		if = {
+			limit = {
+				has_country_flag = ENG_SOV_millitary
+				original_tag = SOV
+			}
+			add_ideas = SOV_Britain_Soviet_military_cooperation
+		}
+		if = {
+			limit = {
+				has_country_flag = ENG_SOV_scientific
+				original_tag = ENG
+			}
+			add_ideas = ENG_Britain_Soviet_scientific_cooperation
+		}
+		if = {
+			limit = {
+				has_country_flag = ENG_SOV_scientific
+				original_tag = SOV
+			}
+			add_ideas = SOV_Britain_Soviet_scientific_cooperation
+		}
+		if = {
+			limit = {
+				has_country_flag = ENG_SOV_economic
+				original_tag = ENG
+			}
+			add_ideas = ENG_Britain_Soviet_economic_cooperation
+		}
+		if = {
+			limit = {
+				has_country_flag = ENG_SOV_economic
+				original_tag = SOV
+			}
+			add_ideas = SOV_Britain_Soviet_economic_cooperation
+		}
+		name = britain.32.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.33
+	title = britain.33.t
+	desc = britain.33.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.33.a
+		ENG = { country_event = britain.34 }
+		add_ideas = officer_of_france_and_britain
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = britain.33.b
+		ENG = { country_event = britain.35 }
+		ai_chance = {
+			factor = 2
+		}
+	}
+}
+
+country_event = {
+	id = britain.34
+	title = britain.34.t
+	desc = britain.34.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.34.a
+		add_ideas = officer_of_france_and_britain
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.35
+	title = britain.35.t
+	desc = britain.35.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.35.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.36
+	title = britain.36.t
+	desc = britain.36.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			start_civil_war = {
+				ideology = fascism
+				size = 0.25
+				set_popularities = {
+					democratic = 8
+					neutrality = 9
+					fascism = 76
+					communism = 7
+				}
+				states = {
+					123
+					338
+					122
+				}
+			}
+			set_country_flag = end_of_goverment_crisis
+		}
+	}
+	option = {
+		name = britain.36.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.37
+	title = britain.37.t
+	desc = britain.37.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			start_civil_war = {
+				ideology = communism
+				size = 0.25
+				set_popularities = {
+					democratic = 8
+					neutrality = 9
+					fascism = 13
+					communism = 70
+				}
+				states = {
+					136
+					121
+					131
+				}
+			}
+			set_country_flag = end_of_goverment_crisis
+		}
+	}
+	option = {
+		name = britain.37.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.38
+	title = britain.38.t
+	desc = britain.38.d
+	is_triggered_only = yes
+	hidden = yes
+	immediate = {
+		hidden_effect = {
+			clr_country_flag = Fascist_oppression_policy_in_place
+		}
+	}
+	option = {
+		name = britain.38.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.39
+	title = britain.39.t
+	desc = britain.39.d
+	is_triggered_only = yes
+	hidden = yes
+	immediate = {
+		hidden_effect = {
+			clr_country_flag = Communist_oppression_policy_in_place
+		}
+	}
+	option = {
+		name = britain.39.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.40
+	title = britain.40.t
+	desc = britain.40.d
+	picture = Chamberlain
+	is_triggered_only = yes
+	option = {
+		name = britain.40.a
+		retire_character = ENG_stanley_baldwin
+		add_country_leader_role = {
+			character = ENG_neville_chamberlain
+			promote_leader = yes
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.41
+	title = britain.41.t
+	desc = britain.41.d
+	picture = uk_war
+	trigger = {
+		original_tag = ENG
+		FRA = { has_war_with = GER }
+		ENG = {
+			NOT = { has_war_with = GER }
+			NOT = {
+				has_completed_focus = Harry_Pollitt_Remains_in_Government
+				has_completed_focus = the_road_to_the_restoration_of_the_monarchy
+			}
+			NOT = { is_in_faction_with = GER }
+			NOT = { has_war_with = FRA }
+		}
+	}
+	mean_time_to_happen = {
+		days = 5
+	}
+	fire_only_once = yes
+	option = {
+		name = britain.41.a
+		if = {
+			limit = {
+				ENG = { is_in_faction = no }
+			}
+			FRA = { country_event = { id = france.27 days = 3 hours = 6 } }
+			else = {
+				ENG = { declare_war_on = { target = GER type = puppet_wargoal_focus } }
+			}
+		}
+		add_named_threat = {
+			threat = 5
+			name = British_participation_in_Second_World_War
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = britain.41.b
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = britain.42
+	title = britain.42.t
+	desc = britain.42.d
+	picture = king_of_briatin
+	is_triggered_only = yes
+	option = {
+		name = britain.42.a
+		custom_effect_tooltip = kings_power
+		ai_chance = {
+			factor = 0.5
+		}
+	}
+}
+
+country_event = {
+	id = britain.43
+	title = britain.43.t
+	desc = britain.43.d
+	picture = parliament_of_britain
+	trigger = {
+		original_tag = ENG
+		has_completed_focus = strengthening_of_royal_authority
+		neutrality > 0.7
+	}
+	fire_only_once = yes
+	option = {
+		name = britain.43.a
+		country_event = { id = britain.44 days = 14 }
+		ai_chance = {
+			factor = 0.5
+		}
+	}
+}
+
+country_event = {
+	id = britain.44
+	title = britain.44.t
+	desc = britain.44.d
+	picture = parliament_of_britain
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = britain.44.a
+		retire_country_leader = yes
+		remove_ideas = for_the_king
+		ai_chance = {
+			factor = 0.5
+		}
+	}
+}
+
+country_event = {
+	id = britain.45
+	title = britain.45.t
+	desc = britain.45.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.45.a
+		ENG = { annex_country = { target = ROOT transfer_troops = yes } country_event = britain.46 }
+		ai_chance = {
+			factor = 4
+		}
+	}
+	option = {
+		name = britain.45.b
+		ENG = { create_wargoal = { type = annex_everything target = ROOT } country_event = britain.47 }
+		ENG = { end_puppet = ROOT }
+		ai_chance = {
+			factor = 0.5
+			modifier = {
+				ENG = { is_ai = yes }
+				factor = 0
+			}
+		}
+	}
+}
+
+country_event = {
+	id = britain.46
+	title = britain.46.t
+	desc = britain.46.d
+	picture = GFX_report_event_europe_funeral
+	is_triggered_only = yes
+	option = {
+		name = britain.46.a
+		ai_chance = {
+			factor = 0.5
+		}
+	}
+}
+
+country_event = {
+	id = britain.47
+	title = britain.47.t
+	desc = britain.47.d
+	picture = GFX_report_event_europe_funeral
+	is_triggered_only = yes
+	option = {
+		name = britain.47.a
+		ai_chance = {
+			factor = 0.5
+		}
+	}
+}
+
+country_event = {
+	id = britain.48
+	title = britain.48.t
+	desc = britain.48.d
+	picture = GFX_report_event_europe_funeral
+	is_triggered_only = yes
+	option = {
+		name = britain.48.a
+		news_event = britain.50
+		add_to_faction = ENG
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				OR = {
+					state = 274
+					state = 902
+					state = 558
+					state = 901
+					state = 900
+				}
+			}
+			transfer_state_to = ENG
+			add_claim_by = ENG
+		}
+		add_named_threat = {
+			threat = 2
+			name = eng_ger_ally
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = britain.48.b
+		ENG = { country_event = britain.51 }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+country_event = {
+	id = britain.49
+	title = britain.48.t
+	desc = britain.48.d
+	picture = GFX_report_event_europe_funeral
+	is_triggered_only = yes
+	option = {
+		name = britain.48.a
+		news_event = britain.50
+		ENG = { add_to_faction = GER }
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				OR = {
+					state = 274
+					state = 902
+					state = 558
+					state = 901
+					state = 900
+				}
+			}
+			transfer_state_to = ENG
+			add_claim_by = ENG
+		}
+		add_named_threat = {
+			threat = 2
+			name = eng_ger_ally
+		}
+		ai_chance = {
+			factor = 10
+		}
+	}
+	option = {
+		name = britain.48.b
+		ENG = { country_event = britain.51 }
+		ai_chance = {
+			factor = 0
+		}
+	}
+}
+
+news_event = {
+	id = britain.50
+	title = britain.50.t
+	desc = britain.50.d
+	picture = german_british
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = britain.50.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.51
+	title = britain.51.t
+	desc = britain.51.d
+	picture = Singing
+	is_triggered_only = yes
+	option = {
+		name = britain.51.a
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = britain.52
+	title = britain.52.t
+	desc = britain.52.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.52.a
+		FRA = { country_event = { id = france.42 days = 7 } }
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.53
+	title = britain.53.t
+	desc = britain.53.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.53.a
+		hidden_effect = {
+			FRA = { country_event = { id = france.43 days = 4 } }
+			FRA = { country_event = { id = france.44 days = 10 } }
+			FRA = { country_event = { id = france.45 days = 16 } }
+		}
+		custom_effect_tooltip = britain_soviet_propose
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.54
+	title = britain.54.t
+	desc = britain.54.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.54.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.55
+	title = britain.55.t
+	desc = britain.55.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.55.a
+		set_country_flag = ENG_FRA_millitary
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.56
+	title = britain.56.t
+	desc = britain.56.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.56.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.57
+	title = britain.57.t
+	desc = britain.57.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.57.a
+		set_country_flag = ENG_FRA_scientific
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.58
+	title = britain.58.t
+	desc = britain.58.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.58.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.59
+	title = britain.59.t
+	desc = britain.59.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.59.a
+		set_country_flag = ENG_FRA_economic
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.60
+	title = britain.60.t
+	desc = britain.60.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = britain.60.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.61
+	title = britain.61.t
+	desc = britain.61.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		if = {
+			limit = {
+				has_country_flag = ENG_FRA_millitary
+				original_tag = ENG
+			}
+			add_ideas = ENG_Britain_France_military_cooperation
+		}
+		if = {
+			limit = {
+				has_country_flag = ENG_FRA_millitary
+				original_tag = FRA
+			}
+			add_ideas = FRA_Britain_France_military_cooperation
+		}
+		if = {
+			limit = {
+				has_country_flag = ENG_FRA_scientific
+				original_tag = ENG
+			}
+			add_ideas = ENG_Britain_France_scientific_cooperation
+		}
+		if = {
+			limit = {
+				has_country_flag = ENG_FRA_scientific
+				original_tag = FRA
+			}
+			add_ideas = FRA_Britain_France_scientific_cooperation
+		}
+		if = {
+			limit = {
+				has_country_flag = ENG_FRA_economic
+				original_tag = ENG
+			}
+			add_ideas = ENG_Britain_France_economic_cooperation
+		}
+		if = {
+			limit = {
+				has_country_flag = ENG_FRA_economic
+				original_tag = FRA
+			}
+			add_ideas = FRA_Britain_France_economic_cooperation
+		}
+		name = britain.61.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+#Scottish Independence
+country_event = {
+	id = britain.62
+	title = britain.62.t
+	desc = britain.62.d
+	picture = britain_map
+	trigger = {
+		original_tag = ENG
+		ENG = { is_subject = no }
+		has_idea = ENG_scottish_separatism
+		has_global_flag = honorable_peace_flag
+	}
+	fire_only_once = yes
+	mean_time_to_happen = {
+		days = 90
+	}
+	option = {
+		name = britain.62.a
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = SCO
+			}
+			transfer_state_to = SCO
+		}
+		SCO = {
+			inherit_technology = ENG
+			division_template = {
+				name = "Infantry"
+				division_names_group = ENG_INF_01
+				regiments = {
+					infantry = {
+						x = 0
+						y = 0
+					}
+					infantry = {
+						x = 0
+						y = 1
+					}
+					infantry = {
+						x = 0
+						y = 2
+					}
+					infantry = {
+						x = 1
+						y = 0
+					}
+					infantry = {
+						x = 1
+						y = 1
+					}
+					infantry = {
+						x = 1
+						y = 2
+					}
+				}
+			}
+			121 = {
+				create_unit = {
+					division = "name = \"1. Infantry Division\" division_template = \"Infantry\" start_experience_factor = 0.1"
+					owner = SCO
+					count = 6
+				}
+			}
+			133 = {
+				create_unit = {
+					division = "name = \"1. Infantry Division\" division_template = \"Infantry\" start_experience_factor = 0.1"
+					owner = SCO
+					count = 6
+				}
+			}
+			136 = {
+				create_unit = {
+					division = "name = \"1. Infantry Division\" division_template = \"Infantry\" start_experience_factor = 0.1"
+					owner = SCO
+					count = 4
+				}
+			}
+		}
+		add_stability = -0.1
+		add_war_support = -0.1
+		news_event = britain.64
+		country_event = { id = britain.63 days = 4 }
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = britain.63
+	title = britain.63.t
+	desc = britain.63.d
+	picture = britain_map
+	is_triggered_only = yes
+	option = {
+		name = britain.63.a
+		ENG = { declare_war_on = { target = SCO type = take_core_state } }
+		set_global_flag = Scottish_Independence_War_flag
+		ai_chance = {
+			base = 6
+		}
+	}
+	option = {
+		name = britain.63.b
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = britain.64
+	title = britain.64.t
+	desc = britain.64.d
+	picture = Scottish_Independence
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = britain.64.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}

@@ -1,0 +1,4111 @@
+#peace_deal = {
+#	peace_for_ger_SOV = {
+#		icon = peace
+#		allowed = {
+#			OR = {
+#				original_tag = SOV
+#				original_tag = RUS
+#			}
+#		}
+#		available = {
+#			surrender_progress > 0.8
+#		}
+#		visible = {
+#			has_war_with = GER
+#			surrender_progress > 0.8
+#		}
+#		days_remove = 7
+#		fire_only_once = yes
+#		remove_effect = {
+#			if = {
+#				limit = { original_tag = SOV }
+#				GER = { country_event = Germany.69 }
+#			}
+#			if = {
+#				limit = { original_tag = RUS }
+#				GER = { country_event = Germany.86 }
+#			}
+#		}
+#		fire_only_once = yes
+#		ai_will_do = { 
+#			base = 4000
+#		}
+#	}
+#}
+
+the_great_struggle = {
+###Stalin
+	uncovering_Buharins_bad_behavior = {
+		icon = decision_generic_decision
+		visible = {
+			has_completed_focus = SOV_heart_of_iron
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 20
+		days_re_enable = 40
+		complete_effect = {
+			if = {
+				limit = {
+						check_variable = { var = SOV_bukharins_influence value = 0.05 compare = greater_than_or_equals }
+				}
+				SOV_stalins_influence_three_increase = yes
+				SOV_bukharins_influence_five_decrease = yes
+				SOV_trotskys_influence_two_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_bukharins_influence = 0.04 }
+				}
+				SOV_stalins_influence_two_increase = yes
+				SOV_bukharins_influence_five_decrease = yes
+				SOV_trotskys_influence_two_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_bukharins_influence = 0.03 }
+				}
+				SOV_stalins_influence_two_increase = yes
+				SOV_bukharins_influence_five_decrease = yes
+				SOV_trotskys_influence_one_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_bukharins_influence = 0.02 }
+				}
+				SOV_stalins_influence_one_increase = yes
+				SOV_bukharins_influence_five_decrease = yes
+				SOV_trotskys_influence_one_increase = yes
+			}
+			else = {
+				SOV_stalins_influence_one_increase = yes
+				SOV_bukharins_influence_five_decrease = yes
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.100 days = 40 }
+			}
+			set_country_flag = political_decision
+			custom_effect_tooltip = days_re_enable_40
+		}
+		available = {
+			NOT = {
+				has_country_flag = political_decision
+			}
+			check_variable = { SOV_bukharins_influence > 0 }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				check_variable = {
+					SOV_stalins_influence < 0.8
+				}
+			}
+		}
+	}
+	investigating_factions_within_the_party = {
+		icon = decision_generic_decision
+		visible = {
+			has_completed_focus = SOV_heart_of_iron
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 20
+		days_re_enable = 40
+		complete_effect = {
+			if = {
+				limit = {
+					check_variable = { var = SOV_bukharins_influence value = 0.03 compare = greater_than_or_equals }
+					check_variable = { var = SOV_trotskys_influence value = 0.02 compare = greater_than_or_equals }
+				}
+				SOV_stalins_influence_five_increase = yes
+				SOV_bukharins_influence_three_decrease = yes
+				SOV_trotskys_influence_two_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_bukharins_influence > 0.03 }
+					check_variable = { SOV_trotskys_influence = 0.01 }
+				}
+				SOV_stalins_influence_five_increase = yes
+				SOV_bukharins_influence_four_decrease = yes
+				SOV_trotskys_influence_one_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_bukharins_influence > 0.03 }
+					check_variable = { SOV_trotskys_influence = 0 }
+				}
+				SOV_stalins_influence_five_increase = yes
+				SOV_bukharins_influence_five_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_bukharins_influence = 0.02 }
+					check_variable = { SOV_trotskys_influence > 0.02 }
+				}
+				SOV_stalins_influence_five_increase = yes
+				SOV_bukharins_influence_two_decrease = yes
+				SOV_trotskys_influence_three_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = {SOV_bukharins_influence = 0.01 }
+					check_variable = { SOV_trotskys_influence > 0.02 }
+				}
+				SOV_stalins_influence_five_increase = yes
+				SOV_bukharins_influence_one_decrease = yes
+				SOV_trotskys_influence_four_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_bukharins_influence = 0 }
+					check_variable = { SOV_trotskys_influence > 0.02 }
+				}
+				SOV_stalins_influence_five_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.100 days = 40 }
+			}
+			set_country_flag = political_decision
+			custom_effect_tooltip = days_re_enable_40
+		}
+		available = {
+			NOT = {
+				has_country_flag = political_decision
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = {
+					SOV_stalins_influence < 0.9
+				}
+			}
+		}
+	}
+	reject_trotskism = {
+		icon = decision_generic_decision
+		visible = {
+			has_completed_focus = SOV_heart_of_iron
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 20
+		days_re_enable = 40
+		complete_effect = {
+			if = {
+				limit = {
+					check_variable = { var = SOV_trotskys_influence value = 0.05 compare = greater_than_or_equals }
+				}
+				SOV_stalins_influence_three_increase = yes
+				SOV_bukharins_influence_two_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			else_if = {
+				limit = {
+						check_variable = { SOV_trotskys_influence = 0.04 }
+				}
+				SOV_stalins_influence_two_increase = yes
+				SOV_bukharins_influence_two_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_trotskys_influence = 0.03 }
+				}
+				SOV_stalins_influence_two_increase = yes
+				SOV_bukharins_influence_one_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_trotskys_influence = 0.02 }
+				}
+				SOV_stalins_influence_one_increase = yes
+				SOV_bukharins_influence_one_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			else = {
+				SOV_stalins_influence_one_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.100 days = 40 }
+			}
+			set_country_flag = political_decision
+			custom_effect_tooltip = days_re_enable_40
+		}
+		available = {
+			NOT = {
+				has_country_flag = political_decision
+			}
+			check_variable = { SOV_trotskys_influence > 0 }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				check_variable = {
+					SOV_stalins_influence < 0.8
+				}
+			}
+		}
+	}
+	movement_of_bukharin_stalin = {
+		days_mission_timeout = 45
+		activation = {
+			has_completed_focus = SOV_heart_of_iron
+			NOT = {
+				has_completed_focus = SOV_crushing_bukharinist_clique
+				has_country_flag = bukharin_takes_power
+				has_country_flag = trotsky_takes_power
+				has_country_flag = soviet_civilwar
+				has_global_flag = second_russian_civilwar
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			OR = {
+				has_completed_focus = SOV_crushing_bukharinist_clique
+				has_country_flag = bukharin_takes_power
+				has_country_flag = trotsky_takes_power
+				has_country_flag = soviet_civilwar
+				has_global_flag = second_russian_civilwar
+			}
+		}
+		timeout_effect = {
+			SOV_bukharins_influence_three_increase = yes
+			SOV_stalins_influence_three_decrease = yes
+		}
+	}
+	movement_of_trotsky_stalin = {
+		days_mission_timeout = 45
+		activation = {
+			has_completed_focus = SOV_heart_of_iron
+			NOT = {
+				has_completed_focus = SOV_deporting_trotsky
+				has_country_flag = bukharin_takes_power
+				has_country_flag = trotsky_takes_power
+				has_country_flag = soviet_civilwar
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			OR = {
+				has_completed_focus = SOV_deporting_trotsky
+				has_country_flag = bukharin_takes_power
+				has_country_flag = trotsky_takes_power
+				has_country_flag = soviet_civilwar
+			}
+		}
+		timeout_effect = {
+			SOV_trotskys_influence_two_increase = yes
+			SOV_stalins_influence_two_decrease = yes
+		}
+	}
+###Bukharin
+	attack_the_center = {
+		icon = decision_generic_decision
+		visible = {
+			has_completed_focus = SOV_clique_of_bukharin
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 20
+		days_re_enable = 40
+		complete_effect = {
+			if = {
+				limit = {
+						check_variable = { var = SOV_stalins_influence value = 0.05 compare = greater_than_or_equals }
+				}
+				SOV_stalins_influence_five_decrease = yes
+				SOV_bukharins_influence_three_increase = yes
+				SOV_trotskys_influence_two_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0.04 }
+				}
+				SOV_stalins_influence_five_decrease = yes
+				SOV_bukharins_influence_two_increase = yes
+				SOV_trotskys_influence_two_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0.03 }
+				}
+				SOV_stalins_influence_five_decrease = yes
+				SOV_bukharins_influence_two_increase = yes
+				SOV_trotskys_influence_one_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0.02 }
+				}
+				SOV_stalins_influence_five_decrease = yes
+				SOV_bukharins_influence_one_increase = yes
+				SOV_trotskys_influence_one_increase = yes
+			}
+			else = {
+				SOV_stalins_influence_five_decrease = yes
+				SOV_bukharins_influence_one_increase = yes
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.100 days = 40 }
+			}
+			set_country_flag = political_decision
+			custom_effect_tooltip = days_re_enable_40
+		}
+		available = {
+			NOT = {
+				has_country_flag = political_decision
+			}
+			check_variable = { SOV_stalins_influence > 0 }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				check_variable = {
+					SOV_bukharins_influence < 0.8
+				}
+			}
+		}
+	}
+	conciliating_senior_bolshevik_officials = {
+		icon = decision_generic_decision
+		visible = {
+			has_completed_focus = SOV_clique_of_bukharin
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 20
+		days_re_enable = 40
+		complete_effect = {
+			if = {
+				limit = {
+					check_variable = { var = SOV_stalins_influence value = 0.03 compare = greater_than_or_equals }
+					check_variable = { var = SOV_trotskys_influence value = 0.02 compare = greater_than_or_equals }
+				}
+				SOV_stalins_influence_three_decrease = yes
+				SOV_bukharins_influence_five_increase = yes
+				SOV_trotskys_influence_two_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence > 0.03 }
+					check_variable = { SOV_trotskys_influence = 0.01 }
+				}
+				SOV_stalins_influence_four_decrease = yes
+				SOV_bukharins_influence_five_increase = yes
+				SOV_trotskys_influence_one_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence > 0.03 }
+					check_variable = { SOV_trotskys_influence = 0 }
+				}
+				SOV_stalins_influence_five_decrease = yes
+				SOV_bukharins_influence_five_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0.02 }
+					check_variable = { SOV_trotskys_influence > 0.02 }
+				}
+				SOV_stalins_influence_two_decrease = yes
+				SOV_bukharins_influence_five_increase = yes
+				SOV_trotskys_influence_three_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0.01 }
+					check_variable = { SOV_trotskys_influence > 0.02 }
+				}
+				SOV_stalins_influence_one_decrease = yes
+				SOV_bukharins_influence_five_increase = yes
+				SOV_trotskys_influence_four_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0 }
+					check_variable = { SOV_trotskys_influence > 0.02 }
+				}
+				SOV_bukharins_influence_five_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.100 days = 40 }
+			}
+			set_country_flag = political_decision
+			custom_effect_tooltip = days_re_enable_40
+		}
+		available = {
+			NOT = {
+				has_country_flag = political_decision
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = {
+					SOV_bukharins_influence < 0.9
+				}
+			}
+		}
+	}
+	pointing_out_the_dogmatic_aspect_of_Trotsky = {
+		icon = decision_generic_decision
+		visible = {
+			has_completed_focus = SOV_clique_of_bukharin
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 20
+		days_re_enable = 40
+		complete_effect = {
+			if = {
+				limit = {
+					check_variable = { var = SOV_trotskys_influence value = 0.05 compare = greater_than_or_equals }
+				}
+				SOV_stalins_influence_two_increase = yes
+				SOV_bukharins_influence_three_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			else_if = {
+				limit = {
+						check_variable = { SOV_trotskys_influence = 0.04 }
+				}
+				SOV_stalins_influence_two_increase = yes
+				SOV_bukharins_influence_two_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_trotskys_influence = 0.03 }
+				}
+				SOV_stalins_influence_one_increase = yes
+				SOV_bukharins_influence_two_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_trotskys_influence = 0.02 }
+				}
+				SOV_stalins_influence_one_increase = yes
+				SOV_bukharins_influence_one_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			else = {
+				SOV_bukharins_influence_one_increase = yes
+				SOV_trotskys_influence_five_decrease = yes
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.100 days = 40 }
+			}
+			set_country_flag = political_decision
+			custom_effect_tooltip = days_re_enable_40
+		}
+		available = {
+			NOT = {
+				has_country_flag = political_decision
+			}
+			check_variable = { SOV_trotskys_influence > 0 }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				check_variable = {
+					SOV_bukharins_influence < 0.8
+				}
+			}
+		}
+	}
+	movement_of_stalin_bukharin = {
+		days_mission_timeout = 45
+		activation = {
+			has_completed_focus = SOV_clique_of_bukharin
+			NOT = {
+				has_country_flag = end_of_political_struggle
+				has_country_flag = germany_help_more
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			OR = {
+				has_country_flag = end_of_political_struggle
+				has_country_flag = germany_help_more
+			}
+		}
+		timeout_effect = {
+			SOV_stalins_influence_three_increase = yes
+			SOV_bukharins_influence_three_decrease = yes
+		}
+	}
+	movement_of_trotsky_bukharin = {
+		days_mission_timeout = 45
+		activation = {
+			has_completed_focus = SOV_clique_of_bukharin
+			NOT = {
+				has_country_flag = end_of_political_struggle
+				has_country_flag = germany_help_more
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			OR = {
+				has_country_flag = end_of_political_struggle
+				has_country_flag = germany_help_more
+			}
+		}
+		timeout_effect = {
+			SOV_trotskys_influence_two_increase = yes
+			SOV_bukharins_influence_two_decrease = yes
+		}
+	}
+	movement_of_stalin_bukharin_1 = {
+		days_mission_timeout = 45
+		activation = {
+			has_completed_focus = SOV_clique_of_bukharin
+			has_country_flag = germany_help_more
+			NOT = {
+				has_country_flag = end_of_political_struggle
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			has_country_flag = end_of_political_struggle
+		}
+		timeout_effect = {
+			SOV_stalins_influence_two_increase = yes
+			SOV_bukharins_influence_two_decrease = yes
+		}
+	}
+	movement_of_trotsky_bukharin_1 = {
+		days_mission_timeout = 45
+		activation = {
+			has_completed_focus = SOV_clique_of_bukharin
+			has_country_flag = germany_help_more
+			NOT = {
+				has_country_flag = end_of_political_struggle
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			has_country_flag = end_of_political_struggle
+		}
+		timeout_effect = {
+			SOV_trotskys_influence_one_increase = yes
+			SOV_bukharins_influence_one_decrease = yes
+		}
+	}
+###Trotsky
+	highlighting_brutal_appearance_of_stalin = {
+		icon = decision_generic_decision
+		visible = {
+			has_completed_focus = SOV_trotzkism_advocacy
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 20
+		days_re_enable = 40
+		complete_effect = {
+			if = {
+				limit = {
+						check_variable = { var = SOV_stalins_influence value = 0.05 compare = greater_than_or_equals }
+				}
+				SOV_stalins_influence_five_decrease = yes
+				SOV_bukharins_influence_three_increase = yes
+				SOV_trotskys_influence_two_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0.04 }
+				}
+				SOV_stalins_influence_five_decrease = yes
+				SOV_bukharins_influence_two_increase = yes
+				SOV_trotskys_influence_two_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0.03 }
+				}
+				SOV_stalins_influence_five_decrease = yes
+				SOV_bukharins_influence_one_increase = yes
+				SOV_trotskys_influence_two_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0.02 }
+				}
+				SOV_stalins_influence_five_decrease = yes
+				SOV_bukharins_influence_one_increase = yes
+				SOV_trotskys_influence_one_increase = yes
+			}
+			else = {
+				SOV_stalins_influence_five_decrease = yes
+				SOV_trotskys_influence_one_increase = yes
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.100 days = 40 }
+			}
+			set_country_flag = political_decision
+			custom_effect_tooltip = days_re_enable_40
+		}
+		available = {
+			NOT = {
+				has_country_flag = political_decision
+			}
+			check_variable = { SOV_stalins_influence > 0 }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				check_variable = {
+					SOV_trotskys_influence < 0.8
+				}
+			}
+		}
+	}
+	claim_lenins_ideals = {
+		icon = decision_generic_decision
+		visible = {
+			has_completed_focus = SOV_trotzkism_advocacy
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 20
+		days_re_enable = 40
+		complete_effect = {
+			if = {
+				limit = {
+					check_variable = { var = SOV_stalins_influence value = 0.03 compare = greater_than_or_equals }
+					check_variable = { var = SOV_bukharins_influence value = 0.02 compare = greater_than_or_equals }
+				}
+				SOV_stalins_influence_three_decrease = yes
+				SOV_bukharins_influence_two_decrease = yes
+				SOV_trotskys_influence_five_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence > 0.03 }
+					check_variable = { SOV_bukharins_influence = 0.01 }
+				}
+				SOV_stalins_influence_four_decrease = yes
+				SOV_bukharins_influence_one_decrease = yes
+				SOV_trotskys_influence_five_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence > 0.03 }
+					check_variable = { SOV_bukharins_influence = 0 }
+				}
+				SOV_stalins_influence_five_decrease = yes
+				SOV_trotskys_influence_five_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0.02 }
+					check_variable = { SOV_bukharins_influence > 0.02 }
+				}
+				SOV_stalins_influence_two_decrease = yes
+				SOV_bukharins_influence_three_decrease = yes
+				SOV_trotskys_influence_five_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0.01 }
+					check_variable = { SOV_bukharins_influence > 0.02 }
+				}
+				SOV_stalins_influence_one_decrease = yes
+				SOV_bukharins_influence_four_decrease = yes
+				SOV_trotskys_influence_five_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_stalins_influence = 0 }
+					check_variable = { SOV_bukharins_influence > 0.02 }
+				}
+				SOV_bukharins_influence_five_decrease = yes
+				SOV_trotskys_influence_five_increase = yes
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.100 days = 40 }
+			}
+			set_country_flag = political_decision
+			custom_effect_tooltip = days_re_enable_40
+		}
+		available = {
+			NOT = {
+				has_country_flag = political_decision
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = {
+					SOV_trotskys_influence < 0.9
+				}
+			}
+		}
+	}
+	pressing_hard_bukharinists = {
+		icon = decision_generic_decision
+		visible = {
+			has_completed_focus = SOV_trotzkism_advocacy
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 20
+		days_re_enable = 40
+		complete_effect = {
+			if = {
+				limit = {
+						check_variable = { var = SOV_bukharins_influence value = 0.05 compare = greater_than_or_equals }
+				}
+				SOV_stalins_influence_two_increase = yes
+				SOV_bukharins_influence_five_decrease = yes
+				SOV_trotskys_influence_three_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_bukharins_influence = 0.04 }
+				}
+				SOV_stalins_influence_two_increase = yes
+				SOV_bukharins_influence_five_decrease = yes
+				SOV_trotskys_influence_two_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_bukharins_influence = 0.03 }
+				}
+				SOV_stalins_influence_one_increase = yes
+				SOV_bukharins_influence_five_decrease = yes
+				SOV_trotskys_influence_two_increase = yes
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_bukharins_influence = 0.02 }
+				}
+				SOV_stalins_influence_one_increase = yes
+				SOV_bukharins_influence_five_decrease = yes
+				SOV_trotskys_influence_one_increase = yes
+			}
+			else = {
+				SOV_trotskys_influence_one_increase = yes
+				SOV_bukharins_influence_five_decrease = yes
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.100 days = 40 }
+			}
+			set_country_flag = political_decision
+			custom_effect_tooltip = days_re_enable_40
+		}
+		available = {
+			NOT = {
+				has_country_flag = political_decision
+			}
+			check_variable = { SOV_bukharins_influence > 0 }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				check_variable = {
+					SOV_trotskys_influence < 0.8
+				}
+			}
+		}
+	}
+	movement_of_stalin_trotsky = {
+		days_mission_timeout = 45
+		activation = {
+			has_completed_focus = SOV_trotzkism_advocacy
+			NOT = {
+				has_country_flag = end_of_political_struggle
+			}
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			OR = {
+				has_country_flag = end_of_political_struggle
+				has_completed_focus = SOV_attack_stalin
+			}
+		}
+		timeout_effect = {
+			SOV_stalins_influence_three_increase = yes
+			SOV_trotskys_influence_three_decrease = yes
+		}
+	}
+	movement_of_bukharin_trotsky = {
+		days_mission_timeout = 45
+		activation = {
+			has_completed_focus = SOV_trotzkism_advocacy
+			NOT = {
+				has_country_flag = end_of_political_struggle
+			}
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			OR = {
+				has_country_flag = end_of_political_struggle
+				has_completed_focus = SOV_attack_stalin
+			}
+		}
+		timeout_effect = {
+			SOV_bukharins_influence_two_increase = yes
+			SOV_trotskys_influence_two_decrease = yes
+		}
+	}
+}
+
+sov_political_purge = {
+	purging_the_opposition = {
+		icon = GFX_decision_eng_trade_unions_support
+		visible = {
+			has_completed_focus = SOV_zinoviev_demotion
+			check_variable = {
+				SOV_political_purging_progress < 1
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 10
+		days_re_enable = 30
+		complete_effect = {
+			if = {
+				limit = {
+					OR = {
+						check_variable = { SOV_political_purging_progress = 0.025 }
+						check_variable = { SOV_political_purging_progress = 0.075 }
+						check_variable = { SOV_political_purging_progress = 0.125 }
+						check_variable = { SOV_political_purging_progress = 0.175 }
+						check_variable = { SOV_political_purging_progress = 0.225 }
+						check_variable = { SOV_political_purging_progress = 0.275 }
+						check_variable = { SOV_political_purging_progress = 0.325 }
+						check_variable = { SOV_political_purging_progress = 0.375 }
+						check_variable = { SOV_political_purging_progress = 0.425 }
+						check_variable = { SOV_political_purging_progress = 0.475 }
+						check_variable = { SOV_political_purging_progress = 0.525 }
+						check_variable = { SOV_political_purging_progress = 0.575 }
+						check_variable = { SOV_political_purging_progress = 0.625 }
+						check_variable = { SOV_political_purging_progress = 0.675 }
+						check_variable = { SOV_political_purging_progress = 0.725 }
+						check_variable = { SOV_political_purging_progress = 0.775 }
+						check_variable = { SOV_political_purging_progress = 0.825 }
+						check_variable = { SOV_political_purging_progress = 0.875 }
+						check_variable = { SOV_political_purging_progress = 0.925 }
+						check_variable = { SOV_political_purging_progress = 0.975 }
+					}
+				}
+				add_to_variable = { SOV_political_purge_main_meter = 1 }
+			}
+			add_to_variable = { SOV_political_purging_progress = 0.025 }
+			if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_base
+				}
+				swap_ideas = {
+					remove_idea = SOV_dysfunctional_bureaucracy_base
+					add_idea = SOV_dysfunctional_bureaucracy_lv1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_lv1
+				}
+				swap_ideas = {
+					remove_idea = SOV_dysfunctional_bureaucracy_lv1
+					add_idea = SOV_dysfunctional_bureaucracy_lv2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_lv2
+				}
+				swap_ideas = {
+					remove_idea = SOV_dysfunctional_bureaucracy_lv2
+					add_idea = SOV_dysfunctional_bureaucracy_lv3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_lv3
+				}
+				swap_ideas = {
+					remove_idea = SOV_dysfunctional_bureaucracy_lv3
+					add_idea = SOV_dysfunctional_bureaucracy_lv4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_lv4
+				}
+				swap_ideas = {
+					remove_idea = SOV_dysfunctional_bureaucracy_lv4
+					add_idea = SOV_dysfunctional_bureaucracy_lv5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_lv5
+				}
+				swap_ideas = {
+					remove_idea = SOV_dysfunctional_bureaucracy_lv5
+					add_idea = SOV_dysfunctional_bureaucracy_lv6
+				}
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.101 days = 20 }
+			}
+			set_country_flag = start_purge
+			custom_effect_tooltip = days_re_enable_20
+		}
+		available = {
+			NOT = { has_country_flag = start_purge }
+			NOT = { has_idea = SOV_dysfunctional_bureaucracy_lv6 }
+			check_variable = {
+				SOV_political_purging_progress < 1
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	purging_army_officers = {
+		icon = GFX_decision_eng_trade_unions_support
+		visible = {
+			has_completed_focus = SOV_zinoviev_demotion
+			check_variable = {
+				SOV_political_purging_progress < 1
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 10
+		days_re_enable = 30
+		complete_effect = {
+			if = {
+				limit = {
+					OR = {
+						check_variable = { SOV_political_purging_progress = 0.025 }
+						check_variable = { SOV_political_purging_progress = 0.075 }
+						check_variable = { SOV_political_purging_progress = 0.125 }
+						check_variable = { SOV_political_purging_progress = 0.175 }
+						check_variable = { SOV_political_purging_progress = 0.225 }
+						check_variable = { SOV_political_purging_progress = 0.275 }
+						check_variable = { SOV_political_purging_progress = 0.325 }
+						check_variable = { SOV_political_purging_progress = 0.375 }
+						check_variable = { SOV_political_purging_progress = 0.425 }
+						check_variable = { SOV_political_purging_progress = 0.475 }
+						check_variable = { SOV_political_purging_progress = 0.525 }
+						check_variable = { SOV_political_purging_progress = 0.575 }
+						check_variable = { SOV_political_purging_progress = 0.625 }
+						check_variable = { SOV_political_purging_progress = 0.675 }
+						check_variable = { SOV_political_purging_progress = 0.725 }
+						check_variable = { SOV_political_purging_progress = 0.775 }
+						check_variable = { SOV_political_purging_progress = 0.825 }
+						check_variable = { SOV_political_purging_progress = 0.875 }
+						check_variable = { SOV_political_purging_progress = 0.925 }
+						check_variable = { SOV_political_purging_progress = 0.975 }
+					}
+				}
+				add_to_variable = { SOV_political_purge_main_meter = 1 }
+			}
+			add_to_variable = { SOV_political_purging_progress = 0.025 }
+			if = {
+				limit = {
+					NOT = {
+						OR = {
+							has_idea = SOV_purged_army_officer_lv1
+							has_idea = SOV_purged_army_officer_lv2
+							has_idea = SOV_purged_army_officer_lv3
+							has_idea = SOV_purged_army_officer_lv4
+							has_idea = SOV_purged_army_officer_lv5
+						}
+					}
+				}
+				add_ideas = SOV_purged_army_officer_lv1
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_army_officer_lv1
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_army_officer_lv1
+					add_idea = SOV_purged_army_officer_lv2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_army_officer_lv2
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_army_officer_lv2
+					add_idea = SOV_purged_army_officer_lv3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_army_officer_lv3
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_army_officer_lv3
+					add_idea = SOV_purged_army_officer_lv4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_army_officer_lv4
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_army_officer_lv4
+					add_idea = SOV_purged_army_officer_lv5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_army_officer_lv5
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_army_officer_lv5
+					add_idea = SOV_purged_army_officer_lv6
+				}
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.101 days = 20 }
+			}
+			set_country_flag = start_purge
+			custom_effect_tooltip = days_re_enable_20
+		}
+		available = {
+			NOT = { has_country_flag = start_purge }
+			NOT = { has_idea = SOV_purged_army_officer_lv6 }
+			check_variable = {
+				SOV_political_purging_progress < 1
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	purging_naval_officers = {
+		icon = GFX_decision_eng_trade_unions_support
+		visible = {
+			has_completed_focus = SOV_zinoviev_demotion
+			check_variable = {
+				SOV_political_purging_progress < 1
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 10
+		days_re_enable = 30
+		complete_effect = {
+			if = {
+				limit = {
+					OR = {
+						check_variable = { SOV_political_purging_progress = 0.025 }
+						check_variable = { SOV_political_purging_progress = 0.075 }
+						check_variable = { SOV_political_purging_progress = 0.125 }
+						check_variable = { SOV_political_purging_progress = 0.175 }
+						check_variable = { SOV_political_purging_progress = 0.225 }
+						check_variable = { SOV_political_purging_progress = 0.275 }
+						check_variable = { SOV_political_purging_progress = 0.325 }
+						check_variable = { SOV_political_purging_progress = 0.375 }
+						check_variable = { SOV_political_purging_progress = 0.425 }
+						check_variable = { SOV_political_purging_progress = 0.475 }
+						check_variable = { SOV_political_purging_progress = 0.525 }
+						check_variable = { SOV_political_purging_progress = 0.575 }
+						check_variable = { SOV_political_purging_progress = 0.625 }
+						check_variable = { SOV_political_purging_progress = 0.675 }
+						check_variable = { SOV_political_purging_progress = 0.725 }
+						check_variable = { SOV_political_purging_progress = 0.775 }
+						check_variable = { SOV_political_purging_progress = 0.825 }
+						check_variable = { SOV_political_purging_progress = 0.875 }
+						check_variable = { SOV_political_purging_progress = 0.925 }
+						check_variable = { SOV_political_purging_progress = 0.975 }
+					}
+				}
+				add_to_variable = { SOV_political_purge_main_meter = 1 }
+			}
+			add_to_variable = { SOV_political_purging_progress = 0.025 }
+			if = {
+				limit = {
+					NOT = {
+						OR = {
+							has_idea = SOV_purged_navy_officer_lv1
+							has_idea = SOV_purged_navy_officer_lv2
+							has_idea = SOV_purged_navy_officer_lv3
+							has_idea = SOV_purged_navy_officer_lv4
+							has_idea = SOV_purged_navy_officer_lv5
+						}
+					}
+				}
+				add_ideas = SOV_purged_navy_officer_lv1
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_navy_officer_lv1
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_navy_officer_lv1
+					add_idea = SOV_purged_navy_officer_lv2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_navy_officer_lv2
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_navy_officer_lv2
+					add_idea = SOV_purged_navy_officer_lv3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_navy_officer_lv3
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_navy_officer_lv3
+					add_idea = SOV_purged_navy_officer_lv4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_navy_officer_lv4
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_navy_officer_lv4
+					add_idea = SOV_purged_navy_officer_lv5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_navy_officer_lv5
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_navy_officer_lv5
+					add_idea = SOV_purged_navy_officer_lv6
+				}
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.101 days = 20 }
+			}
+			set_country_flag = start_purge
+			custom_effect_tooltip = days_re_enable_20
+		}
+		available = {
+			NOT = { has_country_flag = start_purge }
+			NOT = { has_idea = SOV_purged_navy_officer_lv6 }
+			check_variable = {
+				SOV_political_purging_progress < 1
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}	
+	}
+	purging_air_officers = {
+		icon = GFX_decision_eng_trade_unions_support
+		visible = {
+			has_completed_focus = SOV_zinoviev_demotion
+			check_variable = {
+				SOV_political_purging_progress < 1
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 10
+		days_re_enable = 30
+		complete_effect = {
+			if = {
+				limit = {
+					OR = {
+						check_variable = { SOV_political_purging_progress = 0.025 }
+						check_variable = { SOV_political_purging_progress = 0.075 }
+						check_variable = { SOV_political_purging_progress = 0.125 }
+						check_variable = { SOV_political_purging_progress = 0.175 }
+						check_variable = { SOV_political_purging_progress = 0.225 }
+						check_variable = { SOV_political_purging_progress = 0.275 }
+						check_variable = { SOV_political_purging_progress = 0.325 }
+						check_variable = { SOV_political_purging_progress = 0.375 }
+						check_variable = { SOV_political_purging_progress = 0.425 }
+						check_variable = { SOV_political_purging_progress = 0.475 }
+						check_variable = { SOV_political_purging_progress = 0.525 }
+						check_variable = { SOV_political_purging_progress = 0.575 }
+						check_variable = { SOV_political_purging_progress = 0.625 }
+						check_variable = { SOV_political_purging_progress = 0.675 }
+						check_variable = { SOV_political_purging_progress = 0.725 }
+						check_variable = { SOV_political_purging_progress = 0.775 }
+						check_variable = { SOV_political_purging_progress = 0.825 }
+						check_variable = { SOV_political_purging_progress = 0.875 }
+						check_variable = { SOV_political_purging_progress = 0.925 }
+						check_variable = { SOV_political_purging_progress = 0.975 }
+					}
+				}
+				add_to_variable = { SOV_political_purge_main_meter = 1 }
+			}
+			add_to_variable = { SOV_political_purging_progress = 0.025 }
+			if = {
+				limit = {
+					NOT = {
+						OR = {
+							has_idea = SOV_purged_air_force_officer_lv1
+							has_idea = SOV_purged_air_force_officer_lv2
+							has_idea = SOV_purged_air_force_officer_lv3
+							has_idea = SOV_purged_air_force_officer_lv4
+							has_idea = SOV_purged_air_force_officer_lv5
+						}
+					}
+				}
+				add_ideas = SOV_purged_air_force_officer_lv1
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_air_force_officer_lv1
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_air_force_officer_lv1
+					add_idea = SOV_purged_air_force_officer_lv2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_air_force_officer_lv2
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_air_force_officer_lv2
+					add_idea = SOV_purged_air_force_officer_lv3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_air_force_officer_lv3
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_air_force_officer_lv3
+					add_idea = SOV_purged_air_force_officer_lv4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_air_force_officer_lv4
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_air_force_officer_lv4
+					add_idea = SOV_purged_air_force_officer_lv5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_air_force_officer_lv5
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_air_force_officer_lv5
+					add_idea = SOV_purged_air_force_officer_lv6
+				}
+			}
+			hidden_effect = {
+				country_event = { id = Soviet.101 days = 20 }
+			}
+			set_country_flag = start_purge
+			custom_effect_tooltip = days_re_enable_20
+		}
+		available = {
+			NOT = { has_country_flag = start_purge }
+			NOT = { has_idea = SOV_purged_air_force_officer_lv6 }
+			check_variable = {
+				SOV_political_purging_progress < 1
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	russian_coup_crisis = {
+		days_mission_timeout = 550
+		icon = GFX_decision_revolt
+		activation = {
+			has_completed_focus = SOV_zinoviev_demotion
+			NOT = {
+				OR = {
+					has_completed_focus = SOV_deporting_trotsky
+					has_completed_focus = SOV_crushing_bukharinist_clique
+				}
+			}
+			NOT = { has_global_flag = soviet_civilwar_focus }
+			NOT = { has_global_flag = second_russian_civilwar }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			OR = {
+				AND = {
+					has_completed_focus = SOV_deporting_trotsky
+					has_completed_focus = SOV_crushing_bukharinist_clique
+				}
+				has_global_flag = soviet_civilwar_focus
+				has_global_flag = second_russian_civilwar
+			}
+		}
+		timeout_effect = {
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							check_variable = { SOV_political_purging_progress < 0.3 }
+							check_variable = { SOV_stalins_influence < 0.4 }
+							NOT = { has_completed_focus = SOV_purging_officers }
+							has_completed_focus = SOV_deporting_trotsky
+							NOT = { has_completed_focus = SOV_crushing_bukharinist_clique }
+							OR = {
+								check_variable = { SOV_bukharins_influence > SOV_trotskys_influence }
+								check_variable = { SOV_bukharins_influence = SOV_trotskys_influence }
+							}
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress < 0.3 }
+							check_variable = { SOV_stalins_influence < 0.4 }
+							NOT = { has_completed_focus = SOV_purging_officers }
+							has_completed_focus = SOV_deporting_trotsky
+							NOT = { has_completed_focus = SOV_crushing_bukharinist_clique }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+					}
+				}
+				country_event = Soviet.23
+			}
+			else_if = {
+				limit = {
+					check_variable = { SOV_political_purging_progress < 0.3 }
+					check_variable = { SOV_stalins_influence < 0.4 }
+					NOT = { has_completed_focus = SOV_purging_officers }
+					NOT = { has_completed_focus = SOV_deporting_trotsky }
+					check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+				}
+				country_event = Soviet.24
+			}
+			else_if = {
+				limit = {
+					OR = {
+						AND = {
+							check_variable = { SOV_political_purging_progress < 0.3 }
+							check_variable = { SOV_stalins_influence < 0.4 }
+							has_completed_focus = SOV_purging_officers
+							OR = {
+								check_variable = { SOV_bukharins_influence > SOV_trotskys_influence }
+								check_variable = { SOV_bukharins_influence = SOV_trotskys_influence }
+							}
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress < 0.3 }
+							check_variable = { var = SOV_stalins_influence value = 0.4 compare = greater_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.7 compare = less_than_or_equals }
+							OR = {
+								check_variable = { SOV_bukharins_influence > SOV_trotskys_influence }
+								check_variable = { SOV_bukharins_influence = SOV_trotskys_influence }
+							}
+						}
+						AND = {
+							check_variable = { var = SOV_political_purging_progress value = 0.3 compare = greater_than_or_equals }
+							check_variable = { var = SOV_political_purging_progress value = 0.7 compare = less_than_or_equals }
+							check_variable = { SOV_stalins_influence < 0.4 }
+							OR = {
+								check_variable = { SOV_bukharins_influence > SOV_trotskys_influence }
+								check_variable = { SOV_bukharins_influence = SOV_trotskys_influence }
+							}
+						}
+						AND = {
+							check_variable = { var = SOV_political_purging_progress value = 0.3 compare = greater_than_or_equals }
+							check_variable = { var = SOV_political_purging_progress value = 0.7 compare = less_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.4 compare = greater_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.7 compare = less_than_or_equals }
+							OR = {
+								check_variable = { SOV_bukharins_influence > SOV_trotskys_influence }
+								check_variable = { SOV_bukharins_influence = SOV_trotskys_influence }
+							}
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress > 0.7 }
+							check_variable = { SOV_stalins_influence < 0.4 }
+							OR = {
+								check_variable = { SOV_bukharins_influence > SOV_trotskys_influence }
+								check_variable = { SOV_bukharins_influence = SOV_trotskys_influence }
+							}
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress < 0.3 }
+							check_variable = { SOV_stalins_influence < 0.4 }
+							has_completed_focus = SOV_purging_officers
+							has_completed_focus = SOV_deporting_trotsky
+							NOT = { has_completed_focus = SOV_crushing_bukharinist_clique }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress < 0.3 }
+							check_variable = { var = SOV_stalins_influence value = 0.4 compare = greater_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.7 compare = less_than_or_equals }
+							has_completed_focus = SOV_deporting_trotsky
+							NOT = { has_completed_focus = SOV_crushing_bukharinist_clique }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { var = SOV_political_purging_progress value = 0.3 compare = greater_than_or_equals }
+							check_variable = { var = SOV_political_purging_progress value = 0.7 compare = less_than_or_equals }
+							has_completed_focus = SOV_deporting_trotsky
+							check_variable = { SOV_stalins_influence < 0.4 }
+							NOT = { has_completed_focus = SOV_crushing_bukharinist_clique }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { var = SOV_political_purging_progress value = 0.3 compare = greater_than_or_equals }
+							check_variable = { var = SOV_political_purging_progress value = 0.7 compare = less_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.4 compare = greater_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.7 compare = less_than_or_equals }
+							has_completed_focus = SOV_deporting_trotsky
+							NOT = { has_completed_focus = SOV_crushing_bukharinist_clique }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress > 0.7 }
+							check_variable = { SOV_stalins_influence < 0.4 }
+							has_completed_focus = SOV_deporting_trotsky
+							NOT = { has_completed_focus = SOV_crushing_bukharinist_clique }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+					}
+				}
+				country_event = Soviet.25
+			}
+			else_if = {
+				limit = {
+					OR = {
+						AND = {
+							check_variable = { SOV_political_purging_progress < 0.3 }
+							check_variable = { SOV_stalins_influence < 0.4 }
+							has_completed_focus = SOV_purging_officers
+							NOT = { has_completed_focus = SOV_deporting_trotsky }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress < 0.3 }
+							check_variable = { var = SOV_stalins_influence value = 0.4 compare = greater_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.7 compare = less_than_or_equals }
+							NOT = { has_completed_focus = SOV_deporting_trotsky }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { var = SOV_political_purging_progress value = 0.3 compare = greater_than_or_equals }
+							check_variable = { var = SOV_political_purging_progress value = 0.7 compare = less_than_or_equals }
+							check_variable = { SOV_stalins_influence < 0.4 }
+							NOT = { has_completed_focus = SOV_deporting_trotsky }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { var = SOV_political_purging_progress value = 0.3 compare = greater_than_or_equals }
+							check_variable = { var = SOV_political_purging_progress value = 0.7 compare = less_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.4 compare = greater_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.7 compare = less_than_or_equals }
+							NOT = { has_completed_focus = SOV_deporting_trotsky }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress > 0.7 }
+							check_variable = { SOV_stalins_influence < 0.4 }
+							NOT = { has_completed_focus = SOV_deporting_trotsky }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+					}
+				}
+				country_event = Soviet.26
+			}
+			else_if = {
+				limit = {
+					OR = {
+						AND = {
+							check_variable = { SOV_political_purging_progress < 0.3 }
+							check_variable = { SOV_stalins_influence > 0.7 }
+							OR = {
+								check_variable = { SOV_bukharins_influence > SOV_trotskys_influence }
+								check_variable = { SOV_bukharins_influence = SOV_trotskys_influence }
+							}
+						}
+						AND = {
+							check_variable = { var = SOV_political_purging_progress value = 0.3 compare = greater_than_or_equals }
+							check_variable = { var = SOV_political_purging_progress value = 0.7 compare = less_than_or_equals }
+							check_variable = { SOV_stalins_influence > 0.7 }
+							OR = {
+								check_variable = { SOV_bukharins_influence > SOV_trotskys_influence }
+								check_variable = { SOV_bukharins_influence = SOV_trotskys_influence }
+							}
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress > 0.7 }
+							check_variable = { var = SOV_stalins_influence value = 0.4 compare = greater_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.7 compare = less_than_or_equals }
+							OR = {
+								check_variable = { SOV_bukharins_influence > SOV_trotskys_influence }
+								check_variable = { SOV_bukharins_influence = SOV_trotskys_influence }
+							}
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress > 0.7 }
+							check_variable = { SOV_stalins_influence > 0.7 }
+							OR = {
+								check_variable = { SOV_bukharins_influence > SOV_trotskys_influence }
+								check_variable = { SOV_bukharins_influence = SOV_trotskys_influence }
+							}
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress < 0.3 }
+							check_variable = { SOV_stalins_influence > 0.7 }
+							has_completed_focus = SOV_deporting_trotsky
+							NOT = { has_completed_focus = SOV_crushing_bukharinist_clique }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { var = SOV_political_purging_progress value = 0.3 compare = greater_than_or_equals }
+							check_variable = { var = SOV_political_purging_progress value = 0.7 compare = less_than_or_equals }
+							check_variable = { SOV_stalins_influence > 0.7 }
+							has_completed_focus = SOV_deporting_trotsky
+							NOT = { has_completed_focus = SOV_crushing_bukharinist_clique }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress > 0.7 }
+							check_variable = { var = SOV_stalins_influence value = 0.4 compare = greater_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.7 compare = less_than_or_equals }
+							has_completed_focus = SOV_deporting_trotsky
+							NOT = { has_completed_focus = SOV_crushing_bukharinist_clique }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress > 0.7 }
+							check_variable = { SOV_stalins_influence > 0.7 }
+							has_completed_focus = SOV_deporting_trotsky
+							NOT = { has_completed_focus = SOV_crushing_bukharinist_clique }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+					}
+				}
+				country_event = Soviet.27
+			}
+			else_if = {
+				limit = {
+					OR = {
+						AND = {
+							check_variable = { SOV_political_purging_progress < 0.3 }
+							check_variable = { SOV_stalins_influence > 0.7 }
+							NOT = { has_completed_focus = SOV_deporting_trotsky }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { var = SOV_political_purging_progress value = 0.3 compare = greater_than_or_equals }
+							check_variable = { var = SOV_political_purging_progress value = 0.7 compare = less_than_or_equals }
+							check_variable = { SOV_stalins_influence > 0.7 }
+							NOT = { has_completed_focus = SOV_deporting_trotsky }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress > 0.7 }
+							check_variable = { var = SOV_stalins_influence value = 0.4 compare = greater_than_or_equals }
+							check_variable = { var = SOV_stalins_influence value = 0.7 compare = less_than_or_equals }
+							NOT = { has_completed_focus = SOV_deporting_trotsky }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+						AND = {
+							check_variable = { SOV_political_purging_progress > 0.7 }
+							check_variable = { SOV_stalins_influence > 0.7 }
+							NOT = { has_completed_focus = SOV_deporting_trotsky }
+							check_variable = { SOV_bukharins_influence < SOV_trotskys_influence }
+						}
+					}
+				}
+				country_event = Soviet.28
+			}
+		}
+	}
+}
+sov_military_reform = {
+	sov_army_reform = {
+		available = {
+			has_army_experience > 49
+			has_completed_focus = SOV_appointment_of_new_officers
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 50
+		visible = {
+			has_completed_focus = SOV_appointment_of_new_officers
+			OR = {
+				has_idea = SOV_purged_army_officer_lv1
+				has_idea = SOV_purged_army_officer_lv2
+				has_idea = SOV_purged_army_officer_lv3
+				has_idea = SOV_purged_army_officer_lv4
+				has_idea = SOV_purged_army_officer_lv5
+				has_idea = SOV_purged_army_officer_lv6
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					has_idea = SOV_purged_army_officer_lv6
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_army_officer_lv6
+					add_idea = SOV_purged_army_officer_lv5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_army_officer_lv5
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_army_officer_lv5
+					add_idea = SOV_purged_army_officer_lv4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_army_officer_lv4
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_army_officer_lv4
+					add_idea = SOV_purged_army_officer_lv3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_army_officer_lv3
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_army_officer_lv3
+					add_idea = SOV_purged_army_officer_lv2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_army_officer_lv2
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_army_officer_lv2
+					add_idea = SOV_purged_army_officer_lv1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_army_officer_lv1
+				}
+				remove_ideas = SOV_purged_army_officer_lv1
+			}
+		}
+		complete_effect = {
+			army_experience = -50
+		}
+	}
+	sov_navy_reform = {
+		available = {
+			has_navy_experience > 49
+			has_completed_focus = SOV_appointment_of_new_officers
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 50
+		visible = {
+			has_completed_focus = SOV_appointment_of_new_officers
+			OR = {
+				has_idea = SOV_purged_navy_officer_lv1
+				has_idea = SOV_purged_navy_officer_lv2
+				has_idea = SOV_purged_navy_officer_lv3
+				has_idea = SOV_purged_navy_officer_lv4
+				has_idea = SOV_purged_navy_officer_lv5
+				has_idea = SOV_purged_navy_officer_lv6
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					has_idea = SOV_purged_navy_officer_lv6
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_navy_officer_lv6
+					add_idea = SOV_purged_navy_officer_lv5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_navy_officer_lv5
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_navy_officer_lv5
+					add_idea = SOV_purged_navy_officer_lv4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_navy_officer_lv4
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_navy_officer_lv4
+					add_idea = SOV_purged_navy_officer_lv3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_navy_officer_lv3
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_navy_officer_lv3
+					add_idea = SOV_purged_navy_officer_lv2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_navy_officer_lv2
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_navy_officer_lv2
+					add_idea = SOV_purged_navy_officer_lv1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_navy_officer_lv1
+				}
+				remove_ideas = SOV_purged_navy_officer_lv1
+			}
+		}
+		complete_effect = {
+			navy_experience = -50
+		}
+	}
+	sov_air_reform = {
+		available = {
+			has_air_experience > 49
+			has_completed_focus = SOV_appointment_of_new_officers
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 50
+		visible = {
+			has_completed_focus = SOV_appointment_of_new_officers
+			OR = {
+				has_idea = SOV_purged_air_force_officer_lv1
+				has_idea = SOV_purged_air_force_officer_lv2
+				has_idea = SOV_purged_air_force_officer_lv3
+				has_idea = SOV_purged_air_force_officer_lv4
+				has_idea = SOV_purged_air_force_officer_lv5
+				has_idea = SOV_purged_air_force_officer_lv6
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					has_idea = SOV_purged_air_force_officer_lv6
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_air_force_officer_lv6
+					add_idea = SOV_purged_air_force_officer_lv5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_air_force_officer_lv5
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_air_force_officer_lv5
+					add_idea = SOV_purged_air_force_officer_lv4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_air_force_officer_lv4
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_air_force_officer_lv4
+					add_idea = SOV_purged_air_force_officer_lv3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_air_force_officer_lv3
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_air_force_officer_lv3
+					add_idea = SOV_purged_air_force_officer_lv2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_air_force_officer_lv2
+				}
+				swap_ideas = {
+					remove_idea = SOV_purged_air_force_officer_lv2
+					add_idea = SOV_purged_air_force_officer_lv1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_purged_air_force_officer_lv1
+				}
+				remove_ideas = SOV_purged_air_force_officer_lv1
+			}
+		}
+		complete_effect = {
+			air_experience = -50
+		}
+	}
+}
+SOV_reorganization_of_the_administration = {
+	sov_recruitment_of_new_civil_servant = {
+		available = {
+			has_political_power > 49
+			has_completed_focus = SOV_reorganization_of_the_administration
+		}
+		ai_will_do = {
+			factor = 500
+		}
+		days_remove = 30
+		visible = {
+			has_completed_focus = SOV_reorganization_of_the_administration
+			OR = {
+				has_idea = SOV_dysfunctional_bureaucracy_base
+				has_idea = SOV_dysfunctional_bureaucracy_lv1
+				has_idea = SOV_dysfunctional_bureaucracy_lv2
+				has_idea = SOV_dysfunctional_bureaucracy_lv3
+				has_idea = SOV_dysfunctional_bureaucracy_lv4
+				has_idea = SOV_dysfunctional_bureaucracy_lv5
+				has_idea = SOV_dysfunctional_bureaucracy_lv6
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_lv6
+				}
+				swap_ideas = {
+					remove_idea = SOV_dysfunctional_bureaucracy_lv6
+					add_idea = SOV_dysfunctional_bureaucracy_lv5
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_lv5
+				}
+				swap_ideas = {
+					remove_idea = SOV_dysfunctional_bureaucracy_lv5
+					add_idea = SOV_dysfunctional_bureaucracy_lv4
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_lv4
+				}
+				swap_ideas = {
+					remove_idea = SOV_dysfunctional_bureaucracy_lv4
+					add_idea = SOV_dysfunctional_bureaucracy_lv3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_lv3
+				}
+				swap_ideas = {
+					remove_idea = SOV_dysfunctional_bureaucracy_lv3
+					add_idea = SOV_dysfunctional_bureaucracy_lv2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_lv2
+				}
+				swap_ideas = {
+					remove_idea = SOV_dysfunctional_bureaucracy_lv2
+					add_idea = SOV_dysfunctional_bureaucracy_lv1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = SOV_dysfunctional_bureaucracy_lv1
+				}
+				remove_ideas = SOV_dysfunctional_bureaucracy_lv1
+			}
+		}
+		complete_effect = {
+			add_political_power = -50
+		}
+	}
+}
+SOV_military_conciliation_decision = {
+	SOV_zhukov_conciliation = {
+		icon = GFX_decision_generic_army_support
+		visible = {
+			has_completed_focus = SOV_contacting_senior_officers
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 10
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = SOV_conciliation_effect
+			SOV_georgy_zhukov = {
+				set_character_flag = trotsky_conciliation
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	SOV_rokossovsky_conciliation = {
+		icon = GFX_decision_generic_army_support
+		visible = {
+			has_completed_focus = SOV_contacting_senior_officers
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 10
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = SOV_conciliation_effect
+			SOV_konstantin_rokossovsky = {
+				set_character_flag = trotsky_conciliation
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	SOV_vasilevsky_conciliation = {
+		icon = GFX_decision_generic_army_support
+		visible = {
+			has_completed_focus = SOV_contacting_senior_officers
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 10
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = SOV_conciliation_effect
+			SOV_aleksandr_vasilevsky = {
+				set_character_flag = trotsky_conciliation
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	SOV_shaposhnikov_conciliation = {
+		icon = GFX_decision_generic_army_support
+		visible = {
+			has_completed_focus = SOV_contacting_senior_officers
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 10
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = SOV_conciliation_effect
+			SOV_boris_shaposhnikov = {
+				set_character_flag = trotsky_conciliation
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	SOV_vatutin_conciliation = {
+		icon = GFX_decision_generic_army_support
+		visible = {
+			has_completed_focus = SOV_contacting_senior_officers
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 10
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = SOV_conciliation_effect
+			SOV_nikolay_vatutin = {
+				set_character_flag = trotsky_conciliation
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	SOV_timoshenko_conciliation = {
+		icon = GFX_decision_generic_army_support
+		visible = {
+			has_completed_focus = SOV_contacting_senior_officers
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 10
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = SOV_conciliation_effect
+			SOV_semyon_timoshenko = {
+				set_character_flag = trotsky_conciliation
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	SOV_voroshilov_conciliation = {
+		icon = GFX_decision_generic_army_support
+		visible = {
+			has_completed_focus = SOV_contacting_senior_officers
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 10
+		fire_only_once = yes
+		complete_effect = {
+			custom_effect_tooltip = SOV_conciliation_effect
+			SOV_kliment_voroshilov = {
+				set_character_flag = trotsky_conciliation
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+}
+
+SOV_preparations_for_a_coup_decision = {
+	sov_to_conciliate_military_command = {
+		icon = GFX_decision_generic_army_support
+		visible = {
+			has_completed_focus = SOV_preparations_for_a_coup
+			check_variable = { SOV_bukharin_coup_preparation_progress < 1 }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 30
+		days_remove = 40
+		complete_effect = {
+			add_to_variable = { SOV_bukharin_prepare_coup_main_bar = 1 }
+			add_to_variable = { SOV_bukharin_coup_preparation_progress = 0.05 }
+			custom_effect_tooltip = SOV_bukharin_coup_preparation_progress_5
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	sov_funding_to_high_ranking_politicians = {
+		icon = GFX_decision_generic_political_discourse
+		visible = {
+			has_completed_focus = SOV_preparations_for_a_coup
+			check_variable = { SOV_bukharin_coup_preparation_progress < 1 }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 30
+		days_remove = 40
+		complete_effect = {
+			add_to_variable = { SOV_bukharin_prepare_coup_main_bar = 1 }
+			add_to_variable = { SOV_bukharin_coup_preparation_progress = 0.05 }
+			custom_effect_tooltip = SOV_bukharin_coup_preparation_progress_5
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	sov_cover_stalins_eyes_and_ears = {
+		icon = GFX_decision_SWI_expand_covert_operations
+		visible = {
+			has_completed_focus = SOV_preparations_for_a_coup
+			check_variable = { SOV_bukharin_coup_preparation_progress < 1 }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		cost = 30
+		days_remove = 40
+		complete_effect = {
+			add_to_variable = { SOV_bukharin_prepare_coup_main_bar = 1 }
+			add_to_variable = { SOV_bukharin_coup_preparation_progress = 0.05 }
+			custom_effect_tooltip = SOV_bukharin_coup_preparation_progress_5
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+SOV_additional_divisions = {
+	recruitment_of_additional_divisions_in_eastern_russia = {
+		icon = GFX_decision_eng_blackshirt_march
+		visible = {
+			has_completed_focus = SOV_additional_divisions
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		cost = 30
+		days_remove = 50
+		fire_only_once = yes
+		remove_effect = {
+			set_country_flag = additional_divisions_in_eastern_russia
+			custom_effect_tooltip = will_get_2_division
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	recruitment_of_additional_divisions_in_western_russia = {
+		icon = GFX_decision_eng_blackshirt_march
+		visible = {
+			has_completed_focus = SOV_additional_divisions
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		cost = 30
+		days_remove = 50
+		fire_only_once = yes
+		remove_effect = {
+			set_country_flag = additional_divisions_in_western_russia
+			custom_effect_tooltip = will_get_2_division
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	recruitment_of_additional_divisions_in_middle_russia = {
+		icon = GFX_decision_eng_blackshirt_march
+		visible = {
+			has_completed_focus = SOV_additional_divisions
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		cost = 30
+		days_remove = 50
+		fire_only_once = yes
+		remove_effect = {
+			set_country_flag = additional_divisions_in_middle_russia
+			custom_effect_tooltip = will_get_2_division
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	recruitment_of_additional_divisions_in_middle_asia = {
+		icon = GFX_decision_eng_blackshirt_march
+		visible = {
+			has_completed_focus = SOV_additional_divisions
+			NOT = { has_completed_focus = SOV_attack_stalin }
+		}
+		cost = 30
+		days_remove = 50
+		fire_only_once = yes
+		remove_effect = {
+			set_country_flag = additional_divisions_in_middle_asia
+			custom_effect_tooltip = will_get_2_division
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+the_threat_of_a_coup_by_the_Bukharin_Clique = {
+	remaining_time_until_breake_bukharin_clique_civilwar = {
+		days_mission_timeout = 300
+		icon = GFX_decision_revolt
+		activation = {
+			has_country_flag = bukharins_coup_prepare
+		}
+		allowed = {
+			tag = SOV
+		}
+		fire_only_once = yes
+		available = {
+			OR = {
+				has_completed_focus = SOV_Integration_of_Trotskyism_and_Buharinism
+				has_completed_focus = SOV_the_rule_of_Trotsky
+			}
+		}
+		timeout_effect = {
+			hidden_effect = {
+				bukharin_civilwar_focus = yes
+			}
+			set_country_flag = war_with_bukharin
+			custom_effect_tooltip = bukharin_civilwar_focus
+		}
+	}
+}
+Trotsky_Bukharin_Struggle_decisions = {
+	International_Socialist_Congress = {
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			has_completed_focus = SOV_the_end_of_civil_war
+		}
+		visible = {
+			has_country_flag = Trotsky_Bukharin_Struggle_flag
+			NOT = {
+				has_completed_focus = SOV_ousting_Bukharin
+			}
+		}
+		days_remove = 10
+		cost = 15
+		complete_effect = {
+			add_power_balance_value = {
+				id = Trotsky_Bukharin_Struggle
+				value = -0.05
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				factor = 0
+				power_balance_value = {
+					id = Trotsky_Bukharin_Struggle
+					value < -0.9
+				}
+			}
+		}
+	}
+	Bukharin_revisionist_criticism = {
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			has_completed_focus = SOV_the_end_of_civil_war
+		}
+		visible = {
+			has_country_flag = Trotsky_Bukharin_Struggle_flag
+			NOT = {
+				has_completed_focus = SOV_ousting_Bukharin
+			}
+		}
+		days_remove = 10
+		cost = 15
+		complete_effect = {
+			add_power_balance_value = {
+				id = Trotsky_Bukharin_Struggle
+				value = -0.05
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				factor = 0
+				power_balance_value = {
+					id = Trotsky_Bukharin_Struggle
+					value < -0.9
+				}
+			}
+		}
+	}
+	the_revelation_of_Bukharins_connection_with_Germany = {
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			has_completed_focus = SOV_the_end_of_civil_war
+		}
+		visible = {
+			has_country_flag = Trotsky_Bukharin_Struggle_flag
+			NOT = {
+				has_completed_focus = SOV_ousting_Bukharin
+			}
+		}
+		days_remove = 20
+		cost = 25
+		complete_effect = {
+			add_power_balance_value = {
+				id = Trotsky_Bukharin_Struggle
+				value = -0.1
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				factor = 0
+				power_balance_value = {
+					id = Trotsky_Bukharin_Struggle
+					value < -0.9
+				}
+			}
+		}
+	}
+	remind_Trotskys_Genius = {
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			has_completed_focus = SOV_the_end_of_civil_war
+		}
+		visible = {
+			has_country_flag = Trotsky_Bukharin_Struggle_flag
+			NOT = {
+				has_completed_focus = SOV_ousting_Bukharin
+			}
+		}
+		days_remove = 20
+		cost = 25
+		complete_effect = {
+			add_power_balance_value = {
+				id = Trotsky_Bukharin_Struggle
+				value = -0.1
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				factor = 0
+				power_balance_value = {
+					id = Trotsky_Bukharin_Struggle
+					value < -0.9
+				}
+			}
+		}
+	}
+	incitement_the_anti_Trotskists = {
+		days_mission_timeout = 30
+		activation = {
+			has_country_flag = Trotsky_Bukharin_Struggle_flag
+			NOT = { has_completed_focus = SOV_ousting_Bukharin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			has_completed_focus = SOV_ousting_Bukharin
+		}
+		timeout_effect = {
+			add_power_balance_value = {
+				id = Trotsky_Bukharin_Struggle
+				value = 0.03
+			}
+		}
+	}
+	Emphasizing_the_Unrealities_of_the_World_Revolution = {
+		days_mission_timeout = 40
+		activation = {
+			has_country_flag = Trotsky_Bukharin_Struggle_flag
+			NOT = { has_completed_focus = SOV_ousting_Bukharin }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			has_completed_focus = SOV_ousting_Bukharin
+		}
+		timeout_effect = {
+			add_power_balance_value = {
+				id = Trotsky_Bukharin_Struggle
+				value = 0.05
+			}
+		}
+	}
+}
+collect_the_legacy_of_the_White_Army = {
+	to_contact_Krasnov = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_pyotr_krasnov = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_miller = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_yevgenyludvig_karlovich_miller = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_denikin = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_anton_denikin = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_bermondtavalov = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_pavel_rafalovich_bermondtavalov = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_semyonov = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_grigory_semyonov = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_flug = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_vasily_flug = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_kappel = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_vladimir_kappel = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_glazenap = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_pyotr_fon_glazenap = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_vitkovsky = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_vladimir_vitkovsky = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_rodzyanko = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_alexandr_rodzyanko = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_kutepov = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_aleksandr_kutepov = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_dragomirov = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_abram_dragomirov = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_shatilov = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_pavel_shatilov = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_lampe = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_aleksei_fon_lampe = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_barbovitch = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_ivan_barbovitch = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	to_contact_kharzhevsky = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Dream_of_the_Russian_Republic
+		}
+		fire_only_once = yes
+		cost = 10
+		complete_effect = {
+			custom_effect_tooltip = set_character_flag_RUS
+			RUS = {
+				RUS_vladimir_kharzhevsky = {
+					set_character_flag = RUS_civilwar
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+Additional_Caucasus_state_integration = {
+	218_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Caucasus_integration
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			218 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 218
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	245_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Caucasus_integration
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			245 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 245
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	217_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Caucasus_integration
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			217 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 217
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+Additional_Siberia_state_integration = {
+	40_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Siberia_integration
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			40 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 40
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	654_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Siberia_integration
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			654 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 654
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	569_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Siberia_integration
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			569 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 569
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	568_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Siberia_integration
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			568 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 568
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	567_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Siberia_integration
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			567 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 567
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	566_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Siberia_integration
+		}
+		fire_only_once = yes
+		cost = 25
+		complete_effect = {
+			566 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 566
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+Additional_Far_East_state_integration = {
+	574_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Far_East_integration
+		}
+		fire_only_once = yes
+		cost = 15
+		complete_effect = {
+			574 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 574
+			}
+		}
+		ai_will_do = {
+			base = 500
+		}
+	}
+	562_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Far_East_integration
+		}
+		fire_only_once = yes
+		cost = 15
+		complete_effect = {
+			562 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 562
+			}
+		}
+		ai_will_do = {
+			base = 500
+		}
+	}
+	876_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Far_East_integration
+		}
+		fire_only_once = yes
+		cost = 15
+		complete_effect = {
+			876 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 876
+			}
+		}
+		ai_will_do = {
+			base = 500
+		}
+	}
+	877_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Far_East_integration
+		}
+		fire_only_once = yes
+		cost = 15
+		complete_effect = {
+			877 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 877
+			}
+		}
+		ai_will_do = {
+			base = 500
+		}
+	}
+	874_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Far_East_integration
+		}
+		fire_only_once = yes
+		cost = 15
+		complete_effect = {
+			874 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 874
+			}
+		}
+		ai_will_do = {
+			base = 500
+		}
+	}
+	644_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Far_East_integration
+		}
+		fire_only_once = yes
+		cost = 15
+		complete_effect = {
+			644 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 644
+			}
+		}
+		ai_will_do = {
+			base = 500
+		}
+	}
+	637_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Far_East_integration
+		}
+		fire_only_once = yes
+		cost = 15
+		complete_effect = {
+			637 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 637
+			}
+		}
+		ai_will_do = {
+			base = 500
+		}
+	}
+	822_integration = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Far_East_integration
+		}
+		fire_only_once = yes
+		cost = 15
+		complete_effect = {
+			822 = { set_state_flag = RUS_state_civilwar }
+			875 = { set_state_flag = RUS_state_civilwar }
+			custom_effect_tooltip = set_state_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 822
+			}
+		}
+		ai_will_do = {
+			base = 500
+		}
+	}
+}
+SOV_Operation_of_penal_battalions_decision = {
+	219_penal_battalions_conscription = {
+		icon = GFX_decision_generic_arrest
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Operation_of_penal_battalions
+		}
+		available = {
+			controls_state = 219
+		}
+		fire_only_once = yes
+		complete_effect = {
+			219 = {
+				create_unit = {
+					division = "division_template = \"Shtrafnaya Chast\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 219
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	195_penal_battalions_conscription = {
+		icon = GFX_decision_generic_arrest
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Operation_of_penal_battalions
+		}
+		available = {
+			controls_state = 195
+		}
+		fire_only_once = yes
+		complete_effect = {
+			195 = {
+				create_unit = {
+					division = "division_template = \"Shtrafnaya Chast\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 195
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	217_penal_battalions_conscription = {
+		icon = GFX_decision_generic_arrest
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Operation_of_penal_battalions
+		}
+		available = {
+			controls_state = 217
+		}
+		fire_only_once = yes
+		complete_effect = {
+			217 = {
+				create_unit = {
+					division = "division_template = \"Shtrafnaya Chast\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 217
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	249_penal_battalions_conscription = {
+		icon = GFX_decision_generic_arrest
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Operation_of_penal_battalions
+		}
+		available = {
+			controls_state = 249
+		}
+		fire_only_once = yes
+		complete_effect = {
+			249 = {
+				create_unit = {
+					division = "division_template = \"Shtrafnaya Chast\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 249
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	408_penal_battalions_conscription = {
+		icon = GFX_decision_generic_arrest
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Operation_of_penal_battalions
+		}
+		available = {
+			controls_state = 408
+		}
+		fire_only_once = yes
+		complete_effect = {
+			408 = {
+				create_unit = {
+					division = "division_template = \"Shtrafnaya Chast\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 408
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	566_penal_battalions_conscription = {
+		icon = GFX_decision_generic_arrest
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_Operation_of_penal_battalions
+		}
+		available = {
+			controls_state = 566
+		}
+		fire_only_once = yes
+		complete_effect = {
+			566 = {
+				create_unit = {
+					division = "division_template = \"Shtrafnaya Chast\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 566
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+SOV_wartime_mobilization = {
+	219_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 219 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 219
+			}
+		}
+		complete_effect = {
+			219 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	217_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 217 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 217
+			}
+		}
+		complete_effect = {
+			217 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	195_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 195 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 195
+			}
+		}
+		complete_effect = {
+			195 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	810_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 810 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 810
+			}
+		}
+		complete_effect = {
+			810 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	931_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 931 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 931
+			}
+		}
+		complete_effect = {
+			931 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	232_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 232 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 232
+			}
+		}
+		complete_effect = {
+			232 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	398_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 398 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 398
+			}
+		}
+		complete_effect = {
+			398 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	590_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 590 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 590
+			}
+		}
+		complete_effect = {
+			590 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	566_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 566 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 566
+			}
+		}
+		complete_effect = {
+			566 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	408_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 408 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 408
+			}
+		}
+		complete_effect = {
+			408 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	874_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 874 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 874
+			}
+		}
+		complete_effect = {
+			874 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	214_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 214 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 214
+			}
+		}
+		complete_effect = {
+			214 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	260_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 260 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 260
+			}
+		}
+		complete_effect = {
+			260 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	833_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 833 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 833
+			}
+		}
+		complete_effect = {
+			833 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	832_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 832 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 832
+			}
+		}
+		complete_effect = {
+			832 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	564_wartime_mobilization = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_global_flag = soviet_civilwar_focus
+		}
+		available = {
+			ROOT = { controls_state = 564 }
+		}
+		cost = 50
+		fire_only_once = yes
+		highlight_states = {
+			highlight_state_targets = {
+				state = 564
+			}
+		}
+		complete_effect = {
+			564 = {
+				create_unit = {
+					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+###Russia
+RUS_seond_russian_civilwar = {
+	RUS_the_Great_Western_Uprising = {
+		days_mission_timeout = 100
+		activation = {
+			original_tag = RUS
+			has_global_flag = second_russian_civilwar
+		}
+		allowed = {
+			original_tag = RUS
+		}
+		available = {
+			NOT = { has_global_flag = second_russian_civilwar }
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			RUS = {
+				news_event = {
+					id = Soviet.50
+				}
+			}
+		}
+	}
+}
+
+RUS_wartime_mobilization = {
+	RUS_public_conscription = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = RUS
+		}
+		visible = {
+			has_global_flag = second_russian_civilwar
+			check_variable = { count_conscription < 6 }
+		}
+		available = {
+			ROOT = { has_capitulated = no }
+			check_variable = { count_conscription < 6 }
+		}
+		cost = 50
+		days_remove = 30
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					NOT = { has_state_flag = already_conscription }
+				}
+				create_unit = {
+					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 3
+				}
+				create_unit = {
+					division = "name = \"1. White Guard Cavalry\" division_template = \"White Guard Cavalry\" start_experience_factor = 0.1"
+					owner = ROOT
+					count = 1
+				}
+				set_state_flag = already_conscription
+			}
+			add_to_variable = { count_conscription = 1 }
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+RUS_equipment_support = {
+	RUS_equipment_support_about_russia = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			ROOT = { is_major = yes }
+		}
+		visible = {
+			has_global_flag = second_russian_civilwar
+			RUS = { exists = yes }
+			ROOT = { is_major = yes NOT = { has_government = communism } }
+		}
+		available = {
+			ROOT = { is_major = yes NOT = { has_government = communism } }
+			has_equipment = {
+				infantry_equipment > 1999
+			}
+		}
+		fire_only_once = yes
+		complete_effect = {
+			send_equipment = {
+				target = RUS
+				type = infantry_equipment
+				amount = 2000
+			}
+			RUS = { country_event = Soviet.48 }
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+RUS_political_struggle = {
+	RUS_backlash_of_Kolchak_faction = {
+		icon = GFX_decision_SWI_consolidate_council_power
+		days_mission_timeout = 30
+		activation = {
+			original_tag = RUS
+			has_country_flag = RUS_political_struggle
+			has_completed_focus = RUS_victory_of_krensky
+		}
+		allowed = {
+			original_tag = RUS
+		}
+		available = {
+			NOT = { has_country_flag = RUS_political_struggle }
+		}
+		timeout_effect = {
+			kolchak_increase_effect = yes
+		}
+	}
+	RUS_backlash_of_Krensky_faction = {
+		icon = GFX_decision_SWI_consolidate_council_power
+		days_mission_timeout = 30
+		activation = {
+			original_tag = RUS
+			has_country_flag = RUS_political_struggle
+			has_completed_focus = RUS_victory_of_klochak
+		}
+		allowed = {
+			original_tag = RUS
+		}
+		available = {
+			NOT = { has_country_flag = RUS_political_struggle }
+		}
+		timeout_effect = {
+			krensky_increase_effect = yes
+		}
+	}
+	RUS_to_suppress_Kolchak_faction = {
+		icon = GFX_decision_generic_arrest
+		allowed = {
+			original_tag = RUS
+			has_country_flag = RUS_political_struggle
+			has_completed_focus = RUS_victory_of_krensky
+		}
+		visible = {
+			original_tag = RUS
+			has_country_flag = RUS_political_struggle
+			has_completed_focus = RUS_victory_of_krensky
+		}
+		available = {
+			original_tag = RUS
+			has_country_flag = RUS_political_struggle
+			has_completed_focus = RUS_victory_of_krensky
+			NOT = { has_idea = RUS_Constituent_Assembly_Official_krensky_3 }
+		}
+		days_remove = 15
+		cost = 30
+		remove_effect = {
+			krensky_increase_effect  = yes
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	RUS_to_suppress_Krensky_faction = {
+		icon = GFX_decision_generic_arrest
+		allowed = {
+			original_tag = RUS
+			has_country_flag = RUS_political_struggle
+			has_completed_focus = RUS_victory_of_klochak
+		}
+		visible = {
+			original_tag = RUS
+			has_country_flag = RUS_political_struggle
+			has_completed_focus = RUS_victory_of_klochak
+		}
+		available = {
+			original_tag = RUS
+			has_country_flag = RUS_political_struggle
+			has_completed_focus = RUS_victory_of_klochak
+			NOT = { has_idea = RUS_Constituent_Assembly_Official_klochak_3 }
+		}
+		days_remove = 15
+		cost = 30
+		remove_effect = {
+			kolchak_increase_effect  = yes
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+SOV_military_crisis = {
+	SOV_collapsing_army_decision = {
+		icon = GFX_decision_generic_ignite_civil_war
+		days_mission_timeout = 300
+		activation = {
+			original_tag = SOV
+			has_idea = SOV_army_in_confusion
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			NOT = { has_idea = SOV_army_in_confusion }
+		}
+		timeout_effect = {
+			swap_ideas = {
+				remove_idea = SOV_army_in_confusion
+				add_idea = SOV_collapsing_army
+			}
+		}
+	}
+}

@@ -1,0 +1,60 @@
+# befriend
+# conquer
+# antagonize
+# build_ship
+# build_army
+# unit_ratio
+# build_building
+# research_tech
+# garrison
+# protect
+# influence
+# send_volunteers_desire
+
+FIN_the_soviet_threat = {
+	enable = {
+		original_tag = FIN
+	}
+
+	abort = {
+		OR = {
+			is_in_faction_with = SOV
+			is_guaranteed_by = SOV
+			has_guaranteed = SOV
+			has_non_aggression_pact_with = SOV
+		}
+	}
+
+	ai_strategy = {
+		type = prepare_for_war
+		id = SOV	
+		value = 200
+	}	
+}
+
+FIN_trust_nordic_neutrality = {
+	enable = {
+		tag = FIN
+		is_historical_focus_on = yes
+		NOT = { has_war_with = NOR }
+		NOT = { has_war_with = SWE }
+	}
+
+	abort = {
+		OR = {
+			has_war_with = NOR
+			has_war_with = SWE
+		}
+	}
+
+	ai_strategy = {
+	 	type = front_unit_request
+		tag = NOR
+		value = -200
+	}
+	ai_strategy = {
+	 	type = front_unit_request
+		tag = SWE
+		value = -200
+	}
+}

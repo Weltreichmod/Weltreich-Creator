@@ -1,0 +1,559 @@
+peace_deal = {
+#	peace_for_ger = {
+#		icon = peace
+#		allowed = {
+#			original_tag = AUH
+#		}
+#		available = {
+#			surrender_progress > 0.7
+#		}
+#		visible = {
+#			has_war_with = GER
+#			has_global_flag = Deutscher_Krieg
+#			GER = { is_subject = no }
+#		}
+#		days_remove = 5
+#		remove_effect = {
+#			GER = { country_event = AUH.37 }
+#		}
+#		fire_only_once = yes
+#		ai_will_do = { 
+#			base = 100
+#		}
+#	}
+	peace_for_bul = {
+		icon = peace
+		allowed = {
+			original_tag = AUH
+		}
+		available = {
+			surrender_progress > 0.25
+		}
+		visible = {
+			has_war_with = BUL
+			has_global_flag = BUL_Yugoslav_Liberation_War
+			BUL = { is_subject = no }
+			surrender_progress > 0.25
+		}
+		days_remove = 5
+		remove_effect = {
+			BUL = { country_event = bulgaria.27 }
+		}
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 4000
+		}
+	}
+}
+
+AUH_minority_problem = {
+	AUH_hungarian_privilege_protection = {
+		icon = decision_generic_decision
+		visible = {
+			has_country_flag = dissatisfaction_of_ethnics
+			HUN = { exists = no }
+		}
+		cost = 20
+		days_remove = 40
+		complete_effect = {
+			hidden_effect = {
+				subtract_from_variable = { var = HUN_Dissatisfaction_var value = 0.07 }
+				add_to_variable = { var = CRO_Dissatisfaction_var value = 0.025 }
+				add_to_variable = { var = CZE_Dissatisfaction_var value = 0.015 }
+				add_to_variable = { var = GAL_Dissatisfaction_var value = 0.015 }
+			}
+			custom_effect_tooltip = AUH_minority_problem_AUH_hungary
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.5
+				}
+				AUH = { has_stability > 0.2 }
+			}
+			modifier = {
+				add = 4000
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.7
+				}
+			}
+		}
+	}
+	AUH_Expansion_of_Bohemian_autonomy = {
+		icon = decision_generic_decision
+		visible = {
+			has_country_flag = dissatisfaction_of_ethnics
+			CZE = { exists = no }
+		}
+		cost = 20
+		days_remove = 40
+		complete_effect = {
+			hidden_effect = {
+				add_to_variable = { var = HUN_Dissatisfaction_var value = 0.015 }
+				subtract_from_variable = { var = CZE_Dissatisfaction_var value = 0.07 }
+			}
+			custom_effect_tooltip = AUH_minority_problem_AUH_bohemia
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = {
+					CZE_Dissatisfaction_var > 0.5
+				}
+				check_variable = {
+					HUN_Dissatisfaction_var < 0.7
+				}
+				AUH = { has_stability > 0.2 }
+			}
+			modifier = {
+				add = 4000
+				check_variable = {
+					CZE_Dissatisfaction_var > 0.7
+				}
+			}
+		}
+	}
+	AUH_Expansion_of_Croatian_autonomy = {
+		icon = decision_generic_decision
+		visible = {
+			has_country_flag = dissatisfaction_of_ethnics
+			CRO = { exists = no }
+		}
+		cost = 20
+		days_remove = 40
+		complete_effect = {
+			hidden_effect = {
+				add_to_variable = { var = HUN_Dissatisfaction_var value = 0.02 }
+				subtract_from_variable = { var = CRO_Dissatisfaction_var value = 0.07 }
+			}
+			custom_effect_tooltip = AUH_minority_problem_AUH_croatia
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = {
+					CRO_Dissatisfaction_var > 0.5
+				}
+				check_variable = {
+					HUN_Dissatisfaction_var < 0.7
+				}
+				AUH = { has_stability > 0.2 }
+			}
+			modifier = {
+				add = 4000
+				check_variable = {
+					CRO_Dissatisfaction_var > 0.7
+				}
+			}
+		}
+	}
+	AUH_Expansion_of_Galicia_autonomy = {
+		icon = decision_generic_decision
+		visible = {
+			has_country_flag = dissatisfaction_of_ethnics
+			GAL = { exists = no }
+		}
+		cost = 20
+		days_remove = 40
+		complete_effect = {
+			hidden_effect = {
+				add_to_variable = { var = HUN_Dissatisfaction_var value = 0.015 }
+				subtract_from_variable = { var = GAL_Dissatisfaction_var value = 0.07 }
+			}
+			custom_effect_tooltip = AUH_minority_problem_AUH_galicia
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = {
+					GAL_Dissatisfaction_var > 0.5
+				}
+				check_variable = {
+					HUN_Dissatisfaction_var < 0.7
+				}
+				AUH = { has_stability > 0.2 }
+			}
+			modifier = {
+				add = 4000
+				check_variable = {
+					GAL_Dissatisfaction_var > 0.7
+				}
+			}
+		}
+	}
+	AUH_hungary_uprising = {
+		icon = GFX_decision_category_border_conflicts
+		days_mission_timeout = 7
+		activation = {
+			original_tag = AUH
+			has_country_flag = dissatisfaction_of_ethnics
+			HUN = {
+				exists = no
+			}
+			check_variable = {
+				var = HUN_Dissatisfaction_var
+				value = 0.8
+				compare = greater_than_or_equals 
+			}
+			NOT = { has_country_flag = uprising_hungary }
+		}
+		allowed = {
+			original_tag = AUH
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = HUN_Dissatisfaction_issue
+				check_variable = {
+					var = HUN_Dissatisfaction_var
+					value = 0.8
+					compare = less_than
+				}
+			}
+		}
+		timeout_effect = {
+			country_event = AUH.11
+			set_country_flag = uprising_hungary
+			hidden_effect = {
+				country_event = { id = AUH.39 days = 120 }
+				subtract_from_variable = { var = HUN_Dissatisfaction_var value = 0.2 }
+			}
+		}
+	}
+	AUH_croatia_uprising = {
+		icon = GFX_decision_category_border_conflicts
+		days_mission_timeout = 7
+		activation = {
+			original_tag = AUH
+			has_country_flag = dissatisfaction_of_ethnics
+			CRO = {
+				exists = no
+			}
+			check_variable = {
+				var = CRO_Dissatisfaction_var
+				value = 0.8
+				compare = greater_than_or_equals 
+			}
+			NOT = { has_country_flag = uprising_croatia }
+		}
+		allowed = {
+			original_tag = AUH
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = CRO_Dissatisfaction_issue
+				check_variable = {
+					var = CRO_Dissatisfaction_var
+					value = 0.8
+					compare = less_than
+				}
+			}
+		}
+		timeout_effect = {
+			country_event = AUH.16
+			set_country_flag = uprising_croatia
+			hidden_effect = {
+				country_event = { id = AUH.40 days = 120 }
+				subtract_from_variable = { var = CRO_Dissatisfaction_var value = 0.2 }
+			}
+		}
+	}
+	AUH_bohemia_uprising = {
+		icon = GFX_decision_category_border_conflicts
+		days_mission_timeout = 7
+		activation = {
+			original_tag = AUH
+			has_country_flag = dissatisfaction_of_ethnics
+			CZE = {
+				exists = no
+			}
+			check_variable = {
+				var = CZE_Dissatisfaction_var
+				value = 0.8
+				compare = greater_than_or_equals 
+			}
+			NOT = { has_country_flag = uprising_bohemia }
+		}
+		allowed = {
+			original_tag = AUH
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = CZE_Dissatisfaction_issue
+				check_variable = {
+					var = CZE_Dissatisfaction_var
+					value = 0.8
+					compare = less_than
+				}
+			}
+		}
+		timeout_effect = {
+			country_event = AUH.41
+			set_country_flag = uprising_bohemia
+			hidden_effect = {
+				country_event = { id = AUH.44 days = 120 }
+				subtract_from_variable = { var = CZE_Dissatisfaction_var value = 0.2 }
+			}
+		}
+	}
+	AUH_galicia_uprising = {
+		icon = GFX_decision_category_border_conflicts
+		days_mission_timeout = 7
+		activation = {
+			original_tag = AUH
+			has_country_flag = dissatisfaction_of_ethnics
+			GAL = {
+				exists = no
+			}
+			check_variable = {
+				var = GAL_Dissatisfaction_var
+				value = 0.8
+				compare = greater_than_or_equals 
+			}
+			NOT = { has_country_flag = uprising_galicia }
+		}
+		allowed = {
+			original_tag = AUH
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = GAL_Dissatisfaction_issue
+				check_variable = {
+					var = GAL_Dissatisfaction_var
+					value = 0.8
+					compare = less_than
+				}
+			}
+		}
+		timeout_effect = {
+			country_event = AUH.42
+			set_country_flag = uprising_galicia
+			hidden_effect = {
+				country_event = { id = AUH.45 days = 120 }
+				subtract_from_variable = { var = GAL_Dissatisfaction_var value = 0.2 }
+			}
+		}
+	}
+}
+
+the_rule_of_the_empire = {
+	support_for_ethnic_minorities = {
+		icon = GFX_decision_eng_trade_unions_support
+		available = {
+			NOT = {
+				has_country_flag = decision_of_empire
+			}
+		}
+		visible = {
+			has_country_flag = dissatisfaction_of_ethnics
+		}
+		cost = 30
+		days_re_enable = 32
+		ai_will_do = { 
+			base = 1
+			modifier = {
+				add = 100
+				has_stability < 0.65
+			}
+		}
+		complete_effect = {
+			set_country_flag = decision_of_empire
+			add_stability = 0.03
+			hidden_effect = {
+				country_event = { id = AUH.10 days = 32 }
+			}
+		}
+	}
+	inspecting_minorities = {
+		icon = GFX_decision_eng_trade_unions_support
+		available = {
+			NOT = {
+				has_country_flag = decision_of_empire
+			}
+		}
+		visible = {
+			has_country_flag = dissatisfaction_of_ethnics
+		}
+		cost = 35
+		days_re_enable = 32
+		ai_will_do = { 
+			base = 1
+			modifier = {
+				add = 100
+				has_stability < 0.65
+			}
+		}
+		complete_effect = {
+			set_country_flag = decision_of_empire
+			add_stability = 0.035
+			hidden_effect = {
+				country_event = { id = AUH.10 days = 32 }
+			}
+		}
+	}
+	imperial_law_reform = {
+		icon = GFX_decision_eng_trade_unions_support
+		available = {
+			NOT = {
+				has_country_flag = decision_of_empire
+			}
+		}
+		visible = {
+			has_country_flag = dissatisfaction_of_ethnics
+		}
+		cost = 20
+		days_re_enable = 32
+		ai_will_do = { 
+			base = 1
+			modifier = {
+				add = 100
+				has_stability < 0.65
+			}
+		}
+		complete_effect = {
+			set_country_flag = decision_of_empire
+			add_stability = 0.025
+			hidden_effect = {
+				country_event = { id = AUH.10 days = 32 }
+			}
+		}
+	}
+}
+
+AUH_Hungary_Galicia_Railway = {
+	build_railway_from_Zaolzie_to_Krakow = {
+		allowed = {
+			original_tag = AUH
+		}
+		icon = generic_construction
+		available = {
+			OR = {
+				has_country_flag = end_of_Hungary_Galicia_Railway1
+				NOT = {
+					AUH = {
+						controls_state = 72
+						controls_state = 88
+					}
+				}
+			}
+		}
+		fire_only_once = no
+		is_good = yes
+		activation = {
+			has_completed_focus = Hungary_Galicia_Railway
+			NOT = {
+				has_country_flag = end_of_Hungary_Galicia_Railway1
+			}
+		}
+		visible = {
+			has_completed_focus = Hungary_Galicia_Railway
+			NOT = {
+				has_country_flag = end_of_Hungary_Galicia_Railway1
+			}
+			AUH = {
+				controls_state = 72
+				controls_state = 88
+			}
+		}
+		days_mission_timeout = 10
+		timeout_effect = {
+			build_railway = {
+				level = 1
+				path = { 9567 13205 }
+			}
+			set_country_flag = end_of_Hungary_Galicia_Railway1
+		}
+	}
+	build_railway_from_Eastern_Slovakia_to_Krakow = {
+		allowed = {
+			original_tag = AUH
+		}
+		icon = generic_construction
+		available = {
+			OR = {
+				has_country_flag = end_of_Hungary_Galicia_Railway2
+				NOT = {
+					AUH = {
+						controls_state = 71
+						controls_state = 88
+					}
+				}
+			}
+		}
+		fire_only_once = no
+		is_good = yes
+		activation = {
+			has_completed_focus = Hungary_Galicia_Railway
+			has_country_flag = end_of_Hungary_Galicia_Railway1
+			NOT = {
+				has_country_flag = end_of_Hungary_Galicia_Railway2
+			}
+		}
+		visible = {
+			has_completed_focus = Hungary_Galicia_Railway
+			NOT = {
+				has_country_flag = end_of_Hungary_Galicia_Railway2
+			}
+			AUH = {
+				controls_state = 71
+				controls_state = 88
+			}
+		}
+		days_mission_timeout = 10
+		timeout_effect = {
+			build_railway = {
+				level = 1
+				path = { 3581 3410 }
+			}
+			set_country_flag = end_of_Hungary_Galicia_Railway2
+		}
+	}
+	build_railway_from_Carpathian_Ruthenia_to_Stanislawow = {
+		allowed = {
+			original_tag = AUH
+		}
+		icon = generic_construction
+		available = {
+			OR = {
+				has_country_flag = end_of_Hungary_Galicia_Railway3
+				NOT = {
+					AUH = {
+						controls_state = 73
+						controls_state = 89
+					}
+				}
+			}
+		}
+		fire_only_once = no
+		is_good = yes
+		activation = {
+			has_completed_focus = Hungary_Galicia_Railway
+			has_country_flag = end_of_Hungary_Galicia_Railway2
+			NOT = {
+				has_country_flag = end_of_Hungary_Galicia_Railway3
+			}
+		}
+		visible = {
+			has_completed_focus = Hungary_Galicia_Railway
+			NOT = {
+				has_country_flag = end_of_Hungary_Galicia_Railway3
+			}
+			AUH = {
+				controls_state = 73
+				controls_state = 89
+			}
+		}
+		days_mission_timeout = 20
+		timeout_effect = {
+			build_railway = {
+				level = 1
+				path = { 3548 9563 6460 6483 }
+			}
+			set_country_flag = end_of_Hungary_Galicia_Railway3
+		}
+	}
+}

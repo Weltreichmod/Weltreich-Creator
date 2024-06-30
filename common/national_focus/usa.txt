@@ -1,0 +1,2635 @@
+### search_filters = {FOCUS_FILTER_POLITICAL}
+### search_filters = {FOCUS_FILTER_RESEARCH}
+### search_filters = {FOCUS_FILTER_INDUSTRY}
+### search_filters = {FOCUS_FILTER_STABILITY}
+### search_filters = {FOCUS_FILTER_WAR_SUPPORT}
+### search_filters = {FOCUS_FILTER_MANPOWER}
+### search_filters = {FOCUS_FILTER_ANNEXATION}
+### search_filters = {FOCUS_FILTER_USA_CONGRESS}
+
+focus_tree = {
+	id = usa_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = USA
+		}
+		
+		modifier = {
+			add = 10
+			original_tag = USA
+		}
+	}
+	continuous_focus_position = { x = 50 y = 1600 }
+	default = no
+#	focus = {
+#		id = USA_
+#		#icon = GFX_
+#		prerequisite = { focus = }
+#		mutually_exclusive = { focus =  }
+#		x = -3
+#		y = 0
+#		relative_position_id = 
+#
+#		cost = 10
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#
+#		available = {
+#
+#		}
+#		
+#		bypass = {
+#
+#		}
+#
+#		cancel_if_invalid = yes
+#		continue_if_invalid = no
+#		available_if_capitulated = no
+#
+#		completion_reward = {
+#
+#		}
+#	}
+
+	focus = {
+		id = USA_legacy_of_Work_Progress_Administration
+		icon = GFX_focus_DEN_limited_regulations
+		x = 5
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+			add_to_variable = { USA_great_depression_political_power_cost = -0.35 }
+			add_to_variable = { USA_great_depression_conscription_factor = 0.1 }
+			add_to_variable = { USA_great_depression_local_resources_factor = 0.05 }
+			custom_effect_tooltip = USA_legacy_of_Work_Progress_Administration_effect
+			unlock_decision_category_tooltip = USA_progress_public_works
+		}
+	}
+	
+	focus = {
+		id = USA_discussion_of_the_Wagner_Act
+		icon = USA_discussion_of_the_Wagner_Act
+		relative_position_id = USA_legacy_of_Work_Progress_Administration
+		x = 0
+		y = 1
+		cost = 20
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = USA_legacy_of_Work_Progress_Administration
+		}
+		available = {
+			ROOT = {
+				check_variable = {
+					Democratic_Party > 200
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_200_seats
+				}
+				check_variable = {
+					Senate_Democratic_Party > 60
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Senate_60_seats
+				}
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = usa.2
+			set_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted
+			hidden_effect = {
+				country_event = { id = usa.1 days = 200 }
+			}
+		}
+	}
+	
+	#Democratic Party Main Tree
+	focus = {
+		id = USA_Wagner_Steagall_Act
+		icon = GFX_focus_usa_guarantee_the_american_dream
+		relative_position_id = USA_discussion_of_the_Wagner_Act
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_discussion_of_the_Wagner_Act
+		}
+		available = {
+			ROOT = {
+				check_variable = {
+					Democratic_Party > 300
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_300_seats
+				}
+				check_variable = {
+					Senate_Democratic_Party > 70
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Senate_70_seats
+				}
+			}
+			NOT = { has_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted }
+		}
+		mutually_exclusive = {
+			focus = USA_Refusing_new_executive_orders
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+			add_to_variable = { USA_great_depression_political_power_cost = -0.35 }
+			add_to_variable = { USA_great_depression_conscription_factor = 0.1 }
+			custom_effect_tooltip = USA_Wagner_Steagall_Act_effect
+			custom_effect_tooltip = The_economic_situation_in_the_United_States_will_gradually_improve
+			set_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted
+			hidden_effect = {
+				country_event = { id = usa.1 days = 200 }
+			}
+			hidden_effect = {
+				country_event = { id = usa.4 days = 100 }
+				country_event = { id = usa.4 days = 200 }
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_maintain_Social_Security_Act
+		icon = GFX_goal_generic_position_armies
+		relative_position_id = USA_Wagner_Steagall_Act
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Wagner_Steagall_Act
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_political_power = -50
+			add_stability = 0.05
+			country_event = usa.6
+		}
+	}
+	
+	focus = {
+		id = USA_Trade_Union_Act
+		icon = GFX_focus_eng_concessions_to_the_trade_unions
+		relative_position_id = USA_maintain_Social_Security_Act
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_maintain_Social_Security_Act
+		}
+		available = {
+			ROOT = {
+				check_variable = {
+					Democratic_Party > 250
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_250_seats
+				}
+				check_variable = {
+					Senate_Democratic_Party > 65
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Senate_65_seats
+				}
+			}
+			NOT = { has_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_to_variable = { USA_great_depression_conscription_factor = 0.1 }
+			add_to_variable = { USA_great_depression_local_resources_factor = 0.05 }
+			custom_effect_tooltip = USA_Trade_Union_Act_effect
+			custom_effect_tooltip = The_economic_situation_in_the_United_States_will_gradually_improve
+			set_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted
+			hidden_effect = {
+				country_event = { id = usa.1 days = 200 }
+			}
+			hidden_effect = {
+				country_event = { id = usa.10 days = 100 }
+				country_event = { id = usa.10 days = 200 }
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Agricultural_Adjustment_Act
+		icon = GFX_goal_generic_consumer_goods
+		relative_position_id = USA_Trade_Union_Act
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Trade_Union_Act
+		}
+		available = {
+			ROOT = {
+				check_variable = {
+					Democratic_Party > 250
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_250_seats
+				}
+				check_variable = {
+					Senate_Democratic_Party > 65
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Senate_65_seats
+				}
+			}
+			NOT = { has_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+			add_to_variable = { USA_great_depression_political_power_cost = -0.3 }
+			add_to_variable = { USA_great_depression_conscription_factor = 0.1 }
+			add_to_variable = { USA_great_depression_local_resources_factor = 0.05 }
+			custom_effect_tooltip = USA_Agricultural_Adjustment_Act_effect
+			custom_effect_tooltip = The_economic_situation_in_the_United_States_will_gradually_improve
+			set_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted
+			hidden_effect = {
+				country_event = { id = usa.1 days = 200 }
+			}
+			hidden_effect = {
+				country_event = { id = usa.7 days = 100 }
+				country_event = { id = usa.7 days = 200 }
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_the_republic_of_the_Americas
+		icon = GFX_goal_support_democracy
+		relative_position_id = USA_discussion_of_the_Wagner_Act
+		x = -3
+		y = 1
+		cost = 21.5
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_discussion_of_the_Wagner_Act
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_the_republic_of_the_Americas_trigger
+				hidden_trigger = {
+					has_country_flag = USA_The_power_of_the_Democratic_Party_will_be_strong
+				}
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = USA_the_republic_of_the_Americas
+		}
+	}
+	
+	#Democratic Party Roosevelt Tree
+	focus = {
+		id = USA_stay_afloat
+		icon = GFX_goal_generic_neutrality_focus
+		relative_position_id = USA_Wagner_Steagall_Act
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+			modifier = {
+				has_game_rule = {
+					rule = USA_AI_BEHAVIOR
+					option = PRESIDENT_NORMAN_THOMAS
+				}
+				factor = 0
+			}
+		}
+		prerequisite = {
+			focus = USA_Wagner_Steagall_Act
+		}
+		mutually_exclusive = {
+			focus = USA_supporting_Progressives
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = new_deal
+				add_idea = maintaining_new_deal
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_appease_republican_party
+		icon = GFX_goal_generic_improve_relations
+		relative_position_id = USA_stay_afloat
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_stay_afloat
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+			add_ideas = approval_of_republicans
+		}
+	}
+	
+	focus = {
+		id = USA_edit_Davis_Bacon_Act
+		icon = GFX_focus_generic_court
+		relative_position_id = USA_appease_republican_party
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_appease_republican_party
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+			custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+		}
+	}
+	
+	focus = {
+		id = USA_eliminate_the_aftermath_of_1937
+		icon = GFX_goal_demand_sudetenland
+		relative_position_id = USA_edit_Davis_Bacon_Act
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_edit_Davis_Bacon_Act
+		}
+		available = {
+			has_country_flag = Recession_Of_1937
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+			custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+		}
+	}
+	
+	focus = {
+		id = USA_slow_recovery
+		icon = GFX_focus_generic_modernize_industry
+		relative_position_id = USA_eliminate_the_aftermath_of_1937
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_eliminate_the_aftermath_of_1937
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_slow_recovery_trigger
+				check_variable = {
+					var = USA_great_depression_consumer_goods_factor
+					value = 0.1
+					compare = less_than_or_equals
+				}
+			}
+		}
+		completion_reward = {
+			country_event = usa.25
+			custom_effect_tooltip = The_economic_situation_in_the_United_States_will_gradually_improve
+		}
+	}
+	
+	#Democratic Party socialism Tree
+	focus = {
+		id = USA_supporting_Progressives
+		icon = GFX_focus_prc_agrarian_socialism
+		relative_position_id = USA_Wagner_Steagall_Act
+		x = -4
+		y = 1
+		cost = 9
+		ai_will_do = {
+			factor = 4
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = USA_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = USA_AI_BEHAVIOR
+						option = PRESIDENT_FRANKLIN_ROOSEVELT
+					}
+				}
+				factor = 0
+			}
+		}
+		prerequisite = {
+			focus = USA_Wagner_Steagall_Act
+		}
+		mutually_exclusive = {
+			focus = USA_stay_afloat
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = rise_of_democratic_party_progressives
+		}
+	}
+	
+	focus = {
+		id = USA_extension_of_trade_union_rights
+		icon = GFX_focus_usa_union_representation_act
+		relative_position_id = USA_supporting_Progressives
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_supporting_Progressives
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = USA_extension_of_trade_union_rights
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_accumulated_wealth_tax_act
+		icon = GFX_focus_rom_parties_end
+		x = 0
+		y = 1
+		prerequisite = { focus = USA_extension_of_trade_union_rights }
+		relative_position_id = USA_extension_of_trade_union_rights
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = USA_accumulated_wealth_tax_act
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Democratic_Society_Party_Integration
+		icon = GFX_goal_generic_intelligence_exchange
+		relative_position_id = USA_accumulated_wealth_tax_act
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_accumulated_wealth_tax_act
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = usa.21
+		}
+	}
+	
+	focus = {
+		id = USA_extension_of_the_welfare_law
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = USA_Democratic_Society_Party_Integration
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_Democratic_Society_Party_Integration
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = usa.25
+			custom_effect_tooltip = The_economic_situation_in_the_United_States_will_gradually_improve
+		}
+	}
+	
+	focus = {
+		id = USA_office_of_scientific_research_and_development
+		icon = GFX_focus_research
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = USA_accumulated_wealth_tax_act
+			focus = USA_edit_Davis_Bacon_Act
+		}
+		relative_position_id = USA_accumulated_wealth_tax_act
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		search_filters = {FOCUS_FILTER_RESEARCH}
+		completion_reward = {
+			add_ideas = USA_office_of_scientific_research_and_development
+			add_research_slot = 1
+		}
+	}
+	
+	focus = {
+		id = USA_fertile_soil_of_a_thousand_miles
+		icon = GFX_goal_generic_construction
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = USA_office_of_scientific_research_and_development
+		}
+		relative_position_id = USA_office_of_scientific_research_and_development
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+			has_idea = the_aftermath_of_great_heat_wave
+		}
+		search_filters = {FOCUS_FILTER_MANPOWER}
+		completion_reward = {
+			remove_ideas = the_aftermath_of_great_heat_wave
+		}
+	}
+	
+	#Republican Party Main Tree
+	focus = {
+		id = USA_Refusing_new_executive_orders
+		icon = GFX_focus_usa_voter_registration_act
+		relative_position_id = USA_discussion_of_the_Wagner_Act
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_discussion_of_the_Wagner_Act
+		}
+		available = {
+			ROOT = {
+				check_variable = {
+					Republican_Party > 150
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Republican_150_seats
+				}
+				check_variable = {
+					Senate_Republican_Party > 30
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Republican_Senate_30_seats
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = USA_Wagner_Steagall_Act
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = USA_Opposition_of_Republican_Party
+		}
+	}
+	
+	focus = {
+		id = USA_rally_of_Republican_conservatives
+		icon = USA_rally_of_Republican_conservatives
+		relative_position_id = USA_discussion_of_the_Wagner_Act
+		x = 4
+		y = 1
+		cost = 14.4
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_discussion_of_the_Wagner_Act
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_rally_of_Republican_conservatives_trigger
+				hidden_trigger = {
+					has_country_flag = USA_The_power_of_the_Reupblican_Party_will_be_strong
+				}
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_stability = 0.05
+			add_political_power = 20
+		}
+	}
+	
+	focus = {
+		id = USA_United_States_Defense_Guard
+		icon = GFX_goal_generic_small_arms
+		relative_position_id = USA_rally_of_Republican_conservatives
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_rally_of_Republican_conservatives
+		}
+		completion_reward = {
+			386 = {
+				create_unit = {
+					division = "is_name_ordered = yes division_template = \"National Guard Division\" start_experience_factor = 1.0"
+					owner = USA
+					count = 5
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_suppression_of_communism
+		icon = GFX_goal_anti_comintern_pact
+		relative_position_id = USA_United_States_Defense_Guard
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_United_States_Defense_Guard
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = USA_suppression_of_communism
+		}
+	}
+	
+	focus = {
+		id = USA_a_great_country
+		icon = GFX_focus_generic_befriend_usa
+		relative_position_id = USA_United_States_Defense_Guard
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_United_States_Defense_Guard
+		}
+		prerequisite = {
+			focus = USA_suppression_of_communism
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = USA_a_great_country
+		}
+	}
+	
+	focus = {
+		id = USA_The_one_who_is_unwilling_to_work_shall_not_eat
+		icon = GFX_goal_generic_production2
+		relative_position_id = USA_a_great_country
+		x = -2
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_a_great_country
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+			custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+			custom_effect_tooltip = The_economic_situation_in_the_United_States_will_gradually_improve
+			hidden_effect = {
+				country_event = { id = usa.26 days = 100 }
+				country_event = { id = usa.26 days = 200 }
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Expansion_of_Basic_Science_Subsidies
+		icon = GFX_goal_tfv_generic_tech_sharing
+		relative_position_id = USA_a_great_country
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_a_great_country
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = USA_Expansion_of_Basic_Science_Subsidies
+			add_research_slot = 1
+		}
+	}
+	
+	focus = {
+		id = USA_Support_for_fertilizer_production
+		icon = GFX_goal_generic_construct_civilian
+		relative_position_id = USA_a_great_country
+		x = -3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_a_great_country
+		}
+		available = {
+			has_idea = the_aftermath_of_great_heat_wave
+		}
+		search_filters = {FOCUS_FILTER_MANPOWER}
+		completion_reward = {
+			remove_ideas = the_aftermath_of_great_heat_wave
+		}
+	}
+	
+	focus = {
+		id = USA_business_oriented_economy
+		icon = GFX_focus_DEN_limited_regulations
+		relative_position_id = USA_a_great_country
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_a_great_country
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+			custom_effect_tooltip = USA_Wagner_Steagall_Act_event_effect
+			custom_effect_tooltip = The_economic_situation_in_the_United_States_will_gradually_improve
+			hidden_effect = {
+				country_event = { id = usa.27 days = 100 }
+				country_event = { id = usa.27 days = 200 }
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_come_to_an_end_to_the_economic_recession
+		icon = GFX_focus_generic_american_investments
+		relative_position_id = USA_Expansion_of_Basic_Science_Subsidies
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = USA_Expansion_of_Basic_Science_Subsidies
+		}
+		prerequisite = {
+			focus = USA_business_oriented_economy
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = USA_slow_recovery_trigger_20
+				check_variable = {
+					var = USA_great_depression_consumer_goods_factor
+					value = 0.2
+					compare = less_than_or_equals
+				}
+			}
+		}
+		completion_reward = {
+			country_event = usa.25
+			custom_effect_tooltip = The_economic_situation_in_the_United_States_will_gradually_improve
+		}
+	}
+	
+	focus = {
+		id = USA_Reintroduction_of_the_gold_standard
+		icon = GFX_focus_usa_reestablish_the_gold_standard
+		relative_position_id = USA_Refusing_new_executive_orders
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Refusing_new_executive_orders
+		}
+		available = {
+			ROOT = {
+				check_variable = {
+					Republican_Party > 150
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Republican_150_seats
+				}
+				check_variable = {
+					Senate_Republican_Party > 30
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Republican_Senate_30_seats
+				}
+			}
+			NOT = { has_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = USA_gold_standard
+			add_to_variable = { USA_great_depression_political_power_cost = -0.35 }
+			add_to_variable = { USA_great_depression_conscription_factor = 0.1 }
+			add_to_variable = { USA_great_depression_local_resources_factor = 0.05 }
+			custom_effect_tooltip = USA_legacy_of_Work_Progress_Administration_effect
+		}
+	}
+	
+	focus = {
+		id = USA_Trade_Union_Restriction_Act
+		icon = GFX_focus_generic_self_management
+		relative_position_id = USA_Reintroduction_of_the_gold_standard
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Reintroduction_of_the_gold_standard
+		}
+		available = {
+			ROOT = {
+				check_variable = {
+					Republican_Party > 150
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Republican_150_seats
+				}
+				check_variable = {
+					Senate_Republican_Party > 30
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Republican_Senate_30_seats
+				}
+			}
+			NOT = { has_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+			add_to_variable = { USA_great_depression_political_power_cost = -0.3 }
+			add_to_variable = { USA_great_depression_conscription_factor = 0.1 }
+			add_to_variable = { USA_great_depression_local_resources_factor = 0.05 }
+			custom_effect_tooltip = USA_Agricultural_Adjustment_Act_effect
+			custom_effect_tooltip = The_economic_situation_in_the_United_States_will_gradually_improve
+			set_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted
+			hidden_effect = {
+				country_event = { id = usa.1 days = 200 }
+			}
+			hidden_effect = {
+				country_event = { id = usa.11 days = 100 }
+				country_event = { id = usa.11 days = 200 }
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Protection_Trade_Act
+		icon = GFX_goal_generic_positive_trade_relations
+		relative_position_id = USA_Reintroduction_of_the_gold_standard
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Reintroduction_of_the_gold_standard
+		}
+		available = {
+			ROOT = {
+				check_variable = {
+					Republican_Party > 150
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Republican_150_seats
+				}
+				check_variable = {
+					Senate_Republican_Party > 30
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Republican_Senate_30_seats
+				}
+			}
+			NOT = { has_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_to_variable = { USA_great_depression_consumer_goods_factor = -0.05 }
+			add_to_variable = { USA_great_depression_conscription_factor = 0.1 }
+			custom_effect_tooltip = USA_Trade_Union_Act_effect
+			custom_effect_tooltip = The_economic_situation_in_the_United_States_will_gradually_improve
+			set_country_flag = USA_150_days_have_passed_since_the_new_legislation_was_enacted
+			hidden_effect = {
+				country_event = { id = usa.1 days = 200 }
+			}
+			hidden_effect = {
+				country_event = { id = usa.19 days = 100 }
+				country_event = { id = usa.19 days = 200 }
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Gradual_Abolition_of_Acts_of_New_Deal
+		icon = GFX_focus_renounce_the_treaty_of_trianon
+		relative_position_id = USA_Trade_Union_Restriction_Act
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			ROOT = {
+				check_variable = {
+					Republican_Party > 250
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Republican_250_seats
+				}
+				check_variable = {
+					Senate_Republican_Party > 60
+				}
+				custom_trigger_tooltip = {
+					tooltip = USA_Republican_Senate_60_seats
+				}
+			}
+		}
+		prerequisite = {
+			focus = USA_Trade_Union_Restriction_Act
+		}
+		prerequisite = {
+			focus = USA_Protection_Trade_Act
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = usa.12
+		}
+	}
+	
+	#Interventionism/간섭주의
+	focus = {
+		id = USA_Interventionism
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		x = 15
+		y = 0
+		cost = 5
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			has_country_flag = the_end_of_the_1940_election_pre
+			OR = {
+				has_country_leader = {
+					character = USA_franklin_delano_roosevelt
+					ruling_only = yes 
+				}
+				has_country_leader = {
+					character = USA_Wendell_Lewis_Willkie
+					ruling_only = yes 
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = USA_Isolationism
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = undisturbed_isolation
+				add_idea = isolation
+			}
+			add_war_support = 0.1
+		}
+	}
+	
+	focus = {
+		id = USA_active_interference
+		icon = GFX_goal_generic_political_pressure
+		relative_position_id = USA_Interventionism
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 10
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+		available = {
+			has_country_leader = {
+				character = USA_franklin_delano_roosevelt
+				ruling_only = yes 
+			}
+		}
+		mutually_exclusive = {
+			focus = USA_passive_intervention
+		}
+		prerequisite = {
+			focus = USA_Interventionism
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_ideas = USA_international_intervention_act
+			add_war_support = 0.025
+			add_stability = -0.1
+		}
+	}
+	
+	focus = {
+		id = USA_national_armament_plan
+		icon = GFX_focus_generic_strike_at_democracy1
+		relative_position_id = USA_active_interference
+		x = -1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_active_interference
+		}
+		completion_reward = {
+			add_ideas = USA_national_armament_plan
+		}
+	}
+	
+	focus = {
+		id = USA_more_arms_factories
+		icon = GFX_goal_generic_construct_mil_factory
+		relative_position_id = USA_active_interference
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_active_interference
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_stability = -0.05
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Global_policeman
+		icon = GFX_focus_generic_military_mission
+		relative_position_id = USA_national_armament_plan
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_national_armament_plan
+		}
+		prerequisite = {
+			focus = USA_more_arms_factories
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = USA_counterpoise_of_neutrality
+				add_idea = USA_Global_policeman
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_new_Big_Stick_Diplomacy
+		icon = GFX_focus_usa_recruit_the_free_corps
+		relative_position_id = USA_Global_policeman
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Global_policeman
+		}
+		prerequisite = {
+			focus = USA_intervente_to_central_armerica
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			unlock_decision_category_tooltip = USA_new_Big_Stick_Diplomacy_de
+		}
+	}
+	
+	focus = {
+		id = USA_intervente_to_central_armerica
+		icon = GFX_goal_generic_territory_or_war
+		relative_position_id = USA_more_arms_factories
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_more_arms_factories
+			focus = USA_limited_rearmament
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			GUA = { add_timed_idea = { idea = USA_idea_american_intervention days = 365 } }
+			HON = { add_timed_idea = { idea = USA_idea_american_intervention days = 365 } }
+			ELS = { add_timed_idea = { idea = USA_idea_american_intervention days = 365 } }
+			NIC = { add_timed_idea = { idea = USA_idea_american_intervention days = 365 } }
+			COS = { add_timed_idea = { idea = USA_idea_american_intervention days = 365 } }
+			PAN = { add_timed_idea = { idea = USA_idea_american_intervention days = 365 } }
+			CUB = { add_timed_idea = { idea = USA_idea_american_intervention days = 365 } }
+			HAI = { add_timed_idea = { idea = USA_idea_american_intervention days = 365 } }
+			DOM = { add_timed_idea = { idea = USA_idea_american_intervention days = 365 } }
+			MEX = { add_timed_idea = { idea = USA_idea_american_intervention days = 365 } }
+		}
+	}
+	
+	focus = {
+		id = USA_passive_intervention
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = USA_Interventionism
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			OR = {
+				has_country_leader = {
+					character = USA_franklin_delano_roosevelt
+					ruling_only = yes 
+				}
+				has_country_leader = {
+					character = USA_Wendell_Lewis_Willkie
+					ruling_only = yes 
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = USA_active_interference
+		}
+		prerequisite = {
+			focus = USA_Interventionism
+		}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = USA_limited_rearmament
+		icon = GFX_goal_generic_build_tank
+		relative_position_id = USA_passive_intervention
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_passive_intervention
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_beyond_the_sea
+		icon = GFX_focus_ICE_hrafninn_flygur
+		relative_position_id = USA_intervente_to_central_armerica
+		x = 1
+		y = 1
+		cost = 5
+		prerequisite = {
+			focus = USA_limited_rearmament
+		}
+		prerequisite = {
+			focus = USA_intervente_to_central_armerica
+		}
+		prerequisite = {
+			focus = USA_lend_lease_act_wr
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_war_support = 0.05
+			remove_ideas = USA_counterpoise_of_neutrality
+			swap_ideas = {
+				remove_idea = home_of_the_free
+				add_idea = home_of_the_free_1
+			}
+			add_ideas = USA_do_not_stand_aside
+			start_blalance_bf_effect = yes
+			start_blalance_bg_effect = yes
+			unlock_decision_category_tooltip = public_opinion_on_participation_in_the_war
+			hidden_effect = {
+				set_country_flag = start_blalance_bfg
+				set_country_flag = count_365
+				country_event = { id = usa.49 days = 365 }
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_neutrality_act_wr
+		icon = GFX_goal_generic_neutrality_focus
+		relative_position_id = USA_passive_intervention
+		x = 1
+		y = 1
+		search_filters = {FOCUS_FILTER_POLITICAL}
+		prerequisite = {
+			focus = USA_passive_intervention
+			focus = USA_national_defense_for_peace
+		}
+		bypass = {
+			has_war = yes
+		}
+		cost = 5
+		completion_reward = {
+			add_political_power = 200
+			add_war_support = -0.05
+			add_ideas = USA_neutrality_act
+			hidden_effect = {
+				add_relation_rule_override = {
+					can_access_market = no
+					trigger = trade_partner_not_at_war
+					usage_desc = trade_partner_not_at_war_tt
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_lend_lease_act_wr
+		icon = GFX_focus_generic_license_production
+		relative_position_id = USA_neutrality_act_wr
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = USA_neutrality_act_wr
+		}
+		cost = 7.2
+		available = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = USA_franklin_delano_roosevelt
+						ruling_only = yes 
+					}
+				}
+				any_other_country = {
+					is_major = yes
+					NOT = { has_government = fascism }
+					has_war = yes
+					surrender_progress > 0
+				}
+				has_war_support > 0.4
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = USA_norman_mattoon_thomas
+						ruling_only = yes 
+					}
+				}
+				has_war_support > 0.9
+			}
+			else = {
+				has_war_support > 0.5
+			}
+		}
+		completion_reward = {
+			unlock_decision_category_tooltip = USA_sell_weapons
+		}
+	}
+	
+	#Isolationism/고립주의
+	focus = {
+		id = USA_Isolationism
+		icon = GFX_goal_generic_defence
+		x = 20
+		y = 0
+		cost = 5
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			has_country_flag = the_end_of_the_1940_election_pre
+			OR = {
+				has_country_leader = {
+					character = USA_norman_mattoon_thomas
+					ruling_only = yes 
+				}
+				has_country_leader = {
+					character = USA_Robert_Alphonso_Taft
+					ruling_only = yes 
+				}
+				has_country_leader = {
+					character = USA_Wendell_Lewis_Willkie
+					ruling_only = yes 
+				}
+			}
+		}
+		mutually_exclusive = {
+			focus = USA_Interventionism
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = undisturbed_isolation
+				add_idea = isolation
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_national_defense_for_peace
+		icon = GFX_goal_generic_military_sphere
+		relative_position_id = USA_Isolationism
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Isolationism
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			USA = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 1000
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Pacific_Stabilization
+		icon = GFX_goal_generic_amphibious_assault
+		relative_position_id = USA_national_defense_for_peace
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_national_defense_for_peace
+		}
+		prerequisite = {
+			focus = USA_Monroe_Doctrine
+		}
+		completion_reward = {
+			631 = {
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes
+						limit_to_naval_base = yes
+					}
+					level = 2
+					instant_build = yes
+				}
+			}
+			629 = {
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes
+						limit_to_naval_base = yes
+					}
+					level = 2
+					instant_build = yes
+				}
+			}
+			629 = {
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes
+						limit_to_naval_base = yes
+					}
+					level = 2
+					instant_build = yes
+				}
+			}
+			629 = {
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes
+						limit_to_naval_base = yes
+					}
+					level = 2
+					instant_build = yes
+				}
+			}
+			632 = {
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes
+						limit_to_naval_base = yes
+					}
+					level = 2
+					instant_build = yes
+				}
+			}
+			642 = {
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes
+						limit_to_naval_base = yes
+					}
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Monroe_Doctrine
+		icon = GFX_goal_generic_position_armies
+		relative_position_id = USA_Isolationism
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Isolationism
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = USA_defender_of_the_American_sphere
+		}
+	}
+	
+	focus = {
+		id = USA_Manifest_Destiny
+		icon = GFX_focus_generic_strike_at_democracy3
+		relative_position_id = USA_Monroe_Doctrine
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Monroe_Doctrine
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_defenseism
+		icon = GFX_focus_ARG_the_american_push
+		relative_position_id = USA_Pacific_Stabilization
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Manifest_Destiny
+		}
+		prerequisite = {
+			focus = USA_Pacific_Stabilization
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = USA_defenseism
+			remove_ideas = USA_counterpoise_of_neutrality
+			custom_effect_tooltip = USA_defenseism_effect_tt
+		}
+	}
+	
+	focus = {
+		id = USA_the_giant_wakes
+		icon = GFX_goal_generic_construct_civ_factory
+		relative_position_id = USA_Manifest_Destiny
+		x = -3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = USA_Manifest_Destiny
+			focus = USA_lend_lease_act_wr
+			focus = USA_Global_policeman
+		}
+		available = {
+			has_offensive_war = yes
+			has_war_with_major = yes
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = isolation
+				add_idea = low_economic_mobilisation
+			}
+			add_war_support = 0.2
+			add_political_power = 100
+			navy_experience = 50
+			army_experience = 50
+			air_experience = 10
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = USA_arsenal_of_democracy_3AF
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				set_state_flag = USA_arsenal_of_democracy_3AF
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					dockyard > 0
+					free_building_slots = {
+						building = dockyard
+						size > 0
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = dockyard
+					level = 1
+					instant_build = yes
+				}
+				set_state_flag = USA_arsenal_of_democracy_3AF
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					dockyard > 0
+					free_building_slots = {
+						building = dockyard
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+				set_state_flag = USA_arsenal_of_democracy_3AF
+			}
+		}
+	}
+	
+	#President
+#	focus = {
+#		id = USA_president_norman_thomas
+#		icon = USA_president_norman_thomas
+#		x = 14
+#		y = 0
+#		search_filters = { FOCUS_FILTER_POLITICAL }
+#		available = {
+#			has_country_flag = the_end_of_the_1940_election_pre
+#			has_country_leader = {
+#				character = USA_norman_mattoon_thomas
+#				ruling_only = yes 
+#			}
+#		}
+#	}
+		
+#	focus = {
+#		id = USA_president_franklin_roosevelt
+#		icon = USA_president_franklin_roosevelt
+#		x = 20
+#		y = 0
+#		search_filters = { FOCUS_FILTER_POLITICAL }
+#		available = {
+#			has_country_flag = the_end_of_the_1940_election_pre
+#			has_country_leader = {
+#				character = USA_franklin_delano_roosevelt
+#				ruling_only = yes 
+#			}
+#		}
+#	}
+		
+#	focus = {
+#		id = USA_president_wendell_willkie
+#		icon = USA_president_wendell_willkie
+#		x = 14
+#		y = 4
+#		search_filters = { FOCUS_FILTER_POLITICAL }
+#		available = {
+#			has_country_flag = the_end_of_the_1940_election_pre
+#			has_country_leader = {
+#				character = USA_Wendell_Lewis_Willkie
+#				ruling_only = yes 
+#			}
+#		}
+#	}
+	
+#	focus = {
+#		id = USA_president_robert_taft
+#		icon = USA_president_robert_taft
+#		x = 20
+#		y = 4
+#		search_filters = { FOCUS_FILTER_POLITICAL }
+#		available = {
+#			has_country_flag = the_end_of_the_1940_election_pre
+#			has_country_leader = {
+#				character = USA_Robert_Alphonso_Taft
+#				ruling_only = yes 
+#			}
+#		}
+#	}
+	
+	focus = {
+		id = USA_The_United_States_Department_of_War
+		icon = USA_The_United_States_Department_of_War
+		x = 27
+		y = 0
+		cost = 10
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		ai_will_do = {
+			factor = 0.1
+		}
+		available = {
+			#has_country_flag = USA_end_of_great_depression
+		}
+		completion_reward = {
+			army_experience = 25
+		}
+	}
+	
+	focus = {
+		id = USA_support_company
+		icon = GFX_goal_generic_construction2
+		relative_position_id = USA_The_United_States_Department_of_War
+		x = -3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		prerequisite = {
+			focus = USA_The_United_States_Department_of_War
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name =  USA_support_company
+				bonus = 0.5
+				category = support_tech
+				uses = 2
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_rifle_equipment
+		icon = GFX_goal_generic_small_arms
+		relative_position_id = USA_The_United_States_Department_of_War
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		mutually_exclusive = {
+			focus = USA_American_Tank_Corps
+		}
+		prerequisite = {
+			focus = USA_The_United_States_Department_of_War
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = USA_rifle_equipment
+				bonus = 0.5
+				category = infantry_weapons
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_American_Tank_Corps
+		icon = GFX_goal_generic_army_tanks
+		relative_position_id = USA_The_United_States_Department_of_War
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		mutually_exclusive = {
+			focus = USA_rifle_equipment
+		}
+		prerequisite = {
+			focus = USA_The_United_States_Department_of_War
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = USA_American_Tank_Corps
+				bonus = 0.5
+				category = armor
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_tank_production
+		icon = GFX_focus_generic_tank_production
+		relative_position_id = USA_American_Tank_Corps
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_American_Tank_Corps
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = available_designer
+			show_ideas_tooltip = detroit_arsenal
+		}
+	}
+	
+	focus = {
+		id = USA_United_States_Army_Air_Forces
+		icon = GFX_goal_poland_goal
+		relative_position_id = USA_The_United_States_Department_of_War
+		x = 3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_The_United_States_Department_of_War
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "By Blood Alone"
+				}
+				add_tech_bonus = {
+					name = USA_United_States_Army_Air_Forces
+					bonus = 0.5
+					technology = early_bombs
+					technology = armor_piercing_bombs
+					technology = heavy_bombs
+					uses = 1
+				}
+				add_tech_bonus = {
+					name = USA_United_States_Army_Air_Forces
+					bonus = 0.5
+					category = cat_air_engine
+					uses = 1
+				}
+				else = {
+					add_tech_bonus = {
+						name = USA_United_States_Army_Air_Forces
+						bonus = 0.5
+						category = cas_bomber
+						uses = 1
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Office_of_Strategic_Service
+		icon = GFX_goal_generic_special_forces
+		relative_position_id = USA_support_company
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_rifle_equipment
+			focus = USA_American_Tank_Corps
+		}
+		prerequisite = {
+			focus = USA_support_company
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = USA_Office_of_Strategic_Service
+				bonus = 0.5
+				category = special_forces_doctrine
+				uses = 1
+			}
+			add_tech_bonus = {
+				name = USA_Office_of_Strategic_Service
+				bonus = 0.5
+				category = marine_tech
+				uses = 1
+			}
+			add_tech_bonus = {
+				name = USA_Office_of_Strategic_Service
+				bonus = 0.5
+				category = mountaineers_tech
+				uses = 1
+			}
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				if = {
+					limit = {
+						has_intelligence_agency = no
+					}	
+					create_intelligence_agency = {
+						name = "Office of Strategic Services" 
+						icon = "GFX_intelligence_agency_logo_usa" 
+					}	
+					else = {
+						upgrade_intelligence_agency = upgrade_passive_defense
+					}	
+				}			
+			}
+		}
+	}
+
+	focus = {
+		id = USA_build_the_pentagon
+		icon = GFX_focus_usa_build_the_pentagon
+		x = 0
+		y = 1
+		prerequisite = { focus = USA_Office_of_Strategic_Service }
+		relative_position_id = USA_Office_of_Strategic_Service
+		cost = 10
+
+		ai_will_do = {
+			factor = 0.5
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+
+		completion_reward = {
+			add_ideas = USA_the_pentagon
+		}
+	}
+	
+	focus = {
+		id = USA_outstanding_artillery
+		icon = GFX_goal_generic_army_artillery2
+		relative_position_id = USA_rifle_equipment
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_rifle_equipment
+			focus = USA_American_Tank_Corps
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = USA_outstanding_artillery
+				bonus = 0.5
+				category = artillery
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Expeditionary_Forces
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = USA_outstanding_artillery
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		prerequisite = {
+			focus = USA_outstanding_artillery
+			focus = USA_tank_production
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_ideas = USA_Expeditionary_Forces
+		}
+	}
+	
+	focus = {
+		id = USA_Mechanized_infantry
+		icon = GFX_goal_generic_army_motorized
+		relative_position_id = USA_Expeditionary_Forces
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_Expeditionary_Forces
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = USA_Mechanized_infantry
+				bonus = 0.5
+				category = cat_mechanized_equipment
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Screaming_Eagles
+		icon = GFX_focus_generic_paratrooper
+		relative_position_id = USA_Expeditionary_Forces
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_Expeditionary_Forces
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = USA_Screaming_Eagles
+				bonus = 0.5
+				category = para_tech
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_The_United_States_Department_of_the_Navy
+		icon = USA_The_United_States_Department_of_the_Navy
+		x = 33
+		y = 0
+		cost = 10
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		ai_will_do = {
+			factor = 0.1
+		}
+		available = {
+			#has_country_flag = USA_end_of_great_depression
+		}
+		completion_reward = {
+			navy_experience = 25
+		}
+	}
+	
+	focus = {
+		id = USA_United_States_Naval_Aviation
+		icon = GFX_focus_generic_cryptologic_bomb
+		relative_position_id = USA_The_United_States_Department_of_the_Navy
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_The_United_States_Department_of_the_Navy
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "By Blood Alone"
+				}
+				add_tech_bonus = {
+					name = USA_United_States_Army_Air_Forces
+					bonus = 0.5
+					technology = air_torpedoe_1
+					technology = air_torpedoe_2
+					technology = air_torpedoe_3
+					uses = 1
+				}
+				else = {
+					add_tech_bonus = {
+						name = USA_United_States_Army_Air_Forces
+						bonus = 0.5
+						category = naval_bomber
+						uses = 1
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_capital_ship
+		icon = GFX_focus_generic_navy_battleship2
+		relative_position_id = USA_The_United_States_Department_of_the_Navy
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_The_United_States_Department_of_the_Navy
+		}
+		mutually_exclusive = {
+			focus = USA_Auxiliary_Ship
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = USA_capital_ship
+				bonus = 0.25
+				category = bb_tech
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Auxiliary_Ship
+		icon = GFX_focus_generic_destroyer
+		relative_position_id = USA_The_United_States_Department_of_the_Navy
+		x = 3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_The_United_States_Department_of_the_Navy
+		}
+		mutually_exclusive = {
+			focus = USA_capital_ship
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = USA_Auxiliary_Ship
+				bonus = 0.25
+				category = dd_tech
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_battleship_first
+		icon = GFX_goal_generic_navy_battleship
+		relative_position_id = USA_capital_ship
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_capital_ship
+		}
+		mutually_exclusive = {
+			focus = USA_airfield_of_sea
+		}
+		mutually_exclusive = {
+			focus = USA_Naval_blockade
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = USA_battleship_first
+				cost_reduction = 0.25
+				uses = 1
+				category = cat_fleet_in_being
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_airfield_of_sea
+		icon = GFX_goal_generic_navy_carrier
+		relative_position_id = USA_capital_ship
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_capital_ship
+			focus = USA_Auxiliary_Ship
+		}
+		mutually_exclusive = {
+			focus = USA_battleship_first
+		}
+		mutually_exclusive = {
+			focus = USA_Naval_blockade
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = USA_airfield_of_sea
+				cost_reduction = 0.25
+				uses = 1
+				category = cat_base_strike
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_Naval_blockade
+		icon = GFX_goal_generic_navy_anti_submarine
+		relative_position_id = USA_Auxiliary_Ship
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_Auxiliary_Ship
+		}
+		mutually_exclusive = {
+			focus = USA_battleship_first
+		}
+		mutually_exclusive = {
+			focus = USA_airfield_of_sea
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = USA_Naval_blockade
+				cost_reduction = 0.25
+				uses = 1
+				category = cat_trade_interdiction
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_naval_radar
+		icon = GFX_goal_generic_radar
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = USA_battleship_first
+			focus = USA_airfield_of_sea
+			focus = USA_Naval_blockade
+		}
+		relative_position_id = USA_airfield_of_sea
+		cost = 10
+
+		ai_will_do = {
+			factor = 0.5
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		search_filters = {FOCUS_FILTER_RESEARCH}
+		completion_reward = {
+			add_tech_bonus = {
+				name = USA_naval_radar
+				uses = 2
+				bonus = 1.0
+				category = radar_tech
+			}
+			
+		}
+	}
+	
+	focus = {
+		id = USA_fund_the_navy
+		icon = GFX_goal_generic_construct_naval_dockyard
+		x = 6
+		y = 1
+		relative_position_id = USA_The_United_States_Department_of_the_Navy
+		cost = 10
+		prerequisite = { focus = USA_The_United_States_Department_of_the_Navy }
+		ai_will_do = {
+			factor = 0.5
+		}
+		search_filters = {FOCUS_FILTER_RESEARCH}
+				completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = USA_fund_the_navy
+				uses = 3
+				cost_reduction = 0.5
+				category = naval_doctrine
+			}
+		}
+	}
+
+	focus = {
+		id = USA_expand_the_USMC
+		icon = GFX_goal_generic_special_forces
+		prerequisite = { focus = USA_fund_the_navy }
+		x = 0
+		y = 1
+		relative_position_id = USA_fund_the_navy
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		search_filters = {FOCUS_FILTER_RESEARCH}
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				add_doctrine_cost_reduction = {
+					name = USA_expand_the_USMC
+					cost_reduction = 0.25
+					uses = 2
+					category = special_forces_doctrine
+				}
+			}
+			else = {
+				add_tech_bonus = {
+					name = USA_expand_the_USMC
+					bonus = 1.0
+					uses = 1
+					technology = marines2
+					technology = marines3
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = USA_amphibious_operations
+		icon = GFX_goal_generic_amphibious_assault
+		prerequisite = { focus = USA_expand_the_USMC }
+		x = 0
+		y = 1
+		relative_position_id = USA_expand_the_USMC
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		search_filters = {FOCUS_FILTER_RESEARCH}
+		completion_reward = {
+			add_tech_bonus = {
+				name = USA_amphibious_operations
+				bonus = 1.0
+				uses = 2
+				category = tp_tech 
+			}
+		}
+	}
+	
+	focus = {
+		id = USA_United_States_Department_of_the_Air_Force
+		icon = USA_United_States_Department_of_the_Air_Force
+		relative_position_id = USA_United_States_Army_Air_Forces
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		prerequisite = {
+			focus = USA_United_States_Army_Air_Forces
+		}
+		prerequisite = {
+			focus = USA_United_States_Naval_Aviation
+		}
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		completion_reward = {
+			air_experience = 25
+		}
+	}
+	
+	focus = {
+		id = USA_air_support
+		icon = GFX_goal_generic_air_fighter
+		prerequisite = { focus = USA_United_States_Department_of_the_Air_Force }
+		mutually_exclusive = { focus = USA_strategic_bombing }
+		x = -1
+		y = 1
+		relative_position_id = USA_United_States_Department_of_the_Air_Force
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		completion_reward = {
+			air_experience = 10
+			add_ideas = air_support_focus
+		}
+	}
+
+	focus = {
+		id = USA_strategic_bombing
+		icon = GFX_goal_generic_occupy_start_war
+		prerequisite = { focus = USA_United_States_Department_of_the_Air_Force }
+		mutually_exclusive = { focus = USA_air_support }
+		x = 1
+		y = 1
+		relative_position_id = USA_United_States_Department_of_the_Air_Force
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		completion_reward = {
+			air_experience = 10
+			add_ideas = strategic_bombing_focus
+		}
+	}
+	
+	focus = {
+		id = USA_escort_fighters
+		icon = GFX_focus_usa_escort_fighters
+		x = 1
+		y = 1
+		prerequisite = { focus = USA_air_support focus = USA_strategic_bombing }
+		relative_position_id = USA_air_support
+		cost = 10
+		ai_will_do = {
+			factor = 0.5
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		search_filters = {FOCUS_FILTER_RESEARCH}
+		completion_reward = {
+			add_tech_bonus = {
+				name = USA_escort_fighters
+				bonus = 1.0
+				uses = 1
+				category = light_fighter
+			}
+			add_tech_bonus = {
+				name = USA_escort_fighters
+				bonus = 1.0
+				uses = 1
+				category = cat_heavy_fighter
+			}
+		}
+	}
+}

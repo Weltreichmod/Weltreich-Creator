@@ -1,0 +1,114 @@
+# befriend
+# conquer
+# antagonize
+# build_ship
+# build_army
+# unit_ratio
+# build_building
+# research_tech
+# garrison
+# protect
+# influence
+FRA_help_SPA_win_civil_war = {
+	allowed = {
+		original_tag = FRA
+	}
+	enable = {
+		date < 1939.1.1
+		SPA = { has_war_with = SPD }
+		country_exists = SPA
+		SPA = { has_government = fascism }
+		has_government = fascism
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = SPA
+		value = 50
+	}
+}
+
+ENG_help_SPA_win_civil_war = {
+	allowed = {
+		original_tag = ENG
+	}
+	enable = {
+		date < 1939.1.1
+		SPA = { has_war_with = SPD }
+		country_exists = ENG
+		SPA = { has_government = fascism }
+		has_government = fascism
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = SPA
+		value = 50
+	}
+}
+
+SOV_help_SPD_win_civil_war = {
+	allowed = {
+		original_tag = SOV
+	}
+	enable = {
+		date < 1939.1.1
+		SPA = { has_war_with = SPD }
+		country_exists = SPD
+		SPD = { NOT = { has_government = fascism } }
+		NOT = { has_government = fascism }
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = SPD
+		value = 50
+	}
+}
+
+# Make nobody want to ally Spain during the civil war.
+spanish_civil_war_ally_nobody = {
+	enable = {
+		SPA = { has_war_with = SPD }
+		NOT = {
+			original_tag = SPR
+		}
+	}
+	abort = {
+		NOT = { SPA = { has_war_with = SPD } }
+	}
+
+	ai_strategy = {
+		type = alliance
+		id = SPD
+		value = -2000
+	}
+	ai_strategy = {
+		type = alliance
+		id = SPA
+		value = -2000
+	}
+}
+
+spr_hate_fra = {
+	allowed = {
+		original_tag = SPR
+	}
+	enable = {
+		FRA = { owns_state = 165 }
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = alliance
+		id = FRA
+		value = -2000
+	}
+	ai_strategy = {
+		type = befriend
+		id = FRA
+		value = -100
+	}
+}

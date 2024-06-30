@@ -1,0 +1,428 @@
+FRA_Attack_BEL = {
+	Foch_plans = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		available = {
+			has_war_with = GER
+			OR = {
+				BEL = {
+					has_capitulated = yes
+					surrender_progress > 0.80
+				}
+			}
+		}	
+		visible = {
+			tag = FRA
+		}
+		fire_only_once = yes
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 5
+		#war_with_on_remove = HOL
+		remove_effect = {
+			add_timed_idea = {
+				idea = Yellow_alert
+				days = 60
+			}
+			add_named_threat = {
+				threat = 5
+				name = Foch_plans
+			}
+			if = {
+				limit = {
+					NOT = { has_war_with = HOL }
+				}
+				declare_war_on = {
+					target = HOL
+					type = puppet_wargoal_focus
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 10000
+		}
+	}
+}
+economic_reform_of_the_republic = {
+	Focus_on_the_economy = {
+		allowed = {
+			original_tag = FRA
+		}
+		icon = generic_construction
+		available = {
+			has_war = no
+		}
+		fire_only_once = no
+		visible = {
+			has_completed_focus = falling_economy
+			NOT = {
+				has_idea = republic_economic_plan
+			}
+		}
+		complete_effect = {
+			add_timed_idea = { idea = republic_economic_plan days = 100 }
+		}
+		ai_will_do = { 
+			base = 0
+		}
+	}
+}
+
+#republic_industrialization = {
+#	centre_industrialization = {
+#		allowed = {
+#			original_tag = FRA
+#		}
+#		icon = generic_construction
+#		available = {
+#			has_war = no
+#			controls_state = 24
+#		}
+#		cost = 50
+#		fire_only_once = yes
+#		visible = {
+#			has_completed_focus = Nation_industrialization_plan
+#		}
+#		days_remove = 50
+#		ai_will_do = { 
+#			base = 100
+#		}
+#		remove_effect = {
+#			24 = {
+#				add_extra_state_shared_building_slots = 1
+#				add_building_construction = {
+#					type = industrial_complex
+#					level = 1
+#					instant_build = yes
+#				}
+#			}
+#		}
+#	}
+#	
+#	centre_sud_industrialization = {
+#		allowed = {
+#			original_tag = FRA
+#		}
+#		icon = generic_construction
+#		available = {
+#			has_war = no
+#			controls_state = 33
+#		}
+#		cost = 50
+#		fire_only_once = yes
+#		visible = {
+#			has_completed_focus = Nation_industrialization_plan
+#		}
+#		days_remove = 50
+#		ai_will_do = { 
+#			base = 100
+#		}
+#		remove_effect = {
+#			33 = {
+#				add_extra_state_shared_building_slots = 1
+#				add_building_construction = {
+#					type = arms_factory
+#					level = 1
+#					instant_build = yes
+#				}
+#			}
+#		}
+#	}
+#	
+#	poitou_industrialization = {
+#		allowed = {
+#			original_tag = FRA
+#		}
+#		icon = generic_construction
+#		available = {
+#			has_war = no
+#			controls_state = 23
+#		}
+#		cost = 50
+#		fire_only_once = yes
+#		visible = {
+#			has_completed_focus = Nation_industrialization_plan
+#		}
+#		days_remove = 50
+#		ai_will_do = { 
+#			base = 100
+#		}
+#		remove_effect = {
+#			23 = {
+#				add_extra_state_shared_building_slots = 1
+#				add_building_construction = {
+#					type = industrial_complex
+#					level = 1
+#					instant_build = yes
+#				}
+#			}
+#		}
+#	}
+#	
+#	limousin_industrialization = {
+#		allowed = {
+#			original_tag = FRA
+#		}
+#		icon = generic_construction
+#		available = {
+#			has_war = no
+#			controls_state = 25
+#		}
+#		cost = 50
+#		fire_only_once = yes
+#		visible = {
+#			has_completed_focus = Nation_industrialization_plan
+#		}
+#		days_remove = 50
+#		ai_will_do = { 
+#			base = 100
+#		}
+#		remove_effect = {
+#			25 = {
+#				add_extra_state_shared_building_slots = 1
+#				add_building_construction = {
+#					type = arms_factory
+#					level = 1
+#					instant_build = yes
+#				}
+#			}
+#		}
+#	}
+#	
+#	auvergne_industrialization = {
+#		allowed = {
+#			original_tag = FRA
+#		}
+#		icon = generic_construction
+#		available = {
+#			has_war = no
+#			controls_state = 26
+#		}
+#		cost = 50
+#		fire_only_once = yes
+#		visible = {
+#			has_completed_focus = Nation_industrialization_plan
+#		}
+#		days_remove = 50
+#		ai_will_do = { 
+#			base = 100
+#		}
+#		remove_effect = {
+#			26 = {
+#				add_extra_state_shared_building_slots = 1
+#				add_building_construction = {
+#					type = industrial_complex
+#					level = 1
+#					instant_build = yes
+#				}
+#			}
+#		}
+#	}
+#}
+
+democratic_alliance = {
+	with_italy = {
+		allowed = {
+			original_tag = FRA
+		}
+		icon = GFX_decision_icon_default
+		cost = 10
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = formation_of_democratic_alliance
+			ITA = {
+				has_government = democratic
+				is_in_faction = no
+				exists = yes
+				is_subject = no
+			}
+		}
+		available = {
+			ITA = {
+				has_government = democratic
+				is_in_faction = no
+				exists = yes
+				is_subject = no
+				has_war = no
+			}
+		}
+		target_trigger = {
+			FROM = { tag = ITA }
+		}
+		days_remove = 7
+		ai_will_do = { 
+			base = 100
+		}
+		remove_effect = {
+			ITA = { country_event = { days = 7 id = italy.15 } }
+		}
+	}
+	with_ireland = {
+		allowed = {
+			original_tag = FRA
+		}
+		icon = GFX_decision_icon_default
+		cost = 10
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = formation_of_democratic_alliance
+			IRE = {
+				has_government = democratic
+				is_in_faction = no
+				exists = yes
+				is_subject = no
+			}
+		}
+		available = {
+			IRE = {
+				has_government = democratic
+				is_in_faction = no
+				exists = yes
+				is_subject = no
+				has_war = no
+			}
+		}
+		target_trigger = {
+			FROM = { tag = IRE }
+		}
+		days_remove = 7
+		ai_will_do = { 
+			base = 100
+		}
+		remove_effect = {
+			IRE = { country_event = { days = 7 id = italy.12 } }
+		}
+	}
+	with_switzerland = {
+		allowed = {
+			original_tag = FRA
+		}
+		icon = GFX_decision_icon_default
+		cost = 10
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = formation_of_democratic_alliance
+			SWI = {
+				has_government = democratic
+				is_in_faction = no
+				exists = yes
+				is_subject = no
+			}
+		}
+		available = {
+			SWI = {
+				has_government = democratic
+				is_in_faction = no
+				exists = yes
+				is_subject = no
+				has_war = no
+			}
+		}
+		target_trigger = {
+			FROM = { tag = SWI }
+		}
+		days_remove = 7
+		ai_will_do = { 
+			base = 100
+		}
+		remove_effect = {
+			SWI = { country_event = { days = 7 id = italy.13 } }
+		}
+	}
+	with_spain = {
+		allowed = {
+			original_tag = FRA
+		}
+		icon = GFX_decision_icon_default
+		cost = 10
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = formation_of_democratic_alliance
+			SPR = {
+				has_government = democratic
+				is_in_faction = no
+				exists = yes
+			}
+		}
+		available = {
+			SPR = {
+				has_government = democratic
+				is_in_faction = no
+				exists = yes
+				is_subject = no
+				has_war = no
+			}
+		}
+		target_trigger = {
+			FROM = { tag = SPR }
+		}
+		days_remove = 7
+		ai_will_do = { 
+			base = 100
+		}
+		remove_effect = {
+			SPR = { country_event = { days = 7 id = italy.14 } }
+		}
+	}
+}
+
+FRA_declare_grand_french_etat = {
+	FRA_declare_grand_french_etat = {
+		allowed = {
+			original_tag = FRA
+		}
+		icon = GFX_decision_generic_form_nation
+		fire_only_once = yes
+		visible = {
+			has_government = fascism
+			has_country_flag = second_great_war_winner
+		}
+		available = {
+			14 = { is_owned_by = FRA }
+			30 = { is_owned_by = FRA }
+			15 = { is_owned_by = FRA }
+			23 = { is_owned_by = FRA }
+			19 = { is_owned_by = FRA }
+			806 = { is_owned_by = FRA }
+			31 = { is_owned_by = FRA }
+			25 = { is_owned_by = FRA }
+			22 = { is_owned_by = FRA }
+			21 = { is_owned_by = FRA }
+			851 = { is_owned_by = FRA }
+			934 = { is_owned_by = FRA }
+			935 = { is_owned_by = FRA }
+			735 = { is_owned_by = FRA }
+			20 = { is_owned_by = FRA }
+			32 = { is_owned_by = FRA }
+			26 = { is_owned_by = FRA }
+			33 = { is_owned_by = FRA }
+			27 = { is_owned_by = FRA }
+			17 = { is_owned_by = FRA }
+			24 = { is_owned_by = FRA }
+			18 = { is_owned_by = FRA }
+			16 = { is_owned_by = FRA }
+			928 = { is_owned_by = FRA }
+			785 = { is_owned_by = FRA }
+			165 = { is_owned_by = FRA }
+			1 = { is_owned_by = FRA }
+			909 = { is_owned_by = FRA }
+			28 = { is_owned_by = FRA }
+			29 = { is_owned_by = FRA }
+			6 = { is_owned_by = FRA }
+			34 = { is_owned_by = FRA }
+			910 = { is_owned_by = FRA }
+			8 = { is_owned_by = FRA }
+			42 = { is_owned_by = FRA }
+			51 = { is_owned_by = FRA }
+			35 = { is_owned_by = FRA }
+			7 = { is_owned_by = FRA }
+			36 = { is_owned_by = FRA }
+		}
+		complete_effect = {
+			set_cosmetic_tag = GRAND_FRANCE
+		}
+		ai_will_do = { 
+			base = 4000
+		}
+	}
+}

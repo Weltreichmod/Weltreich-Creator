@@ -1,0 +1,1041 @@
+################
+# SAF EVENTS #
+################
+
+add_namespace = south_africa_wr
+
+country_event = {
+	id = south_africa_wr.1
+	title = south_africa_wr.1.t
+	desc = south_africa_wr.1.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.1.a
+		ENG = {
+			add_opinion_modifier = {
+				target = SAF
+				modifier = medium_increase
+			}
+		}
+		SAF = {
+			add_opinion_modifier = {
+				target = ENG
+				modifier = medium_increase
+			}
+		}
+		SAF = { country_event = south_africa_wr.2 }
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = south_africa_wr.1.b
+		ENG = {
+			add_opinion_modifier = {
+				target = SAF
+				modifier = medium_increase
+			}
+		}
+		SAF = {
+			add_opinion_modifier = {
+				target = ENG
+				modifier = medium_increase
+			}
+		}
+		SAF = { country_event = south_africa_wr.3 }
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = south_africa_wr.1.c
+		SAF = { country_event = south_africa_wr.4 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.2
+	title = south_africa_wr.2.t
+	desc = south_africa_wr.2.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.2.a
+		add_ideas = SAF_economic_support_from_britain
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.3
+	title = south_africa_wr.3.t
+	desc = south_africa_wr.3.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.3.a
+		add_ideas = SAF_military_support_from_britain
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.4
+	title = south_africa_wr.4.t
+	desc = south_africa_wr.4.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.4.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.5
+	title = south_africa_wr.5.t
+	desc = south_africa_wr.5.d
+	picture = fail_roma_march
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.5.a
+		set_country_flag = Shoot_at_the_protesters_flag
+		add_stability = -0.05
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.6
+	title = south_africa_wr.6.t
+	desc = south_africa_wr.6.d
+	picture = GFX_report_event_african_soldiers
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.6.a
+		every_state = {
+			limit = {
+				is_owned_by = SAF
+				is_core_of = ZIM
+			}
+			transfer_state_to = ZIM
+		}
+		ZIM = {
+			inherit_technology = SAF
+			division_template = {
+				name = "Infantry Division"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+			}
+			545 = {
+				create_unit = {
+					division = "name = \"Infantry.1\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = ZIM
+					count = 4
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SAF
+				is_core_of = BOT
+			}
+			transfer_state_to = BOT
+		}
+		BOT = {
+			inherit_technology = SAF
+			division_template = {
+				name = "Infantry Division"
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+			}
+			542 = {
+				create_unit = {
+					division = "name = \"Infantry.1\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = BOT
+					count = 4
+				}
+			}
+		}
+		if = {
+			limit = {
+				OR = {
+					has_country_flag = SAF_colleagues_of_Botswana_and_Zimbabwe_flag
+					has_government = fascism
+				}
+			}
+			BOT = {
+				declare_war_on = {
+					target = SAF
+					type = civil_war
+				}
+			}
+			ZIM = {
+				declare_war_on = {
+					target = SAF
+					type = civil_war
+				}
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.7
+	title = south_africa_wr.7.t
+	desc = {
+		text = south_africa_wr.7.d1
+		trigger = {
+			OR = {
+				democratic = party_popularity@fascism
+				democratic > party_popularity@fascism
+			}
+		}
+	}
+	desc = {
+		text = south_africa_wr.7.d2
+		trigger = {
+			OR = {
+				fascism = party_popularity@democratic
+				fascism > party_popularity@democratic
+			}
+		}
+	}
+	picture = GFX_report_event_election_vote
+	trigger = {
+		tag = SAF
+		date > 1938.1.1
+		date < 1939.1.1
+	}
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.7.a
+		trigger = {
+			OR = {
+				fascism = party_popularity@democratic
+				fascism > party_popularity@democratic
+			}
+		}
+		ROOT = { complete_national_focus = SAF_1938_election }
+		if = {
+			limit = {
+				NOT = { has_government = fascism }
+			}
+			set_politics = {
+				ruling_party = fascism
+				elections_allowed = yes
+				election_frequency = 48
+			}
+		}
+	}
+	option = {
+		name = south_africa_wr.7.b
+		trigger = {
+			OR = {
+				democratic = party_popularity@fascism
+				democratic > party_popularity@fascism
+			}
+		}
+		ROOT = { complete_national_focus = SAF_1938_election }
+		if = {
+			limit = {
+				NOT = { has_government = democratic }
+			}
+			set_politics = {
+				ruling_party = democrtic
+				elections_allowed = yes
+				election_frequency = 48
+			}
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.8
+	title = south_africa_wr.8.t
+	desc = south_africa_wr.8.d
+	picture = GFX_report_event_american_hunger_march
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.8.a
+		add_stability = -0.05
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.9
+	title = south_africa_wr.9.t
+	desc = south_africa_wr.9.d
+	picture = GFX_report_event_american_hunger_march
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.9.a
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { id = south_africa_wr.10 days = 7 }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.10
+	title = south_africa_wr.10.t
+	desc = south_africa_wr.10.d
+	picture = GFX_report_event_american_hunger_march
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			create_dynamic_country = {
+				original_tag = SAF
+				every_state = {
+					limit = {
+						is_core_of = SAF
+					}
+					add_core_of = BOR
+				}
+				set_capital = { state = 275 }
+				set_politics = {
+					ruling_party = fascism
+					elections_allowed = no
+				}
+				set_popularities = {
+					democratic = 10
+					neutrality = 5
+					fascism = 80
+					communism = 5
+				}
+				load_focus_tree = south_african_focus
+				set_cosmetic_tag = BOR
+				#reserve_dynamic_country = yes
+				complete_national_focus = SAF_boers
+				complete_national_focus = SAF_1938_election
+				add_ideas = SAF_nationalization_the_mines
+				every_possible_country = {
+					limit = {
+						original_tag = SAF
+						OR = {
+							has_character = SAF_d_f_malan
+							has_character = SAF_j_f_van_rensburg
+							has_character = SAF_nicolaas_havenga
+							has_character = SAF_george_edwin_brink
+							has_character = SAF_jacobus_johannes_fouche
+							has_character = SAF_hendrik_frensch_verwoerd
+						}
+					}
+					SAF_d_f_malan = {
+						set_nationality = BOR
+					}
+					SAF_j_f_van_rensburg = {
+						set_nationality = BOR
+					}
+					SAF_nicolaas_havenga = {
+						set_nationality = BOR
+					}
+					SAF_george_edwin_brink = {
+						set_nationality = BOR
+					}
+					SAF_jacobus_johannes_fouche = {
+						set_nationality = BOR
+					}
+					SAF_hendrik_frensch_verwoerd = {
+						set_nationality = BOR
+					}
+				}
+				SAF_d_f_malan = {
+					promote_character = yes
+				}
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 974
+						state = 972
+						state = 275
+						state = 973
+						state = 971
+					}
+				}
+				transfer_state_to = BOR
+			}
+			BOR = {
+				leave_faction = yes
+				inherit_technology = SAF
+				add_ideas = SAF_widespread_discrimination
+				division_template = {
+					name = "District Force"
+					division_names_group = SAF_INF_01
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+					}
+				}
+				division_template = {
+					name = "Cavalry Division"
+					division_names_group = SAF_CAV_01
+					regiments = {
+						cavalry = { x = 0 y = 0 }
+						cavalry = { x = 0 y = 1 }
+						cavalry = { x = 1 y = 0 }
+						cavalry = { x = 1 y = 1 }
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+					}
+				}
+				if = {
+					limit = {
+						SAF = { has_completed_focus = SAF_bechuanaland_rhodesia_infrastructure }
+					}
+					complete_national_focus = SAF_bechuanaland_rhodesia_infrastructure
+				}
+				if = {
+					limit = {
+						SAF = { has_completed_focus = SAF_invest_to_cape }
+					}
+					complete_national_focus = SAF_invest_to_cape
+				}
+				if = {
+					limit = {
+						SAF = { has_completed_focus = SAF_invest_to_pretoria }
+					}
+					complete_national_focus = SAF_invest_to_pretoria
+				}
+				if = {
+					limit = {
+						SAF = { has_completed_focus = SAF_manufacturing_expansion }
+					}
+					complete_national_focus = SAF_manufacturing_expansion
+				}
+				if = {
+					limit = {
+						SAF = { has_completed_focus = SAF_agricultural_expansion }
+					}
+					complete_national_focus = SAF_agricultural_expansion
+				}
+			}
+			972 = {
+				create_unit = {
+					division = "name = \"1st District Force\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = BOR
+					count = 5
+				}
+			}
+			971 = {
+				create_unit = {
+					division = "name = \"2nd District Force\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = BOR
+					count = 5
+				}
+			}
+			974 = {
+				create_unit = {
+					division = "name = \"3rd District Force\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = BOR
+					count = 4
+				}
+			}
+			973 = {
+				create_unit = {
+					division = "name = \"4th District Force\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = BOR
+					count = 5
+				}
+			}
+			SAF = {
+				transfer_units_fraction = {
+					target = BOR
+					size = 0.4
+					stockpile_ratio = 0.4
+					navy_ratio = 0.0
+					army_ratio = 0.4
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+				declare_war_on = {
+					target = BOR
+					type = civil_war
+				}
+			}
+			275 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = SAF
+					count = 2
+				}
+			}
+			969 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = SAF
+					count = 3
+				}
+			}
+			681 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = SAF
+					count = 2
+				}
+			}
+			719 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = SAF
+					count = 2
+				}
+			}
+			970 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = SAF
+					count = 3
+				}
+			}
+		}
+	}
+	option = {
+		name = south_africa_wr.10.a
+		news_event = south_africa_wr.11
+		hidden_effect = {
+			country_event = { id = south_africa_wr.6 days = 4 }
+		}
+		set_country_flag = SAF_BOR_war
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = south_africa_wr.11
+	title = south_africa_wr.11.t
+	desc = south_africa_wr.11.d
+	picture = third_boer_wars
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.11.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.12
+	title = south_africa_wr.12.t
+	desc = south_africa_wr.12.d
+	picture = GFX_report_event_african_soldiers
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					is_owned_by = SAF
+				}
+				add_core_of = ANC
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 972
+						state = 971
+						state = 973
+						state = 974
+						state = 719
+					}
+				}
+				transfer_state_to = ANC
+			}
+			declare_war_on = {
+				target = ANC
+				type = civil_war
+			}
+			every_possible_country = {
+				limit = {
+					original_tag = SAF
+					has_character = SAF_abram_fischer
+				}
+				SAF_abram_fischer = {
+					set_nationality = ANC
+				}
+			}
+			972 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = ANC
+					count = 4
+				}
+			}
+			971 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = ANC
+					count = 3
+				}
+			}
+			974 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = ANC
+					count = 4
+				}
+			}
+			973 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = ANC
+					count = 4
+				}
+			}
+			719 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = ANC
+					count = 2
+				}
+			}
+			if = {
+				limit = {
+					SAF = {
+						owns_state = 681
+					}
+				}
+				ANC = {
+					set_province_controller = 12419
+				}
+			}
+			681 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+					owner = ANC
+					prioritize_location = 12419
+					allow_spawning_on_enemy_provs = yes
+				}
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+					owner = ANC
+					prioritize_location = 12419
+					allow_spawning_on_enemy_provs = yes
+				}
+			}
+			if = {
+				limit = {
+					SAF = {
+						owns_state = 969
+					}
+				}
+				ANC = {
+					set_province_controller = 12547
+					set_province_controller = 10415
+				}
+			}
+			969 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+					owner = ANC
+					prioritize_location = 12547
+					allow_spawning_on_enemy_provs = yes
+				}
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+					owner = ANC
+					prioritize_location = 12547
+					allow_spawning_on_enemy_provs = yes
+				}
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+					owner = ANC
+					prioritize_location = 10415
+					allow_spawning_on_enemy_provs = yes
+				}
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+					owner = ANC
+					prioritize_location = 10415
+					allow_spawning_on_enemy_provs = yes
+				}
+			}
+			if = {
+				limit = {
+					SAF = {
+						owns_state = 970
+					}
+				}
+				ANC = {
+					set_province_controller = 7576
+					set_province_controller = 1833
+				}
+			}
+			970 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+					owner = ANC
+					prioritize_location = 7576
+					allow_spawning_on_enemy_provs = yes
+				}
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+					owner = ANC
+					prioritize_location = 7576
+					allow_spawning_on_enemy_provs = yes
+				}
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+					owner = ANC
+					prioritize_location = 1833
+					allow_spawning_on_enemy_provs = yes
+				}
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+					owner = ANC
+					prioritize_location = 1833
+					allow_spawning_on_enemy_provs = yes
+				}
+			}
+			275 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = SAF
+					count = 5
+				}
+			}
+			969 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = SAF
+					count = 5
+				}
+			}
+			681 = {
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = SAF
+					count = 3
+				}
+			}
+			ANC = {
+				complete_national_focus = SAF_all_oppressed_people
+				inherit_technology = SAF
+				if = {
+					limit = {
+						SAF = { has_completed_focus = SAF_bechuanaland_rhodesia_infrastructure }
+					}
+					complete_national_focus = SAF_bechuanaland_rhodesia_infrastructure
+				}
+				if = {
+					limit = {
+						SAF = { has_completed_focus = SAF_invest_to_cape }
+					}
+					complete_national_focus = SAF_invest_to_cape
+				}
+				if = {
+					limit = {
+						SAF = { has_completed_focus = SAF_invest_to_pretoria }
+					}
+					complete_national_focus = SAF_invest_to_pretoria
+				}
+				if = {
+					limit = {
+						SAF = { has_completed_focus = SAF_manufacturing_expansion }
+					}
+					complete_national_focus = SAF_manufacturing_expansion
+				}
+				if = {
+					limit = {
+						SAF = { has_completed_focus = SAF_agricultural_expansion }
+					}
+					complete_national_focus = SAF_agricultural_expansion
+				}
+			}
+			country_event = { id = south_africa_wr.6 days = 4 }
+		}
+	}
+	option = {
+		name = south_africa_wr.12.a
+		news_event = south_africa_wr.13
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = south_africa_wr.13
+	title = south_africa_wr.13.t
+	desc = south_africa_wr.13.d
+	picture = black_uprising
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.13.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.14
+	title = south_africa_wr.14.t
+	desc = south_africa_wr.14.d
+	picture = GFX_report_event_african_soldiers
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.14.a
+		custom_effect_tooltip = south_africa_wr.14_effect_tt
+		if = {
+			limit = {
+				check_variable = {
+					SAF_Discontent_var < 0.9
+				}
+			}
+			add_to_variable = { var = SAF_Discontent_var value = 0.1 }
+			else = {
+				set_variable = {
+					var = SAF_Discontent_var
+					value = 1
+				}
+			}
+		}
+		set_country_flag = nelson_and_ANC
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.15
+	title = south_africa_wr.15.t
+	desc = south_africa_wr.15.d
+	picture = africa_demo
+	is_triggered_only = yes
+	trigger = {
+		has_variable = SAF_Discontent_var
+		NOT = { has_country_flag = SAF_no_complaints_flag }
+	}
+	option = {
+		name = south_africa_wr.15.a
+		custom_effect_tooltip = south_africa_wr14_effect_tt
+		if = {
+			limit = {
+				check_variable = {
+					SAF_Discontent_var < 0.95
+				}
+			}
+			add_to_variable = { var = SAF_Discontent_var value = 0.05 }
+			else = {
+				set_variable = {
+					var = SAF_Discontent_var
+					value = 1
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = south_africa_wr.15 days = 42 }
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = south_africa_wr.16
+	title = south_africa_wr.16.t
+	desc = south_africa_wr.16.d
+	picture = south_africa_map
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.16.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.17
+	title = south_africa_wr.17.t
+	desc = south_africa_wr.17.d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.17.a
+		swap_ideas = {
+			remove_idea = SAF_equality_of_wealth
+			add_idea = SAF_equality_of_wealth_1
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.18
+	title = south_africa_wr.18.t
+	desc = south_africa_wr.18.d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.18.a
+		effect_tooltip = {
+			FROM = { annex_country = { target = ROOT transfer_troops = yes } }
+		}
+		FROM = { country_event = { id = south_africa_wr.19 days = 3 } }
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = south_africa_wr.18.b
+		effect_tooltip = {
+			FROM = { create_wargoal = { type = puppet_wargoal_focus target = ROOT } }
+		}
+		FROM = { country_event = { id = south_africa_wr.20 days = 3 } }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.19
+	title = south_africa_wr.19.t
+	desc = south_africa_wr.19.d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.19.a
+		ROOT = { annex_country = { target = FROM transfer_troops = yes } }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.20
+	title = south_africa_wr.20.t
+	desc = south_africa_wr.20.d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.20.a
+		ROOT = { create_wargoal = { type = puppet_wargoal_focus target = FROM } }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.21
+	title = south_africa_wr.21.t
+	desc = south_africa_wr.21.d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.21.a
+		if = {
+			limit = {
+				ROOT = { tag = FRA }
+				news_event = south_africa_wr.22
+			}
+		}
+		else = {
+			news_event = south_africa_wr.23
+		}
+		add_to_faction = FROM
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = south_africa_wr.21.b
+		FROM = { country_event = south_africa_wr.24 }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+news_event = {
+	id = south_africa_wr.22
+	title = south_africa_wr.22.t
+	desc = south_africa_wr.22.d
+	picture = south_africa_ally
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.22.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = south_africa_wr.23
+	title = south_africa_wr.23.t
+	desc = south_africa_wr.23.d
+	picture = south_africa_ally
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.23.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = south_africa_wr.24
+	title = south_africa_wr.24.t
+	desc = south_africa_wr.24.d
+	picture = GFX_report_event_generic_sign_treaty1
+	is_triggered_only = yes
+	option = {
+		name = south_africa_wr.24.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}

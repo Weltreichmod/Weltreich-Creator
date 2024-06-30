@@ -1,0 +1,2848 @@
+﻿### search_filters = {FOCUS_FILTER_POLITICAL}
+### search_filters = {FOCUS_FILTER_RESEARCH}
+### search_filters = {FOCUS_FILTER_INDUSTRY}
+### search_filters = {FOCUS_FILTER_STABILITY}
+### search_filters = {FOCUS_FILTER_WAR_SUPPORT}
+### search_filters = {FOCUS_FILTER_MANPOWER}
+### search_filters = {FOCUS_FILTER_ANNEXATION}
+
+focus_tree = {
+	id = austrian_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = AUH
+		}
+	}
+	continuous_focus_position = {
+		x = 400
+		y = 1000
+	}
+	default = no
+
+	focus = {
+		id = reorganization_of_the_empire
+		icon = reorganization_of_the_empire
+		x = 10
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = AUH.9
+		}
+	}
+	
+	focus = {
+		id = the_way_of_Franz_Ferdinand
+		icon = Way_of_Franz_Ferdinand
+		relative_position_id = reorganization_of_the_empire
+		x = -5
+		y = 1
+		cost = 0
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+		available = {
+			has_country_flag = reorganization_of_the_empire
+		}
+		prerequisite = {
+			focus = reorganization_of_the_empire
+		}
+		mutually_exclusive = {
+			focus = the_way_of_Karl_I
+		}
+		mutually_exclusive = {
+			focus = a_single_empire
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		ai_will_do = {
+			factor = 7
+		}
+		completion_reward = {
+			add_political_power = 20
+		}
+	}
+	
+	focus = {
+		id = Austrian_Hungarian_aristocratic_hegemony_smash
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = the_way_of_Franz_Ferdinand
+		x = -1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_INTERNAL_AFFAIRS }
+		available = {
+			has_stability > 0.3
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		prerequisite = {
+			focus = the_way_of_Franz_Ferdinand
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.65
+				}
+			}
+		}
+		completion_reward = {
+			add_stability = -0.05
+			HUN_Dissatisfaction_focus_effect = yes
+		}
+	}
+	
+	focus = {
+		id = implementation_of_equal_elections
+		icon = GFX_focus_generic_support_the_left_right
+		relative_position_id =the_way_of_Franz_Ferdinand
+		x = 1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_INTERNAL_AFFAIRS }
+		prerequisite = {
+			focus = the_way_of_Franz_Ferdinand
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.65
+				}
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_political_power = -50
+			add_stability = 0.05
+			HUN_Dissatisfaction_focus_effect = yes
+			CZE_Anti_Dissatisfaction_small_effect = yes
+			CRO_Anti_Dissatisfaction_small_effect = yes
+			GAL_Anti_Dissatisfaction_small_effect = yes
+		}
+	}
+	
+	focus = {
+		id = cisleithania_reformation
+		icon = cisleithania_reformation
+		relative_position_id = Austrian_Hungarian_aristocratic_hegemony_smash
+		x = 1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INTERNAL_AFFAIRS }
+		prerequisite = {
+			focus = Austrian_Hungarian_aristocratic_hegemony_smash
+		}
+		prerequisite = {
+			focus = implementation_of_equal_elections
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = Support_for_Bohemian_autonomy
+		icon = bohemia
+		relative_position_id = cisleithania_reformation
+		x = -2
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_INTERNAL_AFFAIRS }
+		prerequisite = {
+			focus = cisleithania_reformation
+		}
+		completion_reward = {
+			add_stability = -0.1
+			HUN_Dissatisfaction_focus_effect = yes
+			CZE_Anti_Dissatisfaction_large_effect = yes
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.65
+				}
+			}
+		}
+		available = {
+			has_stability > 0.2
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+	}
+	
+	focus = {
+		id = Support_for_Galician_autonomy
+		icon = galicia
+		relative_position_id = cisleithania_reformation
+		x = 0
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_INTERNAL_AFFAIRS }
+		prerequisite = {
+			focus = cisleithania_reformation
+		}
+		completion_reward = {
+			add_stability = -0.1
+			HUN_Dissatisfaction_focus_effect = yes
+			GAL_Anti_Dissatisfaction_large_effect = yes
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.65
+				}
+			}
+		}
+		available = {
+			has_stability > 0.2
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+	}
+	
+	focus = {
+		id = Support_for_Slovenian_autonomy
+		icon = Slovenia
+		relative_position_id = cisleithania_reformation
+		x = 2
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_INTERNAL_AFFAIRS }
+		prerequisite = {
+			focus = cisleithania_reformation
+		}
+		completion_reward = {
+			add_stability = -0.1
+			HUN_Dissatisfaction_focus_effect = yes
+			CRO_Anti_Dissatisfaction_large_effect = yes
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.65
+				}
+			}
+		}
+		available = {
+			has_stability > 0.2
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+	}
+	
+	focus = {
+		id = destroy_hungarian_hegemony
+		icon = focus_attack_hungary
+		relative_position_id = Support_for_Galician_autonomy
+		x = 0
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = Support_for_Bohemian_autonomy
+		}
+		prerequisite = {
+			focus = Support_for_Galician_autonomy
+		}
+		prerequisite = {
+			focus = Support_for_Slovenian_autonomy
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 1000
+				has_stability > 0.2
+				check_variable = {
+					HUN_Dissatisfaction_var < 0.5
+				}
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_stability = -0.1
+			HUN_Dissatisfaction_focus_large_effect = yes
+		}
+	}
+	
+	focus = {
+		id = United_States_of_Greater_Austria
+		icon = USGA
+		relative_position_id = destroy_hungarian_hegemony
+		x = 0
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+		prerequisite = {
+			focus = destroy_hungarian_hegemony
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war = no
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			set_cosmetic_tag = AUH_USGA
+			clr_country_flag = dissatisfaction_of_ethnics
+			remove_ideas = a_multiracial_nation
+			news_event = AUH.46
+		}
+	}
+	
+	focus = {
+		id = the_way_of_Karl_I
+		icon = Way_of_Karl_I
+		relative_position_id = reorganization_of_the_empire
+		x = 0
+		y = 1
+		cost = 0
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+		available = {
+			has_country_flag = reorganization_of_the_empire
+		}
+		prerequisite = {
+			focus = reorganization_of_the_empire
+		}
+		mutually_exclusive = {
+			focus = the_way_of_Franz_Ferdinand
+		}
+		mutually_exclusive = {
+			focus = a_single_empire
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		ai_will_do = {
+			factor = 7
+		}
+		completion_reward = {
+			add_political_power = 20
+		}
+	}
+	
+	focus = {
+		id = a_policy_of_appeasing_the_aristocracy
+		icon = GFX_goal_generic_improve_relations
+		relative_position_id = the_way_of_Karl_I
+		x = -2
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = the_way_of_Karl_I
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_political_power = 60
+		}
+	}
+	
+	focus = {
+		id = illyria_connection
+		icon = focus_CRO_AUH_coat_of_arms
+		relative_position_id = the_way_of_Karl_I
+		x = 0
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = the_way_of_Karl_I
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.65
+				}
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_stability = 0.025
+			HUN_Dissatisfaction_large_effect = yes
+			CRO_Anti_Dissatisfaction_large_effect = yes
+		}
+	}
+	
+	focus = {
+		id = making_publicized_reorganization
+		icon = GFX_goal_generic_propaganda
+		relative_position_id = the_way_of_Karl_I
+		x = 2
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = the_way_of_Karl_I
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.65
+				}
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_stability = -0.05
+			HUN_Dissatisfaction_large_effect = yes
+			CZE_Anti_Dissatisfaction_small_effect = yes
+			CRO_Anti_Dissatisfaction_small_effect = yes
+			GAL_Anti_Dissatisfaction_small_effect = yes
+		}
+	}
+	
+	focus = {
+		id = prepare_for_second_ausgleich
+		icon = GFX_goal_tfv_strengthen_commonwealth_ties
+		relative_position_id = a_policy_of_appeasing_the_aristocracy
+		x = 1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = a_policy_of_appeasing_the_aristocracy
+		}
+		prerequisite = {
+			focus = illyria_connection
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.65
+				}
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_political_power = -25
+			add_stability = -0.1
+			HUN_Dissatisfaction_focus_effect = yes
+		}
+	}
+	
+	focus = {
+		id = Hungarian_Discontent_Crushing
+		icon = GFX_goal_demand_sudetenland
+		relative_position_id = making_publicized_reorganization
+		x = 0
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = making_publicized_reorganization
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.65
+				}
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_stability = -0.05
+			add_ideas = Hungarian_opposition
+			HUN_Dissatisfaction_focus_effect = yes
+		}
+	}
+	
+	focus = {
+		id = second_ausgleich
+		icon = GFX_goal_generic_dangerous_deal
+		relative_position_id = prepare_for_second_ausgleich
+		x = 1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+		prerequisite = {
+			focus = prepare_for_second_ausgleich
+		}
+		prerequisite = {
+			focus = Hungarian_Discontent_Crushing
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.65
+				}
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			country_event = { days = 4 id = AUH.13 }
+			HUN_Dissatisfaction_focus_effect = yes
+			CZE_Anti_Dissatisfaction_small_effect = yes
+			CRO_Anti_Dissatisfaction_small_effect = yes
+			GAL_Anti_Dissatisfaction_small_effect = yes
+		}
+	}
+	
+	focus = {
+		id = support_for_ethnic_minorities
+		icon = GFX_goal_generic_national_unity
+		relative_position_id = second_ausgleich
+		x = -1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = second_ausgleich
+		}
+		mutually_exclusive = {
+			focus = Its_enough_already
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+		completion_reward = {
+			HUN_Dissatisfaction_large_effect = yes
+			CZE_Anti_Dissatisfaction_large_effect = yes
+			GAL_Anti_Dissatisfaction_large_effect = yes
+			add_political_power = -100
+		}
+	}
+	
+	focus = {
+		id = Its_enough_already
+		icon = GFX_focus_generic_support_the_left_right
+		relative_position_id = second_ausgleich
+		x = 1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+		prerequisite = {
+			focus = second_ausgleich
+		}
+		mutually_exclusive = {
+			focus = support_for_ethnic_minorities
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			HUN_Anti_Dissatisfaction_large_effect = yes
+			CZE_Dissatisfaction_large_effect = yes
+			GAL_Dissatisfaction_large_effect = yes
+			add_timed_idea = { idea = ethnic_minority_complaints days = 200 }
+		}
+	}
+	
+	focus = {
+		id = austria_hungary_croatia
+		icon = AHC
+		relative_position_id = support_for_ethnic_minorities
+		x = 1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+		prerequisite = {
+			focus = support_for_ethnic_minorities
+			focus = Its_enough_already
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war = no
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			set_cosmetic_tag = AUH_HC
+			clr_country_flag = dissatisfaction_of_ethnics
+			remove_ideas = a_multiracial_nation
+			remove_ideas = Hungarian_opposition
+			news_event = AUH.47
+		}
+	}
+	
+	focus = {
+		id = a_single_empire
+		icon = GFX_goal_generic_major_war
+		relative_position_id = reorganization_of_the_empire
+		x = 5
+		y = 1
+		cost = 0
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+		available = {
+			has_country_flag = reorganization_of_the_empire
+		}
+		prerequisite = {
+			focus = reorganization_of_the_empire
+		}
+		mutually_exclusive = {
+			focus = the_way_of_Franz_Ferdinand
+		}
+		mutually_exclusive = {
+			focus = the_way_of_Karl_I
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		ai_will_do = {
+			factor = 7
+		}
+		completion_reward = {
+			add_political_power = 20
+		}
+	}
+	
+	focus = {
+		id = the_strengthening_of_the_power_of_the_royal_family
+		icon = the_strengthening_of_the_power_of_the_royal_family
+		relative_position_id = a_single_empire
+		x = 0
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = a_single_empire
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				has_stability < 0.1
+			}
+		}
+		completion_reward = {
+			add_stability = -0.1
+		}
+	}
+	
+	focus = {
+		id = the_weakening_of_the_nobles
+		icon = GFX_focus_generic_annex_country_2
+		relative_position_id = the_strengthening_of_the_power_of_the_royal_family
+		x = -1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = the_strengthening_of_the_power_of_the_royal_family
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				check_variable = {
+					HUN_Dissatisfaction_var > 0.65
+				}
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_political_power = -50
+			HUN_Dissatisfaction_focus_effect = yes
+		}
+	}
+	
+	focus = {
+		id = abolition_of_parliament
+		icon = GFX_focus_usa_voter_registration_act
+		relative_position_id = the_strengthening_of_the_power_of_the_royal_family
+		x = 1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus =  the_strengthening_of_the_power_of_the_royal_family
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				OR = {
+					check_variable = {
+						HUN_Dissatisfaction_var > 0.65
+					}
+					check_variable = {
+						CZE_Dissatisfaction_var > 0.65
+					}
+					check_variable = {
+						CRO_Dissatisfaction_var > 0.65
+					}
+					check_variable = {
+						GAL_Dissatisfaction_var > 0.65
+					}
+					has_stability < 0.2
+				}
+			}
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_stability = -0.05
+			HUN_Dissatisfaction_focus_effect = yes
+			CZE_Dissatisfaction_focus_effect = yes
+			CRO_Dissatisfaction_focus_effect = yes
+			GAL_Dissatisfaction_focus_effect = yes
+		}
+	}
+	
+	focus = {
+		id = Bohemia_Integration
+		icon = kill_bohemia
+		relative_position_id = the_weakening_of_the_nobles
+		x = -1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = the_weakening_of_the_nobles
+		}
+		prerequisite = {
+			focus = abolition_of_parliament
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 6
+				has_stability > 0.2
+				check_variable = {
+					CZE_Dissatisfaction_var < 0.5
+				}
+			}
+		}
+		available = {
+			has_war = no
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_stability = -0.05
+			CZE_Dissatisfaction_focus_large_effect = yes
+		}
+	}
+	
+	focus = {
+		id = Galicia_Integration
+		icon = kill_galicia
+		relative_position_id = the_weakening_of_the_nobles
+		x = 1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = the_weakening_of_the_nobles
+		}
+		prerequisite = {
+			focus = abolition_of_parliament
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 6
+				has_stability > 0.2
+				check_variable = {
+					GAL_Dissatisfaction_var < 0.5
+				}
+			}
+		}
+		available = {
+			has_war = no
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_stability = -0.05
+			GAL_Dissatisfaction_focus_large_effect = yes
+		}
+	}
+	
+	focus = {
+		id = Croatia_Integration
+		icon = kill_croatia
+		relative_position_id = abolition_of_parliament
+		x = 1
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = the_weakening_of_the_nobles
+		}
+		prerequisite = {
+			focus = abolition_of_parliament
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 6
+				has_stability > 0.2
+				check_variable = {
+					CRO_Dissatisfaction_var < 0.5
+				}
+			}
+		}
+		available = {
+			has_war = no
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_stability = -0.05
+			CRO_Dissatisfaction_focus_large_effect = yes
+		}
+	}
+	
+	focus = {
+		id = Hungary_Integration
+		icon = kill_hungary
+		relative_position_id = Galicia_Integration
+		x = 0
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = Croatia_Integration
+		}
+		prerequisite = {
+			focus = Galicia_Integration
+		}
+		prerequisite = {
+			focus = Bohemia_Integration
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				add = 6
+				has_stability > 0.2
+				check_variable = {
+					HUN_Dissatisfaction_var < 0.5
+				}
+			}
+		}
+		available = {
+			has_war = no
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			add_stability = -0.05
+			hidden_effect = {
+				109 = { remove_claim_by = HUN }
+			}
+			HUN_Dissatisfaction_focus_large_effect = yes
+		}
+	}
+	
+	focus = {
+		id = austria_empire
+		icon = austria_empire
+		relative_position_id = Hungary_Integration
+		x = 0
+		y = 1
+		cost = 10
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+		prerequisite = {
+			focus = Hungary_Integration
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war = no
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			set_cosmetic_tag = AUH_EMP
+			clr_country_flag = dissatisfaction_of_ethnics
+			remove_ideas = a_multiracial_nation
+			news_event = AUH.48
+		}
+	}
+	
+	focus = {
+		id = The_Future_of_Austria_and_Hungary
+		icon = The_Future_of_Austria_and_Hungary
+		cost = 10
+		x = 24
+		y = 0
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 3
+		}
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = Balkan_hegemony
+		icon = GFX_goal_demand_sudetenland
+		cost = 10
+		relative_position_id = The_Future_of_Austria_and_Hungary
+		x = -4
+		y = 1
+		prerequisite = {
+			focus = The_Future_of_Austria_and_Hungary
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 4
+		}
+		completion_reward = {
+			add_stability = 0.025
+		}
+	}
+	
+	focus = {
+		id = Controlling_Albania
+		icon = albania
+		cost = 10
+		relative_position_id = Balkan_hegemony
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = Balkan_hegemony
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 3
+		}
+		bypass = {
+			NOT = {
+				ALB = {
+					is_subject_of = AUH
+				}
+			}
+		}
+		completion_reward = {
+			ALB = {
+				add_autonomy_score = {
+				value = -10
+				}
+				add_ideas = Control_of_Austria_Hungary
+			}
+			add_political_power = 5
+		}
+	}
+	
+	focus = {
+		id = Controlling_Serbia
+		icon = serbia
+		cost = 10
+		relative_position_id = Balkan_hegemony
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = Balkan_hegemony
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 3
+		}
+		bypass = {
+			NOT = {
+				SER = {
+					is_subject_of = AUH
+				}
+			}
+		}
+		completion_reward = {
+			SER = {
+				add_autonomy_score = {
+				value = -10
+				}
+				add_ideas = Control_of_Austria_Hungary
+			}
+			add_political_power = 5
+		}
+	}
+	
+	focus = {
+		id = Friends_of_the_Balkans
+		icon = Friends_of_the_Balkans
+		cost = 10
+		relative_position_id = Controlling_Albania
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = Controlling_Albania
+		}
+		prerequisite = {
+			focus = Controlling_Serbia
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		completion_reward = {
+			AUH = {
+				add_opinion_modifier = {
+					target = ROM
+					modifier = small_increase
+				}
+				add_opinion_modifier = {
+					target = SER
+					modifier = small_increase
+				}
+				add_opinion_modifier = {
+					target = BUL
+					modifier = small_increase
+				}
+				add_opinion_modifier = {
+					target = GRE
+					modifier = small_increase
+				}
+			}
+		}
+	}
+	
+#	focus = {
+#		id = Pressuring_Greece
+#		icon = generic_attack_greece
+#		cost = 10
+#		relative_position_id = Controlling_Albania
+#		x = 0
+#		y = 1
+#		prerequisite = {
+#			focus = Controlling_Albania
+#		}
+#		prerequisite = {
+#			focus = Controlling_Serbia
+#		}
+#		search_filters = { FOCUS_FILTER_POLITICAL }
+#		ai_will_do = {
+#			factor = 6
+#			modifier = {
+#				is_historical_focus_on = yes
+#				factor = 0
+#			}
+#		}
+#		mutually_exclusive = {
+#			focus = Friendship_with_Greece
+#		}
+#		available = {
+#			GRE = {
+#				exists = yes
+#			}
+#			GRE = {
+#				is_subject = no
+#			}
+#			NOT = {
+#				GRE = {
+#					is_in_faction_with = AUH
+#				}
+#			}
+#		}
+#		will_lead_to_war_with = GRE
+#		completion_reward = {
+#			AUH = { create_wargoal = { type = puppet_wargoal_focus target = GRE } }
+#		}
+#	}
+	
+	focus = {
+		id = Friendship_with_Greece
+		icon = focus_deal_with_greece
+		cost = 10
+		relative_position_id = Friends_of_the_Balkans
+		x = -1
+		y = 1
+		prerequisite = {
+			focus = Friends_of_the_Balkans
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 3
+		}
+		bypass = {
+			OR = {
+				GRE = { exists = no }
+				GRE = { is_subject = yes }
+				GRE = { is_in_faction = yes }
+				has_war_with = GRE
+			}
+		}
+		mutually_exclusive = {
+			focus = Pressuring_Greece
+		}
+		completion_reward = {
+			GRE = { country_event = { days = 5 id = greece.3 } }
+			GRE = {
+				add_opinion_modifier = {
+					target = AUH
+					modifier = medium_increase
+				}
+			}
+			AUH = {
+				add_opinion_modifier = {
+					target = GRE
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	
+#	focus = {
+#		id = Pressuring_Bulgaria
+#		icon = GFX_focus_generic_attack_bulgaria
+#		cost = 10
+#		relative_position_id = Pressuring_Greece
+#		x = 0
+#		y = 1
+#		prerequisite = {
+#			focus = Pressuring_Greece
+#			focus = Friendship_with_Greece
+#		}
+#		search_filters = { FOCUS_FILTER_POLITICAL }
+#		ai_will_do = {
+#			factor = 6
+#			modifier = {
+#				is_historical_focus_on = yes
+#				factor = 0
+#			}
+#		}
+#		mutually_exclusive = {
+#			focus = Friendship_with_Bulgaria
+#		}
+#		available = {
+#			BUL = {
+#				exists = yes
+#			}
+#			BUL = {
+#				is_subject = no
+#			}
+#			NOT = {
+#				BUL = {
+#					is_in_faction_with = AUH
+#				}
+#			}
+#		}
+#		will_lead_to_war_with = BUL
+#		completion_reward = {
+#			AUH = { create_wargoal = { type = puppet_wargoal_focus target = BUL } }
+#		}
+#	}
+	
+	focus = {
+		id = Friendship_with_Bulgaria
+		icon = GFX_focus_BUL_bulgarian_administration_of_the_balkans
+		cost = 10
+		relative_position_id = Friends_of_the_Balkans
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = Friends_of_the_Balkans
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 3
+		}
+		bypass = {
+			OR = {
+				GRE = { exists = no }
+				GRE = { is_subject = yes }
+				GRE = { is_in_faction = yes }
+				has_war_with = GRE
+			}
+		}
+		mutually_exclusive = {
+			focus = Pressuring_Bulgaria
+		}
+		completion_reward = {
+			BUL = { country_event = { days = 5 id = bulgaria.2 } }
+			BUL = {
+				add_opinion_modifier = {
+					target = AUH
+					modifier = medium_increase
+				}
+			}
+			AUH = {
+				add_opinion_modifier = {
+					target = BUL
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Lombardy_Venezia_problem
+		icon = GFX_goal_generic_position_armies
+		cost = 10
+		relative_position_id = Friendship_with_Greece
+		x = 1
+		y = 1
+		prerequisite = {
+			focus = Friendship_with_Greece
+			focus = Friendship_with_Bulgaria
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			LBV = {
+				exists = yes
+			}
+			LBV = {
+				is_subject_of = ROOT
+			}
+			has_war = no
+		}
+		completion_reward = {
+			country_event = AUH.26
+		}
+	}
+	
+	focus = {
+		id = Industrialization_of_Austria
+		icon = AUH_generic_construct_civ_factory
+		relative_position_id = The_Future_of_Austria_and_Hungary
+		x = 3
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = The_Future_of_Austria_and_Hungary
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			AUH = {
+				is_subject = no
+			}
+		}
+		completion_reward = {
+			add_stability = 0.025
+		}
+	}
+	
+	focus = {
+		id = Development_of_Illyria
+		icon = GFX_goal_generic_construct_civ_factory
+		relative_position_id = Industrialization_of_Austria
+		x = -4
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Industrialization_of_Austria
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 3
+		}
+		bypass = {
+			AUH = {
+				NOT = {
+					controls_state = 103
+					controls_state = 109
+				}
+			}
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 103 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 109 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Development_of_Austria
+		icon = GFX_goal_generic_construct_civ_factory
+		relative_position_id = Industrialization_of_Austria
+		x = -2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Industrialization_of_Austria
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 3
+		}
+		bypass = {
+			AUH = {
+				NOT = {
+					controls_state = 152
+					controls_state = 4
+				}
+			}
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 152 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 4 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Hungary_Galicia_Railway
+		icon = GFX_goal_generic_construct_infrastructure
+		relative_position_id = Industrialization_of_Austria
+		x = 2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Industrialization_of_Austria
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			AUH = {
+				controls_state = 72
+				controls_state = 88
+				controls_state = 71
+			}
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = {
+			unlock_decision_category_tooltip = AUH_Hungary_Galicia_Railway
+		}
+	}
+	
+	focus = {
+		id = Hungarian_munitions_industry
+		icon = GFX_goal_generic_construct_mil_factory
+		relative_position_id = Hungary_Galicia_Railway
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Hungary_Galicia_Railway
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+			AUH = {
+				controls_state = 155
+				controls_state = 43
+			}
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 155 }
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 43 }
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = Hungarian_private_industry
+		icon = GFX_goal_generic_construct_civ_factory
+		relative_position_id = Hungary_Galicia_Railway
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Hungary_Galicia_Railway
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+			AUH = {
+				controls_state = 154
+				controls_state = 45
+			}
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 154 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 45 }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Bohemian_munitions_industry
+		icon = GFX_goal_generic_construct_mil_factory
+		relative_position_id = Development_of_Austria
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Development_of_Austria
+		}
+		prerequisite = {
+			focus = Development_of_Illyria
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+			AUH = {
+				controls_state = 69
+				controls_state = 9
+			}
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 69 }
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 9 }
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Establishment_of_the_Vienna_Institute
+		icon = GFX_goal_tfv_generic_tech_sharing
+		relative_position_id = Bohemian_munitions_industry
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Bohemian_munitions_industry
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+		}
+		completion_reward = { add_research_slot = 1 }
+	}
+	
+	focus = {
+		id = Galicia_Industrialization
+		icon = GFX_goal_generic_construct_civilian
+		relative_position_id = Hungarian_munitions_industry
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Hungarian_munitions_industry
+		}
+		prerequisite = {
+			focus = Hungarian_private_industry
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		available = {
+			NOT = {
+				has_global_flag = Dissolution_of_Austria
+			}
+			AUH = {
+				controls_state = 91
+				controls_state = 89
+				controls_state = 88
+			}
+		}
+		completion_reward = {
+			remove_ideas = galicia_problem
+			91 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			89 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+			88 = {
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	focus = {
+		id = Hungary_iron_mine
+		icon = GFX_focus_generic_steel
+		cost = 10
+		prerequisite = {
+			focus = Bohemian_munitions_industry
+		}
+		relative_position_id = Bohemian_munitions_industry
+		x = 1
+		y = 1
+		available = {
+			OR = {
+		    controls_state = 43
+            HUN = {is_subject_of = ROOT controls_state = 43}		
+			}			
+		}	
+		ai_will_do = {
+			factor = 3
+		}
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 10
+				state = 43
+			}
+		}
+	}
+	focus = {
+		id = tungsten_production
+		icon = GFX_focus_generic_tungsten
+		cost = 10
+		prerequisite = {
+			focus = Hungarian_munitions_industry
+		}
+		prerequisite = {
+			focus = Hungarian_private_industry
+		}
+		relative_position_id = Hungarian_munitions_industry
+		x = -1
+		y = 1
+		available = {
+			OR = {
+		    controls_state = 70
+            HUN = {is_subject_of = ROOT controls_state = 70}
+            SLO = {is_subject_of = ROOT controls_state = 70}			
+			}			
+		}	
+		ai_will_do = {
+			factor = 3
+		}
+		completion_reward = {
+			add_resource = {
+				type = tungsten
+				amount = 10
+				state = 70
+			}
+		}
+	}
+	focus = {
+		id = Austria_Hungary_National_Guard
+		icon = GFX_goal_generic_political_pressure
+		relative_position_id = Hungary_iron_mine
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Hungary_iron_mine
+		}
+		prerequisite = {
+			focus = tungsten_production
+		}
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			add_ideas = Special_Act_on_Warfare
+		}
+	}
+	
+	focus = {
+		id = Tyrol_Defense
+		icon = GFX_goal_generic_fortify_city
+		relative_position_id = Austria_Hungary_National_Guard
+		x = -1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Austria_Hungary_National_Guard
+		}
+		available = {
+			has_full_control_of_state = 39
+			has_full_control_of_state = 850
+			has_full_control_of_state = 153
+			has_full_control_of_state = 736
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			39 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6675
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 11598
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 656
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 11615
+					instant_build = yes
+				}
+			}
+			850 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6631
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 9598
+					instant_build = yes
+				}
+			}
+			153 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 671
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6673
+					instant_build = yes
+				}
+			}
+			736 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 11595
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6626
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Galicia_Air_Defense
+		icon = GFX_goal_generic_fortify_city
+		relative_position_id = Austria_Hungary_National_Guard
+		x = 1
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = Austria_Hungary_National_Guard
+		}
+		available = {
+			has_full_control_of_state = 88
+			has_full_control_of_state = 91
+			has_full_control_of_state = 89
+			has_full_control_of_state = 80
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 88 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 91 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 89 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 80 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Austrio_Hungarian_Military_power
+		icon = GFX_goal_generic_build_tank
+		x = 41
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_political_power = 50
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = Austrio_Hungarian_Army
+		icon = GFX_goal_generic_army_doctrines
+		relative_position_id = Austrio_Hungarian_Military_power
+		x = -8
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = Austrio_Hungarian_Military_power
+		}	
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			army_experience = 25
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = Modernize_support_technology
+		icon = GFX_goal_generic_allies_build_infantry
+		relative_position_id = Austrio_Hungarian_Army
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Austrio_Hungarian_Army
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Modernize_support_technology
+				bonus = 0.5
+				uses = 1 
+				category = support_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = improvement_infantry_weapons
+		icon = GFX_goal_generic_small_arms
+		relative_position_id = Austrio_Hungarian_Army
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Austrio_Hungarian_Army
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = improvement_infantry_weapons
+				bonus = 0.75
+				uses = 2 
+				category = infantry_weapons
+			}
+		}
+	}
+	
+	focus = {
+		id = Artillery
+		icon = GFX_goal_generic_army_artillery2
+		relative_position_id = improvement_infantry_weapons
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = improvement_infantry_weapons
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Artillery
+				bonus = 1.0
+				uses = 2 
+				category = artillery
+			}
+		}
+	}
+	
+	focus = {
+		id = Landship
+		icon = GFX_goal_generic_army_tanks
+		relative_position_id = improvement_infantry_weapons
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = improvement_infantry_weapons
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Landship
+				bonus = 1.0
+				uses = 1
+				category = armor
+			}
+		}
+	}
+	
+	focus = {
+		id = war_propaganda
+		icon = GFX_goal_generic_propaganda
+		relative_position_id = Modernize_support_technology
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = Modernize_support_technology
+		}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_war_support = 0.075
+		}
+	}
+	
+	focus = {
+		id = AUH_new_paradigm_of_battlefield
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		relative_position_id = war_propaganda
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = war_propaganda
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = great_war_winner3
+				add_idea = great_war_winner2
+			}
+		}
+	}
+	
+	focus = {
+		id = motorized_infantry
+		icon = GFX_goal_generic_army_motorized
+		relative_position_id = war_propaganda
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = war_propaganda
+		}
+		prerequisite = {
+			focus = Artillery
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = motorized_infantry
+				bonus = 1.0
+				uses = 1
+				category = motorized_equipment
+			}
+		}
+	}
+	
+	focus = {
+		id = German_volunteers
+		icon = GFX_focus_chi_army_reform
+		relative_position_id = motorized_infantry
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			is_in_faction_with = GER
+		}
+		prerequisite = {
+			focus = motorized_infantry
+		}
+		prerequisite = {
+			focus = improvement_infantry_weapons
+		}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_war_support = 0.05
+			AUH = {
+				division_template = {
+					name = "German Volunteers"
+					regiments = {
+						infantry = {
+							x = 0
+							y = 0
+						}
+						infantry = {
+							x = 0
+							y = 1
+						}
+						infantry = {
+							x = 0
+							y = 2
+						}
+						infantry = {
+							x = 1
+							y = 0
+						}
+						infantry = {
+							x = 1
+							y = 1
+						}
+						infantry = {
+							x = 1
+							y = 2
+						}
+						artillery_brigade = {
+							x = 0
+							y = 3
+						}
+						artillery_brigade = {
+							x = 1
+							y = 3
+						}
+						motorized = {
+							x = 2
+							y = 0
+						}
+						motorized = {
+							x = 2
+							y = 1
+						}
+						mot_artillery_brigade = {
+							x = 2
+							y = 2
+						}
+						mot_artillery_brigade = {
+							x = 2
+							y = 3
+						}
+					}
+					support = {
+						engineer = {
+							x = 0
+							y = 0
+						}
+					}
+				}
+				4 = {
+					create_unit = {
+						division = "name = \"1. German Volunteers\" division_template = \"German Volunteers\" start_experience_factor = 3.0"
+						owner = AUH
+					}
+					create_unit = {
+						division = "name = \"2. German Volunteers\" division_template = \"German Volunteers\" start_experience_factor = 3.0"
+						owner = AUH
+					}
+					create_unit = {
+						division = "name = \"3. German Volunteers\" division_template = \"German Volunteers\" start_experience_factor = 3.0"
+						owner = AUH
+					}
+					create_unit = {
+						division = "name = \"4. German Volunteers\" division_template = \"German Volunteers\" start_experience_factor = 3.0"
+						owner = AUH
+					}
+					create_unit = {
+						division = "name = \"5. German Volunteers\" division_template = \"German Volunteers\" start_experience_factor = 3.0"
+						owner = AUH
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KuK_Kriegsmarine
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		relative_position_id = Austrio_Hungarian_Military_power
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Austrio_Hungarian_Military_power
+		}
+		search_filters = { FOCUS_FILTER_NAVY_XP FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			navy_experience = 25
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = Kaiserliche_dockyard_Invitation
+		icon = GFX_goal_generic_navy_cruiser
+		relative_position_id = KuK_Kriegsmarine
+		x = -3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = KuK_Kriegsmarine
+		}
+		mutually_exclusive = {
+			focus = Vienna_Heavy_Industries_Invitation
+		}
+		completion_reward = {
+			show_ideas_tooltip = Kaiserliche_dockyard
+		}
+	}
+	
+	focus = {
+		id = Vienna_Heavy_Industries_Invitation
+		icon = GFX_goal_generic_navy_cruiser
+		relative_position_id = KuK_Kriegsmarine
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = KuK_Kriegsmarine
+		}
+		mutually_exclusive = {
+			focus = Kaiserliche_dockyard_Invitation
+		}
+		completion_reward = {
+			show_ideas_tooltip = Vienna_Heavy_Industries
+		}
+	}
+	
+	focus = {
+		id = Adriatic_dockyard
+		icon = GFX_goal_generic_construct_naval_dockyard
+		relative_position_id = Kaiserliche_dockyard_Invitation
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Kaiserliche_dockyard_Invitation
+			focus = Vienna_Heavy_Industries_Invitation
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 103 }
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = dockyard_revitalization
+		icon = GFX_focus_generic_refit_civilian_ships
+		relative_position_id = Adriatic_dockyard
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Adriatic_dockyard
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_timed_idea = { idea = dockyard_revitalization days = 150 }
+		}
+	}
+	
+	focus = {
+		id = coastal_defense
+		icon = GFX_goal_generic_defence
+		relative_position_id = Vienna_Heavy_Industries_Invitation
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Kaiserliche_dockyard_Invitation
+			focus = Vienna_Heavy_Industries_Invitation
+		}
+		completion_reward = {
+			852 = {
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes
+						limit_to_naval_base = yes
+					}
+					level = 2
+					instant_build = yes
+				}
+			}
+			163 = {
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes
+						limit_to_naval_base = yes
+					}
+					level = 2
+					instant_build = yes
+				}
+			}
+			103 = {
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes
+						limit_to_naval_base = yes
+					}
+					level = 1
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					province = {
+						all_provinces = yes
+						limit_to_naval_base = yes
+					}
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = port_expansion
+		icon = GFX_goal_generic_amphibious_assault
+		relative_position_id = coastal_defense
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = coastal_defense
+		}
+		available = {
+			controls_state = 103
+			controls_state = 853
+		}
+		completion_reward = {
+			103 = {
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 3924
+					instant_build = yes
+				}
+			}
+			853 = {
+				add_building_construction = {
+					type = naval_base
+					level = 1
+					province = 11564
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Decisive_Battle
+		icon = GFX_goal_generic_build_navy
+		relative_position_id = KuK_Kriegsmarine
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = KuK_Kriegsmarine
+		}
+		mutually_exclusive = {
+			focus = covert_attack
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = Decisive_Battle
+				cost_reduction = 0.5
+				uses = 1
+				category = cat_fleet_in_being
+			}
+		}
+	}
+	
+	focus = {
+		id = Battleship_RESEARCH
+		icon = GFX_goal_generic_navy_battleship
+		relative_position_id = Decisive_Battle
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Decisive_Battle
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = destroyer_Support
+				category = bb_tech
+				uses = 1
+				bonus = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = covert_attack
+		icon = GFX_goal_generic_navy_anti_submarine
+		relative_position_id = KuK_Kriegsmarine
+		x = 3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = KuK_Kriegsmarine
+		}
+		mutually_exclusive = {
+			focus = Decisive_Battle
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = covert_attack
+				cost_reduction = 0.5
+				uses = 1
+				category = cat_trade_interdiction
+			}
+		}
+	}
+	
+	focus = {
+		id = Research_Submarine
+		icon = GFX_goal_generic_navy_submarine
+		relative_position_id = covert_attack
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = covert_attack
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Submarine_Support
+				category = ss_tech
+				uses = 1
+				bonus = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = the_age_of_carriers
+		icon = GFX_goal_generic_navy_carrier
+		relative_position_id = Battleship_RESEARCH
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Battleship_RESEARCH
+			focus = Research_Submarine
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = destroyer_Support
+				category = cv_tech
+				uses = 1
+				bonus = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = Research_Destroyer
+		icon = GFX_focus_generic_destroyer
+		relative_position_id = the_age_of_carriers
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = the_age_of_carriers
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Research_Destroyer
+				category = dd_tech
+				uses = 1
+				bonus = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = Research_cruiser
+		icon = GFX_focus_generic_destroyer
+		relative_position_id = the_age_of_carriers
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = the_age_of_carriers
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Research_Destroyer
+				category = ca_tech
+				category = cl_tech
+				uses = 1
+				bonus = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = KuK_Air_Force
+		icon = GFX_goal_generic_air_doctrine
+		relative_position_id = Austrio_Hungarian_Military_power
+		x = 8
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Austrio_Hungarian_Military_power
+		}
+		search_filters = { FOCUS_FILTER_AIR_XP FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			air_experience = 25
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = Development_Air_Force_Doctrine
+		icon = GFX_goal_generic_build_airforce
+		relative_position_id = KuK_Air_Force
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = KuK_Air_Force
+		}
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = Development_Air_Force_Doctrine
+				cost_reduction = 0.1
+				uses = 1
+				category = air_doctrine
+			}
+			air_experience = 25
+		}
+	}
+	
+	focus = {
+		id = Budapest_Airport
+		icon = GFX_goal_generic_air_production
+		relative_position_id = Development_Air_Force_Doctrine
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Development_Air_Force_Doctrine
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 43 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = air_base
+					level = 2
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = Death_from_Above
+		icon = GFX_goal_generic_occupy_start_war
+		relative_position_id = Budapest_Airport
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Budapest_Airport
+		}
+		mutually_exclusive = {
+			focus = ground_attack
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = Death_from_Above
+				cost_reduction = 0.5
+				uses = 1
+				category = cat_strategic_destruction
+			}
+		}
+	}
+	
+	focus = {
+		id = ground_attack
+		icon = GFX_goal_generic_CAS
+		relative_position_id = Budapest_Airport
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Budapest_Airport
+		}
+		mutually_exclusive = {
+			focus = Death_from_Above
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = Death_from_Above
+				cost_reduction = 0.5
+				uses = 1
+				category = cat_battlefield_support
+			}
+		}
+	}
+	
+	focus = {
+		id = synthetic_refinery_Construction
+		icon = GFX_goal_generic_construction
+		relative_position_id = KuK_Air_Force
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = KuK_Air_Force
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 4 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 152 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = age_of_Fighter
+		icon = GFX_goal_generic_air_fighter
+		relative_position_id = synthetic_refinery_Construction
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = synthetic_refinery_Construction
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Fighter
+				bonus = 1.0
+				uses = 1
+				category = light_fighter
+			}
+		}
+	}
+	
+	focus = {
+		id = Heavy_Fighter
+		icon = GFX_goal_generic_air_fighter
+		relative_position_id = synthetic_refinery_Construction
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = synthetic_refinery_Construction
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Heavy_Fighter
+				bonus = 1.0
+				uses = 1
+				category = cat_heavy_fighter
+			}
+		}
+	}
+	
+	focus = {
+		id = Bomber_1
+		icon = GFX_goal_generic_air_bomber
+		relative_position_id = Heavy_Fighter
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Heavy_Fighter
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Heavy_Fighter
+				bonus = 1.0
+				uses = 1
+				category = bomber
+			}
+		}
+	}
+	
+	focus = {
+		id = naval_Bomber
+		icon = GFX_goal_generic_air_fighter2
+		relative_position_id = age_of_Fighter
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = age_of_Fighter
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = Heavy_Fighter
+				bonus = 1.0
+				uses = 1
+				category = naval_bomber
+			}
+		}
+	}
+	
+	focus = {
+		id = Jet_engine_research
+		icon = GFX_goal_generic_production2
+		relative_position_id = naval_Bomber
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = naval_Bomber
+		}
+		prerequisite = {
+			focus = Bomber_1
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = rocket_engineering
+				category =  rocketry
+				uses = 1
+				bonus = 1
+				ahead_reduction = 1
+			}
+		}
+	}
+}

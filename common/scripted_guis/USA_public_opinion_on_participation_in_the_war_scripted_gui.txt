@@ -1,0 +1,42 @@
+scripted_gui = {
+	public_opinion_on_participation_in_the_war_ui = {
+		context_type = decision_category
+		window_name = "public_opinion_on_participation_in_the_war_ui_window"
+		triggers = {
+			usa_balance_of_option_middle_visible = {
+				check_variable = { option_on_france_var = option_on_germany_var }
+			}
+			usa_balance_of_option_left_visible = {
+				check_variable = { option_on_france_var > option_on_germany_var }
+			}
+			usa_balance_of_option_right_visible = {
+				check_variable = { option_on_france_var < option_on_germany_var }
+			}
+			usa_very_negative_text_visible = {
+				NOT = { has_war_support > 0.2 }
+			}
+			usa_negative_text_visible = {
+				NOT = { has_war_support > 0.4 }
+				has_war_support > 0.2
+			}
+			usa_kind_of_negative_text_visible = {
+				NOT = { has_war_support > 0.5 }
+				has_war_support > 0.4
+			}
+#			usa_neutral_text_visible = {
+#				has_war_support = 0.5
+#			}
+			usa_kind_of_positive_text_visible = {
+				NOT = { has_war_support > 0.6 }
+				has_war_support > 0.5
+			}
+			usa_positive_text_visible = {
+				NOT = { has_war_support > 0.8 }
+				has_war_support > 0.6
+			}
+			usa_very_positive_text_visible = {
+				has_war_support > 0.8
+			}
+		}
+	}
+}

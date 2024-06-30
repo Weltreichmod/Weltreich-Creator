@@ -1,0 +1,3244 @@
+﻿### search_filters = {FOCUS_FILTER_POLITICAL}
+### search_filters = {FOCUS_FILTER_RESEARCH}
+### search_filters = {FOCUS_FILTER_INDUSTRY}
+### search_filters = {FOCUS_FILTER_STABILITY}
+### search_filters = {FOCUS_FILTER_WAR_SUPPORT}
+### search_filters = {FOCUS_FILTER_MANPOWER}
+### search_filters = {FOCUS_FILTER_ANNEXATION}
+### search_filters = {FOCUS_FILTER_HISTORYCAL}
+focus_tree = {
+	id = south_african_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			OR = {
+				tag = SAF
+				tag = ANC
+			}
+		}
+	}
+	continuous_focus_position = {
+		x = 300
+		y = 1700
+	}
+	default = no
+
+
+
+#	focus = {
+#		id = SAF_
+#		icon = GFX_
+#		prerequisite = { focus = }
+#		mutually_exclusive = { focus =  }
+#		x = -3
+#		y = 0
+#		relative_position_id = 
+#
+#		cost = 10
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#
+#		available = {
+#
+#		}
+#		
+#		bypass = {
+#
+#		}
+#
+#		cancel_if_invalid = yes
+#		continue_if_invalid = no
+#		available_if_capitulated = no
+#
+#		complete_tooltip = {
+#
+#		}
+#
+#		completion_reward = {
+#
+#		}
+#	}
+
+	focus = {
+		id = SAF_all_oppressed_people
+		icon = GFX_goal_generic_attack_allies
+		cost = 10
+		x = 0
+		y = 0
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = SAF_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = SAF_AI_BEHAVIOR
+						option = SAF_support_british_south_african
+					}
+					has_game_rule = {
+						rule = SAF_AI_BEHAVIOR
+						option = SAF_boers
+					}
+				}
+				factor = 0
+			}
+		}
+		mutually_exclusive = {
+			focus = SAF_boers
+		}
+		mutually_exclusive = {
+			focus = SAF_support_british_south_african
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+			set_country_flag = SAF_one_republic_flag
+		}
+	}
+	
+	focus = {
+		id = SAF_break_a_chain
+		icon = GFX_SAF_break_a_chain
+		relative_position_id = SAF_all_oppressed_people
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_all_oppressed_people
+		}
+		bypass = {
+			original_tag = ANC
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY}
+		completion_reward = {
+			add_ideas = SAF_black_uprising
+		}
+	}
+	
+	focus = {
+		id = SAF_sabotage_major_companies
+		icon = GFX_focus_BRA_utilize_security_law
+		relative_position_id = SAF_break_a_chain
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_break_a_chain
+		}
+		bypass = {
+			original_tag = ANC
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SAF_black_uprising
+				add_idea = SAF_black_uprising_1
+			}
+			275 = {
+				damage_building = {
+					type = industrial_complex
+					damage = 1
+				}
+			}
+			969 = {
+				damage_building = {
+					type = infrastructure
+					damage = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_stage_a_protest
+		icon = GFX_focus_ARG_no_gods_no_masters
+		relative_position_id = SAF_all_oppressed_people
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_all_oppressed_people
+		}
+		bypass = {
+			original_tag = ANC
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY}
+		completion_reward = {
+			add_ideas = SAF_stage_a_protest
+			hidden_effect = {
+				country_event = { id = south_africa_wr.5 days = 140 }
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_whites_goods_boycott
+		icon = GFX_focus_CHL_high_quality_nitrate
+		relative_position_id = SAF_stage_a_protest
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_stage_a_protest
+		}
+		bypass = {
+			original_tag = ANC
+		}
+		completion_reward = {
+			add_timed_idea = { idea = SAF_whites_goods_boycott days = 2000 }
+		}
+	}
+	
+	focus = {
+		id = SAF_umkhonto_we_sizwe
+		icon = GFX_SAF_umkhonto_we_sizwe
+		relative_position_id = SAF_whites_goods_boycott
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_country_flag = Shoot_at_the_protesters_flag
+		}
+		prerequisite = {
+			focus = SAF_whites_goods_boycott
+		}
+		prerequisite = {
+			focus = SAF_sabotage_major_companies
+		}
+		bypass = {
+			original_tag = ANC
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SAF_stage_a_protest
+				add_idea = SAF_umkhonto_we_sizwe
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_storm_the_armory
+		icon = GFX_focus_secret_rearmament
+		relative_position_id = SAF_umkhonto_we_sizwe
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_umkhonto_we_sizwe
+		}
+		bypass = {
+			original_tag = ANC
+		}
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -3000
+			}
+			set_country_flag = SAF_storm_the_armory_flag
+			custom_effect_tooltip = SAF_storm_the_armory_effect_tt
+		}
+	}
+	
+	focus = {
+		id = SAF_Attract_Colourred
+		icon = GFX_focus_SWE_state_paid_vacation
+		relative_position_id = SAF_umkhonto_we_sizwe
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_umkhonto_we_sizwe
+		}
+		bypass = {
+			original_tag = ANC
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			unlock_decision_category_tooltip = SAF_Attract_Colourred_decision
+		}
+	}
+	
+	focus = {
+		id = SAF_colleagues_of_Botswana_and_Zimbabwe
+		icon = GFX_focus_ETH_sway_the_warlords
+		relative_position_id = SAF_umkhonto_we_sizwe
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_umkhonto_we_sizwe
+		}
+		bypass = {
+			original_tag = ANC
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			set_country_flag = SAF_colleagues_of_Botswana_and_Zimbabwe_flag
+			custom_effect_tooltip = SAF_colleagues_of_Botswana_and_Zimbabwe_tt
+		}
+	}
+	
+	focus = {
+		id = SAF_africa_uprising
+		icon = GFX_focus_CHL_avenge_the_pacification_of_araucania
+		relative_position_id = SAF_Attract_Colourred
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 100
+				has_completed_focus = SAF_storm_the_armory
+				has_completed_focus = SAF_Attract_Colourred
+				has_completed_focus = SAF_colleagues_of_Botswana_and_Zimbabwe
+			}
+		}
+		prerequisite = {
+			focus = SAF_storm_the_armory
+			focus = SAF_Attract_Colourred
+			focus = SAF_colleagues_of_Botswana_and_Zimbabwe
+		}
+		bypass = {
+			original_tag = ANC
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_owned_by = SAF
+				}
+				add_core_of = ANC
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 972
+						state = 971
+						state = 973
+						state = 974
+						state = 719
+					}
+				}
+				transfer_state_to = ANC
+			}
+			declare_war_on = {
+				target = ANC
+				type = civil_war
+			}
+			hidden_effect = {
+				every_possible_country = {
+					limit = {
+						original_tag = SAF
+						has_character = SAF_abram_fischer
+					}
+					SAF_abram_fischer = {
+						set_nationality = ANC
+					}
+				}
+				if = {
+					limit = {
+						SAF = { has_country_flag = SAF_storm_the_armory_flag }
+					}
+					ANC = {
+						add_equipment_to_stockpile = {
+							type = infantry_equipment
+							amount = 3000
+						}
+					}
+				}
+				972 = {
+					create_unit = {
+						division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = ANC
+						count = 4
+					}
+				}
+				971 = {
+					create_unit = {
+						division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = ANC
+						count = 5
+					}
+				}
+				974 = {
+					create_unit = {
+						division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = ANC
+						count = 4
+					}
+				}
+				973 = {
+					create_unit = {
+						division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = ANC
+						count = 5
+					}
+				}
+				719 = {
+					create_unit = {
+						division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = ANC
+						count = 4
+					}
+				}
+				if = {
+					limit = {
+						SAF = { has_country_flag = SAF_urged_to_uprise_in_681_flag }
+					}
+					if = {
+						limit = {
+							SAF = {
+								owns_state = 681
+							}
+						}
+						ANC = {
+							set_province_controller = 12419
+						}
+					}
+					681 = {
+						create_unit = {
+							division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+							owner = ANC
+							prioritize_location = 12419
+							allow_spawning_on_enemy_provs = yes
+						}
+						create_unit = {
+							division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+							owner = ANC
+							prioritize_location = 12419
+							allow_spawning_on_enemy_provs = yes
+						}
+					}
+				}
+				if = {
+					limit = {
+						SAF = { has_country_flag = SAF_urged_to_uprise_in_969_flag }
+					}
+					if = {
+						limit = {
+							SAF = {
+								owns_state = 969
+							}
+						}
+						ANC = {
+							set_province_controller = 12547
+							set_province_controller = 10415
+						}
+					}
+					969 = {
+						create_unit = {
+							division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+							owner = ANC
+							prioritize_location = 12547
+							allow_spawning_on_enemy_provs = yes
+						}
+						create_unit = {
+							division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+							owner = ANC
+							prioritize_location = 12547
+							allow_spawning_on_enemy_provs = yes
+						}
+						create_unit = {
+							division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+							owner = ANC
+							prioritize_location = 10415
+							allow_spawning_on_enemy_provs = yes
+						}
+						create_unit = {
+							division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+							owner = ANC
+							prioritize_location = 10415
+							allow_spawning_on_enemy_provs = yes
+						}
+					}
+				}
+				if = {
+					limit = {
+						SAF = { has_country_flag = SAF_urged_to_uprise_in_970_flag }
+					}
+					if = {
+						limit = {
+							SAF = {
+								owns_state = 970
+							}
+						}
+						ANC = {
+							set_province_controller = 7576
+							set_province_controller = 1833
+						}
+					}
+					970 = {
+						create_unit = {
+							division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+							owner = ANC
+							prioritize_location = 7576
+							allow_spawning_on_enemy_provs = yes
+						}
+						create_unit = {
+							division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+							owner = ANC
+							prioritize_location = 7576
+							allow_spawning_on_enemy_provs = yes
+						}
+						create_unit = {
+							division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+							owner = ANC
+							prioritize_location = 1833
+							allow_spawning_on_enemy_provs = yes
+						}
+						create_unit = {
+							division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.3 start_equipment_factor = 0.5"
+							owner = ANC
+							prioritize_location = 1833
+							allow_spawning_on_enemy_provs = yes
+						}
+					}
+				}
+				275 = {
+					create_unit = {
+						division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = SAF
+						count = 5
+					}
+				}
+				969 = {
+					create_unit = {
+						division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = SAF
+						count = 5
+					}
+				}
+				681 = {
+					create_unit = {
+						division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+						owner = SAF
+						count = 3
+					}
+				}
+				SAF = {
+					uncomplete_national_focus = {
+						focus = SAF_all_oppressed_people
+						uncomplete_children = yes
+					}
+					complete_national_focus = SAF_support_british_south_african
+					complete_national_focus = SAF_cooperation_with_britain
+					complete_national_focus = SAF_crush_extremists
+					complete_national_focus = SAF_a_land_of_opportunity
+					complete_national_focus = SAF_conciliate_boers
+				}
+				ANC = {
+					complete_national_focus = SAF_all_oppressed_people
+					change_tag_from = ROOT
+					inherit_technology = SAF
+					if = {
+						limit = {
+							SAF = { has_completed_focus = SAF_bechuanaland_rhodesia_infrastructure }
+						}
+						complete_national_focus = SAF_bechuanaland_rhodesia_infrastructure
+					}
+					if = {
+						limit = {
+							SAF = { has_completed_focus = SAF_invest_to_cape }
+						}
+						complete_national_focus = SAF_invest_to_cape
+					}
+					if = {
+						limit = {
+							SAF = { has_completed_focus = SAF_invest_to_pretoria }
+						}
+						complete_national_focus = SAF_invest_to_pretoria
+					}
+					if = {
+						limit = {
+							SAF = { has_completed_focus = SAF_manufacturing_expansion }
+						}
+						complete_national_focus = SAF_manufacturing_expansion
+					}
+					if = {
+						limit = {
+							SAF = { has_completed_focus = SAF_agricultural_expansion }
+						}
+						complete_national_focus = SAF_agricultural_expansion
+					}
+				}
+				country_event = { id = south_africa_wr.6 days = 4 }
+				news_event = south_africa_wr.13
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_war_against_white_people
+		icon = GFX_focus_generic_provoke_border_clashes
+		relative_position_id = SAF_africa_uprising
+		x = 14
+		y = 2
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war_with = SAF
+			ROOT = { tag = ANC }
+		}
+		completion_reward = {
+			add_ideas = ANC_freedom_or_death
+		}
+	}
+	
+	focus = {
+		id = SAF_weapons_emergency_production
+		icon = GFX_goal_generic_allies_build_infantry
+		relative_position_id = SAF_war_against_white_people
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_war_against_white_people
+		}
+		completion_reward = {
+			add_ideas = SAF_weapons_emergency_production
+		}
+	}
+	
+	focus = {
+		id = SAF_white_corporate_forfeiture
+		icon = GFX_focus_generic_annex_country
+		relative_position_id = SAF_weapons_emergency_production
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_weapons_emergency_production
+		}
+		completion_reward = {
+			add_ideas = SAF_white_corporate_forfeiture
+		}
+	}
+	
+	focus = {
+		id = SAF_guerrilla_war
+		icon = GFX_focus_SWE_neither_death_nor_dishonor
+		relative_position_id = SAF_war_against_white_people
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_war_against_white_people
+		}
+		completion_reward = {
+			add_ideas = SAF_guerrilla_war
+		}
+	}
+	
+	focus = {
+		id = SAF_recruit_militias
+		icon = GFX_focus_generic_limited_social_mobilization
+		relative_position_id = SAF_guerrilla_war
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_guerrilla_war
+		}
+		completion_reward = {
+			random_state = {
+				limit = {
+					is_controlled_by = ANC
+				}
+				create_unit = {
+					division = "name = \"is_name_ordered = yes\" division_template = \"District Force\" start_experience_factor = 0.1 start_equipment_factor = 0.5"
+					owner = ANC
+					count = 3
+				}
+			}
+		}
+	}
+
+	focus = {
+		id = SAF_support_british_south_african
+		icon = GFX_focus_ARG_cut_ties_with_britain
+		x = 4
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = SAF_AI_BEHAVIOR
+						option = SAF_all_oppressed_people
+					}
+					has_game_rule = {
+						rule = SAF_AI_BEHAVIOR
+						option = SAF_boers
+					}
+				}
+				factor = 0
+			}
+		}
+		mutually_exclusive = {
+			focus = SAF_boers
+		}
+		mutually_exclusive = {
+			focus = SAF_all_oppressed_people
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_crush_extremists
+		icon = GFX_goal_tfv_saf_anti_colonialist_crusade
+		relative_position_id = SAF_support_british_south_african
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_support_british_south_african
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_cooperation_with_britain
+		icon = SAF_cooperation_with_britain
+		relative_position_id = SAF_support_british_south_african
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_support_british_south_african
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			ENG = { country_event = south_africa_wr.1 }
+		}
+	}
+	
+	focus = {
+		id = SAF_conciliate_boers
+		icon = GFX_focus_generic_diplomatic_treaty
+		relative_position_id = SAF_support_british_south_african
+		x = -1
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_support_british_south_african
+		}
+		search_filters = {FOCUS_FILTER_STABILITY}
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		id = SAF_a_land_of_opportunity
+		icon = GFX_goal_generic_position_armies
+		relative_position_id = SAF_crush_extremists
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_crush_extremists
+		}
+		prerequisite = {
+			focus = SAF_cooperation_with_britain
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_manpower = 50000
+			add_ideas = SAF_a_land_of_opportunity
+		}
+	}
+	
+	focus = {
+		id = SAF_color_voting_rights
+		icon = GFX_focus_generic_military_academy
+		relative_position_id = SAF_conciliate_boers
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_conciliate_boers
+		}
+		prerequisite = {
+			focus = SAF_a_land_of_opportunity
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.025
+			}
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.025
+			}
+		}
+	}
+		
+	focus = {
+		id = SAF_boers
+		icon = SAF_boers
+		cost = 10
+		x = 10
+		y = 0
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = SAF_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = SAF_AI_BEHAVIOR
+						option = SAF_support_british_south_african
+					}
+					has_game_rule = {
+						rule = SAF_AI_BEHAVIOR
+						option = SAF_all_oppressed_people
+					}
+				}
+				factor = 0
+			}
+		}
+		mutually_exclusive = {
+			focus = SAF_support_british_south_african
+		}
+		mutually_exclusive = {
+			focus = SAF_all_oppressed_people
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			add_political_power = 50
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_pay_afrikaner_farm_subsidies
+		icon = GFX_goal_generic_consumer_goods
+		relative_position_id = SAF_boers
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_boers
+		}
+		bypass = {
+			tag = BOR
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			add_ideas = SAF_pay_afrikaner_farm_subsidies
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_baasskap
+		icon = GFX_focus_eng_concessions_to_the_trade_unions
+		relative_position_id = SAF_pay_afrikaner_farm_subsidies
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		bypass = {
+			tag = BOR
+		}
+		prerequisite = {
+			focus = SAF_pay_afrikaner_farm_subsidies
+		}
+		search_filters = {FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.025
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_nationalization_the_mines
+		icon = GFX_goal_miners_focus
+		relative_position_id = SAF_boers
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		bypass = {
+			tag = BOR
+		}
+		prerequisite = {
+			focus = SAF_boers
+		}
+		completion_reward = {
+			add_ideas = SAF_nationalization_the_mines
+		}
+	}
+	
+	focus = {
+		id = SAF_with_extremists
+		icon = GFX_goal_generic_dangerous_deal
+		relative_position_id = SAF_nationalization_the_mines
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_nationalization_the_mines
+		}
+		bypass = {
+			tag = BOR
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SAF_boer_unrest
+				add_idea = SAF_boer_unrest_1
+			}
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_gerrymandering
+		icon = GFX_focus_ARG_keep_it_in_the_party
+		relative_position_id = SAF_baasskap
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_baasskap
+		}
+		prerequisite = {
+			focus = SAF_with_extremists
+		}
+		bypass = {
+			tag = BOR
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.1
+			}
+			custom_effect_tooltip = SAF_gerrymandering_effect_tt
+		}
+	}
+	
+	focus = {
+		id = SAF_1938_election
+		icon = BUL_remaining_days_of_the_general_election
+		relative_position_id = SAF_gerrymandering
+		x = -3
+		y = 0
+		cost = 0
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			always = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = SAF_separatists_out
+		icon = GFX_goal_generic_political_pressure
+		relative_position_id = SAF_1938_election
+		x = -3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_government = democratic
+		}
+		prerequisite = {
+			focus = SAF_1938_election
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.1
+			}
+			add_stability = -0.05
+			swap_ideas = {
+				remove_idea = SAF_boer_unrest
+				add_idea = SAF_boer_unrest_0
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_racialism_act_enactment
+		icon = GFX_focus_generic_treaty
+		relative_position_id = SAF_1938_election
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_government = democratic
+		}
+		prerequisite = {
+			focus = SAF_1938_election
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SAF_widespread_discrimination
+				add_idea = SAF_weakened_discrimination
+			}
+			country_event = { id = south_africa_wr.8 days = 5 }
+		}
+	}
+	
+	focus = {
+		id = SAF_one_republic
+		icon = GFX_SAF_one_republic
+		relative_position_id = SAF_separatists_out
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			NOT = { has_completed_focus = SAF_all_oppressed_people }
+		}
+		prerequisite = {
+			focus = SAF_separatists_out
+		}
+		prerequisite = {
+			focus = SAF_racialism_act_enactment
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			remove_ideas = SAF_boer_unrest_0
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { has_country_flag = SAF_one_republic_flag }
+					}
+					country_event = { id = south_africa_wr.9 days = 5 }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_the_war_against_the_boers
+		icon = GFX_SAF_the_war_against_the_boers
+		relative_position_id = SAF_one_republic
+		x = 12
+		y = 2
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war_with = BOR
+			ROOT = { tag = SAF }
+		}
+		completion_reward = {
+			add_ideas = SAF_the_war_against_the_boers
+		}
+	}
+	
+	focus = {
+		id = SAF_fight_against_the_heat
+		icon = GFX_goal_generic_special_forces
+		relative_position_id = SAF_one_republic
+		x = 14
+		y = 2
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war_with = BOR
+			ROOT = { tag = SAF }
+		}
+		completion_reward = {
+			add_ideas = SAF_fight_against_the_heat
+		}
+	}
+	
+	focus = {
+		id = SAF_support_factories
+		icon = GFX_goal_generic_construct_mil_factory
+		relative_position_id = SAF_the_war_against_the_boers
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_the_war_against_the_boers
+		}
+		prerequisite = {
+			focus = SAF_fight_against_the_heat
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_arms_purchase
+		icon = GFX_focus_focus_fra_maquis
+		relative_position_id = SAF_support_factories
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_support_factories
+		}
+		completion_reward = {
+			add_timed_idea = { idea = arms_purchase days = 300 }
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = ENG
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_experience_from_the_boer_war
+		icon = GFX_focus_generic_military_mission
+		relative_position_id = SAF_support_factories
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_support_factories
+		}
+		completion_reward = {
+			add_ideas = SAF_experience_from_the_boer_war
+		}
+	}
+	
+	focus = {
+		id = SAF_revision_of_the_voting_law
+		icon = GFX_focus_usa_voter_registration_act
+		relative_position_id = SAF_1938_election
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_government = fascism
+		}
+		prerequisite = {
+			focus = SAF_1938_election
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = democratic
+				popularity = -0.05
+			}
+			add_popularity = {
+				ideology = communism
+				popularity = -0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_white_conscription
+		icon = GFX_focus_generic_little_entente
+		relative_position_id = SAF_1938_election
+		x = 3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_government = fascism
+		}
+		prerequisite = {
+			focus = SAF_1938_election
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = SAF_white_conscription
+		}
+	}
+	
+	focus = {
+		id = SAF_apartheid
+		icon = GFX_focus_CZE_german_puppet
+		relative_position_id = SAF_revision_of_the_voting_law
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			NOT = { has_war_with = SAF }
+			NOT = { has_war_with = ANC }
+			NOT = { has_completed_focus = SAF_all_oppressed_people }
+		}
+		prerequisite = {
+			focus = SAF_revision_of_the_voting_law
+		}
+		prerequisite = {
+			focus = SAF_white_conscription
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			unlock_decision_category_tooltip = SAF_dissatisfaction_of_people_of_color
+			swap_ideas = {
+				remove_idea = SAF_widespread_discrimination
+				add_idea = SAF_apartheid_idea
+			}
+			set_variable = {
+				var = SAF_Discontent_var
+				value = 0.3
+			}
+			hidden_effect = {
+				country_event = { id = south_africa_wr.14 days = 99 }
+				country_event = { id = south_africa_wr.15 days = 10 }
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_induce_division_between_tribes
+		icon = GFX_focus_BRA_deal_with_the_cangaco
+		relative_position_id = SAF_apartheid
+		x = -1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			custom_trigger_tooltip = { tooltip = SAF_induce_division_between_tribes_tt has_variable = SAF_Discontent_var }
+		}
+		completion_reward = {
+			custom_effect_tooltip = SAF_remove_six_tt
+			if = {
+				limit = {
+					check_variable = {
+						SAF_Discontent_var > 0.06
+					}
+				}
+				add_to_variable = { var = SAF_Discontent_var value = -0.06 }
+				else = {
+					set_variable = {
+						var = SAF_Discontent_var
+						value = 0
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_extirpate_socialism
+		icon = GFX_goal_generic_war_with_comintern
+		relative_position_id = SAF_induce_division_between_tribes
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_induce_division_between_tribes
+		}
+		available = {
+			custom_trigger_tooltip = { tooltip = SAF_induce_division_between_tribes_tt has_variable = SAF_Discontent_var }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = -0.1
+			}
+			custom_effect_tooltip = SAF_smash_black_militants_effect_tt
+			if = {
+				limit = {
+					check_variable = {
+						SAF_Discontent_var > 0.04
+					}
+				}
+				add_to_variable = { var = SAF_Discontent_var value = -0.04 }
+				else = {
+					set_variable = {
+						var = SAF_Discontent_var
+						value = 0
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_one_drop_rule
+		icon = GFX_focus_ARG_fascist_researchers
+		relative_position_id = SAF_apartheid
+		x = 1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			custom_trigger_tooltip = { tooltip = SAF_induce_division_between_tribes_tt has_variable = SAF_Discontent_var }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 100
+			custom_effect_tooltip = SAF_dissatisfaction_of_people_of_color_days_effect_tt
+			if = {
+				limit = {
+					check_variable = {
+						SAF_Discontent_var < 0.94
+					}
+				}
+				add_to_variable = { var = SAF_Discontent_var value = 0.06 }
+				else = {
+					set_variable = {
+						var = SAF_Discontent_var
+						value = 1
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_imprison_Nelson_Mandela
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = SAF_one_drop_rule
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_one_drop_rule
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_flag = nelson_and_ANC
+			custom_trigger_tooltip = { tooltip = SAF_induce_division_between_tribes_tt has_variable = SAF_Discontent_var }
+		}
+		completion_reward = {
+			add_political_power = 50
+			custom_effect_tooltip = SAF_remove_six_tt
+			if = {
+				limit = {
+					check_variable = {
+						SAF_Discontent_var > 0.06
+					}
+				}
+				add_to_variable = { var = SAF_Discontent_var value = -0.06 }
+				else = {
+					set_variable = {
+						var = SAF_Discontent_var
+						value = 0
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_no_complaints
+		icon = GFX_focus_eng_move_to_secure_the_dominions
+		relative_position_id = SAF_extirpate_socialism
+		x = 1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_extirpate_socialism
+		}
+		prerequisite = {
+			focus = SAF_imprison_Nelson_Mandela
+		}
+		available = {
+			custom_trigger_tooltip = { tooltip = SAF_induce_division_between_tribes_tt has_variable = SAF_Discontent_var }
+			custom_trigger_tooltip = {
+				tooltip = SAF_no_complaints_tt
+				check_variable = {
+					var = SAF_Discontent_var
+					value = 0.2
+					compare = less_than
+				}
+			}
+		}
+		completion_reward = {
+			custom_effect_tooltip = SAF_no_complaints_effect_tt
+			set_country_flag = SAF_no_complaints_flag
+		}
+	}
+	
+	focus = {
+		id = SAF_bechuanaland_rhodesia_infrastructure
+		icon = GFX_goal_generic_construction
+		x = 14
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		available = {
+			542 = { is_owned_by = ROOT }
+			545 = { is_owned_by = ROOT }
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = { SAF = { has_completed_focus = SAF_bechuanaland_rhodesia_infrastructure } }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 542 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 545 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				effect_tooltip = {
+					random_owned_controlled_state = {
+						prioritize = { 542 }
+						add_building_construction = {
+							type = infrastructure
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						prioritize = { 545 }
+						add_building_construction = {
+							type = infrastructure
+							level = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_invest_to_cape
+		icon = GFX_goal_generic_construct_civ_factory
+		relative_position_id = SAF_bechuanaland_rhodesia_infrastructure
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = SAF_bechuanaland_rhodesia_infrastructure
+		}
+		available = {
+			969 = { is_owned_by = ROOT }
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = { SAF = { has_completed_focus = SAF_invest_to_cape } }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 969 }
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+			else = {
+				effect_tooltip = {
+					random_owned_controlled_state = {
+						prioritize = { 969 }
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+						}
+						add_extra_state_shared_building_slots = 1
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_invest_to_pretoria
+		icon = GFX_goal_generic_construct_civ_factory
+		relative_position_id = SAF_bechuanaland_rhodesia_infrastructure
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = SAF_bechuanaland_rhodesia_infrastructure
+		}
+		available = {
+			275 = { is_owned_by = ROOT }
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = { SAF = { has_completed_focus = SAF_invest_to_pretoria } }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 275 }
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+					add_extra_state_shared_building_slots = 1
+				}
+			}
+			else = {
+				effect_tooltip = {
+					random_owned_controlled_state = {
+						prioritize = { 275 }
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+						}
+						add_extra_state_shared_building_slots = 1
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_manufacturing_expansion
+		icon = GFX_focus_SWE_landsverk
+		relative_position_id = SAF_invest_to_cape
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_invest_to_cape
+			focus = SAF_invest_to_pretoria
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_ideas = SAF_manufacturing_expansion
+		}
+	}
+	
+	focus = {
+		id = SAF_agricultural_expansion
+		icon = FNG_Northeast_Plains_Farm_Support
+		relative_position_id = SAF_invest_to_pretoria
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_invest_to_cape
+			focus = SAF_invest_to_pretoria
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_ideas = SAF_agricultural_expansion
+		}
+	}
+	
+	focus = {
+		id = SAF_pretoria_arms
+		icon = GFX_goal_generic_production2
+		prerequisite = { focus = SAF_manufacturing_expansion }
+		prerequisite = { focus = SAF_agricultural_expansion }
+		x = 1
+		y = 1
+		relative_position_id = SAF_manufacturing_expansion
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			OR = {
+				has_completed_focus = SAF_one_republic
+				has_completed_focus = SAF_apartheid
+				has_completed_focus = SAF_africa_uprising
+			}
+			NOT = { has_war_with = SAF }
+			NOT = { has_war_with = ANC }
+			NOT = { has_war_with = BOR }
+		}
+		bypass = {
+			any_state = {
+				has_state_flag = SAF_pretoria_arms_AF
+			}
+		}
+        search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		complete_tooltip = {
+			random_state = {
+				limit = {
+					has_state_flag = SAF_pretoria_arms_AF
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 1
+						include_locked = yes
+					}
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = arms_factory
+					level = 2
+					instant_build = yes
+				}
+				set_state_flag = SAF_pretoria_arms_AF
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_develop_a_gold_mine
+		icon = GFX_focus_usa_reestablish_the_gold_standard
+		relative_position_id = SAF_pretoria_arms
+		x = -2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = SAF_pretoria_arms
+		}
+		available = {
+			NOT = { has_war_with = SAF }
+			NOT = { has_war_with = ANC }
+			NOT = { has_war_with = BOR }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = SAF_gold_exports
+		}
+	}
+	
+	focus = {
+		id = SAF_focus_on_industry
+		icon = GFX_focus_generic_modernize_industry
+		relative_position_id = SAF_develop_a_gold_mine
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = SAF_develop_a_gold_mine
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			OR = {
+				has_government = democratic
+				has_government = communism
+			}
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SAF_manufacturing_expansion
+				add_idea = SAF_focus_on_industry
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_south_african_steel
+		icon = GFX_goal_generic_construction2
+		prerequisite = { focus = SAF_pretoria_arms }
+		x = 0
+		y = 1
+		relative_position_id = SAF_pretoria_arms
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		available = {
+			controls_state = 275
+		}
+		
+		bypass = {
+			275 = { has_state_flag = SAF_south_african_steel_flag }
+		}
+        search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			275 = {
+				add_resource = {
+					type = steel
+					amount = 16
+				}
+				set_state_flag = SAF_south_african_steel_flag
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_expand_the_mining_industry
+		icon = GFX_goal_generic_construction
+		prerequisite = { focus = SAF_south_african_steel }
+		x = 0
+		y = 1
+		relative_position_id = SAF_south_african_steel
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 3
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = no
+        search_filters = { FOCUS_FILTER_INDUSTRY}
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_expand_the_mining_industry
+				bonus = 1.0
+				uses = 1
+				technology = excavation1
+				technology = excavation2
+				technology = excavation3
+				technology = excavation4
+				technology = excavation5
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_University_of_Cape_Town
+		icon = GFX_focus_research
+		relative_position_id = SAF_pretoria_arms
+		x = 2
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = SAF_pretoria_arms
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	
+	focus = {
+		id = SAF_focus_on_agriculture
+		icon = GFX_focus_generic_land_reclamation
+		relative_position_id = SAF_University_of_Cape_Town
+		x = 0
+		y = 1
+		cost = 10
+		prerequisite = {
+			focus = SAF_University_of_Cape_Town
+		}
+		available = {
+			has_government = fascism
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SAF_agricultural_expansion
+				add_idea = SAF_focus_on_agriculture
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_south_african_national_defence_force
+		icon = GFX_SAF_south_african_national_defence_force
+		x = 22
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		completion_reward = {
+			add_ideas = SAF_south_african_national_defence_force
+		}
+	}
+	
+	focus = {
+		id = SAF_army
+		icon = GFX_SAF_army
+		relative_position_id = SAF_south_african_national_defence_force
+		x = -3
+		y = 1
+		cost = 10
+		available = {
+			OR = {
+				has_completed_focus = SAF_one_republic
+				has_completed_focus = SAF_apartheid
+				has_completed_focus = SAF_africa_uprising
+			}
+		}
+		prerequisite = {
+			focus = SAF_south_african_national_defence_force
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		completion_reward = {
+			army_experience = 25
+		}
+	}
+	
+	focus = {
+		id = SAF_rifles_and_guns
+		icon = GFX_goal_generic_small_arms
+		relative_position_id = SAF_army
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_army
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_rifles_and_guns
+				bonus = 1
+				category = infantry_weapons
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_motorized_unit
+		icon = GFX_goal_generic_army_motorized
+		relative_position_id = SAF_rifles_and_guns
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		bypass = { has_tech = motorised_infantry }
+		prerequisite = {
+			focus = SAF_rifles_and_guns
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = motorized_bonus
+				bonus = 1
+				technology = motorised_infantry
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_armored_car
+		icon = GFX_focus_SWE_lynx_armored_car
+		relative_position_id = SAF_army
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_army
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_armored_car
+				bonus = 1
+				category = cat_armored_cars
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_artillery
+		icon = GFX_goal_generic_army_artillery2
+		relative_position_id = SAF_armored_car
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_armored_car
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_artillery
+				bonus = 1
+				category = artillery
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_anti_tank_gun
+		icon = GFX_goal_generic_army_artillery
+		relative_position_id = SAF_armored_car
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_armored_car
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_anti_tank_gun
+				bonus = 1
+				category = cat_anti_tank
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_motorized_artillery
+		icon = GFX_SAF_motorized_artillery
+		relative_position_id = SAF_motorized_unit
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_motorized_unit
+		}
+		prerequisite = {
+			focus = SAF_artillery
+		}
+		completion_reward = {
+			ROOT = {
+				division_template = {
+					name = "Motorized Artillery"
+					regiments = {
+						mot_artillery_brigade = {
+							x = 0
+							y = 0
+						}
+						mot_artillery_brigade = {
+							x = 0
+							y = 1
+						}
+						mot_artillery_brigade = {
+							x = 0
+							y = 2
+						}
+						mot_artillery_brigade = {
+							x = 1
+							y = 0
+						}
+						mot_artillery_brigade = {
+							x = 1
+							y = 1
+						}
+						mot_artillery_brigade = {
+							x = 1
+							y = 2
+						}
+					}
+					support = {
+						engineer = {
+							x = 0
+							y = 0
+						}
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_owned_by = ROOT
+					}
+					create_unit = {
+						division = "name = \"1. Motorized Artillery\" division_template = \"Motorized Artillery\" start_experience_factor = 3.0"
+						owner = SAF
+					}
+					create_unit = {
+						division = "name = \"2. Motorized Artillery\" division_template = \"Motorized Artillery\" start_experience_factor = 3.0"
+						owner = SAF
+					}
+					create_unit = {
+						division = "name = \"3. Motorized Artillery\" division_template = \"Motorized Artillery\" start_experience_factor = 3.0"
+						owner = SAF
+					}
+					create_unit = {
+						division = "name = \"4. Motorized Artillery\" division_template = \"Motorized Artillery\" start_experience_factor = 3.0"
+						owner = SAF
+					}
+					create_unit = {
+						division = "name = \"5. Motorized Artillery\" division_template = \"Motorized Artillery\" start_experience_factor = 3.0"
+						owner = SAF
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_grand_battle_plan
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		relative_position_id = SAF_motorized_artillery
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_motorized_artillery
+		}
+		mutually_exclusive = {
+			focus = SAF_superior_firepower
+		}
+		mutually_exclusive = {
+			focus = SAF_tank_warfare
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SAF_grand_battle_plan
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_grand_battle_plan
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_superior_firepower
+		icon = generic_artillery_factories
+		relative_position_id = SAF_motorized_artillery
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_motorized_artillery
+		}
+		mutually_exclusive = {
+			focus = SAF_grand_battle_plan
+		}
+		mutually_exclusive = {
+			focus = SAF_tank_warfare
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SAF_superior_firepower
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_superior_firepower
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_tanks
+		icon = GFX_focus_generic_tank_production
+		relative_position_id = SAF_anti_tank_gun
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_anti_tank_gun
+		}
+		prerequisite = {
+			focus = SAF_armored_car
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_tanks
+				bonus = 1
+				uses = 1
+				category = armor
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_tank_warfare
+		icon = GFX_focus_generic_army_tanks2
+		relative_position_id = SAF_tanks
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_tanks
+		}
+		mutually_exclusive = {
+			focus = SAF_superior_firepower
+		}
+		mutually_exclusive = {
+			focus = SAF_grand_battle_plan
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SAF_tank_warfare
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_mobile_warfare
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_South_African_Navy
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		relative_position_id = SAF_south_african_national_defence_force
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_south_african_national_defence_force
+		}
+		available = {
+			OR = {
+				has_completed_focus = SAF_one_republic
+				has_completed_focus = SAF_apartheid
+				has_completed_focus = SAF_africa_uprising
+			}
+		}
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		completion_reward = {
+			navy_experience = 25
+		}
+	}
+	
+	focus = {
+		id = SAF_protect_the_trade
+		icon = GFX_goal_generic_navy_cruiser
+		prerequisite = { focus = SAF_South_African_Navy }
+		mutually_exclusive = { focus = SAF_disrupt_the_trade }
+		x = -1
+		y = 1
+		relative_position_id = SAF_South_African_Navy
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 3
+		}
+        search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_protect_the_trade
+				bonus = 1
+				uses = 1
+				category = dd_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_disrupt_the_trade
+		icon = GFX_goal_generic_occupy_states_coastal
+		prerequisite = { focus = SAF_South_African_Navy }
+		mutually_exclusive = { focus = SAF_protect_the_trade }
+		x = 1
+		y = 1
+		relative_position_id = SAF_South_African_Navy
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 3
+		}
+        search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_disrupt_the_trade
+				bonus = 1
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_battleship_in_africa
+		icon = GFX_goal_generic_navy_battleship
+		relative_position_id = SAF_protect_the_trade
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_protect_the_trade
+			focus = SAF_disrupt_the_trade
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_battleship_in_africa
+				bonus = 1
+				uses = 1
+				category = bb_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_a_new_doctrine
+		icon = GFX_goal_generic_amphibious_assault
+		relative_position_id = SAF_battleship_in_africa
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_battleship_in_africa
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SAF_a_new_doctrine
+				cost_reduction = 0.5
+				uses = 2
+				category = naval_doctrine
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_naval_equipment_improvement
+		icon = GFX_goal_generic_positive_trade_relations
+		relative_position_id = SAF_battleship_in_africa
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_battleship_in_africa
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "Man the Guns"
+				}
+				add_tech_bonus = {
+					name = SAF_naval_equipment_improvement
+					bonus = 0.5
+					uses = 3
+					category = ship_modules_tech
+				}
+			}
+			else = {
+				navy_experience = 50
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_Cape_Town_dockyard
+		icon = GFX_goal_generic_construct_naval_dockyard
+		relative_position_id = SAF_a_new_doctrine
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_a_new_doctrine
+		}
+		prerequisite = {
+			focus = SAF_naval_equipment_improvement
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 969 }
+				add_building_construction = {
+					type = dockyard
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_South_African_Air_Force
+		icon = GFX_focus_SWE_marauder_bombers
+		relative_position_id = SAF_south_african_national_defence_force
+		x = 6
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_south_african_national_defence_force
+		}
+		available = {
+			OR = {
+				has_completed_focus = SAF_one_republic
+				has_completed_focus = SAF_apartheid
+				has_completed_focus = SAF_africa_uprising
+			}
+		}
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		completion_reward = {
+			air_experience = 25
+		}
+	}
+	
+	focus = {
+		id = SAF_high_quality
+		icon = GFX_focus_YUG_rogozarski
+		relative_position_id = SAF_South_African_Air_Force
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_South_African_Air_Force
+		}
+		mutually_exclusive = {
+			focus = SAF_large_air_force
+		}
+		completion_reward = {
+			add_ideas = SAF_high_quality
+		}
+	}
+	
+	focus = {
+		id = SAF_aviation_school
+		icon = GFX_focus_generic_military_academy
+		relative_position_id = SAF_high_quality
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_high_quality
+		}
+		completion_reward = {
+			add_ideas = SAF_aviation_school
+		}
+	}
+	
+	focus = {
+		id = SAF_large_air_force
+		icon = GFX_focus_SOV_women_in_aviation
+		relative_position_id = SAF_South_African_Air_Force
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_South_African_Air_Force
+		}
+		mutually_exclusive = {
+			focus = SAF_high_quality
+		}
+		completion_reward = {
+			add_ideas = SAF_large_air_force
+		}
+	}
+	
+	focus = {
+		id = SAF_factory_expansion
+		icon = GFX_goal_generic_construct_mil_factory
+		relative_position_id = SAF_large_air_force
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			NOT = { has_war_with = SAF }
+			NOT = { has_war_with = ANC }
+			NOT = { has_war_with = BOR }
+		}
+		prerequisite = {
+			focus = SAF_large_air_force
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_owned_by = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_small_airframe
+		icon = GFX_goal_generic_air_fighter
+		relative_position_id = SAF_aviation_school
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_aviation_school
+			focus = SAF_factory_expansion
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_small_airframe
+				bonus = 1
+				uses = 1
+				category = light_air
+				category = cas_bomber
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_large_airframe
+		icon = GFX_goal_generic_air_bomber
+		relative_position_id = SAF_factory_expansion
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_aviation_school
+			focus = SAF_factory_expansion
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SAF_large_airframe
+				bonus = 1
+				uses = 1
+				category = medium_air
+				category = heavy_air
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_air_doctrine
+		icon = GFX_goal_generic_air_doctrine
+		relative_position_id = SAF_small_airframe
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = SAF_small_airframe
+		}
+		prerequisite = {
+			focus = SAF_large_airframe
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SAF_air_doctrine
+				cost_reduction = 0.5
+				uses = 2
+				category = air_doctrine
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_republic_of_black_people
+		icon = GFX_focus_generic_africa_liberation
+		relative_position_id = SAF_africa_uprising
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			ROOT = { tag = ANC }
+			has_completed_focus = SAF_africa_uprising
+			NOT = { has_war_with = SAF }
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		id = SAF_reconciliation_with_white_people
+		icon = GFX_goal_generic_major_alliance
+		relative_position_id = SAF_republic_of_black_people
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_republic_of_black_people
+		}
+		mutually_exclusive = {
+			focus = SAF_bloody_revenge
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward ={
+			add_timed_idea = { idea = SAF_social_chaos days = 300 }
+		}
+	}
+	
+	focus = {
+		id = SAF_bloody_revenge
+		icon = GFX_goal_generic_major_war
+		relative_position_id = SAF_republic_of_black_people
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_republic_of_black_people
+		}
+		mutually_exclusive = {
+			focus = SAF_reconciliation_with_white_people
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward ={
+			add_timed_idea = { idea = SAF_social_chaos days = 600 }
+		}
+	}
+	
+	focus = {
+		id = SAF_equality_of_wealth
+		icon = GFX_focus_generic_industry_3
+		relative_position_id = SAF_reconciliation_with_white_people
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_reconciliation_with_white_people
+		}
+		completion_reward = {
+			custom_effect_tooltip = SAF_equality_of_wealth_effect
+			add_timed_idea = { idea = SAF_equality_of_wealth days = 365 }
+			hidden_effect = {
+				country_event = { id = south_africa_wr.17 days = 365 }
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_compulsory_education
+		icon = GFX_focus_generic_military_academy
+		relative_position_id = SAF_equality_of_wealth
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_equality_of_wealth
+		}
+		available = {
+			has_idea = SAF_preferential_policy_for_black_people
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SAF_preferential_policy_for_black_people
+				add_idea = SAF_preferential_policy_for_black_people_1
+			}
+			add_ideas = SAF_compulsory_education
+		}
+	}
+	
+	focus = {
+		id = SAF_federal_republic_of_south_africa
+		icon = GFX_goal_generic_territory_or_war
+		relative_position_id = SAF_reconciliation_with_white_people
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 16
+		}
+		prerequisite = {
+			focus = SAF_reconciliation_with_white_people
+			focus = SAF_bloody_revenge
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward ={
+			annex_country = { target = ZIM transfer_troops = yes }
+			annex_country = { target = BOT transfer_troops = yes }
+			set_cosmetic_tag = federal_republic_of_south_africa
+			news_event = south_africa_wr.16
+		}
+	}
+	
+	focus = {
+		id = SAF_preferential_policy_for_black_people
+		icon = GFX_focus_generic_treaty
+		relative_position_id = SAF_federal_republic_of_south_africa
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_federal_republic_of_south_africa
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = SAF_preferential_policy_for_black_people
+		}
+	}
+	
+	focus = {
+		id = SAF_white_property_seizure
+		icon = GFX_focus_DEN_heavy_regulations
+		relative_position_id = SAF_bloody_revenge
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_bloody_revenge
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_timed_idea = { idea = SAF_white_property_seizure days = 365 }
+		}
+	}
+	
+	focus = {
+		id = SAF_force_out_white_people
+		icon = GFX_goal_generic_political_pressure
+		relative_position_id = SAF_white_property_seizure
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_white_property_seizure
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_manpower = -50000
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_Punish_Boer_War_Criminals
+		icon = GFX_SAF_Punish_Boer_War_Criminals
+		relative_position_id = SAF_one_republic
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			ROOT = { tag = SAF }
+			NOT = { has_war_with = BOR }
+			has_country_flag = SAF_BOR_war
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_manpower = -10000
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_Quieting_down_Blacks_Complaints
+		icon = GFX_goal_generic_improve_relations
+		relative_position_id = SAF_Punish_Boer_War_Criminals
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_Punish_Boer_War_Criminals
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_timed_idea = { idea = SAF_handout_for_blacks days = 500 }
+			swap_ideas = {
+				remove_idea = SAF_weakened_discrimination
+				add_idea = SAF_weakened_discrimination_lower
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_black_professional_worker
+		icon = GFX_focus_generic_full_employment
+		relative_position_id = SAF_Punish_Boer_War_Criminals
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_Punish_Boer_War_Criminals
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = SAF_black_professional_worker
+		}
+	}
+	
+	focus = {
+		id = SAF_Bechuanaland_Rhodesia_annexation
+		icon = GFX_goal_generic_major_war
+		relative_position_id = SAF_Quieting_down_Blacks_Complaints
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_Quieting_down_Blacks_Complaints
+		}
+		prerequisite = {
+			focus = SAF_black_professional_worker
+		}
+		search_filters  ={ FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			ZIM = { country_event = south_africa_wr.18 }
+			BOT = { country_event = south_africa_wr.18 }
+		}
+	}
+	
+	focus = {
+		id = SAF_foreign_policy
+		icon = GFX_goal_generic_national_unity
+		relative_position_id = SAF_Bechuanaland_Rhodesia_annexation
+		x = 2
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			OR = {
+				AND = {
+					tag = ANC
+					OR = {
+						AND = {
+							has_completed_focus = SAF_compulsory_education
+							has_completed_focus = SAF_preferential_policy_for_black_people
+						}
+						AND = {
+							has_completed_focus = SAF_force_out_white_people
+							has_completed_focus = SAF_preferential_policy_for_black_people
+						}
+					}
+				}
+				AND = {
+					tag = SAF
+					has_completed_focus = SAF_Bechuanaland_Rhodesia_annexation
+				}
+				AND = {
+					tag = BOR
+					OR = {
+						has_completed_focus = SAF_no_complaints
+						custom_trigger_tooltip = { tooltip = SAF_foreign_policy_tt NOT = { has_variable = SAF_Discontent_var } }
+					}
+				}
+			}
+		}
+		search_filters  ={ FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 10
+		}
+	}
+	
+	focus = {
+		id = SAF_french_new_order
+		icon = GFX_focus_chi_reach_out_to_france
+		relative_position_id = SAF_foreign_policy
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_foreign_policy
+		}
+		mutually_exclusive = {
+			focus = SAF_under_the_german_hegemony
+		}
+		mutually_exclusive = {
+			focus = SAF_neutrality_of_south_africa
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			FRA = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = large_increase
+				}
+			}
+			ROOT = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = large_increase
+				}
+			}
+			FRA = { country_event = { id = south_africa_wr.21 days = 1 } }
+		}
+	}
+	
+	focus = {
+		id = SAF_demand_German_South_West_Africa
+		icon = GFX_goal_generic_forceful_treaty
+		relative_position_id = SAF_french_new_order
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_french_new_order
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			893 = { add_claim_by = ROOT }
+			541 = { add_claim_by = ROOT }
+			895 = { add_claim_by = ROOT }
+			894 = { add_claim_by = ROOT }
+		}
+	}
+	
+	focus = {
+		id = SAF_south_africa_liberation_war
+		icon = focus_attack_germany
+		relative_position_id = SAF_demand_German_South_West_Africa
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				is_in_faction_with = FRA
+			}
+			modifier = {
+				add = 10
+				is_in_faction_with = FRA
+				NOT = { has_war_with = GER }
+				date > 1943.1.1
+			}
+		}
+		prerequisite = {
+			focus = SAF_demand_German_South_West_Africa
+		}
+		bypass = {
+			has_war_with = GER
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			declare_war_on = { target = GER type = take_core_state }
+		}
+	}
+	
+	focus = {
+		id = SAF_neutrality_of_south_africa
+		icon = GFX_goal_generic_neutrality_focus
+		relative_position_id = SAF_foreign_policy
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_foreign_policy
+		}
+		mutually_exclusive = {
+			focus = SAF_under_the_german_hegemony
+		}
+		mutually_exclusive = {
+			focus = SAF_french_new_order
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = SAF_neutrality_of_south_africa
+		}
+	}
+	
+	focus = {
+		id = SAF_peace_by_force
+		icon = GFX_focus_SWE_let_fly_all_guns
+		relative_position_id = SAF_neutrality_of_south_africa
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_neutrality_of_south_africa
+		}
+		completion_reward = {
+			add_ideas = SAF_peace_by_force
+		}
+	}
+	
+	focus = {
+		id = SAF_defence_warfare
+		icon = GFX_goal_generic_defence
+		relative_position_id = SAF_peace_by_force
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_completed_focus = SAF_south_african_national_defence_force
+		}
+		prerequisite = {
+			focus = SAF_peace_by_force
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SAF_south_african_national_defence_force
+				add_idea = SAF_south_african_national_defence_force_1
+			}
+		}
+	}
+	
+	focus = {
+		id = SAF_under_the_german_hegemony
+		icon = focus_deal_with_german_empire
+		relative_position_id = SAF_foreign_policy
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_foreign_policy
+		}
+		mutually_exclusive = {
+			focus = SAF_french_new_order
+		}
+		mutually_exclusive = {
+			focus = SAF_neutrality_of_south_africa
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			GER = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = large_increase
+				}
+			}
+			ROOT = {
+				add_opinion_modifier = {
+					target = GER
+					modifier = large_increase
+				}
+			}
+			GER = { country_event = { id = south_africa_wr.21 days = 1 } }
+		}
+	}
+	
+	focus = {
+		id = SAF_demand_Mozambique
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		relative_position_id = SAF_under_the_german_hegemony
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_under_the_german_hegemony
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			544 = { add_claim_by = ROOT }
+			896 = { add_claim_by = ROOT }
+			897 = { add_claim_by = ROOT }
+		}
+	}
+	
+	focus = {
+		id = SAF_attack_Portugal
+		icon = GFX_focus_generic_attack_portugal
+		relative_position_id = SAF_demand_Mozambique
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = SAF_demand_Mozambique
+		}
+		bypass = {
+			has_war_with = POR
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			declare_war_on = { target = POR type = take_core_state }
+		}
+	}
+}

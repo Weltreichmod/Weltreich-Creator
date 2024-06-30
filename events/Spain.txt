@@ -1,0 +1,476 @@
+﻿###########################
+# Spanish Events
+###########################
+
+add_namespace = spain
+
+country_event = {
+	id = spain.1
+	title = spain.1.t
+	desc = spain.1.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = spain.1.a
+		FRA = { news_event = { days = 1 id = france.4 } transfer_state = 165 }
+		add_stability = -0.05
+		ai_chance = {
+			factor = 6
+		}
+	}
+	option = {
+		name = spain.1.b
+		FRA = { country_event = { days = 1 id = france.5 } create_wargoal = { type = take_core_state target = ROOT } }
+		ai_chance = {
+			factor = 0.5
+			modifier = {
+				OR = {
+					is_historical_focus_on = yes
+					has_war = yes
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+# Election of 1936
+country_event = {
+	id = spain.2
+	title = spain.2.t
+	desc = spain.2.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					is_core_of = SPR
+				}
+				add_core_of = SPA
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+					    character = SPR_niceto_alcala_zamora
+					    ruling_only = yes
+					}
+				}
+				retire_country_leader = yes
+				create_country_leader = {
+					name = "Manuel Azaña"
+					desc = "POLITICS_MANUEL_AZANA_DESC"
+					picture = GFX_portrait_Manuel_Azana
+					expire = "1965.1.1"
+					ideology = conservatism
+					traits = {
+
+					}
+				}
+			}
+		}
+	}
+	option = {
+		ai_chance = { factor = 1 }
+		name = spain.2.a
+		add_popularity = {
+			ideology = democratic
+			popularity = 0.1
+		}
+		hidden_effect = {
+			country_event = { id = spain.3 days = 87 }
+		}
+		custom_effect_tooltip = SPR_civilwar_1
+	}
+}
+
+country_event = {
+	id = spain.3
+	title = spain.3.t
+	desc = spain.3.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		ai_chance = { factor = 1 }
+		name = spain.3.a
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { id = spain.4 days = 41 }
+		}
+		custom_effect_tooltip = SPR_civilwar_2
+	}
+}
+
+country_event = {
+	id = spain.4
+	title = spain.4.t
+	desc = spain.4.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		ai_chance = { factor = 1 }
+		name = spain.4.a
+		add_stability = -0.05
+		hidden_effect = {
+			country_event = { id = spain.5 days = 8 }
+		}
+		custom_effect_tooltip = SPR_civilwar_3
+	}
+}
+
+country_event = {
+	id = spain.5
+	title = spain.5.t
+	desc = spain.5.d
+	picture = GFX_report_event_spain_civil_war_soldiers
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			set_global_flag = spanish_civil_war
+			SPR = {
+				set_cosmetic_tag = SPD
+				leave_faction = yes
+				add_ideas = Spanish_Civil_War
+			}
+			create_dynamic_country = {
+				original_tag = SPR
+				leave_faction = yes
+				add_ideas = Spanish_Civil_War
+				every_state = {
+					limit = {
+						is_core_of = SPR
+					}
+					add_core_of = SPA
+				}
+				set_capital = { state = 41 }
+				set_politics = {
+					ruling_party = fascism
+					elections_allowed = no
+				}
+				set_popularities = {
+					democratic = 1
+					neutrality = 5
+					fascism = 90
+					communism = 4
+				}
+				set_cosmetic_tag = SPA
+				reserve_dynamic_country = yes
+				every_possible_country = {
+					limit = {
+						original_tag = SPR
+					}
+					SPA_francisco_franco = {
+						set_nationality = SPA
+					}
+					SPA_ricardo_rada = {
+						set_nationality = SPA
+					}
+					SPA_luis_carrero_blanco = {
+						set_nationality = SPA
+					}
+					SPA_joaquin_garcia_morato = {
+						set_nationality = SPA
+					}
+					SPA_miguel_cabanellas = {
+						set_nationality = SPA
+					}
+					SPA_juan_yague = {
+						set_nationality = SPA
+					}
+					SPA_emilio_esteban_infantes = {
+						set_nationality = SPA
+					}
+					SPA_salvador_moreno_fernandez = {
+						set_nationality = SPA
+					}
+					SPA_jose_enrique_varela = {
+						set_nationality = SPA
+					}
+					SPA_fransisco_moreno_fernandez = {
+						set_nationality = SPA
+					}
+					SPA_emilio_herrera = {
+						set_nationality = SPA
+					}
+					SPA_angel_salas_larrazabal = {
+						set_nationality = SPA
+					}
+					SPA_agustin_munoz_grandes = {
+						set_nationality = SPA
+					}
+					SPA_emilio_mola = {
+						set_nationality = SPA
+					}
+					SPA_alfredo_kindelan_duany = {
+						set_nationality = SPA
+					}
+					SPA_jose_antonio_primo_de_rivera = {
+						set_nationality = SPA
+					}
+					SPA_rafael_garcia_valino = {
+						set_nationality = SPA
+					}
+					SPA_heli_rolando_de_tella = {
+						set_nationality = SPA
+					}
+					SPA_miguel_ponte = {
+						set_nationality = SPA
+					}
+					SPA_juan_vigon_suero_diaz = {
+						set_nationality = SPA
+					}
+					SPA_enrique_canovas_lacruz = {
+						set_nationality = SPA
+					}
+					SPA_jose_antonio_giron = {
+						set_nationality = SPA
+					}
+					SPA_manuel_hedilla = {
+						set_nationality = SPA
+					}
+					SPA_raimundo_fernandez_cuesta = {
+						set_nationality = SPA
+					}
+					SPA_tomas_dominguez_arevalo = {
+						set_nationality = SPA
+					}
+					SPA_ramon_serrano_suner = {
+						set_nationality = SPA
+					}
+					SPA_luis_hernando_de_larramendi = {
+						set_nationality = SPA
+					}
+					SPA_martin_de_riquer = {
+						set_nationality = SPA
+					}
+					SPA_mauricio_de_sivatte = {
+						set_nationality = SPA
+					}
+				}
+				SPA_francisco_franco = {
+					promote_character = yes
+				}
+			}
+			every_owned_state = {
+				limit = {
+					OR = {
+						state = 166
+						state = 169
+						state = 170
+						state = 171
+						state = 172
+						state = 174
+						state = 176
+						state = 177
+						state = 178
+						state = 290
+						state = 297
+						state = 699
+						state = 788
+						state = 789
+						state = 791
+					}
+				}
+				transfer_state_to = SPA
+			}
+			SPA = {
+				leave_faction = yes
+				inherit_technology = SPR
+				division_template = {
+					name = "División de Infantería"
+					division_names_group = SPR_INF_01
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 0 y = 3 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 1 y = 3 }
+					}
+					support = {
+						artillery = { x = 0 y = 0 }
+						engineer = { x = 0 y = 1 }
+					}
+				}
+				load_oob = "SPA_Civil_War"
+				division_template = {
+					name = "División de Caballería"
+					division_names_group = SPR_CAV_01
+
+					regiments = {
+						cavalry = { x = 0 y = 0 }
+						cavalry = { x = 0 y = 1 }
+						cavalry = { x = 0 y = 2 }
+						cavalry = { x = 0 y = 3 }
+						cavalry = { x = 1 y = 0 }
+						cavalry = { x = 1 y = 1 }
+						cavalry = { x = 1 y = 2 }
+						cavalry = { x = 1 y = 3 }
+						cavalry = { x = 2 y = 0 }
+						cavalry = { x = 2 y = 1 }
+						cavalry = { x = 2 y = 2 }
+						cavalry = { x = 2 y = 3 }
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+					}
+				}
+				division_template = {
+					name = "Brigada Montaña"
+					division_names_group = SPR_MNT_01
+					regiments = {
+						mountaineers = { x = 0 y = 0 }	
+						mountaineers = { x = 0 y = 1 }
+						mountaineers = { x = 1 y = 0 }
+						mountaineers = { x = 1 y = 1 }
+					}
+					support = {
+						artillery = { x = 0 y = 0 }
+					}
+				}
+				division_template = {
+					name = "Brigada de Infantería"
+					division_names_group = SPR_GAR_01
+
+					regiments = {
+						infantry = { x = 0 y = 0 }	
+						infantry = { x = 0 y = 1 }	
+						infantry = { x = 1 y = 0 }	
+						infantry = { x = 1 y = 1 }	
+					}
+					support = {
+						engineer = { x = 0 y = 0 }
+					}
+				}
+			}
+			SPR = {
+				leave_faction = yes
+				transfer_units_fraction = {
+					target = SPA
+					size = 0.5
+					stockpile_ratio = 0.5
+					army_ratio = 0.5
+					navy_ratio = 0.5
+					army_ratio = 0.5
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+				add_popularity = {
+					ideology = fascism
+					popularity = -0.2
+				}
+				load_oob = "SPR_Civil_War"
+				declare_war_on = {
+					target = SPA
+					type = civil_war
+				}
+			}
+		}
+	}
+	option = { # Support Nationalists
+		name = spain.5.a
+		trigger = { is_ai = no }
+		custom_effect_tooltip = nationalists_chosen
+		hidden_effect = {
+			news_event = spain.6
+			SPA = {
+				change_tag_from = ROOT
+			}
+		}
+	}
+	option = { # Support Republicans
+		name = spain.5.b
+		custom_effect_tooltip = republicans_chosen
+		hidden_effect = {
+			news_event = spain.6
+		}
+	}
+}
+
+news_event = {
+	id = spain.6
+	title = spain.6.t
+	desc = spain.6.d
+	picture = GFX_news_event_032
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = spain.6.a
+		trigger = {
+			NOT = { original_tag = SPR }
+		}
+	}
+	option = {
+		name = spain.6.b
+		trigger = { 
+			original_tag = SPR
+		}
+	}
+}
+
+# End of the Spanish Civil War (Nationalist victory)
+news_event = {
+	id = spain.7
+	title = spain.7.t
+	desc = spain.7.d
+	picture = GFX_news_event_033
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		set_global_flag = nationalist_victory
+		set_global_flag = scw_over
+		clr_global_flag = spanish_civil_war
+	}
+	
+	option = {
+		name = spain.7.a
+		trigger = {
+			NOT = { original_tag = SPA }
+		}
+	}
+	option = {
+		name = spain.7.b
+		trigger = { original_tag = SPA }
+		delete_unit_template_and_units = { division_template = "Brigada Legionario" }
+	}
+}
+
+# End of the Spanish Civil War (Republican victory)
+news_event = {
+	id = spain.8
+	title = spain.8.t
+	desc = spain.8.d
+	picture = GFX_news_event_034
+	
+	major = yes
+	
+	is_triggered_only = yes
+	
+	immediate = {
+		set_global_flag = republican_victory
+		set_global_flag = scw_over
+		clr_global_flag = spanish_civil_war
+	}
+	
+	option = {
+		name = spain.7.a
+		trigger = {
+			NOT = { original_tag = SPR }
+		}
+	}
+	option = {
+		name = spain.7.b
+		trigger = { original_tag = SPR }
+		delete_unit_template_and_units = { division_template = "Brigada Internacionales" }
+	}
+}

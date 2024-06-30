@@ -1,0 +1,73 @@
+﻿###########################
+# Sweden Events
+###########################
+
+add_namespace = Sweden
+country_event = {
+	id = Sweden.1
+	title = Sweden.1.t
+	desc = Sweden.1.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = Sweden.1.a
+		GER = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SWE
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.65
+				}
+				else = {
+					puppet = SWE
+				}
+			}
+		}
+		ai_chance = {
+			factor = 3
+		}
+	}
+	option = {
+		name = Sweden.1.b
+		GER = { country_event = { days = 1 id = Germany.51 } }
+		GER = { create_wargoal = { type = puppet_wargoal_focus target = SWE } }
+		ai_chance = {
+			factor = 1
+		}
+	}
+}
+
+country_event = {
+	id = Sweden.2
+	title = Sweden.2.t
+	desc = Sweden.2.d
+	picture = event_normal_1
+	is_triggered_only = yes
+	option = {
+		name = Sweden.2.a
+		GER = {
+			give_guarantee = SWE
+		}
+		SWE = {
+			give_guarantee = GER
+		}
+		GER = { country_event = { days = 1 id = Germany.54 } }
+		ai_chance = {
+			factor = 1
+			modifier = {
+				is_historical_focus_on = yes
+				factor = 0
+			}
+		}
+	}
+	option = {
+		name = Sweden.2.b
+		GER = { country_event = { days = 1 id = Germany.55 } }
+		ai_chance = {
+			factor = 3
+		}
+	}
+}

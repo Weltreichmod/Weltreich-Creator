@@ -1,0 +1,328 @@
+BUL_Politics_of_Bulgaria = {
+	the_speech_of_boris_iii = {
+		icon = GFX_decision_eng_blackshirt_speech
+		visible = {
+			has_country_flag = before_1939_vote
+		}
+		allowed = {
+			original_tag = BUL
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_completed_focus = BUL_the_way_of_democracy
+					has_completed_focus = BUL_the_radicals
+				}
+			}
+		}
+		available = {
+			NOT = { has_country_flag = check_decision_in_10_days }
+		}
+		complete_effect = {
+			set_country_flag = check_decision_in_10_days
+			custom_effect_tooltip = BUL_Loyalist_25_increase_effect
+			hidden_effect = {
+				country_event = { id = bulgaria.100 days = 10 }
+				add_popularity = {
+					ideology = neutrality
+					popularity = 0.025
+				}
+			}
+		}
+	}
+	rally_of_nikola_mushanov = {
+		icon = GFX_decision_generic_political_rally
+		visible = {
+			has_country_flag = before_1939_vote
+		}
+		allowed = {
+			original_tag = BUL
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_completed_focus = BUL_subject_of_His_Majesty_the_King
+					has_completed_focus = BUL_the_radicals
+				}
+			}
+		}
+		available = {
+			NOT = { has_country_flag = check_decision_in_10_days }
+		}
+		complete_effect = {
+			set_country_flag = check_decision_in_10_days
+			custom_effect_tooltip = BUL_Agrian_National_Union_25_increase_effect
+			hidden_effect = {
+				country_event = { id = bulgaria.100 days = 10 }
+				add_popularity = {
+					ideology = democratic
+					popularity = 0.025
+				}
+			}
+		}
+	}
+	demonstration_of_zveno = {
+		icon = GFX_decision_eng_blackshirt_march
+		visible = {
+			has_country_flag = before_1939_vote
+		}
+		allowed = {
+			original_tag = BUL
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				OR = {
+					has_completed_focus = BUL_subject_of_His_Majesty_the_King
+					has_completed_focus = BUL_the_way_of_democracy
+				}
+			}
+		}
+		available = {
+			NOT = { has_country_flag = check_decision_in_10_days }
+		}
+		complete_effect = {
+			set_country_flag = check_decision_in_10_days
+			custom_effect_tooltip = BUL_Zveno_25_increase_effect
+			hidden_effect = {
+				country_event = { id = bulgaria.100 days = 10 }
+				add_popularity = {
+					ideology = fascism
+					popularity = 0.025
+				}
+			}
+		}
+	}
+	1939_general_election = {
+		icon = GFX_decision_generic_political_address
+		days_mission_timeout = 1268
+		activation = {
+			original_tag = BUL
+		}
+		allowed = {
+			original_tag = BUL
+		}
+		available = {
+			OR = {
+				has_country_flag = had_1939_general_election
+				hidden_trigger = { has_country_flag = coup_of_zveno }
+				hidden_trigger = { has_country_flag = communist_bulgaria }
+			}
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			country_event = bulgaria.12
+		}
+	}
+}
+
+BUL_macedonia_crisis = {
+	to_prepare_to_crush_the_riot = {
+		visible = {
+			NOT = { has_country_flag = to_prepare_to_crush_the_riot_flag }
+			NOT = { has_country_flag = try_to_negotiate_flag }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = set_political_road
+			set_country_flag = to_prepare_to_crush_the_riot_flag
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				has_game_rule = {
+					rule = BUL_ai_behavior 
+					option = BUL_coup_of_zveno
+				}
+			}
+		}
+	}
+	try_to_negotiate = {
+		visible = {
+			NOT = { has_country_flag = to_prepare_to_crush_the_riot_flag }
+			NOT = { has_country_flag = try_to_negotiate_flag }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = set_political_road
+			set_country_flag = try_to_negotiate_flag
+		}
+		ai_will_do = {
+			factor = 4.5
+			modifier = {
+				factor = 6
+				has_game_rule = {
+					rule = BUL_ai_behavior 
+					option = BUL_coup_of_zveno
+				}
+			}
+			modifier = {
+				factor = 0
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = BUL_ai_behavior
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = BUL_ai_behavior 
+						option = BUL_the_way_of_democracy
+					}
+					has_game_rule = {
+						rule = BUL_ai_behavior 
+						option = BUL_subject_of_His_Majesty_the_King
+					}
+					has_game_rule = {
+						rule = BUL_ai_behavior 
+						option = BUL_the_radicals
+					}
+				}
+			}
+		}
+	}
+	The_days_left_before_Emergency_Meeting_in_Parliament_is_held = {
+		icon = GFX_decision_generic_operation
+		days_mission_timeout = 14
+		activation = {
+			has_country_flag = BUL_macedonia_crisis_flag
+		}
+		allowed = {
+			original_tag = BUL
+		}
+		available = {
+			NOT = { has_country_flag = BUL_macedonia_crisis_flag }
+			hidden_trigger = { NOT = { has_country_flag = coup_of_zveno } }
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = {
+							has_country_flag = to_prepare_to_crush_the_riot_flag
+						}
+						NOT = {
+							has_country_flag = try_to_negotiate_flag
+						}
+					}
+					random_list = {
+						60 = {
+							set_country_flag = to_prepare_to_crush_the_riot_flag
+						}
+						40 = {
+							set_country_flag = try_to_negotiate_flag
+						}
+					}
+				}
+			}
+			country_event = { id = bulgaria.5 days = 1 }
+		}
+	}
+}
+
+BUL_Yugoslav_Liberation_War = {
+	BUL_attack_yugoslav_liberation_war = {
+		icon = GFX_decision_eng_trade_unions_demand
+		visible = {
+			has_completed_focus = BUL_Yugoslav_Liberation_War
+		}
+		available = {
+			has_war = no
+		}
+		cost = 20
+		days_remove = 40
+		fire_only_once = yes
+		ai_will_do = {
+			base = 4000
+		}
+		remove_effect = {
+			custom_effect_tooltip = BUL_attack_yugoslav_liberation_war_effect
+			set_global_flag = BUL_Yugoslav_Liberation_War
+			every_country = {
+				limit = {
+					NOT = { has_war_with = BUL }
+					NOT = { original_tag = BUL }
+					OR = {
+						owns_state = 108
+						owns_state = 108
+						owns_state = 802
+						owns_state = 107
+						owns_state = 805
+						owns_state = 44
+						owns_state = 105
+						owns_state = 804
+						owns_state = 104
+						owns_state = 103
+						owns_state = 163
+						owns_state = 109
+						owns_state = 853
+						owns_state = 102
+						owns_state = 852
+						owns_state = 736
+						owns_state = 764
+						owns_state = 45
+					}
+				}
+				ROOT = {
+					declare_war_on = { target = PREV type = take_core_state }
+				}
+			}
+		}
+	}
+}
+
+BUL_Form_Yugoslavia = {
+	BUL_Form_Yugoslavia_de = {
+		icon = GFX_decision_SWI_no_elected_president
+		visible = {
+			184 = { is_owned_by = BUL }
+			731 = { is_owned_by = BUL }
+			930 = { is_owned_by = BUL }
+			106 = { is_owned_by = BUL }
+			212 = { is_owned_by = BUL }
+			803 = { is_owned_by = BUL }
+			48 = { is_owned_by = BUL }
+			801 = { is_owned_by = BUL }
+			211 = { is_owned_by = BUL }
+			77 = { is_owned_by = BUL }
+			929 = { is_owned_by = BUL }
+			805 = { is_owned_by = BUL }
+			44 = { is_owned_by = BUL }
+			108 = { is_owned_by = BUL }
+			802 = { is_owned_by = BUL }
+			107 = { is_owned_by = BUL }
+			105 = { is_owned_by = BUL }
+			804 = { is_owned_by = BUL }
+			104 = { is_owned_by = BUL }
+			103 = { is_owned_by = BUL }
+			163 = { is_owned_by = BUL }
+			109 = { is_owned_by = BUL }
+			853 = { is_owned_by = BUL }
+			102 = { is_owned_by = BUL }
+			852 = { is_owned_by = BUL }
+			736 = { is_owned_by = BUL }
+			764 = { is_owned_by = BUL }
+			45 = { is_owned_by = BUL }
+			has_completed_focus = BUL_Yugoslav_Liberation_War
+		}
+		cost = 50
+		fire_only_once = yes
+		ai_will_do = {
+			base = 4000
+		}
+		complete_effect = {
+			set_cosmetic_tag = BUL_Yugoslavia
+			remove_ideas = BUL_crushing_supremacy_of_austrian_eagle
+			clr_global_flag = BUL_Yugoslav_Liberation_War
+			news_event = bulgaria.26
+		}
+	}
+}

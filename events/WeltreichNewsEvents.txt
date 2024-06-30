@@ -1,0 +1,235 @@
+﻿add_namespace = wr_news
+add_namespace = news
+
+#the end of world war
+news_event = {
+	id = wr_news.1
+	title = wr_news.1.t
+	desc = wr_news.1.d
+	picture = GFX_news_event_worldwar
+	immediate = {
+		hidden_effect = {
+			set_global_flag = the_end_of_world_war
+			add_named_threat = {
+				threat = -60
+				name = the_end_of_wwII
+			}
+			country_event = super.6
+		}
+	}
+	major = yes
+	
+	trigger = {
+		NOT = { has_global_flag = the_end_of_world_war }
+		NOT = { REI = { has_war_with = SOV } }
+		NOT = { REI = { has_war_with = RUS } }
+		NOT = { REI = { has_war_with = USA } }
+		NOT = { ENT = { has_war_with = SOV } }
+		NOT = { ENT = { has_war_with = RUS } }
+		NOT = { ENT = { has_war_with = USA } }
+		has_global_flag = second_great_war_ends
+	}
+	option = {
+		name = wr_news.1.a
+	}
+}
+
+news_event = {
+	id = wr_news.2
+	title = wr_news.2.t
+	desc = wr_news.2.d
+	picture = FNG_Northeast_Flag_Replacement
+	major = yes
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					is_core_of = FNG
+				}
+				remove_core_of = FNG
+				add_core_of = CHI
+			}
+			CHI = { annex_country = { target = FNG transfer_troops = yes } }
+		}
+	}
+	option = {
+		name = wr_news.2.a
+	}
+}
+
+# Games of the XI Olympiad
+news_event = {
+	id = wr_news.3
+	title = news.66.t
+	desc = wr_news.3.d
+	picture = GFX_news_event_olympics_1936
+	
+	major = yes
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_global_flag = olympics_1936 }
+		country_exists = GER
+		country_exists = USA
+		GER = { has_war = no }
+		FRA = { has_war = no }
+		ENG = { has_war = no }
+		USA = { has_war = no }
+	}
+	immediate = {
+		set_global_flag = olympics_1936 
+	}
+	option = {
+		name = news.66.a
+	}
+}
+
+news_event = {
+	id = wr_news.4
+	title = wr_news.4.t
+	desc = wr_news.4.d
+	picture = GFX_news_event_honorable_peace
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = wr_news.4.a
+	}
+}
+
+# Hindenburg Disaster
+news_event = {
+	id = news.42
+	title = news.42.t
+	desc = news.42.d
+	picture = GFX_news_event_025
+	
+	major = yes
+	trigger = {
+		NOT = { GER = { has_war_with = USA } }
+	}
+	is_triggered_only = yes
+	
+	option = {
+		name = news.42.a
+	}
+}
+
+# Games of the XII Olympiad (Tokyo)
+news_event = {
+	id = news.67
+	title = news.67.t
+	desc = news.67.d
+	picture = GFX_news_event_070
+	
+	major = yes
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = olympics_1936 
+		NOT = {
+			has_global_flag = olympics_jap_1940
+			has_global_flag = olympics_fin_1940
+		}
+		country_exists = JAP
+		country_exists = USA
+		country_exists = GER
+		GER = { has_war = no }
+		FRA = { has_war = no }
+		ENG = { has_war = no }
+		USA = { has_war = no }
+		JAP = { has_war = no }
+	}
+	immediate = {
+		set_global_flag = olympics_jap_1940
+	}
+	option = {
+		name = news.66.a
+	}
+}
+
+# Games of the XII Olympiad (Helsinki)
+news_event = {
+	id = news.68
+	title = news.67.t
+	desc = news.68.d
+	picture = GFX_news_event_069
+	
+	major = yes
+	is_triggered_only = yes
+	trigger = {
+		has_global_flag = olympics_1936
+		NOT = {
+			has_global_flag = olympics_jap_1940
+			has_global_flag = olympics_fin_1940
+		}
+		date > 1940.8.3
+		country_exists = FIN
+		country_exists = USA
+		country_exists = GER
+		country_exists = ITA
+		JAP = { has_war = yes }
+		FIN = { has_war = no }
+		ITA = { has_war = no }
+		SOV = { has_war = no }
+		GER = { has_war = no }
+		FRA = { has_war = no }
+		ENG = { has_war = no }
+		USA = { has_war = no }
+	}
+	immediate = {
+		set_global_flag = olympics_fin_1940
+	}
+	option = {
+		name = news.66.a
+	}
+}
+
+# Faction Founded!
+news_event = {
+	id = news.159
+	title = news.159.t
+	desc = {
+		text = news.159.d_01
+		trigger = { FROM = { has_government = neutrality } }
+	}
+	desc = {
+		text = news.159.d_02
+		trigger = { FROM = { has_government = democratic } }
+	}
+	desc = {
+		text = news.159.d_03
+		trigger = { FROM = { has_government = fascism } }
+	}
+	desc = {
+		text = news.159.d_04
+		trigger = { FROM = { has_government = communism } }
+	}
+
+	picture = GFX_news_event_009
+	
+	major = yes
+
+	is_triggered_only = yes
+	
+	option = {
+		trigger = {
+			NOT = { tag = FROM }
+			NOT = { is_in_faction_with = FROM }
+		}
+		name = news.159.a
+		every_other_country = {
+			limit = { is_in_faction_with = FROM }
+			custom_effect_tooltip = news.159.tt
+		}
+	}
+	option = {
+		trigger = { tag = FROM }
+		name = news.159.b
+	}
+	option = {
+		trigger = {
+			NOT = { tag = FROM }
+			is_in_faction_with = FROM
+		}
+		name = news.159.c
+	}
+}
