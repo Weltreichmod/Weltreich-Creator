@@ -1,0 +1,45 @@
+
+add_namespace = wr_debug
+
+country_event = {
+	id = wr_debug.1
+	title = wr_debug.1.t
+	desc = wr_debug.1.d
+	picture = GFX_report_event_china_politicians_captured
+	is_triggered_only = yes
+	option = {
+		name = wr_debug.1.a
+		FRA = {
+			add_to_faction = ENG
+		}
+	}
+	option = {
+		name = wr_debug.1.b
+		GER = {
+			add_to_faction = AUH
+		}
+	}
+	option = {
+		name = wr_debug.1.c
+		set_global_flag = second_world_war
+	}
+	option = {
+		name = wr_debug.1.d
+		clr_global_flag = second_great_war_ends
+	}
+	option = {
+		name = wr_debug.1.e
+		every_country = {
+			limit = {
+				is_in_faction_with = GER
+			}	
+			save_global_event_target_as = reichspakt_member
+			every_country = {
+				limit = {
+					has_war_with = event_target:reichspakt_member
+				}	
+				white_peace = event_target:reichspakt_member
+			}
+		}
+	}
+}

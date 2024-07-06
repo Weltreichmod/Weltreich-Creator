@@ -1,0 +1,350 @@
+on_actions = {
+	on_capitulation = {
+		effect = {
+			if = {
+				limit = {
+					is_major = yes
+					is_faction_leader = yes
+					has_idea = ENT_leader
+					OR = {
+						original_tag = FRA
+						is_in_faction_with = FRA
+					}
+					has_war_with = GER
+					all_allied_country = {
+						OR = {
+							AND = {
+								is_major = yes
+								has_capitulated = yes
+							}
+							is_major = no
+						}
+					}
+					has_global_flag = second_world_war
+					NOT = {
+						has_global_flag = second_great_war_ends
+					}
+					NOT = {
+						has_global_flag = honorable_peace_flag
+					}
+				}
+				clr_global_flag = second_world_war
+				set_global_flag = second_great_war_ends
+				every_country = {
+					limit = {
+						is_in_faction_with = FRA
+						is_major = no
+					}
+					set_major = yes
+				}
+				if = {
+					limit = {
+						any_country = {
+							original_tag = USA
+							controls_state = 276
+							controls_state = 468
+							controls_state = 473
+						}
+						all_country = {
+							NOT = { has_country_flag = defeat_canada_flag }
+						}
+					}
+					set_global_flag = USA_cap_CAN
+				}
+				every_country = {
+					limit = {
+						OR = {
+							tag = ENT
+							is_subject_of = ENT
+							AND = {
+								is_in_faction_with = ENT
+								has_war_with = REI
+							}
+						}
+						NOT = {
+							has_country_flag = second_great_war_winner
+						}
+					}
+					set_country_flag = second_great_war_loser
+				}
+				ENT = { delete_unit = {} }
+				every_country = {
+					limit = {
+						OR = {
+							tag = REI
+							is_in_faction_with = REI
+							is_subject_of = REI
+							has_war_with = ENT
+						}
+						NOT = {
+							has_country_flag = second_great_war_loser
+						}
+					}
+					set_country_flag = second_great_war_winner
+				}
+				every_country = {
+					limit = {
+						OR = {
+							tag = REI
+							is_in_faction_with = REI
+							has_war_with = ENT
+						}
+					}
+					white_peace = {
+						tag = ENT
+						message = unconditional_surrender_of_ENT
+					}
+				}
+				hidden_effect = {
+					every_country = {
+						limit = {
+							has_country_flag = second_great_war_loser
+							is_subject = no
+						}
+						add_timed_idea = { idea = war_reparations days = 1000 }
+						add_ideas = peace_treaty
+					}
+					if = {
+						limit = {
+							FRA = { has_country_flag = second_great_war_loser }
+						}
+						FRA = {
+							retire_country_leader = yes
+							FRA_philippe_petain = {
+								add_country_leader_role = {
+									promote_leader = yes
+									country_leader = {
+										ideology = despotism
+									}
+								}
+							}
+							set_politics = {
+								ruling_party = neutrality
+								election_frequency = 48
+								elections_allowed = yes
+							}
+							add_popularity = {
+								ideology = neutrality
+								popularity = 0.15
+							}
+							set_cosmetic_tag = FRA_petain
+						}
+					}
+				}
+				peace_conference_effect = yes
+				every_country = {
+					limit = {
+						has_war_with = GER
+						is_in_faction_with = ENT
+					}
+					white_peace = ENT
+				}
+				ENT = { dismantle_faction = yes }
+			}
+			if = {
+				limit = {
+					is_major = yes
+					is_faction_leader = yes
+					has_idea = REI_leader
+					OR = {
+						original_tag = GER
+						is_in_faction_with = GER
+					}
+					has_war_with = FRA
+					all_allied_country = {
+						OR = {
+							AND = {
+								is_major = yes
+								has_capitulated = yes
+							}
+							is_major = no
+						}
+					}
+					has_global_flag = second_world_war
+					NOT = {
+						has_global_flag = second_great_war_ends
+					}
+					NOT = {
+						has_global_flag = honorable_peace_flag
+					}
+				}
+				every_country = {
+					limit = {
+						is_in_faction_with = ROOT
+					}
+					set_major = yes
+				}
+				if = {
+					limit = {
+						any_country = {
+							OR = {
+								tag = SOV
+								is_in_faction_with = SOV
+							}
+							controls_state = 64
+						}
+					}
+					set_global_flag = fall_of_berlin_by_SOV
+				}
+				if = {
+					limit = {
+						any_country = {
+							OR = {
+								tag = RUS
+								is_in_faction_with = RUS
+							}
+							controls_state = 64
+						}
+					}
+					set_global_flag = fall_of_berlin_by_RUS
+				}
+				if = {
+					limit = {
+						any_country = {
+							original_tag = USA
+							controls_state = 276
+							controls_state = 468
+							controls_state = 473
+						}
+						all_country = {
+							NOT = { has_country_flag = defeat_canada_flag }
+						}
+					}
+					set_global_flag = USA_cap_CAN
+				}
+				every_country = {
+					limit = {
+						OR = {
+							tag = REI
+							is_subject_of = REI
+							AND = {
+								is_in_faction_with = REI
+								has_war_with = ENT
+							}
+						}
+						NOT = {
+							has_country_flag = second_great_war_winner
+						}
+					}
+					set_country_flag = second_great_war_loser
+				}
+				REI = { delete_unit = {} }
+				every_country = {
+					limit = {
+						OR = {
+							tag = ENT
+							is_in_faction_with = ENT
+							is_subject_of = ENT
+							has_war_with = REI
+						}
+						NOT = {
+							has_country_flag = second_great_war_loser
+						}
+					}
+					set_country_flag = second_great_war_winner
+				}
+				every_country = {
+					limit = {
+						OR = {
+							tag = ENT
+							is_in_faction_with = ENT
+							has_war_with = REI
+						}
+					}
+					white_peace = {
+						tag = REI
+						message = unconditional_surrender_of_REI
+					}
+				}
+				hidden_effect = {
+					every_country = {
+						limit = {
+							has_country_flag = second_great_war_loser
+							is_subject = no
+						}
+						add_timed_idea = { idea = war_reparations days = 1000 }
+						add_ideas = peace_treaty
+					}
+					if = {
+						limit = {
+							GER = { has_country_flag = second_great_war_loser }
+						}
+						GER = {
+							retire_country_leader = yes
+							create_country_leader = {
+								name = "GER_emergency_government"
+								picture = "gfx/leaders/GER/GER_emergency_government.png"
+								expire = "1965.1.1"
+								ideology = moderatism
+								traits = {
+								}
+							}
+							set_politics = {
+								ruling_party = neutrality
+								election_frequency = 48
+								elections_allowed = yes
+							}
+							add_popularity = {
+								ideology = neutrality
+								popularity = 0.15
+							}
+							set_party_name = {
+								ideology = neutrality
+								long_name = GER_emergency_government
+								name = GER_emergency_government
+							}
+							set_cosmetic_tag = GER_has_fallen
+						}
+					}
+					if = {
+						limit = {
+							FRA = { has_country_flag = second_great_war_winner }
+							JAP = { has_country_flag = second_great_war_winner }
+							GER = { has_country_flag = second_great_war_loser }
+							671 = {
+								is_claimed_by = FRA
+								is_claimed_by = JAP
+							}
+							670 = {
+								is_claimed_by = FRA
+								is_claimed_by = JAP
+							}
+							286 = {
+								is_claimed_by = FRA
+								is_claimed_by = JAP
+							}
+							741 = {
+								is_claimed_by = FRA
+								is_claimed_by = JAP
+							}
+						}
+						every_state = {
+							limit = {
+								OR = {
+									is_owned_by = GER
+									is_owned_by = GOA
+								}
+								OR = {
+									state = 671
+									state = 670
+									state = 286
+									state = 741
+								}
+							}
+							transfer_state_to = JAP
+						}
+					}
+				}
+				peace_conference_effect = yes
+				every_country = {
+					limit = {
+						has_war_with = FRA
+						is_in_faction_with = REI
+					}
+					white_peace = REI
+				}
+				REI = { dismantle_faction = yes }
+			}
+		}
+	}	
+}
