@@ -75,7 +75,7 @@ country_event = {
 	immediate = {
 		hidden_effect = {
 			country_event = { id = turkey.4 days = 10 }
-			country_event = { id = turkey.10 days = 5 }
+			#country_event = { id = turkey.10 days = 5 }
 			IRQ_resistance_large_increase = yes
 			SYR_resistance_large_increase = yes
 			EGY_resistance_large_increase = yes
@@ -562,7 +562,7 @@ country_event = {
 				}
 			}
 			country_event = { id = turkey.9 days = 4 hours = 10 }
-			country_event = { id = turkey.7 days = 2 hours = 1 }
+			#country_event = { id = turkey.7 days = 2 hours = 1 }
 		}
 	}
 	option = {
@@ -581,7 +581,7 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		hidden_effect = {
-			country_event = { days = 25 id = turkey.16 }
+			country_event = { id = turkey.71 days = 31 }
 			every_state = {
 				limit = {
 					is_owned_by = TUR
@@ -755,12 +755,6 @@ country_event = {
 					is_in_faction_with = KUR
 					is_subject_of = KUR
 				}
-				white_peace = KUW
-				OR = {
-					tag = KUW
-					is_in_faction_with = KUW
-					is_subject_of = KUW
-				}
 				white_peace = HJZ
 				OR = {
 					tag = HJZ
@@ -805,30 +799,7 @@ country_event = {
 	title = turkey.15.t
 	desc = turkey.15.d
 	picture = ottoman_uprising
-	trigger = {
-		tag = TUR
-		has_global_flag = Middle_East_War
-		927 = { is_owned_by = YEM }
-	}
-	immediate = {
-		hidden_effect = {
-			every_state = {
-				limit = {
-					is_owned_by = TUR
-					is_core_of = QAT
-				}
-				transfer_state_to = QAT
-			}
-			every_state = {
-				limit = {
-					is_owned_by = TUR
-					is_core_of = UAE
-				}
-				transfer_state_to = UAE
-			}
-		}
-	}
-	fire_only_once = yes
+	is_triggered_only = yes
 	option = {
 		name = turkey.15.a
 		ai_chance = {
@@ -845,7 +816,6 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		hidden_effect = {
-			country_event = { id = turkey.71 days = 21 }
 			end_puppet = EGY
 			EGY = {
 				white_peace = SYR
@@ -865,12 +835,6 @@ country_event = {
 					tag = KUR
 					is_in_faction_with = KUR
 					is_subject_of = KUR
-				}
-				white_peace = KUW
-				OR = {
-					tag = KUW
-					is_in_faction_with = KUW
-					is_subject_of = KUW
 				}
 				white_peace = HJZ
 				OR = {
@@ -1236,7 +1200,7 @@ news_event = {
 			TUR = {
 				add_timed_idea = { idea = postwar_reconstruction_high days = 100 }
 			}
-			EGY = { country_event = { id = turkey.64 days = 12 } }
+			#EGY = { country_event = { id = turkey.64 days = 12 } }
 			every_country = {
 				limit = {
 					has_idea = Anti_Ottoman_Union
@@ -1421,7 +1385,7 @@ country_event = {
 		hidden_effect = {
 			clr_global_flag = Middle_East_War
 			TUR = {
-				country_event = { id = turkey.63 days = 7 }
+				#country_event = { id = turkey.63 days = 7 }
 				set_country_flag = victory_of_ME_war
 			}
 			mark_focus_tree_layout_dirty = yes
@@ -1854,22 +1818,23 @@ country_event = {
 
 country_event = {
 	id = turkey.43
-	title = turkey.42.t
-	desc = turkey.42.d
+	title = turkey.43.t
+	desc = turkey.43.d
 	picture = Singing
-	is_triggered_only = yes
+	trigger = {
+		original_tag = TUR
+		has_war_with = ENG
+		NOT = { has_completed_focus = Gulf_control }
+	}
+	mean_time_to_happen = { days = 7 }
+	fire_only_once = yes
 	option = {
-		name = turkey.42.a
-		TUR = { country_event = { id = turkey.47 days = 3 } }
+		name = turkey.43.a
+		656 = { add_claim_by = TUR }
+		765 = { add_claim_by = TUR }
+		685 = { add_claim_by = TUR }
 		ai_chance = {
 			factor = 6
-		}
-	}
-	option = {
-		name = turkey.42.b
-		TUR = { country_event = { id = turkey.48 days = 3 } }
-		ai_chance = {
-			factor = 3
 		}
 	}
 }
@@ -1904,7 +1869,17 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = turkey.45.a
-		TUR = { annex_country = { target = UAE transfer_troops = yes } }
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				OR = {
+					state = 656
+					state = 765
+					state = 685
+				}
+			}
+			transfer_state_to = TUR
+		}
 		ai_chance = {
 			factor = 6
 		}
@@ -1919,7 +1894,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = turkey.46.a
-		declare_war_on = { target = UAE type = annex_everything }
+		create_wargoal = { type = take_state_focus target = ENG }
 		ai_chance = {
 			factor = 6
 		}
@@ -3098,6 +3073,21 @@ country_event = {
 	}
 }
 
+country_event = {
+	id = turkey.101
+	title = turkey.101.t
+	desc = turkey.101.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = turkey.101.a
+		add_timed_idea = { idea = TUR_purged_army days = 100 }
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
 news_event = {
 	id = turkey.99
 	title = turkey.99.t
@@ -3455,113 +3445,6 @@ country_event = { #HJZ resistance increase
 	option = {
 		name = turkey.1002.a
 		HJZ_resistance_large_increase = yes
-		add_stability = -0.01
-		ai_chance = {
-			factor = 6
-		}
-	}
-}
-
-country_event = { #SE resistance increase
-	id = turkey.1014
-	title = turkey.1003.t
-	desc = turkey.1003.d
-	picture = ottoman_minority
-	trigger = {
-		tag = TUR
-		OR = {
-			has_idea = national_self_determination
-			has_idea = national_self_determination1
-		}
-		UAE = { exists = no }
-		QAT = { exists = no }
-		KUW = { exists = no }
-		date > 1936.1.24
-	}
-	fire_only_once = yes
-	option = {
-		name = turkey.1003.a
-		SE_resistance_small_increase = yes
-		ai_chance = {
-			factor = 6
-		}
-	}
-}
-
-country_event = { #SE resistance increase
-	id = turkey.1015
-	title = turkey.1003.t
-	desc = turkey.1003.d
-	picture = ottoman_minority
-	trigger = {
-		tag = TUR
-		OR = {
-			has_idea = national_self_determination
-			has_idea = national_self_determination1
-		}
-		UAE = { exists = no }
-		QAT = { exists = no }
-		KUW = { exists = no }
-		date > 1936.8.17
-	}
-	fire_only_once = yes
-	option = {
-		name = turkey.1003.a
-		SE_resistance_large_increase = yes
-		add_stability = -0.01
-		ai_chance = {
-			factor = 6
-		}
-	}
-}
-
-country_event = { #SE resistance increase
-	id = turkey.1016
-	title = turkey.1003.t
-	desc = turkey.1003.d
-	picture = ottoman_minority
-	trigger = {
-		tag = TUR
-		OR = {
-			has_idea = national_self_determination
-			has_idea = national_self_determination1
-		}
-		UAE = { exists = no }
-		QAT = { exists = no }
-		KUW = { exists = no }
-		date > 1937.5.14
-	}
-	fire_only_once = yes
-	option = {
-		name = turkey.1003.a
-		SE_resistance_large_increase = yes
-		add_stability = -0.01
-		ai_chance = {
-			factor = 6
-		}
-	}
-}
-
-country_event = { #SE resistance increase
-	id = turkey.1017
-	title = turkey.1003.t
-	desc = turkey.1003.d
-	picture = ottoman_minority
-	trigger = {
-		tag = TUR
-		OR = {
-			has_idea = national_self_determination
-			has_idea = national_self_determination1
-		}
-		UAE = { exists = no }
-		QAT = { exists = no }
-		KUW = { exists = no }
-		date > 1938.7.2
-	}
-	fire_only_once = yes
-	option = {
-		name = turkey.1003.a
-		SE_resistance_large_increase = yes
 		add_stability = -0.01
 		ai_chance = {
 			factor = 6

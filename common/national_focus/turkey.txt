@@ -25,9 +25,12 @@ focus_tree = {
 		id = Call_of_the_Middle_East_War
 		icon = Call_of_the_Middle_East_War
 		relative_position_id = the_survival_of_the_Ottoman_Empire
-		x = 0
+		x = 1
 		y = 2
 		cost = 1
+		allow_branch = {
+			NOT = { has_cosmetic_tag = TUR_REP }
+		}
 		available = {
 			has_global_flag = Middle_East_War
 		}
@@ -462,7 +465,7 @@ focus_tree = {
 		id = Kemalizm_continue
 		icon = Kemalizm_continue
 		relative_position_id = the_survival_of_the_Ottoman_Empire
-		x = 7
+		x = 8
 		y = 1
 		cost = 10
 		ai_will_do = {
@@ -494,7 +497,7 @@ focus_tree = {
 		relative_position_id = Kemalizm_continue
 		x = -3
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 5
 		}
@@ -513,7 +516,7 @@ focus_tree = {
 		relative_position_id = Kemalizm_continue
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 5
 		}
@@ -532,7 +535,7 @@ focus_tree = {
 		relative_position_id = Kemalizm_continue
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 5
 		}
@@ -551,7 +554,7 @@ focus_tree = {
 		relative_position_id = Kemalizm_continue
 		x = 3
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 5
 		}
@@ -748,6 +751,7 @@ focus_tree = {
 				}
 				remove_ideas = national_self_determination
 			}
+			remove_country_leader_role = TUR_fevzi_cakmak
 			if = {
 				limit = {
 					has_country_flag = fall_of_Ottoman
@@ -755,7 +759,6 @@ focus_tree = {
 				set_cosmetic_tag = TUR_REP
 				news_event = turkey.98
 			}
-			remove_country_leader_role = TUR_fevzi_cakmak
 			else = {
 				set_cosmetic_tag = united_state_of_ottoman
 				news_event = turkey.99
@@ -1013,9 +1016,9 @@ focus_tree = {
 	
 	focus = {
 		id = sultans_age
-		icon = GFX_focus_rom_royal_dictatorship
+		icon = GFX_sultans_age
 		relative_position_id = the_survival_of_the_Ottoman_Empire
-		x = -8
+		x = -7
 		y = 1
 		cost = 10
 		ai_will_do = {
@@ -1071,7 +1074,7 @@ focus_tree = {
 	
 	focus = {
 		id = Dismissal_of_Kemal
-		icon = GFX_focus_TUR_purge_the_kemalists
+		icon = GFX_Dismissal_of_Kemal
 		relative_position_id = sultans_age
 		x = 0
 		y = 1
@@ -1094,12 +1097,13 @@ focus_tree = {
 	
 	focus = {
 		id = TUR_depoliticize_the_army
+		icon = GFX_TUR_depoliticize_the_army
 		relative_position_id = Dismissal_of_Kemal
 		x = -1
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 6
+			factor = 5
 		}
 		prerequisite = {
 			focus = Dismissal_of_Kemal
@@ -1107,6 +1111,62 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = turkey.100
+		}
+	}
+	
+	focus = {
+		id = TUR_military_purges
+		icon = GFX_TUR_military_purges
+		relative_position_id = TUR_depoliticize_the_army
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 5
+		}
+		prerequisite = {
+			focus = TUR_depoliticize_the_army
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = turkey.101
+		}
+	}
+	
+	focus = {
+		id = TUR_empower_the_sultan
+		icon = GFX_TUR_empower_the_sultan
+		relative_position_id = TUR_military_purges
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 5
+		}
+		prerequisite = {
+			focus = TUR_military_purges
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			hidden_effect = {
+				remove_country_leader_role = {
+					ideology = centrism
+				}
+				add_country_leader_role = {
+					character = TUR_Abdulmecit_II
+					promote_leader = yes
+					country_leader = {
+						ideology = autocracy
+						traits = { autocrat }
+						traits = { khalifa_of_painting }
+					}
+				}
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = TUR_osman_house_party
+				name = TUR_osman_house_party
+			}
+			custom_effect_tooltip = new_kalifa
+			remove_ideas = Second_Constitutional_Era
 		}
 	}
 	
@@ -1130,6 +1190,152 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = TUR_Apply_jizya_to_muslim_minorities
+		icon = GFX_TUR_Apply_jizya_to_muslim_minorities
+		relative_position_id = Grand_Vizier_ismet_inonu
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 5
+		}
+		prerequisite = {
+			focus = Grand_Vizier_ismet_inonu
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = TUR_jizya_tax
+		}
+	}
+	
+	focus = {
+		id = TUR_suppress_arab_revolts
+		icon = GFX_TUR_suppress_arab_revolts
+		relative_position_id = Grand_Vizier_ismet_inonu
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 5
+		}
+		prerequisite = {
+			focus = Grand_Vizier_ismet_inonu
+		}
+		bypass = {
+			KUR = { exists = yes }
+			NOT = { has_war_with = KUR }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = TUR_suppress_arab_revolts
+		}
+	}
+	
+	focus = {
+		id = TUR_centralize_the_empire
+		icon = GFX_TUR_centralize_the_empire
+		relative_position_id = TUR_Apply_jizya_to_muslim_minorities
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 5
+		}
+		prerequisite = {
+			focus = TUR_Apply_jizya_to_muslim_minorities
+		}
+		prerequisite = {
+			focus = TUR_suppress_arab_revolts
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			unlock_decision_category_tooltip = TUR_centralize_the_empire
+		}
+	}
+	
+	focus = {
+		id = TUR_zillullah_fil_alem
+		icon = GFX_TUR_zillullah_fil_alem
+		relative_position_id = TUR_centralize_the_empire
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 5
+		}
+		prerequisite = {
+			focus = TUR_empower_the_sultan
+		}
+		prerequisite = {
+			focus = TUR_centralize_the_empire
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = TUR_zillullah_fil_alem
+		}
+	}
+	
+	focus = {
+		id = TUR_Turkish_quran
+		icon = GFX_TUR_Turkish_quran
+		relative_position_id = TUR_zillullah_fil_alem
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 5
+		}
+		prerequisite = {
+			focus = TUR_zillullah_fil_alem
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = TUR_zillullah_fil_alem
+		}
+	}
+	
+	focus = {
+		id = religious_secularism
+		icon = GFX_focus_generic_court
+		relative_position_id = TUR_zillullah_fil_alem
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 5
+		}
+		prerequisite = {
+			focus = TUR_zillullah_fil_alem
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_ideas = religious_secularism
+		}
+	}
+	
+	focus = {
+		id = glory_of_the_past
+		icon = GFX_goal_generic_attack_allies
+		relative_position_id = TUR_Turkish_quran
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 5
+		}
+		prerequisite = {
+			focus = TUR_Turkish_quran
+		}
+		prerequisite = {
+			focus = religious_secularism
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_ideas = glory_of_the_past
+		}
+	}
+	
+	focus = {
 		id = King_of_the_Middle_East
 		icon = GFX_focus_TUR_treaty_of_saadabad
 		relative_position_id = look_out
@@ -1141,12 +1347,6 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = glory_of_the_past
-		}
-		prerequisite = {
-			focus = inseparable_country
-		}
-		prerequisite = {
-			focus = Sultan_of_the_Ottoman_Empire
 		}
 		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
 		completion_reward = {
@@ -1190,6 +1390,7 @@ focus_tree = {
 				has_country_flag = fall_of_Ottoman
 				has_country_flag = half_victory_of_Ottoman
 			}
+			has_completed_focus = Kemalizm_continue
 		}
 		bypass = {
 			OR = {
@@ -1997,6 +2198,7 @@ focus_tree = {
 				has_country_flag = victory_of_ME_war
 				has_country_flag = half_victory_of_Ottoman
 			}
+			has_completed_focus = sultans_age
 		}
 		prerequisite = {
 			focus = look_out
@@ -2220,52 +2422,12 @@ focus_tree = {
 			focus = To_Pakistan
 		}
 		available = { has_war = no }
+		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
-			if = {
-				limit = {
-					UAE = { is_subject_of = TUR }
-				}
-				TUR = { annex_country = { target = UAE transfer_troops = yes } }
-			}
-			if = {
-				limit = {
-					QAT = { is_subject_of = TUR }
-				}
-				TUR = { annex_country = { target = QAT transfer_troops = yes } }
-			}
-			if = {
-				limit = {
-					KUW = { is_subject_of = TUR }
-				}
-				TUR = { annex_country = { target = KUW transfer_troops = yes } }
-			}
-			if = {
-				limit = {
-					NOT = {
-						UAE = { is_subject_of = TUR }
-					}
-					UAE = { exists = yes }
-				}
-				UAE = { country_event = turkey.42 }
-			}
-			if = {
-				limit = {
-					NOT = {
-						QAT = { is_subject_of = TUR }
-					}
-					QAT = { exists = yes }
-				}
-				QAT = { country_event = turkey.43 }
-			}
-			if = {
-				limit = {
-					NOT = {
-						KUW = { is_subject_of = TUR }
-					}
-					KUW = { exists = yes }
-				}
-				KUM = { country_event = turkey.44 }
-			}
+			656 = { add_claim_by = TUR }
+			765 = { add_claim_by = TUR }
+			685 = { add_claim_by = TUR }
+			ENG = { country_event = turkey.42 }
 			else = {
 				add_stability = 0.05
 			}
@@ -2305,7 +2467,7 @@ focus_tree = {
 	focus = {
 		id = TUR_the_age_of_the_republic
 		icon = focus_TUR
-		x = 10
+		x = 8
 		y = 0
 		cost = 5
 		ai_will_do = {
@@ -3286,6 +3448,10 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			swap_ideas = {
+				remove_idea = sick_man_of_europe
+				add_idea = sick_man_of_europe1
+			}
+			swap_ideas = {
 				remove_idea = agricultural_economy
 				add_idea = agricultural_economy1
 			}
@@ -3437,194 +3603,14 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = 3_year_economic_development_plan
-		icon = GFX_focus_TUR_turanist_ambition
-		relative_position_id = Ankara_Economic_Commission_establishment
-		x = 2
-		y = 1
-		cost = 10
-		ai_will_do = {
-			factor = 4
-		}
-		prerequisite = {
-			focus = Ankara_Economic_Commission_establishment
-		}
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = sick_man_of_europe
-				add_idea = sick_man_of_europe1
-			}
-		}
-	}
-	
-	focus = {
-		id = oppressing_trade_unions
-		icon = GFX_focus_eng_move_to_secure_the_dominions
-		relative_position_id = 3_year_economic_development_plan
-		x = -1
-		y = 1
-		cost = 10
-		ai_will_do = {
-			factor = 4
-		}
-		prerequisite = {
-			focus = 3_year_economic_development_plan
-		}
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = sick_man_of_europe1
-				add_idea = sick_man_of_europe2
-			}
-		}
-	}
-	
-	focus = {
-		id = Railway_corporation
-		icon = GFX_goal_generic_construct_infrastructure
-		relative_position_id = 3_year_economic_development_plan
-		x = 1
-		y = 1
-		cost = 10
-		ai_will_do = {
-			factor = 4
-		}
-		prerequisite = {
-			focus = 3_year_economic_development_plan
-		}
-		search_filters  ={ FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			show_ideas_tooltip = tcdd
-		}
-	}
-	
-	focus = {
-		id = industrial_increase_plan
-		icon = GFX_goal_generic_construct_civ_factory
-		relative_position_id = Protectionism
-		x = 1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 4
-		}
-		prerequisite = {
-			focus = Protectionism
-		}
-		prerequisite = {
-			focus = oppressing_trade_unions
-		}
-		search_filters  ={ FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			if = {
-				limit = {
-					has_dynamic_modifier = { modifier = TUR_Kemal_Reformation_dynamic_modifier }
-				}
-				add_to_variable = { TUR_Kemal_Reformation_production_speed_industrial_complex_factor = 0.05 }
-				custom_effect_tooltip = TUR_KR_production_speed_industrial_complex_factor_change
-			}
-			if = {
-				limit = {
-					has_dynamic_modifier = { modifier = TUR_Ottoman_Reformation_dynamic_modifier }
-				}
-				add_to_variable = { TUR_Ottoman_Reformation_production_speed_industrial_complex_factor = 0.05 }
-				custom_effect_tooltip = TUR_OM_production_speed_industrial_complex_factor_change
-			}
-		}
-	}
-	
-	focus = {
-		id = Constructing_army_factory
-		icon = GFX_goal_generic_construct_mil_factory
-		relative_position_id =oppressing_trade_unions
-		x = 1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 4
-		}
-		prerequisite = {
-			focus = Railway_corporation
-		}
-		prerequisite = {
-			focus = oppressing_trade_unions
-		}
-		search_filters  ={ FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			if = {
-				limit = {
-					has_dynamic_modifier = { modifier = TUR_Kemal_Reformation_dynamic_modifier }
-				}
-				add_to_variable = { TUR_Kemal_Reformation_production_speed_arms_factory_factor = 0.05 }
-				custom_effect_tooltip = TUR_KR_production_speed_arms_factory_factor_change
-			}
-			if = {
-				limit = {
-					has_dynamic_modifier = { modifier = TUR_Ottoman_Reformation_dynamic_modifier }
-				}
-				add_to_variable = { TUR_Ottoman_Reformation_production_speed_arms_factory_factor = 0.05 }
-				custom_effect_tooltip = TUR_OM_production_speed_arms_factory_factor_change
-			}
-		}
-	}
-	
-	focus = {
-		id = Farming_villages_investment
-		icon = focus_generic_money
-		relative_position_id = Railway_corporation
-		x = 1
-		y = 1
-		cost = 10
-		ai_will_do = {
-			factor = 4
-		}
-		prerequisite = {
-			focus = Railway_corporation
-		}
-		search_filters  ={ FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = agricultural_economy1
-				add_idea = agricultural_economy2
-			}
-		}
-	}
-	
-	focus = {
-		id = Ottoman_Industrial_Investment
-		icon = GFX_goal_generic_production
-		relative_position_id = industrial_increase_plan
-		x = -1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 4
-		}
-		prerequisite = {
-			focus = industrial_increase_plan
-		}
-		prerequisite = {
-			focus = abundance_of_the_Iraq
-		}
-		search_filters  ={ FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			swap_ideas = {
-				remove_idea = sick_man_of_europe2
-				add_idea = sick_man_of_europe3
-			}
-		}
-	}
-	
-	focus = {
 		id = Anatolia_Logistics
 		icon = GFX_goal_generic_construct_mil_factory
-		relative_position_id = Constructing_army_factory
-		x = -1
+		relative_position_id = Protectionism
+		x = 0
 		y = 1
 		cost = 5
 		prerequisite = {
-			focus = Constructing_army_factory
+			focus = Protectionism
 		}
 		bypass = {
 			OR = {
@@ -3664,45 +3650,71 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = Iraq_Logistics
-		icon = GFX_goal_generic_construct_mil_factory
-		relative_position_id = Constructing_army_factory
-		x = 1
+		id = Railway_corporation
+		icon = GFX_goal_generic_construct_infrastructure
+		relative_position_id = Anatolia_Logistics
+		x = -1
 		y = 1
-		cost = 5
+		cost = 10
+		ai_will_do = {
+			factor = 4
+		}
 		prerequisite = {
-			focus = Constructing_army_factory
+			focus = Anatolia_Logistics
 		}
-		bypass = {
-			NOT = {
-				has_full_control_of_state = 676
-			}
-			IRQ = {
-				NOT = {
-					is_subject_of = TUR
-				}
-			}
+		prerequisite = {
+			focus = abundance_of_the_Iraq
 		}
-		search_filters = { FOCUS_FILTER_INDUSTRY }
+		search_filters  ={ FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			random_owned_controlled_state = {
-				prioritize = { 676 }
-				limit = {
-					is_core_of = ROOT
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-				}
-				add_extra_state_shared_building_slots = 1
-			}
+			show_ideas_tooltip = tcdd
 		}
 	}
 	
 	focus = {
-		id = Western_architecture
-		icon = GFX_goal_continuous_non_factory_construct
-		relative_position_id = Ottoman_Industrial_Investment
+		id = TUR_encouraging_farmers
+		icon = GFX_TUR_encouraging_farmers
+		relative_position_id = Ankara_Economic_Commission_establishment
+		x = 3
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = Ankara_Economic_Commission_establishment
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_to_variable = { TUR_Ottoman_Reformation_monthly_population = 0.05 }
+			custom_effect_tooltip = TUR_Ottoman_Reformation_monthly_population
+		}
+	}
+	
+	focus = {
+		id = TUR_establishment_of_agricultural_credit_cooperatives
+		icon = GFX_TUR_establishment_of_agricultural_credit_cooperatives
+		relative_position_id = TUR_encouraging_farmers
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = TUR_encouraging_farmers
+		}
+		search_filters  ={ FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_to_variable = { TUR_Kemal_Reformation_consumer_goods_factor = -0.03 }
+			custom_effect_tooltip = TUR_KR_consumer_goods_factor_change
+		}
+	}
+	
+	focus = {
+		id = TUR_land_refrom
+		icon = GFX_TUR_land_refrom
+		relative_position_id = TUR_establishment_of_agricultural_credit_cooperatives
 		x = 0
 		y = 1
 		cost = 5
@@ -3710,29 +3722,194 @@ focus_tree = {
 			factor = 4
 		}
 		prerequisite = {
-			focus = Ottoman_Industrial_Investment
+			focus = TUR_establishment_of_agricultural_credit_cooperatives
 		}
-		search_filters = { FOCUS_FILTER_INDUSTRY }
+		search_filters  ={ FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = sick_man_of_europe3
-				add_idea = sick_man_of_europe4
+			add_ideas = TUR_land_refrom
+		}
+	}
+	
+	focus = {
+		id = TUR_the_higher_institute_of_agriculture
+		icon = GFX_TUR_the_higher_institute_of_agriculture
+		relative_position_id = TUR_land_refrom
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = TUR_land_refrom
+		}
+		search_filters  ={ FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = agricultural_economy
+				}
+				swap_ideas = {
+					remove_idea = agricultural_economy
+					add_idea = agricultural_economy1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = agricultural_economy1
+				}
+				swap_ideas = {
+					remove_idea = agricultural_economy1
+					add_idea = agricultural_economy2
+				}
+			}
+			else = {
+				remove_ideas = agricultural_economy2
 			}
 		}
 	}
 	
 	focus = {
-		id = Constructing_civilian_factory
-		icon = GFX_goal_generic_construct_civ_factory
-		relative_position_id = Anatolia_Logistics
-		x = 1
+		id = TUR_establishment_of_model_farms
+		icon = GFX_TUR_establishment_of_model_farms
+		relative_position_id = TUR_encouraging_farmers
+		x = 0
 		y = 1
-		cost = 10
-		prerequisite = {
-			focus = Ottoman_Industrial_Investment
+		cost = 5
+		ai_will_do = {
+			factor = 4
 		}
 		prerequisite = {
-			focus = Constructing_army_factory
+			focus = TUR_encouraging_farmers
+		}
+		search_filters  ={ FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = agricultural_economy
+				}
+				swap_ideas = {
+					remove_idea = agricultural_economy
+					add_idea = agricultural_economy1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = agricultural_economy1
+				}
+				swap_ideas = {
+					remove_idea = agricultural_economy1
+					add_idea = agricultural_economy2
+				}
+			}
+			else = {
+				remove_ideas = agricultural_economy2
+			}
+		}
+	}
+	
+	focus = {
+		id = TUR_industrial_incentive_law
+		icon = GFX_TUR_industrial_incentive_law
+		relative_position_id = TUR_establishment_of_model_farms
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = TUR_establishment_of_model_farms
+		}
+		search_filters  ={ FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = sick_man_of_europe
+				}
+				swap_ideas = {
+					remove_idea = sick_man_of_europe
+					add_idea = sick_man_of_europe1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = sick_man_of_europe1
+				}
+				swap_ideas = {
+					remove_idea = sick_man_of_europe1
+					add_idea = sick_man_of_europe2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = sick_man_of_europe2
+				}
+				swap_ideas = {
+					remove_idea = sick_man_of_europe2
+					add_idea = sick_man_of_europe3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = sick_man_of_europe3
+				}
+				swap_ideas = {
+					remove_idea = sick_man_of_europe3
+					add_idea = sick_man_of_europe4
+				}
+			}
+			else = {
+				remove_ideas = sick_man_of_europe4
+			}
+		}
+	}
+	
+	focus = {
+		id = TUR_abolition_of_tithe_tax
+		icon = GFX_TUR_abolition_of_tithe_tax
+		relative_position_id = TUR_encouraging_farmers
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = TUR_encouraging_farmers
+		}
+		search_filters  ={ FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			if = {
+				limit = {
+					has_dynamic_modifier = { modifier = TUR_Kemal_Reformation_dynamic_modifier }
+				}
+				add_to_variable = { TUR_Kemal_Reformation_stability_factor = 0.02 }
+				add_to_variable = { TUR_Kemal_Reformation_consumer_goods_factor = 0.02 }
+				custom_effect_tooltip = TUR_abolition_of_tithe_tax_effect_tt_kemal
+			}
+			if = {
+				limit = {
+					has_dynamic_modifier = { modifier = TUR_Ottoman_Reformation_dynamic_modifier }
+				}
+				add_to_variable = { TUR_Ottoman_Reformation_stability_factor = 0.02 }
+				add_to_variable = { TUR_Ottoman_Reformation_consumer_goods_factor = 0.02 }
+				custom_effect_tooltip = TUR_abolition_of_tithe_tax_effect_tt_ottoman
+			}
+		}
+	}
+	
+	focus = {
+		id = TUR_chambers_of_commerce_and_industry
+		icon = GFX_TUR_chambers_of_commerce_and_industry
+		relative_position_id = TUR_abolition_of_tithe_tax
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 4
+		}
+		prerequisite = {
+			focus = TUR_encouraging_farmers
 		}
 		bypass = {
 			OR = {
@@ -3747,7 +3924,7 @@ focus_tree = {
 				}
 			}
 		}
-		search_filters = { FOCUS_FILTER_INDUSTRY }
+		search_filters  ={ FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			random_owned_controlled_state = {
 				prioritize = { 354 }
@@ -3782,43 +3959,116 @@ focus_tree = {
 				}
 				add_extra_state_shared_building_slots = 1
 			}
+			if = {
+				limit = {
+					has_idea = sick_man_of_europe
+				}
+				swap_ideas = {
+					remove_idea = sick_man_of_europe
+					add_idea = sick_man_of_europe1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = sick_man_of_europe1
+				}
+				swap_ideas = {
+					remove_idea = sick_man_of_europe1
+					add_idea = sick_man_of_europe2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = sick_man_of_europe2
+				}
+				swap_ideas = {
+					remove_idea = sick_man_of_europe2
+					add_idea = sick_man_of_europe3
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = sick_man_of_europe3
+				}
+				swap_ideas = {
+					remove_idea = sick_man_of_europe3
+					add_idea = sick_man_of_europe4
+				}
+			}
+			else = {
+				remove_ideas = sick_man_of_europe4
+			}
 		}
 	}
 	
 	focus = {
-		id = economy_control
-		icon = GFX_focus_TUR_the_sun_language_theory
-		relative_position_id = Farming_villages_investment
-		x = 0
-		y = 2
-		cost = 10
+		id = TUR_first_development_plan
+		icon = GFX_TUR_first_development_plan
+		relative_position_id = TUR_industrial_incentive_law
+		x = 1
+		y = 1
+		cost = 5
 		ai_will_do = {
 			factor = 4
 		}
 		prerequisite = {
-			focus = Farming_villages_investment
+			focus = TUR_industrial_incentive_law
 		}
-		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = TUR_chambers_of_commerce_and_industry
+		}
+		search_filters  ={ FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			remove_ideas = agricultural_economy2
+			if = {
+				limit = {
+					has_dynamic_modifier = { modifier = TUR_Kemal_Reformation_dynamic_modifier }
+				}
+				add_to_variable = { TUR_Kemal_Reformation_production_speed_arms_factory_factor = 0.05 }
+				custom_effect_tooltip = TUR_KR_production_speed_arms_factory_factor_change
+			}
+			if = {
+				limit = {
+					has_dynamic_modifier = { modifier = TUR_Ottoman_Reformation_dynamic_modifier }
+				}
+				add_to_variable = { TUR_Ottoman_Reformation_production_speed_arms_factory_factor = 0.05 }
+				custom_effect_tooltip = TUR_OM_production_speed_arms_factory_factor_change
+			}
+			if = {
+				limit = {
+					has_dynamic_modifier = { modifier = TUR_Kemal_Reformation_dynamic_modifier }
+				}
+				add_to_variable = { TUR_Kemal_Reformation_production_speed_industrial_complex_factor = 0.05 }
+				custom_effect_tooltip = TUR_KR_production_speed_industrial_complex_factor_change
+			}
+			if = {
+				limit = {
+					has_dynamic_modifier = { modifier = TUR_Ottoman_Reformation_dynamic_modifier }
+				}
+				add_to_variable = { TUR_Ottoman_Reformation_production_speed_industrial_complex_factor = 0.05 }
+				custom_effect_tooltip = TUR_OM_production_speed_industrial_complex_factor_change
+			}
+			swap_ideas = {
+				remove_idea = sick_man_of_europe3
+				add_idea = sick_man_of_europe4
+			}
 		}
 	}
 	
 	focus = {
 		id = the_rise_of_the_Ottoman_Empire
 		icon = TUR_support_the_golden_square
-		relative_position_id = Constructing_civilian_factory
-		x = -1
+		relative_position_id = TUR_the_higher_institute_of_agriculture
+		x = 0
 		y = 1
 		cost = 10
 		prerequisite = {
-			focus = Western_architecture
+			focus = TUR_the_higher_institute_of_agriculture
 		}
 		prerequisite = {
-			focus = Constructing_civilian_factory
+			focus = Railway_corporation
 		}
 		prerequisite = {
-			focus = economy_control
+			focus = TUR_first_development_plan
 		}
 		ai_will_do = {
 			factor = 4
@@ -3832,7 +4082,7 @@ focus_tree = {
 	focus = {
 		id = Ottoman_Military_Academy
 		icon = GFX_focus_generic_military_academy
-		x = 25
+		x = 26
 		y = 0
 		cost = 10
 		ai_will_do = {
@@ -4055,7 +4305,7 @@ focus_tree = {
 	focus = {
 		id = Great_Ottoman_Navy
 		icon = GFX_goal_generic_navy_doctrines_tactics
-		x = 31
+		x = 32
 		y = 0
 		cost = 10
 		ai_will_do = {

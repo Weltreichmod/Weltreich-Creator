@@ -416,101 +416,6 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = japan_wr.16.a
-		JAP = {
-			if = {
-				limit = {
-					OR = {
-						has_dlc = "Together for Victory"
-						has_dlc = "Waking the Tiger"
-					}
-				}
-				set_autonomy = {
-					target = MAN
-					autonomous_state = autonomy_wtt_imperial_protectorate
-					freedom_level = 0.5
-				}
-				else = {
-					puppet = MAN
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FNG
-				OR = {
-					state = 716
-					state = 328
-					state = 717
-					state = 610
-					state = 715
-					state = 714
-					state = 761
-					state = 961
-				}
-			}
-			add_core_of = MAN
-			transfer_state_to = MAN
-		}
-		JAP = {
-			if = {
-				limit = {
-					OR = {
-						has_dlc = "Together for Victory"
-						has_dlc = "Waking the Tiger"
-					}
-				}
-				set_autonomy = {
-					target = MEN
-					autonomous_state = autonomy_wtt_imperial_protectorate
-					freedom_level = 0.5
-				}
-				else = {
-					puppet = MEN
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FNG
-				OR = {
-					state = 612
-					state = 611
-				}
-			}
-			add_core_of = MEN
-			transfer_state_to = MEN
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FNG
-				state = 609
-			}
-			transfer_state_to = JAP
-		}
-		if = {
-			limit = {
-				FNG = { has_war_with = CHI }
-			}
-			every_country = {
-				limit = {
-					has_war_with = FNG
-					OR = {
-						original_tag = CHI
-						is_in_faction_with = CHI
-						is_subject_of = CHI
-					}
-				}
-				white_peace = FNG
-			}
-			every_state = {
-				limit = {
-					is_core_of = FNG
-				}
-				remove_core_of = FNG
-				add_core_of = CHI
-			}
-			CHI = { annex_country = { target = FNG transfer_troops = yes } }
-		}
 		ai_chance = {
 			base = 10
 		}
@@ -1004,7 +909,10 @@ country_event = {
 		name = japan_wr.23.b
 		every_state = {
 			limit = {
-				is_owned_by = GOA
+				OR = {
+					is_owned_by = GOA
+					is_owned_by = GER
+				}
 				OR = {
 					state = 671
 					state = 670
@@ -1037,9 +945,11 @@ country_event = {
 		name = japan_wr.24.a
 		if = {
 			limit = {
-				NOT = { has_war_with = GOA }
+				#NOT = { has_war_with = GOA }
+				NOT = { has_war_with = GER }
 			}
-			declare_war_on = { target = GOA  type = puppet_wargoal_focus }
+			#declare_war_on = { target = GOA  type = puppet_wargoal_focus }
+			declare_war_on = { target = GER  type = puppet_wargoal_focus }
 		}
 		ai_chance = {
 			base = 10

@@ -641,7 +641,12 @@ focus_tree = {
 		y = 1
 		cost = 10
 		bypass = {
-			FRA = { is_in_faction_with = ENG }
+			OR = {
+				FRA = { is_in_faction_with = ENG }
+				FRA = { exists = no }
+				FRA = { is_subject = yes }
+				FRA = { has_country_flag = second_great_war_loser }
+			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -706,27 +711,11 @@ focus_tree = {
 			547 = { add_claim_by = ENG }
 			903 = { add_claim_by = ENG }
 			884 = { add_claim_by = ENG }
-			274 = { add_claim_by = ENG }
-			558 = { add_claim_by = ENG }
-			900 = { add_claim_by = ENG }
-			902 = { add_claim_by = ENG }
-			901 = { add_claim_by = ENG }
-			707 = { add_claim_by = ENG }
-			709 = { add_claim_by = ENG }
-			704 = { add_claim_by = ENG }
-			703 = { add_claim_by = ENG }
 			844 = { add_claim_by = ENG }
 			917 = { add_claim_by = ENG }
 			737 = { add_claim_by = ENG }
 			634 = { add_claim_by = ENG }
-			333 = { add_claim_by = ENG }
-			336 = { add_claim_by = ENG }
-			643 = { add_claim_by = ENG }
-			636 = { add_claim_by = ENG }
 			726 = { add_claim_by = ENG }
-			270 = { add_claim_by = ENG }
-			712 = { add_claim_by = ENG }
-			711 = { add_claim_by = ENG }
 		}
 	}
 	
@@ -832,9 +821,21 @@ focus_tree = {
 				factor = 10
 				has_war_with = GER
 			}
+			modifier = {
+				factor = 10
+				date > 1939.6.6
+			}
 		}
 		completion_reward = {
-			add_timed_idea { idea = anti_germany_propaganda days = 365 }
+			if = {
+				limit = {
+					NOT = { is_in_faction_with = FRA }
+				}
+				declare_war_on = { target = GER type = annex_everything }
+			}
+			else = {
+				add_timed_idea { idea = anti_germany_propaganda days = 365 }
+			}
 		}
 	}
 	
@@ -1330,27 +1331,11 @@ focus_tree = {
 			547 = { add_claim_by = ENG }
 			903 = { add_claim_by = ENG }
 			884 = { add_claim_by = ENG }
-			274 = { add_claim_by = ENG }
-			558 = { add_claim_by = ENG }
-			900 = { add_claim_by = ENG }
-			902 = { add_claim_by = ENG }
-			901 = { add_claim_by = ENG }
-			707 = { add_claim_by = ENG }
-			709 = { add_claim_by = ENG }
-			704 = { add_claim_by = ENG }
-			703 = { add_claim_by = ENG }
 			844 = { add_claim_by = ENG }
 			917 = { add_claim_by = ENG }
 			737 = { add_claim_by = ENG }
 			634 = { add_claim_by = ENG }
-			333 = { add_claim_by = ENG }
-			336 = { add_claim_by = ENG }
-			643 = { add_claim_by = ENG }
-			636 = { add_claim_by = ENG }
 			726 = { add_claim_by = ENG }
-			270 = { add_claim_by = ENG }
-			712 = { add_claim_by = ENG }
-			711 = { add_claim_by = ENG }
 		}
 	}
 	
@@ -2326,7 +2311,12 @@ focus_tree = {
 			}
 		}
 		bypass = {
-			SOV = { exists = no }
+			OR = {
+				SOV = { is_in_faction_with = ENG }
+				SOV = { exists = no }
+				SOV = { is_subject = yes }
+				SOV = { has_country_flag = anti_russia_war_loser }
+			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -2470,7 +2460,12 @@ focus_tree = {
 			factor = 6
 		}
 		bypass = {
-			FRA = { exists = no }
+			OR = {
+				FRA = { is_in_faction_with = ENG }
+				FRA = { exists = no }
+				FRA = { is_subject = yes }
+				FRA = { has_country_flag = second_great_war_loser }
+			}
 		}
 		prerequisite = {
 			focus = officer_of_france_and_britain
@@ -2571,27 +2566,11 @@ focus_tree = {
 				547 = { add_claim_by = ENG }
 				903 = { add_claim_by = ENG }
 				884 = { add_claim_by = ENG }
-				274 = { add_claim_by = ENG }
-				558 = { add_claim_by = ENG }
-				900 = { add_claim_by = ENG }
-				902 = { add_claim_by = ENG }
-				901 = { add_claim_by = ENG }
-				707 = { add_claim_by = ENG }
-				709 = { add_claim_by = ENG }
-				704 = { add_claim_by = ENG }
-				703 = { add_claim_by = ENG }
 				844 = { add_claim_by = ENG }
 				917 = { add_claim_by = ENG }
 				737 = { add_claim_by = ENG }
 				634 = { add_claim_by = ENG }
-				333 = { add_claim_by = ENG }
-				336 = { add_claim_by = ENG }
-				643 = { add_claim_by = ENG }
-				636 = { add_claim_by = ENG }
 				726 = { add_claim_by = ENG }
-				270 = { add_claim_by = ENG }
-				712 = { add_claim_by = ENG }
-				711 = { add_claim_by = ENG }
 			}
 			if = {
 				limit = {
@@ -2617,27 +2596,11 @@ focus_tree = {
 				547 = { add_claim_by = ENG }
 				903 = { add_claim_by = ENG }
 				884 = { add_claim_by = ENG }
-				274 = { add_claim_by = ENG }
-				558 = { add_claim_by = ENG }
-				900 = { add_claim_by = ENG }
-				902 = { add_claim_by = ENG }
-				901 = { add_claim_by = ENG }
-				707 = { add_claim_by = ENG }
-				709 = { add_claim_by = ENG }
-				704 = { add_claim_by = ENG }
-				703 = { add_claim_by = ENG }
 				844 = { add_claim_by = ENG }
 				917 = { add_claim_by = ENG }
 				737 = { add_claim_by = ENG }
 				634 = { add_claim_by = ENG }
-				333 = { add_claim_by = ENG }
-				336 = { add_claim_by = ENG }
-				643 = { add_claim_by = ENG }
-				636 = { add_claim_by = ENG }
 				726 = { add_claim_by = ENG }
-				270 = { add_claim_by = ENG }
-				712 = { add_claim_by = ENG }
-				711 = { add_claim_by = ENG }
 				add_threat = 20
 				declare_war_on = { target = GER type = annex_everything }
 			}
@@ -3783,7 +3746,12 @@ focus_tree = {
 			focus = negotiations_with_the_German_Empire
 		}
 		bypass = {
-			is_in_faction_with = FRA
+			OR = {
+				FRA = { is_in_faction_with = ENG }
+				FRA = { exists = no }
+				FRA = { is_subject = yes }
+				FRA = { has_country_flag = second_great_war_loser }
+			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -3860,15 +3828,6 @@ focus_tree = {
 			547 = { add_claim_by = ENG }
 			903 = { add_claim_by = ENG }
 			884 = { add_claim_by = ENG }
-			274 = { add_claim_by = ENG }
-			558 = { add_claim_by = ENG }
-			900 = { add_claim_by = ENG }
-			902 = { add_claim_by = ENG }
-			901 = { add_claim_by = ENG }
-			707 = { add_claim_by = ENG }
-			709 = { add_claim_by = ENG }
-			704 = { add_claim_by = ENG }
-			703 = { add_claim_by = ENG }
 			844 = { add_claim_by = ENG }
 		}
 	}
@@ -3899,14 +3858,7 @@ focus_tree = {
 			917 = { add_claim_by = ENG }
 			737 = { add_claim_by = ENG }
 			634 = { add_claim_by = ENG }
-			333 = { add_claim_by = ENG }
-			336 = { add_claim_by = ENG }
-			643 = { add_claim_by = ENG }
-			636 = { add_claim_by = ENG }
 			726 = { add_claim_by = ENG }
-			270 = { add_claim_by = ENG }
-			712 = { add_claim_by = ENG }
-			711 = { add_claim_by = ENG }
 		}
 	}
 	
@@ -3979,7 +3931,12 @@ focus_tree = {
 			}
 		}
 		bypass = {
-			is_in_faction_with = GER
+			OR = {
+				GER = { is_in_faction_with = ENG }
+				GER = { exists = no }
+				GER = { is_subject = yes }
+				GER = { has_country_flag = second_great_war_loser }
+			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
