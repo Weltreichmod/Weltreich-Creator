@@ -480,12 +480,12 @@ GER_attack_ukraine = {
 	enable = {
 		original_tag = GER
 		has_war_with = UKR
-		has_global_flag = ukraine_civil_war
+		has_global_flag = german_ukrainian_war
 	}
 
 	abort = {
 		OR = {
-			NOT = { has_global_flag = ukraine_civil_war }
+			NOT = { has_global_flag = german_ukrainian_war }
 			NOT = { has_war_with = UKR }
 		}
 	}
@@ -1160,4 +1160,24 @@ bba_air_prod_2 = {
 		value = 25
 	}
 
+}
+
+GER_help_UKR_win_civil_war = {
+	allowed = {
+		original_tag = GER
+	}
+	enable = {
+		OR = {
+			UKR = { has_war_with = UPR }
+			UKR = { has_war_with = USS }
+		}
+		country_exists = UKR
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = UKR
+		value = 150
+	}
 }

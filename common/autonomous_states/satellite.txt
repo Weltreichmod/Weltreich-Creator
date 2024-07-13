@@ -1,6 +1,6 @@
 autonomy_state = {
 	id = autonomy_satellite
-	min_freedom_level = 0.0
+	min_freedom_level = 0.83
 	manpower_influence = 0.5
 	
 	rule = {
@@ -13,12 +13,9 @@ autonomy_state = {
 	}
 	
 	modifier = {
-		autonomy_manpower_share = 0.4
-		extra_trade_to_overlord_factor = 0.4
-		overlord_trade_cost_factor = -0.4
-		license_subject_master_purchase_cost = -1
-		autonomy_gain_global_factor = -0.3
-		peace_score_ratio_transferred_to_overlord = 0.1
+		autonomy_manpower_share = 0.0
+		extra_trade_to_overlord_factor = 0.15
+		overlord_trade_cost_factor = -0.15
 	}
 	
 	ai_subject_wants_higher = {
@@ -38,17 +35,31 @@ autonomy_state = {
 			has_dlc = "Together for Victory"
 			has_dlc = "Waking the Tiger"
 		}
-	}
-
-	allowed_levels_filter = {
-		autonomy_satellite
+		NOT = { 
+			has_country_flag = protectorate
+			AND = {
+				overlord = {
+					tag = GER
+				}
+				OR = {
+					tag = POL
+					tag = LIT
+					tag = LAT
+					tag = EST
+					tag = UBD
+					tag = MOS
+					tag = WOL
+					tag = URL
+				}
+			}
+		}
 	}
 	
 	can_take_level = {
-		hidden_trigger = { always = no }
+		#hidden_trigger = { always = no }
 	}
 
 	can_lose_level = {
-		hidden_trigger = { always = no }
+		#hidden_trigger = { always = no }
 	}
 }

@@ -72,6 +72,69 @@ SOV_Union = {
 			base = 4000
 		}
 	}
+	SOV_annex_ukraine = {
+		icon = GFX_decision_FIN_stop_motti_tactics
+		visible = {
+			OR = {
+				UKR = { is_subject_of = SOV }
+				UPR = { is_subject_of = SOV }
+				USS = { is_subject_of = SOV }
+			}
+		}
+		visible = {
+			OR = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = anti_russia_war_winner
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		complete_effect = {
+			if = {
+				limit  ={
+					UKR = { is_subject_of = SOV }
+				}
+				SOV = { annex_country = { target = UKR transfer_troops = yes } }
+			}
+			if = {
+				limit  ={
+					UPR = { is_subject_of = SOV }
+				}
+				SOV = { annex_country = { target = UPR transfer_troops = yes } }
+			}
+			if = {
+				limit  ={
+					USS = { is_subject_of = SOV }
+				}
+				SOV = { annex_country = { target = USS transfer_troops = yes } }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	SOV_annex_belarus = {
+		icon = GFX_decision_FIN_stop_motti_tactics
+		visible = {
+			BLR = { is_subject_of = SOV }
+		}
+		visible = {
+			OR = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = anti_russia_war_winner
+			}
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		complete_effect = {
+			SOV = { annex_country = { target = BLR transfer_troops = yes } }
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
 }
 
 the_great_struggle = {

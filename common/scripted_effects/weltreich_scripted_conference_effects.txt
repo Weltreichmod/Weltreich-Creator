@@ -565,6 +565,31 @@ peace_conference_effect = {
 		limit = {
 			ENG = { has_country_flag = second_great_war_loser }
 		}
+		if = {
+			limit = {
+				TUR = { has_country_flag = second_great_war_winner }
+			}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Man the Guns"
+					}
+				}
+				set_autonomy = {
+					target = OMA
+					autonomous_state = autonomy_protectorate
+					freedom_level = 0.8
+				}
+				else = {
+					puppet = OMA
+				}
+			}
+			else = {
+				ENG = { end_puppet = OMA }
+				OMA = { clr_country_flag = protectorate }
+			}
+		}
 		every_state = {
 			limit = {
 				is_owned_by = ENG
