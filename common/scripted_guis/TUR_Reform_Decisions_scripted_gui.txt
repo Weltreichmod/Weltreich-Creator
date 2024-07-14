@@ -1,0 +1,182 @@
+scripted_gui = {
+	TUR_Reform_Decisions_GUI = {
+		context_type = decision_category
+		window_name = "TUR_Reform_Decisions_GUI"
+
+		visible = {
+			always = yes
+		}
+
+		properties = {
+			Poster_Button = {
+				frame = TUR_Posters_var
+			}
+		}
+
+		dynamic_lists = {
+			Posters_Grid_Box = {
+				array = TUR_Posters_array
+				index = TUR_Posters_idx
+				value = TUR_Posters_var
+				# change_scope = yes
+				entry_container = "Posters_container"
+			}
+		}
+
+		effects = {
+			Poster_Button_click = {
+				if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 0 }
+					}
+					set_country_flag = TUR_the_poster_clicked
+					set_country_flag = TUR_educational_reforms_enabled
+	
+					clr_country_flag = TUR_political_reforms_enabled
+					clr_country_flag = TUR_social_reforms_enabled
+					clr_country_flag = TUR_constitutional_reforms_enabled
+				}
+				else_if = {
+					limit = { 
+						check_variable = { TUR_Posters_idx = 1 }
+					}
+					set_country_flag = TUR_the_poster_clicked
+					set_country_flag = TUR_political_reforms_enabled
+					
+					clr_country_flag = TUR_educational_reforms_enabled
+					clr_country_flag = TUR_social_reforms_enabled
+					clr_country_flag = TUR_constitutional_reforms_enabled
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 2 }
+					}
+					set_country_flag = TUR_the_poster_clicked
+					set_country_flag = TUR_social_reforms_enabled
+
+					clr_country_flag = TUR_educational_reforms_enabled
+					clr_country_flag = TUR_political_reforms_enabled
+					clr_country_flag = TUR_constitutional_reforms_enabled
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 3 }
+					}
+					set_country_flag = TUR_the_poster_clicked
+					set_country_flag = TUR_constitutional_reforms_enabled
+
+					clr_country_flag = TUR_educational_reforms_enabled
+					clr_country_flag = TUR_political_reforms_enabled
+					clr_country_flag = TUR_social_reforms_enabled
+				}
+			}
+		}
+		
+		triggers = {
+			Poster_Button_click_enabled = {
+				if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 0 }
+					}
+					AND = {
+						has_completed_focus = TUR_educational_reforms
+						NOT = {
+							check_variable = { completed_edu_reforms = 5 }
+							check_variable = { completed_edu_reforms > 5 }
+							has_country_flag = TUR_educational_reforms_enabled
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 1 }
+					}
+					AND = {
+						has_completed_focus = TUR_political_reforms
+						NOT = {
+							check_variable = { completed_pol_reforms = 5 }
+							check_variable = { completed_pol_reforms > 5 }
+							has_country_flag = TUR_political_reforms_enabled
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 2 }
+					}
+					AND = {
+						has_completed_focus = TUR_social_refroms
+						NOT = {
+							check_variable = { completed_soc_reforms = 5 }
+							check_variable = { completed_soc_reforms > 5 }
+							has_country_flag = TUR_social_reforms_enabled
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 3 }
+					}
+					AND = {
+						has_completed_focus = TUR_constitutional_reforms
+						NOT = {
+							check_variable = { completed_con_reforms = 5 }
+							check_variable = { completed_con_reforms > 5 }
+							has_country_flag = TUR_constitutional_reforms_enabled
+						}
+					}
+				}
+			}
+			Reform_Completed_Stamp_visible = {
+				if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 0 }
+					}
+					AND = {
+						has_completed_focus = TUR_educational_reforms
+						OR = {
+							check_variable = { completed_edu_reforms = 5 }
+							check_variable = { completed_edu_reforms > 5 }
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 1 }
+					}
+					AND = {
+						has_completed_focus = TUR_political_reforms
+						OR = {
+							check_variable = { completed_pol_reforms = 5 }
+							check_variable = { completed_pol_reforms > 5 }
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 2 }
+					}
+					AND = {
+						has_completed_focus = TUR_social_refroms
+						OR = {
+							check_variable = { completed_soc_reforms = 5 }
+							check_variable = { completed_soc_reforms > 5 }
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 3 }
+					}
+					AND = {
+						has_completed_focus = TUR_constitutional_reforms
+						OR = {
+							check_variable = { completed_con_reforms = 5 }
+							check_variable = { completed_con_reforms > 5 }
+						}
+					}
+				}
+			}
+		}
+	}
+}
