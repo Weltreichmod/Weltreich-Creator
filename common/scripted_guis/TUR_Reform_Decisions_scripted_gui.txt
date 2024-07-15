@@ -7,18 +7,6 @@ scripted_gui = {
 			always = yes
 		}
 
-		ai_enabled = { original_tag = TUR }
-		ai_check = { NOT = { has_country_flag  = AI_GUI_Reform_Enabled }}
-		ai_test_interval = 24 # Checks every hour
-		ai_test_variance = 0 # Exactly
-		ai_weights = {
-			Poster_Button_click = {
-				ai_will_do = {
-					base = 1000
-				}
-			}
-		}
-
 		properties = {
 			Poster_Button = {
 				frame = TUR_Posters_var
@@ -37,145 +25,104 @@ scripted_gui = {
 
 		effects = {
 			Poster_Button_click = {
-				## AI ##
 				if = {
 					limit = {
-						THIS = {
-							is_ai = yes
-						}
+						check_variable = { TUR_Posters_idx = 0 }
 					}
 					set_country_flag = TUR_the_poster_clicked
-					set_country_flag = AI_GUI_Reform_Enabled
+					set_country_flag = TUR_educational_reforms_enabled
+	
+					clr_country_flag = TUR_political_reforms_enabled
+					clr_country_flag = TUR_social_reforms_enabled
+					clr_country_flag = TUR_constitutional_reforms_enabled
 				}
-
-				## Player ##
-				if = {
+				else_if = {
+					limit = { 
+						check_variable = { TUR_Posters_idx = 1 }
+					}
+					set_country_flag = TUR_the_poster_clicked
+					set_country_flag = TUR_political_reforms_enabled
+					
+					clr_country_flag = TUR_educational_reforms_enabled
+					clr_country_flag = TUR_social_reforms_enabled
+					clr_country_flag = TUR_constitutional_reforms_enabled
+				}
+				else_if = {
 					limit = {
-						THIS = {
-							is_ai = no
-						}
+						check_variable = { TUR_Posters_idx = 2 }
 					}
-					if = {
-						limit = {
-							check_variable = { TUR_Posters_array^TUR_Posters_idx = 1 }
-						}
-						set_country_flag = TUR_the_poster_clicked
-						set_country_flag = TUR_educational_reforms_enabled
-		
-						clr_country_flag = TUR_political_reforms_enabled
-						clr_country_flag = TUR_social_reforms_enabled
-						clr_country_flag = TUR_constitutional_reforms_enabled
+					set_country_flag = TUR_the_poster_clicked
+					set_country_flag = TUR_social_reforms_enabled
 
-						clr_country_flag = AI_GUI_Reform_Enabled
+					clr_country_flag = TUR_educational_reforms_enabled
+					clr_country_flag = TUR_political_reforms_enabled
+					clr_country_flag = TUR_constitutional_reforms_enabled
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 3 }
 					}
-					else_if = {
-						limit = { 
-							check_variable = { TUR_Posters_array^TUR_Posters_idx = 2 }
-						}
-						set_country_flag = TUR_the_poster_clicked
-						set_country_flag = TUR_political_reforms_enabled
-						
-						clr_country_flag = TUR_educational_reforms_enabled
-						clr_country_flag = TUR_social_reforms_enabled
-						clr_country_flag = TUR_constitutional_reforms_enabled
-						
-						clr_country_flag = AI_GUI_Reform_Enabled
-					}
-					else_if = {
-						limit = {
-							check_variable = { TUR_Posters_array^TUR_Posters_idx = 3 }
-						}
-						set_country_flag = TUR_the_poster_clicked
-						set_country_flag = TUR_social_reforms_enabled
-	
-						clr_country_flag = TUR_educational_reforms_enabled
-						clr_country_flag = TUR_political_reforms_enabled
-						clr_country_flag = TUR_constitutional_reforms_enabled
-						
-						clr_country_flag = AI_GUI_Reform_Enabled
-					}
-					else_if = {
-						limit = {
-							check_variable = { TUR_Posters_array^TUR_Posters_idx = 4 }
-						}
-						set_country_flag = TUR_the_poster_clicked
-						set_country_flag = TUR_constitutional_reforms_enabled
-	
-						clr_country_flag = TUR_educational_reforms_enabled
-						clr_country_flag = TUR_political_reforms_enabled
-						clr_country_flag = TUR_social_reforms_enabled
-						
-						clr_country_flag = AI_GUI_Reform_Enabled
-					}
+					set_country_flag = TUR_the_poster_clicked
+					set_country_flag = TUR_constitutional_reforms_enabled
+
+					clr_country_flag = TUR_educational_reforms_enabled
+					clr_country_flag = TUR_political_reforms_enabled
+					clr_country_flag = TUR_social_reforms_enabled
 				}
 			}
 		}
 		
 		triggers = {
 			Poster_Button_click_enabled = {
-				OR = {
-					## AI ##
-					is_ai = yes
-
-					## Player ##
-					if = {
-						limit = {
-							check_variable = { TUR_Posters_array^TUR_Posters_idx = 1 }
-						}
-						AND = {
-							has_completed_focus = TUR_educational_reforms
-							NOT = {
-								OR = {
-									check_variable = { completed_edu_reforms = 5 }
-									check_variable = { completed_edu_reforms > 5 }
-								}
-								has_country_flag = TUR_educational_reforms_enabled
-							}
+				if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 0 }
+					}
+					AND = {
+						has_completed_focus = TUR_educational_reforms
+						NOT = {
+							check_variable = { completed_edu_reforms = 5 }
+							check_variable = { completed_edu_reforms > 5 }
+							has_country_flag = TUR_educational_reforms_enabled
 						}
 					}
-					else_if = {
-						limit = {
-							check_variable = { TUR_Posters_array^TUR_Posters_idx = 2 }
-						}
-						AND = {
-							has_completed_focus = TUR_political_reforms
-							NOT = {
-								OR = {
-									check_variable = { completed_pol_reforms = 5 }
-									check_variable = { completed_pol_reforms > 5 }
-								}
-								has_country_flag = TUR_political_reforms_enabled
-							}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 1 }
+					}
+					AND = {
+						has_completed_focus = TUR_political_reforms
+						NOT = {
+							check_variable = { completed_pol_reforms = 5 }
+							check_variable = { completed_pol_reforms > 5 }
+							has_country_flag = TUR_political_reforms_enabled
 						}
 					}
-					else_if = {
-						limit = {
-							check_variable = { TUR_Posters_array^TUR_Posters_idx = 3 }
-						}
-						AND = {
-							has_completed_focus = TUR_social_refroms
-							NOT = {
-								OR = {
-									check_variable = { completed_soc_reforms = 5 }
-									check_variable = { completed_soc_reforms > 5 }
-								}
-								has_country_flag = TUR_social_reforms_enabled
-							}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 2 }
+					}
+					AND = {
+						has_completed_focus = TUR_social_refroms
+						NOT = {
+							check_variable = { completed_soc_reforms = 5 }
+							check_variable = { completed_soc_reforms > 5 }
+							has_country_flag = TUR_social_reforms_enabled
 						}
 					}
-					else_if = {
-						limit = {
-							check_variable = { TUR_Posters_array^TUR_Posters_idx = 4 }
-						}
-						AND = {
-							has_completed_focus = TUR_constitutional_reforms
-							NOT = {
-								OR = {
-									check_variable = { completed_con_reforms = 5 }
-									check_variable = { completed_con_reforms > 5 }
-								}
-								has_country_flag = TUR_constitutional_reforms_enabled
-							}
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_Posters_idx = 3 }
+					}
+					AND = {
+						has_completed_focus = TUR_constitutional_reforms
+						NOT = {
+							check_variable = { completed_con_reforms = 5 }
+							check_variable = { completed_con_reforms > 5 }
+							has_country_flag = TUR_constitutional_reforms_enabled
 						}
 					}
 				}
@@ -183,7 +130,7 @@ scripted_gui = {
 			Reform_Completed_Stamp_visible = {
 				if = {
 					limit = {
-						check_variable = { TUR_Posters_array^TUR_Posters_idx = 1 }
+						check_variable = { TUR_Posters_idx = 0 }
 					}
 					AND = {
 						has_completed_focus = TUR_educational_reforms
@@ -195,7 +142,7 @@ scripted_gui = {
 				}
 				else_if = {
 					limit = {
-						check_variable = { TUR_Posters_array^TUR_Posters_idx = 2 }
+						check_variable = { TUR_Posters_idx = 1 }
 					}
 					AND = {
 						has_completed_focus = TUR_political_reforms
@@ -207,7 +154,7 @@ scripted_gui = {
 				}
 				else_if = {
 					limit = {
-						check_variable = { TUR_Posters_array^TUR_Posters_idx = 3 }
+						check_variable = { TUR_Posters_idx = 2 }
 					}
 					AND = {
 						has_completed_focus = TUR_social_refroms
@@ -219,7 +166,7 @@ scripted_gui = {
 				}
 				else_if = {
 					limit = {
-						check_variable = { TUR_Posters_array^TUR_Posters_idx = 4 }
+						check_variable = { TUR_Posters_idx = 3 }
 					}
 					AND = {
 						has_completed_focus = TUR_constitutional_reforms
@@ -229,11 +176,6 @@ scripted_gui = {
 						}
 					}
 				}
-			}
-
-			## AI ##
-			Info_AI_Check_visible = {
-				is_ai = yes
 			}
 		}
 	}
