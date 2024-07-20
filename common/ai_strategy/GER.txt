@@ -316,19 +316,10 @@ GER_is_surprised_and_dont_defence_bel_hol = {
 		}
 	}
 	enable = {
-		has_war_with = FRA
-		OR = {
-			BEL = {
-				has_capitulated = no
-			}
-		}
+		FRA = { has_idea = hidden_fra_idea }
 	}
 	abort = {
-		OR = {
-			BEL = {
-				has_capitulated = yes
-			}
-		}
+		NOT = { FRA = { has_idea = hidden_fra_idea } }
 	}
 	ai_strategy = {
 		type = dont_defend_ally_borders
@@ -338,16 +329,6 @@ GER_is_surprised_and_dont_defence_bel_hol = {
 	ai_strategy = {
 		type = protect
 		id = "BEL"
-		value = -1000
-	}
-	ai_strategy = {
-		type = dont_defend_ally_borders
-		id = HOL
-		value = 1
-	}
-	ai_strategy = {
-		type = protect
-		id = "HOL"
 		value = -1000
 	}
 }
@@ -503,7 +484,7 @@ GER_attack_ukraine = {
 
 		priority = 150
 		ordertype = front
-		execution_type = rush_weak
+		execution_type = rush
 		execute_order = yes
 	}
 
