@@ -26,83 +26,6 @@ on_actions = {
 	}
 	on_capitulation = {
 		effect = {
-			#Second Great War - Fall of National Entente by Reichspakt
-#            if = {
-#                limit = {
-#					ROOT = {
-#						is_faction_leader = yes
-#						is_in_faction_with = FRA
-#					}
-#                    FROM = {
-#                        OR = {
-#                            original_tag = GER
-#                            is_in_faction_with = GER
-#                        }
-#                    }
-#                    all_allied_country = {
-#                        OR = {
-#							AND = {
-#								is_major = yes
-#								has_capitulated = yes
-#							}
-#							is_major = no
-#						}
-#                    }
-#					has_global_flag = second_world_war
-#					NOT = {
-#						has_global_flag = second_great_war_ends
-#					}
-#					NOT = {
-#						has_global_flag = honorable_peace_flag
-#					}
-#                }
-#				clr_global_flag = second_world_war
-#				set_global_flag = second_great_war_ends
-#				every_country = {
-#					limit = {
-#						OR = {
-#							tag = ROOT
-#							is_subject_of = ROOT
-#							AND = {
-#								is_in_faction_with = ROOT
-#								has_war_with = FROM
-#							}
-#						}
-#						NOT = {
-#							has_country_flag = second_great_war_winner
-#						}
-#					}
-#					set_country_flag = second_great_war_loser
-#				}
-#				every_country = {
-#					limit = {
-#						OR = {
-#							tag = FROM
-#							is_in_faction_with = FROM
-#							is_subject_of = FROM
-#							has_war_with = ROOT
-#						}
-#						NOT = {
-#							has_country_flag = second_great_war_loser
-#						}
-#					}
-#					set_country_flag = second_great_war_winner
-#				}
-#				every_country = {
-#					limit = {
-#						OR = {
-#							tag = REI
-#							is_in_faction_with = REI
-#							has_war_with = ENT
-#						}
-#					}
-#					white_peace = {
-#						tag = ENT
-#						message = unconditional_surrender_of_ENT
-#					}
-#				}
-#                peace_conference_effect = yes
-#            }
 			if = {
 				limit = {
 					original_tag = ENG
@@ -654,6 +577,18 @@ on_actions = {
 					}
 					set_country_flag = anti_russia_war_winner
 				}
+				if = {
+					limit = {
+						OR = {
+							FRA = { has_country_flag = anti_russia_war_loser }
+							AND = {
+								NOT = { ENT = { has_war_with = REI } }
+								FRA = { has_country_flag = anti_russia_war_winner }
+							}
+						}
+					}
+					peace_conference_effect_for_russia = yes
+				}
 			}
 			#fall of Germany by rus
 			if = {
@@ -691,6 +626,18 @@ on_actions = {
 						}
 					}
 					set_country_flag = anti_russia_war_winner
+				}
+				if = {
+					limit = {
+						OR = {
+							FRA = { has_country_flag = anti_russia_war_loser }
+							AND = {
+								NOT = { ENT = { has_war_with = REI } }
+								FRA = { has_country_flag = anti_russia_war_winner }
+							}
+						}
+					}
+					peace_conference_effect_for_russia = yes
 				}
 			}
 			if = {
