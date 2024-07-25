@@ -193,6 +193,16 @@ country_event = {
 						owner = SYR
 						prioritize_location = 4111
 					}
+					create_unit = {
+						division = "name = \"Firqa al-XV.i\" division_template = \"Infantry Division\" start_experience_factor = 0.12 start_equipment_factor = 0.6"
+						owner = SYR
+						prioritize_location = 4111
+					}
+					create_unit = {
+						division = "name = \"Firqa al-XVI.i\" division_template = \"Infantry Division\" start_experience_factor = 0.12 start_equipment_factor = 0.6"
+						owner = SYR
+						prioritize_location = 4111
+					}
 				}
 			}
 			country_event = { id = turkey.6 days = 6 hours = 5 }
@@ -1032,6 +1042,7 @@ news_event = {
 			clr_global_flag = Middle_East_War
 			TUR = {
 				add_timed_idea = { idea = postwar_reconstruction_high days = 100 }
+				mark_focus_tree_layout_dirty = yes
 			}
 			#EGY = { country_event = { id = turkey.64 days = 12 } }
 			every_country = {
@@ -2146,6 +2157,7 @@ news_event = {
 			clr_global_flag = Middle_East_War
 			TUR = {
 				add_timed_idea = { idea = postwar_reconstruction_high days = 80 }
+				mark_focus_tree_layout_dirty = yes
 			}
 			EGY = { country_event = { id = turkey.64 days = 12 } }
 			every_country = {
@@ -2357,6 +2369,7 @@ country_event = {
 				long_name = TUR_CHP_long
 				name = TUR_CHP
 			}
+			set_capital = { state = 49 remember_old_capital = no }
 			mark_focus_tree_layout_dirty = yes
 		}
 	}
@@ -2953,6 +2966,256 @@ country_event = {
 		}
 	}
 }
+
+country_event = {
+	id = turkey.103
+	title = turkey.103.t
+	desc = turkey.103.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = turkey.103.a
+		TUR = { country_event = turkey.104 }
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = turkey.103.b
+		if = {
+			limit = {
+				ROOT = { original_tag = SYR }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ROOT
+					OR = {
+						state = 680
+						state = 799
+					}
+				}
+				transfer_state_to = TUR
+			}
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = IRQ }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ROOT
+					OR = {
+						state = 676
+						state = 941
+					}
+				}
+				transfer_state_to = TUR
+			}
+		}
+		TUR = { country_event = turkey.105 }
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = -10
+				strength_ratio = {
+					tag = TUR
+					ratio > 0.6
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = turkey.104
+	title = turkey.104.t
+	desc = turkey.104.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = turkey.104.a
+		create_wargoal = { target = FROM type = take_state_focus }
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = turkey.105
+	title = turkey.105.t
+	desc = turkey.105.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = turkey.105.a
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
+country_event = {
+	id = turkey.106
+	title = turkey.106.t
+	desc = turkey.106.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = turkey.106.a
+		TUR = { country_event = turkey.107 }
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = turkey.106.b
+		every_state = {
+			limit = {
+				is_owned_by = ROOT
+				state = 183
+			}
+			transfer_state_to = TUR
+		}
+		TUR = { country_event = turkey.108 }
+		effect_tooltip = {
+			TUR = {
+				random_state = {
+					limit = {
+						is_owned_by = TUR
+						arms_factory > 1
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				random_state = {
+					limit = {
+						is_owned_by = TUR
+						industrial_complex > 1
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				add_political_power = -50
+			}
+			ROOT = {
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				add_political_power = 50
+			}
+		}
+		ai_chance = {
+			base = 5
+			modifier = {
+				OR = {
+					has_government = fascism
+					has_government = neutrality
+				}
+				add = -5
+			}
+		}
+	}
+}
+
+country_event = {
+	id = turkey.107
+	title = turkey.107.t
+	desc = turkey.107.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = turkey.107.a
+		create_wargoal = { target = FROM type = take_state_focus }
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = turkey.107.b
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+country_event = {
+	id = turkey.108
+	title = turkey.108.t
+	desc = turkey.108.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = turkey.108.a
+		TUR = {
+			random_state = {
+				limit = {
+					is_owned_by = TUR
+					arms_factory > 1
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_state = {
+				limit = {
+					is_owned_by = TUR
+					industrial_complex > 1
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			add_political_power = -50
+		}
+		FROM = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = FROM
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = FROM
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			add_political_power = 50
+		}
+		ai_chance = {
+			factor = 6
+		}
+	}
+}
+
 ## TUR resistance event ##
 country_event = { #SYR resistance increase
 	id = turkey.1000

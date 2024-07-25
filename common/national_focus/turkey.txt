@@ -352,93 +352,172 @@ focus_tree = {
 
 	#defeat of Ottoman
 
-#	focus = {
-#		id = collapse_of_hegemony_in_the_Middle_East
-#		icon = collapse_of_hegemony_in_the_Middle_East
-#		cost = 0.45
-#		allow_branch = {
-#			has_country_flag = fall_of_Ottoman
-#		}
-#		relative_position_id = the_rise_of_the_Ottoman_Empire
-#		x = 0
-#		y = 1
-#		ai_will_do = {
-#			factor = 10
-#		}
-#		completion_reward = {
-#			add_timed_idea = { idea = postwar_reconstruction_high days = 100 }
-#		}
-#	}
-#
-#	focus = {
-#		id = preparation_for_war
-#		icon = GFX_goal_generic_forceful_treaty
-#		cost = 5
-#		relative_position_id = collapse_of_hegemony_in_the_Middle_East
-#		x = -1
-#		y = 1
-#		ai_will_do = {
-#			factor = 10
-#		}
-#		mutually_exclusive = {
-#			focus = diplomatic_solution
-#		}
-#		search_filters = { FOCUS_FILTER_INDUSTRY }
-#		completion_reward = {
-#			random_owned_controlled_state = {
-#				limit = {
-#					is_core_of = ROOT
-#				}
-#				add_building_construction = {
-#					type = arms_factory
-#					level = 1
-#				}
-#			}
-#			random_owned_controlled_state = {
-#				limit = {
-#					is_core_of = ROOT
-#				}
-#				add_building_construction = {
-#					type = industrial_complex
-#					level = 1
-#				}
-#			}
-#		}
-#	}
-#
-#	focus = {
-#		id = Syria_Iraq_Plan
-#		icon = GFX_focus_TUR_support_the_golden_square
-#		cost = 5
-#		relative_position_id = preparation_for_war
-#		x = 0
-#		y = 1
-#		ai_will_do = {
-#			factor = 6
-#		}
-#		completion_reward = {
-#			unlock_decision_category_tooltip = Preparations_for_the_Second_Middle_East_War
-#		}
-#	}
-#
-#	focus = {
-#		id = diplomatic_solution
-#		icon = GFX_goal_generic_intelligence_exchange
-#		relative_position_id = collapse_of_hegemony_in_the_Middle_East
-#		x = 1
-#		y = 1
-#		cost = 5
-#		ai_will_do = {
-#			factor = 10
-#		}
-#		mutually_exclusive = {
-#			focus = preparation_for_war
-#		}
-#		search_filters = { FOCUS_FILTER_POLITICAL }
-#		completion_reward = {
-#			add_political_power = 50
-#		}
-#	}
+	focus = {
+		id = collapse_of_hegemony_in_the_Middle_East
+		icon = collapse_of_hegemony_in_the_Middle_East
+		cost = 5
+		allow_branch = {
+			OR = {
+				has_country_flag = half_victory_of_Ottoman
+				has_country_flag = fall_of_Ottoman
+			}
+			has_completed_focus = Kemalizm_continue
+		}
+		relative_position_id = the_rise_of_the_Ottoman_Empire
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 20
+				OR = {
+					has_completed_focus = TUR_united_state_of_ottoman
+					has_completed_focus = TUR_united_ottoman_empire
+				}
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 100
+			add_command_power = 25
+		}
+	}
+
+	focus = {
+		id = preparation_for_war
+		icon = GFX_goal_generic_forceful_treaty
+		cost = 10
+		relative_position_id = collapse_of_hegemony_in_the_Middle_East
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 15
+		}
+		prerequisite = {
+			focus = collapse_of_hegemony_in_the_Middle_East
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = TUR_military_expansion
+		icon = GFX_focus_ETH_peacekeeping_forces
+		relative_position_id = collapse_of_hegemony_in_the_Middle_East
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 15
+		}
+		prerequisite = {
+			focus = collapse_of_hegemony_in_the_Middle_East
+		}
+		completion_reward = {
+			add_ideas = TUR_military_expansion
+		}
+	}
+
+	focus = {
+		id = TUR_ultimatum_to_syria
+		icon = suppression_of_Arab_Kingdom_of_Syria
+		relative_position_id = preparation_for_war
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 15
+		}
+		available = {
+			NOT = {
+				680 = { is_owned_by = TUR }
+				799 = { is_owned_by = TUR }
+			}
+		}
+		prerequisite = {
+			focus = preparation_for_war
+		}
+		prerequisite = {
+			focus = TUR_military_expansion
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			SYR = { country_event = turkey.103 }
+		}
+	}
+	
+	focus = {
+		id = TUR_attack_kurdistan
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		relative_position_id = preparation_for_war
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 15
+		}
+		available = {
+			KUR = { exists = yes }
+			NOT = { has_war_with = KUR }
+		}
+		prerequisite = {
+			focus = preparation_for_war
+		}
+		prerequisite = {
+			focus = TUR_military_expansion
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			create_wargoal = { target = KUR type = take_state_focus }
+		}
+	}
+	
+	focus = {
+		id = TUR_ultimatum_to_iraq
+		icon = suppression_of_Iraqi_autonomy
+		relative_position_id = TUR_military_expansion
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 15
+		}
+		available = {
+			NOT = {
+				676 = { is_owned_by = TUR }
+				941 = { is_owned_by = TUR }
+			}
+		}
+		prerequisite = {
+			focus = preparation_for_war
+		}
+		prerequisite = {
+			focus = TUR_military_expansion
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			IRQ = { country_event = turkey.103 }
+		}
+	}
 
 	#nomal focus
 
@@ -573,7 +652,7 @@ focus_tree = {
 		relative_position_id = TUR_educational_reforms
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		available = {
 			has_country_flag = TUR_end_of_educational_refrom
 			has_country_flag = TUR_end_of_political_refrom
@@ -610,7 +689,7 @@ focus_tree = {
 		relative_position_id = one_party_dictatorship
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -629,7 +708,7 @@ focus_tree = {
 		relative_position_id = TUR_purge_the_ottomanist
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -648,7 +727,7 @@ focus_tree = {
 		relative_position_id = TUR_purge_the_ottomanist
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -667,7 +746,7 @@ focus_tree = {
 		relative_position_id = TUR_abolish_the_sultanate
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -689,7 +768,7 @@ focus_tree = {
 		relative_position_id = TUR_move_capitial_to_ankara
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -708,7 +787,7 @@ focus_tree = {
 		relative_position_id = TUR_move_capitial_to_ankara
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -731,7 +810,7 @@ focus_tree = {
 		relative_position_id = TUR_Turk_ulusu
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -776,7 +855,7 @@ focus_tree = {
 		relative_position_id = TUR_social_refroms
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		available = {
 			has_country_flag = TUR_end_of_educational_refrom
 			has_country_flag = TUR_end_of_political_refrom
@@ -818,7 +897,7 @@ focus_tree = {
 		relative_position_id = maintenance_of_democracy
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -838,7 +917,7 @@ focus_tree = {
 		relative_position_id = TUR_sened_i_ittifak
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -857,7 +936,7 @@ focus_tree = {
 		relative_position_id = TUR_sened_i_ittifak
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -885,7 +964,7 @@ focus_tree = {
 		relative_position_id = TUR_compromise_with_kemalist
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -915,7 +994,7 @@ focus_tree = {
 		relative_position_id = TUR_establish_parliament
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -931,7 +1010,7 @@ focus_tree = {
 	focus = {
 		id = TUR_permit_minority_parties
 		icon = GFX_TUR_permit_minority_parties
-		cost = 10
+		cost = 7.2
 		relative_position_id = TUR_establish_parliament
 		x = 1
 		y = 1
@@ -965,7 +1044,7 @@ focus_tree = {
 		relative_position_id = TUR_multinational_army
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1054,7 +1133,7 @@ focus_tree = {
 		relative_position_id = the_survival_of_the_Ottoman_Empire
 		x = -7
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 			modifier = {
@@ -1112,7 +1191,7 @@ focus_tree = {
 		relative_position_id = sultans_age
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1135,7 +1214,7 @@ focus_tree = {
 		relative_position_id = Dismissal_of_Kemal
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1154,6 +1233,7 @@ focus_tree = {
 		relative_position_id = TUR_depoliticize_the_army
 		x = 0
 		y = 1
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1172,6 +1252,7 @@ focus_tree = {
 		relative_position_id = TUR_military_purges
 		x = 0
 		y = 1
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1210,7 +1291,7 @@ focus_tree = {
 		relative_position_id = Dismissal_of_Kemal
 		x = 2
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 10
 		}
@@ -1229,7 +1310,7 @@ focus_tree = {
 		relative_position_id = Grand_Vizier_ismet_inonu
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1248,7 +1329,7 @@ focus_tree = {
 		relative_position_id = Grand_Vizier_ismet_inonu
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1271,7 +1352,7 @@ focus_tree = {
 		relative_position_id = TUR_Apply_jizya_to_muslim_minorities
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1293,7 +1374,7 @@ focus_tree = {
 		relative_position_id = TUR_centralize_the_empire
 		x = -2
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1315,7 +1396,7 @@ focus_tree = {
 		relative_position_id = TUR_zillullah_fil_alem
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1324,7 +1405,7 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			add_ideas = TUR_zillullah_fil_alem
+			add_ideas = TUR_Turkish_quran
 		}
 	}
 
@@ -1334,7 +1415,7 @@ focus_tree = {
 		relative_position_id = TUR_zillullah_fil_alem
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1353,7 +1434,7 @@ focus_tree = {
 		relative_position_id = TUR_Turkish_quran
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1375,7 +1456,7 @@ focus_tree = {
 		relative_position_id = look_out
 		x = -15
 		y = 0
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -2500,7 +2581,7 @@ focus_tree = {
 	#Republic Turkey focus tree
 	focus = {
 		id = TUR_Maresal_biz_buradayiz
-		x = 8
+		x = 10
 		y = 0
 		cost = 5
 		ai_will_do = {
@@ -2511,6 +2592,15 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
+			TUR_fevzi_cakmak = {
+				remove_unit_leader_role = yes
+			}
+			every_country = {
+				limit = { has_country_leader = { character = TUR_fevzi_cakmak ruling_only = yes } }
+				set_country_leader_portrait = {
+					portrait = "gfx/leaders/TUR/TUR_fevzi_cakmak_leader.png"
+				}
+			}
 		}
 	}
 
@@ -2628,6 +2718,8 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
+			add_to_variable = { TUR_Kemal_Reformation_war_support_factor = 0.025 }
+			custom_effect_tooltip = TUR_Kemal_Reformation_war_support_25
 		}
 	}
 	
@@ -2645,6 +2737,9 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
+			add_to_variable = { TUR_Kemal_Reformation_stability_factor = 0.05 }
+			add_to_variable = { TUR_Kemal_Reformation_research_speed_factor = 0.05 }
+			custom_effect_tooltip = TUR_secularism_tt
 		}
 	}
 	
@@ -2662,13 +2757,187 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
+			add_to_variable = { TUR_Kemal_Reformation_war_support_factor = 0.025 }
+			add_to_variable = { TUR_Kemal_Reformation_conscription_factor = 0.05 }
+			custom_effect_tooltip = TUR_revanchism_tt
+		}
+	}
+	
+	focus = {
+		id = TUR_misak_i_milli
+		relative_position_id = TUR_secularism
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = TUR_nationalism
+		}
+		prerequisite = {
+			focus = TUR_secularism
+		}
+		prerequisite = {
+			focus = TUR_revanchism
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = TUR_misak_i_milli
+		}
+	}
+	
+	focus = {
+		id = TUR_demand_aleppo_and_deyr_i_zor
+		icon = suppression_of_Arab_Kingdom_of_Syria
+		relative_position_id = TUR_misak_i_milli
+		x = -3
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 15
+		}
+		available = {
+			NOT = {
+				680 = { is_owned_by = TUR }
+				799 = { is_owned_by = TUR }
+			}
+		}
+		bypass = {
+			680 = { is_owned_by = TUR }
+			799 = { is_owned_by = TUR }
+		}
+		prerequisite = {
+			focus = TUR_misak_i_milli
+		}
+		search_filters = [ FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			SYR = { country_event = turkey.103 }
+		}
+	}
+	
+	focus = {
+		id = TUR_attack_kurdistan_rp
+		icon = GFX_goal_generic_occupy_states_ongoing_war
+		relative_position_id = TUR_misak_i_milli
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 15
+		}
+		available = {
+			KUR = { exists = yes }
+			NOT = { has_war_with = KUR }
+		}
+		bypass = {
+			OR = {
+				KUR = { exists = no }
+				has_war_with = KUR
+			}
+		}
+		prerequisite = {
+			focus = TUR_misak_i_milli
+		}
+		search_filters = [ FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			create_wargoal = { target = KUR type = take_state_focus }
+		}
+	}
+	
+	focus = {
+		id = TUR_cyprus_question
+		relative_position_id = TUR_misak_i_milli
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 15
+		}
+		available = {
+			NOT = { 183 = { is_owned_by = TUR } }
+		}
+		bypass = {
+			183 = { is_owned_by = TUR }
+		}
+		prerequisite = {
+			focus = TUR_misak_i_milli
+		}
+		search_filters = [ FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			every_country = {
+				limit = {
+					owns_state = 183
+				}
+				country_event = turkey.106
+			}
+		}
+	}
+	
+	focus = {
+		id = TUR_demand_mosul_and_kirkuk
+		icon = suppression_of_Iraqi_autonomy
+		relative_position_id = TUR_misak_i_milli
+		x = 3
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 15
+		}
+		available = {
+			NOT = {
+				676 = { is_owned_by = TUR }
+				941 = { is_owned_by = TUR }
+			}
+		}
+		bypass = {
+			676 = { is_owned_by = TUR }
+			941 = { is_owned_by = TUR }
+		}
+		prerequisite = {
+			focus = TUR_misak_i_milli
+		}
+		search_filters = [ FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			IRQ = { country_event = turkey.103 }
+		}
+	}
+	
+	focus = {
+		id = TUR_establish_greater_turkey
+		relative_position_id = TUR_attack_kurdistan_rp
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 15
+		}
+		available = {
+			has_war = no
+			is_subject = no
+		}
+		prerequisite = {
+			focus = TUR_demand_aleppo_and_deyr_i_zor
+		}
+		prerequisite = {
+			focus = TUR_attack_kurdistan_rp
+		}
+		prerequisite = {
+			focus = TUR_cyprus_question
+		}
+		prerequisite = {
+			focus = TUR_demand_mosul_and_kirkuk
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = TUR_establish_greater_turkey
 		}
 	}
 
 	focus = {
 		id = TUR_claim_to_be_neutral_for_rep
 		icon = GFX_goal_generic_neutrality_focus
-		relative_position_id = TUR_capital_of_the_Republic_Ankara
+		relative_position_id = TUR_establish_greater_turkey
 		x = 0
 		y = 1
 		cost = 5.8
@@ -2683,7 +2952,7 @@ focus_tree = {
 			}
 		}
 		prerequisite = {
-			focus = TUR_capital_of_the_Republic_Ankara
+			focus = TUR_establish_greater_turkey
 		}
 		mutually_exclusive = {
 			focus = cooperation_with_Germany_for_rep
@@ -2984,7 +3253,7 @@ focus_tree = {
 	focus = {
 		id = relationship_with_the_national_entente_for_rep
 		icon = GFX_focus_chi_reach_out_to_france
-		relative_position_id = TUR_capital_of_the_Republic_Ankara
+		relative_position_id = TUR_establish_greater_turkey
 		x = -5
 		y = 1
 		cost = 5.8
@@ -3008,7 +3277,7 @@ focus_tree = {
 			}
 		}
 		prerequisite = {
-			focus = TUR_capital_of_the_Republic_Ankara
+			focus = TUR_establish_greater_turkey
 		}
 		bypass = {
 			is_in_faction_with = FRA
@@ -3163,7 +3432,7 @@ focus_tree = {
 	focus =  {
 		id = cooperation_with_Germany_for_rep
 		icon = focus_deal_with_german_empire
-		relative_position_id = TUR_capital_of_the_Republic_Ankara
+		relative_position_id = TUR_establish_greater_turkey
 		x = 5
 		y = 1
 		cost = 5.8
@@ -3187,7 +3456,7 @@ focus_tree = {
 			}
 		}
 		prerequisite = {
-			focus = TUR_capital_of_the_Republic_Ankara
+			focus = TUR_establish_greater_turkey
 		}
 		bypass = {
 			is_in_faction_with = GER
