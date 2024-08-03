@@ -2329,9 +2329,15 @@ focus_tree = {
 			remove_ideas = neutral_diplomacy
 			if = {
 				limit = {
-					SNG = { exists = yes }
+					IRQ= { exists = yes }
 				}
-				TUR = { annex_country = { target = SNG transfer_troops = yes } }
+				create_wargoal = { target = IRQ type = take_state_focus }
+			}
+			if = {
+				limit = {
+					SYR = { exists = yes }
+				}
+				create_wargoal = { target = SYR type = take_state_focus }
 			}
 		}
 	}
@@ -2377,6 +2383,83 @@ focus_tree = {
 			}
 			else = {
 				declare_war_on = { target = EGY type = puppet_wargoal_focus }
+				if = {
+					limit = {
+						is_ai = yes
+					}
+					hidden_effect = {
+						if = {
+							limit = {
+								EGY = {
+									owns_state = 447
+								}
+							}
+							TUR = { set_province_controller = 4076 }
+						}
+						if = {
+							limit = {
+								EGY = {
+									owns_state = 883
+								}
+							}
+							TUR = { set_province_controller = 12725 }
+						}
+						if = {
+							limit = {
+								EGY = {
+									owns_state = 447
+								}
+							}
+							447 = {
+								create_unit = {
+									division = "name = \"III. Piyade Tümeni\" division_template = \"Piyade Tümeni\" start_experience_factor = 0.3"
+									owner = TUR
+									prioritize_location = 4076
+									allow_spawning_on_enemy_provs = yes
+								}
+								create_unit = {
+									division = "name = \"IV. Piyade Tümeni\" division_template = \"Piyade Tümeni\" start_experience_factor = 0.3"
+									owner = TUR
+									prioritize_location = 4076
+									allow_spawning_on_enemy_provs = yes
+								}
+								create_unit = {
+									division = "name = \"V. Piyade Tümeni\" division_template = \"Piyade Tümeni\" start_experience_factor = 0.3"
+									owner = TUR
+									prioritize_location = 4076
+									allow_spawning_on_enemy_provs = yes
+								}
+								create_unit = {
+									division = "name = \"VI. Piyade Tümeni\" division_template = \"Piyade Tümeni\" start_experience_factor = 0.3"
+									owner = TUR
+									prioritize_location = 4076
+									allow_spawning_on_enemy_provs = yes
+								}
+							}
+						}
+						if = {
+							limit = {
+								EGY= {
+									owns_state = 883
+								}
+							}
+							883 = {
+								create_unit = {
+									division = "name = \"I. Piyade Tümeni\" division_template = \"Piyade Tümeni\" start_experience_factor = 0.3"
+									owner = TUR
+									prioritize_location = 12725
+									allow_spawning_on_enemy_provs = yes
+								}
+								create_unit = {
+									division = "name = \"II. Piyade Tümeni\" division_template = \"Piyade Tümeni\" start_experience_factor = 0.3"
+									owner = TUR
+									prioritize_location = 12725
+									allow_spawning_on_enemy_provs = yes
+								}
+							}
+						}
+					}
+				}
 			}
 		}
 	}
@@ -2581,6 +2664,7 @@ focus_tree = {
 	#Republic Turkey focus tree
 	focus = {
 		id = TUR_Maresal_biz_buradayiz
+		icon = GFX_TUR_Maresal_biz_buradayiz
 		x = 10
 		y = 0
 		cost = 5
@@ -2606,6 +2690,7 @@ focus_tree = {
 
 	focus = {
 		id = TUR_expall_ottomanists
+		icon = GFX_TUR_expall_ottomanists
 		relative_position_id = TUR_Maresal_biz_buradayiz
 		x = 0
 		y = 1
@@ -2624,6 +2709,7 @@ focus_tree = {
 
 	focus = {
 		id = TUR_destruction_of_islamic_fundamentalism
+		icon = GFX_TUR_destruction_of_islamic_fundamentalism
 		relative_position_id = TUR_expall_ottomanists
 		x = -1
 		y = 1
@@ -2644,6 +2730,7 @@ focus_tree = {
 
 	focus = {
 		id = TUR_turk_ulusu
+		icon = GFX_TUR_turk_ulusu
 		relative_position_id = TUR_expall_ottomanists
 		x = 1
 		y = 1
@@ -2663,6 +2750,7 @@ focus_tree = {
 
 	focus = {
 		id = TUR_remember_kemals_reforms
+		icon = GFX_TUR_remember_kemals_reforms
 		relative_position_id = TUR_destruction_of_islamic_fundamentalism
 		x = 1
 		y = 1
@@ -2706,6 +2794,7 @@ focus_tree = {
 	
 	focus = {
 		id = TUR_nationalism
+		icon = GFX_TUR_nationalism
 		relative_position_id = TUR_remember_kemals_reforms
 		x = -2
 		y = 1
@@ -2725,6 +2814,7 @@ focus_tree = {
 	
 	focus = {
 		id = TUR_secularism
+		icon = GFX_TUR_secularism
 		relative_position_id = TUR_remember_kemals_reforms
 		x = 0
 		y = 1
@@ -2745,6 +2835,7 @@ focus_tree = {
 	
 	focus = {
 		id = TUR_revanchism
+		icon = GFX_TUR_revanchism
 		relative_position_id = TUR_remember_kemals_reforms
 		x = 2
 		y = 1
@@ -2765,6 +2856,7 @@ focus_tree = {
 	
 	focus = {
 		id = TUR_misak_i_milli
+		icon = GFX_TUR_misak_i_milli
 		relative_position_id = TUR_secularism
 		x = 0
 		y = 1
@@ -2789,7 +2881,7 @@ focus_tree = {
 	
 	focus = {
 		id = TUR_demand_aleppo_and_deyr_i_zor
-		icon = suppression_of_Arab_Kingdom_of_Syria
+		icon = GFX_TUR_demand_aleppo_and_deyr_i_zor
 		relative_position_id = TUR_misak_i_milli
 		x = -3
 		y = 1
@@ -2818,7 +2910,7 @@ focus_tree = {
 	
 	focus = {
 		id = TUR_attack_kurdistan_rp
-		icon = GFX_goal_generic_occupy_states_ongoing_war
+		icon = GFX_TUR_attack_kurdistan_rp
 		relative_position_id = TUR_misak_i_milli
 		x = -1
 		y = 1
@@ -2847,6 +2939,7 @@ focus_tree = {
 	
 	focus = {
 		id = TUR_cyprus_question
+		icon = GFX_TUR_cyprus_question
 		relative_position_id = TUR_misak_i_milli
 		x = 1
 		y = 1
@@ -2876,7 +2969,7 @@ focus_tree = {
 	
 	focus = {
 		id = TUR_demand_mosul_and_kirkuk
-		icon = suppression_of_Iraqi_autonomy
+		icon = GFX_TUR_demand_mosul_and_kirkuk
 		relative_position_id = TUR_misak_i_milli
 		x = 3
 		y = 1
@@ -2905,6 +2998,7 @@ focus_tree = {
 	
 	focus = {
 		id = TUR_establish_greater_turkey
+		icon = GFX_TUR_establish_greater_turkey
 		relative_position_id = TUR_attack_kurdistan_rp
 		x = 1
 		y = 1
