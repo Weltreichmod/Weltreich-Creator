@@ -84,6 +84,9 @@ characters = {
 			civilian = {
 				large = "gfx/leaders/BUL/BUL_kimon_georgiev.png"
 			}
+			army = {
+				small = "GFX_idea_bul_kimon_georgiev"
+			}
 		}
 
 		country_leader={
@@ -91,6 +94,27 @@ characters = {
 			traits={ national_integralist }
 			expire="1965.1.1"
 			id=-1
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = BUL_kimon_georgiev
+			allowed = {
+				original_tag = BUL
+			}
+			available = {
+				NOT = {
+					has_country_leader = {
+						character = BUL_kimon_georgiev
+						ruling_only = yes 
+					}
+				}
+			}
+			traits = {
+				technocrat 
+			}
+			ai_will_do = {
+				factor = 3.000
+			}
 		}
 	}
 
@@ -403,10 +427,6 @@ characters = {
 			cost = 100
 			ai_will_do = {
 				factor = 1.000
-				modifier = {
-					factor = 0.100
-					BUL_save_money_for_decisions = yes
-				}
 			}
 		}
 		name = BUL_konstantin_lukash
@@ -445,10 +465,6 @@ characters = {
 			cost = 100
 			ai_will_do = {
 				factor = 1.000
-				modifier = {
-					factor = 0.100
-					BUL_save_money_for_decisions = yes
-				}
 			}
 		}
 		name = BUL_nikola_hadzipetkov
@@ -907,7 +923,10 @@ characters = {
 				original_tag = BUL
 			}
 			available = {
-				has_government = fascism
+				OR = {
+					has_government = fascism
+					has_completed_focus = BUL_right_nationalists_integration
+				}
 			}
 			traits = {
 				army_infantry_2
@@ -985,7 +1004,7 @@ characters = {
 				war_industrialist
 			}
 			ai_will_do = {
-				base = 1.000
+				factor = 1.000
 			}
 		}
 		name = BUL_andrey_lyapchev
@@ -1032,9 +1051,9 @@ characters = {
 				democratic_reformer 
 			}
 			ai_will_do = {
-				base = 0.000
+				factor = 0.000
 				modifier = {
-					base = 1.000
+					factor = 1.000
 					has_completed_focus = BUL_Agrian_National_Union
 				}
 			}
@@ -1058,7 +1077,7 @@ characters = {
 				compassionate_gentleman 
 			}
 			ai_will_do = {
-				base = 1.000
+				factor = 1.000
 			}
 		}
 		name = BUL_konstantin_muraviev
@@ -1083,7 +1102,7 @@ characters = {
 				industry_reformer 
 			}
 			ai_will_do = {
-				base = 1.000
+				factor = 1.000
 			}
 		}
 		name = BUL_stefan_stefanov
@@ -1112,9 +1131,9 @@ characters = {
 				womens_rights_activist 
 			}
 			ai_will_do = {
-				base = 0.000
+				factor = 0.000
 				modifier = {
-					base = 1.000
+					factor = 1.000
 					has_completed_focus = BUL_Agrian_National_Union
 				}
 			}
@@ -1131,13 +1150,14 @@ characters = {
 			available = {
 				OR = {
 					has_government = fascism
+					has_completed_focus = BUL_right_nationalists_integration
 				}
 			}
 			traits = {
 				statism_adept 
 			}
 			ai_will_do = {
-				base = 3.000
+				factor = 3.000
 			}
 		}
 		name = BUL_aleksandar_tsankov
@@ -1170,7 +1190,7 @@ characters = {
 				war_industrialist
 			}
 			ai_will_do = {
-				base = 1.000
+				factor = 1.000
 			}
 		}
 		name = BUL_nikola_zhekov
@@ -1205,41 +1225,6 @@ characters = {
 			}
 		}
 	}
-
-	BUL_kimon_georgiev = {
-		advisor = {
-			slot = political_advisor
-			idea_token = BUL_kimon_georgiev
-			allowed = {
-				original_tag = BUL
-			}
-			available = {
-				has_government = fascism
-				NOT = {
-					has_country_leader = {
-						character = BUL_kimon_georgiev
-						ruling_only = yes 
-					}
-				}
-			}
-			traits = {
-				technocrat 
-			}
-			ai_will_do = {
-				factor = 3.000
-			}
-		}
-		name = BUL_kimon_georgiev
-		portraits = {
-			army = {
-				small = "GFX_idea_bul_kimon_georgiev"
-			}
-			civilian = {
-				large = "GFX_portrait_bul_kimon_georgiev"
-			}
-		}
-	}
-
                                                                                                                                                               
   ####   ######  #    #  ######  #####   #   ####       #    #    ##    #    #  #  #       #         ##        #####   ######   ####   #####   #       ###### 
  #    #  #       ##   #  #       #    #  #  #    #      #    #   #  #   ##   #  #  #       #        #  #       #    #  #       #    #  #    #  #       #      
