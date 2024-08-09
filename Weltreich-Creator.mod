@@ -29,6 +29,7 @@ tags={
 	"Utilities"
 }
 name="Weltreich - The Age of Weltpolitik"
+path="mod/Weltreich-Creator"
 picture="thumbnail.png"
 supported_version="1.14.*"
 remote_file_id="3273686663"
