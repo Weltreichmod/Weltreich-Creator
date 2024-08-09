@@ -1,116 +1,58 @@
 scripted_gui = {
-	tur_centralization_gui = {
-		window_name = "tur_centralization_gui_window"
+	TUR_centralization_GUI = {
+		window_name = "TUR_centralization_GUI"
 		context_type = decision_category
-		
-		# 
-		
-		triggers = {
-			tur_centralization_gui_edirne_1_visible = {
-				check_variable = {
-					centralization_edirne < 26
-				}
-			}
-			tur_centralization_gui_edirne_2_visible = {
-				and = {
-					check_variable = {
-						centralization_edirne > 25
-					}
-					check_variable = {
-						centralization_edirne < 51
-					}
-				}
-			}
-			tur_centralization_gui_edirne_3_visible = {
-				and = {
-					check_variable = {
-						centralization_edirne > 50
-					}
-					check_variable = {
-						centralization_edirne < 76
-					}
-				}
-			}
-			tur_centralization_gui_edirne_4_visible = {
-				check_variable = {
-					centralization_edirne > 75
-				}
-			}
-		}
-		
-		
-		
-		
-		
-		
-		
-		
-#		effects = {
-#			gui_russification_russia_map_1_click = {
-#				clr_country_flag = russification_poland_visible
-#				clr_country_flag = russification_ukraine_visible
-#				clr_country_flag = russification_belarus_visible
-#				clr_country_flag = russification_baltic_visible
-#				clr_country_flag = russification_finland_visible
-#				clr_country_flag = russification_caucasus_visible
-#				if = {
-#					limit = {
-#						has_country_flag = russification_russia_visible
-#					}
-#					clr_country_flag = russification_russia_visible
-#				}
-#				else = {
-#					set_country_flag = russification_russia_visible
-#				}
-#			}
-#			gui_russification_russia_map_2_click = {
-#				clr_country_flag = russification_poland_visible
-#				clr_country_flag = russification_ukraine_visible
-#				clr_country_flag = russification_belarus_visible
-#				clr_country_flag = russification_baltic_visible
-#				clr_country_flag = russification_finland_visible
-#				clr_country_flag = russification_caucasus_visible
-#				if = {
-#					limit = {
-#						has_country_flag = russification_russia_visible
-#					}
-#					clr_country_flag = russification_russia_visible
-#				}
-#				else = {
-#					set_country_flag = russification_russia_visible
-#				}
-#			}
-#			gui_russification_russia_map_3_click = {
-#				clr_country_flag = russification_poland_visible
-#				clr_country_flag = russification_ukraine_visible
-#				clr_country_flag = russification_belarus_visible
-#				clr_country_flag = russification_baltic_visible
-#				clr_country_flag = russification_finland_visible
-#				clr_country_flag = russification_caucasus_visible
-#				if = {
-#					limit = {
-#						has_country_flag = russification_russia_visible
-#					}
-#					clr_country_flag = russification_russia_visible
-#				}
-#				else = {
-#					set_country_flag = russification_russia_visible
-#				}
-#			}
-#		}
-#		
-		
-		
+
 		visible = {
-			always = yes
+			original_tag = TUR
 		}
-		
-		
-		ai_enabled = {
-			always = no
+
+		properties = {
+			map_icon = {
+				frame = tur_cen_map_v:gui_display_frame_tur
+				image = "GFX_TUR_central_state_[?tur_cen_map_v]"
+				x = TUR_map_x^tur_cen_map_i
+				y = TUR_map_y^tur_cen_map_i
+			}
+			map_button = {
+				frame = TUR_map_button_frame
+				image = "GFX_TUR_central_state_selected_[?tur_cen_map_v]"
+				x = TUR_map_x^tur_cen_map_i
+				y = TUR_map_button_y
+			}
 		}
-		
-		ai_test_interval = 290  # The higher, the long it takes the ai to do actions
-		ai_test_variance = 0.5
+
+		dynamic_lists = {
+			maps_gridbox = {
+				array = TUR_central_map_array
+				entry_container = TUR_centralization_GUI_Map_Entry
+				value = tur_cen_map_v
+				index = tur_cen_map_i
+			}
+		}
+
+		triggers = {
+			map_button_visible = {
+				set_temp_variable = { TUR_map_button_y = TUR_map_y^tur_cen_map_i }
+				add_to_temp_variable = { TUR_map_button_y = 1 }
+
+				if = {
+					limit = {
+						check_variable = { TUR_selected_state = tur_cen_map_v }
+					}
+					set_temp_variable = { TUR_map_button_frame = 2 }
+				}
+
+				else = {
+					set_temp_variable = { TUR_map_button_frame = 1 }
+				}
+			}
+		}
+
+		effects = {
+			map_button_click = {
+				set_variable = { TUR_selected_state = tur_cen_map_v }
+			}
+		}
 	}
 }
