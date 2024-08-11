@@ -52,7 +52,172 @@ scripted_gui = {
 		effects = {
 			map_button_click = {
 				set_variable = { TUR_selected_state = tur_cen_map_v }
+				if = {
+					limit = {
+						check_variable = { TUR_selected_state = 797 }
+					}
+					set_variable = { TUR_map_info_x = 115 }
+					set_variable = { TUR_map_info_y = 80 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 339 }
+					}
+					set_variable = { TUR_map_info_x = 80 }
+					set_variable = { TUR_map_info_y = 80 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 347 }
+					}
+					set_variable = { TUR_map_info_x = 45 }
+					set_variable = { TUR_map_info_y = 125 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 49 }
+					}
+					set_variable = { TUR_map_info_x = 83 }
+					set_variable = { TUR_map_info_y = 105 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 342 }
+					}
+					set_variable = { TUR_map_info_x = 73 }
+					set_variable = { TUR_map_info_y = 105 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 344 }
+					}
+					set_variable = { TUR_map_info_x = 90 }
+					set_variable = { TUR_map_info_y = 105 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 353 }
+					}
+					set_variable = { TUR_map_info_x = 103 }
+					set_variable = { TUR_map_info_y = 105 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 680 }
+					}
+					set_variable = { TUR_map_info_x = 100 }
+					set_variable = { TUR_map_info_y = 100 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 454 }
+					}
+					set_variable = { TUR_map_info_x = 122 }
+					set_variable = { TUR_map_info_y = 105 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 291 }
+					}
+					set_variable = { TUR_map_info_x = 90 }
+					set_variable = { TUR_map_info_y = 85 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 855 }
+					}
+					set_variable = { TUR_map_info_x = 1000 } #too big
+					set_variable = { TUR_map_info_y = 1000 }
+
+					set_variable = { TUR_map_info_small_x = 110 } #real position
+					set_variable = { TUR_map_info_small_y = 85 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 273 }
+					}
+					set_variable = { TUR_map_info_x = 1000 } #too big
+					set_variable = { TUR_map_info_y = 1000 }
+
+					set_variable = { TUR_map_info_small_x = 75 } #real position
+					set_variable = { TUR_map_info_small_y = 105 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { TUR_selected_state = 936 }
+					}
+					set_variable = { TUR_map_info_x = 120 }
+					set_variable = { TUR_map_info_y = 105 }
+				}
+
+				set_country_flag = TUR_central_GUI_Info_Window_Visible
 			}
+		}
+	}
+
+	TUR_centralization_GUI_Info_Window = {
+		context_type = player_context
+		window_name = "TUR_centralization_GUI_Info_Window"
+
+		visible = {
+			has_country_flag = TUR_central_GUI_Info_Window_Visible
+		}
+
+		properties = {
+			map_icon_info = {
+				frame = TUR_selected_state:gui_display_frame_tur
+				image = "GFX_TUR_central_state_[?TUR_selected_state]"
+				x = TUR_map_info_x
+				y = TUR_map_info_y
+			}
+			map_icon_info_small = {
+				frame = TUR_selected_state:gui_display_frame_tur
+				image = "GFX_TUR_central_state_small_[?TUR_selected_state]"
+				x = TUR_map_info_small_x
+				y = TUR_map_info_small_y
+			}
+		}
+
+		triggers = {
+			map_icon_info_small_visible = {
+				OR = {
+					check_variable = { TUR_selected_state = 855 }
+					check_variable = { TUR_selected_state = 273 }
+				}
+			}
+			centralization_button_click_enabled = {
+				OR = {
+					has_political_power > 20
+					has_political_power = 20
+				}
+			}
+		}
+
+		effects = {
+			close_click = {
+				clear_variable = TUR_selected_state
+				clr_country_flag = TUR_central_GUI_Info_Window_Visible
+			}
+			centralization_button_click = {
+				add_political_power = -20
+				add_to_variable = { TUR_selected_state:TUR_central_var = 5 }
+				clamp_variable = {
+					var = TUR_selected_state:TUR_central_var
+					min = 0
+					max = 100
+				}
+				central_map_calculate_frame = yes
+			}
+		}
+	}
+
+	TUR_centralization_GUI_Info_Window_Blocker = {
+		context_type = player_context
+		window_name = "TUR_centralization_GUI_Info_Window_Blocker"
+		parent_window_name = TUR_centralization_GUI_Info_Window
+
+		visible = {
+			check_variable = { TUR_selected_state:gui_display_frame_tur = 5000 }
 		}
 	}
 }
