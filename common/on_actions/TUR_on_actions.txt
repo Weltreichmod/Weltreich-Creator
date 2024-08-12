@@ -1,0 +1,41 @@
+on_actions = {
+	on_startup = {
+		effect = {
+			TUR = {
+				setup_central_map = yes
+			}
+		}
+	}
+	on_daily_TUR = {
+		effect = {
+			for_each_loop = {
+				array = TUR_central_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { centralization_timer > 0 }
+							check_variable = { centralization_timer < 22 }
+						}
+						subtract_from_variable = { centralization_timer = 1 }
+					}
+				}
+			}
+		}
+	}
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					FROM.FROM = {
+						every_state = {
+							is_owned_by = TUR
+						}
+					}
+				}
+				TUR = {
+					central_map_calculate_frame = yes
+				}
+			}
+		}
+	}
+}

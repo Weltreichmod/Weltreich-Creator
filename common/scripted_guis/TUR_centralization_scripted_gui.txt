@@ -57,14 +57,14 @@ scripted_gui = {
 						check_variable = { TUR_selected_state = 797 }
 					}
 					set_variable = { TUR_map_info_x = 115 }
-					set_variable = { TUR_map_info_y = 80 }
+					set_variable = { TUR_map_info_y = 125 }
 				}
 				else_if = {
 					limit = {
 						check_variable = { TUR_selected_state = 339 }
 					}
 					set_variable = { TUR_map_info_x = 80 }
-					set_variable = { TUR_map_info_y = 80 }
+					set_variable = { TUR_map_info_y = 110 }
 				}
 				else_if = {
 					limit = {
@@ -186,9 +186,17 @@ scripted_gui = {
 				}
 			}
 			centralization_button_click_enabled = {
-				OR = {
-					has_political_power > 20
-					has_political_power = 20
+				AND = {
+					OR = {
+						has_political_power > 20
+						has_political_power = 20
+					}
+					check_variable = { TUR_selected_state:centralization_timer = 0 }
+					NOT = {
+						check_variable = {
+							TUR_selected_state:TUR_central_var = 100
+						}
+					}
 				}
 			}
 		}
@@ -207,6 +215,7 @@ scripted_gui = {
 					max = 100
 				}
 				central_map_calculate_frame = yes
+				set_variable = { TUR_selected_state:centralization_timer = 21 }
 			}
 		}
 	}
