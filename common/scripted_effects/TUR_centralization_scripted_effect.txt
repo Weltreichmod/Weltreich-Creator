@@ -74,6 +74,84 @@ setup_central_map = {
 	central_map_calculate_frame = yes
 }
 
+centralization_ai_MONTHLY = {
+	if = {
+		limit = {
+			is_ai = yes
+		}
+		for_each_loop = {
+			array = TUR_central_map_array
+			if = {
+				limit = {
+					TUR = { has_political_power > 20 }
+				}
+				TUR = { add_political_power = -20 }
+				var:v = {
+					if = {
+						limit = {
+							NOT = {
+								check_variable = { TUR_central_var = 100 }
+								check_variable = { gui_display_frame_tur = 5000 }
+							}
+						}
+						add_to_variable = { TUR_central_var = 7 }
+					}
+					log = "[GetDate] - ([Root.GetTag]): added to [?v] result: [?TUR_central_var]"
+				}
+			}
+		}
+		check_centralization_modifier = yes
+	}
+}
+
+check_centralization_modifier = {
+	if = {
+		limit = {
+			check_variable = { 797:TUR_central_var = 100 }
+			check_variable = { 339:TUR_central_var = 100 }
+			check_variable = { 347:TUR_central_var = 100 }
+			check_variable = { 49:TUR_central_var = 100 }
+			check_variable = { 342:TUR_central_var = 100 }
+			check_variable = { 344:TUR_central_var = 100 }
+			check_variable = { 353:TUR_central_var = 100 }
+			check_variable = { 680:TUR_central_var = 100 }
+			check_variable = { 454:TUR_central_var = 100 }
+			check_variable = { 291:TUR_central_var = 100 }
+			check_variable = { 855:TUR_central_var = 100 }
+			check_variable = { 273:TUR_central_var = 100 }
+			check_variable = { 936:TUR_central_var = 100 }
+		}
+		TUR = {
+			add_ideas = TUR_centralization_completed
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { 797:gui_display_frame_tur = 5000 }
+			check_variable = { 339:gui_display_frame_tur = 5000 }
+			check_variable = { 347:gui_display_frame_tur = 5000 }
+			check_variable = { 49:gui_display_frame_tur = 5000 }
+			check_variable = { 342:gui_display_frame_tur = 5000 }
+			check_variable = { 344:gui_display_frame_tur = 5000 }
+			check_variable = { 353:gui_display_frame_tur = 5000 }
+			check_variable = { 680:gui_display_frame_tur = 5000 }
+			check_variable = { 454:gui_display_frame_tur = 5000 }
+			check_variable = { 291:gui_display_frame_tur = 5000 }
+			check_variable = { 855:gui_display_frame_tur = 5000 }
+			check_variable = { 273:gui_display_frame_tur = 5000 }
+			check_variable = { 936:gui_display_frame_tur = 5000 }
+		}
+		TUR = {
+			remove_ideas = TUR_centralization_completed
+		}
+	}
+	else = {
+		TUR = {
+			remove_ideas = TUR_centralization_completed
+		}
+	}
+}
+
 central_map_calculate_frame = {
 	for_each_loop = {
 		array = TUR_central_map_array
