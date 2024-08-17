@@ -1,4 +1,210 @@
 peace_deal = {
+	#conditional surrender
+	surrender_to_REI = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			tag = ENT
+			is_faction_leader = yes
+		}
+		available = {
+			is_faction_leader = yes
+		}
+		visible = {
+			tag = ENT
+			has_war_with = REI
+			surrender_progress < 0.10
+			is_faction_leader = yes
+			OR = {
+				original_tag = ENG
+				NOT = { capital_scope = { is_on_continent = europe } }
+			}
+			NOT = {
+				any_allied_country = {
+					capital_scope = { is_on_continent = europe }
+					has_capitulated = no
+					NOT = { original_tag = ENG }
+					NOT = { original_tag = ICE }
+					NOT = { original_tag = IRE }
+				}
+			}
+			REI = {
+				surrender_progress < 0.15
+				is_faction_leader = yes
+			}
+		}
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 0
+			modifier = {
+				add = 100
+				has_country_flag = cumulative_battle_fatigue_flag
+			}
+		}
+		complete_effect = {
+			REI = { country_event = wrwpe.2 }
+		}
+	}
+	cumulative_battle_fatigue_ent = {
+		icon = GFX_decision_generic_political_discourse
+		allowed = {
+			tag = ENT
+			is_faction_leader = yes
+		}
+		days_mission_timeout = 365
+		activation = {
+			tag = ENT
+			has_war_with = REI
+			surrender_progress < 0.10
+			is_faction_leader = yes
+			OR = {
+				original_tag = ENG
+				NOT = { capital_scope = { is_on_continent = europe } }
+			}
+			NOT = {
+				any_allied_country = {
+					capital_scope = { is_on_continent = europe }
+					has_capitulated = no
+					NOT = { original_tag = ENG }
+					NOT = { original_tag = ICE }
+					NOT = { original_tag = IRE }
+				}
+			}
+			REI = {
+				surrender_progress < 0.15
+				is_faction_leader = yes
+			}
+		}
+		available = {
+			OR = {
+				NOT = { tag = ENT }
+				is_faction_leader = no
+				NOT = { has_war_with = REI }
+				any_allied_country = {
+					capital_scope = { is_on_continent = europe }
+					has_capitulated = no
+					NOT = { original_tag = ENG }
+					NOT = { original_tag = ICE }
+					NOT = { original_tag = IRE }
+				}
+				REI = {
+					surrender_progress > 0.15
+				}
+			}
+		}
+		timeout_effect = {
+			add_war_support = -0.025
+			add_stability = -0.025
+			if = {
+				limit = {
+					NOT = { has_country_flag = cumulative_battle_fatigue_flag }
+				}
+				set_country_flag = cumulative_battle_fatigue_flag
+			}
+		}
+	}
+	surrender_to_ENT = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			tag = REI
+			is_faction_leader = yes
+		}
+		available = {
+			is_faction_leader = yes
+		}
+		visible = {
+			tag = REI
+			has_war_with = ENT
+			surrender_progress < 0.10
+			is_faction_leader = yes
+			OR = {
+				original_tag = ENG
+				NOT = { capital_scope = { is_on_continent = europe } }
+			}
+			NOT = {
+				any_allied_country = {
+					capital_scope = { is_on_continent = europe }
+					has_capitulated = no
+					NOT = { original_tag = ENG }
+					NOT = { original_tag = ICE }
+					NOT = { original_tag = IRE }
+				}
+			}
+			ENT = {
+				surrender_progress < 0.15
+				is_faction_leader = yes
+			}
+		}
+		fire_only_once = yes
+		ai_will_do = { 
+			base = 0
+			modifier = {
+				add = 100
+				has_country_flag = cumulative_battle_fatigue_flag
+			}
+		}
+		complete_effect = {
+			ENT = { country_event = wrwpe.23 }
+		}
+	}
+	cumulative_battle_fatigue_rei = {
+		icon = GFX_decision_generic_political_discourse
+		allowed = {
+			tag = REI
+			is_faction_leader = yes
+		}
+		days_mission_timeout = 365
+		activation = {
+			tag = REI
+			has_war_with = ENT
+			surrender_progress < 0.10
+			is_faction_leader = yes
+			OR = {
+				original_tag = ENG
+				NOT = { capital_scope = { is_on_continent = europe } }
+			}
+			NOT = {
+				any_allied_country = {
+					capital_scope = { is_on_continent = europe }
+					has_capitulated = no
+					NOT = { original_tag = ENG }
+					NOT = { original_tag = ICE }
+					NOT = { original_tag = IRE }
+				}
+			}
+			ENT = {
+				surrender_progress < 0.15
+				is_faction_leader = yes
+			}
+		}
+		available = {
+			OR = {
+				NOT = { tag = REI }
+				is_faction_leader = no
+				NOT = { has_war_with = ENT }
+				any_allied_country = {
+					capital_scope = { is_on_continent = europe }
+					has_capitulated = no
+					NOT = { original_tag = ENG }
+					NOT = { original_tag = ICE }
+					NOT = { original_tag = IRE }
+				}
+				ENT = {
+					surrender_progress > 0.15
+				}
+			}
+		}
+		timeout_effect = {
+			add_war_support = -0.025
+			add_stability = -0.025
+			if = {
+				limit = {
+					NOT = { has_country_flag = cumulative_battle_fatigue_flag }
+				}
+				set_country_flag = cumulative_battle_fatigue_flag
+			}
+		}
+	}
+	#unconditional surrender
 	fall_of_ENT = {
 		icon = GFX_decision_eng_trade_unions_support
 		days_mission_timeout = 0

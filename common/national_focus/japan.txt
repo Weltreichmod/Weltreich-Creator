@@ -1938,28 +1938,18 @@
 			}
 		}
 		available = {
-			#OR = {
-			#	GOA = { is_subject = no }
-			#	MGO = { has_war = yes }
-			#	strength_ratio = {
-			#		tag = MGO
-			#		ratio > 1.3
-			#	}
-			#}
 			OR = {
-				GER = { has_war = yes }
+				MGO = { has_war = yes }
 				strength_ratio = {
-					tag = GER
+					tag = MGO
 					ratio > 1.3
 				}
 			}
 		}
 		bypass = {
 			OR = {
-				#GOA = { exists = no }
-				#has_war_with = GOA
-				GER = { exists = no }
-				has_war_with = GER
+				MGO = { original_tag = ROOT }
+				has_war_with = MGO
 			}
 		}
 		prerequisite = {
@@ -1967,19 +1957,7 @@
 		}
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
-			#if = {
-			#	limit = {
-			#		GOA = { is_subject = no }
-			#	}
-			#	GOA = { country_event = japan_wr.23 }
-			#}
-			#else_if = {
-			#	limit = {
-			#		GOA = { is_subject = yes }
-			#	}
-			#	MGO = { country_event = japan_wr.23 }
-			#}
-			GER = { country_event = japan_wr.23 }
+			MGO = { country_event = japan_wr.23 }
 			671 = { add_claim_by = JAP }
 			670 = { add_claim_by = JAP }
 			286 = { add_claim_by = JAP }
@@ -2106,7 +2084,19 @@
 		will_lead_to_war_with = CHI
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
-			declare_war_on = { target = CHI  type = puppet_wargoal_focus }
+			declare_war_on = { target = CHI type = puppet_wargoal_focus }
+			if = {
+				limit = {
+					GXC = { is_subject_of = CHI }
+				}
+				declare_war_on = { target = GXC type = puppet_wargoal_focus }
+			}
+			if = {
+				limit = {
+					GUD = { is_subject_of = CHI }
+				}
+				declare_war_on = { target = GUD type = puppet_wargoal_focus }
+			}
 			add_named_threat = {
 				threat = 7
 				name = Sino_Japanese_war

@@ -93,7 +93,7 @@ country_event = {
 	}
 	option = {
 		name = fentian.2.b
-		effect_tooltip = { FROM = { create_wargoal = { type = annex_everything target = ROOT } } }
+		effect_tooltip = { FROM = { declare_war_on = { type = annex_everything target = ROOT } } }
 		FROM = { country_event = { id = fentian.4 days = 1 } }
 		ai_chance = {
 			base = 0.1
@@ -164,7 +164,13 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = fentian.4.a
-		create_wargoal = { type = annex_everything target = FROM }
+		declare_war_on = { target = FROM type = annex_everything }
+		every_country = {
+			limit = {
+				is_subject_of = FROM
+			}
+			declare_war_on = { target = PREV type = annex_everything }
+		}
 		ai_chance = {
 			base = 1
 		}

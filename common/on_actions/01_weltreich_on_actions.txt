@@ -404,12 +404,6 @@ on_actions = {
 				every_country = {
 					limit = {
 						has_war_with = SOV
-						OR = {
-							original_tag = GER
-							is_in_faction_with = GER
-							is_subject_of = GER
-							has_war_with = SOV
-						}
 					}
 					white_peace = {
 						tag = SOV
@@ -422,6 +416,12 @@ on_actions = {
 						white_peace = {
 							tag = MON
 						}
+					}
+				}
+				SOV = {
+					annex_country = {
+						target = SOV
+						transfer_troops = yes
 					}
 				}
 				GER = { country_event = Germany.71 }
@@ -515,12 +515,6 @@ on_actions = {
 				every_country = {
 					limit = {
 						has_war_with = RUS
-						OR = {
-							original_tag = GER
-							is_in_faction_with = GER
-							is_subject_of = GER
-							has_war_with = RUS
-						}
 					}
 					white_peace = {
 						tag = RUS
@@ -533,6 +527,12 @@ on_actions = {
 						white_peace = {
 							tag = MON
 						}
+					}
+				}
+				RUS = {
+					annex_country = {
+						target = RUS
+						transfer_troops = yes
 					}
 				}
 				GER = { country_event = Germany.88 }
@@ -1603,6 +1603,17 @@ on_actions = {
 					original_tag = GER
 				}
 				FROM = { set_country_flag = yellow_peril_flag }
+			}
+			if = {
+				limit = {
+					has_war_with = FRA
+					OR = {
+						original_tag = SOV
+						original_tag = RUS
+					}
+					FRA = { has_country_flag = second_great_war_winner }
+				}
+				FRA = { set_country_flag = revenge_of_1812_flag }
 			}
 		}
 	}

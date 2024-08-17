@@ -74,36 +74,6 @@ setup_central_map = {
 	central_map_calculate_frame = yes
 }
 
-centralization_ai_MONTHLY = {
-	if = {
-		limit = {
-			is_ai = yes
-		}
-		for_each_loop = {
-			array = TUR_central_map_array
-			if = {
-				limit = {
-					TUR = { has_political_power > 20 }
-				}
-				TUR = { add_political_power = -20 }
-				var:v = {
-					if = {
-						limit = {
-							NOT = {
-								check_variable = { TUR_central_var = 100 }
-								check_variable = { gui_display_frame_tur = 5000 }
-							}
-						}
-						add_to_variable = { TUR_central_var = 7 }
-					}
-					log = "[GetDate] - ([Root.GetTag]): added to [?v] result: [?TUR_central_var]"
-				}
-			}
-		}
-		check_centralization_modifier = yes
-	}
-}
-
 check_centralization_modifier = {
 	if = {
 		limit = {

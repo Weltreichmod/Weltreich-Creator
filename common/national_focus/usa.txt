@@ -1752,9 +1752,17 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = isolation
-				add_idea = low_economic_mobilisation
+			if = {
+				limit = {
+					OR = {
+						has_idea = isolation
+						has_idea = undisturbed_isolation
+					}
+				}
+				swap_ideas = {
+					remove_idea = isolation
+					add_idea = low_economic_mobilisation
+				}
 			}
 			add_war_support = 0.2
 			add_political_power = 100
