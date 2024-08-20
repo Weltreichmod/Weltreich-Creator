@@ -485,22 +485,75 @@ peace_conference_effect = {
 	#fate of france
 	if = {
 		limit = {
-			GER = { has_country_flag = second_great_war_winner }
+			REI = { has_country_flag = second_great_war_winner }
 			FRA = { has_country_flag = second_great_war_loser }
+			all_country = {
+				NOT = { has_country_flag = defeat_france_flag }
+			}
+		}
+		REI = { country_event = wrwpe.5 }
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = CAN
+			}
+			transfer_state_to = CAN
 		}
 		if = {
 			limit = {
-				GER = { is_subject = yes }
-			}
-			every_country = {
-				limit = {
-					has_subject = GER
+				SPA = {
+					exists = yes
 				}
-				country_event = wrwpe.5
 			}
-			else = {
-				GER = { country_event = wrwpe.5 }
+			FRA = {
+				every_state = {
+					limit = {
+						is_owned_by = FRA
+						OR = {
+							is_core_of = SPA
+							state = 290
+							state = 699
+							state = 783
+							state = 178
+							state = 297
+						}
+					}
+					transfer_state_to = SPA
+				}
 			}
+		}
+		else = {
+			FRA = {
+				every_state = {
+					limit = {
+						is_owned_by = FRA
+						OR = {
+							is_core_of = SPR
+							state = 290
+							state = 699
+							state = 783
+							state = 178
+							state = 297
+						}
+					}
+					transfer_state_to = SPR
+				}
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			FRA = { has_country_flag = second_great_war_loser }
+			any_country = {
+				has_country_flag = defeat_france_flag
+			}
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_winner
+				has_country_flag = defeat_france_flag
+			}
+			country_event = wrwpe.5
 		}
 		every_state = {
 			limit = {
@@ -554,26 +607,14 @@ peace_conference_effect = {
 	#fate of italy
 	if = {
 		limit = {
-			GER = { has_country_flag = second_great_war_winner }
-			AUH = { has_country_flag = second_great_war_winner }
-			ITA = { has_country_flag = second_great_war_loser }
-			all_country = {
-				NOT = { has_country_flag = defeat_italy_flag }
-			}
-		}
-		AUH = { country_event = wrwpe.6 }
-	}
-	else_if = {
-		limit = {
-			GER = { has_country_flag = second_great_war_winner }
-			NOT = { AUH = { has_country_flag = second_great_war_winner } }
+			REI = { has_country_flag = second_great_war_winner }
 			ITA = { has_country_flag = second_great_war_loser }
 			all_country = {
 				NOT = { has_country_flag = defeat_italy_flag }
 			}
 		}
 		ITA = { retire_country_leader = yes }
-		GER = { country_event = wrwpe.6 }
+		REI = { country_event = wrwpe.6 }
 	}
 	else_if = {
 		limit = {

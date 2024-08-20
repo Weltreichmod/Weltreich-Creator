@@ -28,6 +28,28 @@ on_actions = {
 		effect = {
 			if = {
 				limit = {
+					original_tag = FRA
+					has_global_flag = second_world_war
+				}
+				if = {
+					limit = {
+						FROM = { is_subject = no }
+					}
+					FROM = { set_country_flag = defeat_france_flag }
+					log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					else = {
+						every_country = {
+							limit = {
+								has_subject = FROM
+							}
+							set_country_flag = defeat_france_flag
+						}
+						log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					}
+				}
+			}
+			if = {
+				limit = {
 					original_tag = ENG
 					has_global_flag = second_world_war
 				}
