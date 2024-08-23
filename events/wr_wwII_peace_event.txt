@@ -9,39 +9,7 @@ country_event = {
 	title = wrwpe.1.t
 	desc = wrwpe.1.d
 	picture = agreement_picture
-	trigger = {
-		tag = ENT
-		has_war_with = REI
-		surrender_progress < 0.10
-		is_faction_leader = yes
-		OR = {
-			original_tag = ENG
-			NOT = { capital_scope = { is_on_continent = europe } }
-		}
-		NOT = {
-			any_allied_country = {
-				capital_scope = { is_on_continent = europe }
-				has_capitulated = no
-				NOT = { original_tag = ENG }
-				NOT = { original_tag = ICE }
-				NOT = { original_tag = IRE }
-			}
-		}
-		REI = {
-			surrender_progress < 0.15
-			is_faction_leader = yes
-		}
-	}
-	mean_time_to_happen = {
-		days = 100
-		modifier = {
-			OR = {
-				USA = { is_in_faction_with = ENT }
-				ENT = { original_tag = USA }
-			}
-			days = 700
-		}
-	}
+	is_triggered_only = yes
 	fire_only_once = yes
 	option = { #Peace
 		name = wrwpe.1.a
@@ -231,6 +199,218 @@ country_event = {
 	is_triggered_only = yes
 	option = { #No Peace
 		name = wrwpe.4.a
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+country_event = {
+	id = wrwpe.23
+	title = wrwpe.23.t
+	desc = wrwpe.23.d
+	picture = agreement_picture
+	is_triggered_only = yes
+	option = { #Peace
+		name = wrwpe.23.a
+		effect_tooltip = {
+			every_country = {
+				limit = {
+					is_in_faction_with = REI
+					has_capitulated = no
+				}
+				white_peace = {
+					tag = ENT
+					message = honorable_peace_ent
+				}
+			}
+			every_country = {
+				limit = {
+					is_in_faction_with = REI
+					has_capitulated = yes
+					NOT = {
+						has_country_flag = second_great_war_winner
+					}
+				}
+				set_country_flag = second_great_war_loser
+				leave_faction = yes
+			}
+		}
+		REI = { country_event = wrwpe.24 }
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = { #No peace
+		name = wrwpe.23.b
+		REI = { country_event = wrwpe.25 }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = wrwpe.24
+	title = wrwpe.24.t
+	desc = wrwpe.24.d
+	picture = agreement_picture
+	is_triggered_only = yes
+	option = { #Peace
+		name = wrwpe.24.a
+		set_global_flag = honorable_peace_flag
+		clr_global_flag = second_world_war
+		set_global_flag = second_great_war_ends
+		every_country = {
+			limit = {
+				is_in_faction_with = REI
+				has_capitulated = yes
+				NOT = {
+					has_country_flag = second_great_war_winner
+				}
+			}
+			set_country_flag = second_great_war_loser
+		}
+		every_country = {
+			limit = {
+				OR = {
+					tag = ENT
+					is_in_faction_with = ENT
+					is_subject_of = ENT
+					has_war_with = REI
+				}
+				NOT = {
+					has_country_flag = second_great_war_loser
+				}
+			}
+			set_country_flag = second_great_war_winner
+		}
+		every_country = {
+			limit = {
+				is_in_faction_with = REI
+				is_government_in_exile = yes
+			}
+			end_exile = yes
+		}
+		every_country = {
+			limit = {
+				OR = {
+					tag = ENT
+					is_in_faction_with = ENT
+					original_tag = RUS
+					is_in_faction_with = RUS
+					original_tag = SOV
+					is_in_faction_with = SOV
+				}
+			}
+			white_peace = {
+				tag = REI
+				message = honorable_peace_ent
+			}
+		}
+		every_country = {
+			limit = {
+				is_in_faction_with = REI
+				has_country_flag = second_great_war_loser
+			}
+			leave_faction = yes
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					has_country_flag = second_great_war_loser
+					is_subject = no
+				}
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+			}
+			REI = { set_faction_name = world_pact }
+			if = {
+				limit = {
+					GER = { has_country_flag = second_great_war_loser }
+				}
+				GER = {
+					retire_country_leader = yes
+					create_country_leader = {
+						name = "GER_emergency_government"
+						picture = "gfx/leaders/GER/GER_emergency_government.png"
+						expire = "1965.1.1"
+						ideology = moderatism
+						traits = {
+						}
+					}
+					set_politics = {
+						ruling_party = neutrality
+						election_frequency = 48
+						elections_allowed = yes
+					}
+					add_popularity = {
+						ideology = neutrality
+						popularity = 0.15
+					}
+					set_party_name = {
+						ideology = neutrality
+						long_name = GER_emergency_government
+						name = GER_emergency_government
+					}
+					set_cosmetic_tag = GER_has_fallen
+				}
+			}
+			if = {
+				limit = {
+					FRA = { has_country_flag = second_great_war_winner }
+					JAP = { has_country_flag = second_great_war_winner }
+					GER = { has_country_flag = second_great_war_loser }
+					671 = {
+						is_claimed_by = FRA
+						is_claimed_by = JAP
+					}
+					670 = {
+						is_claimed_by = FRA
+						is_claimed_by = JAP
+					}
+					286 = {
+						is_claimed_by = FRA
+						is_claimed_by = JAP
+					}
+					741 = {
+						is_claimed_by = FRA
+						is_claimed_by = JAP
+					}
+				}
+				every_state = {
+					limit = {
+						OR = {
+							is_owned_by = GER
+							is_owned_by = GOA
+						}
+						OR = {
+							state = 671
+							state = 670
+							state = 286
+							state = 741
+						}
+					}
+					transfer_state_to = JAP
+				}
+			}
+			news_event = wr_news.5
+		}
+        peace_conference_effect = yes
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+country_event = {
+	id = wrwpe.25
+	title = wrwpe.25.t
+	desc = wrwpe.25.d
+	picture = agreement_picture
+	is_triggered_only = yes
+	option = { #No Peace
+		name = wrwpe.25.a
 		ai_chance = {
 			base = 100
 		}

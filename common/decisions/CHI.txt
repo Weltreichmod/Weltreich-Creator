@@ -80,6 +80,25 @@ CHI_sino_japanese_war = {
 }
 
 CHI_warlord_era = {
+	CHI_joining_united_fronts = {
+		icon = GFX_decision_generic_operation
+		allowed = {
+			is_chinese_country = yes
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		visible = {
+			is_chinese_country = yes
+			is_subject = no
+			has_war_with = JAP
+			CHI = { is_faction_leader = yes }
+		}
+		complete_effect = {
+			CHI = { country_event = china_wr.26 }
+		}
+	}
 	CHI_german_advisors_reinvitation = {
 		icon = GFX_decision_generic_military
 		allowed = {
@@ -92,13 +111,18 @@ CHI_warlord_era = {
 		fire_only_once = yes
 		visible = {
 			NOT = { has_idea = CHI_german_advisors }
+			NOT = { has_idea = CHI_german_advisors_strong }
 			is_subject = no
 			CHR = {
 				OR = {
 					exists = no
-					NOT = { has_idea = CHI_german_advisors }
+					AND = {
+						NOT = { has_idea = CHI_german_advisors }
+						NOT = { has_idea = CHI_german_advisors_strong }
+					}
 				}
 			}
+			NOT = { has_completed_focus = CHI_formation_of_an_independent_command }
 		}
 		complete_effect = {
 			GER = { country_event = china_wr.7 }
@@ -251,6 +275,8 @@ CHI_warlord_era = {
 					original_tag = SHX
 					original_tag = PRC
 					original_tag = XSM
+					original_tag = GSM
+					original_tag = NSM
 					original_tag = SIK
 				}
 				OR = {
@@ -320,6 +346,8 @@ CHI_warlord_era = {
 			is_subject = no
 			has_war = no
 			XSM = { exists = no }
+			GSM = { exists = no }
+			NSM = { exists = no }
 			PRC = { exists = no }
 			SHX = { exists = no }
 			SIC = { exists = no }
@@ -333,6 +361,7 @@ CHI_warlord_era = {
 		complete_effect = {
 			set_cosmetic_tag = CHI_REP
 			set_country_flag = complete_of_unification_cahina
+			remove_ideas = CHI_idea_warlord_neutrality
 		}
 	}
 	
@@ -349,6 +378,8 @@ CHI_warlord_era = {
 					original_tag = SHX
 					original_tag = PRC
 					original_tag = XSM
+					original_tag = GSM
+					original_tag = NSM
 					original_tag = SIK
 				}
 			}
