@@ -1347,8 +1347,8 @@
 	}
 	
 	focus = {
-		id = desperate_defense
-		icon = GFX_goal_generic_defence
+		id = FRA_to_berlin
+		icon = GFX_focus_SWE_let_fly_all_guns
 		relative_position_id = War_Factory_Act
 		x = -1
 		y = 1
@@ -1363,14 +1363,14 @@
 			focus = War_Factory_Act
 		}
 		completion_reward = {
-			add_timed_idea = { idea = desperate_defense days = 365 }
+			add_timed_idea = { idea = FRA_to_berlin days = 365 }
 		}
 	}
 	
 	focus = {
-		id = Defense_of_Paris
+		id = FRA_take_up_arms
 		icon = GFX_focus_focus_fra_third_empire
-		relative_position_id = desperate_defense
+		relative_position_id = FRA_to_berlin
 		x = 0
 		y = 1
 		cost = 10
@@ -1379,116 +1379,32 @@
 		}
 		available = {
 			has_war_with_major = yes
-			NOT = { has_full_control_of_state = 785 }
 		}
 		prerequisite = {
-			focus = desperate_defense
+			focus = FRA_to_berlin
 		}
 		completion_reward = {
+			division_template = {
+				name = "Milice"
+				division_names_group = FRA_INF_01
+				is_locked = yes
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+				}
+			}
 			928 = {
-				if = {
-					limit = {
-						ROOT = { controls_province = 11506 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 3
-						province = 11506
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 11491 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 2
-						province = 11491
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 11518 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 2
-						province = 11518
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 9534 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 2
-						province = 9534
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 6949 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 1
-						province = 6949
-						instant_build = yes
-					}
+				create_unit = {
+					division = "name = \"Milice\" division_template = \"Milice\" start_experience_factor = 0.05"
+					owner = ROOT
+					count = 4
 				}
 			}
-			16 = {
-				if = {
-					limit = {
-						ROOT = { controls_province = 9523 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 2
-						province = 9523
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 9725 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 1
-						province = 9725
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 9507 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 1
-						province = 9507
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 6547 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 1
-						province = 6547
-						instant_build = yes
-					}
-				}
-			}
-			add_timed_idea = { idea = Defense_of_Paris days = 100 }
+			add_ideas = FRA_take_up_arms
 		}
 	}
 	
@@ -1537,7 +1453,7 @@
 	focus = {
 		id = an_ultimate_weapon
 		icon = GFX_focus_wonderweapons
-		relative_position_id = Defense_of_Paris
+		relative_position_id = FRA_take_up_arms
 		x = 1
 		y = 1
 		cost = 10
@@ -1545,7 +1461,7 @@
 			factor = 4
 		}
 		prerequisite = {
-			focus = Defense_of_Paris
+			focus = FRA_take_up_arms
 		}
 		prerequisite = {
 			focus = fully_mobilization_of_the_people

@@ -1,0 +1,134 @@
+focus_tree = {
+	id = canadian_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = CAN
+			has_dlc = "Together for Victory"
+		}
+
+		#modifier = {
+		#	add = 10
+		#	original_tag = CAN
+		#	has_dlc = "Together for Victory"
+		#}
+	}
+	
+	default = no
+
+
+
+#	focus = {
+#		id = CAN_
+#		icon = GFX_
+#		prerequisite = { focus = }
+#		mutually_exclusive = { focus =  }
+#		x = -3
+#		y = 0
+#		relative_position_id = 
+#
+#		cost = 10
+#
+#		ai_will_do = {
+#			factor = 1
+#		}
+#
+#		available = {
+#
+#		}
+#		
+#		bypass = {
+#
+#		}
+#
+#		cancel_if_invalid = yes
+#		continue_if_invalid = no
+#		available_if_capitulated = no
+#
+#		complete_tooltip = {
+#
+#		}
+#
+#		completion_reward = {
+#
+#		}
+#	}
+
+	focus = {
+		id = CAN_the_first_dominion
+		x = 0
+		y = 0
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 6
+		}
+
+		available = {
+		
+		}
+		
+		bypass = {
+
+		}
+
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 150
+		}
+	}
+	
+	focus = {
+		id = CAN_follow_the_coalition
+		relative_position_id = CAN_the_first_dominion
+		x = -3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = CAN_social credit
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = CAN_the_first_dominion
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CAN_social credit
+		relative_position_id = CAN_the_first_dominion
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = CAN_follow_the_coalition
+		}
+		cancel_if_invalid = yes
+		continue_if_invalid = no
+		available_if_capitulated = yes
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_the_first_dominion
+		}
+		completion_reward = {
+		}
+	}
+}
