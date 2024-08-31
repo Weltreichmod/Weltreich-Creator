@@ -7,7 +7,6 @@ focus_tree = {
 		modifier = {
 			add = 10
 			tag = CAN
-			has_dlc = "Together for Victory"
 		}
 
 		#modifier = {
@@ -67,18 +66,6 @@ focus_tree = {
 		ai_will_do = {
 			factor = 6
 		}
-
-		available = {
-		
-		}
-		
-		bypass = {
-
-		}
-
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -96,22 +83,90 @@ focus_tree = {
 			factor = 6
 		}
 		mutually_exclusive = {
-			focus = CAN_social credit
+			focus = CAN_stand_up_to_the_coalition_government
 		}
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
 			focus = CAN_the_first_dominion
 		}
 		completion_reward = {
-			unlock_decision_category_tooltip = CAN_democratic_coalition
+			custom_effect_tooltip = CAN_follow_the_coalition_effect
+		}
+	}
+	
+	#Nomal Path
+	focus = {
+		id = CAN_welfare_state
+		relative_position_id = CAN_follow_the_coalition
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			NOT = { has_country_flag = fall_of_coalition_flag }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_follow_the_coalition
+		}
+		completion_reward = {
+			unlock_decision_category_tooltip = CAN_the_enactment_of_economic_policies
+			add_to_variable = { coalition_var = 5 }
+			custom_effect_tooltip = CAN_find_the_common_view_effect
 		}
 	}
 	
 	focus = {
-		id = CAN_social credit
+		id = CAN_Weakening_Social_Credit_Party_influence
+		relative_position_id = CAN_follow_the_coalition
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			NOT = { has_country_flag = fall_of_coalition_flag }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_follow_the_coalition
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_Coalition_Government_Conference
+		relative_position_id = CAN_follow_the_coalition
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			NOT = { has_country_flag = fall_of_coalition_flag }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_follow_the_coalition
+		}
+		completion_reward = {
+			country_event = canada_wr.2
+			add_to_variable = { coalition_var = 5 }
+			custom_effect_tooltip = CAN_find_the_common_view_effect
+		}
+	}
+	
+	focus = {
+		id = CAN_stand_up_to_the_coalition_government
 		relative_position_id = CAN_the_first_dominion
 		x = 2
 		y = 1
@@ -122,14 +177,12 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = CAN_follow_the_coalition
 		}
-		cancel_if_invalid = yes
-		continue_if_invalid = no
-		available_if_capitulated = yes
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
 			focus = CAN_the_first_dominion
 		}
 		completion_reward = {
+			custom_effect_tooltip = CAN_social_credit_effect
 		}
 	}
 }
