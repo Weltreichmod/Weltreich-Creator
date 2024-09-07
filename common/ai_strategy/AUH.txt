@@ -26,45 +26,6 @@ russian_civil_war_AUH = {
 	}
 }
 
-AUH_dont_help_bel_or_hol = {
-	allowed = {
-		OR = {
-			original_tag = AUH
-			original_tag = LBV
-			original_tag = SER
-			original_tag = ALB
-		}
-	}
-	enable = {
-		always = yes
-	}	
-	abort = {
-		GER = {
-			surrender_progress > 0.2
-		}
-	}
-	
-	ai_strategy = {
-		type = dont_defend_ally_borders
-		id = "BEL"
-		value = 1
-	}
-	ai_strategy = {
-		type = protect
-		id = "BEL"
-		value = -1000
-	}
-	ai_strategy = {
-		type = dont_defend_ally_borders
-		id = "HOL"
-		value = 1
-	}
-	ai_strategy = {
-		type = protect
-		id = "HOL"
-		value = -1000
-	}
-}
 dont_want_ally_fra_brother_war = {
 	allowed = {
 		original_tag = AUH
@@ -78,5 +39,23 @@ dont_want_ally_fra_brother_war = {
 		type = alliance
 		id = FRA
 		value = -1000
+	}
+}
+
+AUH_land_to_ita_after_france_fall = {
+	allowed = {
+		original_tag = AUH
+	}
+	enable = {
+		has_war_with = ITA
+		has_war_with = FRA
+		FRA = {
+			has_capitulated = yes
+		}
+	}
+	abort_when_not_enabled = yes
+	ai_strategy = {
+		type = naval_invasion_focus
+		value = 400
 	}
 }

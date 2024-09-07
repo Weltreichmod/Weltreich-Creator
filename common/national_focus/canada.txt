@@ -55,14 +55,426 @@ focus_tree = {
 #
 #		}
 #	}
+	#Economy
+	focus = {
+		id = CAN_USA_trade
+		x = -9
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 10
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_aftermath_of_great_depression
+				add_idea = CAN_aftermath_of_great_depression_1
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_National_Employment_Commission
+		relative_position_id = CAN_USA_trade
+		x = -3
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = CAN_USA_trade
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = CAN_National_Employment_Commission
+		}
+	}
+	
+	focus = {
+		id = CAN_National_Housing_Act
+		relative_position_id = CAN_USA_trade
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = CAN_USA_trade
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = CAN_National_Housing_Act
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					is_owned_by = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					is_owned_by = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_Federal_Unemployment_and_Agricultural_Assistance_Act
+		relative_position_id = CAN_National_Employment_Commission
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = CAN_National_Employment_Commission
+		}
+		prerequisite = {
+			focus = CAN_National_Housing_Act
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_aftermath_of_great_depression_1
+				add_idea = CAN_aftermath_of_great_depression_2
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_war_economy
+		relative_position_id = CAN_Federal_Unemployment_and_Agricultural_Assistance_Act
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			has_war = yes
+		}
+		prerequisite = {
+			focus = CAN_Federal_Unemployment_and_Agricultural_Assistance_Act
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					is_owned_by = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			remove_ideas = CAN_aftermath_of_great_depression_2
+		}
+	}
+	
+	focus = {
+		id = CAN_University_of_Montreal
+		relative_position_id = CAN_USA_trade
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = CAN_USA_trade
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	
+	#Industry
+	focus = {
+		id = CAN_Canadian_Industrial_Development
+		relative_position_id = CAN_USA_trade
+		x = -4
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_Canadian_Industrial_Development
+				bonus = 0.5
+				uses = 2
+				category = industry
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_synthetic_oil
+		relative_position_id = CAN_Canadian_Industrial_Development
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = CAN_Canadian_Industrial_Development
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_synthetic_oil
+				bonus = 0.5
+				uses = 2
+				category = synth_resources
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_mine_the_shield
+		relative_position_id = CAN_synthetic_oil
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = CAN_synthetic_oil
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 471 472 683 }
+				limit = {
+					is_in_home_area = yes
+				}
+				add_resource = {
+					type = steel
+					amount = 2
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 471 472 683 }
+				limit = {
+					is_in_home_area = yes
+				}
+				add_resource = {
+					type = steel
+					amount = 2
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 471 472 683 }
+				limit = {
+					is_in_home_area = yes
+				}
+				add_resource = {
+					type = chromium
+					amount = 3
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_Canadian_Wheat_Board
+		relative_position_id = CAN_Canadian_Industrial_Development
+		x = 0
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = CAN_Canadian_Industrial_Development
+		}
+		prerequisite = {
+			focus = CAN_National_Employment_Commission
+		}
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_ideas = CAN_Canadian_Wheat_Board
+		}
+	}
+	
+	focus = {
+		id = CAN_CBC
+		relative_position_id = CAN_Canadian_Wheat_Board
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = CAN_Canadian_Wheat_Board
+		}
+		prerequisite = {
+			focus = CAN_Federal_Unemployment_and_Agricultural_Assistance_Act
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			show_ideas_tooltip = Canadian_Broadcasting_Corporation
+		}
+	}
+	
+	focus = {
+		id = CAN_Bank_of_Canada
+		relative_position_id = CAN_CBC
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = CAN_CBC
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = CAN_Bank_of_Canada
+		}
+	}
+	
+	#War Path
+	focus = {
+		id = CAN_canada_at_war
+		relative_position_id = CAN_USA_trade
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_war = yes
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = CAN_war_bonds_1
+		}
+	}
+	
+	focus = {
+		id = CAN_national_resources_mobilization_act
+		prerequisite = { focus = CAN_canada_at_war }
+		x = 0
+		y = 2
+		relative_position_id = CAN_canada_at_war
 
+		cost = 10
+
+		ai_will_do = {
+			factor = 6
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_MANPOWER }
+
+		completion_reward = {
+			add_ideas = CAN_national_resources_mobilization_act
+		}
+	}
+	
+	focus = {
+		id = CAN_wartime_prices_and_trade_board
+		prerequisite = { focus = CAN_canada_at_war }
+		x = 1
+		y = 1
+		relative_position_id = CAN_canada_at_war
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			add_ideas = CAN_wartime_prices_and_trade_board
+		}
+	}
+	
+	focus = {
+		id = CAN_uranium_mining
+		prerequisite = { focus = CAN_wartime_prices_and_trade_board }
+		x = 0
+		y = 2
+		relative_position_id = CAN_wartime_prices_and_trade_board
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 6
+		}
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_uranium_mining
+				bonus = 0.5
+				uses = 2
+				category = nuclear
+			}	
+		}
+	}
+	
+	focus = {
+		id = CAN_commit_to_the_war
+		prerequisite = { focus = CAN_national_resources_mobilization_act }
+		prerequisite = { focus = CAN_war_economy }
+		x = 1
+		y = 1
+		relative_position_id = CAN_war_economy
+
+		cost = 10
+
+		ai_will_do = {
+			factor = 6
+		}
+
+		available = {
+			has_war = yes
+		}
+
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		completion_reward = {
+			add_ideas = CAN_commit_to_the_war
+		}
+	}
+
+	#Political Path
 	focus = {
 		id = CAN_the_first_dominion
 		x = 0
 		y = 0
 
 		cost = 10
-
+		offset = {
+			x = 1
+			y = 0
+			trigger = {
+				has_country_flag = FC_flag
+			}
+		}
 		ai_will_do = {
 			factor = 6
 		}
@@ -85,16 +497,23 @@ focus_tree = {
 		mutually_exclusive = {
 			focus = CAN_stand_up_to_the_coalition_government
 		}
+		allow_branch = {
+			NOT = { has_country_flag = FC_flag }
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
 			focus = CAN_the_first_dominion
 		}
 		completion_reward = {
 			custom_effect_tooltip = CAN_follow_the_coalition_effect
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
 		}
 	}
 	
-	#Nomal Path
+	#Normal Path
 	focus = {
 		id = CAN_welfare_state
 		relative_position_id = CAN_follow_the_coalition
@@ -112,9 +531,38 @@ focus_tree = {
 			focus = CAN_follow_the_coalition
 		}
 		completion_reward = {
-			unlock_decision_category_tooltip = CAN_the_enactment_of_economic_policies
+			add_ideas = CAN_welfare_state
 			add_to_variable = { coalition_var = 5 }
 			custom_effect_tooltip = CAN_find_the_common_view_effect
+		}
+	}
+	
+	focus = {
+		id = CAN_relief_the_people
+		relative_position_id = CAN_welfare_state
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			NOT = { has_country_flag = fall_of_coalition_flag }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = CAN_welfare_state
+		}
+		completion_reward = {
+			add_stability = 0.05
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.05
+			}
+			add_timed_idea = {
+				idea = CAN_relief_the_people
+				days = 365
+			}
 		}
 	}
 	
@@ -160,11 +608,211 @@ focus_tree = {
 		}
 		completion_reward = {
 			country_event = canada_wr.2
+		}
+	}
+	
+	focus = {
+		id = CAN_stabilization_of_the_coalition
+		relative_position_id = CAN_Weakening_Social_Credit_Party_influence
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			NOT = { has_country_flag = fall_of_coalition_flag }
+			custom_trigger_tooltip = {
+				tooltip = CAN_stabilization_of_the_coalition_tt
+				hidden_trigger = {
+					check_variable = { coalition_var > 60 }
+				}
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_Weakening_Social_Credit_Party_influence
+		}
+		prerequisite = {
+			focus = CAN_Coalition_Government_Conference
+		}
+		completion_reward = {
+			remove_ideas = CAN_unstable_coalition
 			add_to_variable = { coalition_var = 5 }
 			custom_effect_tooltip = CAN_find_the_common_view_effect
 		}
 	}
 	
+	focus = {
+		id = CAN_stable_coalition
+		relative_position_id = CAN_stabilization_of_the_coalition
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 16
+		}
+		available = {
+			NOT = { has_country_flag = FC_flag }
+			custom_trigger_tooltip = {
+				tooltip = CAN_stable_coalition_tt
+				hidden_trigger = {
+					check_variable = { coalition_var > 90 }
+				}
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_relief_the_people
+		}
+		prerequisite = {
+			focus = CAN_stabilization_of_the_coalition
+		}
+		completion_reward = {
+			custom_effect_tooltip = CAN_stable_coalition_effect_tt
+		}
+	}
+	
+	focus = {
+		id = CAN_permanent_joint_defence_board
+		relative_position_id = CAN_stable_coalition
+		x = -1
+		y = 1
+		
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_AIR_XP FOCUS_FILTER_NAVY_XP }
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CAN_stable_coalition
+		}
+		available = {
+			USA = { has_government = ROOT }
+			NOT = { has_war_with = USA }
+		}
+		completion_reward = {
+			USA = {
+				add_opinion_modifier = {
+					target = ROOT
+					modifier = large_increase
+				}
+			}
+			add_opinion_modifier = {
+				target = USA
+				modifier = large_increase
+			}
+			add_ideas = CAN_permanent_joint_defence_board
+			USA = { add_ideas = CAN_permanent_joint_defence_board }
+		}
+	}
+	
+	focus = {
+		id = CAN_Section_98
+		relative_position_id = CAN_stable_coalition
+		x = 1
+		y = 1
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CAN_stable_coalition
+		}
+		completion_reward = {
+			country_event = canada_wr.4
+		}
+	}
+	
+	#Hidden Path
+	focus = {
+		id = CAN_fallen_coalition
+		relative_position_id = CAN_the_first_dominion
+		x = -3
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = CAN_stand_up_to_the_coalition_government
+		}
+		allow_branch = {
+			has_country_flag = FC_flag
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_the_first_dominion
+		}
+		completion_reward = {
+			country_event = canada_wr.3
+		}
+	}
+	
+	focus = {
+		id = CAN_Co_operative_Commonwealth_Federation
+		relative_position_id = CAN_fallen_coalition
+		x = -2
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = CAN_Liberal_Party
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_fallen_coalition
+		}
+		completion_reward = {
+			set_party_name = {
+				ideology = democratic
+				long_name = CAN_CCF_party_long
+				name = CAN_CCF_party
+			}
+			hidden_effect = {
+				remove_country_leader_role = {
+					character = CAN_mackenzie_king
+					ideology = liberalism
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_Liberal_Party
+		relative_position_id = CAN_fallen_coalition
+		x = 2
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = CAN_Co_operative_Commonwealth_Federation
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_fallen_coalition
+		}
+		completion_reward = {
+			set_party_name = {
+				ideology = democratic
+				long_name = CAN_Liberal_party_long
+				name = CAN_Liberal_party
+			}
+			hidden_effect = {
+				remove_country_leader_role = {
+					character = CAN_j_s_woodsworth
+					ideology = social_democracy
+				}
+			}
+		}
+	}
+	
+	#Social Credit
 	focus = {
 		id = CAN_stand_up_to_the_coalition_government
 		relative_position_id = CAN_the_first_dominion
@@ -174,8 +822,21 @@ focus_tree = {
 		ai_will_do = {
 			factor = 6
 		}
+		available = {
+			NOT = { has_country_flag = fall_of_coalition_flag }
+		}
+		mutually_exclusive = {
+			focus = CAN_fallen_coalition
+		}
 		mutually_exclusive = {
 			focus = CAN_follow_the_coalition
+		}
+		offset = {
+			x = 1
+			y = 0
+			trigger = {
+				has_country_flag = FC_flag
+			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -183,6 +844,163 @@ focus_tree = {
 		}
 		completion_reward = {
 			custom_effect_tooltip = CAN_social_credit_effect
+		}
+	}
+	
+	focus = {
+		id = CAN_warn_of_another_failure
+		relative_position_id = CAN_stand_up_to_the_coalition_government
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_stand_up_to_the_coalition_government
+		}
+		completion_reward = {
+			add_to_variable = { coalition_var = -5 }
+			custom_effect_tooltip = CAN_swaying_coalition_effect
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_Help_of_BUF
+		relative_position_id = CAN_stand_up_to_the_coalition_government
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_stand_up_to_the_coalition_government
+		}
+		completion_reward = {
+			add_to_variable = { coalition_var = -5 }
+			custom_effect_tooltip = CAN_swaying_coalition_effect
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_New_Election
+		relative_position_id = CAN_warn_of_another_failure
+		x = 1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_country_flag = fall_of_coalition_flag
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_warn_of_another_failure
+		}
+		prerequisite = {
+			focus = CAN_Help_of_BUF
+		}
+		completion_reward = {
+			set_politics = {
+				ruling_party = fascism
+				elections_allowed = yes
+				election_frequency = 48
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_social_dividends
+		relative_position_id = CAN_New_Election
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CAN_New_Election
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			add_ideas = CAN_social_dividends
+		}
+	}
+	
+	focus = {
+		id = CAN_guarantee_basic_income
+		relative_position_id = CAN_social_dividends
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = CAN_social_dividends
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CAN_social_dividends
+				add_idea = CAN_social_dividends1
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_price_controls
+		relative_position_id = CAN_New_Election
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CAN_New_Election
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
+			add_ideas = CAN_price_controls
+		}
+	}
+	
+	focus = {
+		id = CAN_strong_government
+		relative_position_id = CAN_price_controls
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_price_controls
+		}
+		completion_reward = {
+			add_ideas = CAN_strong_government
 		}
 	}
 }

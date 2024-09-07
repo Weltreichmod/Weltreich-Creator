@@ -21,7 +21,7 @@ CAN_democratic_coalition = {
 			base = 1000
 			modifier = {
 				add = -1000
-				check_variable = { coalition_var > 90 }
+				check_variable = { coalition_var > 95 }
 			}
 		}
 	}
@@ -47,7 +47,7 @@ CAN_democratic_coalition = {
 			base = 1000
 			modifier = {
 				add = -1000
-				check_variable = { coalition_var > 90 }
+				check_variable = { coalition_var > 95 }
 			}
 		}
 	}
@@ -73,7 +73,7 @@ CAN_democratic_coalition = {
 			base = 1000
 			modifier = {
 				add = -1000
-				check_variable = { coalition_var > 90 }
+				check_variable = { coalition_var > 95 }
 			}
 		}
 	}
@@ -81,12 +81,15 @@ CAN_democratic_coalition = {
 		days_mission_timeout = 55
 		activation = {
 			has_completed_focus = CAN_follow_the_coalition
+			has_variable = coalition_var
+			NOT = { has_completed_focus = CAN_stable_coalition }
 		}
 		allowed = {
 			original_tag = CAN
 		}
 		available = {
 			NOT = { has_variable = coalition_var }
+			has_completed_focus = CAN_stable_coalition
 		}
 		timeout_effect = {
 			add_to_variable = { coalition_var = -5 }
@@ -175,6 +178,7 @@ CAN_democratic_coalition = {
 		days_mission_timeout = 55
 		activation = {
 			has_completed_focus = CAN_stand_up_to_the_coalition_government
+			has_variable = coalition_var
 		}
 		allowed = {
 			original_tag = CAN
@@ -209,161 +213,6 @@ CAN_democratic_coalition = {
 			clear_variable = coalition_var
 			set_country_flag = fall_of_coalition_flag
 			country_event = canada_wr.1
-		}
-	}
-}
-CAN_the_enactment_of_economic_policies = {
-	CAN_National_Housing_Act = {
-		icon = GFX_decision_eng_trade_unions_support
-		visible = {
-			has_completed_focus = CAN_welfare_state
-		}
-		fire_only_once = yes
-		days_remove = 30
-		available = {
-			NOT = { has_country_flag = Currently_Proposing_a_New_Policy }
-		}
-		complete_effect = {
-			set_country_flag = Currently_Proposing_a_New_Policy
-		}
-		remove_effect = {
-			clr_country_flag = Currently_Proposing_a_New_Policy
-			set_country_flag = CAN_National_Housing_Act_flag
-			if = {
-				limit = {
-					has_country_flag = CAN_Unemployment_Benefits_flag
-					has_country_flag = CAN_Family_Allowance_Act_flag
-				}
-				if = {
-					limit = {
-						has_idea = CAN_aftermath_of_great_depression
-					}
-					swap_ideas = {
-						remove_idea = CAN_aftermath_of_great_depression
-						add_idea = CAN_aftermath_of_great_depression_1
-					}
-				}
-				else_if = {
-					limit = {
-						has_idea = CAN_aftermath_of_great_depression_1
-					}
-					swap_ideas = {
-						remove_idea = CAN_aftermath_of_great_depression_1
-						add_idea = CAN_aftermath_of_great_depression_2
-					}
-				}
-				else_if = {
-					limit = {
-						has_idea = CAN_aftermath_of_great_depression_2
-					}
-					remove_ideas = CAN_aftermath_of_great_depression_2
-				}
-			}
-			else = {
-				custom_effect_tooltip = CAN_the_enactment_of_economic_policies_yet_tt
-			}
-		}
-	}
-	CAN_Unemployment_Benefits = {
-		icon = GFX_decision_eng_trade_unions_support
-		visible = {
-			has_completed_focus = CAN_welfare_state
-		}
-		fire_only_once = yes
-		days_remove = 30
-		available = {
-			NOT = { has_country_flag = Currently_Proposing_a_New_Policy }
-		}
-		complete_effect = {
-			set_country_flag = Currently_Proposing_a_New_Policy
-		}
-		remove_effect = {
-			clr_country_flag = Currently_Proposing_a_New_Policy
-			set_country_flag = CAN_Unemployment_Benefits_flag
-			if = {
-				limit = {
-					has_country_flag = CAN_Unemployment_Benefits_flag
-					has_country_flag = CAN_Family_Allowance_Act_flag
-				}
-				if = {
-					limit = {
-						has_idea = CAN_aftermath_of_great_depression
-					}
-					swap_ideas = {
-						remove_idea = CAN_aftermath_of_great_depression
-						add_idea = CAN_aftermath_of_great_depression_1
-					}
-				}
-				else_if = {
-					limit = {
-						has_idea = CAN_aftermath_of_great_depression_1
-					}
-					swap_ideas = {
-						remove_idea = CAN_aftermath_of_great_depression_1
-						add_idea = CAN_aftermath_of_great_depression_2
-					}
-				}
-				else_if = {
-					limit = {
-						has_idea = CAN_aftermath_of_great_depression_2
-					}
-					remove_ideas = CAN_aftermath_of_great_depression_2
-				}
-			}
-			else = {
-				custom_effect_tooltip = CAN_the_enactment_of_economic_policies_yet_tt
-			}
-		}
-	}
-	CAN_Family_Allowance_Act = {
-		icon = GFX_decision_eng_trade_unions_support
-		visible = {
-			has_completed_focus = CAN_welfare_state
-		}
-		fire_only_once = yes
-		days_remove = 30
-		available = {
-			NOT = { has_country_flag = Currently_Proposing_a_New_Policy }
-		}
-		complete_effect = {
-			set_country_flag = Currently_Proposing_a_New_Policy
-		}
-		remove_effect = {
-			clr_country_flag = Currently_Proposing_a_New_Policy
-			set_country_flag = CAN_Family_Allowance_Act_flag
-			if = {
-				limit = {
-					has_country_flag = CAN_Unemployment_Benefits_flag
-					has_country_flag = CAN_Family_Allowance_Act_flag
-				}
-				if = {
-					limit = {
-						has_idea = CAN_aftermath_of_great_depression
-					}
-					swap_ideas = {
-						remove_idea = CAN_aftermath_of_great_depression
-						add_idea = CAN_aftermath_of_great_depression_1
-					}
-				}
-				else_if = {
-					limit = {
-						has_idea = CAN_aftermath_of_great_depression_1
-					}
-					swap_ideas = {
-						remove_idea = CAN_aftermath_of_great_depression_1
-						add_idea = CAN_aftermath_of_great_depression_2
-					}
-				}
-				else_if = {
-					limit = {
-						has_idea = CAN_aftermath_of_great_depression_2
-					}
-					remove_ideas = CAN_aftermath_of_great_depression_2
-				}
-			}
-			else = {
-				custom_effect_tooltip = CAN_the_enactment_of_economic_policies_yet_tt
-			}
 		}
 	}
 }

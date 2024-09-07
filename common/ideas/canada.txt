@@ -29,17 +29,39 @@ ideas = {
 			traits = { popular_figurehead }
 		}
 		
-		CAN_our_own_country = {
+		CAN_permanent_joint_defence_board = {
 			allowed = {
 				always = no
 			}
-
-			allowed_civil_war = {
-				always = yes
+			available = {
+				NOT = { has_war_with = USA }
 			}
-			picture = can_defence_of_canada_regulations_democratic
+			allowed_civil_war = {
+				has_government = democratic
+			}
+			picture = FRA_national_mobilization_focus
 			modifier = {
-				autonomy_gain = 1.5
+				experience_gain_army_factor = 0.05
+				experience_gain_navy_factor = 0.05
+				experience_gain_air_factor = 0.05
+			}
+		}
+		
+		USA_permanent_joint_defence_board = {
+			allowed = {
+				always = no
+			}
+			available = {
+				NOT = { has_war_with = CAN }
+			}
+			allowed_civil_war = {
+				has_government = democratic
+			}
+			picture = FRA_national_mobilization_focus
+			modifier = {
+				experience_gain_army_factor = 0.025
+				experience_gain_navy_factor = 0.025
+				experience_gain_air_factor = 0.025
 			}
 		}
 		
@@ -47,10 +69,128 @@ ideas = {
 			allowed = {
 				original_tag = CAN
 			}
+			available = {
+				has_variable = coalition_var
+			}
 			picture = generic_democratic_opposition
 			modifier = {
-				political_power_gain = -0.5
+				political_power_gain = -0.05
 				stability_factor = -0.05
+			}
+		}
+		
+		CAN_welfare_state = {
+			allowed = {
+				original_tag = CAN
+			}
+			picture = generic_pp_unity_bonus
+			modifier = {
+				political_power_factor = -0.05
+				stability_factor = 0.05
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+			}
+		}
+		
+		CAN_relief_the_people = {
+			allowed = {
+				original_tag = CAN
+			}
+			picture = generic_goods_red_bonus
+			available = {
+				OR = {
+					has_idea = CAN_aftermath_of_great_depression
+					has_idea = CAN_aftermath_of_great_depression_1
+					has_idea = CAN_aftermath_of_great_depression_2
+				}
+			}
+			modifier = {
+				consumer_goods_factor = 0.1
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+			}
+		}
+		
+		CAN_National_Employment_Commission = {
+			allowed = {
+				original_tag = CAN
+			}
+			picture = generic_production_bonus
+			modifier = {
+				production_speed_infrastructure_factor = 0.1
+				production_factory_max_efficiency_factor = 0.05
+				production_factory_efficiency_gain_factor = 0.05
+				production_factory_start_efficiency_factor = 0.05
+			}
+		}
+		
+		CAN_National_Housing_Act = {
+			allowed = {
+				original_tag = CAN
+			}
+			picture = ARG_rapid_militarization
+			modifier = {
+				production_speed_buildings_factor = 0.1
+				industry_repair_factor = 0.1
+			}
+		}
+		
+		CAN_Bank_of_Canada = {
+			allowed = {
+				original_tag = CAN
+			}
+			picture = tur_balkan_central_bank_wealthy_greece
+			modifier = {
+				consumer_goods_factor = -0.05
+			}
+		}
+		
+		CAN_Canadian_Wheat_Board = {
+			allowed = {
+				original_tag = CAN
+			}
+			picture = LIT_invested_in_farms
+			modifier = {
+				monthly_population = 0.1
+				stability_factor = 0.025
+			}
+		}
+		
+		CAN_social_dividends = {
+			allowed = {
+				original_tag = CAN
+			}
+			picture = BRA_dasp
+			modifier = {
+				consumer_goods_factor = 0.05
+				stability_factor = 0.025
+			}
+		}
+		
+		CAN_social_dividends1 = {
+			allowed = {
+				original_tag = CAN
+			}
+			name = CAN_social_dividends
+			picture = BRA_dasp
+			modifier = {
+				consumer_goods_factor = 0.05
+				production_factory_efficiency_gain_factor = 0.05
+				production_factory_start_efficiency_factor = 0.05
+				stability_factor = 0.05
+			}
+		}
+		
+		CAN_price_controls = {
+			allowed = {
+				original_tag = CAN
+			}
+			picture = BRA_dasp
+			modifier = {
+				production_factory_efficiency_gain_factor = -0.05
+				production_factory_start_efficiency_factor = -0.05
+				party_popularity_stability_factor = 0.1
+				political_power_factor = 0.1
 			}
 		}
 		
@@ -76,7 +216,7 @@ ideas = {
 		}
 
 		CAN_aftermath_of_great_depression_1 = {
-
+			name = CAN_aftermath_of_great_depression
 			allowed = {
 				always = no
 			}
@@ -97,7 +237,7 @@ ideas = {
 		}
 
 		CAN_aftermath_of_great_depression_2 = {
-
+			name = CAN_aftermath_of_great_depression
 			allowed = {
 				always = no
 			}
@@ -254,26 +394,7 @@ ideas = {
 			picture = generic_goods_red_bonus
 
 			modifier = {
-				consumer_goods_factor = -0.03
-			}
-		}
-
-		CAN_war_bonds_2 = {
-
-			allowed = {
-				always = no
-			}
-
-			allowed_civil_war = {
-				always = yes
-			}
-
-			removal_cost = -1
-
-			picture = generic_goods_red_bonus
-
-			modifier = {
-				consumer_goods_factor = -0.08
+				consumer_goods_factor = -0.05
 			}
 		}
 
@@ -745,7 +866,6 @@ ideas = {
 
 			allowed = {
 				original_tag = CAN
-				has_dlc = "Together for Victory"
 			}
 
 			research_bonus = {
@@ -760,7 +880,19 @@ ideas = {
 
 	industrial_concern = {
 
-
+		Canadian_Broadcasting_Corporation = {
+			picture = GFX_Canadian_Broadcasting_Corporation
+			allowed = {
+				original_TAG = CAN
+			}
+			available = {
+				has_completed_focus = CAN_CBC
+			}
+			research_bonus = {
+				electronics = 0.2
+			}
+			traits = { electronics_concern }
+		}
 
 		montreal_lab = {
 
@@ -768,13 +900,12 @@ ideas = {
 
 			allowed = {
 				original_TAG = CAN
-				has_dlc = "Together for Victory"
 			}
 
 
 
 			research_bonus = {
-				electronics = 0.15
+				electronics = 0.1
 			}
 
 			traits = { electronics_concern }
@@ -789,7 +920,6 @@ ideas = {
 
 			allowed = {
 				original_tag = CAN
-				has_dlc = "Together for Victory"
 			}
 
 			research_bonus = {
@@ -812,7 +942,6 @@ ideas = {
 
 			allowed = {
 				original_TAG = CAN
-				has_dlc = "Together for Victory"
 			}
 
 
@@ -832,7 +961,6 @@ ideas = {
 
 			allowed = {
 				original_TAG = CAN
-				has_dlc = "Together for Victory"
 			}
 
 
@@ -943,7 +1071,6 @@ ideas = {
 
 			allowed = {
 				original_tag = CAN
-				has_dlc = "Together for Victory"
 			}
 
 			available = {
@@ -970,7 +1097,6 @@ ideas = {
 
 			allowed = {
 				original_tag = CAN
-				has_dlc = "Together for Victory"
 			}
 
 			available = {

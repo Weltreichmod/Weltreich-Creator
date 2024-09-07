@@ -537,7 +537,12 @@ country_event = {
 	}
 	option = {
 		name = china_wr.19.b
-		FROM = { create_wargoal = { type = annex_everything target = ROOT } }
+		effect_tooltip = {
+			FROM = { declare_war_on = { target = ROOT  type = annex_everything } }
+		}
+		hidden_effect = {
+			FROM = { country_event = { id = china_wr.29 days = 1 } }
+		}
 		if = {
 			limit = {
 				ROOT = { is_subject_of = FROM }
@@ -651,7 +656,7 @@ country_event = {
 				has_global_flag = attack_with_tibet
 			}
 			effect_tooltip = {
-				CHI = { create_wargoal = { type = annex_everything target = TIB } }
+				CHI = { declare_war_on = { target = TIB  type = annex_everything } }
 			}
 			CHI = { country_event = china_wr.23 }
 		}
@@ -742,7 +747,7 @@ country_event = {
 			limit = {
 				has_global_flag = attack_with_tibet
 			}
-			create_wargoal = { type = annex_everything target = TIB }
+			declare_war_on = { target = TIB  type = annex_everything }
 		}
 		ai_chance = {
 			base = 5
@@ -827,6 +832,21 @@ country_event = {
 		name = china_wr.28.a
 		ai_chance = {
 			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.29
+	title = china_wr.29.t
+	desc = china_wr.29.d
+	is_triggered_only = yes
+	picture = GFX_report_event_japan_army_mountainside
+	option = {
+		name = china_wr.29.a
+		declare_war_on = { target = FROM  type = annex_everything }
+		ai_chance = {
+			base = 10
 		}
 	}
 }

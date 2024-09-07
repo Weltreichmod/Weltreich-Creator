@@ -10,8 +10,33 @@ country_event = {
 	desc = canada_wr.1.d
 	picture = GFX_report_event_generic_sign_treaty1
 	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			set_party_name = {
+				ideology = democratic
+				long_name = CAN_CCF_party_long
+				name = CAN_CCF_party
+			}
+			if = {
+				limit = {
+					has_completed_focus = CAN_follow_the_coalition
+				}
+				set_country_flag = FC_flag
+			}
+		}
+	}
 	option = {
 		name = canada_wr.1.a
+		if = {
+			limit = {
+				has_completed_focus = CAN_follow_the_coalition
+			}
+			mark_focus_tree_layout_dirty = yes
+			uncomplete_national_focus = {
+			  focus = CAN_follow_the_coalition
+			  uncomplete_children = yes
+			}
+		}
 		ai_chance = {
 			base = 50
 		}
@@ -26,8 +51,59 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = canada_wr.2.a
+		add_to_variable = { coalition_var = 10 }
+		custom_effect_tooltip = CAN_find_the_common_view_effect
 		ai_chance = {
 			base = 50
+		}
+	}
+	option = {
+		name = canada_wr.2.b
+		add_to_variable = { coalition_var = -10 }
+		custom_effect_tooltip = CAN_swaying_coalition_effect
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = canada_wr.3
+	title = canada_wr.3.t
+	desc = canada_wr.3.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	option = {
+		name = canada_wr.3.a
+		complete_national_focus = CAN_Liberal_Party
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = canada_wr.3.b
+		complete_national_focus = CAN_Co_operative_Commonwealth_Federation
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = canada_wr.4
+	title = canada_wr.4.t
+	desc = canada_wr.4.d
+	picture = GFX_report_event_sanation_left_victory
+	is_triggered_only = yes
+	option = {
+		name = canada_wr.4.a
+		add_stability = -0.05
+		add_popularity = {
+			ideology = fascism
+			popularity = -1
+		}
+		ai_chance = {
+			base = 10
 		}
 	}
 }
