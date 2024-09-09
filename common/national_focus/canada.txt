@@ -478,6 +478,9 @@ focus_tree = {
 		ai_will_do = {
 			factor = 6
 		}
+		allow_branch = {
+			NOT = { has_country_flag = fallen_government_flag }
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 
 		completion_reward = {
@@ -725,7 +728,7 @@ focus_tree = {
 		}
 	}
 	
-	#Hidden Path
+	#Hidden Path 1
 	focus = {
 		id = CAN_fallen_coalition
 		relative_position_id = CAN_the_first_dominion
@@ -773,10 +776,123 @@ focus_tree = {
 				name = CAN_CCF_party
 			}
 			hidden_effect = {
+				retire_character = CAN_canadian_government
 				remove_country_leader_role = {
 					character = CAN_mackenzie_king
 					ideology = liberalism
 				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_nationalization_of_major_industries
+		relative_position_id = CAN_Co_operative_Commonwealth_Federation
+		x = -1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CAN_Co_operative_Commonwealth_Federation
+		}
+		completion_reward = {
+			add_ideas = CAN_nationalization_of_major_industries
+		}
+	}
+	
+	focus = {
+		id = CAN_creation_of_a_Co_operative_Commonwealth
+		relative_position_id = CAN_nationalization_of_major_industries
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CAN_nationalization_of_major_industries
+		}
+		completion_reward = {
+			add_ideas = CAN_creation_of_a_Co_operative_Commonwealth
+		}
+	}
+	
+	focus = {
+		id = CAN_expanded_welfare
+		relative_position_id = CAN_Co_operative_Commonwealth_Federation
+		x = 1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CAN_Co_operative_Commonwealth_Federation
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = CAN_welfare_state
+				}
+				swap_ideass = {
+					remove_idea = CAN_welfare_state
+					add_idea = CAN_expanded_welfare
+				}
+			}
+			else = {
+				add_ideas = CAN_expanded_welfare
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_agricultural_investment
+		relative_position_id = CAN_expanded_welfare
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		prerequisite = {
+			focus = CAN_expanded_welfare
+		}
+		completion_reward = {
+			add_ideas = CAN_agricultural_investment
+		}
+	}
+	
+	focus = {
+		id = CAN_socialistic_democracy
+		relative_position_id = CAN_creation_of_a_Co_operative_Commonwealth
+		x = 1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_creation_of_a_Co_operative_Commonwealth
+		}
+		prerequisite = {
+			focus = CAN_agricultural_investment
+		}
+		completion_reward = {
+			remove_ideas = GER_idea_political_turmoil
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.15
+			}
+			swap_ideass = {
+				remove_idea = CAN_expanded_welfare
+				add_idea = CAN_expanded_welfare_1
 			}
 		}
 	}
@@ -804,11 +920,119 @@ focus_tree = {
 				name = CAN_Liberal_party
 			}
 			hidden_effect = {
+				retire_character = CAN_canadian_government
 				remove_country_leader_role = {
 					character = CAN_j_s_woodsworth
 					ideology = social_democracy
 				}
 			}
+		}
+	}
+	
+	focus = {
+		id = CAN_social_safety_net
+		relative_position_id = CAN_Liberal_Party
+		x = -1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_Liberal_Party
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = CAN_welfare_state
+				}
+				swap_ideass = {
+					remove_idea = CAN_welfare_state
+					add_idea = CAN_social_safety_net
+				}
+			}
+			else = {
+				add_ideas = CAN_social_safety_net
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_CCF_and_Social_Credit
+		relative_position_id = CAN_social_safety_net
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_social_safety_net
+		}
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_economic_growth_through_trade
+		relative_position_id = CAN_Liberal_Party
+		x = 1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CAN_Liberal_Party
+		}
+		completion_reward = {
+			add_ideas = CAN_economic_growth_through_trade
+		}
+	}
+	
+	focus = {
+		id = CAN_liberalism
+		relative_position_id = CAN_economic_growth_through_trade
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_economic_growth_through_trade
+		}
+		completion_reward = {
+			add_ideas = CAN_liberalism
+		}
+	}
+	
+	focus = {
+		id = CAN_no_more_confusion
+		relative_position_id = CAN_CCF_and_Social_Credit
+		x = 1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CAN_CCF_and_Social_Credit
+		}
+		prerequisite = {
+			focus = CAN_liberalism
+		}
+		completion_reward = {
+			remove_ideas = GER_idea_political_turmoil
 		}
 	}
 	
@@ -913,6 +1137,7 @@ focus_tree = {
 			focus = CAN_Help_of_BUF
 		}
 		completion_reward = {
+			remove_ideas = GER_idea_political_turmoil
 			set_politics = {
 				ruling_party = fascism
 				elections_allowed = yes
@@ -1001,6 +1226,72 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = CAN_strong_government
+		}
+	}
+	
+	#Hidden Path 2
+	focus = {
+		id = CAN_the_great_confusion
+		x = 0
+		y = 0
+		cost = 1
+		ai_will_do = {
+			factor = 26
+		}
+		allow_branch = {
+			has_country_flag = fallen_government_flag
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = canada_wr.6
+		}
+	}
+	
+	focus = {
+		id = CAN_Communist_Party_of_Canada
+		relative_position_id = CAN_the_great_confusion
+		x = -3
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 26
+		}
+		prerequisite = {
+			focus = CAN_the_great_confusion
+		}
+		mutually_exclusive = {
+			focus = CAN_National_Unity_Party_of_Canada
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_National_Unity_Party_of_Canada
+		relative_position_id = CAN_the_great_confusion
+		x = 3
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 26
+		}
+		prerequisite = {
+			focus = CAN_the_great_confusion
+		}
+		mutually_exclusive = {
+			focus = CAN_Communist_Party_of_Canada
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_popularity = {
+				ideology = fascism
+				popularity = 0.05
+			}
 		}
 	}
 }

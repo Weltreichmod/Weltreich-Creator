@@ -23,10 +23,19 @@ country_event = {
 				}
 				set_country_flag = FC_flag
 			}
+			CAN_canadian_government = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = liberalism
+					}
+				}
+			}
 		}
 	}
 	option = {
 		name = canada_wr.1.a
+		add_ideas = GER_idea_political_turmoil
 		if = {
 			limit = {
 				has_completed_focus = CAN_follow_the_coalition
@@ -87,6 +96,13 @@ country_event = {
 			base = 10
 		}
 	}
+	option = {
+		name = canada_wr.3.c
+		country_event = { id = canada_wr.5 days = 10 }
+		ai_chance = {
+			base = 10
+		}
+	}
 }
 
 country_event = {
@@ -102,6 +118,56 @@ country_event = {
 			ideology = fascism
 			popularity = -1
 		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = canada_wr.5
+	title = canada_wr.5.t
+	desc = canada_wr.5.d
+	picture = GFX_report_event_gathering_protest
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			set_country_flag = fallen_government_flag
+		}
+	}
+	option = {
+		name = canada_wr.5.a
+		mark_focus_tree_layout_dirty = yes
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.1
+		}
+		add_popularity = {
+			ideology = communism
+			popularity = 0.1
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = canada_wr.6
+	title = canada_wr.6.t
+	desc = canada_wr.6.d
+	picture = GFX_report_event_gathering_protest
+	is_triggered_only = yes
+	option = {
+		name = canada_wr.6.a
+		complete_national_focus = CAN_Communist_Party_of_Canada
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = canada_wr.6.b
+		complete_national_focus = CAN_National_Unity_Party_of_Canada
 		ai_chance = {
 			base = 10
 		}
