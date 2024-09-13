@@ -1,0 +1,21 @@
+WR_fire_super_event = {
+	hidden_effect = {
+		if = {
+			limit = { NOT = { has_country_flag = WR_SUPER_EVENT_OFF } }
+			set_variable = { WR_super_event = WR_temp_super_event }
+
+			meta_effect = {
+				text = { scoped_play_song = "WR_[SUPER]" }
+				SUPER = "[?WR_super_event.GetTokenKey]"
+			}
+			log = "[GetDateText]: Superevent [?WR_super_event.GetTokenKey]"
+		}
+	}
+}
+
+WR_superevent_test = {
+	FROM = {
+		set_temp_variable = { WR_temp_super_event = token:SE_SECOND_WORLD_WAR }
+		WR_fire_super_event = yes
+	}
+}
