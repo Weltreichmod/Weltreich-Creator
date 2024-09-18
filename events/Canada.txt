@@ -12,6 +12,7 @@ country_event = {
 	is_triggered_only = yes
 	immediate = {
 		hidden_effect = {
+			news_event = canada_wr.20
 			set_party_name = {
 				ideology = democratic
 				long_name = CAN_CCF_party_long
@@ -299,15 +300,199 @@ country_event = {
 	option = {
 		name = canada_wr.13.a
 		end_puppet = CAN
-		CAN = { leave_faction = yes }
-		every_country = {
+		if = {
 			limit = {
-				has_war_with = CAN
+				NOT = { CAN = { has_war_with = USA } }
 			}
-			white_peace = CAN
+			CAN = { leave_faction = yes }
+			every_country = {
+				limit = {
+					has_war_with = CAN
+				}
+				white_peace = CAN
+			}
 		}
 		ai_chance = {
 			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = canada_wr.14
+	title = canada_wr.14.t
+	desc = canada_wr.14.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = canada_wr.14.a
+		if = {
+			limit = {
+				is_faction_leader = yes
+			}
+			add_to_faction = CAN
+		}
+		else_if = {
+			limit = {
+				is_faction_leader = no
+				has_rule = can_create_factions
+				NOT = { has_idea = Treaty_of_Kazan1 }
+			}
+			create_faction = Comintern
+			add_to_faction = CAN
+		}
+		news_event = canada_wr.15
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = canada_wr.14.b
+		CAN = { country_event = canada_wr.16 }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+news_event = {
+	id = canada_wr.15
+	title = canada_wr.15.t
+	desc = canada_wr.15.d
+	picture = GFX_CAN_SOC_ally
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = canada_wr.15.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = canada_wr.16
+	title = canada_wr.16.t
+	desc = canada_wr.16.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = canada_wr.16.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = canada_wr.17
+	title = canada_wr.17.t
+	desc = canada_wr.17.d
+	picture = GFX_valois_picture
+	is_triggered_only = yes
+	option = {
+		name = canada_wr.17.a
+		add_political_power = 100
+		every_country = {
+			limit = {
+				has_government = fascism
+			}
+			add_opinion_modifier = {
+				target = CAN
+				modifier = large_increase
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = canada_wr.18
+	title = canada_wr.18.t
+	desc = canada_wr.18.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = canada_wr.18.a
+		effect_tooltip = {
+			ENG = {
+				add_opinion_modifier = {
+					target = CAN
+					modifier = large_increase
+				}
+				give_guarantee = CAN
+			}
+			CAN = {
+				add_opinion_modifier = {
+					target = ENG
+					modifier = large_increase
+				}
+				give_guarantee = ENG
+			}
+		}
+		CAN = { country_event = canada_wr.19 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = canada_wr.19
+	title = canada_wr.19.t
+	desc = canada_wr.19.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = canada_wr.19.a
+		ENG = {
+			add_opinion_modifier = {
+				target = CAN
+				modifier = large_increase
+			}
+			give_guarantee = CAN
+		}
+		CAN = {
+			add_opinion_modifier = {
+				target = ENG
+				modifier = large_increase
+			}
+			give_guarantee = ENG
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+news_event = {
+	id = canada_wr.20
+	title = canada_wr.20.t
+	desc = canada_wr.20.d
+	picture = GFX_canadian_parliment
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = canada_wr.20.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+news_event = {
+	id = canada_wr.21
+	title = canada_wr.21.t
+	desc = canada_wr.21.d
+	picture = GFX_canadian_parliment
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = canada_wr.21.a
+		ai_chance = {
+			base = 10
 		}
 	}
 }

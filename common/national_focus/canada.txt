@@ -674,6 +674,9 @@ focus_tree = {
 		}
 		completion_reward = {
 			custom_effect_tooltip = CAN_stable_coalition_effect_tt
+			hidden_effect = {
+				news_event = canada_wr.21
+			}
 		}
 	}
 	
@@ -1344,7 +1347,7 @@ focus_tree = {
 		relative_position_id = CAN_rights_of_workers
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 20
 		}
@@ -1376,6 +1379,134 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = CAN_communist_solidarity
+		relative_position_id = CAN_Canadian_Communist_Revolution
+		x = -2
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = CAN_Canadian_Communist_Revolution
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = CAN_communist_solidarity_idea
+		}
+	}
+	
+	focus = {
+		id = CAN_canadian_red_army
+		relative_position_id = CAN_communist_solidarity
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = CAN_communist_solidarity
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_ideas = CAN_canadian_red_army
+		}
+	}
+	
+	focus = {
+		id = CAN_preparation_for_war
+		relative_position_id = CAN_Canadian_Communist_Revolution
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = CAN_Canadian_Communist_Revolution
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_ideas = CAN_preparation_for_war
+		}
+	}
+	
+	focus = {
+		id = CAM_crushing_the_anti_warism_of_quebec
+		relative_position_id = CAN_Canadian_Communist_Revolution
+		x = 2
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = CAN_Canadian_Communist_Revolution
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			remove_ideas = CAN_conscription_crisis
+		}
+	}
+	
+	focus = {
+		id = CAN_canadian_communism
+		relative_position_id = CAN_preparation_for_war
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 20
+		}
+		mutually_exclusive = {
+			focus = CAM_with_comintern
+		}
+		prerequisite = {
+			focus = CAN_preparation_for_war
+		}
+		prerequisite = {
+			focus = CAM_crushing_the_anti_warism_of_quebec
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			set_rule = can_create_factions
+		}
+	}
+	
+	focus = {
+		id = CAM_with_comintern
+		relative_position_id = CAM_crushing_the_anti_warism_of_quebec
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 20
+		}
+		mutually_exclusive = {
+			focus = CAN_canadian_communism
+		}
+		available = {
+			SOV = {
+				exists = yes
+				NOT = { has_war_with = RUS }
+				NOT = { has_idea = Treaty_of_Kazan1 }
+			}
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CAN_preparation_for_war
+		}
+		prerequisite = {
+			focus = CAM_crushing_the_anti_warism_of_quebec
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			SOV = { country_event = canada_wr.14 }
+		}
+	}
+	
+	focus = {
 		id = CAN_National_Unity_Party_of_Canada
 		relative_position_id = CAN_the_great_confusion
 		x = 3
@@ -1401,6 +1532,12 @@ focus_tree = {
 				ideology = fascism
 				long_name = CAN_National_Unity_Party_of_Canada_long
 				name = CAN_National_Unity_Party_of_Canada
+			}
+			hidden_effect = {
+				remove_country_leader_role = {
+					character = CAN_john_horne_blackmore
+					ideology = social_creditism
+				}
 			}
 		}
 	}
@@ -1481,7 +1618,7 @@ focus_tree = {
 		relative_position_id = CAN_supremacy
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 20
 		}
@@ -1509,6 +1646,117 @@ focus_tree = {
 				country_event = canada_wr.9
 			}
 			add_ideas = CAN_Victory_of_Fascism
+		}
+	}
+	
+	focus = {
+		id = CAN_Blue_Shirts
+		relative_position_id = CAN_Victory_of_Fascism
+		x = -2
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = CAN_Victory_of_Fascism
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = CAN_Blue_Shirts
+		}
+	}
+	
+	focus = {
+		id = CAN_canadian_consul_focus
+		relative_position_id = CAN_Blue_Shirts
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = CAN_Blue_Shirts
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_country_leader_trait = CAN_canadian_consul
+		}
+	}
+	
+	focus = {
+		id = CAN_integrating_canada
+		relative_position_id = CAN_Victory_of_Fascism
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = CAN_Victory_of_Fascism
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			remove_ideas = CAN_conscription_crisis
+		}
+	}
+	
+	focus = {
+		id = CAN_the_support_of_fascists_around_the_world
+		relative_position_id = CAN_Victory_of_Fascism
+		x = 2
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 20
+		}
+		prerequisite = {
+			focus = CAN_Victory_of_Fascism
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = canada_wr.17
+		}
+	}
+	
+	focus = {
+		id = CAN_hanging_out_with_England
+		relative_position_id = CAN_integrating_canada
+		x = 1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 20
+		}
+		available = {
+			NOT = { ENG = { has_government = communism } }
+		}
+		prerequisite = {
+			focus = CAN_integrating_canada
+		}
+		prerequisite = {
+			focus = CAN_the_support_of_fascists_around_the_world
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			ENG = { country_event = canada_wr.18 }
+		}
+	}
+	
+	#Army
+	focus = {
+		id = CAN_Canada_Defense_Strategy
+		x = 10
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+		}
+		completion_reward = {
 		}
 	}
 }
