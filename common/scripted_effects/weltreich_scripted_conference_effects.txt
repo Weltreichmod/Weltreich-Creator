@@ -2367,21 +2367,6 @@ german_puppet_effect = {
 				}
 			}
 			else = {
-				FRA = {
-					if = {
-						limit = {
-							has_dlc = "Together for Victory"
-						}
-						set_autonomy = {
-							target = WAA
-							autonomous_state = autonomy_puppet
-							freedom_level = 0.5
-						}
-						else = {
-							puppet = WAA
-						}
-					}
-				}
 				every_state = {
 					limit = {
 						is_owned_by = GER
@@ -2410,20 +2395,21 @@ german_puppet_effect = {
 					transfer_state_to = WAA
 					add_core_of = WAA
 				}
-			}
-		}
-		FRA = {
-			if = {
-				limit = {
-					has_dlc = "Together for Victory"
-				}
-				set_autonomy = {
-					target = SAA
-					autonomous_state = autonomy_puppet
-					freedom_level = 0.5
-				}
-				else = {
-					puppet = SAA
+				FRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							WAA = { exists = yes }
+						}
+						set_autonomy = {
+							target = WAA
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = WAA
+						}
+					}
 				}
 			}
 		}
@@ -2444,24 +2430,25 @@ german_puppet_effect = {
 			transfer_state_to = SAA
 			add_core_of = SAA
 		}
+		FRA = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					SAA = { exists = yes }
+				}
+				set_autonomy = {
+					target = SAA
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SAA
+				}
+			}
+		}
 		if = {
 			limit = {
 				ENG = { has_country_flag = second_great_war_winner }
-			}
-			ENG = {
-				if = {
-					limit = {
-						has_dlc = "Together for Victory"
-					}
-					set_autonomy = {
-						target = EAA
-						autonomous_state = autonomy_puppet
-						freedom_level = 0.5
-					}
-					else = {
-						puppet = EAA
-					}
-				}
 			}
 			every_state = {
 				limit = {
@@ -2487,22 +2474,23 @@ german_puppet_effect = {
 				transfer_state_to = EAA
 				add_core_of = EAA
 			}
-			else = {
-				FRA = {
-					if = {
-						limit = {
-							has_dlc = "Together for Victory"
-						}
-						set_autonomy = {
-							target = EAA
-							autonomous_state = autonomy_puppet
-							freedom_level = 0.5
-						}
-						else = {
-							puppet = EAA
-						}
+			ENG = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						EAA = { exists = yes }
+					}
+					set_autonomy = {
+						target = EAA
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = EAA
 					}
 				}
+			}
+			else = {
 				every_state = {
 					limit = {
 						is_owned_by = GER
@@ -2526,6 +2514,22 @@ german_puppet_effect = {
 					}
 					transfer_state_to = EAA
 					add_core_of = EAA
+				}
+				FRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							EAA = { exists = yes }
+						}
+						set_autonomy = {
+							target = EAA
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = EAA
+						}
+					}
 				}
 			}
 		}

@@ -6,8 +6,8 @@ focus_tree = {
 		
 		modifier = {
 			add = 10
-			has_country_flag = Not_Allowed
-			#tag = CAN
+			#has_country_flag = Not_Allowed
+			tag = CAN
 		}
 
 		#modifier = {
@@ -1772,7 +1772,7 @@ focus_tree = {
 	#Army
 	focus = {
 		id = CAN_Canada_Defense_Strategy
-		x = 8
+		x = 7
 		y = 0
 		cost = 10
 		ai_will_do = {
@@ -1791,7 +1791,9 @@ focus_tree = {
 				has_country_flag = FC_flag
 			}
 		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
 		completion_reward = {
+			army_experience = 25
 			276 = {
 				add_building_construction = {
 					type = bunker
@@ -1861,7 +1863,10 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_Ross_Mark_III
+		icon = GFX_goal_generic_small_arms
 		relative_position_id = CAN_Canada_Defense_Strategy
+		x = -1
+		y = 1
 		cost = 10
 		ai_will_do = {
 			factor = 2
@@ -1871,6 +1876,613 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_Ross_Mark_III
+				bonus = 1
+				category = infantry_weapons
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_shooting_firepower
+		icon = GFX_goal_generic_army_artillery2
+		relative_position_id = CAN_Canada_Defense_Strategy
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_Canada_Defense_Strategy
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_shooting_firepower
+				bonus = 1
+				category = artillery
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_support_equipment
+		icon = GFX_goal_generic_construction2
+		relative_position_id = CAN_Ross_Mark_III
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_Ross_Mark_III
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_support_equipment
+				bonus = 1
+				uses = 1
+				category = support_equipment
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_trenches_and_strategies
+		icon = GFX_goal_generic_cavalry
+		relative_position_id = CAN_support_equipment
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_support_equipment
+		}
+		mutually_exclusive = {
+			focus = CAN_power_of_shells
+		}
+		mutually_exclusive = {
+			focus = CAN_faster
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = CAN_trenches_and_strategies
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_grand_battle_plan
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_increase_armys_budget
+		icon = GFX_focus_SWI_issue_war_bonds
+		relative_position_id = CAN_Ross_Mark_III
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_Ross_Mark_III
+		}
+		prerequisite = {
+			focus = CAN_shooting_firepower
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = CAN_increase_armys_budget
+		}
+	}
+	
+	focus = {
+		id = CAN_power_of_shells
+		icon = GFX_goal_generic_army_artillery
+		relative_position_id = CAN_increase_armys_budget
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_increase_armys_budget
+		}
+		mutually_exclusive = {
+			focus = CAN_trenches_and_strategies
+		}
+		mutually_exclusive = {
+			focus = CAN_faster
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = CAN_power_of_shells
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_superior_firepower
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_moving_cannon
+		icon = GFX_goal_generic_army_tanks
+		relative_position_id = CAN_shooting_firepower
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_shooting_firepower
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_moving_cannon
+				bonus = 1
+				uses = 1
+				category = cat_light_armor
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_faster
+		icon = GFX_focus_generic_license_production
+		relative_position_id = CAN_moving_cannon
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_moving_cannon
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		mutually_exclusive = {
+			focus = CAN_trenches_and_strategies
+		}
+		mutually_exclusive = {
+			focus = CAN_power_of_shells
+		}
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = CAN_faster
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_mobile_warfare
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_Mechanized_infantry
+		icon = GFX_goal_generic_army_motorized
+		relative_position_id = CAN_trenches_and_strategies
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_trenches_and_strategies
+			focus = CAN_power_of_shells
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_Mechanized_infantry
+				bonus = 0.75
+				uses = 2
+				category = cat_mechanized_equipment
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_new_arms_factories
+		icon = GFX_goal_generic_construct_mil_factory
+		relative_position_id = CAN_power_of_shells
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_faster
+			focus = CAN_power_of_shells
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					is_owned_by = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					is_owned_by = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	#Navy
+	focus = {
+		id = CAN_navy_of_canada
+		icon = GFX_goal_generic_occupy_states_coastal
+		x = 14
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		offset = {
+			x = 1
+			y = 0
+			trigger = {
+				has_country_flag = FC_flag
+			}
+		}
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		completion_reward = {
+			navy_experience = 30
+		}
+	}
+	
+	focus = {
+		id = CAN_dockyards_in_halifax
+		icon = GFX_goal_generic_construct_naval_dockyard
+		relative_position_id = CAN_navy_of_canada
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		available = {
+			controls_state = 464
+		}
+		prerequisite = {
+			focus = CAN_navy_of_canada
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 464 }
+				add_building_construction = {
+					type = dockyard
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_big_gun
+		icon = GFX_focus_generic_navy_battleship2
+		relative_position_id = CAN_dockyards_in_halifax
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_dockyards_in_halifax
+		}
+		mutually_exclusive = {
+			focus = CAN_escort_fleet
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_big_gun
+				bonus = 1
+				uses = 1
+				category = bb_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_doctrine_for_battleship
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		relative_position_id = CAN_big_gun
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_big_gun
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = CAN_doctrine_for_battleship
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_fleet_in_being
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_escort_fleet
+		icon = GFX_focus_generic_cruiser2
+		relative_position_id = CAN_dockyards_in_halifax
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_dockyards_in_halifax
+		}
+		mutually_exclusive = {
+			focus = CAN_big_gun
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_escort_fleet
+				bonus = 1
+				uses = 1
+				category = ca_tech
+				category = cl_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_destroyer
+		icon = GFX_focus_generic_destroyer
+		relative_position_id = CAN_trade_interdiction
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_trade_interdiction
+			focus = CAN_doctrine_for_battleship
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_destroyer
+				bonus = 1
+				uses = 1
+				category = dd_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_submarine
+		icon = GFX_goal_generic_navy_anti_submarine
+		relative_position_id = CAN_doctrine_for_battleship
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 1
+		}
+		prerequisite = {
+			focus = CAN_trade_interdiction
+			focus = CAN_doctrine_for_battleship
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_submarine
+				bonus = 1
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_trade_interdiction
+		icon = GFX_goal_generic_navy_doctrines_tactics
+		relative_position_id = CAN_escort_fleet
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_escort_fleet
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = CAN_trade_interdiction
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_trade_interdiction
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_concentrate_on_shipbuilding
+		icon = GFX_goal_generic_navy_battleship
+		relative_position_id = CAN_navy_of_canada
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CAN_navy_of_canada
+		}
+		completion_reward = {
+			add_ideas = CAN_concentrate_on_shipbuilding
+		}
+	}
+	
+	focus = {
+		id = CAN_Radar_Development
+		icon = GFX_goal_generic_radar
+		relative_position_id = CAN_concentrate_on_shipbuilding
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		prerequisite = {
+			focus = CAN_concentrate_on_shipbuilding
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_Radar_Development
+				bonus = 1
+				uses = 1
+				category = radar_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_expansion_of_shipyards
+		icon = GFX_goal_generic_navy_cruiser
+		relative_position_id = CAN_Radar_Development
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CAN_Radar_Development
+		}
+		completion_reward = {
+			random_state = {
+				limit = {
+					is_coastal = yes
+				}
+				add_extra_state_shared_building_slots = 2
+				add_building_construction = {
+					type = dockyard
+					level = 2
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_airforce_of_navy
+		icon = GFX_goal_generic_air_fighter2
+		relative_position_id = CAN_concentrate_on_shipbuilding
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		prerequisite = {
+			focus = CAN_concentrate_on_shipbuilding
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_airforce_of_navy
+				bonus = 1
+				uses = 1
+				category = naval_bomber
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_carrier
+		icon = GFX_goal_generic_navy_carrier
+		relative_position_id = CAN_airforce_of_navy
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		prerequisite = {
+			focus = CAN_airforce_of_navy
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_airforce_of_navy
+				bonus = 1
+				uses = 1
+				category = cv_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_landing_force
+		icon = GFX_goal_generic_amphibious_assault
+		relative_position_id = CAN_expansion_of_shipyards
+		x = 1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		prerequisite = {
+			focus = CAN_expansion_of_shipyards
+		}
+		prerequisite = {
+			focus = CAN_carrier
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_landing_force
+				bonus = 0.75
+				uses = 2
+				category = marine_tech
+			}
 		}
 	}
 }
