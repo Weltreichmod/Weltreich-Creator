@@ -2491,16 +2491,203 @@ country_event = {
 		}
 		if = {
 			limit = {
+				OR = {
+					RUS = { has_global_flag = fall_of_berlin_by_RUS }
+					SOV = { has_global_flag = fall_of_berlin_by_SOV }
+					AND = {
+						NOT = { SOV = { has_country_flag = second_great_war_winner } }
+						NOT = { RUS = { has_country_flag = second_great_war_winner } }
+					}
+				}
+			}
+			GER = {
+				set_cosmetic_tag = GER_Confederation_of_the_Rhine
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = conservatism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = marxism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = fascism_ideology
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = moderatism
+					traits = {
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = { RUS = { has_global_flag = fall_of_berlin_by_RUS } }
+				NOT = { SOV = { has_global_flag = fall_of_berlin_by_SOV } }
+				OR = {
+					SOV = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = second_great_war_winner }
+				}
+			}
+			create_dynamic_country = {
+				original_tag = GER
+				every_state = {
+					limit = {
+						is_owned_by = GER
+						OR = {
+							state = 42
+							state = 51
+							state = 55
+							state = 943
+							state = 57
+						}
+					}
+					add_core_of = CFR
+				}
+				set_capital = { state = 55 }
+				set_politics = {
+					ruling_party = neutrality
+					elections_allowed = no
+				}
+				set_popularities = {
+					democratic = 1
+					neutrality = 45
+					fascism = 50
+					communism = 4
+				}
+				set_cosmetic_tag = GER_Confederation_of_the_Rhine
+				reserve_dynamic_country = yes
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					OR = {
+						state = 42
+						state = 51
+						state = 55
+						state = 943
+						state = 57
+					}
+				}
+				transfer_state_to = CFR
+			}
+			CFR = {
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = conservatism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = marxism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = fascism_ideology
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = moderatism
+					traits = {
+					}
+				}
+				inherit_technology = GER
+				division_template = {
+					name = "Infantry Division"
+					division_names_group = GER_Inf_01
+					regiments = {
+						infantry = { x = 0 y = 0 }
+						infantry = { x = 0 y = 1 }
+						infantry = { x = 0 y = 2 }
+						infantry = { x = 1 y = 0 }
+						infantry = { x = 1 y = 1 }
+						infantry = { x = 1 y = 2 }
+						infantry = { x = 2 y = 0 }
+						infantry = { x = 2 y = 1 }
+						infantry = { x = 2 y = 2 }
+					}
+					support = {
+						artillery = { x = 0 y = 0 } 
+						engineer = { x = 0 y = 1 }
+					}
+				}
+				division_template = {
+					name = "Cavalry Division"
+					division_names_group = GER_Cav_01
+					regiments = {
+						cavalry = { x = 0 y = 0 }
+						cavalry = { x = 0 y = 1 }
+						cavalry = { x = 1 y = 0 }
+						cavalry = { x = 1 y = 1 }
+					}
+					support = {
+						recon = { x = 0 y = 0 }
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					CFR = { exists = yes }
+				}
+				set_autonomy = {
+					target = CFR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+			}
+			else_if = {
+				limit = {
+					CFR = { exists = yes }
+				}
+				puppet = CFR
+			}
+		}
+		if = {
+			limit = {
 				has_dlc = "Together for Victory"
+				GER = { exists = yes }
 			}
 			set_autonomy = {
 				target = GER
 				autonomous_state = autonomy_puppet
 				freedom_level = 0.5
 			}
-			else = {
-				puppet = GER
+		}
+		else_if = {
+			limit = {
+				GER = { exists = yes }
 			}
+			puppet = GER
 		}
 		if = {
 			limit = {
