@@ -1772,6 +1772,7 @@ focus_tree = {
 	#Army
 	focus = {
 		id = CAN_Canada_Defense_Strategy
+		icon = GFX_goal_generic_fortify_city
 		x = 7
 		y = 0
 		cost = 10
@@ -2482,6 +2483,267 @@ focus_tree = {
 				bonus = 0.75
 				uses = 2
 				category = marine_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_canadian_air_force
+		icon = GFX_goal_generic_build_airforce
+		x = 21
+		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		completion_reward = {
+			air_experience = 30
+		}
+	}
+	
+	focus = {
+		id = CAN_eastern_air_command
+		icon = GFX_goal_generic_air_production
+		relative_position_id = CAN_canadian_air_force
+		X = -2
+		y = 1
+		cost = 5
+		bypass = {
+			NOT = {	controls_state = 473 }
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_canadian_air_force
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 473 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = air_base
+					level = 2
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_Independent_Air_Force
+		icon = GFX_goal_generic_air_production
+		relative_position_id = CAN_canadian_air_force
+		X = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_canadian_air_force
+		}
+		completion_reward = {
+			add_ideas = CAN_Independent_Air_Force
+		}
+	}
+	
+	focus = {
+		id = CAN_western_air_command
+		icon = GFX_goal_generic_air_production
+		relative_position_id = CAN_canadian_air_force
+		X = 2
+		y = 1
+		cost = 5
+		bypass = {
+			NOT = {	controls_state = 468 }
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_canadian_air_force
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 468 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = air_base
+					level = 2
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_fighter
+		icon = GFX_goal_generic_air_fighter
+		relative_position_id = CAN_eastern_air_command
+		X = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_eastern_air_command
+			focus = CAN_Independent_Air_Force
+			focus = CAN_western_air_command
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_fighter
+				bonus = 1
+				uses = 1
+				category = light_fighter
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_CAS
+		icon = GFX_goal_generic_CAS
+		relative_position_id = CAN_Independent_Air_Force
+		X = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_eastern_air_command
+			focus = CAN_Independent_Air_Force
+			focus = CAN_western_air_command
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_CAS
+				bonus = 1
+				uses = 1
+				category = cas_bomber
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_strategic_bomber
+		icon = GFX_goal_generic_air_bomber
+		relative_position_id = CAN_western_air_command
+		X = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_eastern_air_command
+			focus = CAN_Independent_Air_Force
+			focus = CAN_western_air_command
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = CAN_strategic_bomber
+				bonus = 1
+				uses = 1
+				category = cat_strategic_bomber
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_rule_the_sky
+		icon = GFX_goal_generic_air_doctrine
+		relative_position_id = CAN_fighter
+		X = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_fighter
+		}
+		mutually_exclusive = {
+			focus = CAN_auxiliary_role_of_the_air_force
+		}
+		mutually_exclusive = {
+			focus = CAN_destroy_the_land
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = CAN_rule_the_sky
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_operational_integrity
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_auxiliary_role_of_the_air_force
+		icon = GFX_goal_poland_goal
+		relative_position_id = CAN_CAS
+		X = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_CAS
+		}
+		mutually_exclusive = {
+			focus = CAN_rule_the_sky
+		}
+		mutually_exclusive = {
+			focus = CAN_destroy_the_land
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = CAN_auxiliary_role_of_the_air_force
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_battlefield_support
+			}
+		}
+	}
+	
+	focus = {
+		id = CAN_destroy_the_land
+		icon = GFX_focus_generic_long_range_aircraft
+		relative_position_id = CAN_strategic_bomber
+		X = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = CAN_strategic_bomber
+		}
+		mutually_exclusive = {
+			focus = CAN_rule_the_sky
+		}
+		mutually_exclusive = {
+			focus = CAN_auxiliary_role_of_the_air_force
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = CAN_destroy_the_land
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_strategic_destruction
 			}
 		}
 	}
