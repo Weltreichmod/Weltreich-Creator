@@ -101,6 +101,20 @@ peace_conference_effect = {
 			}
 		}
 	}
+	every_country = {
+		limit = {
+			has_country_flag = second_great_war_loser
+		}
+		every_country = {
+			limit = {
+				is_subject_of = PREV
+			}
+			clr_country_flag = protectorate
+			PREV = {
+				end_puppet = PREV
+			}
+		}
+	}
 	#SOV_annex_GEO
 	if = {
 		limit = {
@@ -746,9 +760,12 @@ peace_conference_effect = {
 		every_state = {
 			limit = {
 				is_owned_by = ENG
-				is_core_of = MAL
+				OR = {
+					state = 980
+					state = 333
+				}
 			}
-			transfer_state_to = MAL
+			transfer_state_to = GER
 		}
 		every_state = {
 			limit = {
