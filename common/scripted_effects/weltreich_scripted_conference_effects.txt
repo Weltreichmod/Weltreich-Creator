@@ -2716,6 +2716,38 @@ german_puppet_effect = {
 				RUS = { annex_country = { target = WOL transfer_troops = no } }
 			}
 		}
+		if = {
+			limit = {
+				FIN = { has_country_flag = anti_russia_war_winner }
+				SOV = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FIN
+					is_core_of = SOV
+				}
+				transfer_state_to = SOV
+			}
+		}
+		else_if = {
+			limit = {
+				FIN = { has_country_flag = anti_russia_war_winner }
+				RUS = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FIN
+					is_core_of = RUS
+				}
+				transfer_state_to = RUS
+			}
+		}
+		if = {
+			limit = {
+				UBD = { exists = yes }
+			}
+			LAT = { annex_country = { target = UBD transfer_troops = no } }
+		}
 	}
 }
 peace_conference_effect_for_russia = {
@@ -2828,7 +2860,17 @@ peace_conference_effect_for_russia = {
 				RUS = { has_country_flag = anti_russia_war_winner }
 			}
 		}
-		GER = { dismantle_faction = yes }
+		#GER = { dismantle_faction = yes }
+		GER = { leave_faction = yes }
+		every_country = {
+			limit = {
+				has_war_with = GER
+			}
+			white_peace = {
+				tag = GER
+				#message = unconditional_surrender_of_GER
+			}
+		}
 		every_country = {
 			limit = {
 				is_subject_of = GER
@@ -2942,8 +2984,8 @@ peace_conference_effect_for_russia = {
 		if = {
 			limit = {
 				OR = {
-					GER = { has_country_flag = second_great_war_loser }
-					GOA = { has_country_flag = second_great_war_loser }
+					GER = { has_country_flag = anti_russia_war_loser }
+					GOA = { has_country_flag = anti_russia_war_loser }
 				}
 			}
 			every_state = {
@@ -2968,7 +3010,7 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					USA = { has_country_flag = second_great_war_winner }
+					USA = { has_country_flag = anti_russia_war_winner }
 				}
 				every_state = {
 					limit = {
@@ -3065,7 +3107,7 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					JAP = { has_country_flag = second_great_war_winner }
+					JAP = { has_country_flag = anti_russia_war_winner }
 				}
 				every_state = {
 					limit = {
@@ -3185,13 +3227,33 @@ peace_conference_effect_for_russia = {
 					}
 				}
 			}
+			if = {
+				limit = {
+					COG = { exists = yes }
+				}
+				SOV = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = COG
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = COG
+						}
+					}
+				}
+			}
 			#to soviet eastern puppets
 			if = {
 				limit = {
-					SOV = { has_country_flag = second_great_war_winner }
+					SOV = { has_country_flag = anti_russia_war_winner }
 					POL = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				SOV = {
@@ -3212,10 +3274,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					SOV = { has_country_flag = second_great_war_winner }
+					SOV = { has_country_flag = anti_russia_war_winner }
 					UBD = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				SOV = {
@@ -3236,7 +3298,7 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					SOV = { has_country_flag = second_great_war_winner }
+					SOV = { has_country_flag = anti_russia_war_winner }
 					EST = {
 						exists = yes
 						has_country_flag = puppet_to_sov_or_rus
@@ -3260,7 +3322,7 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					SOV = { has_country_flag = second_great_war_winner }
+					SOV = { has_country_flag = anti_russia_war_winner }
 					LAT = {
 						exists = yes
 						has_country_flag = puppet_to_sov_or_rus
@@ -3284,10 +3346,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					SOV = { has_country_flag = second_great_war_winner }
+					SOV = { has_country_flag = anti_russia_war_winner }
 					BLR = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				SOV = {
@@ -3308,10 +3370,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					SOV = { has_country_flag = second_great_war_winner }
+					SOV = { has_country_flag = anti_russia_war_winner }
 					LIT = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				SOV = {
@@ -3332,10 +3394,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					SOV = { has_country_flag = second_great_war_winner }
+					SOV = { has_country_flag = anti_russia_war_winner }
 					UKR = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				SOV = {
@@ -3356,10 +3418,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					SOV = { has_country_flag = second_great_war_winner }
+					SOV = { has_country_flag = anti_russia_war_winner }
 					USS = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				SOV = {
@@ -3380,10 +3442,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					SOV = { has_country_flag = second_great_war_winner }
+					SOV = { has_country_flag = anti_russia_war_winner }
 					UPR = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				SOV = {
@@ -3485,10 +3547,10 @@ peace_conference_effect_for_russia = {
 			#to russia eastern puppets
 			if = {
 				limit = {
-					RUS = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = anti_russia_war_winner }
 					POL = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				RUS = {
@@ -3509,10 +3571,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					RUS = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = anti_russia_war_winner }
 					UBD = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				RUS = {
@@ -3533,7 +3595,7 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					RUS = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = anti_russia_war_winner }
 					EST = {
 						exists = yes
 						has_country_flag = puppet_to_sov_or_rus
@@ -3557,7 +3619,7 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					RUS = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = anti_russia_war_winner }
 					LAT = {
 						exists = yes
 						has_country_flag = puppet_to_sov_or_rus
@@ -3581,10 +3643,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					RUS = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = anti_russia_war_winner }
 					BLR = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				RUS = {
@@ -3605,10 +3667,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					RUS = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = anti_russia_war_winner }
 					LIT = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				RUS = {
@@ -3629,10 +3691,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					RUS = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = anti_russia_war_winner }
 					UKR = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				RUS = {
@@ -3653,10 +3715,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					RUS = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = anti_russia_war_winner }
 					USS = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				RUS = {
@@ -3677,10 +3739,10 @@ peace_conference_effect_for_russia = {
 			}
 			if = {
 				limit = {
-					RUS = { has_country_flag = second_great_war_winner }
+					RUS = { has_country_flag = anti_russia_war_winner }
 					UPR = {
 						exists = yes
-						has_country_flag = second_great_war_loser
+						has_country_flag = anti_russia_war_loser
 					}
 				}
 				RUS = {

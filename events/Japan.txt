@@ -489,73 +489,32 @@ country_event = {
 					has_country_flag = anti_russia_war_loser
 				}
 			}
-			JAP = {
-				if = {
-					limit = {
-						OR = {
-							has_dlc = "Together for Victory"
-							has_dlc = "Waking the Tiger"
-						}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
 					}
+				}
+				JAP = {
 					set_autonomy = {
 						target = MON
 						autonomous_state = autonomy_wtt_imperial_subject
 						freedom_level = 0.5
 					}
-					else = {
-						puppet = MON
-					}
 				}
+			}
+			else = {
+				JAP= { puppet = MON }
 			}
 		}
 		if = {
 			limit = {
 				TAN = {
-					exists = yes
 					has_country_flag = anti_russia_war_loser
 				}
 			}
-			JAP = {
-				if = {
-					limit = {
-						OR = {
-							has_dlc = "Together for Victory"
-							has_dlc = "Waking the Tiger"
-						}
-					}
-					set_autonomy = {
-						target = TAN
-						autonomous_state = autonomy_wtt_imperial_subject
-						freedom_level = 0.5
-					}
-					else = {
-						puppet = TAN
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				NOT = { IOM = { is_subject_of = JAP } }
-			}
-			JAP = {
-				if = {
-					limit = {
-						OR = {
-							has_dlc = "Together for Victory"
-							has_dlc = "Waking the Tiger"
-						}
-					}
-					set_autonomy = {
-						target = IOM
-						autonomous_state = autonomy_wtt_imperial_subject
-						freedom_level = 0.5
-					}
-					else = {
-						puppet = IOM
-					}
-				}
-			}
+			MON = { annex_country = { target = TAN transfer_troops = no } }
 		}
 		if = {
 			limit = {
@@ -596,25 +555,25 @@ country_event = {
 		}
 		if = {
 			limit = {
-				NOT = { FER = { is_subject_of = JAP } }
+				IOM = { exists = yes }
 			}
-			JAP = {
-				if = {
-					limit = {
-						OR = {
-							has_dlc = "Together for Victory"
-							has_dlc = "Waking the Tiger"
-						}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
 					}
+				}
+				JAP = {
 					set_autonomy = {
-						target = FER
+						target = IOM
 						autonomous_state = autonomy_wtt_imperial_subject
 						freedom_level = 0.5
 					}
-					else = {
-						puppet = FER
-					}
 				}
+			}
+			else = {
+				JAP= { puppet = IOM }
 			}
 		}
 		every_state = {
@@ -636,6 +595,30 @@ country_event = {
 				}
 			}
 			transfer_state_to = FER
+		}
+		if = {
+			limit = {
+				NOT = { FER = { is_subject_of = JAP } }
+				FER = { exists = yes }
+			}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+				}
+				JAP = {
+					set_autonomy = {
+						target = FER
+						autonomous_state = autonomy_wtt_imperial_subject
+						freedom_level = 0.5
+					}
+				}
+			}
+			else = {
+				JAP= { puppet = FER }
+			}
 		}
 		ai_chance = {
 			base = 10
@@ -665,23 +648,23 @@ country_event = {
 					has_country_flag = anti_russia_war_loser
 				}
 			}
-			JAP = {
-				if = {
-					limit = {
-						OR = {
-							has_dlc = "Together for Victory"
-							has_dlc = "Waking the Tiger"
-						}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
 					}
+				}
+				JAP = {
 					set_autonomy = {
 						target = MON
 						autonomous_state = autonomy_wtt_imperial_subject
 						freedom_level = 0.5
 					}
-					else = {
-						puppet = MON
-					}
 				}
+			}
+			else = {
+				JAP= { puppet = MON }
 			}
 		}
 		if = {
@@ -691,46 +674,23 @@ country_event = {
 					has_country_flag = anti_russia_war_loser
 				}
 			}
-			JAP = {
-				if = {
-					limit = {
-						OR = {
-							has_dlc = "Together for Victory"
-							has_dlc = "Waking the Tiger"
-						}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
 					}
+				}
+				JAP = {
 					set_autonomy = {
 						target = TAN
 						autonomous_state = autonomy_wtt_imperial_subject
 						freedom_level = 0.5
 					}
-					else = {
-						puppet = TAN
-					}
 				}
 			}
-		}
-		if = {
-			limit = {
-				NOT = { IOM = { is_subject_of = JAP } }
-			}
-			JAP = {
-				if = {
-					limit = {
-						OR = {
-							has_dlc = "Together for Victory"
-							has_dlc = "Waking the Tiger"
-						}
-					}
-					set_autonomy = {
-						target = IOM
-						autonomous_state = autonomy_wtt_imperial_subject
-						freedom_level = 0.5
-					}
-					else = {
-						puppet = IOM
-					}
-				}
+			else = {
+				JAP= { puppet = TAN }
 			}
 		}
 		if = {
@@ -772,25 +732,25 @@ country_event = {
 		}
 		if = {
 			limit = {
-				NOT = { FER = { is_subject_of = JAP } }
+				IOM = { exists = yes }
 			}
-			JAP = {
-				if = {
-					limit = {
-						OR = {
-							has_dlc = "Together for Victory"
-							has_dlc = "Waking the Tiger"
-						}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
 					}
+				}
+				JAP = {
 					set_autonomy = {
-						target = FER
+						target = IOM
 						autonomous_state = autonomy_wtt_imperial_subject
 						freedom_level = 0.5
 					}
-					else = {
-						puppet = FER
-					}
 				}
+			}
+			else = {
+				JAP= { puppet = IOM }
 			}
 		}
 		every_state = {
@@ -812,6 +772,30 @@ country_event = {
 				}
 			}
 			transfer_state_to = FER
+		}
+		if = {
+			limit = {
+				NOT = { FER = { is_subject_of = JAP } }
+				FER = { exists = yes }
+			}
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+				}
+				JAP = {
+					set_autonomy = {
+						target = FER
+						autonomous_state = autonomy_wtt_imperial_subject
+						freedom_level = 0.5
+					}
+				}
+			}
+			else = {
+				JAP= { puppet = FER }
+			}
 		}
 		ai_chance = {
 			base = 10

@@ -23,6 +23,27 @@ CAN_democratic_coalition = {
 				add = -1000
 				check_variable = { coalition_var > 95 }
 			}
+			modifier = {
+				add = -1000
+				OR = {
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_CO_OPERATIVE_COMMONWEALTH_FEDERATION
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_LIBERAL_PARTY
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_COMMUNIST_PARTY_OF_CANADA
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_NATIONAL_UNITY_PARTY_OF_CANADA
+					}
+				}
+			}
 		}
 	}
 	CAN_against_fascism = {
@@ -48,6 +69,27 @@ CAN_democratic_coalition = {
 			modifier = {
 				add = -1000
 				check_variable = { coalition_var > 95 }
+			}
+			modifier = {
+				add = -1000
+				OR = {
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_CO_OPERATIVE_COMMONWEALTH_FEDERATION
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_LIBERAL_PARTY
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_COMMUNIST_PARTY_OF_CANADA
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_NATIONAL_UNITY_PARTY_OF_CANADA
+					}
+				}
 			}
 		}
 	}
@@ -75,21 +117,44 @@ CAN_democratic_coalition = {
 				add = -1000
 				check_variable = { coalition_var > 95 }
 			}
+			modifier = {
+				add = -1000
+				OR = {
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_CO_OPERATIVE_COMMONWEALTH_FEDERATION
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_LIBERAL_PARTY
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_COMMUNIST_PARTY_OF_CANADA
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_NATIONAL_UNITY_PARTY_OF_CANADA
+					}
+				}
+			}
 		}
 	}
 	CAN_swaying_coalition = {
 		days_mission_timeout = 55
 		activation = {
 			has_completed_focus = CAN_follow_the_coalition
-			has_variable = coalition_var
+			NOT = { has_country_flag = fall_of_coalition_flag }
 			NOT = { has_completed_focus = CAN_stable_coalition }
 		}
 		allowed = {
 			original_tag = CAN
 		}
 		available = {
-			NOT = { has_variable = coalition_var }
-			has_completed_focus = CAN_stable_coalition
+			OR = {
+				has_country_flag = fall_of_coalition_flag
+				has_completed_focus = CAN_stable_coalition
+			}
 		}
 		timeout_effect = {
 			add_to_variable = { coalition_var = -5 }
@@ -178,13 +243,13 @@ CAN_democratic_coalition = {
 		days_mission_timeout = 55
 		activation = {
 			has_completed_focus = CAN_stand_up_to_the_coalition_government
-			has_variable = coalition_var
+			NOT = { has_country_flag = fall_of_coalition_flag }
 		}
 		allowed = {
 			original_tag = CAN
 		}
 		available = {
-			NOT = { has_variable = coalition_var }
+			has_country_flag = fall_of_coalition_flag
 		}
 		timeout_effect = {
 			add_to_variable = { coalition_var = 5 }

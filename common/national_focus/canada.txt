@@ -59,6 +59,7 @@ focus_tree = {
 	#Economy
 	focus = {
 		id = CAN_USA_trade
+		icon = GFX_CAN_USA_trade
 		x = -9
 		y = 0
 		cost = 10
@@ -76,6 +77,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_National_Employment_Commission
+		icon = GFX_CAN_National_Employment_Commission
 		relative_position_id = CAN_USA_trade
 		x = -3
 		y = 1
@@ -94,6 +96,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_National_Housing_Act
+		icon = GFX_CAN_National_Housing_Act
 		relative_position_id = CAN_USA_trade
 		x = -1
 		y = 1
@@ -156,6 +159,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_war_economy
+		icon = GFX_CAN_war_economy
 		relative_position_id = CAN_Federal_Unemployment_and_Agricultural_Assistance_Act
 		x = 1
 		y = 1
@@ -187,6 +191,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_University_of_Montreal
+		icon = GFX_CAN_University_of_Montreal
 		relative_position_id = CAN_USA_trade
 		x = 0
 		y = 2
@@ -206,6 +211,7 @@ focus_tree = {
 	#Industry
 	focus = {
 		id = CAN_Canadian_Industrial_Development
+		icon = GFX_CAN_Canadian_Industrial_Development
 		relative_position_id = CAN_USA_trade
 		x = -4
 		y = 0
@@ -226,6 +232,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_synthetic_oil
+		icon = GFX_CAN_synthetic_oil
 		relative_position_id = CAN_Canadian_Industrial_Development
 		x = -1
 		y = 1
@@ -249,6 +256,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_mine_the_shield
+		icon = GFX_CAN_mine_the_shield
 		relative_position_id = CAN_synthetic_oil
 		x = 0
 		y = 2
@@ -296,6 +304,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_Canadian_Wheat_Board
+		icon = GFX_CAN_Canadian_Wheat_Board
 		relative_position_id = CAN_Canadian_Industrial_Development
 		x = 0
 		y = 2
@@ -317,6 +326,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_CBC
+		icon = GFX_CAN_CBC
 		relative_position_id = CAN_Canadian_Wheat_Board
 		x = 1
 		y = 1
@@ -338,6 +348,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_Bank_of_Canada
+		icon = GFX_CAN_Bank_of_Canada
 		relative_position_id = CAN_CBC
 		x = 0
 		y = 1
@@ -357,6 +368,7 @@ focus_tree = {
 	#War Path
 	focus = {
 		id = CAN_canada_at_war
+		icon = GFX_CAN_canada_at_war
 		relative_position_id = CAN_USA_trade
 		x = 1
 		y = 1
@@ -375,6 +387,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_national_resources_mobilization_act
+		icon = GFX_CAN_national_resources_mobilization_act
 		prerequisite = { focus = CAN_canada_at_war }
 		x = 0
 		y = 2
@@ -395,6 +408,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_wartime_prices_and_trade_board
+		icon = GFX_CAN_wartime_prices_and_trade_board
 		prerequisite = { focus = CAN_canada_at_war }
 		x = 1
 		y = 1
@@ -414,6 +428,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_uranium_mining
+		icon = GFX_CAN_uranium_mining
 		prerequisite = { focus = CAN_wartime_prices_and_trade_board }
 		x = 0
 		y = 2
@@ -439,6 +454,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_commit_to_the_war
+		icon = GFX_CAN_commit_to_the_war
 		prerequisite = { focus = CAN_national_resources_mobilization_act }
 		prerequisite = { focus = CAN_war_economy }
 		x = 1
@@ -466,10 +482,10 @@ focus_tree = {
 	#Political Path
 	focus = {
 		id = CAN_the_first_dominion
+		icon = GFX_CAN_the_first_dominion
 		x = 0
 		y = 0
-
-		cost = 10
+		cost = 100
 		offset = {
 			x = 1
 			y = 0
@@ -492,6 +508,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_follow_the_coalition
+		icon = GFX_CAN_follow_the_coalition
 		relative_position_id = CAN_the_first_dominion
 		x = -3
 		y = 1
@@ -529,12 +546,34 @@ focus_tree = {
 	#Normal Path
 	focus = {
 		id = CAN_welfare_state
+		icon = GFX_CAN_welfare_state
 		relative_position_id = CAN_follow_the_coalition
 		x = -2
 		y = 1
 		cost = 10
 		ai_will_do = {
 			factor = 6
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_CO_OPERATIVE_COMMONWEALTH_FEDERATION
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_LIBERAL_PARTY
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_COMMUNIST_PARTY_OF_CANADA
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_NATIONAL_UNITY_PARTY_OF_CANADA
+					}
+				}
+				factor = 0
+			}
 		}
 		available = {
 			NOT = { has_country_flag = fall_of_coalition_flag }
@@ -552,6 +591,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_relief_the_people
+		icon = GFX_CAN_relief_the_people
 		relative_position_id = CAN_welfare_state
 		x = 0
 		y = 1
@@ -581,6 +621,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_Weakening_Social_Credit_Party_influence
+		icon = GFX_CAN_Weakening_Social_Credit_Party_influence
 		relative_position_id = CAN_follow_the_coalition
 		x = 0
 		y = 1
@@ -605,6 +646,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_Coalition_Government_Conference
+		icon = GFX_CAN_Coalition_Government_Conference
 		relative_position_id = CAN_follow_the_coalition
 		x = 2
 		y = 1
@@ -626,6 +668,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_stabilization_of_the_coalition
+		icon = GFX_CAN_stabilization_of_the_coalition
 		relative_position_id = CAN_Weakening_Social_Credit_Party_influence
 		x = 1
 		y = 1
@@ -658,6 +701,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_stable_coalition
+		icon = GFX_CAN_stable_coalition
 		relative_position_id = CAN_stabilization_of_the_coalition
 		x = -1
 		y = 1
@@ -725,6 +769,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_Section_98
+		icon = GFX_CAN_Section_98
 		relative_position_id = CAN_stable_coalition
 		x = 1
 		y = 1
@@ -1077,6 +1122,22 @@ focus_tree = {
 						rule = CAN_AI_BEHAVIOR
 						option = CAN_FOLLOW_THE_COALITION
 					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_CO_OPERATIVE_COMMONWEALTH_FEDERATION
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_LIBERAL_PARTY
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_COMMUNIST_PARTY_OF_CANADA
+					}
+					has_game_rule = {
+						rule = CAN_AI_BEHAVIOR
+						option = CAN_NATIONAL_UNITY_PARTY_OF_CANADA
+					}
 				}
 				factor = 0
 			}
@@ -1108,6 +1169,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_warn_of_another_failure
+		icon = GFX_CAN_warn_of_another_failure
 		relative_position_id = CAN_stand_up_to_the_coalition_government
 		x = -1
 		y = 1
@@ -1131,6 +1193,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_Help_of_BUF
+		icon = GFX_CAN_Help_of_BUF
 		relative_position_id = CAN_stand_up_to_the_coalition_government
 		x = 1
 		y = 1
@@ -1154,6 +1217,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_New_Election
+		icon = GFX_CAN_New_Election
 		relative_position_id = CAN_warn_of_another_failure
 		x = 1
 		y = 1
@@ -1183,6 +1247,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_social_dividends
+		icon = GFX_CAN_social_dividends
 		relative_position_id = CAN_New_Election
 		x = -1
 		y = 1
@@ -1205,6 +1270,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_guarantee_basic_income
+		icon = GFX_CAN_guarantee_basic_income
 		relative_position_id = CAN_social_dividends
 		x = 0
 		y = 1
@@ -1226,6 +1292,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_price_controls
+		icon = GFX_CAN_price_controls
 		relative_position_id = CAN_New_Election
 		x = 1
 		y = 1
@@ -1248,6 +1315,7 @@ focus_tree = {
 	
 	focus = {
 		id = CAN_strong_government
+		icon = GFX_CAN_strong_government
 		relative_position_id = CAN_price_controls
 		x = 0
 		y = 1
@@ -1328,7 +1396,7 @@ focus_tree = {
 			add_stability = 0.1
 			add_popularity = {
 				ideology = communism
-				popularity = 0.05
+				popularity = 0.15
 			}
 		}
 	}
@@ -1350,7 +1418,7 @@ focus_tree = {
 			add_ideas = CAN_rights_of_workers
 			add_popularity = {
 				ideology = communism
-				popularity = 0.05
+				popularity = 0.1
 			}
 		}
 	}
@@ -1593,7 +1661,7 @@ focus_tree = {
 			add_stability = 0.05
 			add_popularity = {
 				ideology = fascism
-				popularity = 0.05
+				popularity = 0.15
 			}
 		}
 	}
@@ -1642,7 +1710,7 @@ focus_tree = {
 			}
 			add_popularity = {
 				ideology = fascism
-				popularity = 0.05
+				popularity = 0.1
 			}
 		}
 	}

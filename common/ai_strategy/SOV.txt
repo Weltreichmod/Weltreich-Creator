@@ -420,14 +420,22 @@ SOT_civilwar = {
 		country_exists = SOS
 	}
 	abort = {
-		NOT = { SOT = { has_war_with = SOS } }
+		OR = {
+			NOT = { SOT = { has_war_with = SOS } }
+			has_war_with = SOB
+		}
+	}
+	ai_strategy = {
+		type = consider_weak
+		id = "SOS"
+		value = 100
 	}
 	ai_strategy = {
 		type = front_control
 		tag = SOS
 		priority = 1000
 		ordertype = front
-		execution_type = rush_weak
+		execution_type = rush
 		execute_order = yes
 	}
 }
