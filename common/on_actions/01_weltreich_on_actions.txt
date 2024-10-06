@@ -763,6 +763,252 @@ on_actions = {
 			}
 			if = {
 				limit = {
+					ROOT = { has_country_flag = defeat_france_flag }
+				}
+				if = {
+					limit = {
+						FRA = { has_country_flag = second_great_war_loser }
+					}
+					every_state = {
+						limit = {
+							is_owned_by = ROOT
+							is_core_of = FRA
+							NOT = { is_core_of = ROOT }
+						}
+						transfer_state_to = FRA
+					}
+					ROOT = { end_puppet = FRA }
+					every_country = {
+						limit = {
+							has_war_with = FRA
+						}
+						white_peace = FRA
+					}
+					if = {
+						limit = {
+							FRG = { exists = yes }
+						}
+						ROOT = { end_puppet = FRG }
+						FRA = { annex_country = { target = FRG transfer_troops = yes } }
+					}
+				}
+			}
+			if = {
+				limit = {
+					ROOT = { has_country_flag = defeat_britain_flag }
+				}
+				if = {
+					limit = {
+						ENG = { has_country_flag = second_great_war_loser }
+					}
+					ENG = { drop_cosmetic_tag = yes }
+					every_state = {
+						limit = {
+							is_owned_by = ROOT
+							is_core_of = ENG
+							NOT = { is_core_of = ROOT }
+						}
+						transfer_state_to = ENG
+					}
+					ROOT = { end_puppet = ENG }
+					every_country = {
+						limit = {
+							has_war_with = ENG
+						}
+						white_peace = ENG
+					}
+					if = {
+						limit = {
+							WLS = { exists = yes }
+						}
+						ROOT = { end_puppet = WLS }
+						ENG = { annex_country = { target = WLS transfer_troops = yes } }
+					}
+					if = {
+						limit = {
+							SCO = { exists = yes }
+						}
+						ROOT = { end_puppet = SCO }
+						ENG = { annex_country = { target = SCO transfer_troops = yes } }
+					}
+				}
+			}
+			if = {
+				limit = {
+					ROOT = { has_country_flag = defeat_usa_flag }
+				}
+				if = {
+					limit = {
+						USA = { has_country_flag = second_great_war_loser }
+					}
+					every_state = {
+						limit = {
+							is_owned_by = ROOT
+							is_core_of = USA
+							NOT = { is_core_of = ROOT }
+						}
+						transfer_state_to = USA
+					}
+					ROOT = { end_puppet = USA }
+					ROOT = { end_puppet = SFF }
+					ROOT = { end_puppet = UWS }
+					every_country = {
+						limit = {
+							has_war_with = USA
+						}
+						white_peace = USA
+					}
+					every_country = {
+						limit = {
+							has_war_with = SFF
+						}
+						white_peace = SFF
+					}
+					every_country = {
+						limit = {
+							has_war_with = UWS
+						}
+						white_peace = UWS
+					}
+				}
+			}
+			if = {
+				limit = {
+					ROOT = { has_country_flag = defeat_italy_flag }
+				}
+				if = {
+					limit = {
+						ITA = { has_country_flag = second_great_war_loser }
+					}
+					if = {
+						limit = {
+							NOT = { has_global_flag = split_the_italy }
+						}
+						every_state = {
+							limit = {
+								is_owned_by = ROOT
+								is_core_of = ITA
+								NOT = { is_core_of = ROOT }
+							}
+							transfer_state_to = ITA
+						}
+						ROOT = { end_puppet = ENG }
+					}
+					every_country = {
+						limit = {
+							has_war_with = ITA
+						}
+						white_peace = ITA
+					}
+					if = {
+						limit = {
+							has_global_flag = split_the_italy
+						}
+					}
+					ITA = {
+						annex_country = { target = EMI transfer_troops = yes }
+						annex_country = { target = TOS transfer_troops = yes }
+						annex_country = { target = TTS transfer_troops = yes }
+						annex_country = { target = SPM transfer_troops = yes }
+					}
+					every_state = {
+						limit = {
+							is_owned_by = PAP
+							OR = {
+								state = 161
+								state = 938
+								state = 2
+							}
+						}
+						transfer_state_to = ITA
+					}
+					every_state = {
+						limit = {
+							is_owned_by = ITA
+						}
+						add_core_of = ITA
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = GER
+				}
+				if = {
+					limit = {
+						OR = {
+							SOV = { has_country_flag = anti_russia_war_loser }
+							RUS = { has_country_flag = anti_russia_war_loser }
+						}
+					}
+					if = {
+						limit = {
+							MOS = { exists = yes }
+						}
+						if = {
+							limit = {
+								SOV = { exists = yes }
+							}
+							SOV = { annex_country = { target = MOS transfer_troops = no } }
+						}
+						else_if = {
+							limit = {
+								RUS = { exists = yes }
+							}
+							RUS = { annex_country = { target = MOS transfer_troops = no } }
+						}
+					}
+					if = {
+						limit = {
+							WOL = { exists = yes }
+						}
+						if = {
+							limit = {
+								SOV = { exists = yes }
+							}
+							SOV = { annex_country = { target = WOL transfer_troops = no } }
+						}
+						else_if = {
+							limit = {
+								RUS = { exists = yes }
+							}
+							RUS = { annex_country = { target = WOL transfer_troops = no } }
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = JAP
+				}
+				if = {
+					limit = {
+						OR = {
+							SOV = { has_country_flag = anti_russia_war_loser }
+							RUS = { has_country_flag = anti_russia_war_loser }
+						}
+					}
+					if = {
+						limit = {
+							FER = { exists = yes }
+						}
+						if = {
+							limit = {
+								SOV = { exists = yes }
+							}
+							SOV = { annex_country = { target = FER transfer_troops = no } }
+						}
+						else_if = {
+							limit = {
+								RUS = { exists = yes }
+							}
+							RUS = { annex_country = { target = FER transfer_troops = no } }
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
 					original_tag = GER
 					any_enemy_country = {
 						original_tag = AUH
