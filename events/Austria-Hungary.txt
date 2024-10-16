@@ -164,6 +164,160 @@ news_event = {
 	title = AUH.6.t
 	desc = AUH.6.d
 	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					original_tag = SER
+				}
+				AUH = {
+					end_puppet = SER
+					end_puppet = ALB
+				}
+				MNT = {
+					transfer_state = 105
+					inherit_technology = AUH
+				}
+				BOS = {
+					transfer_state = 104
+					transfer_state = 804
+					inherit_technology = AUH
+				}
+				SER = {
+					leave_faction = yes
+				}
+				ALB = {
+					leave_faction = yes
+				}
+				SER = {
+					white_peace = GER
+					OR = {
+						tag = GER
+						is_in_faction_with = GER
+						is_subject_of = GER
+					}
+					white_peace = ROM
+					OR = {
+						tag = ROM
+						is_in_faction_with = ROM
+						is_subject_of = ROM
+					}
+					white_peace = ITA
+					OR = {
+						tag = ITA
+						is_in_faction_with = ITA
+						is_subject_of = ITA
+					}
+				}
+				ALB = {
+					white_peace = GER
+					OR = {
+						tag = GER
+						is_in_faction_with = GER
+						is_subject_of = GER
+					}
+					white_peace = ROM
+					OR = {
+						tag = ROM
+						is_in_faction_with = ROM
+						is_subject_of = ROM
+					}
+					white_peace = ITA
+					OR = {
+						tag = ITA
+						is_in_faction_with = ITA
+						is_subject_of = ITA
+					}
+				}
+				SER = { declare_war_on = { target = AUH type = take_core_state } add_ideas = SER_Jugoslavia }
+				ALB = { declare_war_on = { target = AUH type = take_core_state } add_ideas = SER_Jugoslavia }
+				MNT = { declare_war_on = { target = AUH type = take_core_state } add_ideas = SER_Jugoslavia }
+				BOS = { declare_war_on = { target = AUH type = take_core_state } add_ideas = SER_Jugoslavia }
+				hidden_effect = {
+					BOS = {
+						division_template = {
+							name = "Infantry-Division"
+							regiments = {
+								infantry = {
+								x = 0
+								y = 0
+								}
+								infantry = {
+									x = 0
+									y = 1
+								}
+								infantry = {
+									x = 0
+									y = 2
+								}
+								infantry = {
+									x = 1
+								y = 0
+								}
+							}
+						}
+						104 = {
+							create_unit = {
+								division = "name = \"1. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+								owner = BOS
+							}
+							create_unit = {
+								division = "name = \"2. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+								owner = BOS
+							}
+							create_unit = {
+								division = "name = \"3. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+								owner = BOS
+							}
+							create_unit = {
+								division = "name = \"4. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+								owner = BOS
+							}
+						}
+					}
+					MNT = {
+						division_template = {
+							name = "Infantry-Division"
+							regiments = {
+								infantry = {
+									x = 0
+									y = 0
+								}
+								infantry = {
+									x = 0
+									y = 1
+								}
+								infantry = {
+									x = 0
+									y = 2
+								}
+								infantry = {
+									x = 1
+								y = 0
+								}
+							}
+							support = {
+								military_police = {
+									x = 0
+									y = 0
+								}
+							}
+						}
+						105 = {
+							create_unit = {
+								division = "name = \"1. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+								owner = MNT
+							}
+							create_unit = {
+								division = "name = \"2. Infantry-Division\" division_template = \"Infantry-Division\" start_experience_factor = 0.5"
+								owner = MNT
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 	major = yes
 	option = {
 		name = AUH.6.a

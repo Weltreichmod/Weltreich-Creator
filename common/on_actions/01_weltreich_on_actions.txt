@@ -429,6 +429,30 @@ on_actions = {
 				}
 				if = {
 					limit = {
+						USS = {
+							is_in_faction_with = SOV
+							OR = {
+								has_war_with = GER
+								has_war_with = JAP
+							}
+						}
+					}
+					USS = { set_country_flag = anti_russia_war_loser }
+				}
+				if = {
+					limit = {
+						UPR = {
+							is_in_faction_with = SOV
+							OR = {
+								has_war_with = GER
+								has_war_with = JAP
+							}
+						}
+					}
+					UPR = { set_country_flag = anti_russia_war_loser }
+				}
+				if = {
+					limit = {
 						TAN = {
 							is_in_faction_with = SOV
 							OR = {
@@ -492,6 +516,32 @@ on_actions = {
 						}
 						white_peace = {
 							tag = MON
+						}
+					}
+				}
+				if = {
+					limit = {
+						USS = { has_country_flag = anti_russia_war_loser }
+					}
+					every_country = {
+						limit = {
+							has_war_with = USS
+						}
+						white_peace = {
+							tag = USS
+						}
+					}
+				}
+				if = {
+					limit = {
+						UPR = { has_country_flag = anti_russia_war_loser }
+					}
+					every_country = {
+						limit = {
+							has_war_with = UPR
+						}
+						white_peace = {
+							tag = UPR
 						}
 					}
 				}
@@ -569,6 +619,30 @@ on_actions = {
 				}
 				if = {
 					limit = {
+						USS = {
+							is_in_faction_with = RUS
+							OR = {
+								has_war_with = GER
+								has_war_with = JAP
+							}
+						}
+					}
+					USS = { set_country_flag = anti_russia_war_loser }
+				}
+				if = {
+					limit = {
+						UPR = {
+							is_in_faction_with = RUS
+							OR = {
+								has_war_with = GER
+								has_war_with = JAP
+							}
+						}
+					}
+					UPR = { set_country_flag = anti_russia_war_loser }
+				}
+				if = {
+					limit = {
 						TAN = {
 							is_in_faction_with = RUS
 							OR = {
@@ -632,6 +706,32 @@ on_actions = {
 						}
 						white_peace = {
 							tag = MON
+						}
+					}
+				}
+				if = {
+					limit = {
+						USS = { has_country_flag = anti_russia_war_loser }
+					}
+					every_country = {
+						limit = {
+							has_war_with = USS
+						}
+						white_peace = {
+							tag = USS
+						}
+					}
+				}
+				if = {
+					limit = {
+						UPR = { has_country_flag = anti_russia_war_loser }
+					}
+					every_country = {
+						limit = {
+							has_war_with = UPR
+						}
+						white_peace = {
+							tag = UPR
 						}
 					}
 				}
@@ -1792,7 +1892,6 @@ on_actions = {
 			if = {
 				limit = {
 					original_tag = JAP
-					has_global_flag = second_Sino_Japanese_war_flag
 				}
 				if = {
 					limit = {
@@ -1872,46 +1971,6 @@ on_actions = {
 							has_capitulated = no
 						}
 					}
-					if = {
-						limit = {
-							CHI = { has_war_with = MAN }
-						}
-						#CHI = { annex_country = { target = MAN transfer_troops = no } }
-						every_state = {
-							limit = {
-								is_core_of = MAN
-							}
-							add_core_of = CHI
-							remove_core_of = MAN
-						}
-					}
-					if = {
-						limit = {
-							CHI = { has_war_with = MEN }
-						}
-						#CHI = { annex_country = { target = MEN transfer_troops = no } }
-						every_state = {
-							limit = {
-								is_core_of = MEN
-							}
-							add_core_of = CHI
-							remove_core_of = MEN
-						}
-					}
-					if = {
-						limit = {
-							CHI = { has_war_with = FNG }
-							FNG = { is_in_faction_with = JAP }
-						}
-						#CHI = { annex_country = { target = FNG transfer_troops = no } }
-						every_state = {
-							limit = {
-								is_core_of = FNG
-							}
-							add_core_of = CHI
-							remove_core_of = FNG
-						}
-					}
 					every_state = {
 						limit = {
 							is_owned_by = JAP
@@ -1925,6 +1984,142 @@ on_actions = {
 					UNF = { dismantle_faction = yes }
 					#CHI = { country_event = { id = china_wr.25 days = 7 } }
 				}
+				if = {
+					limit = {
+						JAP = { has_country_flag = sino_japanese_war_winner }
+					}
+					hidden_effect = {
+						every_country = {
+							limit = {
+								exists = yes
+							}
+							every_country = {
+								limit = {
+									has_country_flag = sino_japanese_war_loser
+								}
+								remove_wargoal = {
+									type = all
+									target = PREV 
+								}
+							}
+						}
+						every_country = {
+							limit = {
+								OR = {
+									is_in_faction_with = ROOT
+									is_subject_of = ROOT
+									has_country_flag = sino_japanese_war_loser
+								}
+							}
+							every_country = {
+								limit = {
+									has_country_flag = sino_japanese_war_winner
+								}
+								remove_wargoal = {
+									type = all
+									target = PREV 
+								}
+							}
+						}
+					}
+					every_country = {
+						limit = { has_country_flag = sino_japanese_war_loser }
+						drop_cosmetic_tag = yes
+						every_country = {
+							limit = {
+								has_war_with = PREV
+							}
+							white_peace = PREV
+						}
+					}
+					every_country = {
+						limit = {
+							is_subject_of = JAP
+							has_country_flag = sino_japanese_war_loser
+						}
+						JAP = { end_puppet = PREV }
+					}
+					every_country = {
+						limit = { has_country_flag = sino_japanese_war_loser }
+						clr_country_flag = sino_japanese_war_loser
+						leave_faction = yes
+						if = {
+							limit = {
+								NOT = { original_tag = CHI }
+							}
+							set_politics = {
+								ruling_party = neutrality
+								elections_allowed = no
+							}
+						}
+					}
+					GSM = {
+						retire_ideology_leader = communism
+						retire_ideology_leader = fascism
+						retire_ideology_leader = democratic
+						retire_ideology_leader = neutrality
+					}
+					CHI = {
+						retire_ideology_leader = communism
+						retire_ideology_leader = fascism
+						retire_ideology_leader = democratic
+						retire_ideology_leader = neutrality
+						set_politics = {
+							ruling_party = democratic
+							elections_allowed = yes
+							election_frequency = 48
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = CHI
+					has_war_with = JAP
+					has_global_flag = second_Sino_Japanese_war_flag
+				}
+				clr_global_flag = second_Sino_Japanese_war_flag
+				if = {
+					limit = {
+						CHI = { is_faction_leader = yes }
+					}
+					CHI = { dismantle_faction = yes }
+				}
+				else_if = {
+					limit = {
+						CHI = {
+							is_faction_leader = no
+							is_in_faction = yes
+						}
+					}
+					every_country = {
+						limit = {
+							is_chinese_country = yes
+							has_war_with = jap
+						}
+						leave_faction = yes
+					}
+				}
+				every_country = {
+					limit = {
+						is_chinese_country = yes
+						has_war_with = jap
+					}
+					set_country_flag = sino_japanese_war_loser
+					white_peace = {
+						tag = JAP
+						message = unconditional_surrender_of_CHI
+					}
+				}
+				every_country = {
+					limit = {
+						has_war_with = CHI
+					}
+					white_peace = CHI
+				}
+				JAP = { set_country_flag = sino_japanese_war_winner }
+				CHI_defeat_annex = yes
+				JAP = { country_event = japan_wr.40 }
 			}
 			#for achievements
 			if = {
@@ -1960,17 +2155,6 @@ on_actions = {
 	}
 	on_peaceconference_started = {
 		effect = {
-			if = {
-				limit = {
-					FROM = {
-						original_tag = CHI
-						is_faction_leader = yes
-					}
-					has_global_flag = second_Sino_Japanese_war_flag
-				}
-				CHI = { dismantle_faction = yes }
-				clr_global_flag = second_Sino_Japanese_war_flag
-			}
 		}
 	}
 	on_peaceconference_ended = {
