@@ -102,25 +102,52 @@ JAP_fengtian_problem = {
 			}
 		}
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = JAP_inviting_fengtian_trigger_tt
-				hidden_trigger = {
-					FNG = { check_variable = { FNG_influence_of_japan > 0.8 } }
+			OR = {
+				AND = {
+					custom_trigger_tooltip = {
+						tooltip = JAP_inviting_fengtian_trigger_tt
+						hidden_trigger = {
+							FNG = { check_variable = { FNG_influence_of_japan > 0.8 } }
+						}
+					}
+					custom_trigger_tooltip = {
+						tooltip = FNG_has_influence_of_japan
+						hidden_trigger = {
+							FNG = { has_variable = FNG_influence_of_japan }
+						}
+					}
 				}
-			}
-			custom_trigger_tooltip = {
-				tooltip = FNG_has_influence_of_japan
-				hidden_trigger = {
-					FNG = { has_variable = FNG_influence_of_japan }
+				AND = {
+					JAP = { has_war_with = CHI }
+					FNG = { has_war_with = CHI }
+					custom_trigger_tooltip = {
+						tooltip = FNG_has_influence_of_japan
+						hidden_trigger = {
+							FNG = { has_variable = FNG_influence_of_japan }
+						}
+					}
 				}
 			}
 		}
-		cost = 100
+		cost = 30
 		ai_will_do = {
 			base = 4000
 		}
 		complete_effect = {
-			add_to_faction = FNG
+			if = {
+				limit = {
+					custom_trigger_tooltip = {
+						tooltip = JAP_inviting_fengtian_trigger_tt
+						hidden_trigger = {
+							FNG = { check_variable = { FNG_influence_of_japan > 0.8 } }
+						}
+					}
+				}
+				add_to_faction = FNG
+			}
+			else = {
+				FNG = { country_event = japan_wr.41 }
+			}
 		}
 	}
 	JAP_attack_fengtian = {

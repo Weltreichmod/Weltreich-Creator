@@ -1823,15 +1823,36 @@ country_event = {
 				}
 			}
 		}
-		every_state = {
+		if = {
 			limit = {
-				is_owned_by = CHI
-				OR = {
+				FNG = { has_country_flag = sino_japanese_war_winner }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = CHI
 					state = 621
+				}
+				transfer_state_to = FNG
+			}
+			every_state = {
+				limit = {
+					is_owned_by = CHI
 					state = 746
 				}
+				transfer_state_to = GSM
 			}
-			transfer_state_to = MEN
+		}
+		else = {
+			every_state = {
+				limit = {
+					is_owned_by = CHI
+					OR = {
+						state = 621
+						state = 746
+					}
+				}
+				transfer_state_to = MEN
+			}
 		}
 		if = {
 			limit = {
@@ -1917,6 +1938,26 @@ country_event = {
 			614 = { add_core_of = CHI }
 			597 = { add_core_of = CHI }
 		}
+		else_if = {
+			limit = {
+				FNG = { has_country_flag = sino_japanese_war_winner }
+			}
+			if = {
+				limit = {
+					SHX = { has_country_flag = sino_japanese_war_loser }
+				}
+				every_state = {
+					limit = {
+						is_owned_by = CHI
+						OR = {
+							state = 621
+							state = 598
+						}
+					}
+					transfer_state_to = FNG
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_owned_by = CHI
@@ -1967,6 +2008,60 @@ country_event = {
 		}
 		ai_chance = {
 			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = japan_wr.41
+	title = japan_wr.41.t
+	desc = japan_wr.41.d
+	picture = GFX_report_event_japanese_officers
+	is_triggered_only = yes
+	option = {
+		name = japan_wr.41.a
+		JAP = { country_event = { id = japan_wr.42 days = 1 } }
+		custom_effect = {
+			JAP = { add_to_faction = FNG }
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = japan_wr.41.b
+		JAP = { country_event = { id = japan_wr.43 days = 1 } }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = japan_wr.42
+	title = japan_wr.42.t
+	desc = japan_wr.42.d
+	picture = GFX_report_event_japanese_officers
+	is_triggered_only = yes
+	option = {
+		name = japan_wr.42.a
+		JAP = { add_to_faction = FNG }
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+country_event = {
+	id = japan_wr.43
+	title = japan_wr.43.t
+	desc = japan_wr.43.d
+	picture = GFX_report_event_japanese_officers
+	is_triggered_only = yes
+	option = {
+		name = japan_wr.43.a
+		ai_chance = {
+			base = 100
 		}
 	}
 }
