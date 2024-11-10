@@ -13,13 +13,13 @@
 # Reminder that focus filters prio has to be handled in the generic focus file :)
 
 focus_tree = {
-	id = soviet_focus
+	id = soviet_focus_rework
 
 	country = {
 		factor = 0
 		
 		modifier = {
-			#add = 10
+			#add = 100
 			#tag = SOV
 		}
 	}
@@ -33,5 +33,129 @@ focus_tree = {
 		icon = GFX_SOV_the_works_want_liberation
 		x = 10
 		y = 0
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			set_power_balance = {
+				id = SOV_Troika_Opposition_power_struggle
+				left_side = SOV_Troika_Opposition_power_struggle_Opposition
+				right_side = SOV_Troika_Opposition_power_struggle_Troika
+				set_value = 0.5
+			}
+			add_political_power = 200
+		}
+	}
+	
+	focus = {
+		id = SOV_The_Writings_of_Marx
+		icon = GFX_SOV_The_Writings_of_Marx
+		relative_position_id = SOV_the_works_want_liberation
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_works_want_liberation
+		}
+		completion_reward = {
+			add_ideas = SOV_marxs_requiem
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.05
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_The_Spirit_of_Lenin
+		icon = GFX_SOV_The_Spirit_of_Lenin
+		relative_position_id = SOV_the_works_want_liberation
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_works_want_liberation
+		}
+		completion_reward = {
+			add_ideas = SOV_lenins_desire
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_The_Tactics_of_Engels
+		icon = GFX_SOV_The_Tactics_of_Engels
+		relative_position_id = SOV_the_works_want_liberation
+		x = 2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value < -0.2
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_works_want_liberation
+		}
+		completion_reward = {
+			add_ideas = SOV_By_means_of_Terror
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.2
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_The_Line_Corrected
+		icon = GFX_SOV_The_Line_Corrected
+		relative_position_id = SOV_The_Spirit_of_Lenin
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value < -0.4
+			}
+		}
+		prerequisite = {
+			focus = SOV_The_Spirit_of_Lenin
+		}
+		prerequisite = {
+			focus = SOV_The_Tactics_of_Engels
+		}
+		prerequisite = {
+			focus = SOV_The_Writings_of_Marx
+		}
+		completion_reward = {
+			unlock_decision_category_tooltip = SOV_The_Inevitable_Civil_War
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.1
+			}
+		}
 	}
 }
