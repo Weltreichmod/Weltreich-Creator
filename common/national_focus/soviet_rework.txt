@@ -19,8 +19,8 @@ focus_tree = {
 		factor = 0
 		
 		modifier = {
-			add = 100
-			tag = SOV
+			#add = 100
+			#tag = SOV
 		}
 	}
 	
@@ -222,7 +222,11 @@ focus_tree = {
 			focus = SOV_The_Red_Terror_Marches_On
 		}
 		completion_reward = {
+			#bukharin_civilwar_decision = yes
 			news_event = Soviet.62
+			remove_power_balance = {
+				id = SOV_Troika_Opposition_power_struggle
+			}
 		}
 	}
 	
@@ -437,6 +441,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_political_power = 100
+			remove_ideas = SOV_By_means_of_Terror
 		}
 	}
 	
@@ -455,8 +460,6 @@ focus_tree = {
 			focus = SOV_victory
 		}
 		completion_reward = {
-			remove_ideas = postwar_reconstruction_high
-			add_timed_idea = { idea = postwar_reconstruction_low days = 100 }
 			remove_ideas = SOV_marxs_requiem
 			remove_ideas = SOV_lenins_desire
 			add_ideas = SOV_the_morning_after
@@ -473,72 +476,13 @@ focus_tree = {
 		ai_will_do = {
 			factor = 6
 		}
-		search_filters = { FOCUS_FILTER_ANNEXATION }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		prerequisite = {
 			focus = SOV_the_morning_after
 		}
 		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 196
-						state = 200
-						state = 227
-						state = 228
-						state = 240
-						state = 221
-						state = 226
-						state = 225
-						state = 193
-						state = 259
-						state = 241
-						state = 203
-						state = 202
-						state = 194
-						state = 197
-						state = 192
-						state = 834
-						state = 198
-						state = 201
-						state = 199
-						state = 94
-						state = 93
-						state = 913
-						state = 204
-						state = 206
-						state = 95
-						state = 96
-						state = 91
-						state = 89
-						state = 975
-						state = 78
-						state = 766
-						state = 977
-						state = 978
-						state = 137
-						state = 990
-						state = 912
-						state = 784
-						state = 11
-						state = 815
-						state = 189
-						state = 809
-						state = 190
-						state = 808
-						state = 12
-						state = 191
-						state = 13
-						state = 811
-						state = 813
-						state = 812
-						state = 814
-						state = 188
-						state = 763
-						state = 968
-					}
-				}
-				add_claim_by = SOV
-			}
+			add_political_power = 50
+			add_stability = 0.05
 		}
 	}
 	
@@ -557,6 +501,51 @@ focus_tree = {
 			focus = SOV_the_treaty_of_brest_litovsk_is_hereby_null
 		}
 		completion_reward = {
+			country_event = Soviet.63
+		}
+	}
+	
+	focus = {
+		id = SOV_the_works_opposition_victorious
+		icon = GFX_focus_generic_workers
+		relative_position_id = SOV_Extraordinary_Congress_of_the_Workers_Committee
+		x = -3
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_Extraordinary_Congress_of_the_Workers_Committee
+		}
+		completion_reward = {
+			add_trait = {
+				 character = SOV_nikolay_bukharin
+				 ideology = leninism
+				 trait = triumphant_revolutionary
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_reinstate_the_comintern
+		icon = GFX_goal_generic_support_communism
+		relative_position_id = SOV_the_works_opposition_victorious
+		x = 0
+		y = 1
+		cost = 7.3
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_works_opposition_victorious
+		}
+		completion_reward = {
+			create_faction = Comintern
 		}
 	}
 }
