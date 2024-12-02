@@ -1021,7 +1021,7 @@ focus_tree = {
 		relative_position_id = SOV_victory
 		x = 0
 		y = 1
-		cost = 7.3
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
@@ -1042,7 +1042,7 @@ focus_tree = {
 		relative_position_id = SOV_the_morning_after
 		x = 0
 		y = 1
-		cost = 10
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
@@ -1063,7 +1063,7 @@ focus_tree = {
 		relative_position_id = SOV_the_treaty_of_brest_litovsk_is_hereby_null
 		x = 0
 		y = 1
-		cost = 10
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
@@ -1076,17 +1076,22 @@ focus_tree = {
 		}
 	}
 	
+	#Worker's Opposition
 	focus = {
 		id = SOV_the_works_opposition_victorious
 		icon = GFX_focus_generic_workers
 		relative_position_id = SOV_Extraordinary_Congress_of_the_Workers_Committee
-		x = -3
+		x = -4
 		y = 1
 		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
 		available = {
+			has_country_flag = SOV_Tukhachevsky_fail
+		}
+		mutually_exclusive = {
+			focus = SOV_red_napoleons_coup
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -1102,12 +1107,88 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = SOV_exile_tukachevsky
+		icon = GFX_focus_generic_government_in_exile
+		relative_position_id = SOV_the_works_opposition_victorious
+		x = -2
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_works_opposition_victorious
+		}
+		completion_reward = {
+			country_event = Soviet.71
+		}
+	}
+	
+	focus = {
+		id = SOV_empower_the_reformists_in_the_military
+		icon = GFX_focus_generic_women_in_military
+		relative_position_id = SOV_exile_tukachevsky
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_exile_tukachevsky
+		}
+		completion_reward = {
+			remove_ideas = SOV_disbanded_army_low
+		}
+	}
+	
+	focus = {
+		id = SOV_the_wreckers_and_betrayers_of_marxism
+		icon = GFX_SOV_the_wreckers_and_betrayers_of_marxism
+		relative_position_id = SOV_the_works_opposition_victorious
+		x = 2
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_works_opposition_victorious
+		}
+		completion_reward = {
+			country_event = Soviet.69
+		}
+	}
+	
+	focus = {
+		id = SOV_expel_the_menshevik_internationalists
+		icon = GFX_focus_SOV_purge_trotskyists
+		relative_position_id = SOV_the_wreckers_and_betrayers_of_marxism
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_wreckers_and_betrayers_of_marxism
+		}
+		completion_reward = {
+			country_event = Soviet.70
+		}
+	}
+	
+	focus = {
 		id = SOV_reinstate_the_comintern
-		icon = GFX_goal_generic_support_communism
+		icon = GFX_goal_support_communism
 		relative_position_id = SOV_the_works_opposition_victorious
 		x = 0
 		y = 1
-		cost = 7.3
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1126,6 +1207,332 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = SOV_agitate_for_revolutions_in_western_europe
+		id = SOV_agitate_for_revolutions_in_eastern_europe
+		icon = GFX_focus_spr_unify_the_london_bureau
+		relative_position_id = SOV_reinstate_the_comintern
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_reinstate_the_comintern
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_agitate_for_revolutions_in_eastern_europe_effect_tt
+		}
+	}
+	
+	focus = {
+		id = SOV_the_section_of_the_3rd_international
+		icon = GFX_focus_AUS_danubian_socialist_communes
+		relative_position_id = SOV_agitate_for_revolutions_in_eastern_europe
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_agitate_for_revolutions_in_eastern_europe
+		}
+		prerequisite = {
+			focus = SOV_empower_the_reformists_in_the_military
+		}
+		prerequisite = {
+			focus = SOV_expel_the_menshevik_internationalists
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_the_section_of_the_3rd_international_effect
+		}
+	}
+	
+	focus = {
+		id = SOV_more_conscription
+		icon = GFX_focus_SOV_builder_of_the_red_army
+		relative_position_id = SOV_the_section_of_the_3rd_international
+		x = -2
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		prerequisite = {
+			focus = SOV_the_section_of_the_3rd_international
+		}
+		completion_reward = {
+			add_ideas = SOV_large_conscription
+		}
+	}
+	
+	focus = {
+		id = SOV_heavy_industrial_plan
+		icon = GFX_focus_generic_communist_industry
+		relative_position_id = SOV_the_section_of_the_3rd_international
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_the_section_of_the_3rd_international
+		}
+		completion_reward = {
+			add_ideas = SOV_heavy_industrial_plan
+		}
+	}
+	
+	focus = {
+		id = SOV_Arms_Production_Act
+		icon = GFX_focus_generic_mass_production
+		relative_position_id = SOV_the_section_of_the_3rd_international
+		x = 2
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_the_section_of_the_3rd_international
+		}
+		completion_reward = {
+			add_ideas = SOV_Arms_Production_Act
+		}
+	}
+	
+	focus = {
+		id = SOV_encircle_the_mitteleuropa_on_all_fronts
+		icon = GFX_focus_ger_return_of_the_kaiser
+		relative_position_id = SOV_heavy_industrial_plan
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_heavy_industrial_plan
+		}
+		completion_reward = {
+			FRA = { country_event = Soviet.81 }
+		}
+	}
+	
+	#Tukhachevsky
+	focus = {
+		id = SOV_red_napoleons_coup
+		icon = GFX_SOV_red_napoleons_coup
+		relative_position_id = SOV_Extraordinary_Congress_of_the_Workers_Committee
+		x = 4
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = SOV_the_works_opposition_victorious
+		}
+		available = {
+			has_country_flag = SOV_Tukhachevsky_victory
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_Extraordinary_Congress_of_the_Workers_Committee
+		}
+		completion_reward = {
+			add_trait = {
+				 character = SOV_mikhail_tukhachevsky
+				 ideology = leninism
+				 trait = red_napoleon
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_put_respectable_leaders_in_place
+		icon = GFX_focus_SOV_the_glory_of_the_red_army_alternative
+		relative_position_id = SOV_red_napoleons_coup
+		x = -2
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_red_napoleons_coup
+		}
+		completion_reward = {
+			country_event = Soviet.79
+			show_ideas_tooltip = SOV_georgy_zhukov
+			show_ideas_tooltip = SOV_konstantin_rokossovsky
+			show_ideas_tooltip = SOV_aleksandr_vasilevsky
+		}
+	}
+	
+	focus = {
+		id = SOV_trial_of_the_left_communist_menace
+		icon = GFX_focus_SOV_the_last_purge
+		relative_position_id = SOV_put_respectable_leaders_in_place
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_put_respectable_leaders_in_place
+		}
+		completion_reward = {
+			add_timed_idea = { idea = sov_political_purge days = 50 }
+		}
+	}
+	
+	focus = {
+		id = SOV_first_the_jacobins_now_the_bolsheviks
+		icon = GFX_focus_GER_end_european_communism
+		relative_position_id = SOV_red_napoleons_coup
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_red_napoleons_coup
+		}
+		completion_reward = {
+			country_event = Soviet.73
+		}
+	}
+	
+	focus = {
+		id = SOV_the_manhunt_for_bukharin
+		icon = GFX_focus_SOV_purge_bukharinists
+		relative_position_id = SOV_first_the_jacobins_now_the_bolsheviks
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_first_the_jacobins_now_the_bolsheviks
+		}
+		completion_reward = {
+			country_event = Soviet.75
+		}
+	}
+	
+	focus = {
+		id = SOV_merge_the_soviets_with_the_party
+		icon = GFX_focus_ARG_keep_it_in_the_party
+		relative_position_id = SOV_red_napoleons_coup
+		x = 2
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = SOV_red_napoleons_coup
+		}
+		completion_reward = {
+			country_event = Soviet.74
+		}
+	}
+	
+	focus = {
+		id = SOV_execute_kollontai
+		icon = GFX_execute_kollontai
+		relative_position_id = SOV_merge_the_soviets_with_the_party
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_merge_the_soviets_with_the_party
+		}
+		completion_reward = {
+			country_event = Soviet.78
+		}
+	}
+	
+	focus = {
+		id = SOV_now_for_war
+		icon = GFX_focus_ger_great_red_menace
+		relative_position_id = SOV_the_manhunt_for_bukharin
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_the_manhunt_for_bukharin
+		}
+		prerequisite = {
+			focus = SOV_trial_of_the_left_communist_menace
+		}
+		prerequisite = {
+			focus = SOV_execute_kollontai
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_battle_plan_lenin
+		icon = GFX_SOV_battle_plan_lenin
+		relative_position_id = SOV_now_for_war
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_now_for_war
+		}
+		completion_reward = {
+			add_ideas = SOV_battle_plan_lenin
+		}
 	}
 }

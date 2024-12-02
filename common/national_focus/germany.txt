@@ -2924,17 +2924,23 @@ focus_tree = {
 			factor = 6
 		}
 		completion_reward = {
-			add_tech_bonus = {
-				name = Qara_project
-				bonus = 1.0
-				uses = 1
-				category = nuclear
+			if = {
+				limit = {
+					NOT = { has_tech = atomic_research }
+					NOT = { is_researching_technology = atomic_research }
+				}
+				add_tech_bonus = {
+					name = Qara_project
+					bonus = 0.15
+					uses = 1
+					technology = atomic_research
+				}
 			}
-			add_tech_bonus = {
-				name = Qara_project
-				bonus = 1.0
-				uses = 1
-				category = nuclear
+			else = {
+				add_breakthrough_progress = {
+					specialization = specialization_nuclear
+					value = 0.15
+				}
 			}
 		}
 	}

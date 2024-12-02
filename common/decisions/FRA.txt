@@ -234,11 +234,23 @@ Gerboise_Bleue = {
 		}
 		days_remove = 365
 		remove_effect = {
-			add_tech_bonus = {
-				name = Uranium_Extraction
-				category = nuclear
-				uses = 1
-				bonus = 1
+			if = {
+				limit = {
+					NOT = { has_tech = atomic_research }
+					NOT = { is_researching_technology = atomic_research }
+				}
+				add_tech_bonus = {
+					name = Uranium_Extraction
+					bonus = 0.2
+					uses = 1
+					technology = atomic_research
+				}
+			}
+			else = {
+				add_breakthrough_progress = {
+					specialization = specialization_nuclear
+					value = 0.2
+				}
 			}
 			set_country_flag = nuke_bomb_flag
 		}
