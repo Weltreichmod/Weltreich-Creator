@@ -33,6 +33,24 @@ focus_tree = {
 		icon = GFX_SOV_death_of_kamenev
 		x = 7
 		y = 0
+		cost = 0.8
+		ai_will_do = {
+			factor = 6
+		}
+		cancelable = no
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = -50
+			country_event = soviet_rework_troika.001
+		}
+	}
+	
+	focus = {
+		id = SOV_establish_the_troika
+		icon = GFX_focus_generic_military_dictatorship
+		relative_position_id = SOV_death_of_kamenev
+		x = -10
+		y = 1
 		cost = 10
 		ai_will_do = {
 			factor = 6
@@ -42,22 +60,6 @@ focus_tree = {
                 tooltip = SOV_rework_troika_unlocked_by_event_ctt		
                 always = no
 		    }
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_political_power = -100
-		}
-	}
-	
-	focus = {
-		id = SOV_establish_the_troika
-		icon = GFX_focus_generic_military_dictatorship
-		relative_position_id = SOV_death_of_kamenev
-		x = -7
-		y = 1
-		cost = 10
-		ai_will_do = {
-			factor = 6
 		}
 		mutually_exclusive = {
 			focus = SOV_the_works_want_liberation
@@ -595,14 +597,20 @@ focus_tree = {
 		id = SOV_the_works_want_liberation
 		icon = GFX_SOV_the_works_want_liberation
 		relative_position_id = SOV_death_of_kamenev
-		x = 7
+		x = 10
 		y = 1
-		cost = 10
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
 		mutually_exclusive = {
 			focus = SOV_establish_the_troika
+		}
+		available = {
+		    custom_trigger_tooltip = {
+                tooltip = SOV_rework_troika_unlocked_by_event_ctt		
+                always = no
+		    }
 		}
 		prerequisite = {
 			focus = SOV_death_of_kamenev
@@ -625,7 +633,7 @@ focus_tree = {
 		relative_position_id = SOV_the_works_want_liberation
 		x = -2
 		y = 1
-		cost = 10
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
@@ -643,12 +651,35 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = SOV_gather_anti_troika_clique
+		icon = GFX_SOV_gather_anti_troika_clique
+		relative_position_id = SOV_The_Writings_of_Marx
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_The_Writings_of_Marx
+		}
+		completion_reward = {
+			country_event = Soviet.14
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.05
+			}
+		}
+	}
+	
+	focus = {
 		id = SOV_The_Spirit_of_Lenin
 		icon = SOV_inheritor_of_lenin
 		relative_position_id = SOV_the_works_want_liberation
 		x = 0
 		y = 1
-		cost = 10
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
@@ -660,7 +691,7 @@ focus_tree = {
 			add_ideas = SOV_lenins_desire
 			add_power_balance_value = {
 				id = SOV_Troika_Opposition_power_struggle
-				value = -0.15
+				value = -0.1
 			}
 		}
 	}
@@ -671,7 +702,30 @@ focus_tree = {
 		relative_position_id = SOV_the_works_want_liberation
 		x = 2
 		y = 1
-		cost = 10
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_works_want_liberation
+		}
+		completion_reward = {
+			add_ideas = SOV_By_means_of_Terror
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_accuse_troika
+		icon = GFX_SOV_accuse_troika
+		relative_position_id = SOV_The_Tactics_of_Engels
+		x = 0
+		y = 1
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
@@ -686,10 +740,11 @@ focus_tree = {
 			focus = SOV_the_works_want_liberation
 		}
 		completion_reward = {
-			add_ideas = SOV_By_means_of_Terror
+			country_event = Soviet.15
+			add_political_power = 20
 			add_power_balance_value = {
 				id = SOV_Troika_Opposition_power_struggle
-				value = -0.2
+				value = -0.05
 			}
 		}
 	}
@@ -700,28 +755,15 @@ focus_tree = {
 		relative_position_id = SOV_The_Spirit_of_Lenin
 		x = 0
 		y = 1
-		cost = 10
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
-		available = {
-			power_balance_value = {
-				id = SOV_Troika_Opposition_power_struggle
-				value < -0.4
-			}
-		}
 		prerequisite = {
 			focus = SOV_The_Spirit_of_Lenin
 		}
-		prerequisite = {
-			focus = SOV_The_Tactics_of_Engels
-		}
-		prerequisite = {
-			focus = SOV_The_Writings_of_Marx
-		}
 		completion_reward = {
-			unlock_decision_category_tooltip = SOV_The_Inevitable_Civil_War
 			add_power_balance_value = {
 				id = SOV_Troika_Opposition_power_struggle
 				value = -0.1
@@ -735,7 +777,7 @@ focus_tree = {
 		relative_position_id = SOV_The_Line_Corrected
 		x = -1
 		y = 1
-		cost = 10
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -743,11 +785,14 @@ focus_tree = {
 		prerequisite = {
 			focus = SOV_The_Line_Corrected
 		}
+		prerequisite = {
+			focus = SOV_gather_anti_troika_clique
+		}
 		completion_reward = {
 			custom_effect_tooltip = SOV_Prepare_the_Baricades_effect
-			add_days_mission_timeout = {
-				mission = SOV_until_the_last_day
-				days = -120
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.1
 			}
 		}
 	}
@@ -758,7 +803,7 @@ focus_tree = {
 		relative_position_id = SOV_The_Line_Corrected
 		x = 1
 		y = 1
-		cost = 10
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -766,8 +811,15 @@ focus_tree = {
 		prerequisite = {
 			focus = SOV_The_Line_Corrected
 		}
+		prerequisite = {
+			focus = SOV_accuse_troika
+		}
 		completion_reward = {
 			custom_effect_tooltip = SOV_The_Red_Terror_Marches_On_effect
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.05
+			}
 		}
 	}
 	
@@ -777,12 +829,15 @@ focus_tree = {
 		relative_position_id = SOV_Prepare_the_Baricades
 		x = 1
 		y = 1
-		cost = 1
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
 		available = {
-			always = no
+			power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value < -0.8
+			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -792,7 +847,7 @@ focus_tree = {
 			focus = SOV_The_Red_Terror_Marches_On
 		}
 		completion_reward = {
-			#bukharin_civilwar_decision = yes
+			bukharin_civilwar_decision = yes
 			news_event = Soviet.62
 			remove_power_balance = {
 				id = SOV_Troika_Opposition_power_struggle
@@ -1112,7 +1167,7 @@ focus_tree = {
 		relative_position_id = SOV_the_works_opposition_victorious
 		x = -2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1131,7 +1186,7 @@ focus_tree = {
 		relative_position_id = SOV_exile_tukachevsky
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1150,7 +1205,7 @@ focus_tree = {
 		relative_position_id = SOV_the_works_opposition_victorious
 		x = 2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1169,7 +1224,7 @@ focus_tree = {
 		relative_position_id = SOV_the_wreckers_and_betrayers_of_marxism
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1188,7 +1243,7 @@ focus_tree = {
 		relative_position_id = SOV_the_works_opposition_victorious
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1212,7 +1267,7 @@ focus_tree = {
 		relative_position_id = SOV_reinstate_the_comintern
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1231,7 +1286,7 @@ focus_tree = {
 		relative_position_id = SOV_agitate_for_revolutions_in_eastern_europe
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1256,7 +1311,7 @@ focus_tree = {
 		relative_position_id = SOV_the_section_of_the_3rd_international
 		x = -2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1275,7 +1330,7 @@ focus_tree = {
 		relative_position_id = SOV_the_section_of_the_3rd_international
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1294,7 +1349,7 @@ focus_tree = {
 		relative_position_id = SOV_the_section_of_the_3rd_international
 		x = 2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1311,7 +1366,7 @@ focus_tree = {
 		id = SOV_encircle_the_mitteleuropa_on_all_fronts
 		icon = GFX_focus_ger_return_of_the_kaiser
 		relative_position_id = SOV_heavy_industrial_plan
-		x = 0
+		x = -1
 		y = 1
 		cost = 5
 		ai_will_do = {
@@ -1321,8 +1376,56 @@ focus_tree = {
 		prerequisite = {
 			focus = SOV_heavy_industrial_plan
 		}
+		prerequisite = {
+			focus = SOV_more_conscription
+		}
 		completion_reward = {
 			FRA = { country_event = Soviet.81 }
+		}
+	}
+	
+	focus = {
+		id = SOV_last_preparation
+		icon = GFX_focus_generic_combined_arms
+		relative_position_id = SOV_heavy_industrial_plan
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_heavy_industrial_plan
+		}
+		prerequisite = {
+			focus = SOV_Arms_Production_Act
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 31 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = SOV
+			}
 		}
 	}
 	
@@ -1362,7 +1465,7 @@ focus_tree = {
 		relative_position_id = SOV_red_napoleons_coup
 		x = -2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1384,7 +1487,7 @@ focus_tree = {
 		relative_position_id = SOV_put_respectable_leaders_in_place
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1403,7 +1506,7 @@ focus_tree = {
 		relative_position_id = SOV_red_napoleons_coup
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1422,7 +1525,7 @@ focus_tree = {
 		relative_position_id = SOV_first_the_jacobins_now_the_bolsheviks
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1441,7 +1544,7 @@ focus_tree = {
 		relative_position_id = SOV_red_napoleons_coup
 		x = 2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1460,7 +1563,7 @@ focus_tree = {
 		relative_position_id = SOV_merge_the_soviets_with_the_party
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1479,7 +1582,7 @@ focus_tree = {
 		relative_position_id = SOV_the_manhunt_for_bukharin
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1523,7 +1626,7 @@ focus_tree = {
 		relative_position_id = SOV_now_for_war
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
