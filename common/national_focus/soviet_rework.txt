@@ -73,31 +73,6 @@ focus_tree = {
 			country_event = { id = soviet_rework_troika.003 days = 7 }
 		}
 	}
-
-		focus = {
-		id = SOV_the_white_opposition
-		icon = 
-		relative_position_id = SOV_establish_the_troika
-		x = 32
-		y = 1
-		cost = 10
-		ai_will_do = {
-			factor = 6
-		}
-		available = {
-		    custom_trigger_tooltip = {
-                tooltip = SOV_rework_troika_unlocked_by_event_ctt		
-                always = no
-		    }
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		prerequisite = {
-			focus = SOV_death_of_kamenev
-		}
-		completion_reward = {
-			add_ideas = SOV_white_support
-		}
-	}
 	
 	focus = {
 		id = SOV_it_is_clear_to_us
@@ -1541,6 +1516,7 @@ focus_tree = {
 			focus = SOV_the_section_of_the_3rd_international
 		}
 		completion_reward = {
+			country_event = Soviet.17
 			add_ideas = SOV_large_conscription
 		}
 	}
@@ -1848,7 +1824,7 @@ focus_tree = {
 		id = SOV_battle_plan_lenin
 		icon = GFX_SOV_battle_plan_lenin
 		relative_position_id = SOV_now_for_war
-		x = 0
+		x = -1
 		y = 1
 		cost = 5.8
 		ai_will_do = {
@@ -1860,6 +1836,124 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = SOV_battle_plan_lenin
+		}
+	}
+	
+	focus = {
+		id = SOV_military_expansion
+		icon = GFX_focus_generic_military_mission
+		relative_position_id = SOV_now_for_war
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		prerequisite = {
+			focus = SOV_now_for_war
+		}
+		completion_reward = {
+			country_event = Soviet.16
+			add_ideas = SOV_military_expansion
+		}
+	}
+	
+	focus = {
+		id = SOV_first_kiev
+		icon = GFX_SOV_first_kiev
+		relative_position_id = SOV_battle_plan_lenin
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		prerequisite = {
+			focus = SOV_battle_plan_lenin
+		}
+		prerequisite = {
+			focus = SOV_military_expansion
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_first_kiev_effect
+		}
+	}
+	
+	focus = {
+		id = SOV_then_minsk
+		icon = GFX_SOV_then_minsk
+		relative_position_id = SOV_battle_plan_lenin
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		available = {
+			has_completed_focus = SOV_first_kiev
+		}
+		prerequisite = {
+			focus = SOV_battle_plan_lenin
+		}
+		prerequisite = {
+			focus = SOV_military_expansion
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_then_minsk_effect
+		}
+	}
+	
+	focus = {
+		id = SOV_now_warsaw
+		icon = GFX_SOV_now_warsaw
+		relative_position_id = SOV_military_expansion
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		available = {
+			has_completed_focus = SOV_then_minsk
+		}
+		prerequisite = {
+			focus = SOV_battle_plan_lenin
+		}
+		prerequisite = {
+			focus = SOV_military_expansion
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_now_warsaw_effect
+		}
+	}
+	
+	#White Army
+	focus = {
+		id = SOV_the_white_opposition
+		icon = 
+		relative_position_id = SOV_establish_the_troika
+		x = 32
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+		    custom_trigger_tooltip = {
+                tooltip = SOV_rework_troika_unlocked_by_event_ctt		
+                always = no
+		    }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_death_of_kamenev
+		}
+		completion_reward = {
+			add_ideas = SOV_white_support
 		}
 	}
 }
