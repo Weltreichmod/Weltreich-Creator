@@ -1931,6 +1931,116 @@ focus_tree = {
 		}
 	}
 	
+	#Kill Germany!
+	focus = {
+		id = SOV_cut_off_the_snakes_head
+		icon = GFX_SOV_cut_off_the_snakes_head
+		relative_position_id = SOV_first_kiev
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		prerequisite = {
+			focus = SOV_encircle_the_mitteleuropa_on_all_fronts
+			focus = SOV_last_preparation
+			focus = SOV_first_kiev
+			focus = SOV_then_minsk
+			focus = SOV_now_warsaw
+		}
+		available = {
+			OR = {
+				AND = {
+					has_completed_focus = SOV_encircle_the_mitteleuropa_on_all_fronts
+					has_completed_focus = SOV_last_preparation
+				}
+				AND = {
+					has_completed_focus = SOV_first_kiev
+					has_completed_focus = SOV_then_minsk
+					has_completed_focus = SOV_now_warsaw
+				}
+			}
+		}
+		will_lead_to_war_with = GER
+		will_lead_to_war_with = UKR
+		will_lead_to_war_with = UPR
+		will_lead_to_war_with = BLR
+		will_lead_to_war_with = UBD
+		will_lead_to_war_with = LIT
+		will_lead_to_war_with = POL
+		completion_reward = {
+			add_war_support = 0.1
+			add_stability = 0.1
+			if = {
+				limit = {
+					GER = { exists = yes }
+				}
+				declare_war_on = { target = GER type = take_core_state }
+				add_timed_idea = { idea = SOV_Great_Liberation_War days = 700 }
+			}
+			if = {
+				limit = {
+					UKR = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = UKR type = take_core_state }
+			}
+			if = {
+				limit = {
+					UPR = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = UPR type = take_core_state }
+			}
+			if = {
+				limit = {
+					BLR = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = BLR type = take_core_state }
+			}
+			if = {
+				limit = {
+					UBD = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = UBD type = take_core_state }
+			}
+			if = {
+				limit = {
+					LIT = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = LIT type = take_core_state }
+			}
+			if = {
+				limit = {
+					POL = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = POL type = take_core_state }
+			}
+			add_named_threat = {
+				threat = 15
+				name = german_soviet_war
+			}
+		}
+	}
+	
 	#White Army
 	focus = {
 		id = SOV_the_white_opposition
@@ -1956,7 +2066,7 @@ focus_tree = {
 			add_ideas = SOV_white_support
 		}
 	}
-
+	
 	focus = {
 		id = SOV_friends_in_tokyo
 		icon =
