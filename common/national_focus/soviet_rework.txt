@@ -33,6 +33,24 @@ focus_tree = {
 		icon = GFX_SOV_death_of_kamenev
 		x = 7
 		y = 0
+		cost = 0.8
+		ai_will_do = {
+			factor = 6
+		}
+		cancelable = no
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = -50
+			country_event = soviet_rework_troika.001
+		}
+	}
+	
+	focus = {
+		id = SOV_establish_the_troika
+		icon = GFX_focus_generic_military_dictatorship
+		relative_position_id = SOV_death_of_kamenev
+		x = -10
+		y = 1
 		cost = 10
 		ai_will_do = {
 			factor = 6
@@ -42,22 +60,6 @@ focus_tree = {
                 tooltip = SOV_rework_troika_unlocked_by_event_ctt		
                 always = no
 		    }
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_political_power = -100
-		}
-	}
-	
-	focus = {
-		id = SOV_establish_the_troika
-		icon = GFX_focus_generic_military_dictatorship
-		relative_position_id = SOV_death_of_kamenev
-		x = -7
-		y = 1
-		cost = 10
-		ai_will_do = {
-			factor = 6
 		}
 		mutually_exclusive = {
 			focus = SOV_the_works_want_liberation
@@ -595,14 +597,20 @@ focus_tree = {
 		id = SOV_the_works_want_liberation
 		icon = GFX_SOV_the_works_want_liberation
 		relative_position_id = SOV_death_of_kamenev
-		x = 7
+		x = 10
 		y = 1
-		cost = 10
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
 		mutually_exclusive = {
 			focus = SOV_establish_the_troika
+		}
+		available = {
+		    custom_trigger_tooltip = {
+                tooltip = SOV_rework_troika_unlocked_by_event_ctt		
+                always = no
+		    }
 		}
 		prerequisite = {
 			focus = SOV_death_of_kamenev
@@ -625,7 +633,7 @@ focus_tree = {
 		relative_position_id = SOV_the_works_want_liberation
 		x = -2
 		y = 1
-		cost = 10
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
@@ -643,12 +651,35 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = SOV_gather_anti_troika_clique
+		icon = GFX_SOV_gather_anti_troika_clique
+		relative_position_id = SOV_The_Writings_of_Marx
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_The_Writings_of_Marx
+		}
+		completion_reward = {
+			country_event = Soviet.14
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.05
+			}
+		}
+	}
+	
+	focus = {
 		id = SOV_The_Spirit_of_Lenin
 		icon = SOV_inheritor_of_lenin
 		relative_position_id = SOV_the_works_want_liberation
 		x = 0
 		y = 1
-		cost = 10
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
@@ -660,7 +691,7 @@ focus_tree = {
 			add_ideas = SOV_lenins_desire
 			add_power_balance_value = {
 				id = SOV_Troika_Opposition_power_struggle
-				value = -0.15
+				value = -0.1
 			}
 		}
 	}
@@ -671,7 +702,30 @@ focus_tree = {
 		relative_position_id = SOV_the_works_want_liberation
 		x = 2
 		y = 1
-		cost = 10
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_works_want_liberation
+		}
+		completion_reward = {
+			add_ideas = SOV_By_means_of_Terror
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_accuse_troika
+		icon = GFX_SOV_accuse_troika
+		relative_position_id = SOV_The_Tactics_of_Engels
+		x = 0
+		y = 1
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
@@ -686,10 +740,11 @@ focus_tree = {
 			focus = SOV_the_works_want_liberation
 		}
 		completion_reward = {
-			add_ideas = SOV_By_means_of_Terror
+			country_event = Soviet.15
+			add_political_power = 20
 			add_power_balance_value = {
 				id = SOV_Troika_Opposition_power_struggle
-				value = -0.2
+				value = -0.05
 			}
 		}
 	}
@@ -700,28 +755,15 @@ focus_tree = {
 		relative_position_id = SOV_The_Spirit_of_Lenin
 		x = 0
 		y = 1
-		cost = 10
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
-		available = {
-			power_balance_value = {
-				id = SOV_Troika_Opposition_power_struggle
-				value < -0.4
-			}
-		}
 		prerequisite = {
 			focus = SOV_The_Spirit_of_Lenin
 		}
-		prerequisite = {
-			focus = SOV_The_Tactics_of_Engels
-		}
-		prerequisite = {
-			focus = SOV_The_Writings_of_Marx
-		}
 		completion_reward = {
-			unlock_decision_category_tooltip = SOV_The_Inevitable_Civil_War
 			add_power_balance_value = {
 				id = SOV_Troika_Opposition_power_struggle
 				value = -0.1
@@ -735,7 +777,7 @@ focus_tree = {
 		relative_position_id = SOV_The_Line_Corrected
 		x = -1
 		y = 1
-		cost = 10
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -743,11 +785,14 @@ focus_tree = {
 		prerequisite = {
 			focus = SOV_The_Line_Corrected
 		}
+		prerequisite = {
+			focus = SOV_gather_anti_troika_clique
+		}
 		completion_reward = {
 			custom_effect_tooltip = SOV_Prepare_the_Baricades_effect
-			add_days_mission_timeout = {
-				mission = SOV_until_the_last_day
-				days = -120
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.1
 			}
 		}
 	}
@@ -758,7 +803,7 @@ focus_tree = {
 		relative_position_id = SOV_The_Line_Corrected
 		x = 1
 		y = 1
-		cost = 10
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -766,8 +811,15 @@ focus_tree = {
 		prerequisite = {
 			focus = SOV_The_Line_Corrected
 		}
+		prerequisite = {
+			focus = SOV_accuse_troika
+		}
 		completion_reward = {
 			custom_effect_tooltip = SOV_The_Red_Terror_Marches_On_effect
+			add_power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value = -0.05
+			}
 		}
 	}
 	
@@ -777,12 +829,15 @@ focus_tree = {
 		relative_position_id = SOV_Prepare_the_Baricades
 		x = 1
 		y = 1
-		cost = 1
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
 		available = {
-			always = no
+			power_balance_value = {
+				id = SOV_Troika_Opposition_power_struggle
+				value < -0.8
+			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -792,7 +847,7 @@ focus_tree = {
 			focus = SOV_The_Red_Terror_Marches_On
 		}
 		completion_reward = {
-			#bukharin_civilwar_decision = yes
+			bukharin_civilwar_decision = yes
 			news_event = Soviet.62
 			remove_power_balance = {
 				id = SOV_Troika_Opposition_power_struggle
@@ -1019,7 +1074,7 @@ focus_tree = {
 		id = SOV_the_morning_after
 		icon = GFX_focus_FIN_socialist_welfare
 		relative_position_id = SOV_victory
-		x = 0
+		x = -1
 		y = 1
 		cost = 5
 		ai_will_do = {
@@ -1039,8 +1094,8 @@ focus_tree = {
 	focus = {
 		id = SOV_the_treaty_of_brest_litovsk_is_hereby_null
 		icon = GFX_focus_renounce_the_treaty_of_trianon
-		relative_position_id = SOV_the_morning_after
-		x = 0
+		relative_position_id = SOV_victory
+		x = 1
 		y = 1
 		cost = 5
 		ai_will_do = {
@@ -1048,7 +1103,7 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		prerequisite = {
-			focus = SOV_the_morning_after
+			focus = SOV_victory
 		}
 		completion_reward = {
 			add_political_power = 50
@@ -1060,14 +1115,17 @@ focus_tree = {
 	focus = {
 		id = SOV_Extraordinary_Congress_of_the_Workers_Committee
 		icon = GFX_focus_SOV_the_supreme_soviet
-		relative_position_id = SOV_the_treaty_of_brest_litovsk_is_hereby_null
-		x = 0
+		relative_position_id = SOV_the_morning_after
+		x = 1
 		y = 1
 		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_morning_after
+		}
 		prerequisite = {
 			focus = SOV_the_treaty_of_brest_litovsk_is_hereby_null
 		}
@@ -1076,12 +1134,202 @@ focus_tree = {
 		}
 	}
 	
+	focus = {
+		id = SOV_keep_tukachevsky_in_check
+		icon = GFX_SOV_keep_tukachevsky_in_check
+		relative_position_id = SOV_Extraordinary_Congress_of_the_Workers_Committee
+		x = -1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = SOV_for_coup
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_Extraordinary_Congress_of_the_Workers_Committee
+		}
+		completion_reward = {
+			country_event = Soviet.85
+		}
+	}
+	
+	focus = {
+		id = SOV_pursue_shadows
+		icon = GFX_SOV_pursue_shadows
+		relative_position_id = SOV_keep_tukachevsky_in_check
+		x = -2
+		y = 1
+		cost = 2.9
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_keep_tukachevsky_in_check
+		}
+		completion_reward = {
+			country_event = { id = Soviet.87 days = 7 }
+		}
+	}
+	
+	focus = {
+		id = SOV_cut_off_limbs
+		icon = GFX_SOV_cut_off_limbs
+		relative_position_id = SOV_pursue_shadows
+		x = 0
+		y = 1
+		cost = 2.9
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_keep_tukachevsky_in_check
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = SOV_Strengthening_Civilian_Control
+		icon = GFX_SOV_Strengthening_Civilian_Control
+		relative_position_id = SOV_keep_tukachevsky_in_check
+		x = 0
+		y = 1
+		cost = 2.9
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_keep_tukachevsky_in_check
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = SOV_obtain_the_operational_plan
+		icon = GFX_SOV_obtain_the_operational_plan
+		relative_position_id = SOV_Strengthening_Civilian_Control
+		x = 0
+		y = 1
+		cost = 2.9
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_Strengthening_Civilian_Control
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = SOV_for_coup
+		icon = GFX_SOV_for_coup
+		relative_position_id = SOV_Extraordinary_Congress_of_the_Workers_Committee
+		x = 1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = SOV_keep_tukachevsky_in_check
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_Extraordinary_Congress_of_the_Workers_Committee
+		}
+		completion_reward = {
+			country_event = Soviet.86
+		}
+	}
+	
+	focus = {
+		id = SOV_preparations_for_the_occupation_of_Supreme_soviet
+		icon = GFX_SOV_preparations_for_the_occupation_of_Supreme_soviet
+		relative_position_id = SOV_for_coup
+		x = 0
+		y = 1
+		cost = 2.9
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_for_coup
+		}
+		completion_reward = {
+			country_event = Soviet.88
+		}
+	}
+	
+	focus = {
+		id = SOV_seek_cause
+		icon = GFX_SOV_seek_cause
+		relative_position_id = SOV_preparations_for_the_occupation_of_Supreme_soviet
+		x = 0
+		y = 1
+		cost = 2.9
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_preparations_for_the_occupation_of_Supreme_soviet
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = SOV_find_sympathizers
+		icon = GFX_SOV_find_sympathizers
+		relative_position_id = SOV_for_coup
+		x = 2
+		y = 1
+		cost = 2.9
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_for_coup
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = SOV_cover_up_traces
+		icon = GFX_SOV_cover_up_traces
+		relative_position_id = SOV_find_sympathizers
+		x = 0
+		y = 1
+		cost = 2.9
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_find_sympathizers
+		}
+		completion_reward = {
+		}
+	}
+	
 	#Worker's Opposition
 	focus = {
 		id = SOV_the_works_opposition_victorious
 		icon = GFX_focus_generic_workers
-		relative_position_id = SOV_Extraordinary_Congress_of_the_Workers_Committee
-		x = -4
+		relative_position_id = SOV_cut_off_limbs
+		x = -1
 		y = 1
 		cost = 5
 		ai_will_do = {
@@ -1095,7 +1343,10 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
-			focus = SOV_Extraordinary_Congress_of_the_Workers_Committee
+			focus = SOV_cut_off_limbs
+			focus = SOV_obtain_the_operational_plan
+			focus = SOV_seek_cause
+			focus = SOV_cover_up_traces
 		}
 		completion_reward = {
 			add_trait = {
@@ -1112,7 +1363,7 @@ focus_tree = {
 		relative_position_id = SOV_the_works_opposition_victorious
 		x = -2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1131,7 +1382,7 @@ focus_tree = {
 		relative_position_id = SOV_exile_tukachevsky
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1150,7 +1401,7 @@ focus_tree = {
 		relative_position_id = SOV_the_works_opposition_victorious
 		x = 2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1169,7 +1420,7 @@ focus_tree = {
 		relative_position_id = SOV_the_wreckers_and_betrayers_of_marxism
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1188,7 +1439,7 @@ focus_tree = {
 		relative_position_id = SOV_the_works_opposition_victorious
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1212,7 +1463,7 @@ focus_tree = {
 		relative_position_id = SOV_reinstate_the_comintern
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1231,7 +1482,7 @@ focus_tree = {
 		relative_position_id = SOV_agitate_for_revolutions_in_eastern_europe
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1256,7 +1507,7 @@ focus_tree = {
 		relative_position_id = SOV_the_section_of_the_3rd_international
 		x = -2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1265,6 +1516,7 @@ focus_tree = {
 			focus = SOV_the_section_of_the_3rd_international
 		}
 		completion_reward = {
+			country_event = Soviet.17
 			add_ideas = SOV_large_conscription
 		}
 	}
@@ -1275,7 +1527,7 @@ focus_tree = {
 		relative_position_id = SOV_the_section_of_the_3rd_international
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1294,7 +1546,7 @@ focus_tree = {
 		relative_position_id = SOV_the_section_of_the_3rd_international
 		x = 2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1311,7 +1563,7 @@ focus_tree = {
 		id = SOV_encircle_the_mitteleuropa_on_all_fronts
 		icon = GFX_focus_ger_return_of_the_kaiser
 		relative_position_id = SOV_heavy_industrial_plan
-		x = 0
+		x = -1
 		y = 1
 		cost = 5
 		ai_will_do = {
@@ -1321,8 +1573,56 @@ focus_tree = {
 		prerequisite = {
 			focus = SOV_heavy_industrial_plan
 		}
+		prerequisite = {
+			focus = SOV_more_conscription
+		}
 		completion_reward = {
 			FRA = { country_event = Soviet.81 }
+		}
+	}
+	
+	focus = {
+		id = SOV_last_preparation
+		icon = GFX_focus_generic_combined_arms
+		relative_position_id = SOV_heavy_industrial_plan
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_heavy_industrial_plan
+		}
+		prerequisite = {
+			focus = SOV_Arms_Production_Act
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				prioritize = { 31 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = SOV
+			}
 		}
 	}
 	
@@ -1330,8 +1630,8 @@ focus_tree = {
 	focus = {
 		id = SOV_red_napoleons_coup
 		icon = GFX_SOV_red_napoleons_coup
-		relative_position_id = SOV_Extraordinary_Congress_of_the_Workers_Committee
-		x = 4
+		relative_position_id = SOV_cover_up_traces
+		x = 1
 		y = 1
 		cost = 5
 		ai_will_do = {
@@ -1345,7 +1645,10 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
-			focus = SOV_Extraordinary_Congress_of_the_Workers_Committee
+			focus = SOV_cut_off_limbs
+			focus = SOV_obtain_the_operational_plan
+			focus = SOV_seek_cause
+			focus = SOV_cover_up_traces
 		}
 		completion_reward = {
 			add_trait = {
@@ -1362,7 +1665,7 @@ focus_tree = {
 		relative_position_id = SOV_red_napoleons_coup
 		x = -2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1384,7 +1687,7 @@ focus_tree = {
 		relative_position_id = SOV_put_respectable_leaders_in_place
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1403,7 +1706,7 @@ focus_tree = {
 		relative_position_id = SOV_red_napoleons_coup
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1422,7 +1725,7 @@ focus_tree = {
 		relative_position_id = SOV_first_the_jacobins_now_the_bolsheviks
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1441,7 +1744,7 @@ focus_tree = {
 		relative_position_id = SOV_red_napoleons_coup
 		x = 2
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1460,7 +1763,7 @@ focus_tree = {
 		relative_position_id = SOV_merge_the_soviets_with_the_party
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1479,7 +1782,7 @@ focus_tree = {
 		relative_position_id = SOV_the_manhunt_for_bukharin
 		x = 0
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1521,9 +1824,9 @@ focus_tree = {
 		id = SOV_battle_plan_lenin
 		icon = GFX_SOV_battle_plan_lenin
 		relative_position_id = SOV_now_for_war
-		x = 0
+		x = -1
 		y = 1
-		cost = 7.2
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -1533,6 +1836,253 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = SOV_battle_plan_lenin
+		}
+	}
+	
+	focus = {
+		id = SOV_military_expansion
+		icon = GFX_focus_generic_military_mission
+		relative_position_id = SOV_now_for_war
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		prerequisite = {
+			focus = SOV_now_for_war
+		}
+		completion_reward = {
+			country_event = Soviet.16
+			add_ideas = SOV_military_expansion
+		}
+	}
+	
+	focus = {
+		id = SOV_first_kiev
+		icon = GFX_SOV_first_kiev
+		relative_position_id = SOV_battle_plan_lenin
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		prerequisite = {
+			focus = SOV_battle_plan_lenin
+		}
+		prerequisite = {
+			focus = SOV_military_expansion
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_first_kiev_effect
+		}
+	}
+	
+	focus = {
+		id = SOV_then_minsk
+		icon = GFX_SOV_then_minsk
+		relative_position_id = SOV_battle_plan_lenin
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		available = {
+			has_completed_focus = SOV_first_kiev
+		}
+		prerequisite = {
+			focus = SOV_battle_plan_lenin
+		}
+		prerequisite = {
+			focus = SOV_military_expansion
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_then_minsk_effect
+		}
+	}
+	
+	focus = {
+		id = SOV_now_warsaw
+		icon = GFX_SOV_now_warsaw
+		relative_position_id = SOV_military_expansion
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		available = {
+			has_completed_focus = SOV_then_minsk
+		}
+		prerequisite = {
+			focus = SOV_battle_plan_lenin
+		}
+		prerequisite = {
+			focus = SOV_military_expansion
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_now_warsaw_effect
+		}
+	}
+	
+	#Kill Germany!
+	focus = {
+		id = SOV_cut_off_the_snakes_head
+		icon = GFX_SOV_cut_off_the_snakes_head
+		relative_position_id = SOV_first_kiev
+		x = -2
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		prerequisite = {
+			focus = SOV_encircle_the_mitteleuropa_on_all_fronts
+			focus = SOV_last_preparation
+			focus = SOV_first_kiev
+			focus = SOV_then_minsk
+			focus = SOV_now_warsaw
+		}
+		available = {
+			OR = {
+				AND = {
+					has_completed_focus = SOV_encircle_the_mitteleuropa_on_all_fronts
+					has_completed_focus = SOV_last_preparation
+				}
+				AND = {
+					has_completed_focus = SOV_first_kiev
+					has_completed_focus = SOV_then_minsk
+					has_completed_focus = SOV_now_warsaw
+				}
+			}
+		}
+		will_lead_to_war_with = GER
+		will_lead_to_war_with = UKR
+		will_lead_to_war_with = UPR
+		will_lead_to_war_with = BLR
+		will_lead_to_war_with = UBD
+		will_lead_to_war_with = LIT
+		will_lead_to_war_with = POL
+		completion_reward = {
+			add_war_support = 0.1
+			add_stability = 0.1
+			if = {
+				limit = {
+					GER = { exists = yes }
+				}
+				declare_war_on = { target = GER type = take_core_state }
+				add_timed_idea = { idea = SOV_Great_Liberation_War days = 700 }
+			}
+			if = {
+				limit = {
+					UKR = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = UKR type = take_core_state }
+			}
+			if = {
+				limit = {
+					UPR = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = UPR type = take_core_state }
+			}
+			if = {
+				limit = {
+					BLR = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = BLR type = take_core_state }
+			}
+			if = {
+				limit = {
+					UBD = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = UBD type = take_core_state }
+			}
+			if = {
+				limit = {
+					LIT = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = LIT type = take_core_state }
+			}
+			if = {
+				limit = {
+					POL = {
+						exists = yes
+						NOT = { is_subject_of = ROOT }
+					}
+				}
+				declare_war_on = { target = POL type = take_core_state }
+			}
+			add_named_threat = {
+				threat = 15
+				name = german_soviet_war
+			}
+		}
+	}
+	
+	#White Army
+	focus = {
+		id = SOV_the_white_opposition
+		icon = 
+		relative_position_id = SOV_establish_the_troika
+		x = 32
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+		    custom_trigger_tooltip = {
+                tooltip = SOV_rework_troika_unlocked_by_event_ctt		
+                always = no
+		    }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_death_of_kamenev
+		}
+		completion_reward = {
+			add_ideas = SOV_white_support
+		}
+	}
+	
+	focus = {
+		id = SOV_friends_in_tokyo
+		icon =
+		relative_position_id = SOV_the_white_opposition
+		x = 31
+		y = 2
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_white_opposition
+		}
+		completion_reward = {	
+		country_event = soviet_rework_troika_white.001
 		}
 	}
 }
