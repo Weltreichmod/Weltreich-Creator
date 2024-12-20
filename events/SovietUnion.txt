@@ -395,6 +395,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = Soviet.18.a
+		add_5_tukachevsky_coup_progress_effect = yes
 		ai_chance = {
 			base = 5
 		}
@@ -405,27 +406,11 @@ country_event = {
 	id = Soviet.19
 	title = Soviet.19.t
 	desc = Soviet.19.d
-	picture = zinoviev_purge
+	picture = GFX_report_event_communists_cheer
 	is_triggered_only = yes
 	option = {
 		name = Soviet.19.a
-		if = {
-			limit = {
-				check_variable = { 	SOV_political_purging_progress < 0.95 }
-			}
-			add_to_variable = { SOV_political_purge_main_meter = 1 }
-			add_to_variable = { SOV_political_purging_progress = 0.05 }
-			custom_effect_tooltip = Zinoviev_purge
-		}
-		else = {
-			set_variable = { SOV_political_purge_main_meter = 21 }
-			set_variable = { SOV_political_purging_progress = 1 }
-			custom_effect_tooltip = purge_complete
-		}
-		retire_character = SOV_grigory_zinovyev
-		retire_character = SOV_lev_kamenev
-		retire_character = SOV_ivan_smirnov
-		retire_character = SOV_aleksandr_shlyapnikov
+		remove_2_5_tukachevsky_coup_progress_effect = yes
 		ai_chance = {
 			factor = 6
 		}
@@ -436,19 +421,13 @@ country_event = {
 	id = Soviet.20
 	title = Soviet.20.t
 	desc = Soviet.20.d
-	picture = trotsky_purge
+	picture = officer_purge
 	is_triggered_only = yes
 	option = {
 		name = Soviet.20.a
-		add_to_variable = { SOV_political_purge_main_meter = 2 }
-		add_to_variable = { SOV_political_purging_progress = 0.1 }
-		custom_effect_tooltip = Trotsky_purge
-		retire_character = SOV_lev_trotsky
-		retire_character = SOV_karl_radek
-		retire_character = SOV_ivar_smilga
-		retire_character = SOV_yevgeny_preobrazhensky
-		retire_character = SOV_martemyan_ryutin
-		retire_character = SOV_nikolay_ustryalov
+		retire_character = SOV_iona_yakir
+		retire_character = SOV_konstantin_rokossovsky
+		remove_5_tukachevsky_coup_progress_effect = yes
 		ai_chance = {
 			factor = 6
 		}
@@ -2214,6 +2193,7 @@ country_event = {
 	option = {
 		name = Soviet.65.a
 		remove_ideas = postwar_reconstruction_high
+		add_timed_idea = { idea = postwar_reconstruction_low days = 100 }
 		country_event = { id = Soviet.67 days = 5 }
 		ai_chance = {
 			factor = 6
@@ -2248,6 +2228,9 @@ country_event = {
 		#hidden_effect = {
 		#	country_event = { id = Soviet.72 days = 7 }
 		#}
+		unlock_decision_category_tooltip = SOV_tukachevsky_coup
+		set_country_flag = SOV_tukachevsky_coup_start_flag
+		set_variable = { SOV_tukachevsky_coup_progress_var = SOV.SOV_army_influence_var }
 		ai_chance = {
 			factor = 6
 		}
@@ -2329,8 +2312,13 @@ country_event = {
 	option = {
 		name = Soviet.71.a
 		retire_character = SOV_mikhail_tukhachevsky
-		retire_character = SOV_iona_yakir
-		retire_character = SOV_konstantin_rokossovsky
+		if = {
+			limit = {
+				NOT = { has_completed_focus = SOV_cut_off_limbs }
+			}
+			retire_character = SOV_iona_yakir
+			retire_character = SOV_konstantin_rokossovsky
+		}
 		swap_ideas = {
 			remove_idea = SOV_disbanded_army
 			add_idea = SOV_disbanded_army_low
@@ -2349,7 +2337,9 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = Soviet.72.a
-		set_country_flag = SOV_Tukhachevsky_fail
+		trigger = {
+			has_country_flag = SOV_Tukhachevsky_fail
+		}
 		ai_chance = {
 			base = 5
 		}
@@ -2357,9 +2347,8 @@ country_event = {
 	option = {
 		name = Soviet.72.b
 		trigger = {
-			has_completed_focus = SOV_convince_tukahchevsky
+			has_country_flag = SOV_Tukhachevsky_victory
 		}
-		set_country_flag = SOV_Tukhachevsky_victory
 		remove_country_leader_role = {
 			character = SOV_nikolay_bukharin
 			ideology = leninism
@@ -2708,6 +2697,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = Soviet.85.a
+		remove_2_5_tukachevsky_coup_progress_effect = yes
 		ai_chance = {
 			base = 5
 		}
@@ -2722,6 +2712,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = Soviet.86.a
+		add_2_5_tukachevsky_coup_progress_effect = yes
 		ai_chance = {
 			base = 5
 		}
@@ -2736,6 +2727,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = Soviet.87.a
+		remove_5_tukachevsky_coup_progress_effect = yes
 		ai_chance = {
 			base = 5
 		}
@@ -2750,6 +2742,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = Soviet.88.a
+		add_5_tukachevsky_coup_progress_effect = yes
 		ai_chance = {
 			base = 5
 		}
