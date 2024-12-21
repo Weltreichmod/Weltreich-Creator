@@ -1499,6 +1499,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			country_event = Soviet.63
+			remove_ideas = SOV_dysfunctional_bureaucracy_base
 		}
 	}
 	
@@ -1735,6 +1736,7 @@ focus_tree = {
 				 ideology = leninism
 				 trait = triumphant_revolutionary
 			}
+			remove_ideas = SOV_precarious_country_high
 		}
 	}
 	
@@ -2037,6 +2039,7 @@ focus_tree = {
 				 ideology = leninism
 				 trait = red_napoleon
 			}
+			remove_ideas = SOV_precarious_country_high
 		}
 	}
 	
@@ -2056,9 +2059,9 @@ focus_tree = {
 		}
 		completion_reward = {
 			country_event = Soviet.79
-			show_ideas_tooltip = SOV_georgy_zhukov
-			show_ideas_tooltip = SOV_konstantin_rokossovsky
-			show_ideas_tooltip = SOV_aleksandr_vasilevsky
+			show_ideas_tooltip = georgy_zhukov
+			show_ideas_tooltip = konstantin_rokossovsky
+			show_ideas_tooltip = aleksandr_vasilevsky
 		}
 	}
 	
@@ -2077,7 +2080,7 @@ focus_tree = {
 			focus = SOV_put_respectable_leaders_in_place
 		}
 		completion_reward = {
-			add_timed_idea = { idea = sov_political_purge days = 50 }
+			add_timed_idea = { idea = sov_political_purge days = 100 }
 		}
 	}
 	
@@ -2321,7 +2324,15 @@ focus_tree = {
 		y = 0
 		cost = 10
 		ai_will_do = {
-			factor = 6
+			factor = 0.1
+			modifier = {
+				FRA = { has_war_with = GER }
+				factor = 100
+			}
+			modifier = {
+				date > 1942.1.1
+				factor = 100
+			}
 		}
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		available = {
@@ -2348,7 +2359,7 @@ focus_tree = {
 						tag = GER
 						ratio > 1.6
 					}
-					threat > 0.7
+					threat > 0.5
 				}
 			}
 		}
