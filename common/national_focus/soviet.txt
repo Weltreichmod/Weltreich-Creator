@@ -2140,7 +2140,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_execute_kollontai
-		icon = GFX_execute_kollontai
+		icon = GFX_SOV_execute_kollontai
 		relative_position_id = SOV_merge_the_soviets_with_the_party
 		x = 0
 		y = 1
@@ -2994,10 +2994,10 @@ focus_tree = {
 	#White Army
 	focus = {
 		id = SOV_the_white_opposition
-		icon = 
+		#icon = 
 		relative_position_id = SOV_establish_the_troika
 		x = 32
-		y = 1
+		y = 0
 		cost = 10
 		ai_will_do = {
 			factor = 6
@@ -3019,10 +3019,10 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_friends_in_tokyo
-		icon =
+		#icon =
 		relative_position_id = SOV_the_white_opposition
-		x = 31
-		y = 2
+		x = -1
+		y = 1
 		cost = 10
 		ai_will_do = {
 			factor = 6
@@ -3033,6 +3033,761 @@ focus_tree = {
 		}
 		completion_reward = {	
 			country_event = soviet_rework_troika_white.001
+		}
+	}
+	
+	#Red Army
+	focus = {
+		id = SOV_the_red_army_focus
+		icon = GFX_SOV_the_red_army
+		x = 35
+		y = 10
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP }
+		completion_reward = {
+			army_experience = 30
+		}
+	}
+	
+	focus = {
+		id = SOV_motorized_military
+		icon = GFX_SOV_motorized_military
+		relative_position_id = SOV_the_red_army_focus
+		x = -7
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		prerequisite = {
+			focus = SOV_the_red_army_focus
+		}
+		completion_reward = {
+			add_tech_bonus = {
+				name = motorized_bonus
+				ahead_reduction = 2
+				uses = 1
+				category = motorized_equipment
+			}
+			IF = {
+				limit = {
+					has_tech = motorised_infantry
+				}
+				add_equipment_to_stockpile = { 
+					type = motorized_equipment
+					amount = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_Red_Army_tanks
+		icon = GFX_focus_SOV_the_glory_of_the_red_army_communism
+		relative_position_id = SOV_motorized_military
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_motorized_military
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_Red_Army_tanks
+				bonus = 0.5
+				category = cat_heavy_armor
+				uses = 1
+			}
+			add_tech_bonus = {
+				name = SOV_Red_Army_tanks
+				bonus = 0.5
+				category = cat_medium_armor
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_strengthening_of_camouflage
+		icon = GFX_goal_generic_secret_weapon
+		relative_position_id = SOV_motorized_military
+		x = 0
+		y = 2
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_motorized_military
+		}
+		completion_reward = {
+			add_to_variable = { SOV_the_red_army_cas_damage_reduction = 0.05 }
+			custom_effect_tooltip = SOV_the_red_army_cas_damage_reduction_change
+		}
+	}
+	
+	focus = {
+		id = SOV_mechanized_offensive
+		icon = GFX_SOV_mechanized_offensive
+		relative_position_id = SOV_motorized_military
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_motorized_military
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_mechanized_offensive
+				bonus = 0.5
+				category = cat_mechanized_equipment
+				uses = 1
+			}
+			enable_tech_mechanized_storm = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Operation_of_penal_battalions
+		icon = GFX_focus_SOV_penal_battalions
+		relative_position_id = SOV_the_red_army_focus
+		x = 0
+		y = 1
+		cost = 5.8
+		available = {
+			has_war_with_major = yes
+		}
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_the_red_army_focus
+		}
+		completion_reward = {
+			unlock_decision_category_tooltip = SOV_Operation_of_penal_battalions_decision
+			set_technology = { penal_infantry = 1 popup = no }
+			division_template = {
+				name = "Shtrafnaya Chast"
+				division_names_group = SOV_PEN_01
+				is_locked = yes
+				regiments = {
+					penal_battalion = { x = 0 y = 0 }
+					penal_battalion = { x = 0 y = 1 }
+					penal_battalion = { x = 0 y = 2 }
+					penal_battalion = { x = 1 y = 0 }
+					penal_battalion = { x = 1 y = 1 }
+					penal_battalion = { x = 1 y = 2 }
+					penal_battalion = { x = 2 y = 0 }
+					penal_battalion = { x = 2 y = 1 }
+					penal_battalion = { x = 2 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_human_resources
+		icon = GFX_SOV_human_resources
+		relative_position_id = SOV_the_red_army_focus
+		x = -3
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_the_red_army_focus
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 60
+		}
+	}
+	
+	focus = {
+		id = SOV_progressive_doctrine
+		icon = GFX_SOV_progressive_doctrine
+		relative_position_id = SOV_human_resources
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_human_resources
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_2_5_army_professionalism_effect = yes
+			add_doctrine_cost_reduction = {
+				name = SOV_progressive_doctrine
+				cost_reduction = 0.25
+				uses = 2
+				category = cat_mass_assault
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_Elite_Officers
+		icon = GFX_SOV_Elite_Officers
+		relative_position_id = SOV_human_resources
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_human_resources
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_5_army_professionalism_effect = yes
+			remove_2_5_army_factionalism_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_soviet_Budyonnys_cavalry
+		icon = GFX_goal_generic_cavalry
+		relative_position_id = SOV_progressive_doctrine
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_progressive_doctrine
+		}
+		completion_reward = {
+			add_to_variable = { SOV_the_red_army_modifier_army_sub_unit_cavalry_speed_factor = 0.05 }
+			custom_effect_tooltip = SOV_the_red_army_modifier_army_sub_unit_cavalry_speed_factor_change
+			add_to_variable = { SOV_the_red_army_cavalry_attack_factor = 0.07 }
+			custom_effect_tooltip = SOV_the_red_army_cavalry_attack_factor_change
+		}
+	}
+
+	focus = {
+		id = SOV_Strategic_Staff_Officer_Department
+		icon = GFX_SOV_Strategic_Staff_Officer_Department
+		relative_position_id = SOV_progressive_doctrine
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_progressive_doctrine
+		}
+		prerequisite = {
+			focus = SOV_Elite_Officers
+		}
+		completion_reward = {
+			add_ideas = SOV_Strategic_Staff_Officer_Department
+		}
+	}
+	
+	focus = {
+		id = SOV_political_commissar
+		icon = GFX_SOV_political_commissar
+		relative_position_id = SOV_Elite_Officers
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_Elite_Officers
+		}
+		completion_reward = {
+			add_5_army_influence_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Expand_Military_Academy
+		icon = GFX_SOV_Expand_Military_Academy
+		relative_position_id = SOV_soviet_Budyonnys_cavalry
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_soviet_Budyonnys_cavalry
+		}
+		prerequisite = {
+			focus = SOV_Strategic_Staff_Officer_Department
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_5_army_professionalism_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_morale_boost
+		icon = GFX_SOV_morale_boost
+		relative_position_id = SOV_Strategic_Staff_Officer_Department
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_political_commissar
+		}
+		prerequisite = {
+			focus = SOV_Strategic_Staff_Officer_Department
+		}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_war_support = 0.05
+			add_ideas = SOV_morale_boost
+		}
+	}
+	
+	focus = {
+		id = SOV_equipment_improvement
+		icon = GFX_SOV_equipment_improvement
+		relative_position_id = SOV_the_red_army_focus
+		x = 3
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_the_red_army_focus
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = SOV_Weapon_Research_and_Development_Department
+		}
+	}
+	
+	focus = {
+		id = SOV_focus_on_infantry_equipment
+		icon = GFX_SOV_focus_on_infantry_equipment
+		relative_position_id = SOV_equipment_improvement
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_equipment_improvement
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_timed_idea = { idea = SOV_focus_on_infantry_equipment days = 100 }
+			add_tech_bonus = {
+				name = SOV_focus_on_infantry_equipment
+				bonus = 0.5
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_focus_on_artillery
+		icon = GFX_SOV_focus_on_artillery
+		relative_position_id = SOV_equipment_improvement
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_equipment_improvement
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_timed_idea = { idea = SOV_focus_on_artillery days = 100 }
+			add_tech_bonus = {
+				name = SOV_focus_on_infantry_equipment
+				bonus = 0.5
+				uses = 1
+				category = artillery
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_expand_support_company
+		icon = GFX_SOV_expand_support_company
+		relative_position_id = SOV_focus_on_infantry_equipment
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_focus_on_infantry_equipment
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_expand_support_company
+				bonus = 0.5
+				uses = 2
+				category = support_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_great_cannon
+		icon = GFX_SOV_great_cannon
+		relative_position_id = SOV_focus_on_infantry_equipment
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_focus_on_infantry_equipment
+		}
+		prerequisite = {
+			focus = SOV_focus_on_artillery
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			set_technology = {
+				railway_gun = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_lesson_of_Brusilov_offensive
+		icon = GFX_SOV_lesson_of_Brusilov_offensive
+		relative_position_id = SOV_focus_on_artillery
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_focus_on_artillery
+		}
+		completion_reward = {
+			enable_tech_precision_strike = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_surface_to_air_attack
+		icon = GFX_SOV_surface_to_air_attack
+		relative_position_id = SOV_expand_support_company
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_expand_support_company
+		}
+		prerequisite = {
+			focus = SOV_great_cannon
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_surface_to_air_attack
+				bonus = 1
+				uses = 1
+				category = cat_anti_air
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_destroy_the_tank
+		icon = GFX_SOV_destroy_the_tank
+		relative_position_id = SOV_great_cannon
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_lesson_of_Brusilov_offensive
+		}
+		prerequisite = {
+			focus = SOV_great_cannon
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_destroy_the_tank
+				bonus = 1
+				uses = 1
+				category = cat_anti_tank
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_expand_kamenev_line
+		icon = GFX_SOV_expand_kamenev_line
+		relative_position_id = SOV_human_resources
+		x = 3
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			has_full_control_of_state = 209
+			has_full_control_of_state = 195
+			has_full_control_of_state = 810
+			has_full_control_of_state = 207
+			has_full_control_of_state = 988
+			has_full_control_of_state = 224
+			has_full_control_of_state = 220
+			has_full_control_of_state = 245
+			has_full_control_of_state = 218
+		}
+		prerequisite = {
+			focus = SOV_human_resources
+			focus = SOV_equipment_improvement
+		}
+		completion_reward = {
+			209 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 9408
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 11202
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 415
+					instant_build = yes
+				}
+			}
+			195 = {
+				add_building_construction = {
+					type = bunker
+					level = 4
+					province = 3151
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6174
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 79
+					instant_build = yes
+				}
+			}
+			810 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 319
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 222
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 341
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 7482
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 310
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6459
+					instant_build = yes
+				}
+			}
+			207 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 11241
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 9323
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 11220	
+					instant_build = yes
+				}
+			}
+			224 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 3226
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 3390
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 3364
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 3306
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 4
+					province = 3335
+					instant_build = yes
+				}
+			}
+			988 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 11526
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6543
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 558
+					instant_build = yes
+				}
+			}
+			220 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 3580
+					instant_build = yes
+				}
+			}
+			245 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 9565
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 3540
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 3519
+					instant_build = yes
+				}
+			}
+			218 = {
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 9446
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6493
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 6445
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = bunker
+					level = 2
+					province = 9430
+					instant_build = yes
+				}
+			}
 		}
 	}
 }
