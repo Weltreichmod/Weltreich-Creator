@@ -71,12 +71,13 @@ focus_tree = {
 		completion_reward = {
 			add_ideas = SOV_establishing_the_troika
 			country_event = { id = soviet_rework_troika.003 days = 7 }
+			add_ideas = SOV_troika
 		}
 	}
 	
 	focus = {
 		id = SOV_it_is_clear_to_us
-		icon = GFX_SOV_it_is_clear_to_us
+		icon = GFX_focus_NOR_a_new_norway_Trotsky_communism
 		relative_position_id = SOV_establish_the_troika
 		x = -2
 		y = 1
@@ -95,7 +96,7 @@ focus_tree = {
 			focus = SOV_establish_the_troika
 		}
 		completion_reward = {
-			
+			#country_event = { id = soviet_rework_troika.008 }
 		}
 	}
 	
@@ -123,7 +124,7 @@ focus_tree = {
 			focus = SOV_establish_the_troika
 		}
 		completion_reward = {
-			
+			#country_event = { id = soviet_rework_troika.009 }						
 		}
 	}
 	
@@ -151,7 +152,7 @@ focus_tree = {
 			focus = SOV_establish_the_troika
 		}
 		completion_reward = {
-			
+			#country_event = { id = soviet_rework_troika.010 }									
 		}
 	}
 	
@@ -188,6 +189,7 @@ focus_tree = {
 	
 ####### TROTSSSSSS ######
 	
+	# 인터네셔널리즘 수장
 	focus = {
 		id = SOV_the_admiral
 		icon = GFX_focus_fra_loyalty_trotzky
@@ -218,13 +220,14 @@ focus_tree = {
 		}
 	}
 
+	# 트로이카 좌파
 	focus = {
 		id = SOV_the_trokia_right
 		icon = GFX_focus_SOV_approach_tukahchevsky
 		relative_position_id = SOV_the_admiral
 		x = 0
 		y = 1
-		cost = 10
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
@@ -235,16 +238,19 @@ focus_tree = {
 			focus = SOV_the_admiral
 		}
 		completion_reward = {
+			# 세계혁명을 위한 첫 걸음
+			country_event = { id = soviet_rework_troika.008 days = 7 }
 		}
 	}
 
+	# 좌파 공산주의자와의 협력 (키값이 결은 안맞지만 이 로컬이 맞음)
 	focus = {
 		id = SOV_destroy_traditional_roles
 		icon = GFX_focus_SOV_womens_fascist_movement
 		relative_position_id = SOV_the_trokia_right
-		x = -1
+		x = -2
 		y = 1
-		cost = 10
+		cost = 5.75
 		ai_will_do = {
 			factor = 6
 		}
@@ -255,16 +261,69 @@ focus_tree = {
 			focus = SOV_the_trokia_right
 		}
 		completion_reward = {
+			# 툴팁 로컬만 넣어주셈
+			add_to_variable = {
+				SOV_zinoviev_influence = 0.06
+			}
+			custom_effect_tooltip = SOV_zinoviev_influence_tt
+			add_to_variable = {
+				SOV_stalins_influence = -0.05
+			}
+			custom_effect_tooltip = SOV_stalins_influence_tt
+			add_to_variable = {
+				SOV_trotskys_influence = -0.05
+			}
+			custom_effect_tooltip = SOV_trotskys_influence_tt
+			add_ideas = SOV_leftist_cooperation
 		}
 	}
 
+	# 대러시아 국수주의 잔존세력 파괴
+	focus = {
+		id = SOV_unification_of_left_communists
+		icon = GFX_focus_SOV_womens_fascist_movement
+		relative_position_id = SOV_the_trokia_right
+		x = 0
+		y = 1
+		cost = 5.75
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_trokia_right
+		}
+		completion_reward = {
+			add_stability = -0.05
+			add_popularity = {
+				ideology = fascism
+				popularity = -0.10
+			}
+			add_to_variable = {
+				SOV_zinoviev_influence = 0.04
+			}
+			custom_effect_tooltip = SOV_zinoviev_influence_tt
+			add_to_variable = {
+				SOV_stalins_influence = -0.02
+			}
+			custom_effect_tooltip = SOV_stalins_influence_tt
+			add_to_variable = {
+				SOV_trotskys_influence = -0.02
+			}
+			custom_effect_tooltip = SOV_trotskys_influence_tt
+		}
+	}
+
+	# 반스탈린 파벌 결집
 	focus = {
 		id = SOV_side_line_zinoviev_and_stalin
 		icon = GFX_SOV_a_new_theory_of_revolution_ccp_2d_sov_compatibility
 		relative_position_id = SOV_the_trokia_right
-		x = 1
+		x = 2
 		y = 1
-		cost = 10
+		cost = 5.75
 		ai_will_do = {
 			factor = 6
 		}
@@ -275,16 +334,29 @@ focus_tree = {
 			focus = SOV_the_trokia_right
 		}
 		completion_reward = {
+			add_to_variable = {
+				SOV_stalins_influence = -0.06
+				tooltip = SOV_stalins_influence_tt
+			}
+			add_to_variable = {
+				SOV_zinoviev_influence = 0.04
+				tooltip = SOV_zinoviev_influence_tt
+			}
+			add_to_variable = {
+				SOV_trotskys_influence = 0.02
+				tooltip = SOV_trotskys_influence_tt
+			}
 		}
 	}
 
+	# 투아쳅스키 동지 파악하기
 	focus = {
 		id = SOV_formally_legalize_women_in_the_military
 		icon = GFX_focus_SOV_builder_of_the_red_army
 		relative_position_id = SOV_destroy_traditional_roles
 		x = 0
 		y = 1
-		cost = 10
+		cost = 5.75
 		ai_will_do = {
 			factor = 6
 		}
@@ -295,16 +367,74 @@ focus_tree = {
 			focus = SOV_destroy_traditional_roles
 		}
 		completion_reward = {
+			add_to_variable = {
+				SOV_the_red_army_mobilization_laws_cost_factor = -0.1
+				tooltip = mobilization_laws_cost_factor_tt
+			}
+			add_to_variable = {
+				SOV_the_red_army_army_org_factor = 0.15
+				tooltip = army_org_factor_tt
+			}
+			add_to_variable = {
+				SOV_the_red_army_experience_gain_army_factor = 0.1
+				tooltip = experience_gain_army_factor_tt
+			}
+			add_to_variable = {
+				SOV_the_red_army_experience_loss_factor = -0.2
+				tooltip = experience_loss_factor_tt
+			}
+			add_to_variable = {
+				SOV_the_red_army_mobilization_speed = 0.2
+				tooltip = mobilization_speed_tt
+			}
+			add_to_variable = {
+				SOV_the_red_army_max_dig_in_factor = 0.05
+				tooltip = max_dig_in_factor_tt
+			}
 		}
 	}
 
+	# 개혁적 사회주의자 박해 (효과 정의 누락)
+	focus = {
+		id = SOV_destory_reformal_socialist
+		icon = GFX_focus_SOV_builder_of_the_red_army
+		relative_position_id = SOV_unification_of_left_communists
+		x = 0
+		y = 1
+		cost = 5.75
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_unification_of_left_communists
+		}
+		completion_reward = {
+			# add_to_variable = {
+			# 	SOV_zinoviev_influence = 0.04
+			# 	tooltip = SOV_zinoviev_influence_tt
+			# }
+			# add_to_variable = {
+			# 	SOV_stalins_influence = -0.06
+			# 	tooltip = SOV_stalins_influence_tt
+			# }
+			# add_to_variable = {
+			# 	SOV_trotskys_influence = 0.02
+			# 	tooltip = SOV_trotskys_influence_tt
+			# }
+		}		
+	}
+
+	# 트로츠키 군국주의 사상 공격
 	focus = {
 		id = SOV_the_true_ambitions_of_the_admiral_revealed
 		icon = GFX_focus_ITA_communist_leadership
 		relative_position_id = SOV_side_line_zinoviev_and_stalin
 		x = 0
 		y = 1
-		cost = 10
+		cost = 5.75
 		ai_will_do = {
 			factor = 6
 		}
@@ -315,16 +445,29 @@ focus_tree = {
 			focus = SOV_side_line_zinoviev_and_stalin
 		}
 		completion_reward = {
+			add_to_variable = {
+				SOV_zinoviev_influence = 0.04
+				tooltip = SOV_zinoviev_influence_tt
+			}
+			add_to_variable = {
+				SOV_stalins_influence = 0.02
+				tooltip = SOV_stalins_influence_tt
+			}
+			add_to_variable = {
+				SOV_trotskys_influence = -0.06
+				tooltip = SOV_trotskys_influence_tt
+			}
 		}
 	}
 
+	# 인터네셔널 대회 개최
 	focus = {
-		id = SOV_the_proletarian_army_marches_forward
-		icon = GFX_focus_SOV_the_glory_of_the_red_army_communism
+		id = SOV_rally_of_international
+		icon = GFX_focus_ITA_communist_leadership
 		relative_position_id = SOV_formally_legalize_women_in_the_military
 		x = 1
 		y = 1
-		cost = 10
+		cost = 5.75
 		ai_will_do = {
 			factor = 6
 		}
@@ -335,18 +478,129 @@ focus_tree = {
 			focus = SOV_formally_legalize_women_in_the_military
 		}
 		prerequisite = {
+			focus = SOV_destory_reformal_socialist
+		}
+		prerequisite = {
 			focus = SOV_the_true_ambitions_of_the_admiral_revealed
 		}
 
 		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.05
+			}
+			add_political_power = 20
+			add_to_variable = {
+				SOV_zinoviev_influence = 0.05
+				tooltip = SOV_zinoviev_influence_tt
+			}
 		}
 	}
 
+	# 정치적 입지 확고화
 	focus = {
-		id = SOV_bolshekvik_leninism
-		icon = GFX_focus_fra_loyalty_trotzky
+		id = SOV_rebuild_political_base
+		icon = GFX_focus_ITA_communist_leadership
+		relative_position_id = SOV_formally_legalize_women_in_the_military
+		x = 3
+		y = 1
+		cost = 5.75
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_formally_legalize_women_in_the_military
+		}
+		prerequisite = {
+			focus = SOV_destory_reformal_socialist
+		}
+		prerequisite = {
+			focus = SOV_the_true_ambitions_of_the_admiral_revealed
+		}
+
+		completion_reward = {
+			add_to_variable = {
+				SOV_zinoviev_influence = 0.05
+				tooltip = SOV_zinoviev_influence_tt
+			}
+			add_to_variable = {
+				SOV_stalins_influence = -0.05
+				tooltip = SOV_stalins_influence_tt
+			}
+			add_to_variable = {
+				SOV_trotskys_influence = -0.05
+				tooltip = SOV_trotskys_influence_tt
+			}
+			add_political_power = -50
+		}				
+	}
+
+	# 군국주의자들에 대한 비판
+	focus = {
+		id = SOV_the_proletarian_army_marches_forward
+		icon = GFX_focus_SOV_the_glory_of_the_red_army_communism
+		relative_position_id = SOV_rally_of_international
+		x = 1
+		y = 1
+		cost = 7.25
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_rally_of_international
+		}
+
+		prerequisite = {
+			focus = SOV_rebuild_political_base
+		}
+
+		completion_reward = {
+			country_event = { id = soviet_rework_troika.009 }						
+		}
+	}
+
+	# 타협주의자 공격
+	focus = {
+		id = SOV_attack_negotiator
+		icon = GFX_focus_ITA_communist_leadership
 		relative_position_id = SOV_the_proletarian_army_marches_forward
-		x = 0
+		x = -1
+		y = 1
+		cost = 14.3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_proletarian_army_marches_forward
+		}
+		completion_reward = {
+			add_to_variable = {
+				SOV_stalins_influence = -0.03
+				tooltip = SOV_stalins_influence_tt
+			}
+			add_to_variable = {
+				political_power_growth = -0.1
+				tooltip = political_power_factor_tt
+			}
+			add_stability = -0.05
+		}
+	}
+
+	# 스탈린 고립
+	focus = {
+		id = SOV_isolate_stalin
+		icon = GFX_focus_ITA_communist_leadership
+		relative_position_id = SOV_the_proletarian_army_marches_forward
+		x = 1
 		y = 1
 		cost = 10
 		ai_will_do = {
@@ -359,6 +613,40 @@ focus_tree = {
 			focus = SOV_the_proletarian_army_marches_forward
 		}
 		completion_reward = {
+			add_to_variable = {
+				SOV_stalins_influence = -0.06
+			}
+			custom_effect_tooltip = SOV_stalins_influence_tt
+			# 주변인물 누군지 정의 필요 (정의 후 retire_character 처리)
+		}
+	}
+
+
+	# 서기 교체
+	focus = {
+		id = SOV_bolshekvik_leninism
+		icon = GFX_focus_fra_loyalty_trotzky
+		relative_position_id = SOV_isolate_stalin
+		x = -1
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		prerequisite = {
+			focus = SOV_attack_negotiator
+		}
+
+		prerequisite = {
+			focus = SOV_isolate_stalin
+		}
+		completion_reward = {
+			retire_character = SOV_iosif_stalin
+			set_country_flag = SOV_end_of_political_struggle
 		}
 	}
 
