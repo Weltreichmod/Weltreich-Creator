@@ -1714,56 +1714,20 @@ the_great_struggle = {
 	uncovering_Buharins_bad_behavior = {
 		icon = decision_generic_decision
 		visible = {
-			has_completed_focus = SOV_heart_of_iron
+			has_completed_focus = SOV_the_secretary
 		}
 		allowed = {
 			original_tag = SOV
 		}
-		cost = 20
+		cost = 15
 		days_re_enable = 20
 		complete_effect = {
 			custom_effect_tooltip = you_can_choose_again_after_20_days
-			if = {
-				limit = {
-						check_variable = { var = SOV_bukharins_influence value = 0.05 compare = greater_than_or_equals }
-				}
-				SOV_stalins_influence_three_increase = yes
-				SOV_bukharins_influence_five_decrease = yes
-				SOV_trotskys_influence_two_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_bukharins_influence = 0.04 }
-				}
-				SOV_stalins_influence_two_increase = yes
-				SOV_bukharins_influence_five_decrease = yes
-				SOV_trotskys_influence_two_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_bukharins_influence = 0.03 }
-				}
-				SOV_stalins_influence_two_increase = yes
-				SOV_bukharins_influence_five_decrease = yes
-				SOV_trotskys_influence_one_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_bukharins_influence = 0.02 }
-				}
-				SOV_stalins_influence_one_increase = yes
-				SOV_bukharins_influence_five_decrease = yes
-				SOV_trotskys_influence_one_increase = yes
-			}
-			else = {
-				SOV_stalins_influence_one_increase = yes
-				SOV_bukharins_influence_five_decrease = yes
-			}
+			SOV_bukharins_influence_five_decrease = yes
 			hidden_effect = {
-				country_event = { id = Soviet.100 days = 40 }
+				country_event = { id = Soviet.100 days = 20 }
 			}
 			set_country_flag = political_decision
-			custom_effect_tooltip = days_re_enable_40
 		}
 		available = {
 			NOT = {
@@ -1774,9 +1738,12 @@ the_great_struggle = {
 		ai_will_do = {
 			base = 0
 			modifier = {
-				add = 10
+				add = 1000
 				check_variable = {
 					SOV_stalins_influence < 0.8
+				}
+				check_variable = {
+					SOV_bukharins_influence > 0.2
 				}
 			}
 		}
@@ -1784,72 +1751,20 @@ the_great_struggle = {
 	investigating_factions_within_the_party = {
 		icon = decision_generic_decision
 		visible = {
-			has_completed_focus = SOV_heart_of_iron
+			has_completed_focus = SOV_the_secretary
 		}
 		allowed = {
 			original_tag = SOV
 		}
-		cost = 20
+		cost = 15
 		days_re_enable = 20
 		complete_effect = {
 			custom_effect_tooltip = you_can_choose_again_after_20_days
-			if = {
-				limit = {
-					check_variable = { var = SOV_bukharins_influence value = 0.03 compare = greater_than_or_equals }
-					check_variable = { var = SOV_trotskys_influence value = 0.02 compare = greater_than_or_equals }
-				}
-				SOV_stalins_influence_five_increase = yes
-				SOV_bukharins_influence_three_decrease = yes
-				SOV_trotskys_influence_two_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_bukharins_influence > 0.03 }
-					check_variable = { SOV_trotskys_influence = 0.01 }
-				}
-				SOV_stalins_influence_five_increase = yes
-				SOV_bukharins_influence_four_decrease = yes
-				SOV_trotskys_influence_one_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_bukharins_influence > 0.03 }
-					check_variable = { SOV_trotskys_influence = 0 }
-				}
-				SOV_stalins_influence_five_increase = yes
-				SOV_bukharins_influence_five_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_bukharins_influence = 0.02 }
-					check_variable = { SOV_trotskys_influence > 0.02 }
-				}
-				SOV_stalins_influence_five_increase = yes
-				SOV_bukharins_influence_two_decrease = yes
-				SOV_trotskys_influence_three_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = {SOV_bukharins_influence = 0.01 }
-					check_variable = { SOV_trotskys_influence > 0.02 }
-				}
-				SOV_stalins_influence_five_increase = yes
-				SOV_bukharins_influence_one_decrease = yes
-				SOV_trotskys_influence_four_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_bukharins_influence = 0 }
-					check_variable = { SOV_trotskys_influence > 0.02 }
-				}
-				SOV_stalins_influence_five_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
+			SOV_stalins_influence_five_increase = yes
 			hidden_effect = {
-				country_event = { id = Soviet.100 days = 40 }
+				country_event = { id = Soviet.100 days = 20 }
 			}
 			set_country_flag = political_decision
-			custom_effect_tooltip = days_re_enable_40
 		}
 		available = {
 			NOT = {
@@ -1859,7 +1774,7 @@ the_great_struggle = {
 		ai_will_do = {
 			base = 0
 			modifier = {
-				add = 100
+				add = 1000
 				check_variable = {
 					SOV_stalins_influence < 0.9
 				}
@@ -1869,7 +1784,7 @@ the_great_struggle = {
 	reject_trotskism = {
 		icon = decision_generic_decision
 		visible = {
-			has_completed_focus = SOV_heart_of_iron
+			has_completed_focus = SOV_the_secretary
 		}
 		allowed = {
 			original_tag = SOV
@@ -1878,47 +1793,11 @@ the_great_struggle = {
 		days_re_enable = 20
 		complete_effect = {
 			custom_effect_tooltip = you_can_choose_again_after_20_days
-			if = {
-				limit = {
-					check_variable = { var = SOV_trotskys_influence value = 0.05 compare = greater_than_or_equals }
-				}
-				SOV_stalins_influence_three_increase = yes
-				SOV_bukharins_influence_two_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
-			else_if = {
-				limit = {
-						check_variable = { SOV_trotskys_influence = 0.04 }
-				}
-				SOV_stalins_influence_two_increase = yes
-				SOV_bukharins_influence_two_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_trotskys_influence = 0.03 }
-				}
-				SOV_stalins_influence_two_increase = yes
-				SOV_bukharins_influence_one_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_trotskys_influence = 0.02 }
-				}
-				SOV_stalins_influence_one_increase = yes
-				SOV_bukharins_influence_one_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
-			else = {
-				SOV_stalins_influence_one_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
+			SOV_trotskys_influence_five_decrease = yes
 			hidden_effect = {
-				country_event = { id = Soviet.100 days = 40 }
+				country_event = { id = Soviet.100 days = 20 }
 			}
 			set_country_flag = political_decision
-			custom_effect_tooltip = days_re_enable_40
 		}
 		available = {
 			NOT = {
@@ -1929,74 +1808,57 @@ the_great_struggle = {
 		ai_will_do = {
 			base = 0
 			modifier = {
-				add = 10
+				add = 1000
 				check_variable = {
 					SOV_stalins_influence < 0.8
+				}
+				check_variable = {
+					SOV_trotskys_influence > 0.2
 				}
 			}
 		}
 	}
 	movement_of_bukharin_stalin = {
-		days_mission_timeout = 45
+		days_mission_timeout = 25
 		activation = {
-			has_completed_focus = SOV_heart_of_iron
+			has_completed_focus = SOV_the_secretary
 			NOT = {
-				has_completed_focus = SOV_crushing_bukharinist_clique
-				has_country_flag = bukharin_takes_power
-				has_country_flag = trotsky_takes_power
-				has_country_flag = soviet_civilwar
-				has_global_flag = second_russian_civilwar
+				has_country_flag = end_of_political_struggle
 			}
 		}
 		allowed = {
 			original_tag = SOV
 		}
 		available = {
-			OR = {
-				has_completed_focus = SOV_crushing_bukharinist_clique
-				has_country_flag = bukharin_takes_power
-				has_country_flag = trotsky_takes_power
-				has_country_flag = soviet_civilwar
-				has_global_flag = second_russian_civilwar
-			}
+			has_country_flag = end_of_political_struggle
 		}
 		timeout_effect = {
-			SOV_bukharins_influence_three_increase = yes
-			SOV_stalins_influence_three_decrease = yes
+			SOV_bukharins_influence_two_increase = yes
 		}
 	}
 	movement_of_trotsky_stalin = {
-		days_mission_timeout = 45
+		days_mission_timeout = 25
 		activation = {
-			has_completed_focus = SOV_heart_of_iron
+			has_completed_focus = SOV_the_secretary
 			NOT = {
-				has_completed_focus = SOV_deporting_trotsky
-				has_country_flag = bukharin_takes_power
-				has_country_flag = trotsky_takes_power
-				has_country_flag = soviet_civilwar
+				has_country_flag = end_of_political_struggle
 			}
 		}
 		allowed = {
 			original_tag = SOV
 		}
 		available = {
-			OR = {
-				has_completed_focus = SOV_deporting_trotsky
-				has_country_flag = bukharin_takes_power
-				has_country_flag = trotsky_takes_power
-				has_country_flag = soviet_civilwar
-			}
+			has_country_flag = end_of_political_struggle
 		}
 		timeout_effect = {
 			SOV_trotskys_influence_two_increase = yes
-			SOV_stalins_influence_two_decrease = yes
 		}
 	}
 ###Zinoviev (Original was Bukharin)
 	attack_the_center = {
 		icon = decision_generic_decision
 		visible = {
-			has_completed_focus = SOV_clique_of_bukharin
+			has_completed_focus = SOV_the_president
 		}
 		allowed = {
 			original_tag = SOV
@@ -2005,47 +1867,11 @@ the_great_struggle = {
 		days_re_enable = 20
 		complete_effect = {
 			custom_effect_tooltip = you_can_choose_again_after_20_days
-			if = {
-				limit = {
-						check_variable = { var = SOV_stalins_influence value = 0.05 compare = greater_than_or_equals }
-				}
-				SOV_stalins_influence_five_decrease = yes
-				SOV_bukharins_influence_three_increase = yes
-				SOV_trotskys_influence_two_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0.04 }
-				}
-				SOV_stalins_influence_five_decrease = yes
-				SOV_bukharins_influence_two_increase = yes
-				SOV_trotskys_influence_two_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0.03 }
-				}
-				SOV_stalins_influence_five_decrease = yes
-				SOV_bukharins_influence_two_increase = yes
-				SOV_trotskys_influence_one_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0.02 }
-				}
-				SOV_stalins_influence_five_decrease = yes
-				SOV_bukharins_influence_one_increase = yes
-				SOV_trotskys_influence_one_increase = yes
-			}
-			else = {
-				SOV_stalins_influence_five_decrease = yes
-				SOV_bukharins_influence_one_increase = yes
-			}
+			SOV_stalins_influence_five_decrease = yes
 			hidden_effect = {
-				country_event = { id = Soviet.100 days = 40 }
+				country_event = { id = Soviet.100 days = 20 }
 			}
 			set_country_flag = political_decision
-			custom_effect_tooltip = days_re_enable_40
 		}
 		available = {
 			NOT = {
@@ -2056,9 +1882,12 @@ the_great_struggle = {
 		ai_will_do = {
 			base = 0
 			modifier = {
-				add = 10
+				add = 1000
 				check_variable = {
 					SOV_bukharins_influence < 0.8
+				}
+				check_variable = {
+					SOV_stalins_influence > 0.2
 				}
 			}
 		}
@@ -2066,7 +1895,7 @@ the_great_struggle = {
 	conciliating_senior_bolshevik_officials = {
 		icon = decision_generic_decision
 		visible = {
-			has_completed_focus = SOV_clique_of_bukharin
+			has_completed_focus = SOV_the_president
 		}
 		allowed = {
 			original_tag = SOV
@@ -2075,63 +1904,11 @@ the_great_struggle = {
 		days_re_enable = 20
 		complete_effect = {
 			custom_effect_tooltip = you_can_choose_again_after_20_days
-			if = {
-				limit = {
-					check_variable = { var = SOV_stalins_influence value = 0.03 compare = greater_than_or_equals }
-					check_variable = { var = SOV_trotskys_influence value = 0.02 compare = greater_than_or_equals }
-				}
-				SOV_stalins_influence_three_decrease = yes
-				SOV_bukharins_influence_five_increase = yes
-				SOV_trotskys_influence_two_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence > 0.03 }
-					check_variable = { SOV_trotskys_influence = 0.01 }
-				}
-				SOV_stalins_influence_four_decrease = yes
-				SOV_bukharins_influence_five_increase = yes
-				SOV_trotskys_influence_one_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence > 0.03 }
-					check_variable = { SOV_trotskys_influence = 0 }
-				}
-				SOV_stalins_influence_five_decrease = yes
-				SOV_bukharins_influence_five_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0.02 }
-					check_variable = { SOV_trotskys_influence > 0.02 }
-				}
-				SOV_stalins_influence_two_decrease = yes
-				SOV_bukharins_influence_five_increase = yes
-				SOV_trotskys_influence_three_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0.01 }
-					check_variable = { SOV_trotskys_influence > 0.02 }
-				}
-				SOV_stalins_influence_one_decrease = yes
-				SOV_bukharins_influence_five_increase = yes
-				SOV_trotskys_influence_four_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0 }
-					check_variable = { SOV_trotskys_influence > 0.02 }
-				}
-				SOV_bukharins_influence_five_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
+			SOV_bukharins_influence_five_increase = yes
 			hidden_effect = {
-				country_event = { id = Soviet.100 days = 40 }
+				country_event = { id = Soviet.100 days = 20 }
 			}
 			set_country_flag = political_decision
-			custom_effect_tooltip = days_re_enable_40
 		}
 		available = {
 			NOT = {
@@ -2141,7 +1918,7 @@ the_great_struggle = {
 		ai_will_do = {
 			base = 0
 			modifier = {
-				add = 100
+				add = 1000
 				check_variable = {
 					SOV_bukharins_influence < 0.9
 				}
@@ -2151,7 +1928,7 @@ the_great_struggle = {
 	pointing_out_the_dogmatic_aspect_of_Trotsky = {
 		icon = decision_generic_decision
 		visible = {
-			has_completed_focus = SOV_clique_of_bukharin
+			has_completed_focus = SOV_the_president
 		}
 		allowed = {
 			original_tag = SOV
@@ -2160,47 +1937,11 @@ the_great_struggle = {
 		days_re_enable = 20
 		complete_effect = {
 			custom_effect_tooltip = you_can_choose_again_after_20_days
-			if = {
-				limit = {
-					check_variable = { var = SOV_trotskys_influence value = 0.05 compare = greater_than_or_equals }
-				}
-				SOV_stalins_influence_two_increase = yes
-				SOV_bukharins_influence_three_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
-			else_if = {
-				limit = {
-						check_variable = { SOV_trotskys_influence = 0.04 }
-				}
-				SOV_stalins_influence_two_increase = yes
-				SOV_bukharins_influence_two_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_trotskys_influence = 0.03 }
-				}
-				SOV_stalins_influence_one_increase = yes
-				SOV_bukharins_influence_two_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_trotskys_influence = 0.02 }
-				}
-				SOV_stalins_influence_one_increase = yes
-				SOV_bukharins_influence_one_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
-			else = {
-				SOV_bukharins_influence_one_increase = yes
-				SOV_trotskys_influence_five_decrease = yes
-			}
+			SOV_trotskys_influence_five_decrease = yes
 			hidden_effect = {
-				country_event = { id = Soviet.100 days = 40 }
+				country_event = { id = Soviet.100 days = 20 }
 			}
 			set_country_flag = political_decision
-			custom_effect_tooltip = days_re_enable_40
 		}
 		available = {
 			NOT = {
@@ -2211,64 +1952,20 @@ the_great_struggle = {
 		ai_will_do = {
 			base = 0
 			modifier = {
-				add = 10
+				add = 1000
 				check_variable = {
 					SOV_bukharins_influence < 0.8
+				}
+				check_variable = {
+					SOV_trotskys_influence > 0.2
 				}
 			}
 		}
 	}
 	movement_of_stalin_bukharin = {
-		days_mission_timeout = 45
+		days_mission_timeout = 25
 		activation = {
-			has_completed_focus = SOV_clique_of_bukharin
-			NOT = {
-				has_country_flag = end_of_political_struggle
-				has_country_flag = germany_help_more
-			}
-		}
-		allowed = {
-			original_tag = SOV
-		}
-		available = {
-			OR = {
-				has_country_flag = end_of_political_struggle
-				has_country_flag = germany_help_more
-			}
-		}
-		timeout_effect = {
-			SOV_stalins_influence_three_increase = yes
-			SOV_bukharins_influence_three_decrease = yes
-		}
-	}
-	movement_of_trotsky_bukharin = {
-		days_mission_timeout = 45
-		activation = {
-			has_completed_focus = SOV_clique_of_bukharin
-			NOT = {
-				has_country_flag = end_of_political_struggle
-				has_country_flag = germany_help_more
-			}
-		}
-		allowed = {
-			original_tag = SOV
-		}
-		available = {
-			OR = {
-				has_country_flag = end_of_political_struggle
-				has_country_flag = germany_help_more
-			}
-		}
-		timeout_effect = {
-			SOV_trotskys_influence_two_increase = yes
-			SOV_bukharins_influence_two_decrease = yes
-		}
-	}
-	movement_of_stalin_bukharin_1 = {
-		days_mission_timeout = 45
-		activation = {
-			has_completed_focus = SOV_clique_of_bukharin
-			has_country_flag = germany_help_more
+			has_completed_focus = SOV_the_president
 			NOT = {
 				has_country_flag = end_of_political_struggle
 			}
@@ -2281,14 +1978,12 @@ the_great_struggle = {
 		}
 		timeout_effect = {
 			SOV_stalins_influence_two_increase = yes
-			SOV_bukharins_influence_two_decrease = yes
 		}
 	}
-	movement_of_trotsky_bukharin_1 = {
-		days_mission_timeout = 45
+	movement_of_trotsky_bukharin = {
+		days_mission_timeout = 25
 		activation = {
 			has_completed_focus = SOV_clique_of_bukharin
-			has_country_flag = germany_help_more
 			NOT = {
 				has_country_flag = end_of_political_struggle
 			}
@@ -2300,16 +1995,14 @@ the_great_struggle = {
 			has_country_flag = end_of_political_struggle
 		}
 		timeout_effect = {
-			SOV_trotskys_influence_one_increase = yes
-			SOV_bukharins_influence_one_decrease = yes
+			SOV_trotskys_influence_two_increase = yes
 		}
 	}
 ###Trotsky
 	highlighting_brutal_appearance_of_stalin = {
 		icon = decision_generic_decision
 		visible = {
-			has_completed_focus = SOV_trotzkism_advocacy
-			NOT = { has_completed_focus = SOV_attack_stalin }
+			has_completed_focus = SOV_the_admiral
 		}
 		allowed = {
 			original_tag = SOV
@@ -2318,47 +2011,11 @@ the_great_struggle = {
 		days_re_enable = 20
 		complete_effect = {
 			custom_effect_tooltip = you_can_choose_again_after_20_days
-			if = {
-				limit = {
-						check_variable = { var = SOV_stalins_influence value = 0.05 compare = greater_than_or_equals }
-				}
-				SOV_stalins_influence_five_decrease = yes
-				SOV_bukharins_influence_three_increase = yes
-				SOV_trotskys_influence_two_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0.04 }
-				}
-				SOV_stalins_influence_five_decrease = yes
-				SOV_bukharins_influence_two_increase = yes
-				SOV_trotskys_influence_two_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0.03 }
-				}
-				SOV_stalins_influence_five_decrease = yes
-				SOV_bukharins_influence_one_increase = yes
-				SOV_trotskys_influence_two_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0.02 }
-				}
-				SOV_stalins_influence_five_decrease = yes
-				SOV_bukharins_influence_one_increase = yes
-				SOV_trotskys_influence_one_increase = yes
-			}
-			else = {
-				SOV_stalins_influence_five_decrease = yes
-				SOV_trotskys_influence_one_increase = yes
-			}
+			SOV_stalins_influence_five_decrease = yes
 			hidden_effect = {
-				country_event = { id = Soviet.100 days = 40 }
+				country_event = { id = Soviet.100 days = 20 }
 			}
 			set_country_flag = political_decision
-			custom_effect_tooltip = days_re_enable_40
 		}
 		available = {
 			NOT = {
@@ -2369,9 +2026,12 @@ the_great_struggle = {
 		ai_will_do = {
 			base = 0
 			modifier = {
-				add = 10
+				add = 1000
 				check_variable = {
 					SOV_trotskys_influence < 0.8
+				}
+				check_variable = {
+					SOV_stalins_influence > 0.2
 				}
 			}
 		}
@@ -2379,8 +2039,7 @@ the_great_struggle = {
 	claim_lenins_ideals = {
 		icon = decision_generic_decision
 		visible = {
-			has_completed_focus = SOV_trotzkism_advocacy
-			NOT = { has_completed_focus = SOV_attack_stalin }
+			has_completed_focus = SOV_the_admiral
 		}
 		allowed = {
 			original_tag = SOV
@@ -2389,63 +2048,11 @@ the_great_struggle = {
 		days_re_enable = 20
 		complete_effect = {
 			custom_effect_tooltip = you_can_choose_again_after_20_days
-			if = {
-				limit = {
-					check_variable = { var = SOV_stalins_influence value = 0.03 compare = greater_than_or_equals }
-					check_variable = { var = SOV_bukharins_influence value = 0.02 compare = greater_than_or_equals }
-				}
-				SOV_stalins_influence_three_decrease = yes
-				SOV_bukharins_influence_two_decrease = yes
-				SOV_trotskys_influence_five_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence > 0.03 }
-					check_variable = { SOV_bukharins_influence = 0.01 }
-				}
-				SOV_stalins_influence_four_decrease = yes
-				SOV_bukharins_influence_one_decrease = yes
-				SOV_trotskys_influence_five_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence > 0.03 }
-					check_variable = { SOV_bukharins_influence = 0 }
-				}
-				SOV_stalins_influence_five_decrease = yes
-				SOV_trotskys_influence_five_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0.02 }
-					check_variable = { SOV_bukharins_influence > 0.02 }
-				}
-				SOV_stalins_influence_two_decrease = yes
-				SOV_bukharins_influence_three_decrease = yes
-				SOV_trotskys_influence_five_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0.01 }
-					check_variable = { SOV_bukharins_influence > 0.02 }
-				}
-				SOV_stalins_influence_one_decrease = yes
-				SOV_bukharins_influence_four_decrease = yes
-				SOV_trotskys_influence_five_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_stalins_influence = 0 }
-					check_variable = { SOV_bukharins_influence > 0.02 }
-				}
-				SOV_bukharins_influence_five_decrease = yes
-				SOV_trotskys_influence_five_increase = yes
-			}
+			SOV_trotskys_influence_five_increase = yes
 			hidden_effect = {
-				country_event = { id = Soviet.100 days = 40 }
+				country_event = { id = Soviet.100 days = 20 }
 			}
 			set_country_flag = political_decision
-			custom_effect_tooltip = days_re_enable_40
 		}
 		available = {
 			NOT = {
@@ -2455,7 +2062,7 @@ the_great_struggle = {
 		ai_will_do = {
 			base = 0
 			modifier = {
-				add = 100
+				add = 1000
 				check_variable = {
 					SOV_trotskys_influence < 0.9
 				}
@@ -2465,8 +2072,7 @@ the_great_struggle = {
 	pressing_hard_bukharinists = {
 		icon = decision_generic_decision
 		visible = {
-			has_completed_focus = SOV_trotzkism_advocacy
-			NOT = { has_completed_focus = SOV_attack_stalin }
+			has_completed_focus = SOV_the_admiral
 		}
 		allowed = {
 			original_tag = SOV
@@ -2475,47 +2081,11 @@ the_great_struggle = {
 		days_re_enable = 20
 		complete_effect = {
 			custom_effect_tooltip = you_can_choose_again_after_20_days
-			if = {
-				limit = {
-						check_variable = { var = SOV_bukharins_influence value = 0.05 compare = greater_than_or_equals }
-				}
-				SOV_stalins_influence_two_increase = yes
-				SOV_bukharins_influence_five_decrease = yes
-				SOV_trotskys_influence_three_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_bukharins_influence = 0.04 }
-				}
-				SOV_stalins_influence_two_increase = yes
-				SOV_bukharins_influence_five_decrease = yes
-				SOV_trotskys_influence_two_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_bukharins_influence = 0.03 }
-				}
-				SOV_stalins_influence_one_increase = yes
-				SOV_bukharins_influence_five_decrease = yes
-				SOV_trotskys_influence_two_increase = yes
-			}
-			else_if = {
-				limit = {
-					check_variable = { SOV_bukharins_influence = 0.02 }
-				}
-				SOV_stalins_influence_one_increase = yes
-				SOV_bukharins_influence_five_decrease = yes
-				SOV_trotskys_influence_one_increase = yes
-			}
-			else = {
-				SOV_trotskys_influence_one_increase = yes
-				SOV_bukharins_influence_five_decrease = yes
-			}
+			SOV_bukharins_influence_five_decrease = yes
 			hidden_effect = {
-				country_event = { id = Soviet.100 days = 40 }
+				country_event = { id = Soviet.100 days = 20 }
 			}
 			set_country_flag = political_decision
-			custom_effect_tooltip = days_re_enable_40
 		}
 		available = {
 			NOT = {
@@ -2526,53 +2096,48 @@ the_great_struggle = {
 		ai_will_do = {
 			base = 0
 			modifier = {
-				add = 10
+				add = 1000
 				check_variable = {
 					SOV_trotskys_influence < 0.8
+				}
+				check_variable = {
+					SOV_bukharins_influence > 0.2
 				}
 			}
 		}
 	}
 	movement_of_stalin_trotsky = {
-		days_mission_timeout = 45
+		days_mission_timeout = 25
 		activation = {
-			has_completed_focus = SOV_trotzkism_advocacy
+			has_completed_focus = SOV_the_admiral
 			NOT = {
 				has_country_flag = end_of_political_struggle
 			}
-			NOT = { has_completed_focus = SOV_attack_stalin }
 		}
 		allowed = {
 			original_tag = SOV
 		}
 		available = {
-			OR = {
-				has_country_flag = end_of_political_struggle
-				has_completed_focus = SOV_attack_stalin
-			}
+			has_country_flag = end_of_political_struggle
 		}
 		timeout_effect = {
-			SOV_stalins_influence_three_increase = yes
-			SOV_trotskys_influence_three_decrease = yes
+			SOV_stalins_influence_two_increase = yes
+			SOV_trotskys_influence_two_decrease = yes
 		}
 	}
 	movement_of_bukharin_trotsky = {
-		days_mission_timeout = 45
+		days_mission_timeout = 25
 		activation = {
-			has_completed_focus = SOV_trotzkism_advocacy
+			has_completed_focus = SOV_the_admiral
 			NOT = {
 				has_country_flag = end_of_political_struggle
 			}
-			NOT = { has_completed_focus = SOV_attack_stalin }
 		}
 		allowed = {
 			original_tag = SOV
 		}
 		available = {
-			OR = {
-				has_country_flag = end_of_political_struggle
-				has_completed_focus = SOV_attack_stalin
-			}
+			has_country_flag = end_of_political_struggle
 		}
 		timeout_effect = {
 			SOV_bukharins_influence_two_increase = yes

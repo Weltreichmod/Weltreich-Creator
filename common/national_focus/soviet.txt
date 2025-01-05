@@ -3790,4 +3790,699 @@ focus_tree = {
 			}
 		}
 	}
+	
+	#Red Fleet
+	focus = {
+		id = SOV_soviet_red_fleet
+		icon = GFX_goal_generic_build_navy
+		x = 48
+		y = 10
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		completion_reward = {
+			navy_experience = 30
+		}
+	}
+	
+	focus = {
+		id = SOV_focus_on_baltic_fleet
+		icon = GFX_focus_SOV_reinforce_western_naval_bases
+		relative_position_id = SOV_soviet_red_fleet
+		x = -4
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			195 = { #LENINGRAD
+				is_owned_and_controlled_by = ROOT
+			}
+		}
+		prerequisite = {
+			focus = SOV_soviet_red_fleet
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			195 = { #LENINGRAD
+				if = {
+					limit = {
+						free_building_slots = {
+							building = dockyard
+							size > 0
+							include_locked = yes
+						}
+					}
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = dockyard
+						level = 1
+						instant_build = yes
+					}
+				}
+				add_building_construction = {
+					type = anti_air_building
+					level = 2
+					instant_build = yes
+				}
+				add_building_construction = {
+					type = coastal_bunker
+					level = 2
+					instant_build = yes
+					province = 3151
+				}
+				if = {
+					limit = {
+						ROOT = { has_tech = radio_detection }
+						radar_station < 1
+					}
+					add_building_construction = {
+						type = radar_station
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_focus_on_black_sea_fleet
+		icon = GFX_focus_SOV_reinforce_southern_naval_bases
+		relative_position_id = SOV_soviet_red_fleet
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			OR = {
+				218 = { #ROSTOV
+					is_owned_and_controlled_by = ROOT
+				}
+				234 = { #KRASNODAR
+					is_owned_and_controlled_by = ROOT
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOV_soviet_red_fleet
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = { #ROSTOV - Improved naval base + AA + coastal fort
+				limit = {
+					has_full_control_of_state = 218
+				}
+				218 = {
+					add_building_construction = {
+						type = anti_air_building
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = naval_base
+						level = 2
+						instant_build = yes
+						province = 9417
+					}
+					add_building_construction = {
+						type = coastal_bunker
+						level = 2
+						instant_build = yes
+						province = 9417
+					}
+				}
+			}
+			if = { #KRASNODAR - Improved naval base + AA + coastal fort
+				limit = {
+					has_full_control_of_state = 234
+				}
+				234 = {
+					add_building_construction = {
+						type = anti_air_building
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = naval_base
+						level = 2
+						instant_build = yes
+						province = 719
+					}
+					add_building_construction = {
+						type = coastal_bunker
+						level = 2
+						instant_build = yes
+						province = 719
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_focus_on_far_east_fleet
+		icon = GFX_focus_SOV_reinforce_eastern_naval_bases
+		relative_position_id = SOV_soviet_red_fleet
+		x = 4
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 2
+		}
+		available = {
+			OR = {
+				408 = { #VLADIVOSTOK
+					is_owned_and_controlled_by = ROOT
+				}
+				409 = { #KHABAROVSK
+					is_owned_and_controlled_by = ROOT
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOV_soviet_red_fleet
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = { #VLADIVOSTOK - Improved naval base + AA + coastal fort
+				limit = {
+					has_full_control_of_state = 408
+				}
+				408 = {
+					add_building_construction = {
+						type = anti_air_building
+						level = 2
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = air_base
+						level = 2
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = naval_base
+						level = 2
+						instant_build = yes
+						province = 957
+					}
+					add_building_construction = {
+						type = coastal_bunker
+						level = 2
+						instant_build = yes
+						province = 957
+					}
+				}
+			}
+			if = { #VLADIVOSTOK - Improved naval base + AA + coastal fort
+				limit = {
+					has_full_control_of_state = 409
+				}
+				409 = {
+					add_building_construction = {
+						type = anti_air_building
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = air_base
+						level = 1
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = naval_base
+						level = 2
+						instant_build = yes
+						province = 9604
+					}
+					add_building_construction = {
+						type = coastal_bunker
+						level = 2
+						instant_build = yes
+						province = 9604
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_the_age_of_battleship
+		icon = GFX_SOV_the_age_of_battleship
+		relative_position_id = SOV_focus_on_baltic_fleet
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_focus_on_baltic_fleet
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_the_age_of_battleship
+				bonus = 1
+				category = bb_tech
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_make_officers_elite
+		icon = GFX_SOV_make_officers_elite
+		relative_position_id = SOV_focus_on_baltic_fleet
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_focus_on_baltic_fleet
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_10_navy_professionalism_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Strategic_benefits_of_cruiser
+		icon = GFX_SOV_Strategic_benefits_of_cruiser
+		relative_position_id = SOV_focus_on_black_sea_fleet
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_focus_on_black_sea_fleet
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_Strategic_benefits_of_cruiser
+				bonus = 1
+				category = cl_tech
+				category = ca_tech
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_technologically_advance
+		icon = GFX_SOV_technologically_advance
+		relative_position_id = SOV_focus_on_black_sea_fleet
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_focus_on_black_sea_fleet
+		}
+		completion_reward = {
+			add_10_navy_influence_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Escort_of_Destroyer
+		icon = GFX_SOV_Escort_of_Destroyer
+		relative_position_id = SOV_focus_on_far_east_fleet
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_focus_on_far_east_fleet
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_Escort_of_Destroyer
+				bonus = 1
+				category = dd_tech
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_destroy_factions
+		icon = GFX_SOV_destroy_factions
+		relative_position_id = SOV_focus_on_far_east_fleet
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_focus_on_far_east_fleet
+		}
+		completion_reward = {
+			remove_10_navy_factionalism_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_doctrine_for_battleship
+		icon = GFX_SOV_doctrine_for_battleship
+		relative_position_id = SOV_make_officers_elite
+		x = 0
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		mutually_exclusive = {
+			focus = SOV_doctrine_for_small_fleet
+		}
+		prerequisite = {
+			focus = SOV_the_age_of_battleship
+		}
+		prerequisite = {
+			focus = SOV_make_officers_elite
+		}
+		prerequisite = {
+			focus = SOV_Strategic_benefits_of_cruiser
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SOV_doctrine_for_battleship
+				cost_reduction = 0.5
+				uses = 2
+				category = fleet_in_being_tree 
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_doctrine_for_small_fleet
+		icon = GFX_SOV_doctrine_for_small_fleet
+		relative_position_id = SOV_Escort_of_Destroyer
+		x = 0
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		mutually_exclusive = {
+			focus = SOV_doctrine_for_battleship
+		}
+		prerequisite = {
+			focus = SOV_Escort_of_Destroyer
+		}
+		prerequisite = {
+			focus = SOV_destroy_factions
+		}
+		prerequisite = {
+			focus = SOV_technologically_advance
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SOV_doctrine_for_small_fleet
+				cost_reduction = 0.5
+				uses = 2
+				category = trade_interdiction_tree 
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_improved_firing
+		icon = GFX_SOV_improved_firing
+		relative_position_id = SOV_doctrine_for_battleship
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_doctrine_for_battleship
+		}
+		completion_reward = {
+			enable_tech_improved_firing = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Subsidize_the_production_of_battleships
+		icon = GFX_SOV_Subsidize_the_production_of_battleships
+		relative_position_id = SOV_doctrine_for_battleship
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_doctrine_for_battleship
+		}
+		completion_reward = {
+			add_ideas = SOV_Subsidize_for_battleships
+		}
+	}
+	
+	focus = {
+		id = SOV_formation_of_the_submarine_fleet
+		icon = GFX_SOV_formation_of_the_submarine_fleet
+		relative_position_id = SOV_doctrine_for_small_fleet
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_doctrine_for_small_fleet
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			enable_tech_hide_the_hull = yes
+			add_tech_bonus = {
+				name = SOV_formation_of_the_submarine_fleet
+				bonus = 1
+				uses = 1
+				category = ss_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_mine_warfare
+		icon = GFX_focus_generic_mine_warfare
+		prerequisite = { focus = SOV_doctrine_for_small_fleet }
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		relative_position_id = SOV_doctrine_for_small_fleet
+		cost = 5.8
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = SOV_mine_warfare_ns
+			add_tech_bonus = {
+				name = SOV_mine_warfare
+				bonus = 1.0
+				uses = 2
+				category = naval_mines
+			}
+		}
+	}
+	
+	#Carrier
+	focus = {
+		id = SOV_torpedo_from_the_sky
+		icon = GFX_SOV_torpedo_from_the_sky
+		relative_position_id = SOV_focus_on_far_east_fleet
+		x = 3
+		y = 0
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_soviet_red_fleet
+		}
+		prerequisite = {
+			focus = SOV_air_force_reform
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_torpedo_from_the_sky
+				bonus = 1.0
+				uses = 1
+				category = naval_air
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_carrier
+		icon = GFX_SOV_carrier
+		relative_position_id = SOV_torpedo_from_the_sky
+		x = 0
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_torpedo_from_the_sky
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_carrier
+				bonus = 1.0
+				uses = 1
+				category = cv_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_base_strike
+		icon = GFX_SOV_base_strike
+		relative_position_id = SOV_carrier
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_carrier
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SOV_base_strike
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_base_strike 
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_position_of_carrier
+		icon = GFX_SOV_position_of_carrier
+		relative_position_id = SOV_carrier
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_carrier
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_position_of_carrier = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_the_new_age_of_naval_warfare
+		icon = GFX_SOV_the_new_age_of_naval_warfare
+		relative_position_id = SOV_base_strike
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = SOV_base_strike
+		}
+		prerequisite = {
+			focus = SOV_position_of_carrier
+		}
+		search_filters = { FOCUS_FILTER_NAVY_XP }
+		completion_reward = {
+			add_ideas = SOV_the_new_age_of_naval_warfare
+		}
+	}
+	
+	#Air Force
+	focus = {
+		id = SOV_air_force_reform
+		icon = GFX_goal_generic_air_fighter2
+		x = 60
+		y = 10
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		search_filters = { FOCUS_FILTER_AIR_XP }
+		completion_reward = {
+			air_experience = 30
+		}
+	}
+	
+	focus = {
+		id = SOV_large_scale_airforce
+		icon = GFX_SOV_large_scale_airforce
+		relative_position_id = SOV_air_force_reform
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_air_force_reform
+		}
+		mutually_exclusive = {
+			focus = SOV_Technological_advances
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = SOV_large_scale_airforce
+		}
+	}
+	
+	focus = {
+		id = SOV_Technological_advances
+		icon = GFX_SOV_Technological_advances
+		relative_position_id = SOV_air_force_reform
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_air_force_reform
+		}
+		mutually_exclusive = {
+			focus = SOV_large_scale_airforce
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = SOV_Technological_advances
+		}
+	}
 }
