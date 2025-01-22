@@ -3,6 +3,7 @@
 ##########################
 
 add_namespace = soviet_rework_troika
+add_namespace = soviet_rework_revolution
 add_namespace = soviet_rework_troika_white
 
 country_event = {
@@ -20,7 +21,20 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.001.a
 		ai_chance = {
-			factor = 6
+			base = 6
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = SOV_AI_BEHAVIOR 
+						option = THE_WORKERS_OPPOSITION_VICTORIOUS
+					}
+					has_game_rule = {
+						rule = SOV_AI_BEHAVIOR 
+						option = RED_NAPOLEONS_COUP
+					}
+				}
+				factor = 0
+			}
 		}
 		custom_effect_tooltip = SOV_troika_positive_ctt
 		complete_national_focus = SOV_establish_the_troika
@@ -28,7 +42,31 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.001.b
 		ai_chance = {
-			factor = 4
+			base = 4
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = SOV_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = SOV_AI_BEHAVIOR 
+						option = THE_SECRETARY_COMPROMISE
+					}
+					has_game_rule = {
+						rule = SOV_AI_BEHAVIOR 
+						option = THE_ADMIRAL_MILITARIZATION
+					}
+					has_game_rule = {
+						rule = SOV_AI_BEHAVIOR 
+						option = THE_PRESIDENT_INTERNATIONALIZE
+					}
+				}
+				factor = 0
+			}
 		}
 		custom_effect_tooltip = SOV_troika_negative_ctt
 		complete_national_focus = SOV_the_works_want_liberation
@@ -88,7 +126,27 @@ country_event = {
 		set_country_flag = SOV_troika_zinoviev_flag
 		custom_effect_tooltip = SOV_troika_zinoviev_tt
 		ai_chance = {
-			factor = 10
+			base = 10
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = SOV_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = SOV_AI_BEHAVIOR 
+						option = THE_SECRETARY_COMPROMISE
+					}
+					has_game_rule = {
+						rule = SOV_AI_BEHAVIOR 
+						option = THE_ADMIRAL_MILITARIZATION
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 	option = {
@@ -96,7 +154,20 @@ country_event = {
 		set_country_flag = SOV_troika_stalin_flag
 		custom_effect_tooltip = SOV_troika_stalin_tt
 		ai_chance = {
-			factor = 15
+			base = 15
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = SOV_AI_BEHAVIOR 
+						option = THE_PRESIDENT_INTERNATIONALIZE
+					}
+					has_game_rule = {
+						rule = SOV_AI_BEHAVIOR 
+						option = THE_ADMIRAL_MILITARIZATION
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 	option = {
@@ -104,7 +175,27 @@ country_event = {
 		set_country_flag = SOV_troika_trotsky_flag
 		custom_effect_tooltip = SOV_troika_trotsky_tt
 		ai_chance = {
-			factor = 10
+			base = 10
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = SOV_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = SOV_AI_BEHAVIOR 
+						option = THE_PRESIDENT_INTERNATIONALIZE
+					}
+					has_game_rule = {
+						rule = SOV_AI_BEHAVIOR 
+						option = THE_SECRETARY_COMPROMISE
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 }
@@ -466,6 +557,513 @@ country_event = {
 		SOV_zinoviev_influence_six_decrease = yes
 		ai_chance = {
 			factor = 3
+		}
+	}
+}
+
+country_event = {
+	picture = SOV_trotsky
+	id = soviet_rework_troika.024
+	title = soviet_rework_troika.024.t
+	desc = soviet_rework_troika.024.d
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.024.a
+		SOV_trotsky_influence_three_increase = yes
+		SOV_stalins_influence_three_decrease = yes
+		SOV_zinoviev_influence_three_decrease = yes
+		ai_chance = {
+			factor = 3
+		}
+	}
+}
+
+country_event = {
+	picture = SOV_trotsky
+	id = soviet_rework_troika.025
+	title = soviet_rework_troika.025.t
+	desc = soviet_rework_troika.025.d
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.025.a
+		SOV_stalins_influence_six_decrease = yes
+		ai_chance = {
+			factor = 3
+		}
+	}
+}
+
+country_event = {
+	picture = SOV_trotsky
+	id = soviet_rework_troika.026
+	title = soviet_rework_troika.026.t
+	desc = soviet_rework_troika.026.d
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.026.a
+		retire_character = SOV_grigory_zinovyev
+		retire_character = SOV_aleksey_rykov
+		retire_character = SOV_ivan_smirnov
+		retire_character = SOV_martemyan_ryutin
+		set_country_flag = no_zinoviev_flag
+		custom_effect_tooltip = week_zinoviev
+		hidden_effect = {
+			every_country = {
+				limit = { has_country_leader = { character = SOV_troika ruling_only = yes } }
+				set_country_leader_portrait = {
+					portrait = "gfx/leaders/SOV/SOV_troika_no_zinoviev.dds"
+				}
+			}
+		}
+		ai_chance = {
+			factor = 3
+		}
+	}
+}
+
+country_event = {
+	picture = stalin_purge
+	id = soviet_rework_troika.027
+	title = soviet_rework_troika.027.t
+	desc = soviet_rework_troika.027.d
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.027.a
+		retire_character = SOV_iosif_stalin
+		custom_effect_tooltip = end_political_struggle_tt
+		set_country_flag = end_of_political_struggle
+		hidden_effect = {
+			every_country = {
+				limit = { has_country_leader = { character = SOV_troika ruling_only = yes } }
+				set_country_leader_portrait = {
+					portrait = "gfx/leaders/SOV/SOV_troika_no_zin_sta.dds"
+				}
+			}
+		}
+		ai_chance = {
+			factor = 3
+		}
+	}
+}
+
+country_event = {
+	picture = GFX_gang_of_four
+	id = soviet_rework_troika.028
+	title = soviet_rework_troika.028.t
+	desc = {
+		text = soviet_rework_troika.028.d_1
+		trigger = {
+			has_country_leader = {
+				character = SOV_lev_trotsky
+				ruling_only = yes
+			}
+		}
+	}
+	desc = {
+		text = soviet_rework_troika.028.d_2
+		trigger = {
+			has_country_leader = {
+				character = SOV_iosif_stalin
+				ruling_only = yes
+			}
+		}
+	}
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.028.a
+		trigger = {
+			OR = {
+				has_country_leader = {
+					character = SOV_lev_trotsky
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = SOV_iosif_stalin
+					ruling_only = yes
+				}
+			}
+		}
+		retire_character = SOV_semyon_budyonny
+		ai_chance = {
+			factor = 3
+		}
+	}
+	option = {
+		name = soviet_rework_troika.028.b
+		trigger = {
+			has_country_leader = {
+				character = SOV_iosif_stalin
+				ruling_only = yes
+			}
+		}
+		ai_chance = {
+			factor = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.029
+	title = Soviet.57.t
+	desc = Soviet.57.d
+	picture = GFX_report_event_SWE_defense_act
+	is_triggered_only = yes
+	option = { # Accept
+		name = Soviet.57.a
+		ai_chance = { factor = 100 }
+		SOV = {
+			country_event = { id = soviet_rework_troika.030 }
+		}
+		if = {
+			limit = { TAN = { is_subject_of = SOV } }
+			SOV = {
+				annex_country = {
+					target = TAN
+					transfer_troops = yes
+				}
+			}
+		}
+		else = {
+			SOV = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = TAN
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = TAN
+					}
+				}
+			}
+		}
+	}
+	option = { # Refuse
+		name = Soviet.57.b
+		SOV = {
+			country_event = { id = soviet_rework_troika.031 }
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.030
+	title = Soviet.58.t
+	desc = Soviet.58.d
+	picture = GFX_report_event_SWE_defense_act
+	is_triggered_only = yes
+	option = {
+		name = Soviet.58.a
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.031
+	title = Soviet.59.t
+	desc = Soviet.59.d
+	picture = GFX_report_event_SWE_defense_act
+	is_triggered_only = yes
+	option = {
+		RUS = {	create_wargoal = { type = annex_everything target = FROM } }
+		name = Soviet.59.a
+	}
+}
+
+country_event = {
+	picture = GFX_report_event_french_resistance_01
+	id = soviet_rework_revolution.1
+	title = soviet_rework_revolution.1.t
+	desc = soviet_rework_revolution.1.d
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_revolution.1.a
+		if = {
+			limit = {
+				ROOT = { communism > 0.8 }
+			}
+			start_civil_war = {
+				ideology = communism
+				size = 0.4
+				army_ratio = 0.4
+				navy_ratio = 0.4
+				air_ratio = 0.4
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = ITA }
+				}
+				ITA_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							original_tag = UKR
+							original_tag = UPR
+						}
+					}
+				}
+				UKR_UPR_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = LIT }
+				}
+				LIT_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = BLR }
+				}
+				BLR_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = POL }
+				}
+				POL_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = UBD }
+				}
+				UBD_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = LAT }
+				}
+				LAT_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = EST }
+				}
+				EST_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = PER }
+				}
+				PER_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = AFG }
+				}
+				AFG_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = TUR }
+				}
+				TUR_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = IRQ }
+				}
+				IRQ_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = SYR }
+				}
+				SYR_revolution_by_soviet = yes
+			}
+		}
+		else_if = {
+			limit = {
+				ROOT = { communism > 0.65 }
+			}
+			start_civil_war = {
+				ideology = communism
+				size = 0.25
+				army_ratio = 0.25
+				navy_ratio = 0.25
+				air_ratio = 0.25
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = ITA }
+				}
+				ITA_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							original_tag = UKR
+							original_tag = UPR
+						}
+					}
+				}
+				UKR_UPR_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = LIT }
+				}
+				LIT_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = BLR }
+				}
+				BLR_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = POL }
+				}
+				POL_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = UBD }
+				}
+				UBD_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = LAT }
+				}
+				LAT_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = EST }
+				}
+				EST_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = PER }
+				}
+				PER_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = AFG }
+				}
+				AFG_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = TUR }
+				}
+				TUR_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = IRQ }
+				}
+				IRQ_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = SYR }
+				}
+				SYR_revolution_by_soviet = yes
+			}
+		}
+		else = {
+			start_civil_war = {
+				ideology = communism
+				size = 0.25
+				army_ratio = 0.1
+				navy_ratio = 0.1
+				air_ratio = 0.1
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = ITA }
+				}
+				ITA_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							original_tag = UKR
+							original_tag = UPR
+						}
+					}
+				}
+				UKR_UPR_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = LIT }
+				}
+				LIT_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = BLR }
+				}
+				BLR_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = POL }
+				}
+				POL_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = UBD }
+				}
+				UBD_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = LAT }
+				}
+				LAT_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = EST }
+				}
+				EST_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = PER }
+				}
+				PER_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = AFG }
+				}
+				AFG_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = TUR }
+				}
+				TUR_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = IRQ }
+				}
+				IRQ_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = SYR }
+				}
+				SYR_revolution_by_soviet = yes
+			}
+		}
+		ai_chance = {
+			factor = 10
 		}
 	}
 }

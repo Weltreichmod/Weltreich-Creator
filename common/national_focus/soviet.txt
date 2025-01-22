@@ -26,7 +26,7 @@ focus_tree = {
 	
 	default = no
 
-	continuous_focus_position = { x = 55 y = 2000 }
+	continuous_focus_position = { x = 55 y = 2500 }
 	
 	focus = {
 		id = SOV_death_of_kamenev
@@ -40,8 +40,13 @@ focus_tree = {
 		cancelable = no
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			add_political_power = -50
-			country_event = soviet_rework_troika.001
+			if = {
+				limit = {
+					NOT = { has_country_flag = pass_events_flag }
+				}
+				add_political_power = -50
+				country_event = soviet_rework_troika.001
+			}
 		}
 	}
 	
@@ -49,7 +54,7 @@ focus_tree = {
 		id = SOV_establish_the_troika
 		icon = GFX_focus_generic_military_dictatorship
 		relative_position_id = SOV_death_of_kamenev
-		x = -10
+		x = -8
 		y = 1
 		cost = 5
 		ai_will_do = {
@@ -73,7 +78,7 @@ focus_tree = {
 		relative_position_id = SOV_establish_the_troika
 		x = -2
 		y = 1
-		cost = 10
+		cost = 2
 		ai_will_do = {
 			factor = 6
 		}
@@ -82,7 +87,12 @@ focus_tree = {
 			focus = SOV_establish_the_troika
 		}
 		completion_reward = {
-			country_event = { id = soviet_rework_troika.002 }
+			if = {
+				limit = {
+					NOT = { has_country_flag = pass_events_flag }
+				}
+				country_event = { id = soviet_rework_troika.002 }
+			}
 		}
 	}
 	
@@ -101,7 +111,12 @@ focus_tree = {
 			focus = SOV_establish_the_troika
 		}
 		completion_reward = {
-			country_event = { id = soviet_rework_troika.003 }
+			if = {
+				limit = {
+					NOT = { has_country_flag = pass_events_flag }
+				}
+				country_event = { id = soviet_rework_troika.003 }
+			}
 		}
 	}
 	
@@ -120,7 +135,12 @@ focus_tree = {
 			focus = SOV_establish_the_troika
 		}
 		completion_reward = {
-			country_event = { id = soviet_rework_troika.004 }
+			if = {
+				limit = {
+					NOT = { has_country_flag = pass_events_flag }
+				}
+				country_event = { id = soviet_rework_troika.004 }
+			}
 		}
 	}
 	
@@ -145,7 +165,12 @@ focus_tree = {
 			focus = SOV_for_the_survival_of_the_union
 		}
 		completion_reward = {
-			country_event = soviet_rework_troika.005
+			if = {
+				limit = {
+					NOT = { has_country_flag = pass_events_flag }
+				}
+				country_event = soviet_rework_troika.005
+			}
 		}
 	}
 	
@@ -165,6 +190,12 @@ focus_tree = {
 				tooltip = set_the_path_of_soviet
 				has_country_flag = SOV_troika_zinoviev_flag
 			}
+		}
+		mutually_exclusive = {
+			focus = SOV_the_secretary_compromise
+		}
+		mutually_exclusive = {
+			focus = SOV_the_admiral_militarization
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -478,6 +509,93 @@ focus_tree = {
 		}
 	}
 	
+	#Zinovi-Stalin Share
+	focus = {
+		id = SOV_additional_funding_to_the_communist_international
+		icon = GFX_SOV_additional_funding_to_the_communist_international
+		relative_position_id = SOV_is_the_path_of
+		x = -4
+		y = 2
+		cost = 4.3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = set_the_path_of_soviet
+				OR = {
+					has_country_flag = SOV_troika_stalin_flag
+					has_country_flag = SOV_troika_zinoviev_flag
+				}
+			}
+		}	
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_is_the_path_of
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_additional_funding_to_the_communist_international_tt
+			add_to_variable = { SOV_money_for_comintern = 500 }
+		}
+	}
+	
+	focus = {
+		id = SOV_support_gramsci_and_bordiga
+		icon = GFX_SOV_support_gramsci_and_bordiga
+		relative_position_id = SOV_additional_funding_to_the_communist_international
+		x = 0
+		y = 2
+		cost = 4.3
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_additional_funding_to_the_communist_international
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_support_gramsci_and_bordiga_tt
+		}
+	}
+	
+	focus = {
+		id = SOV_Idealistic_thinking
+		icon = GFX_SOV_Idealistic_thinking
+		relative_position_id = SOV_support_gramsci_and_bordiga
+		x = 0
+		y = 2
+		cost = 4.3
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_support_gramsci_and_bordiga
+		}
+		completion_reward = {
+			add_ideas = SOV_Idealistic_thinking
+		}
+	}
+	
+	focus = {
+		id = SOV_back_on_the_world_stage
+		icon = GFX_SOV_back_on_the_world_stage
+		relative_position_id = SOV_Idealistic_thinking
+		x = 0
+		y = 2
+		cost = 4.3
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_Idealistic_thinking
+		}
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	
 	#Stalin
 	focus = {
 		id = SOV_the_secretary_compromise
@@ -488,6 +606,18 @@ focus_tree = {
 		cost = 5
 		ai_will_do = {
 			factor = 6
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = set_the_path_of_soviet
+				has_country_flag = SOV_troika_stalin_flag
+			}
+		}
+		mutually_exclusive = {
+			focus = SOV_the_admiral_militarization
+		}
+		mutually_exclusive = {
+			focus = SOV_the_president_internationalize
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -540,7 +670,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_form_the_ministry_of_intelligence
-		icon = GFX_SOV_form_the_ministry_of_intelligence
+		icon = GFX_focus_generic_whispers
 		relative_position_id = SOV_the_troika_center
 		x = 1
 		y = 1
@@ -672,7 +802,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_trial_of_the_workers_opposition
-		icon = GFX_SOV_trial_of_the_workers_opposition
+		icon = GFX_focus_SOV_purge_bukharinists
 		relative_position_id = SOV_ousting_militarists
 		x = 1
 		y = 1
@@ -749,6 +879,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			country_event = soviet_rework_troika.020
+			custom_effect_tooltip = week_zinoviev
 		}
 	}
 	
@@ -775,6 +906,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			country_event = soviet_rework_troika.021
+			custom_effect_tooltip = week_trotsky
 		}
 	}
 	
@@ -805,6 +937,95 @@ focus_tree = {
 		}
 	}
 	
+	#Stalin-Trotsky Share
+	focus = {
+		id = SOV_additional_funding_to_the_red_army
+		icon = GFX_SOV_additional_funding_to_the_red_army
+		relative_position_id = SOV_is_the_path_of
+		x = 4
+		y = 2
+		cost = 4.3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = set_the_path_of_soviet
+				OR = {
+					has_country_flag = SOV_troika_trotsky_flag
+					has_country_flag = SOV_troika_stalin_flag
+				}
+			}
+		}
+		search_filters = {  }
+		prerequisite = {
+			focus = SOV_is_the_path_of
+		}
+		completion_reward = {
+			add_5_army_professionalism_effect = yes
+			add_5_navy_professionalism_effect = yes
+			add_5_airforce_professionalism_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_the_new_generation_of_comissars
+		icon = GFX_SOV_the_new_generation_of_comissars
+		relative_position_id = SOV_additional_funding_to_the_red_army
+		x = 0
+		y = 2
+		cost = 4.3
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		prerequisite = {
+			focus = SOV_additional_funding_to_the_red_army
+		}
+		completion_reward = {
+			add_ideas = SOV_the_new_generation_of_comissars
+		}
+	}
+	
+	focus = [
+		id = SOV_Realist_thinking
+		icon = GFX_SOV_Realist_thinking
+		relative_position_id = SOV_the_new_generation_of_comissars
+		x = 0
+		y = 2
+		cost = 4.3
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		prerequisite = {
+			focus = SOV_the_new_generation_of_comissars
+		}
+		completion_reward = {
+			add_ideas = SOV_Realist_thinking
+			SOV_zinoviev_influence_two_decrease = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_dismiss_the_gang_of_four
+		icon = GFX_SOV_dismiss_the_gang_of_four
+		relative_position_id = SOV_Realist_thinking
+		x = 0
+		y = 2
+		cost = 4.3
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		prerequisite = {
+			focus = SOV_Realist_thinking
+		}
+		completion_reward = {
+			country_event = soviet_rework_troika.028
+		}
+	}
+	
 	#Trotsky
 	focus = {
 		id = SOV_the_admiral_militarization
@@ -821,6 +1042,12 @@ focus_tree = {
 				tooltip = set_the_path_of_soviet
 				has_country_flag = SOV_troika_trotsky_flag
 			}
+		}
+		mutually_exclusive = {
+			focus = SOV_the_secretary_compromise
+		}
+		mutually_exclusive = {
+			focus = SOV_the_president_internationalize
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -853,11 +1080,11 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_destroy_traditional_roles
-		icon = GFX_SOV_destroy_traditional_roles
+		icon = GFX_focus_ARG_women_in_industry
 		relative_position_id = SOV_troika_right
 		x = -2
 		y = 1
-		cost = 5
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -880,7 +1107,7 @@ focus_tree = {
 		relative_position_id = SOV_troika_right
 		x = 0
 		y = 1
-		cost = 5
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -899,7 +1126,7 @@ focus_tree = {
 		relative_position_id = SOV_troika_right
 		x = 2
 		y = 1
-		cost = 5
+		cost = 5.8
 		ai_will_do = {
 			factor = 6
 		}
@@ -912,12 +1139,952 @@ focus_tree = {
 		}
 	}
 	
+	focus = {
+		id = SOV_formally_legalize_women_in_the_military
+		icon = GFX_focus_generic_women_in_military
+		relative_position_id = SOV_destroy_traditional_roles
+		x = 0
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		prerequisite = {
+			focus = SOV_destroy_traditional_roles
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_ideal_of_admiral_1
+				add_idea = SOV_ideal_of_admiral_2
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_the_true_ambitions_of_the_admiral_revealed
+		icon = GFX_SOV_the_true_ambitions_of_the_admiral_revealed
+		relative_position_id = SOV_side_line_zinoviev_and_stalin
+		x = 0
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_side_line_zinoviev_and_stalin
+		}
+		completion_reward = {
+			country_event = soviet_rework_troika.024
+		}
+	}
+	
+	focus = {
+		id = SOV_Criticizing_Stalins_ambiguous_position
+		icon = GFX_SOV_Criticizing_Stalins_ambiguous_position
+		relative_position_id = SOV_blame_the_unrealists
+		x = 0
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_blame_the_unrealists
+		}
+		completion_reward = {
+			country_event = soviet_rework_troika.025
+		}
+	}
+	
+	focus = {
+		id = SOV_military_methods_of_communist_hegemony
+		icon = GFX_SOV_military_methods_of_communist_hegemony
+		relative_position_id = SOV_formally_legalize_women_in_the_military
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_formally_legalize_women_in_the_military
+		}
+		prerequisite = {
+			focus = SOV_the_true_ambitions_of_the_admiral_revealed
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				prioritize = { 31 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 1000
+				producer = SOV
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 300
+				producer = SOV
+			}
+			SOV_trotskys_influence_three_increase = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Take_control_of_the_Politburo
+		icon = GFX_focus_ARG_keep_it_in_the_party
+		relative_position_id = SOV_the_true_ambitions_of_the_admiral_revealed
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_the_true_ambitions_of_the_admiral_revealed
+		}
+		prerequisite = {
+			focus = SOV_Criticizing_Stalins_ambiguous_position
+		}
+		completion_reward = {
+			add_ideas = SOV_Take_control_of_the_Politburo
+			SOV_trotskys_influence_three_increase = yes
+			SOV_stalins_influence_two_decrease = yes
+			SOV_zinoviev_influence_two_decrease = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Arrest_the_Zinovievists
+		icon = GFX_SOV_Arrest_the_Zinovievists
+		relative_position_id = SOV_military_methods_of_communist_hegemony
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SOV_Arrest_the_Zinovievists_tt
+				check_variable = { SOV_zinoviev_influence < 0.1 }
+				check_variable = { SOV_trotskys_influence > 0.7 }
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_military_methods_of_communist_hegemony
+		}
+		prerequisite = {
+			focus = SOV_Take_control_of_the_Politburo
+		}
+		completion_reward = {
+			country_event = soviet_rework_troika.026
+			custom_effect_tooltip = week_zinoviev
+		}
+	}
+	
+	focus = {
+		id = SOV_Reduce_secretary_permissions
+		icon = GFX_SOV_Reduce_secretary_permissions
+		relative_position_id = SOV_Arrest_the_Zinovievists
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_Arrest_the_Zinovievists
+		}
+		completion_reward = {
+			SOV_trotskys_influence_two_increase = yes
+			SOV_stalins_influence_three_decrease = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Eliminate_Stalinist_bureaucracy
+		icon = GFX_SOV_Eliminate_Stalinist_bureaucracy
+		relative_position_id = SOV_Arrest_the_Zinovievists
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_Arrest_the_Zinovievists
+		}
+		completion_reward = {
+			add_political_power = -50
+			retire_character = SOV_mikhail_kalinin
+			retire_character = SOV_nikita_khrushchyov
+			retire_character = SOV_lazar_kaganovich
+			custom_effect_tooltip = week_stalin
+			set_country_flag = no_stalin_flag
+		}
+	}
+	
+	focus = {
+		id = SOV_Arrest_Stalin
+		icon = GFX_SOV_Arrest_the_Stalin
+		relative_position_id = SOV_Reduce_secretary_permissions
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SOV_Arrest_the_Stalin_tt
+				check_variable = { SOV_trotskys_influence < 0.8 }
+				check_variable = { SOV_stalins_influence > 0.1 }
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_Reduce_secretary_permissions
+		}
+		prerequisite = {
+			focus = SOV_Eliminate_Stalinist_bureaucracy
+		}
+		completion_reward = {
+			country_event = soviet_rework_troika.027
+			custom_effect_tooltip = end_political_struggle_tt
+		}
+	}
+	
+	focus = {
+		id = SOV_president_zinoviev
+		icon = GFX_SOV_president_zinoviev
+		relative_position_id = SOV_replace_the_secretary
+		x = 2
+		y = 1
+		cost = 1.4
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_replace_the_secretary
+		}
+		prerequisite = {
+			focus = SOV_back_on_the_world_stage
+		}
+		completion_reward = {
+			hidden_effect = {
+				remove_country_leader_role = {
+					character = SOV_troika
+					ideology = leninism
+				}
+				add_country_leader_role = {
+					character = SOV_grigory_zinovyev
+					promote_leader = yes
+					country_leader = {
+						ideology = leninism
+					}
+				}
+			}
+			custom_effect_tooltip = SOV_president_zinoviev_tt
+			remove_ideas = SOV_dysfunctional_bureaucracy_base
+		}
+	}
+	
+	focus = {
+		id = SOV_general_Secretary_stalin
+		icon = GFX_SOV_general_Secretary_stalin
+		relative_position_id = SOV_disassemble_troika
+		x = 0
+		y = 1
+		cost = 1.4
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_disassemble_troika
+		}
+		prerequisite = {
+			focus = SOV_back_on_the_world_stage
+		}
+		prerequisite = {
+			focus = SOV_dismiss_the_gang_of_four
+		}
+		completion_reward = {
+			hidden_effect = {
+				remove_country_leader_role = {
+					character = SOV_troika
+					ideology = leninism
+				}
+				add_country_leader_role = {
+					character = SOV_iosif_stalin
+					promote_leader = yes
+					country_leader = {
+						ideology = leninism
+					}
+				}
+			}
+			custom_effect_tooltip = SOV_general_Secretary_stalin_tt
+			remove_ideas = SOV_dysfunctional_bureaucracy_base
+		}
+	}
+	
+	focus = {
+		id = SOV_peoples_commissar_trotsky
+		icon = GFX_SOV_peoples_commissar_trotsky
+		relative_position_id = SOV_dismiss_the_gang_of_four
+		x = 2
+		y = 1
+		cost = 1.4
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = SOV_Arrest_Stalin
+		}
+		prerequisite = {
+			focus = SOV_dismiss_the_gang_of_four
+		}
+		completion_reward = {
+			hidden_effect = {
+				remove_country_leader_role = {
+					character = SOV_troika
+					ideology = leninism
+				}
+				add_country_leader_role = {
+					character = SOV_lev_trotsky
+					promote_leader = yes
+					country_leader = {
+						ideology = leninism
+					}
+				}
+			}
+			custom_effect_tooltip = SOV_peoples_commissar_trotsky_tt
+			remove_ideas = SOV_dysfunctional_bureaucracy_base
+		}
+	}
+	
+	#Zinovi Line
+	focus = {
+		id = SOV_permanent_revolution
+		icon = GFX_SOV_permanent_revolution
+		relative_position_id = SOV_general_Secretary_stalin
+		x = -3
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			OR = {
+				has_country_leader = {
+					character = SOV_grigory_zinovyev
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = SOV_iosif_stalin
+					ruling_only = yes
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOV_general_Secretary_stalin
+			focus = SOV_president_zinoviev
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = SOV_grigory_zinovyev
+						ruling_only = yes
+					}
+				}
+				add_trait = {
+					 character = SOV_grigory_zinovyev
+					 ideology = leninism
+					 trait = permanent_revolutionary
+				}
+			}
+			custom_effect_tooltip = SOV_permanent_revolution_tt
+		}
+	}
+	
+	focus = {
+		id = SOV_establish_local_administrations
+		icon = GFX_SOV_establish_local_administrations
+		relative_position_id = SOV_permanent_revolution
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_leader = {
+				character = SOV_grigory_zinovyev
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_permanent_revolution
+		}
+		completion_reward = {
+			add_ideas = SOV_local_administrations
+		}
+	}
+	
+	focus = {
+		id = SOV_spread_the_revolution_to_eastern_europe
+		icon = GFX_SOV_spread_the_revolution_to_eastern_europe
+		relative_position_id = SOV_permanent_revolution
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			OR = {
+				has_country_leader = {
+					character = SOV_grigory_zinovyev
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = SOV_iosif_stalin
+					ruling_only = yes
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOV_permanent_revolution
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_spread_the_revolution_to_eastern_europe_tt
+		}
+	}
+	
+	focus = {
+		id = SOV_Approach_Africa
+		icon = GFX_SOV_Approach_Africa
+		relative_position_id = SOV_establish_local_administrations
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_leader = {
+				character = SOV_grigory_zinovyev
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_establish_local_administrations
+		}
+		prerequisite = {
+			focus = SOV_spread_the_revolution_to_eastern_europe
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_Approach_Africa_tt
+		}
+	}
+	
+	focus = {
+		id = SOV_Middle_East_Revolution
+		icon = GFX_SOV_Middle_East_Revolution
+		relative_position_id = SOV_establish_local_administrations
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_leader = {
+				character = SOV_grigory_zinovyev
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_establish_local_administrations
+		}
+		prerequisite = {
+			focus = SOV_spread_the_revolution_to_eastern_europe
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_Middle_East_Revolution_tt
+		}
+	}
+	
+	focus = {
+		id = SOV_Funding_for_the_Revolution
+		icon = GFX_SOV_Funding_for_the_Revolution
+		relative_position_id = SOV_spread_the_revolution_to_eastern_europe
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			OR = {
+				has_country_leader = {
+					character = SOV_grigory_zinovyev
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = SOV_iosif_stalin
+					ruling_only = yes
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOV_spread_the_revolution_to_eastern_europe
+		}
+		completion_reward = {
+			custom_effect_tooltip = SOV_Funding_for_the_Revolution_tt
+			add_to_variable = { SOV_money_for_comintern = 800 }
+			add_political_power = 100
+			add_timed_idea = { idea = SOV_Funding_for_the_Revolution days = 80 }
+		}
+	}
+	
+	focus = {
+		id = SOV_government_of_workers
+		icon = GFX_SOV_government_of_workers
+		relative_position_id = SOV_Approach_Africa
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_leader = {
+				character = SOV_grigory_zinovyev
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_Approach_Africa
+		}
+		prerequisite = {
+			focus = SOV_Middle_East_Revolution
+		}
+		completion_reward = {
+			add_ideas = SOV_government_of_workers
+		}
+	}
+	
+	focus = {
+		id = SOV_communist_government_of_mongolia
+		icon = GFX_SOV_communist_government_of_mongolia
+		relative_position_id = SOV_Funding_for_the_Revolution
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			OR = {
+				has_country_leader = {
+					character = SOV_grigory_zinovyev
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = SOV_iosif_stalin
+					ruling_only = yes
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOV_Funding_for_the_Revolution
+		}
+		completion_reward = {
+			MON = {
+				add_ideas = SOV_Soviet_support_for_Italian_communists
+				add_autonomy_ratio = {
+					value = -0.10
+					localization = uk_india_focus
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_the_fourth_international 
+		icon = GFX_SOV_the_fourth_international_ccp_2d_sov_compatibility
+		prerequisite = { focus = SOV_government_of_workers }
+		x = 0
+		y = 1
+		relative_position_id = SOV_government_of_workers
+		cost = 5
+		
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_political_power = 100
+			create_faction = fourth_international
+			remove_ideas = SOV_precarious_country_high
+		}
+	}
+	
+	#Trotsky Line
+	focus = {
+		id = SOV_mobilization_economy
+		icon = GFX_SOV_mobilization_economy
+		relative_position_id = SOV_general_Secretary_stalin
+		x = 3
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		available = {
+			OR = {
+				has_country_leader = {
+					character = SOV_lev_trotsky
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = SOV_iosif_stalin
+					ruling_only = yes
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOV_general_Secretary_stalin
+			focus = SOV_peoples_commissar_trotsky
+		}
+		completion_reward = {
+			add_ideas = SOV_mobilization_economy
+		}
+	}
+	
+	focus = {
+		id = SOV_Eliminate_factionalism_in_the_military
+		icon = GFX_SOV_Eliminate_factionalism_in_the_military
+		relative_position_id = SOV_mobilization_economy
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		available = {
+			OR = {
+				has_country_leader = {
+					character = SOV_lev_trotsky
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = SOV_iosif_stalin
+					ruling_only = yes
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOV_mobilization_economy
+		}
+		completion_reward = {
+			remove_5_army_factionalism_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_trotskys_cult_of_personality
+		icon = GFX_SOV_trotskys_cult_of_personality
+		relative_position_id = SOV_mobilization_economy
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_leader = {
+				character = SOV_lev_trotsky
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_mobilization_economy
+		}
+		completion_reward = {
+			add_ideas = SOV_trotskyism
+		}
+	}
+	
+	focus = {
+		id = SOV_Bureau_of_Military_Research
+		icon = GFX_SOV_Bureau_of_Military_Research
+		relative_position_id = SOV_Eliminate_factionalism_in_the_military
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		available = {
+			OR = {
+				has_country_leader = {
+					character = SOV_lev_trotsky
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = SOV_iosif_stalin
+					ruling_only = yes
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOV_Eliminate_factionalism_in_the_military
+		}
+		completion_reward = {
+			add_ideas = SOV_Bureau_of_Military_Research
+		}
+	}
+	
+	focus = {
+		id = SOV_Soviet_Hegemony
+		icon = GFX_SOV_Soviet_Hegemony
+		relative_position_id = SOV_Eliminate_factionalism_in_the_military
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_leader = {
+				character = SOV_lev_trotsky
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_Eliminate_factionalism_in_the_military
+		}
+		prerequisite = {
+			focus = SOV_trotskys_cult_of_personality
+		}
+		completion_reward = {
+			add_ideas = SOV_Soviet_Hegemony
+		}
+	}
+	
+	focus = {
+		id = SOV_socialism_in_one_country
+		icon = GFX_focus_SOV_socialism_in_one_country
+		relative_position_id = SOV_trotskys_cult_of_personality
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		available = {
+			has_country_leader = {
+				character = SOV_lev_trotsky
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_Eliminate_factionalism_in_the_military
+		}
+		prerequisite = {
+			focus = SOV_trotskys_cult_of_personality
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = home_of_revolution
+				add_idea = home_of_revolution_1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_centralized_government
+		icon = GFX_SOV_centralized_government
+		relative_position_id = SOV_Soviet_Hegemony
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_leader = {
+				character = SOV_lev_trotsky
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_socialism_in_one_country
+		}
+		prerequisite = {
+			focus = SOV_Soviet_Hegemony
+		}
+		completion_reward = {
+			add_ideas = SOV_centralized_government
+		}
+	}
+	
+	focus = {
+		id = SOV_control_tannu_tuva
+		icon = GFX_SOV_annex_tannu_tuva_ccp_2d_sov_compatibility
+		prerequisite = { focus = SOV_Bureau_of_Military_Research }
+		x = 0
+		y = 1
+		relative_position_id = SOV_Bureau_of_Military_Research
+		cost = 5
+
+		ai_will_do = {
+			factor = 6
+		}
+		
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+
+		completion_reward = {
+			TAN = {	
+				country_event = { 
+					id = soviet_rework_troika.029
+					hours = 6
+				} 
+			}
+		}
+	}
+
+	focus = {
+		id = SOV_eternal_successor_of_lenin
+		icon = GFX_SOV_eternal_successor_of_lenin
+		relative_position_id = SOV_centralized_government
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_leader = {
+				character = SOV_lev_trotsky
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_centralized_government
+		}
+		completion_reward = {
+			add_trait = {
+				 character = SOV_lev_trotsky
+				 ideology = leninism
+				 trait = eternal_successor_of_lenin
+			}
+			remove_ideas = SOV_precarious_country_high
+		}
+	}
+	
+	#Only For Stalin
+	focus = {
+		id = SOV_theory_of_stalin
+		icon = GFX_SOV_theory_of_stalin
+		relative_position_id = SOV_general_Secretary_stalin
+		x = 0
+		y = 2
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_leader = {
+				character = SOV_iosif_stalin
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_general_Secretary_stalin
+		}
+		completion_reward = {
+			add_ideas = SOV_theory_of_stalin
+		}
+	}
+	
+	focus = {
+		id = SOV_make_the_best_of_both_worlds
+		icon = GFX_SOV_make_the_best_of_both_worlds
+		relative_position_id = SOV_theory_of_stalin
+		x = 0
+		y = 3
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_leader = {
+				character = SOV_iosif_stalin
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_theory_of_stalin
+		}
+		prerequisite = {
+			focus = SOV_communist_government_of_mongolia
+		}
+		prerequisite = {
+			focus = SOV_control_tannu_tuva
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_theory_of_stalin
+				add_idea = SOV_theory_of_stalin_1
+			}
+			remove_ideas = SOV_precarious_country_high
+		}
+	}
+	
 	#Opposition
 	focus = {
 		id = SOV_the_works_want_liberation
 		icon = GFX_SOV_the_works_want_liberation
 		relative_position_id = SOV_death_of_kamenev
-		x = 10
+		x = 8
 		y = 1
 		cost = 5
 		ai_will_do = {
@@ -1337,6 +2504,9 @@ focus_tree = {
 					infantry = { x = 0 y = 0 }
 					infantry = { x = 0 y = 1 }
 					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
 				}
 				support = {
 				}
@@ -1466,6 +2636,13 @@ focus_tree = {
 		cost = 1
 		ai_will_do = {
 			factor = 6
+			modifier = {
+				has_game_rule = {
+					rule = SOV_AI_BEHAVIOR 
+					option = RED_NAPOLEONS_COUP
+				}
+				factor = 0
+			}
 		}
 		available = {
 			has_country_flag = SOV_tukachevsky_coup_start_flag
@@ -1568,6 +2745,13 @@ focus_tree = {
 		cost = 1
 		ai_will_do = {
 			factor = 6
+			modifier = {
+				has_game_rule = {
+					rule = SOV_AI_BEHAVIOR 
+					option = THE_WORKERS_OPPOSITION_VICTORIOUS
+				}
+				factor = 0
+			}
 		}
 		available = {
 			has_country_flag = SOV_tukachevsky_coup_start_flag
@@ -1753,7 +2937,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_expel_the_menshevik_internationalists
-		icon = GFX_focus_SOV_purge_trotskyists
+		icon = GFX_focus_SOV_purge_zinovyevists
 		relative_position_id = SOV_the_wreckers_and_betrayers_of_marxism
 		x = 0
 		y = 1
@@ -2949,8 +4133,8 @@ focus_tree = {
 	focus = {
 		id = SOV_the_red_army_focus
 		icon = GFX_SOV_the_red_army
-		x = 35
-		y = 10
+		x = 40
+		y = 1
 		cost = 5.8
 		ai_will_do = {
 			factor = 2
@@ -3704,8 +4888,8 @@ focus_tree = {
 	focus = {
 		id = SOV_soviet_red_fleet
 		icon = GFX_goal_generic_build_navy
-		x = 48
-		y = 10
+		x = 26
+		y = 8
 		cost = 5.8
 		ai_will_do = {
 			factor = 2
@@ -3720,7 +4904,7 @@ focus_tree = {
 		id = SOV_focus_on_baltic_fleet
 		icon = GFX_focus_SOV_reinforce_western_naval_bases
 		relative_position_id = SOV_soviet_red_fleet
-		x = -4
+		x = -2
 		y = 1
 		cost = 5
 		ai_will_do = {
@@ -3858,7 +5042,7 @@ focus_tree = {
 		id = SOV_focus_on_far_east_fleet
 		icon = GFX_focus_SOV_reinforce_eastern_naval_bases
 		relative_position_id = SOV_soviet_red_fleet
-		x = 4
+		x = 2
 		y = 1
 		cost = 5
 		ai_will_do = {
@@ -3943,15 +5127,17 @@ focus_tree = {
 	focus = {
 		id = SOV_the_age_of_battleship
 		icon = GFX_SOV_the_age_of_battleship
-		relative_position_id = SOV_focus_on_baltic_fleet
-		x = -1
+		relative_position_id = SOV_make_officers_elite
+		x = 0
 		y = 1
 		cost = 5.8
 		ai_will_do = {
 			factor = 2
 		}
 		prerequisite = {
-			focus = SOV_focus_on_baltic_fleet
+			focus = SOV_make_officers_elite
+			focus = SOV_technologically_advance
+			focus = SOV_destroy_factions
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
@@ -3968,14 +5154,16 @@ focus_tree = {
 		id = SOV_make_officers_elite
 		icon = GFX_SOV_make_officers_elite
 		relative_position_id = SOV_focus_on_baltic_fleet
-		x = 1
+		x = 0
 		y = 1
 		cost = 5.8
 		ai_will_do = {
 			factor = 2
 		}
 		prerequisite = {
+			focus = SOV_focus_on_black_sea_fleet
 			focus = SOV_focus_on_baltic_fleet
+			focus = SOV_focus_on_far_east_fleet
 		}
 		search_filters = {  }
 		completion_reward = {
@@ -3986,15 +5174,17 @@ focus_tree = {
 	focus = {
 		id = SOV_Strategic_benefits_of_cruiser
 		icon = GFX_SOV_Strategic_benefits_of_cruiser
-		relative_position_id = SOV_focus_on_black_sea_fleet
-		x = -1
+		relative_position_id = SOV_technologically_advance
+		x = 0
 		y = 1
 		cost = 5.8
 		ai_will_do = {
 			factor = 2
 		}
 		prerequisite = {
-			focus = SOV_focus_on_black_sea_fleet
+			focus = SOV_make_officers_elite
+			focus = SOV_technologically_advance
+			focus = SOV_destroy_factions
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
@@ -4012,7 +5202,7 @@ focus_tree = {
 		id = SOV_technologically_advance
 		icon = GFX_SOV_technologically_advance
 		relative_position_id = SOV_focus_on_black_sea_fleet
-		x = 1
+		x = 0
 		y = 1
 		cost = 5.8
 		ai_will_do = {
@@ -4020,6 +5210,8 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = SOV_focus_on_black_sea_fleet
+			focus = SOV_focus_on_baltic_fleet
+			focus = SOV_focus_on_far_east_fleet
 		}
 		completion_reward = {
 			add_10_navy_influence_effect = yes
@@ -4029,15 +5221,17 @@ focus_tree = {
 	focus = {
 		id = SOV_Escort_of_Destroyer
 		icon = GFX_SOV_Escort_of_Destroyer
-		relative_position_id = SOV_focus_on_far_east_fleet
-		x = -1
+		relative_position_id = SOV_destroy_factions
+		x = 0
 		y = 1
 		cost = 5.8
 		ai_will_do = {
 			factor = 2
 		}
 		prerequisite = {
-			focus = SOV_focus_on_far_east_fleet
+			focus = SOV_make_officers_elite
+			focus = SOV_technologically_advance
+			focus = SOV_destroy_factions
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
@@ -4054,13 +5248,15 @@ focus_tree = {
 		id = SOV_destroy_factions
 		icon = GFX_SOV_destroy_factions
 		relative_position_id = SOV_focus_on_far_east_fleet
-		x = 1
+		x = 0
 		y = 1
 		cost = 5.8
 		ai_will_do = {
 			factor = 2
 		}
 		prerequisite = {
+			focus = SOV_focus_on_black_sea_fleet
+			focus = SOV_focus_on_baltic_fleet
 			focus = SOV_focus_on_far_east_fleet
 		}
 		completion_reward = {
@@ -4071,7 +5267,7 @@ focus_tree = {
 	focus = {
 		id = SOV_doctrine_for_battleship
 		icon = GFX_SOV_doctrine_for_battleship
-		relative_position_id = SOV_make_officers_elite
+		relative_position_id = SOV_the_age_of_battleship
 		x = 0
 		y = 1
 		cost = 5.8
@@ -4085,10 +5281,10 @@ focus_tree = {
 			focus = SOV_the_age_of_battleship
 		}
 		prerequisite = {
-			focus = SOV_make_officers_elite
+			focus = SOV_Strategic_benefits_of_cruiser
 		}
 		prerequisite = {
-			focus = SOV_Strategic_benefits_of_cruiser
+			focus = SOV_Escort_of_Destroyer
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
@@ -4115,13 +5311,13 @@ focus_tree = {
 			focus = SOV_doctrine_for_battleship
 		}
 		prerequisite = {
+			focus = SOV_the_age_of_battleship
+		}
+		prerequisite = {
+			focus = SOV_Strategic_benefits_of_cruiser
+		}
+		prerequisite = {
 			focus = SOV_Escort_of_Destroyer
-		}
-		prerequisite = {
-			focus = SOV_destroy_factions
-		}
-		prerequisite = {
-			focus = SOV_technologically_advance
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
@@ -4339,8 +5535,8 @@ focus_tree = {
 	focus = {
 		id = SOV_air_force_reform
 		icon = GFX_goal_generic_air_fighter2
-		x = 60
-		y = 10
+		x = 36
+		y = 8
 		ai_will_do = {
 			factor = 2
 		}
@@ -4374,6 +5570,82 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = SOV_Factories_for_aircraft
+		icon = GFX_SOV_Factories_for_aircraft
+		relative_position_id = SOV_large_scale_airforce
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_large_scale_airforce
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}	
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_Aircraft_Production_Safety_Regulations
+		icon = GFX_SOV_Aircraft_Production_Safety_Regulations
+		relative_position_id = SOV_large_scale_airforce
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_large_scale_airforce
+		}
+		completion_reward = {
+			add_5_airforce_influence_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Improving_the_Air_Force_Situation
+		icon = GFX_SOV_Improving_the_Air_Force_Situation
+		relative_position_id = SOV_Factories_for_aircraft
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Factories_for_aircraft
+		}
+		prerequisite = {
+			focus = SOV_Aircraft_Production_Safety_Regulations
+		}
+		completion_reward = {
+			add_2_5_airforce_professionalism_effect = yes
+			remove_2_5_airforce_factionalism_effect = yes
+		}
+	}
+	
+	focus = {
 		id = SOV_Technological_advances
 		icon = GFX_SOV_Technological_advances
 		relative_position_id = SOV_air_force_reform
@@ -4392,6 +5664,935 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
 			add_ideas = SOV_Technological_advances
+		}
+	}
+	
+	focus = {
+		id = SOV_pilot_training
+		icon = GFX_focus_SOV_flying_clubs
+		relative_position_id = SOV_Technological_advances
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Technological_advances
+		}
+		completion_reward = {
+			add_5_airforce_professionalism_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Aircraft_Production_Act
+		icon = GFX_SOV_Aircraft_Production_Act
+		relative_position_id = SOV_Technological_advances
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Technological_advances
+		}
+		completion_reward = {
+			add_10_airforce_influence_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_clean_up_factions
+		icon = GFX_SOV_clean_up_factions
+		relative_position_id = SOV_pilot_training
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_pilot_training
+		}
+		prerequisite = {
+			focus = SOV_Aircraft_Production_Act
+		}
+		completion_reward = {
+			remove_10_airforce_factionalism_effect = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Doctrine_for_Air_supremacy
+		icon = GFX_SOV_Doctrine_for_Air_supremacy
+		relative_position_id = SOV_Improving_the_Air_Force_Situation
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Improving_the_Air_Force_Situation
+			focus = SOV_clean_up_factions
+		}
+		mutually_exclusive = {
+			focus = SOV_ground_support_doctrine
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SOV_Doctrine_for_Air_supremacy
+				cost_reduction = 0.25
+				uses = 1
+				category = cat_operational_integrity
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_biting_the_tail
+		icon = GFX_SOV_biting_the_tail
+		relative_position_id = SOV_Doctrine_for_Air_supremacy
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Doctrine_for_Air_supremacy
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			enable_tech_biting_the_tail = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Fighter_Advantage
+		icon = GFX_SOV_Fighter_Advantage
+		relative_position_id = SOV_Doctrine_for_Air_supremacy
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Doctrine_for_Air_supremacy
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_Fighter_Advantage
+				bonus = 1
+				category = light_fighter
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_ground_support_doctrine
+		icon = GFX_focus_generic_tank_air_support
+		relative_position_id = SOV_clean_up_factions
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Improving_the_Air_Force_Situation
+			focus = SOV_clean_up_factions
+		}
+		mutually_exclusive = {
+			focus = SOV_Doctrine_for_Air_supremacy
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SOV_ground_support_doctrine
+				cost_reduction = 0.25
+				uses = 1
+				category = cat_battlefield_support
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_sting_like_a_bee
+		icon = GFX_SOV_sting_like_a_bee
+		relative_position_id = SOV_ground_support_doctrine
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_ground_support_doctrine
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			enable_tech_sting_like_a_bee = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_CAS
+		icon = GFX_SOV_CAS
+		relative_position_id = SOV_ground_support_doctrine
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_ground_support_doctrine
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_CAS
+				bonus = 1
+				category = cas_bomber
+				uses = 1
+			}
+		}
+	}
+	
+	#Economy
+	focus = {
+		id = SOV_the_state_of_the_economy
+		icon = GFX_SOV_the_state_of_the_economy
+		x = 25
+		y = 0
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_idea_sluggish_industrialization
+				add_idea = SOV_idea_sluggish_industrialization1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_fix_the_issue_of_sabotage
+		icon = GFX_SOV_fix_the_issue_of_sabotage
+		relative_position_id = SOV_the_state_of_the_economy
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_the_state_of_the_economy
+		}
+		completion_reward = {
+			add_ideas = SOV_fix_the_issue_of_sabotage
+		}
+	}
+	
+	focus = {
+		id = SOV_the_disaster_of_28
+		icon = GFX_SOV_the_disaster_of_28
+		relative_position_id = SOV_the_state_of_the_economy
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_the_state_of_the_economy
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				
+				prioritize = { 565 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				
+				prioritize = { 563 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				
+				prioritize = { 565 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				
+				prioritize = { 563 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				
+				prioritize = { 564 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = infrastructure
+					level = 1
+					instant_build = yes
+				}	
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_dismantle_remaining_bourgeois_firms
+		icon = GFX_SOV_dismantle_remaining_bourgeois_firms
+		relative_position_id = SOV_the_state_of_the_economy
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_the_state_of_the_economy
+		}
+		completion_reward = {
+			add_timed_idea = { idea = SOV_nationalized_firms days = 100 }
+		}
+	}
+	
+	focus = {
+		id = SOV_search_the_answer_in_marx
+		icon = GFX_SOV_search_the_answer_in_marx
+		relative_position_id = SOV_the_disaster_of_28
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		available = {
+			OR = {
+				has_completed_focus = SOV_victory
+				has_completed_focus = SOV_the_president_internationalize
+			}
+		}
+		prerequisite = {
+			focus = SOV_the_disaster_of_28
+		}
+		prerequisite = {
+			focus = SOV_fix_the_issue_of_sabotage
+		}
+		mutually_exclusive = {
+			focus = SOV_search_the_answer_in_lenin
+		}
+		completion_reward = {
+			add_ideas = SOV_search_the_answer_in_marx
+			add_research_slot = 1
+		}
+	}
+	
+	focus = {
+		id = SOV_search_the_answer_in_lenin
+		icon = GFX_SOV_search_the_answer_in_lenin
+		relative_position_id = SOV_the_disaster_of_28
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		available = {
+			OR = {
+				has_completed_focus = SOV_the_secretary_compromise
+				has_completed_focus = SOV_the_admiral_militarization
+			}
+		}
+		prerequisite = {
+			focus = SOV_the_disaster_of_28
+		}
+		prerequisite = {
+			focus = SOV_dismantle_remaining_bourgeois_firms
+		}
+		mutually_exclusive = {
+			focus = SOV_search_the_answer_in_marx
+		}
+		completion_reward = {
+			add_ideas = SOV_search_the_answer_in_lenin
+			add_research_slot = 1
+		}
+	}
+	
+	#NO NEP
+	focus = {
+		id = SOV_abandon_the_NEP
+		icon = GFX_SOV_abandon_the_NEP
+		relative_position_id = SOV_search_the_answer_in_marx
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_search_the_answer_in_marx
+		}
+		completion_reward = {
+			remove_ideas = SOV_support_for_New_Economic_Policy
+		}
+	}
+	
+	focus = {
+		id = SOV_disband_kolkhozes
+		icon = GFX_SOV_disband_kolkhozes
+		relative_position_id = SOV_abandon_the_NEP
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_abandon_the_NEP
+		}
+		completion_reward = {
+			add_ideas = SOV_disband_kolkhozes
+		}
+	}
+	
+	focus = {
+		id = SOV_industrialization_of_siberia
+		icon = GFX_focus_generic_military_industry
+		relative_position_id = SOV_abandon_the_NEP
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_abandon_the_NEP
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				
+				prioritize = { 578 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				
+				prioritize = { 576 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}	
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_nationalize_all_small_holdings
+		icon = GFX_SOV_nationalize_all_small_holdings
+		relative_position_id = SOV_abandon_the_NEP
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_abandon_the_NEP
+		}
+		completion_reward = {
+			add_ideas = SOV_nationalized_small_holdings
+		}
+	}
+	
+	focus = {
+		id = SOV_standardize_the_sovkhoz_equipment
+		icon = GFX_SOV_slandardize_the_sovkhoz_equipment
+		relative_position_id = SOV_disband_kolkhozes
+		X = 0
+		Y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_disband_kolkhozes
+		}
+		completion_reward = {
+			add_ideas = SOV_standardize_the_sovkhoz_equipment
+		}
+	}
+	
+	focus = {
+		id = SOV_develop_arhangelsk
+		icon = GFX_SOV_develop_arhangelsk
+		relative_position_id = SOV_industrialization_of_siberia
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_industrialization_of_siberia
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				
+				prioritize = { 214 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				
+				prioritize = { 214 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}	
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_destroy_agrarianism_in_the_far_east
+		icon = GFX_SOV_destroy_agrarianism_in_the_far_east
+		relative_position_id = SOV_nationalize_all_small_holdings
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_nationalize_all_small_holdings
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_idea_sluggish_industrialization1
+				add_idea = SOV_idea_sluggish_industrialization2
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_expand_the_trans_siberian_railway
+		icon = GFX_SOV_expand_the_trans_siberian_railway
+		relative_position_id = SOV_standardize_the_sovkhoz_equipment
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		bypass = {
+			NOT = {
+				OR = {
+					controls_state = 568
+					controls_state = 567
+					controls_state = 566
+					controls_state = 563
+					controls_state = 561
+					controls_state = 657
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOV_standardize_the_sovkhoz_equipment
+		}
+		prerequisite = {
+			focus = SOV_develop_arhangelsk
+		}
+		completion_reward = {
+			build_railway = {
+				level = 1
+				path = { 12691 12621 1876 1813 10549 10661 12540 4797 }
+			}
+			build_railway = {
+				level = 1
+				path = { 4677 7725 10559 12543 7851 10678 12657 7763 4725 }
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_the_final_push_against_economic_backwardness
+		icon = GFX_SOV_the_final_push_against_economic_backwardness
+		relative_position_id = SOV_develop_arhangelsk
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_destroy_agrarianism_in_the_far_east
+		}
+		prerequisite = {
+			focus = SOV_develop_arhangelsk
+		}
+		completion_reward = {
+			random_owned_controlled_state = {
+				
+				prioritize = { 195 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				
+				prioritize = { 217 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+				
+				prioritize = { 219 } 
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}	
+			}
+			add_ideas = SOV_the_final_push_against_economic_backwardness
+		}
+	}
+	
+	focus = {
+		id = SOV_russia_a_backward_feudal_state_no_more
+		icon = GFX_SOV_russia_a_backward_feudal_state_no_more
+		relative_position_id = SOV_expand_the_trans_siberian_railway
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			num_of_factories > 120
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_expand_the_trans_siberian_railway
+		}
+		prerequisite = {
+			focus = SOV_the_final_push_against_economic_backwardness
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_the_final_push_against_economic_backwardness
+				add_idea = SOV_developed_economy
+			}
+		}
+	}
+	
+	#YES NEP
+	focus = {
+		id = SOV_keep_the_NEP
+		icon = GFX_SOV_keep_the_NEP
+		relative_position_id = SOV_search_the_answer_in_lenin
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_search_the_answer_in_lenin
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_support_for_New_Economic_Policy
+				add_idea = SOV_support_for_New_Economic_Policy_2
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_expand_kolkhozes
+		icon = GFX_SOV_disband_kolkhozes
+		relative_position_id = SOV_keep_the_NEP
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_keep_the_NEP
+		}
+		completion_reward = {
+			add_ideas = SOV_expand_kolkhozes
+		}
+	}
+	
+	focus = {
+		id = SOV_give_concessions_to_the_kulaks
+		icon = GFX_SOV_give_concessions_to_the_kulaks
+		relative_position_id = SOV_keep_the_NEP
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_keep_the_NEP
+		}
+		completion_reward = {
+			add_ideas = SOV_give_concessions_to_the_kulaks
+		}
+	}
+	
+	focus = {
+		id = SOV_mechanize_farming_tools
+		icon = GFX_SOV_mechanize_farming_tools
+		relative_position_id = SOV_keep_the_NEP
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_keep_the_NEP
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_search_the_answer_in_lenin
+				add_idea = SOV_search_the_answer_in_lenin_1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_abolish_sovkhozes
+		icon = GFX_SOV_abolish_sovkhozes
+		relative_position_id = SOV_expand_kolkhozes
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_expand_kolkhozes
+		}
+		completion_reward = {
+			add_ideas = SOV_abolish_sovkhozes
+		}
+	}
+	
+	focus = {
+		id = SOV_develop_new_state_markets
+		icon = GFX_SOV_develop_new_state_markets
+		relative_position_id = SOV_give_concessions_to_the_kulaks
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_give_concessions_to_the_kulaks
+		}
+		completion_reward = {
+			add_ideas = SOV_new_state_markets
+		}
+	}
+	
+	focus = {
+		id = SOV_work_with_agrarian_moderates
+		icon = GFX_SOV_work_with_agrarian_moderates
+		relative_position_id = SOV_mechanize_farming_tools
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_mechanize_farming_tools
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = SOV_idea_sluggish_industrialization1
+				add_idea = SOV_idea_sluggish_industrialization3
+			}
+			swap_ideas = {
+				remove_idea = SOV_search_the_answer_in_lenin_1
+				add_idea = SOV_search_the_answer_in_lenin_2
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_improve_existing_transport_infrastrucure
+		icon = GFX_SOV_improve_existing_transport_infrastrucure
+		relative_position_id = SOV_abolish_sovkhozes
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_abolish_sovkhozes
+		}
+		prerequisite = {
+			focus = SOV_develop_new_state_markets
+		}
+		completion_reward = {
+			add_ideas = SOV_improve_existing_transport_infrastrucure
+		}
+	}
+	
+	focus = {
+		id = SOV_the_slow_push_towards_progress
+		icon = GFX_SOV_the_slow_push_towards_progress
+		relative_position_id = SOV_develop_new_state_markets
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_work_with_agrarian_moderates
+		}
+		prerequisite = {
+			focus = SOV_develop_new_state_markets
+		}
+		completion_reward = {
+			add_ideas = SOV_the_slow_push_towards_progress
+		}
+	}
+	
+	focus = {
+		id = SOV_russia_turning_over_a_new_leaf
+		icon = GFX_SOV_russia_turning_over_a_new_leaf
+		relative_position_id = SOV_improve_existing_transport_infrastrucure
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 3
+		}
+		cost = 5
+		available = {
+			num_of_factories > 120
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = SOV_improve_existing_transport_infrastrucure
+		}
+		prerequisite = {
+			focus = SOV_the_slow_push_towards_progress
+		}
+		completion_reward = {
+			remove_ideas = SOV_support_for_New_Economic_Policy_2
+			remove_ideas = SOV_expand_kolkhozes
+			remove_ideas = SOV_give_concessions_to_the_kulaks
+			remove_ideas = SOV_abolish_sovkhozes
+			remove_ideas = SOV_the_slow_push_towards_progress
+			add_ideas = SOV_communist_economy
 		}
 	}
 }

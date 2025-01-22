@@ -35,7 +35,308 @@
 
 #Rework - Troika
 SOV_comintern_decision = {
+	SOV_raise_funds = {
+		icon = GFX_decision_generic_fundraising
+		ai_will_do = {
+			base = 1
+			modifier = {
+				add = 50
+				check_variable = { SOV_money_for_comintern < 1000 }
+			}
+		}
+		visible = {
+			is_faction_leader = yes
+			NOT = { has_completed_focus = SOV_permanent_revolution }
+		}
+		days_remove = 30
+		cost = 30
+		modifier = {
+			political_power_factor = -0.025
+			consumer_goods_factor = 0.05
+		}
+		remove_effect = {
+			custom_effect_tooltip = SOV_raise_funds_tt
+			add_to_variable = { SOV_money_for_comintern = 200 }
+		}
+	}
+	SOV_raise_funds_1 = {
+		icon = GFX_decision_generic_fundraising
+		ai_will_do = {
+			base = 1
+			modifier = {
+				add = 50
+				check_variable = { SOV_money_for_comintern < 1000 }
+			}
+		}
+		visible = {
+			is_faction_leader = yes
+			has_completed_focus = SOV_permanent_revolution
+		}
+		days_remove = 20
+		cost = 20
+		modifier = {
+			political_power_factor = -0.025
+			consumer_goods_factor = 0.05
+		}
+		remove_effect = {
+			custom_effect_tooltip = SOV_raise_funds_tt
+			add_to_variable = { SOV_money_for_comintern = 100 }
+		}
+	}
+	SOV_spread_the_revolution_to_eastern_europe_decision = {
+		icon = GFX_decision_SWI_consolidate_council_power
+		target_trigger = {
+			FROM = {
+				NOT = { has_government = communism }
+				exists = yes
+				OR = {
+					original_tag = UKR
+					original_tag = UPR
+					original_tag = LIT
+					original_tag = BLR
+					original_tag = POL
+					original_tag = UBD
+					original_tag = EST
+					original_tag = LAT
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = SOV_spread_the_revolution_to_eastern_europe
+			NOT = { FROM = { has_country_flag = already_revolution_flag } }
+		}
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = { SOV_money_for_comintern > 299 }
+		}
+		custom_cost_text = SOV_need_300_tt
+		complete_effect = {
+			FROM = { add_timed_idea = { idea = SOV_Soviet_support_for_Italian_communists days = 100 } }
+			add_to_variable = { SOV_money_for_comintern = -300 }
+		}
+		ai_will_do = {
+			base = 10
+			modifier = {
+				add = 200
+				has_political_power > 100
+			}
+		}
+	}
+	SOV_revolution_in_eastern_europe = {
+		icon = GFX_decision_SWI_consolidate_council_power
+		visible = {
+			has_completed_focus = SOV_spread_the_revolution_to_eastern_europe
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		target_trigger = {
+			FROM = {
+				NOT = { has_government = communism }
+				exists = yes
+				OR = {
+					original_tag = UKR
+					original_tag = UPR
+					original_tag = LIT
+					original_tag = BLR
+					original_tag = POL
+					original_tag = UBD
+					original_tag = EST
+					original_tag = LAT
+				}
+			}
+		}
+		available = {
+			FROM = { communism > 0.5 }
+		}
+		custom_cost_trigger = {
+			has_political_power > 29
+			check_variable = { SOV_money_for_comintern > 499 }
+		}
+		fire_only_once = yes
+		custom_cost_text = SOV_need_500_tt
+		complete_effect = {
+			FROM = {
+				country_event = soviet_rework_revolution.1
+				set_country_flag = already_revolution_flag
+			}
+			add_to_variable = { SOV_money_for_comintern = -500 }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				FROM = { communism > 0.7 }
+				add = 50
+			}
+		}
+	}
+	SOV_SOV_Middle_East_Revolution_decision = {
+		icon = GFX_decision_SWI_consolidate_council_power
+		target_trigger = {
+			FROM = {
+				NOT = { has_government = communism }
+				NOT = { has_country_flag = already_revolution_flag }
+				exists = yes
+				OR = {
+					original_tag = PER
+					original_tag = AFG
+					original_tag = TUR
+					original_tag = IRQ
+					original_tag = SYR
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = SOV_Middle_East_Revolution
+			NOT = { FROM = { has_country_flag = already_revolution_flag } }
+		}
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = { SOV_money_for_comintern > 299 }
+		}
+		custom_cost_text = SOV_need_300_tt
+		complete_effect = {
+			FROM = { add_timed_idea = { idea = SOV_Soviet_support_for_Italian_communists days = 100 } }
+			add_to_variable = { SOV_money_for_comintern = -300 }
+		}
+		ai_will_do = {
+			base = 10
+			modifier = {
+				add = 200
+				has_political_power > 100
+			}
+		}
+	}
+	SOV_revolution_in_middle_east = {
+		icon = GFX_decision_SWI_consolidate_council_power
+		visible = {
+			has_completed_focus = SOV_Middle_East_Revolution
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		target_trigger = {
+			FROM = {
+				NOT = { has_country_flag = already_revolution_flag }
+				NOT = { has_government = communism }
+				exists = yes
+				OR = {
+					original_tag = PER
+					original_tag = AFG
+					original_tag = TUR
+					original_tag = IRQ
+					original_tag = SYR
+				}
+			}
+		}
+		available = {
+			FROM = { communism > 0.5 }
+		}
+		custom_cost_trigger = {
+			has_political_power > 29
+			check_variable = { SOV_money_for_comintern > 499 }
+		}
+		fire_only_once = yes
+		custom_cost_text = SOV_need_500_tt
+		complete_effect = {
+			FROM = {
+				country_event = soviet_rework_revolution.1
+				set_country_flag = already_revolution_flag
+			}
+			add_to_variable = { SOV_money_for_comintern = -500 }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				FROM = { communism > 0.7 }
+				add = 50
+			}
+		}
+	}
+	SOV_Approach_Africa_decision = {
+		icon = GFX_decision_SWI_consolidate_council_power
+		target_trigger = {
+			FROM = {
+				NOT = { has_government = communism }
+				exists = yes
+				OR = {
+					original_tag = ETH
+					original_tag = EGY
+					original_tag = SAF
+					original_tag = LIB
+					original_tag = SOM
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = SOV_Middle_East_Revolution
+			NOT = { FROM = { has_country_flag = already_revolution_flag } }
+		}
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = { SOV_money_for_comintern > 299 }
+		}
+		custom_cost_text = SOV_need_300_tt
+		complete_effect = {
+			FROM = { add_timed_idea = { idea = SOV_Soviet_support_for_Italian_communists days = 100 } }
+			add_to_variable = { SOV_money_for_comintern = -300 }
+		}
+		ai_will_do = {
+			base = 10
+			modifier = {
+				add = 200
+				has_political_power > 100
+			}
+		}
+	}
+	SOV_revolution_in_africa = {
+		icon = GFX_decision_SWI_consolidate_council_power
+		visible = {
+			has_completed_focus = SOV_Middle_East_Revolution
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		target_trigger = {
+			FROM = {
+				NOT = { has_government = communism }
+				NOT = { has_country_flag = already_revolution_flag }
+				exists = yes
+				OR = {
+					original_tag = ETH
+					original_tag = EGY
+					original_tag = SAF
+					original_tag = LIB
+					original_tag = SOM
+				}
+			}
+		}
+		available = {
+			FROM = { communism > 0.5 }
+		}
+		custom_cost_trigger = {
+			has_political_power > 29
+			check_variable = { SOV_money_for_comintern > 499 }
+		}
+		fire_only_once = yes
+		custom_cost_text = SOV_need_500_tt
+		complete_effect = {
+			FROM = {
+				country_event = soviet_rework_revolution.1
+				set_country_flag = already_revolution_flag
+			}
+			add_to_variable = { SOV_money_for_comintern = -500 }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				FROM = { communism > 0.7 }
+				add = 50
+			}
+		}
+	}
 	SOV_eastern_revolution = {
+		icon = GFX_decision_SOV_the_stalin_constitution
 		target_trigger = {
 			FROM = {
 				NOT = { has_government = communism }
@@ -118,6 +419,64 @@ SOV_comintern_decision = {
 			}
 			custom_effect_tooltip = SOV_promote_rallies_effects_tt
 			custom_effect_tooltip = SOV_promote_ideological_rallies_cd_tt
+		}
+	}
+	SOV_Supporting_the_Italian_Revolution = {
+		icon = GFX_decision_SWI_consolidate_council_power
+		visible = {
+			has_completed_focus = SOV_support_gramsci_and_bordiga
+			NOT = { ITA = { has_country_flag = already_revolution_flag } }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			NOT = { ITA = { has_government = communism } }
+		}
+		custom_cost_trigger = {
+			has_political_power > 14
+			check_variable = { SOV_money_for_comintern > 299 }
+		}
+		custom_cost_text = SOV_need_300_tt
+		complete_effect = {
+			ITA = { add_timed_idea = { idea = SOV_Soviet_support_for_Italian_communists days = 100 } }
+			add_to_variable = { SOV_money_for_comintern = -300 }
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	SOV_revolution_in_italy = {
+		icon = GFX_decision_SWI_consolidate_council_power
+		visible = {
+			has_completed_focus = SOV_support_gramsci_and_bordiga
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			NOT = { ITA = { has_government = communism } }
+			ITA = { communism > 0.5 }
+		}
+		custom_cost_trigger = {
+			has_political_power > 29
+			check_variable = { SOV_money_for_comintern > 499 }
+		}
+		fire_only_once = yes
+		custom_cost_text = SOV_need_500_tt
+		complete_effect = {
+			ITA = {
+				country_event = soviet_rework_revolution.1
+				set_country_flag = already_revolution_flag
+			}
+			add_to_variable = { SOV_money_for_comintern = -500 }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				ITA = { communism > 0.7 }
+				add = 50
+			}
 		}
 	}
 }
@@ -802,6 +1161,19 @@ SOV_tukachevsky_coup = {
 			hidden_effect = {
 				if = {
 					limit = {
+						check_variable = { SOV_tukachevsky_coup_progress_var = 100 }
+					}
+					random_list = {
+						100 = {
+							set_country_flag = SOV_Tukhachevsky_victory
+						}
+						0 = {
+							set_country_flag = SOV_Tukhachevsky_fail
+						}
+					}
+				}
+				else_if = {
+					limit = {
 						check_variable = { SOV_tukachevsky_coup_progress_var > 80 }
 					}
 					random_list = {
@@ -852,12 +1224,25 @@ SOV_tukachevsky_coup = {
 						}
 					}
 				}
-				else = {
+				else_if = {
+					limit = {
+						check_variable = { SOV_tukachevsky_coup_progress_var > 0 }
+					}
 					random_list = {
 						10 = {
 							set_country_flag = SOV_Tukhachevsky_victory
 						}
 						90 = {
+							set_country_flag = SOV_Tukhachevsky_fail
+						}
+					}
+				}
+				else = {
+					random_list = {
+						0 = {
+							set_country_flag = SOV_Tukhachevsky_victory
+						}
+						100 = {
 							set_country_flag = SOV_Tukhachevsky_fail
 						}
 					}
@@ -1497,6 +1882,12 @@ SOV_Operation_Bagration = {
 		days_remove = 70
 		visible = {
 			has_completed_focus = SOV_first_kiev
+			OR = {
+				has_war_with = UKR
+				has_war_with = UPR
+				has_war_with = USS
+			}
+			has_global_flag = second_world_war
 		}
 		allowed = {
 			OR = {
@@ -1511,6 +1902,10 @@ SOV_Operation_Bagration = {
 			}
 			NOT = { set_country_flag = other_offensive_active_flag }
 		}
+		custom_cost_trigger = {
+			command_power > 29
+		}
+		custom_cost_text = decision_cost_CP_30
 		complete_effect = {
 			add_ideas = SOV_kiev_offensive
 			set_country_flag = other_offensive_active_flag
@@ -1525,12 +1920,18 @@ SOV_Operation_Bagration = {
 		days_remove = 70
 		visible = {
 			has_completed_focus = SOV_then_minsk
+			has_war_with = BLR
+			has_global_flag = second_world_war
 		}
 		allowed = {
 			has_war_with = BLR
 			any_neighbor_country = BLR
 			NOT = { set_country_flag = other_offensive_active_flag }
 		}
+		custom_cost_trigger = {
+			command_power > 29
+		}
+		custom_cost_text = decision_cost_CP_30
 		complete_effect = {
 			add_ideas = SOV_minsk_offensive
 			set_country_flag = other_offensive_active_flag
@@ -1545,12 +1946,18 @@ SOV_Operation_Bagration = {
 		days_remove = 70
 		visible = {
 			has_completed_focus = SOV_now_warsaw
+			has_war_with = POL
+			has_global_flag = second_world_war
 		}
 		allowed = {
 			has_war_with = POL
 			any_neighbor_country = POL
 			NOT = { set_country_flag = other_offensive_active_flag }
 		}
+		custom_cost_trigger = {
+			command_power > 29
+		}
+		custom_cost_text = decision_cost_CP_30
 		complete_effect = {
 			add_ideas = SOV_warsaw_offensive
 			set_country_flag = other_offensive_active_flag
