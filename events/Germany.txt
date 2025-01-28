@@ -1654,11 +1654,12 @@ country_event = {
 				every_state = {
 					limit = {
 						is_owned_by = SOV
-						is_claimed_by = UKR
 						OR = {
 							state = 988
 							state = 245
 							state = 218
+							state = 260
+							state = 220
 						}
 					}
 					transfer_state_to = UKR
@@ -1674,11 +1675,12 @@ country_event = {
 				every_state = {
 					limit = {
 						is_owned_by = SOV
-						is_claimed_by = USS
 						OR = {
 							state = 988
 							state = 245
 							state = 218
+							state = 260
+							state = 220
 						}
 					}
 					transfer_state_to = USS
@@ -1694,11 +1696,12 @@ country_event = {
 				every_state = {
 					limit = {
 						is_owned_by = SOV
-						is_claimed_by = UPR
 						OR = {
 							state = 988
 							state = 245
 							state = 218
+							state = 260
+							state = 220
 						}
 					}
 					transfer_state_to = UPR
@@ -1706,27 +1709,14 @@ country_event = {
 			}
 			if = {
 				limit = {
-					MOS = { exists = no }
-				}
-				GER = {
-					if = {
-						limit = {
-							OR = {
-								has_dlc = "Together for Victory"
-								has_dlc = "Waking the Tiger"
-							}
-						}
-						set_autonomy = {
-							target = MOS
-							autonomous_state = autonomy_oberbefehlshaberiat
-							freedom_level = 0.5
-						}
-						else = {
-							puppet = MOS
-						}
+					RUS = {
+						is_in_faction_with = GER
+						NOT = { has_country_flag = anti_russia_war_loser }
 					}
 				}
-				MOS = { inherit_technology = GER }
+				RUS = {
+					drop_cosmetic_tag = yes
+				}
 				every_state = {
 					limit = {
 						is_owned_by = SOV
@@ -1753,10 +1743,8 @@ country_event = {
 							state = 256
 							state = 223
 							state = 222
-							state = 220
 							state = 258
 							state = 257
-							state = 260
 							state = 252
 							state = 255
 							state = 239
@@ -1765,10 +1753,28 @@ country_event = {
 							state = 829
 							state = 879
 							state = 880
+							state = 401
+							state = 251
+							state = 249
+							state = 652
+							state = 833
+							state = 400
+							state = 397
+							state = 651
+							state = 399
+							state = 398
+							state = 582
+							state = 573
+							state = 262
+							state = 958
+							state = 825
+							state = 581
+							state = 407
+							state = 406
 						}
 					}
-					add_core_of = MOS
-					transfer_state_to = MOS
+					add_core_of = RUS
+					transfer_state_to = RUS
 				}
 				if = {
 					limit = {
@@ -1788,8 +1794,8 @@ country_event = {
 								state = 216
 							}
 						}
-						add_core_of = MOS
-						transfer_state_to = MOS
+						add_core_of = RUS
+						transfer_state_to = RUS
 					}
 					else = {
 						every_state = {
@@ -1861,60 +1867,6 @@ country_event = {
 					transfer_state_to = WOL
 				}
 			}
-#			if = {
-#				limit = {
-#					URL = { exists = no }
-#				}
-#				GER = {
-#					if = {
-#						limit = {
-#							OR = {
-#								has_dlc = "Together for Victory"
-#								has_dlc = "Waking the Tiger"
-#							}
-#						}
-#						set_autonomy = {
-#							target = URL
-#							autonomous_state = autonomy_Military_District
-#							freedom_level = 0.3
-#						}
-#						else = {
-#							puppet = URL
-#						}
-#					}
-#				}
-#				URL = { inherit_technology = GER }
-#				every_state = {
-#					limit = {
-#						is_owned_by = SOV
-#						OR = {
-#							state = 401
-#							state = 251
-#							state = 249
-#							state = 652
-#							state = 833
-#							state = 400
-#							state = 397
-#							state = 651
-#							state = 399
-#							state = 398
-#							state = 582
-#							state = 573
-#							state = 262
-#							state = 958
-#							state = 825
-#							state = 581
-#						}
-#					}
-#					add_core_of = URL
-#				}
-#				every_state = {
-#					limit = {
-#						is_core_of = URL
-#					}
-#					transfer_state_to = URL
-#				}
-#			}
 			every_state = {
 				limit = {
 					is_owned_by = SOV
@@ -2050,9 +2002,14 @@ country_event = {
 				every_state = {
 					limit = {
 						is_owned_by = SOV
-						state = 988
+						OR = {
+							state = 988
+							state = 260
+							state = 220
+						}
 					}
-					transfer_state_to = MOS
+					transfer_state_to = RUS
+					add_core_of = RUS
 				}
 			}
 			if = {
@@ -2120,9 +2077,14 @@ country_event = {
 				every_state = {
 					limit = {
 						is_owned_by = SOV
-						state = 988
+						OR = {
+							state = 988
+							state = 260
+							state = 220
+						}
 					}
-					transfer_state_to = MOS
+					transfer_state_to = RUS
+					add_core_of = RUS
 				}
 			}
 			SOV = { annex_country = { target = SOV transfer_troops = yes } }

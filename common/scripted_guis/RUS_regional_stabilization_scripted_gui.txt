@@ -1,0 +1,195 @@
+scripted_gui = {
+	RUS_regional_stabilization_gui = {
+		window_name = "RUS_regional_stabilization_gui"
+		context_type = decision_category
+
+		visible = {
+			original_tag = RUS
+		}
+
+		properties = {
+			map_icon = {
+				frame = rus_stabil_map_v:gui_display_frame_rus
+				image = "GFX_RUS_stabilization_state_[?rus_stabil_map_v]"
+				x = RUS_map_x^rus_stabil_map_i
+				y = RUS_map_y^rus_stabil_map_i
+			}
+			map_button = {
+				frame = RUS_map_button_frame
+				image = "GFX_RUS_stabilization_state_selected_[?rus_stabil_map_v]"
+				x = RUS_map_x^rus_stabil_map_i
+				y = RUS_map_button_y
+			}
+		}
+
+		dynamic_lists = {
+			maps_gridbox = {
+				array = RUS_stabilization_map_array
+				entry_container = RUS_stabilization_GUI_Map_Entry
+				value = rus_stabil_map_v
+				index = rus_stabil_map_i
+			}
+		}
+
+		triggers = {
+			map_button_visible = {
+				set_temp_variable = { RUS_map_button_y = RUS_map_y^rus_stabil_map_i }
+				add_to_temp_variable = { RUS_map_button_y = 1 }
+
+				if = {
+					limit = {
+						check_variable = { RUS_selected_state = rus_stabil_map_v }
+					}
+					set_temp_variable = { RUS_map_button_frame = 2 }
+				}
+
+				else = {
+					set_temp_variable = { RUS_map_button_frame = 1 }
+				}
+			}
+		}
+
+		effects = {
+			map_button_click = {
+				set_variable = { RUS_selected_state = rus_stabil_map_v }
+				if = {
+					limit = {
+						check_variable = { RUS_selected_state = 213 }
+					}
+					set_variable = { RUS_map_info_x = 105 }
+					set_variable = { RUS_map_info_y = 60 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { RUS_selected_state = 214 }
+					}
+					set_variable = { RUS_map_info_x = 85 }
+					set_variable = { RUS_map_info_y = 60 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { RUS_selected_state = 195 }
+					}
+					set_variable = { RUS_map_info_x = 100 }
+					set_variable = { RUS_map_info_y = 80 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { RUS_selected_state = 219 }
+					}
+					set_variable = { RUS_map_info_x = 75 }
+					set_variable = { RUS_map_info_y = 90 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { RUS_selected_state = 829 }
+					}
+					set_variable = { RUS_map_info_x = 73 }
+					set_variable = { RUS_map_info_y = 85 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { RUS_selected_state = 249 }
+					}
+					set_variable = { RUS_map_info_x = 1000 } #too big
+					set_variable = { RUS_map_info_y = 1000 }
+
+					set_variable = { RUS_map_info_small_x = 75 } #real position
+					set_variable = { RUS_map_info_small_y = 90 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { RUS_selected_state = 825 }
+					}
+					set_variable = { RUS_map_info_x = 1000 } #too big
+					set_variable = { RUS_map_info_y = 1000 }
+
+					set_variable = { RUS_map_info_small_x = 80 } #real position
+					set_variable = { RUS_map_info_small_y = 80 }
+				}
+
+				set_country_flag = RUS_map_GUI_Info_Window_Visible
+			}
+		}
+	}
+
+	RUS_stabilization_GUI_Info_Window = {
+		context_type = player_context
+		window_name = "RUS_stabilization_GUI_Info_Window"
+
+		visible = {
+			has_country_flag = RUS_map_GUI_Info_Window_Visible
+		}
+
+		properties = {
+			rus_map_icon_info = {
+				frame = RUS_selected_state:gui_display_frame_rus
+				image = "GFX_RUS_stabilization_state_[?RUS_selected_state]"
+				x = RUS_map_info_x
+				y = RUS_map_info_y
+			}
+			rus_map_icon_info_small = {
+				frame = RUS_selected_state:gui_display_frame_rus
+				image = "GFX_RUS_stabilization_state_small_[?RUS_selected_state]"
+				x = RUS_map_info_small_x
+				y = RUS_map_info_small_y
+			}
+		}
+
+		triggers = {
+			rus_map_icon_info_small_visible = {
+				OR = {
+					check_variable = { RUS_selected_state = 249 }
+					check_variable = { RUS_selected_state = 825 }
+				}
+			}
+			stabilization_button_click_enabled = {
+				AND = {
+					OR = {
+						has_political_power > 15
+						has_political_power = 15
+					}
+					check_variable = { RUS_selected_state:stabilization_timer = 0 }
+					NOT = {
+						OR = {
+							check_variable = { RUS_selected_state:RUS_stabilization_var = 100 }
+							check_variable = { RUS_selected_state:gui_display_frame_rus = 6000 }
+						}
+					}
+				}
+			}
+		}
+
+		effects = {
+			close_click = {
+				clear_variable = RUS_selected_state
+				clr_country_flag = RUS_map_GUI_Info_Window_Visible
+			}
+			stabilization_button_click = {
+				hidden_effect = {
+					add_political_power = -15
+					add_stability = 0.025
+					add_to_variable = { RUS_selected_state:RUS_stabilization_var = 5 }
+					clamp_variable = {
+						var = RUS_selected_state:RUS_stabilization_var
+						min = 0
+						max = 100
+					}
+					stabilization_map_calculate_frame = yes
+					set_variable = { RUS_selected_state:stabilization_timer = 21 }
+				}
+				custom_effect_tooltip = RUS_stabilization_button_tt_loc
+			}
+		}
+	}
+
+	RUS_stabilization_GUI_Info_Window_Blocker = {
+		context_type = player_context
+		window_name = "RUS_stabilization_GUI_Info_Window_Blocker"
+		parent_window_name = RUS_stabilization_GUI_Info_Window
+
+		visible = {
+			check_variable = { RUS_selected_state:gui_display_frame_rus = 6000 }
+		}
+	}
+}

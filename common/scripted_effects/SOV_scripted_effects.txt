@@ -7560,6 +7560,106 @@ remove_15_tukachevsky_coup_progress_effect = {
 	}
 }
 
+#white army
+RUS_you_can_play_now = {
+	every_state = {
+		limit = {
+			OR = {
+				state = 195
+				state = 208
+				state = 244
+				state = 209
+				state = 263
+				state = 210
+				state = 246
+				state = 242
+				state = 243
+				state = 247
+				state = 264
+				state = 214
+				state = 219
+				state = 205
+				state = 248
+				state = 250
+				state = 253
+				state = 224
+				state = 254
+				state = 256
+				state = 223
+				state = 222
+				state = 258
+				state = 257
+				state = 252
+				state = 255
+				state = 239
+				state = 265
+				state = 351
+				state = 829
+				state = 879
+				state = 880
+			}
+		}
+		add_core_of = RUS
+	}
+	RUS = {
+		set_state_owner = 222
+		set_state_owner = 224
+		set_cosmetic_tag = league_of_all_russian_liberation
+		add_manpower = 50000
+	}
+	SOV = {
+		set_state_controller = 222
+		set_state_controller = 224
+	}
+	GER = {
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+			}
+			set_autonomy = {
+				target = RUS
+				autonomous_state = autonomy_protected_state
+				freedom_level = 0.2
+			}
+			else = {
+				puppet = RUS
+			}
+		}
+		add_to_faction = RUS
+	}
+	RUS = {
+		become_exiled_in = { target = GER legitimacy = 10 }
+		set_politics = {
+			ruling_party = democratic
+			last_election = "1936.1.1"
+			election_frequency = 48
+			elections_allowed = yes
+		}
+		set_popularities = {
+			democratic = 40
+			fascism = 36
+			neutrality = 14
+			communism = 10
+		}
+		declare_war_on = {
+			target = SOV
+			type = annex_everything
+		}
+	}
+	64 = {
+		create_unit = {
+			division = "name = \"is_name_ordered = yes\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
+			owner = RUS
+			count = 10
+		}
+		create_unit = {
+			division = "name = \"is_name_ordered = yes\" division_template = \"Kavaleriyskaya Diviziya\" start_experience_factor = 0.1"
+			owner = RUS
+			count = 3
+		}
+	}
+}
+
 #revolution world!
 ITA_revolution_by_soviet = {
 	random_other_country = {
@@ -7569,6 +7669,7 @@ ITA_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = ITA_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 UKR_UPR_revolution_by_soviet = {
@@ -7580,8 +7681,9 @@ UKR_UPR_revolution_by_soviet = {
 			}
 			has_war_with = ROOT
 		}
-		set_cosmetic_tag = USS
+		set_cosmetic_tag = UKR_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 LIT_revolution_by_soviet = {
@@ -7602,6 +7704,7 @@ BLR_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = BLR_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 POL_revolution_by_soviet = {
@@ -7612,6 +7715,7 @@ POL_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = POL_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 UBD_revolution_by_soviet = {
@@ -7622,6 +7726,7 @@ UBD_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = UBD_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 LAT_revolution_by_soviet = {
@@ -7632,6 +7737,7 @@ LAT_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = LAT_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 EST_revolution_by_soviet = {
@@ -7642,6 +7748,7 @@ EST_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = EST_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 PER_revolution_by_soviet = {
@@ -7652,6 +7759,7 @@ PER_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = PER_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 AFG_revolution_by_soviet = {
@@ -7662,6 +7770,7 @@ AFG_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = AFG_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 TUR_revolution_by_soviet = {
@@ -7672,6 +7781,7 @@ TUR_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = TUR_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 IRQ_revolution_by_soviet = {
@@ -7682,6 +7792,7 @@ IRQ_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = IRQ_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 SYR_revolution_by_soviet = {
@@ -7692,6 +7803,7 @@ SYR_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = SYR_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 ETH_revolution_by_soviet = {
@@ -7702,6 +7814,7 @@ ETH_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = ETH_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 EGY_revolution_by_soviet = {
@@ -7712,6 +7825,7 @@ EGY_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = EGY_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 LIB_revolution_by_soviet = {
@@ -7722,6 +7836,7 @@ LIB_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = LIB_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 SOM_revolution_by_soviet = {
@@ -7732,6 +7847,7 @@ SOM_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = SOM_communism
 	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }
 SAF_revolution_by_soviet = {
@@ -7742,5 +7858,105 @@ SAF_revolution_by_soviet = {
 		}
 		set_cosmetic_tag = SAF_communism
 	}
+	add_ideas = with_soviet_idea
+	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
+}
+CZE_revolution_by_soviet = {
+	random_other_country = {
+		limit = {
+			original_tag = CZE
+			has_war_with = ROOT
+		}
+		set_cosmetic_tag = CZE_communism
+	}
+	add_ideas = with_soviet_idea
+	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
+}
+FIN_revolution_by_soviet = {
+	random_other_country = {
+		limit = {
+			original_tag = FIN
+			has_war_with = ROOT
+		}
+		set_cosmetic_tag = FIN_communism
+	}
+	add_ideas = with_soviet_idea
+	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
+}
+SLO_revolution_by_soviet = {
+	random_other_country = {
+		limit = {
+			original_tag = SLO
+			has_war_with = ROOT
+		}
+		set_cosmetic_tag = SLO_communism
+	}
+	add_ideas = with_soviet_idea
+	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
+}
+HUN_revolution_by_soviet = {
+	random_other_country = {
+		limit = {
+			original_tag = HUN
+			has_war_with = ROOT
+		}
+		set_cosmetic_tag = HUN_communism
+	}
+	add_ideas = with_soviet_idea
+	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
+}
+AUS_revolution_by_soviet = {
+	random_other_country = {
+		limit = {
+			original_tag = AUS
+			has_war_with = ROOT
+		}
+		set_cosmetic_tag = AUS_communism
+	}
+	add_ideas = with_soviet_idea
+	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
+}
+ROM_revolution_by_soviet = {
+	random_other_country = {
+		limit = {
+			original_tag = ROM
+			has_war_with = ROOT
+		}
+		set_cosmetic_tag = ROM_communism
+	}
+	add_ideas = with_soviet_idea
+	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
+}
+SER_revolution_by_soviet = {
+	random_other_country = {
+		limit = {
+			original_tag = SER
+			has_war_with = ROOT
+		}
+		set_cosmetic_tag = SER_communism
+	}
+	add_ideas = with_soviet_idea
+	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
+}
+GRE_revolution_by_soviet = {
+	random_other_country = {
+		limit = {
+			original_tag = GRE
+			has_war_with = ROOT
+		}
+		set_cosmetic_tag = GRE_communism
+	}
+	add_ideas = with_soviet_idea
+	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
+}
+BUL_revolution_by_soviet = {
+	random_other_country = {
+		limit = {
+			original_tag = BUL
+			has_war_with = ROOT
+		}
+		set_cosmetic_tag = BUL_communism
+	}
+	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
 }

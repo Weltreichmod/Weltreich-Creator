@@ -46,7 +46,7 @@ SOV_the_red_army = {
 	
 }
 SOV_tukachevsky_coup = {
-	#icon = GFX_decision_category_SOV_propaganda
+	icon = GFX_decision_category_SOV_propaganda
 	allowed = { tag = SOV }
 	scripted_gui = SOV_tukachevsky_coup_gui_window
 	visible = {
@@ -66,31 +66,6 @@ the_great_struggle = {
 	}
 	priority = 110
 	scripted_gui = SOV_the_great_struggle_decision_ui
-	allowed = { tag = SOV }
-}
-
-sov_political_purge = {
-	icon = GFX_decision_category_SOV_paranoia
-	scripted_gui = sov_political_purge_system_ui
-	visible_when_empty = yes
-	visible = {
-		has_completed_focus = SOV_zinoviev_demotion
-		NOT = { has_global_flag = soviet_civilwar_focus }
-		NOT = { has_global_flag = second_russian_civilwar }
-	}
-	priority = 130
-	allowed = { tag = SOV }
-}
-
-sov_military_reform = {
-	icon = GFX_decision_category_military_operation
-	priority = 80
-	allowed = { tag = SOV }
-}
-
-SOV_reorganization_of_the_administration = {
-	icon = GFX_decision_category_generic_communism
-	priority = 80
 	allowed = { tag = SOV }
 }
 
@@ -137,38 +112,6 @@ Trotsky_Bukharin_Struggle_decisions = {
 	priority = 100
 }
 
-collect_the_legacy_of_the_White_Army = {
-	icon = GFX_decision_category_generic_foreign_policy
-	allowed = {
-		tag = SOV
-	}
-	priority = 100
-}
-
-Additional_Caucasus_state_integration = {
-	icon = GFX_decision_category_border_war
-	allowed = {
-		tag = SOV
-	}
-	priority = 120
-}
-
-Additional_Siberia_state_integration = {
-	icon = GFX_decision_category_border_war
-	allowed = {
-		tag = SOV
-	}
-	priority = 120
-}
-
-Additional_Far_East_state_integration = {
-	icon = GFX_decision_category_border_war
-	allowed = {
-		tag = SOV
-	}
-	priority = 120
-}
-
 SOV_Operation_of_penal_battalions_decision = {
 	icon = GFX_decision_category_eng_move_to_secure_the_dominions
 	allowed = {
@@ -206,6 +149,38 @@ SOV_Soviet_Union_decision = {
 }
 
 ###Russia
+RUS_regional_stabilization = {
+	icon = GFX_decision_category_generic_political_actions
+	allowed = {
+		original_tag = RUS
+	}
+	visible = {
+		has_idea = RUS_Remnants_of_Communism
+	}
+	scripted_gui = RUS_regional_stabilization_gui
+	visible_when_empty = yes
+	priority = 200
+}
+
+RUS_influence_of_germany = {
+	icon = GFX_decision_category_ger
+	allowed = { tag = RUS }
+	scripted_gui = RUS_influence_of_germany_gui_window
+	visible = {
+		RUS = { is_subject_of = GER }
+	}
+	priority = 190
+	visible_when_empty = yes
+}
+
+collect_the_legacy_of_the_White_Army = {
+	icon = GFX_decision_category_generic_foreign_policy
+	allowed = {
+		tag = RUS
+	}
+	priority = 100
+}
+
 RUS_wartime_mobilization = {
 	icon = GFX_decision_category_border_conflicts
 	allowed = {
@@ -229,22 +204,13 @@ RUS_equipment_support = {
 	priority = 100
 }
 
-RUS_seond_russian_civilwar = {
+RUS_contorl_the_state = {
 	icon = GFX_decision_category_border_conflicts
 	allowed = {
 		original_tag = RUS
 	}
 	visible = {
-		has_global_flag = second_russian_civilwar
+		has_war_with = SOV
 	}
-	priority = 130
-}
-
-RUS_political_struggle = {
-	icon = GFX_decision_category_SOV_permanent_revolution
-	visible = {
-		NOT = { has_country_flag = political_struggle }
-	}
-	priority = 110
-	allowed = { tag = RUS }
+	priority = 80
 }

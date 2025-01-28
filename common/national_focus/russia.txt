@@ -29,1843 +29,210 @@ focus_tree = {
 	continuous_focus_position = { x = 55 y = 2000 }
 	
 	focus = {
-		id = RUS_to_convene_the_provisional_assembly
-		icon = GFX_focus_generic_self_management
-		x = 0
+		id = RUS_kill_the_bolsheviks
+		icon = GFX_RUS_kill_the_bolsheviks
+		x = 5
 		y = 0
-		cost = 5
+		cost = 5.8
 		ai_will_do = {
 			factor = 10
 		}
-		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_INDUSTRY }
+		available_if_capitulated = yes
 		completion_reward = {
-			add_war_support = 0.1
-			add_stability = 0.1
-			hidden_effect = {
-				add_ideas = RUS_Constituent_Assembly_provisional
-			}
-			custom_effect_tooltip = RUS_Constituent_Assembly_provisional_effect
+			add_ideas = Russian_War_of_Liberation
 		}
 	}
 	
-	focus = {
-		id = RUS_industrial_mobilization
-		icon = GFX_goal_generic_construction2
-		relative_position_id = RUS_to_convene_the_provisional_assembly
-		x = -1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 10
-		}
-		prerequisite = {
-			focus = RUS_to_convene_the_provisional_assembly
-		}
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			random_owned_controlled_state = {
-				limit = {
-					is_core_of = ROOT
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-				}
-				add_extra_state_shared_building_slots = 1
-			}
-			random_owned_controlled_state = {
-				limit = {
-					is_core_of = ROOT
-				}
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-				}
-				add_extra_state_shared_building_slots = 1
-			}
-			random_owned_controlled_state = {
-				limit = {
-					is_core_of = ROOT
-				}
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-				}
-				add_extra_state_shared_building_slots = 1
-			}
-		}
-	}
-	
-	focus = {
-		id = RUS_No_warlords
-		icon = GFX_goal_generic_major_war
-		relative_position_id = RUS_to_convene_the_provisional_assembly
-		x = 1
-		y = 1
-		cost = 2
-		ai_will_do = {
-			factor = 10
-		}
-		prerequisite = {
-			focus = RUS_to_convene_the_provisional_assembly
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
-		completion_reward = {
-			add_ideas = RUS_united_nation
-		}
-	}
-	
-	focus = {
-		id = RUS_resurrection_of_the_Orthodox
-		icon = GFX_focus_GRE_an_orthodox_state
-		relative_position_id = RUS_industrial_mobilization
-		x = 1
-		y = 1
-		cost = 1
-		ai_will_do = {
-			factor = 10
-		}
-		prerequisite = {
-			focus = RUS_industrial_mobilization
-		}
-		prerequisite = {
-			focus = RUS_No_warlords
-		}
-		search_filters = { FOCUS_FILTER_STABILITY }
-		completion_reward = {
-			add_ideas = RUS_recognized_Orthodox
-		}
-	}
-	
-	focus = {
-		id = RUS_the_revival_of_the_former_Siberian_government
-		icon = GFX_focus_generic_military_dictatorship
-		relative_position_id = RUS_resurrection_of_the_Orthodox
-		x = -2
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				has_game_rule = {
-					rule = SOV_ai_behavior
-					option = WAY_TO_RUSSIAN_REPUBLIC
-				}
-				factor = 0
-			}
-		}
-		prerequisite = {
-			focus = RUS_resurrection_of_the_Orthodox
-		}
-		mutually_exclusive = {
-			focus = RUS_Russian_Constituent_Assembly
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_popularity = {
-				ideology = fascism
-				popularity = 0.1
-			}
-			hidden_effect = {
-				swap_ideas = {
-					remove_idea = RUS_Constituent_Assembly_provisional
-					add_idea = RUS_Constituent_Assembly_klochak_low
-				}
-			}
-			custom_effect_tooltip = RUS_the_revival_of_the_former_Siberian_government_effect
-			add_ideas = RUS_Premier_alexander_kolchak
-		}
-	}
-	
+	#Left
 	focus = {
 		id = RUS_strengthening_of_the_military_authorities
 		icon = GFX_focus_generic_military_mission
-		relative_position_id = RUS_the_revival_of_the_former_Siberian_government
-		x = -1
+		relative_position_id = RUS_kill_the_bolsheviks
+		x = -4
 		y = 1
-		cost = 5
+		cost = 5.8
 		ai_will_do = {
 			factor = 10
 		}
 		prerequisite = {
-			focus = RUS_the_revival_of_the_former_Siberian_government
-		}
-		bypass = {
-			NOT = { has_global_flag = second_russian_civilwar }
+			focus = RUS_kill_the_bolsheviks
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
 		completion_reward = {
 			add_ideas = to_support_military_authorities
 		}
 	}
 	
 	focus = {
-		id = RUS_Terrorists_in_Moscow
-		icon = GFX_focus_SOV_the_defense_of_moscow
-		relative_position_id = RUS_strengthening_of_the_military_authorities
-		x = -1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 10
-		}
-		prerequisite = {
-			focus = RUS_strengthening_of_the_military_authorities
-		}
-		bypass = {
-			OR = {
-				NOT = { has_global_flag = second_russian_civilwar }
-				controls_state = 219
-			}
-		}
-		completion_reward = {
-			SOV = { country_event = Soviet.49 }
-		}
-	}
-	
-	focus = {
-		id = RUS_more_divisions
-		icon = GFX_focus_generic_manpower
-		relative_position_id = RUS_strengthening_of_the_military_authorities
-		x = 1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 10
-		}
-		prerequisite = {
-			focus = RUS_strengthening_of_the_military_authorities
-		}
-		bypass = {
-			NOT = { has_global_flag = second_russian_civilwar }
-		}
-		completion_reward = {
-			random_owned_controlled_state = {
-				create_unit = {
-					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
-					owner = ROOT
-					count = 3
-				}
-				create_unit = {
-					division = "name = \"1. White Guard Cavalry\" division_template = \"White Guard Cavalry\" start_experience_factor = 0.1"
-					owner = ROOT
-					count = 1
-				}
-			}
-			random_owned_controlled_state = {
-				create_unit = {
-					division = "name = \"1. White Guard Corps\" division_template = \"White Guard Corps\" start_experience_factor = 0.1"
-					owner = ROOT
-					count = 3
-				}
-				create_unit = {
-					division = "name = \"1. White Guard Cavalry\" division_template = \"White Guard Cavalry\" start_experience_factor = 0.1"
-					owner = ROOT
-					count = 1
-				}
-			}
-		}
-	}
-	
-	focus = {
-		id = RUS_Total_mobilization_plan
-		icon = GFX_focus_secret_rearmament
-		relative_position_id = RUS_the_revival_of_the_former_Siberian_government
-		x = 1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 10
-		}
-		prerequisite = {
-			focus = RUS_the_revival_of_the_former_Siberian_government
-		}
-		bypass = {
-			NOT = { has_global_flag = second_russian_civilwar }
-		}
-		completion_reward = {
-			add_ideas = RUS_Total_mobilization_plan
-		}
-	}
-	
-	focus = {
-		id = RUS_operation_of_arms_factories
-		icon = GFX_focus_SOV_merge_plants
-		relative_position_id = RUS_Total_mobilization_plan
-		x = 1
-		y = 1
-		ai_will_do = {
-			factor = 10
-		}
-		cost = 5
-		prerequisite = {
-			focus = RUS_Total_mobilization_plan
-			focus = RUS_the_army_controlled_by_Assembly
-		}
-		bypass = {
-			NOT = { has_global_flag = second_russian_civilwar }
-		}
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			random_owned_controlled_state = {
-				limit = {
-					is_core_of = ROOT
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-				}
-				add_extra_state_shared_building_slots = 1
-			}
-			random_owned_controlled_state = {
-				limit = {
-					is_core_of = ROOT
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-				}
-				add_extra_state_shared_building_slots = 1
-			}
-		}
-	}
-	
-	focus = {
 		id = RUS_declaration_about_the_military
 		icon = GFX_goal_generic_military_sphere
-		relative_position_id = RUS_Total_mobilization_plan
-		x = 0
-		y = 2
-		cost = 5
+		relative_position_id = RUS_strengthening_of_the_military_authorities
+		x = -2
+		y = 1
+		cost = 5.8
 		ai_will_do = {
 			factor = 10
 		}
 		prerequisite = {
-			focus = RUS_Total_mobilization_plan
+			focus = RUS_strengthening_of_the_military_authorities
 		}
-		bypass = {
-			NOT = { has_global_flag = second_russian_civilwar }
-		}
+		available_if_capitulated = yes
 		completion_reward = {
 			add_ideas = RUS_declaration_about_the_military
 		}
 	}
 	
 	focus = {
-		id = RUS_Russian_Constituent_Assembly
-		icon = GFX_goal_support_democracy
-		relative_position_id = RUS_resurrection_of_the_Orthodox
+		id = RUS_Total_mobilization_plan
+		icon = GFX_focus_secret_rearmament
+		relative_position_id = RUS_strengthening_of_the_military_authorities
+		x = 0
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = RUS_strengthening_of_the_military_authorities
+		}
+		available_if_capitulated = yes
+		completion_reward = {
+			add_ideas = RUS_Total_mobilization_plan
+		}
+	}
+	
+	focus = {
+		id = RUS_support_from_germany
+		icon = GFX_RUS_support_from_germany
+		relative_position_id = RUS_strengthening_of_the_military_authorities
 		x = 2
 		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 10
-			modifier = {
-				has_game_rule = {
-					rule = SOV_ai_behavior
-					option = WAY_TO_RUSSIAN_STATE
-				}
-				factor = 0
-			}
-		}
-		prerequisite = {
-			focus = RUS_resurrection_of_the_Orthodox
-		}
-		mutually_exclusive = {
-			focus = RUS_the_revival_of_the_former_Siberian_government
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_popularity = {
-				ideology = democratic
-				popularity = 0.1
-			}
-			hidden_effect = {
-				swap_ideas = {
-					remove_idea = RUS_Constituent_Assembly_provisional
-					add_idea = RUS_Constituent_Assembly_krensky_low
-				}
-			}
-			custom_effect_tooltip = RUS_Russian_Constituent_Assembly_effect
-		}
-	}
-	
-	focus = {
-		id = RUS_the_army_controlled_by_Assembly
-		icon = GFX_focus_generic_little_entente
-		relative_position_id = RUS_Russian_Constituent_Assembly
-		x = -1
-		y = 1
-		cost = 5
+		cost = 5.8
 		ai_will_do = {
 			factor = 10
 		}
 		prerequisite = {
-			focus = RUS_Russian_Constituent_Assembly
+			focus = RUS_strengthening_of_the_military_authorities
 		}
-		bypass = {
-			NOT = { has_global_flag = second_russian_civilwar }
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_ideas = RUS_civil_control
-		}
-	}
-	
-	focus = {
-		id = RUS_wartime_construction_production_law
-		icon = GFX_goal_generic_construct_mil_factory
-		relative_position_id = RUS_the_army_controlled_by_Assembly
-		x = 0
-		y = 2
-		cost = 5
-		ai_will_do = {
-			factor = 10
-		}
-		prerequisite = {
-			focus = RUS_the_army_controlled_by_Assembly
-		}
-		bypass = {
-			NOT = { has_global_flag = second_russian_civilwar }
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_ideas = RUS_wartime_construction_production_law
-		}
-	}
-	
-	focus = {
-		id = RUS_mobilization_by_law
-		icon = GFX_goal_generic_forceful_treaty
-		relative_position_id = RUS_Russian_Constituent_Assembly
-		x = 1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 10
-		}
-		prerequisite = {
-			focus = RUS_Russian_Constituent_Assembly
-		}
-		bypass = {
-			NOT = { has_global_flag = second_russian_civilwar }
-		}
-		completion_reward = {
-			add_ideas = RUS_mobilization_by_law
-		}
-	}
-	
-	focus = {
-		id = RUS_special_engineering_squad
-		icon = GFX_goal_generic_construct_infrastructure
-		relative_position_id = RUS_mobilization_by_law
-		x = -1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 10
-		}
-		prerequisite = {
-			focus = RUS_mobilization_by_law
-		}
-		bypass = {
-			NOT = { has_global_flag = second_russian_civilwar }
-		}
-		completion_reward = {
-			add_ideas = RUS_special_engineering_squad
-		}
-	}
-	
-	focus = {
-		id = RUS_replenishing_equipment
-		icon = GFX_focus_SWI_issue_war_bonds
-		relative_position_id = RUS_mobilization_by_law
-		x = 1
-		y = 1
-		cost = 4
-		ai_will_do = {
-			factor = 10
-		}
-		prerequisite = {
-			focus = RUS_mobilization_by_law
-		}
-		bypass = {
-			NOT = { has_global_flag = second_russian_civilwar }
-		}
-		completion_reward = {
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = 2000
-				producer = RUS
-			}
-			add_equipment_to_stockpile = {
-				type = support_equipment
-				amount = 500
-				producer = RUS
-			}
-		}
-	}
-	
-	focus = {
-		id = RUS_establishment_of_the_Russian_government
-		icon = GFX_focus_SOV_patriarch_of_all_russia
-		x = 10
-		y = 0
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		available = { NOT = { has_global_flag = second_russian_civilwar } }
-		completion_reward = {
-			add_political_power = 50
-			remove_idea = RUS_Premier_alexander_kolchak
-			hidden_effect = {
-				country_event = { id = Soviet.53 days = 7 }
-				set_variable = { var = krensky_vote value = 0 }
-				set_variable = { var = klochak_vote value = 0 }
-				if = {
-					limit = {
-						has_idea = RUS_Constituent_Assembly_krensky_low
-					}
-					swap_ideas = {
-						remove_idea = RUS_Constituent_Assembly_krensky_low
-						add_idea = RUS_Constituent_Assembly_Official_krensky_1
-					}
-				}
-				if = {
-					limit = {
-						has_idea = RUS_Constituent_Assembly_klochak_low
-					}
-					swap_ideas = {
-						remove_idea = RUS_Constituent_Assembly_klochak_low
-						add_idea = RUS_Constituent_Assembly_Official_klochak_1
-					}
-				}
-			}
-		}
-	}
-	
-	focus = {
-		id = RUS_victory_of_klochak
-		icon = RUS_victory_of_klochak
-		relative_position_id = RUS_establishment_of_the_Russian_government
-		x = -2
-		y = 1
-		cost = 0
-		ai_will_do = {
-			factor = 6
-		}
-		mutually_exclusive = {
-			focus = RUS_victory_of_krensky
-		}
-		prerequisite = {
-			focus = RUS_establishment_of_the_Russian_government
-		}
-		available = { always = no }
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			set_country_flag = RUS_political_struggle
-			unlock_decision_category_tooltip = RUS_political_struggle
-			custom_effect_tooltip = RUS_establishment_of_the_Russian_government_effect
-		}
-	}
-	
-	focus = {
-		id = RUS_leader_of_the_Russian_army
-		icon = SOV_contacting_senior_officers
-		relative_position_id = RUS_victory_of_klochak
-		x = -1
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		prerequisite = {
-			focus = RUS_victory_of_klochak
-		}
-		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
-		completion_reward = {
-			add_war_support = 0.05
-		}
-	}
-	
-	focus = {
-		id = RUS_union_of_monarchists
-		icon = GFX_focus_SOV_zemsky_sobor
-		relative_position_id = RUS_victory_of_klochak
-		x = 1
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		prerequisite = {
-			focus = RUS_victory_of_klochak
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_popularity = {
-				ideology = fascism
-				popularity = 0.1
-			}
-			add_popularity = {
-				ideology = neutrality
-				popularity = 0.1
-			}
-		}
-	}
-	
-	focus = {
-		id = RUS_russian_state
-		icon = GFX_focus_ITA_generic_fascist_workers
-		relative_position_id = RUS_leader_of_the_Russian_army
-		x = 0
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		available = {
-			OR = {
-				has_idea = RUS_Constituent_Assembly_Official_klochak_2
-				has_idea = RUS_Constituent_Assembly_Official_klochak_3
-			}
-		}
-		prerequisite = {
-			focus = RUS_leader_of_the_Russian_army
-		}
-		prerequisite = {
-			focus = RUS_union_of_monarchists
-		}
-		mutually_exclusive = {
-			focus = RUS_russian_empire
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			set_cosmetic_tag = RUS_state_fascism
-			custom_effect_tooltip = political_struggle_will_end
-			clr_country_flag = RUS_political_struggle
-		}
-	}
-	
-	focus = {
-		id = RUS_iron_fist_rule
-		icon = GFX_goal_generic_political_pressure
-		relative_position_id = RUS_russian_state
-		x = 0
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		prerequisite = {
-			focus = RUS_russian_state
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_ideas = RUS_iron_fist_rule
-		}
-	}
-
-	focus = {
-		id = RUS_russian_empire
-		icon = GFX_focus_SOV_panslavic_nationalism
-		relative_position_id = RUS_union_of_monarchists
-		x = 0
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		available = {
-			OR = {
-				has_idea = RUS_Constituent_Assembly_Official_klochak_2
-				has_idea = RUS_Constituent_Assembly_Official_klochak_3
-			}
-		}
-		prerequisite = {
-			focus = RUS_leader_of_the_Russian_army
-		}
-		prerequisite = {
-			focus = RUS_union_of_monarchists
-		}
-		mutually_exclusive = {
-			focus = RUS_russian_state
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			set_cosmetic_tag = RUS_empire
-			custom_effect_tooltip = political_struggle_will_end
-			clr_country_flag = RUS_political_struggle
-		}
-	}
-	
-	focus = {
-		id = RUS_glory_of_the_Empire
-		icon = GFX_focus_SOV_transcaucasian_republic
-		relative_position_id = RUS_russian_empire
-		x = 0
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		prerequisite = {
-			focus = RUS_russian_empire
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_ideas = RUS_glory_of_the_Empire
-		}
-	}
-	
-	focus = {
-		id = RUS_victory_of_krensky
-		icon = GFX_goal_support_democracy
-		relative_position_id = RUS_establishment_of_the_Russian_government
-		x = 2
-		y = 1
-		cost = 0
-		ai_will_do = {
-			factor = 6
-		}
-		mutually_exclusive = {
-			focus = RUS_victory_of_klochak
-		}
-		prerequisite = {
-			focus = RUS_establishment_of_the_Russian_government
-		}
-		available = { always = no }
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			set_country_flag = RUS_political_struggle
-			unlock_decision_category_tooltip = RUS_political_struggle
-			custom_effect_tooltip = RUS_establishment_of_the_Russian_government_effect
-		}
-	}
-	
-	focus = {
-		id = RUS_outlawing_of_extremist_political_parties
-		icon = GFX_goal_generic_forceful_treaty
-		relative_position_id = RUS_victory_of_krensky
-		x = -1
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		prerequisite = {
-			focus = RUS_victory_of_krensky
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_popularity = {
-				ideology = fascism
-				popularity = -0.4
-			}
-		}
-	}
-	
-	focus = {
-		id = RUS_a_nation_by_its_people
-		icon = GFX_focus_generic_strike_at_democracy2
-		relative_position_id = RUS_victory_of_krensky
-		x = 1
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		prerequisite = {
-			focus = RUS_victory_of_krensky
-		}
-		search_filters = { FOCUS_FILTER_STABILITY }
-		completion_reward = {
-			add_stability = 0.05
-		}
-	}
-	
-	focus = {
-		id = RUS_guard_republic
-		icon = GFX_focus_SOV_the_true_tsars
-		relative_position_id = RUS_a_nation_by_its_people
-		x = 0
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		prerequisite = {
-			focus = RUS_a_nation_by_its_people
-		}
-		prerequisite = {
-			focus = RUS_outlawing_of_extremist_political_parties
-		}
-		mutually_exclusive = {
-			focus = RUS_aristocratic_republic
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_ideas = RUS_guard_republic
-			custom_effect_tooltip = political_struggle_will_end
-			clr_country_flag = RUS_political_struggle
-		}
-	}
-	
-	focus = {
-		id = RUS_expansion_of_State_Duma
-		icon = SOV_Dream_of_the_Russian_Republic
-		relative_position_id = RUS_guard_republic
-		x = 0
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		prerequisite = {
-			focus = RUS_guard_republic
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_ideas = expanded_State_Duma
-		}
-	}
-	
-	focus = {
-		id = RUS_aristocratic_republic
-		icon = GFX_focus_generic_self_management
-		relative_position_id = RUS_outlawing_of_extremist_political_parties
-		x = 0
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		prerequisite = {
-			focus = RUS_a_nation_by_its_people
-		}
-		prerequisite = {
-			focus = RUS_outlawing_of_extremist_political_parties
-		}
-		mutually_exclusive = {
-			focus = RUS_guard_republic
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_ideas = RUS_aristocratic_republic
-			custom_effect_tooltip = political_struggle_will_end
-			clr_country_flag = RUS_political_struggle
-		}
-	}
-	
-	focus = {
-		id = RUS_compromise_with_capitalists
-		icon = GFX_goal_generic_intelligence_exchange
-		relative_position_id = RUS_aristocratic_republic
-		x = 0
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 6
-		}
-		prerequisite = {
-			focus = RUS_aristocratic_republic
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_ideas = RUS_compromise_with_capitalists
-		}
-	}
-	
-	focus = {
-		id =  RUS_the_enemies_of_Central_Europe
-		icon = GFX_focus_POL_reassert_silesian_claims
-		cost = 5
-		x = 6
-		y = 6
-		ai_will_do = {
-			factor = 10
-		}
-		available = {
-			NOT = { has_idea = Treaty_of_Kazan1 }
-			OR = {
-				has_completed_focus = RUS_iron_fist_rule
-				has_completed_focus = RUS_glory_of_the_Empire
-				has_completed_focus = RUS_compromise_with_capitalists
-				has_completed_focus = RUS_expansion_of_State_Duma
-			}
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
 		completion_reward = {
 			GER = {
-				add_opinion_modifier = {
+				send_equipment = {
 					target = RUS
-					modifier = large_decrease
+					type = infantry_equipment
+					amount = 300
 				}
-			}
-			AUH = {
-				add_opinion_modifier = {
+				send_equipment = {
 					target = RUS
-					modifier = large_decrease
+					type = artillery_equipment
+					amount = 150
+				}
+				send_equipment = {
+					target = RUS
+					type = support_equipment
+					amount = 150
 				}
 			}
-			RUS = {
-				add_opinion_modifier = {
-					target = GER
-					modifier = large_decrease
-				}
-			}
-			RUS = {
-				add_opinion_modifier = {
-					target = AUH
-					modifier = large_decrease
-				}
-			}
-			create_faction = Commonwealth_of_Moscow
-			RUS = {
-				set_rule = {
-					can_create_factions = yes
-				}
-			}
+			custom_effect_tooltip = RUS_support_from_germany_tt
 		}
 	}
 	
 	focus = {
-		id = RUS_build_a_barrier
-		icon = GFX_goal_generic_fortify_city
-		relative_position_id = RUS_the_enemies_of_Central_Europe
-		cost = 10
-		x = 0
+		id = RUS_Expand_conscription
+		icon = GFX_SOV_Expand_conscription
+		relative_position_id = RUS_declaration_about_the_military
+		x = -1
 		y = 1
+		cost = 5.8
 		ai_will_do = {
 			factor = 10
 		}
-		available = { NOT = { has_idea = Treaty_of_Kazan1 } }
 		prerequisite = {
-			focus = RUS_the_enemies_of_Central_Europe
+			focus = RUS_declaration_about_the_military
 		}
-		bypass = {
-			OR = {
-				NOT = {
-					controls_state = 208
-				}
-				NOT = {
-					controls_state = 209
-				}
-				NOT = {
-					controls_state = 207
-				}
-				NOT = {
-					controls_state = 931
-				}
-				NOT = {
-					controls_state = 224
-				}
-				NOT = {
-					controls_state = 220
-				}
-				NOT = {
-					controls_state = 260
-				}
+		available_if_capitulated = yes
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RUS_declaration_about_the_military
+				add_idea = RUS_declaration_about_the_military_1
 			}
+		}
+	}
+	
+	#Right
+	focus = {
+		id = SOV_Dream_of_the_Russian_Republic
+		icon = SOV_Dream_of_the_Russian_Republic
+		relative_position_id = RUS_kill_the_bolsheviks
+		x = 4
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = RUS_kill_the_bolsheviks
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
 		completion_reward = {
-			208 = {
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 104
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 126
-					instant_build = yes
-				}
-			}
-			209 = {
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 9120
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 9408
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 11202
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 6324
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 11392
-					instant_build = yes
-				}
-			}
-			207 = {
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 3219
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 6326
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 6249
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 9323
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 1
-					province = 11220
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 1
-					province = 11241
-					instant_build = yes
-				}
-			}
-			931 = {
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 6354
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 11271
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 6233
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 6344
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 1
-					province = 9396
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 1
-					province = 11383
-					instant_build = yes
-				}
-			}
-			224 = {
-				add_building_construction = {
-					type = bunker
-					level = 1
-					province = 398
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 3226
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 3335
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 3306
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 228
-					instant_build = yes
-				}
-			}
-			220 = {
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 6254
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 580
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 11526
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 6543
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 1
-					province = 558
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 1
-					province = 6603
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 6577
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 534
-					instant_build = yes
-				}
-			}
-			260 = {
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 3527
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 510
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 6494
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 2
-					province = 437
-					instant_build = yes
-				}
-			}
+			add_political_power = 20
+			unlock_decision_category_tooltip = collect_the_legacy_of_the_White_Army
 		}
 	}
 	
 	focus = {
-		id = RUS_directions_to_asia
-		icon = GFX_focus_usa_focus_on_asia
-		cost = 5
-		x = 8
-		y = 6
+		id = RUS_anti_communism_propaganda
+		icon = GFX_RUS_Anti_Communist_propaganda
+		relative_position_id = SOV_Dream_of_the_Russian_Republic
+		x = -1
+		y = 1
+		cost = 5.8
 		ai_will_do = {
 			factor = 10
 		}
-		available = {
-			NOT = { has_idea = Treaty_of_Kazan1 }
-			OR = {
-				has_completed_focus = RUS_iron_fist_rule
-				has_completed_focus = RUS_glory_of_the_Empire
-				has_completed_focus = RUS_compromise_with_capitalists
-				has_completed_focus = RUS_expansion_of_State_Duma
-			}
+		prerequisite = {
+			focus = SOV_Dream_of_the_Russian_Republic
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
 		completion_reward = {
-			MON = { add_timed_idea = { idea = acceptance_of_anti_communist_diplomacy days = 1095 } }
-			TAN = { add_timed_idea = { idea = acceptance_of_anti_communist_diplomacy days = 1095 } }
+			add_ideas = RUS_anti_communism_propaganda
 		}
 	}
 	
 	focus = {
-		id = RUS_to_press_Tannu_Tuva_Mongolia
-		icon = GFX_goal_generic_major_war
-		relative_position_id = RUS_directions_to_asia
-		cost = 5
-		x = 0
+		id = RUS_delegate_full_power_to_arkhangelsky
+		icon = GFX_RUS_delegate_full_power_to_arkhangelsky
+		relative_position_id = SOV_Dream_of_the_Russian_Republic
+		x = 1
 		y = 1
+		cost = 5.8
 		ai_will_do = {
 			factor = 10
 		}
-		available = { NOT = { has_idea = Treaty_of_Kazan1 } }
 		prerequisite = {
-			focus = RUS_directions_to_asia
+			focus = SOV_Dream_of_the_Russian_Republic
 		}
-		search_filters = { FOCUS_FILTER_ANNEXATION }
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available_if_capitulated = yes
 		completion_reward = {
-			TAN = {	country_event = { id = Soviet.57 } }
-			MON = {	country_event = { id = Soviet.57 } }
-		}
-	}
-	
-	focus = {
-		id = RUS_hold_an_opportunity
-		icon = focus_attack_germany
-		relative_position_id = RUS_to_press_Tannu_Tuva_Mongolia
-		x = -1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 100
-				OR = {
-					FRA = { has_war_with = GER }
-					date > 1942.3.1
-				}
-			}
-		}
-		available = {
-			NOT = { has_idea = Treaty_of_Kazan1 }
-			has_civil_war = no
-			NOT = { has_war_with = SOV }
-			OR = {
-				AND = {
-					FRA = { has_war_with = GER }
-					NOT = { has_idea = RUS_Treaty_of_Hamburg }
-					NOT = { has_global_flag = second_russian_civilwar }
-				}
-				strength_ratio = {
-					tag = GER
-					ratio > 1.6
-				}
-			}
-		}
-		prerequisite = {
-			focus = RUS_to_press_Tannu_Tuva_Mongolia
-		}
-		prerequisite = {
-			focus = RUS_build_a_barrier
-		}
-		will_lead_to_war_with = GER
-		search_filters = { FOCUS_FILTER_ANNEXATION }
-		completion_reward = {
-			add_war_support = 0.1
-			add_stability = 0.1
-			declare_war_on = { target = GER type = take_core_state }
-			add_timed_idea = { idea = SOV_Great_Liberation_War days = 700 }
-			if = {
-				limit = {
-					UKR = {
-						exists = yes
-					}
-				}
-				declare_war_on = { target = UKR type = take_core_state }
-			}
-			if = {
-				limit = {
-					BLR = {
-						exists = yes
-					}
-				}
-				declare_war_on = { target = BLR type = take_core_state }
-			}
-			if = {
-				limit = {
-					UBD = {
-						exists = yes
-					}
-				}
-				declare_war_on = { target = UBD type = take_core_state }
-			}
-			if = {
-				limit = {
-					LIT = {
-						exists = yes
-					}
-				}
-				declare_war_on = { target = LIT type = take_core_state }
-			}
-			if = {
-				limit = {
-					POL = {
-						exists = yes
-					}
-				}
-				declare_war_on = { target = POL type = take_core_state }
-			}
-			add_named_threat = {
-				threat = 15
-				name = german_russian_war
+			add_trait = {
+				character = RUS_aleksey_arkhangelsky
+				 ideology = conservatism
+				 trait = Interim_Prime_Minister_of_Russia_and_Commander_in_Chief_of_the_Russian_Armed_Forces
 			}
 		}
 	}
 	
-	focus = {
-		id = RUS_Ukraine_Belarus_integration
-		icon = GFX_focus_generic_treaty
-		relative_position_id = RUS_hold_an_opportunity
-		x = -1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 100
-		}
-		available = {
-			has_war_with = UKR
-			has_war_with = BLR
-		}
-		prerequisite = {
-			focus = RUS_hold_an_opportunity
-		}
-		search_filters = { FOCUS_FILTER_ANNEXATION }
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 196
-						state = 200
-						state = 227
-						state = 228
-						state = 240
-						state = 221
-						state = 226
-						state = 225
-						state = 193
-						state = 259
-						state = 241
-						state = 203
-						state = 202
-						state = 194
-						state = 197
-						state = 192
-						state = 834
-						state = 198
-						state = 201
-						state = 199
-						state = 94
-						state = 93
-						state = 913
-						state = 204
-						state = 206
-						state = 95
-						state = 96
-						state = 91
-						state = 89
-						state = 975
-						state = 78
-						state = 766
-						state = 977
-						state = 978
-						state = 137
-						state = 990
-					}
-				}
-				add_claim_by = RUS
-			}
-		}
-	}
-	
-	focus = {
-		id = RUS_Emergency_Industry_Transfer_Act
-		icon = GFX_goal_generic_construction
-		relative_position_id = RUS_Ukraine_Belarus_integration
-		x = 0
-		y = 1
-		cost = 10
-		prerequisite = { focus = RUS_Baltic_area_integration focus = RUS_Ukraine_Belarus_integration }
-		available = {
-			controls_state = 219 #MOSCOW
-			has_equipment = { train_equipment > 119 } #20 trains per factory
-			surrender_progress > 0.1
-		}
-		ai_will_do = {
-			factor = 100
-		}
-		select_effect = {
-			219 = { #Moscow
-				remove_building = {
-					type = arms_factory
-					level = 1
-				}
-				remove_building = {
-					type = industrial_complex
-					level = 1
-				}
-			}
-			if = {
-				limit = {
-					controls_state = 195
-				}
-				195 = { #Leningrad
-					remove_building = {
-						type = arms_factory
-						level = 1
-					}
-					remove_building = {
-						type = industrial_complex
-						level = 1
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_full_control_of_state = 202
-				}
-				217 = { #Volgograd
-					remove_building = {
-						type = arms_factory
-						level = 1
-					}
-					remove_building = {
-						type = industrial_complex
-						level = 1
-					}
-				}
-			}
-		}
-		completion_reward = {
-			219 = { #Moscow
-				remove_building = {
-					type = arms_factory
-					level = 1
-				}
-				remove_building = {
-					type = industrial_complex
-					level = 1
-				}
-			}
-			if = {
-				limit = {
-					has_full_control_of_state = 195
-				}
-				195 = { #Leningrad
-					remove_building = {
-						type = arms_factory
-						level = 1
-					}
-					remove_building = {
-						type = industrial_complex
-						level = 1
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_full_control_of_state = 217
-				}
-				217 = { #Volgograd
-					remove_building = {
-						type = arms_factory
-						level = 1
-					}
-					remove_building = {
-						type = industrial_complex
-						level = 1
-					}
-				}
-			}
-			random_controlled_state = {
-				limit = {
-					SOV_is_industrial_relocation_destiny_state = yes
-				}
-				add_extra_state_shared_building_slots = 2
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = industrial_complex
-					level = 1
-					instant_build = yes
-				}
-				
-				hidden_effect = {
-					damage_building = { type = arms_factory damage = 0.5 }
-					damage_building = { type = industrial_complex damage = 0.5 }
-				}
-			}
-			if = {
-				limit = {
-					ROOT = { has_full_control_of_state = 195 } #Leningrad
-				}
-				random_controlled_state = { #Different State please thanks
-					limit = {
-						NOT = { state = PREV }
-						SOV_is_industrial_relocation_destiny_state = yes
-					}
-					add_extra_state_shared_building_slots = 2
-					add_building_construction = {
-						type = arms_factory
-						level = 1
-						instant_build = yes
-					}
-					add_building_construction = {
-						type = industrial_complex
-						level = 1
-						instant_build = yes
-					}
-					
-					hidden_effect = {
-						damage_building = { type = arms_factory damage = 0.5 }
-						damage_building = { type = industrial_complex damage = 0.5 }
-					}
-				}
-			}
-			if = {
-				limit = {
-					ROOT = { has_full_control_of_state = 217 } #Volgograd
-				}
-				random_controlled_state = { #Different State please thanks
-					limit = {
-						NOT = { state = PREV }
-						SOV_is_industrial_relocation_destiny_state = yes
-					}
-					add_extra_state_shared_building_slots = 2
-					add_building_construction = {
-						type = arms_factory
-						level = 1
-						instant_build = yes
-					}
-					add_building_construction = {
-						type = industrial_complex
-						level = 1
-						instant_build = yes
-					}
-					
-					hidden_effect = {
-						damage_building = { type = arms_factory damage = 0.5 }
-						damage_building = { type = industrial_complex damage = 0.5 }
-					}
-				}
-			}
-		}
-	}
-	
-	focus = {
-		id = RUS_Baltic_area_integration
-		icon = GFX_goal_generic_more_territorial_claims
-		relative_position_id = RUS_hold_an_opportunity
-		x = 1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 100
-		}
-		available = {
-			OR = {
-				has_war_with = UBD
-				has_war_with = EST
-				has_war_with = LAT
-			}
-			has_war_with = LIT
-		}
-		prerequisite = {
-			focus = RUS_hold_an_opportunity
-		}
-		search_filters = { FOCUS_FILTER_ANNEXATION }
-		completion_reward = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 912
-						state = 784
-						state = 11
-						state = 815
-						state = 189
-						state = 809
-						state = 190
-						state = 808
-						state = 12
-						state = 191
-						state = 13
-						state = 811
-						state = 813
-						state = 812
-						state = 814
-						state = 188
-						state = 763
-						state = 968
-					}
-				}
-				add_claim_by = RUS
-			}
-		}
-	}
-	
-	focus = {
-		id = RUS_the_defense_of_moscow
-		icon = GFX_focus_SOV_the_defense_of_moscow
-		prerequisite = { focus = RUS_Baltic_area_integration focus = RUS_Ukraine_Belarus_integration }
-		x = 0
-		y = 1
-		relative_position_id = RUS_Baltic_area_integration
-		cost = 5
-		ai_will_do = {
-			factor = 100
-		}
-		available = {
-			219 = {
-				is_controlled_by = ROOT
-				
-				OR = {
-					any_neighbor_state = {
-						NOT = { is_controlled_by = ROOT }
-					}
-
-					RUS = { surrender_progress > 0.1 } #Keep an eye on this, might be too cheesy
-				}
-			}
-		}
-		
-		search_filters = {FOCUS_FILTER_ARMY_XP}
-
-		completion_reward = {
-			army_experience = 15
-			219 = {
-				if = {
-					limit = {
-						ROOT = { controls_province = 3391 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 3
-						province = 3391
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 6414 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 3
-						province = 6414
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 9348 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 3
-						province = 9348
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 301 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 3
-						province = 301
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 9378 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 3
-						province = 9378
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 6283 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 3
-						province = 6283
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 3259 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 3
-						province = 3259
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 11282 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 3
-						province = 11282
-						instant_build = yes
-					}
-				}
-				if = {
-					limit = {
-						ROOT = { controls_province = 6380 }
-					}
-					add_building_construction = {
-						type = bunker
-						level = 4
-						province = 6380
-						instant_build = yes
-					}				
-				}
-			}
-		}
-	}
-	
-	focus = {
-		id = RUS_The_last_stand
-		icon = GFX_focus_SOV_restore_cossack_units
-		relative_position_id = RUS_Emergency_Industry_Transfer_Act
-		x = 1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 100
-		}
-		available = {
-			surrender_progress > 0.1
-		}
-		prerequisite = {
-			focus = RUS_Emergency_Industry_Transfer_Act
-		}
-		prerequisite = {
-			focus = RUS_the_defense_of_moscow
-		}
-		completion_reward = {
-			add_ideas = SOV_The_last_stand
-		}
-	}
-	
-	focus = {
-		id = RUS_squeeze_everything_out
-		icon = GFX_focus_SOV_organization_centralization_discipline
-		relative_position_id = RUS_The_last_stand
-		x = -1
-		y = 1
-		cost = 7.2
-		ai_will_do = {
-			factor = 100
-		}
-		prerequisite = {
-			focus = RUS_The_last_stand
-		}
-		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
-		completion_reward = {
-			add_war_support = 0.1
-			add_stability = 0.1
-			add_ideas = tot_economic_mobilisation
-			add_ideas = SOV_last_resort
-		}
-	}
-	
-	focus = {
-		id = RUS_expedited_conscription
-		icon = GFX_goal_generic_forceful_treaty
-		relative_position_id = RUS_The_last_stand
-		x = 1
-		y = 1
-		cost = 10
-		ai_will_do = {
-			factor = 100
-		}
-		prerequisite = {
-			focus = RUS_The_last_stand
-		}
-		available = {
-			controls_state = 408
-			controls_state = 874
-			controls_state = 590
-			has_war_with_major = yes
-		}
-		completion_reward = {
-			408 = {
-				create_unit = {
-					division = "division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
-					owner = ROOT
-					count = 5
-				}
-			}
-			874 = {
-				create_unit = {
-					division = "division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
-					owner = ROOT
-					count = 5
-				}
-			}
-			590 = {
-				create_unit = {
-					division = "division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.5 start_equipment_factor = 1.0"
-					owner = ROOT
-					count = 5
-				}
-			}
-		}
-	}
-	
+	#Industry
 	focus = {
 		id = RUS_Industrial_Restoration_Committee
 		icon = GFX_focus_SOV_organize_wreckers
-		relative_position_id = RUS_compromise_with_capitalists
-		x = 3
-		y = 2
+		x = 5
+		y = 10
 		cost = 10
 		ai_will_do = {
 			factor = 2

@@ -1,0 +1,371 @@
+#213 = 동카렐리아
+#214 = 아르한겔스크
+#195 = 노브고로드
+#219 = 중앙 러시아
+#829 = 서부 초원
+#249 = 자볼지예
+#825 = 코미-네네치야
+setup_rus_stabilization_map = {
+	hidden_effect = {
+		clear_array = RUS_stabilization_map_array
+		clear_array = RUS_map_x
+		clear_array = RUS_map_y
+
+		add_to_array = { RUS_stabilization_map_array = 213 }
+		add_to_array = { RUS_map_x = 60 }
+		add_to_array = { RUS_map_y = 160 }
+		set_variable = { 213:RUS_stabilization_var = 33 }
+
+		add_to_array = { RUS_stabilization_map_array = 214 }
+		add_to_array = { RUS_map_x = 119 }
+		add_to_array = { RUS_map_y = 214 }
+		set_variable = { 214:RUS_stabilization_var = 22 }
+
+		add_to_array = { RUS_stabilization_map_array = 195 }
+		add_to_array = { RUS_map_x = 40 }
+		add_to_array = { RUS_map_y = 309 }
+		set_variable = { 195:RUS_stabilization_var = 12 }
+
+		add_to_array = { RUS_stabilization_map_array = 219 }
+		add_to_array = { RUS_map_x = 90 }
+		add_to_array = { RUS_map_y = 341 }
+		set_variable = { 219:RUS_stabilization_var = 8 }
+
+		add_to_array = { RUS_stabilization_map_array = 829 }
+		add_to_array = { RUS_map_x = 184 }
+		add_to_array = { RUS_map_y = 408 }
+		set_variable = { 829:RUS_stabilization_var = 38 }
+
+		add_to_array = { RUS_stabilization_map_array = 249 }
+		add_to_array = { RUS_map_x = 218 }
+		add_to_array = { RUS_map_y = 286 }
+		set_variable = { 249:RUS_stabilization_var = 21 }
+
+		add_to_array = { RUS_stabilization_map_array = 825 }
+		add_to_array = { RUS_map_x = 204 }
+		add_to_array = { RUS_map_y = 124 }
+		set_variable = { 825:RUS_stabilization_var = 39 }
+	}
+	stabilization_map_calculate_frame = yes
+}
+
+stabilization_ai_MONTHLY = {
+	if = {
+		limit = {
+			is_ai = yes
+		}
+		for_each_loop = {
+			array = RUS_stabilization_map_array
+			if = {
+				limit = {
+					RUS = { has_political_power > 20 }
+				}
+				RUS = { add_political_power = -15 }
+				var:v = {
+					if = {
+						limit = {
+							NOT = {
+								check_variable = { RUS_stabilization_var = 100 }
+								check_variable = { gui_display_frame_rus = 6000 }
+							}
+						}
+						add_to_variable = { RUS_stabilization_var = 5 }
+					}
+					log = "[GetDate] - ([Root.GetTag]): added to [?v] result: [?RUS_stabilization_var]"
+				}
+			}
+		}
+	}
+}
+
+stabilization_map_calculate_frame = {
+	for_each_loop = {
+		array = RUS_stabilization_map_array
+		var:v = {
+			if = {
+				limit = {
+					check_variable = { RUS_stabilization_var < 25 }
+				}
+
+				set_variable = { rus_controlling_faction = 1 }
+	
+				set_variable = { gui_display_frame_rus = rus_controlling_faction }
+				multiply_variable = { gui_display_frame_rus = 1000 }
+
+			}
+			else_if = {
+				limit = {
+					AND = {
+						OR = {
+							check_variable = { RUS_stabilization_var > 25 }
+							check_variable = { RUS_stabilization_var = 25 }
+						}
+						check_variable = { RUS_stabilization_var < 50 }
+					}
+				}
+
+				set_variable = { rus_controlling_faction = 2 }
+	
+				set_variable = { gui_display_frame_rus = rus_controlling_faction }
+				multiply_variable = { gui_display_frame_rus = 1000 }
+
+			}
+			else_if = {
+				limit = {
+					AND = {
+						OR = {
+							check_variable = { RUS_stabilization_var > 50 }
+							check_variable = { RUS_stabilization_var = 50 }
+						}
+						check_variable = { RUS_stabilization_var < 75 }
+					}
+				}
+
+				set_variable = { rus_controlling_faction = 3 }
+	
+				set_variable = { gui_display_frame_rus = rus_controlling_faction }
+				multiply_variable = { gui_display_frame_rus = 1000 }
+
+			}
+			else_if = {
+				limit = {
+					AND = {
+						OR = {
+							check_variable = { RUS_stabilization_var > 75 }
+							check_variable = { RUS_stabilization_var = 75 }
+						}
+						check_variable = { RUS_stabilization_var < 100 }
+					}
+				}
+				
+				set_variable = { rus_controlling_faction = 4 }
+	
+				set_variable = { gui_display_frame_rus = rus_controlling_faction }
+				multiply_variable = { gui_display_frame_rus = 1000 }
+			}
+			else_if = {
+				limit = {
+					check_variable = { RUS_stabilization_var = 100 }
+				}
+				
+				set_variable = { rus_controlling_faction = 5 }
+	
+				set_variable = { gui_display_frame_rus = rus_controlling_faction }
+				multiply_variable = { gui_display_frame_rus = 1000 }
+			}
+
+			if = {
+				limit = {
+					RUS = {
+						OR = {
+							AND = {
+								check_variable = { v = 213 }
+								NOT = {
+									215 = {
+										is_controlled_by = RUS
+									}
+									213 = {
+										is_controlled_by = RUS
+									}
+									216 = {
+										is_controlled_by = RUS
+									}
+								}
+							}
+							AND = {
+								check_variable = { v = 214 }
+								NOT = {
+									879 = {
+										is_controlled_by = RUS
+									}
+									214 = {
+										is_controlled_by = RUS
+									}
+									351 = {
+										is_controlled_by = RUS
+									}
+									880 = {
+										is_controlled_by = RUS
+									}
+									958 = {
+										is_controlled_by = RUS
+									}
+								}
+							}
+							AND = {
+								check_variable = { v = 195 }
+								NOT = {
+									195 = {
+										is_controlled_by = RUS
+									}
+									208 = {
+										is_controlled_by = RUS
+									}
+									244 = {
+										is_controlled_by = RUS
+									}
+									264 = {
+										is_controlled_by = RUS
+									}
+									263 = {
+										is_controlled_by = RUS
+									}
+									209 = {
+										is_controlled_by = RUS
+									}
+									210 = {
+										is_controlled_by = RUS
+									}
+									246 = {
+										is_controlled_by = RUS
+									}
+									247 = {
+										is_controlled_by = RUS
+									}
+									242 = {
+										is_controlled_by = RUS
+									}
+									243 = {
+										is_controlled_by = RUS
+									}
+								}
+							}
+							AND = {
+								check_variable = { v = 219 }
+								NOT = {
+									219 = {
+										is_controlled_by = RUS
+									}
+									248 = {
+										is_controlled_by = RUS
+									}
+									253 = {
+										is_controlled_by = RUS
+									}
+									205 = {
+										is_controlled_by = RUS
+									}
+									224 = {
+										is_controlled_by = RUS
+									}
+									223 = {
+										is_controlled_by = RUS
+									}
+									222 = {
+										is_controlled_by = RUS
+									}
+									258 = {
+										is_controlled_by = RUS
+									}
+									220 = {
+										is_controlled_by = RUS
+									}
+									988 = {
+										is_controlled_by = RUS
+									}
+									260 = {
+										is_controlled_by = RUS
+									}
+									257 = {
+										is_controlled_by = RUS
+									}
+									254 = {
+										is_controlled_by = RUS
+									}
+									255 = {
+										is_controlled_by = RUS
+									}
+									252 = {
+										is_controlled_by = RUS
+									}
+								}
+							}
+							AND = {
+								check_variable = { v = 829 }
+								NOT = {
+									265 = {
+										is_controlled_by = RUS
+									}
+									829 = {
+										is_controlled_by = RUS
+									}
+									239 = {
+										is_controlled_by = RUS
+									}
+									407 = {
+										is_controlled_by = RUS
+									}
+									406 = {
+										is_controlled_by = RUS
+									}
+									401 = {
+										is_controlled_by = RUS
+									}
+									251 = {
+										is_controlled_by = RUS
+									}
+									652 = {
+										is_controlled_by = RUS
+									}
+								}
+							}
+							AND = {
+								check_variable = { v = 249 }
+								NOT = {
+									249 = {
+										is_controlled_by = RUS
+									}
+									250 = {
+										is_controlled_by = RUS
+									}
+									256 = {
+										is_controlled_by = RUS
+									}
+									833 = {
+										is_controlled_by = RUS
+									}
+									651 = {
+										is_controlled_by = RUS
+									}
+									582 = {
+										is_controlled_by = RUS
+									}
+									573 = {
+										is_controlled_by = RUS
+									}
+									398 = {
+										is_controlled_by = RUS
+									}
+									399 = {
+										is_controlled_by = RUS
+									}
+									400 = {
+										is_controlled_by = RUS
+									}
+								}
+							}
+							AND = {
+								check_variable = { v = 825 }
+								NOT = {
+									397 = {
+										is_controlled_by = RUS
+									}
+									825 = {
+										is_controlled_by = RUS
+									}
+									262 = {
+										is_controlled_by = RUS
+									}
+									581 = {
+										is_controlled_by = RUS
+									}
+								}
+							}
+						}
+					}
+				}
+				set_variable = { gui_display_frame_rus = 6000 }
+			}
+		}
+	}
+}

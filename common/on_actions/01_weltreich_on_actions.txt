@@ -2098,6 +2098,8 @@ on_actions = {
 							ruling_party = democratic
 							elections_allowed = yes
 							election_frequency = 48
+							long_name = CHI_JAP_party_long
+							name = CHI_JAP_party
 						}
 					}
 				}
@@ -2335,6 +2337,58 @@ on_actions = {
 	}
 	on_declare_war = {
 		effect = {
+		}
+	}
+	on_civil_war_end = {
+		effect = {
+			if = {
+				limit = {
+					ROOT = { tag = USC }
+					FROM = { original_tag = UKR }
+				}
+				SOV = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = USC
+							autonomous_state = autonomy_protected_state
+							freedom_level = 0.4
+						}
+						else = {
+							puppet = USC
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					ROOT = { tag = BLC }
+					FROM = { original_tag = BLR }
+				}
+				SOV = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = BLC
+							autonomous_state = autonomy_protected_state
+							freedom_level = 0.4
+						}
+						else = {
+							puppet = BLC
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					ROOT = { has_idea = with_soviet_idea }
+				}
+				SOV = { add_to_faction = ROOT }
+			}
 		}
 	}
 	on_join_faction = {

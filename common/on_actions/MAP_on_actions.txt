@@ -4,6 +4,9 @@ on_actions = {
 			TUR = {
 				setup_central_map = yes
 			}
+			RUS = {
+				setup_rus_stabilization_map = yes
+			}
 		}
 	}
 	on_daily_TUR = {
@@ -28,6 +31,11 @@ on_actions = {
 			centralization_ai_MONTHLY = yes
 		}
 	}
+	on_monthly_RUS = {
+		effect = {
+			centralization_ai_MONTHLY = yes
+		}
+	}
 	on_state_control_changed = {
 		effect = {
 			if = {
@@ -40,6 +48,34 @@ on_actions = {
 				}
 				TUR = {
 					central_map_calculate_frame = yes
+				}
+			}
+			if = {
+				limit = {
+					FROM.FROM = {
+						every_state = {
+							is_owned_by = RUS
+						}
+					}
+				}
+				RUS = {
+					stabilization_map_calculate_frame = yes
+				}
+			}
+		}
+	}
+	on_daily_RUS = {
+		effect = {
+			for_each_loop = {
+				array = RUS_stabilization_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { stabilization_timer > 0 }
+							check_variable = { stabilization_timer < 12 }
+						}
+						subtract_from_variable = { stabilization_timer = 1 }
+					}
 				}
 			}
 		}

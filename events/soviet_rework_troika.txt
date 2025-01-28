@@ -4,7 +4,7 @@
 
 add_namespace = soviet_rework_troika
 add_namespace = soviet_rework_revolution
-add_namespace = soviet_rework_troika_white
+add_namespace = soviet_rework_white
 
 country_event = {
 	picture = Singing
@@ -250,6 +250,7 @@ country_event = {
 	title = soviet_rework_troika.009.t
 	desc = soviet_rework_troika.009.d
 	is_triggered_only = yes
+	retire_character = SOV_mikhail_tukhachevsky
 	option = {
 		name = soviet_rework_troika.009.a
 		ai_chance = {
@@ -710,7 +711,6 @@ country_event = {
 	is_triggered_only = yes
 	option = { # Accept
 		name = Soviet.57.a
-		ai_chance = { factor = 100 }
 		SOV = {
 			country_event = { id = soviet_rework_troika.030 }
 		}
@@ -740,11 +740,17 @@ country_event = {
 				}
 			}
 		}
+		ai_chance = {
+			base = 3
+		}
 	}
 	option = { # Refuse
 		name = Soviet.57.b
 		SOV = {
 			country_event = { id = soviet_rework_troika.031 }
+		}
+		ai_chance = {
+			base = 0
 		}
 	}
 }
@@ -757,6 +763,9 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = Soviet.58.a
+		ai_chance = {
+			base = 3
+		}
 	}
 }
 
@@ -769,6 +778,98 @@ country_event = {
 	option = {
 		RUS = {	create_wargoal = { type = annex_everything target = FROM } }
 		name = Soviet.59.a
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.032
+	title = soviet_rework_troika.032.t
+	desc = soviet_rework_troika.032.d
+	picture = GFX_pensions_for_veterans
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.032.a
+		add_timed_idea = { idea = pensions_for_veterans days = 365 }
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.033
+	title = soviet_rework_troika.033.t
+	desc = soviet_rework_troika.033.d
+	picture = GFX_victory_worker
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.033.a
+		if = {
+			limit = {
+				NOT = {
+					has_country_leader = {
+						character = SOV_mikhail_tukhachevsky
+						ruling_only = yes
+					}
+					has_country_leader = {
+						character = SOV_lev_trotsky
+						ruling_only = yes
+					}
+				}
+				OR = {
+					has_idea = tot_economic_mobilisation
+					has_idea = war_economy
+					has_idea = partial_economic_mobilisation
+					has_idea = low_economic_mobilisation
+				}
+			}
+			hidden_effect = {
+				remove_ideas = tot_economic_mobilisation
+				remove_ideas = war_economy
+				remove_ideas = partial_economic_mobilisation
+				remove_ideas = low_economic_mobilisation
+			}
+			add_ideas = civilian_economy
+		}
+		else = {
+			add_stability = 0.05
+		}
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.034
+	title = soviet_rework_troika.034.t
+	desc = soviet_rework_troika.034.d
+	picture = GFX_sov_parliment
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.034.a
+		add_war_support = 0.05
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.035
+	title = soviet_rework_troika.035.t
+	desc = soviet_rework_troika.035.d
+	picture = GFX_sov_parliment
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.035.a
+		add_political_power = 50
+		ai_chance = {
+			base = 3
+		}
 	}
 }
 
@@ -873,6 +974,60 @@ country_event = {
 					ROOT = { original_tag = SYR }
 				}
 				SYR_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = CZE }
+				}
+				CZE_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = FIN }
+				}
+				FIN_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = SLO }
+				}
+				SLO_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = HUN }
+				}
+				HUN_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = AUS }
+				}
+				AUS_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = ROM }
+				}
+				ROM_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = SER }
+				}
+				SER_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = GRE }
+				}
+				GRE_revolution_by_soviet = yes
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = BUL }
+				}
+				BUL_revolution_by_soviet = yes
 			}
 		}
 		else_if = {
@@ -1069,14 +1224,19 @@ country_event = {
 }
 
 country_event = {
-	picture = GFX_SOV_russina_white_tokyo
-	id = soviet_rework_troika_white.001
-	title = soviet_rework_troika_white.001.t
-	desc = soviet_rework_troika_white.001.d
-	fire_only_once = yes
+	picture = GFX_report_event_generic_conference
+	id = soviet_rework_revolution.2
+	title = soviet_rework_revolution.2.t
+	desc = soviet_rework_revolution.2.d
 	is_triggered_only = yes
 	option = {
-		name = soviet_rework_troika_white.001.a
+		name = soviet_rework_revolution.2.a
+		set_politics = {
+			ruling_party = communism
+			elections_allowed = no
+		}
+		add_ideas = with_soviet_idea
+		SOV = { add_to_faction = ROOT }
 		ai_chance = {
 			factor = 10
 		}
@@ -1084,74 +1244,137 @@ country_event = {
 }
 
 country_event = {
-	picture = GFX_SOV_white_russian_propaganda_bejing
-	id = soviet_rework_troika_white.002
-	title = soviet_rework_troika_white.002.t
-	desc = soviet_rework_troika_white.002.d
+	picture = GFX_league_of_all_russian_liberation
+	id = soviet_rework_white.001
+	title = soviet_rework_white.001.t
+	desc = soviet_rework_white.001.d
 	fire_only_once = yes
 	is_triggered_only = yes
 	option = {
-		name = soviet_rework_troika_white.002.a
+		name = soviet_rework_white.001.a
+		RUS_you_can_play_now = yes
 		ai_chance = {
 			factor = 10
+		}
+	}
+	option = {
+		name = soviet_rework_white.001.b
+		RUS_you_can_play_now = yes
+		RUS = { change_tag_from = ROOT }
+		ai_chance = {
+			factor = 0
 		}
 	}
 }
 
 country_event = {
-	picture = GFX_SOV_white_russian_propaganda_kyev
-	id = soviet_rework_troika_white.003
-	title = soviet_rework_troika_white.003.t
-	desc = soviet_rework_troika_white.003.d
-	fire_only_once = yes
+	picture = GFX_report_event_generic_rifles
+	id = soviet_rework_white.002
+	title = soviet_rework_white.002.t
+	desc = soviet_rework_white.002.d
 	is_triggered_only = yes
 	option = {
-		name = soviet_rework_troika_white.003.a
+		name = soviet_rework_white.002.a
+		RUS = { country_event = soviet_rework_white.003 }
+		send_equipment = {
+			target = RUS
+			type = infantry_equipment
+			amount = 800
+		}
+		send_equipment = {
+			target = RUS
+			type = artillery_equipment
+			amount = 100
+		}
+		send_equipment = {
+			target = RUS
+			type = support_equipment
+			amount = 100
+		}
 		ai_chance = {
-			factor = 10
+			base = 10
+		}
+	}
+	option = {
+		name = soviet_rework_white.002.b
+		ai_chance = {
+			base = 1
 		}
 	}
 }
 
 country_event = {
-	picture = GFX_SOV_white_russian_propaganda_kyev
-	id = soviet_rework_troika_white.004
-	title = soviet_rework_troika_white.004.t
-	desc = soviet_rework_troika_white.004.d
-	fire_only_once = yes
+	picture = GFX_report_event_generic_rifles
+	id = soviet_rework_white.003
+	title = soviet_rework_white.003.t
+	desc = soviet_rework_white.003.d
 	is_triggered_only = yes
 	option = {
-		name = soviet_rework_troika_white.004.a
-		ai_chance = {
-			factor = 10
+		name = soviet_rework_white.003.a
+		effect_tooltip = {
+			GER = {
+				send_equipment = {
+					target = RUS
+					type = infantry_equipment
+					amount = 200
+				}
+				send_equipment = {
+					target = RUS
+					type = artillery_equipment
+					amount = 100
+				}
+				send_equipment = {
+					target = RUS
+					type = support_equipment
+					amount = 100
+				}
+			}
 		}
-	}
-		option = {
-		name = soviet_rework_troika_white.004.b
+		add_to_variable = { RUS_influence_of_germany_progress_var = 2.5 }
+		custom_effect_tooltip = RUS_influence_of_germany_progress_var_add_2_5
 		ai_chance = {
-			factor = 10
+			base = 10
 		}
 	}
 }
 
 country_event = {
-	picture = GFX_SOV_white_russian_propaganda_kyev
-	id = soviet_rework_troika_white.005
-	title = soviet_rework_troika_white.005.t
-	desc = soviet_rework_troika_white.005.d
-	fire_only_once = yes
+	picture = GFX_report_event_generic_rifles
+	id = soviet_rework_white.004
+	title = soviet_rework_white.004.t
+	desc = soviet_rework_white.004.d
 	is_triggered_only = yes
 	option = {
-		name = soviet_rework_troika_white.005.a
+		name = soviet_rework_white.004.a
 		ai_chance = {
-			factor = 5
+			base = 10
 		}
 	}
-		option = {
-		name = soviet_rework_troika_white.005.b
-		SOV = { country_event = { days = 1 id = soviet_rework_troika_white.004 } }
+}
+
+country_event = {
+	picture = GFX_report_event_generic_rifles
+	id = soviet_rework_white.005
+	title = soviet_rework_white.005.t
+	desc = soviet_rework_white.005.d
+	is_triggered_only = yes
+	trigger = {
+		has_idea = RUS_Remnants_of_Communism
+		original_tag = RUS
+	}
+	option = {
+		name = soviet_rework_white.005.a
+		add_stability = -0.025
+		hidden_effect = {
+			if = {
+				limit = {
+					has_idea = RUS_Remnants_of_Communism
+				}
+				country_event = { id = soviet_rework_white.005 days = 35 }
+			}
+		}
 		ai_chance = {
-			factor = 5
+			base = 10
 		}
 	}
 }

@@ -80,7 +80,7 @@ focus_tree = {
 		y = 1
 		cost = 2
 		ai_will_do = {
-			factor = 6
+			factor = 16
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -104,7 +104,7 @@ focus_tree = {
 		y = 1
 		cost = 2
 		ai_will_do = {
-			factor = 6
+			factor = 16
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -128,7 +128,7 @@ focus_tree = {
 		y = 1
 		cost = 2
 		ai_will_do = {
-			factor = 6
+			factor = 16
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -152,7 +152,7 @@ focus_tree = {
 		y = 1
 		cost = 2
 		ai_will_do = {
-			factor = 6
+			factor = 16
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -183,7 +183,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 6
+			factor = 16
 		}
 		available = {
 			custom_trigger_tooltip = {
@@ -555,6 +555,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			custom_effect_tooltip = SOV_support_gramsci_and_bordiga_tt
+			set_country_flag = sov_europe_decisions_open
 		}
 	}
 	
@@ -605,7 +606,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 6
+			factor = 16
 		}
 		available = {
 			custom_trigger_tooltip = {
@@ -1035,7 +1036,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 6
+			factor = 16
 		}
 		available = {
 			custom_trigger_tooltip = {
@@ -1353,8 +1354,8 @@ focus_tree = {
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = SOV_Arrest_the_Stalin_tt
-				check_variable = { SOV_trotskys_influence < 0.8 }
-				check_variable = { SOV_stalins_influence > 0.1 }
+				check_variable = { SOV_trotskys_influence > 0.8 }
+				check_variable = { SOV_stalins_influence < 0.1 }
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
@@ -2991,6 +2992,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			custom_effect_tooltip = SOV_agitate_for_revolutions_in_eastern_europe_effect_tt
+			set_country_flag = sov_europe_decisions_open
 		}
 	}
 	
@@ -3577,6 +3579,10 @@ focus_tree = {
 			add_named_threat = {
 				threat = 15
 				name = german_soviet_war
+			}
+			hidden_effect = {
+				country_event = { id = soviet_rework_white.001 days = 3 }
+				RUS = { country_event = { id = soviet_rework_white.005 days = 21 } }
 			}
 		}
 	}
@@ -5866,6 +5872,141 @@ focus_tree = {
 		}
 	}
 	
+	focus = {
+		id = SOV_Doctrine_for_Bombing
+		icon = GFX_SOV_Doctrine_for_Bombing
+		relative_position_id = SOV_air_force_reform
+		x = 5
+		y = 2
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_air_force_reform
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = SOV_Doctrine_for_Bombing
+				cost_reduction = 0.25
+				uses = 1
+				category = cat_operational_integrity
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_destroy_enemy_camp
+		icon = GFX_SOV_destroy_enemy_camp
+		relative_position_id = SOV_Doctrine_for_Bombing
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Doctrine_for_Bombing
+		}
+		mutually_exclusive = {
+			focus = SOV_Bombing_and_Close_Air_Support
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_destroy_enemy_camp
+				bonus = 1
+				category = cat_strategic_bomber
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_Operation_Storm
+		icon = GFX_SOV_Operation_Storm
+		relative_position_id = SOV_destroy_enemy_camp
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Doctrine_for_Bombing
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			enable_tech_operation_storm = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Bombing_and_Close_Air_Support
+		icon = GFX_SOV_Bombing_and_Close_Air_Support
+		relative_position_id = SOV_Doctrine_for_Bombing
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Doctrine_for_Bombing
+		}
+		mutually_exclusive = {
+			focus = SOV_destroy_enemy_camp
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = SOV_Bombing_and_Close_Air_Support
+				bonus = 1
+				category = tactical_bomber
+				uses = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_multi_purpose_attacks
+		icon = GFX_SOV_multi_purpose_attacks
+		relative_position_id = SOV_Bombing_and_Close_Air_Support
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Bombing_and_Close_Air_Support
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			enable_tech_multi_purpose_attacks = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Bomber_Escort
+		icon = GFX_SOV_Bomber_Escort
+		relative_position_id = SOV_Operation_Storm
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 2
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Operation_Storm
+			focus = SOV_multi_purpose_attacks
+		}
+		completion_reward = {
+			add_ideas = SOV_Bomber_Escort
+		}
+	}
+	
 	#Economy
 	focus = {
 		id = SOV_the_state_of_the_economy
@@ -6593,6 +6734,453 @@ focus_tree = {
 			remove_ideas = SOV_abolish_sovkhozes
 			remove_ideas = SOV_the_slow_push_towards_progress
 			add_ideas = SOV_communist_economy
+		}
+	}
+	
+	#After The End of The War - Victory!
+	focus = {
+		id = SOV_victory_day
+		icon = GFX_SOV_victory_day
+		relative_position_id = SOV_biting_the_tail
+		x = 0
+		y = 2
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 5.8
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SOV_victory_day_tt		
+				has_country_flag = second_great_war_winner
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = {
+					OR = {
+						has_country_leader = {
+							character = SOV_iosif_stalin
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = SOV_lev_trotsky
+							ruling_only = yes
+						}
+					}
+				}
+				add_ideas = SOV_declare_liberation
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = SOV_grigory_zinovyev
+						ruling_only = yes
+					}
+				}
+				add_ideas = SOV_declare_liberation_zinovi
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = SOV_nikolay_bukharin
+						ruling_only = yes
+					}
+				}
+				add_ideas = SOV_completed_revenge
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = SOV_mikhail_tukhachevsky
+						ruling_only = yes
+					}
+				}
+				add_ideas = SOV_not_the_end_but_the_beginning
+			}
+			else = {
+				custom_effect_tooltip = SOV_victory_day_else_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_the_war_continues
+		icon = GFX_SOV_the_war_continues
+		relative_position_id = SOV_victory_day
+		x = -3
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 5.8
+		available = {
+			has_country_leader = {
+				character = SOV_mikhail_tukhachevsky
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_victory_day
+		}
+		mutually_exclusive = {
+			focus = SOV_focus_on_spreading_the_revolution
+		}
+		mutually_exclusive = {
+			focus = SOV_Iron_Curtain
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_ideas = SOV_bulky_army
+			random_owned_controlled_state = {
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}	
+			}
+			random_owned_controlled_state = {
+
+				add_extra_state_shared_building_slots = 1
+
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}	
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_focus_on_spreading_the_revolution
+		icon = GFX_SOV_focus_on_spreading_the_revolution
+		relative_position_id = SOV_victory_day
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 5.8
+		available = {
+			has_country_leader = {
+				character = SOV_grigory_zinovyev
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_victory_day
+		}
+		mutually_exclusive = {
+			focus = SOV_the_war_continues
+		}
+		mutually_exclusive = {
+			focus = SOV_Iron_Curtain
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 150
+			custom_effect_tooltip = SOV_focus_on_spreading_the_revolution_tt
+			add_ideas = SOV_focus_on_spreading_the_revolution
+		}
+	}
+	
+	focus = {
+		id = SOV_Iron_Curtain
+		icon = GFX_SOV_Iron_Curtain
+		relative_position_id = SOV_victory_day
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 5.8
+		available = {
+			OR = {
+				has_country_leader = {
+					character = SOV_iosif_stalin
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = SOV_lev_trotsky
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = SOV_nikolay_bukharin
+					ruling_only = yes
+				}
+			}
+		}
+		prerequisite = {
+			focus = SOV_victory_day
+		}
+		mutually_exclusive = {
+			focus = SOV_the_war_continues
+		}
+		mutually_exclusive = {
+			focus = SOV_focus_on_spreading_the_revolution
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = SOV_Iron_Curtain_tt
+			add_ideas = SOV_cold_war
+		}
+	}
+	
+	focus = {
+		id = SOV_one_soldiers_story
+		icon = GFX_SOV_one_soldiers_story
+		relative_position_id = SOV_victory_day
+		x = 3
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_victory_day
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = soviet_rework_troika.032
+		}
+	}
+	
+	focus = {
+		id = SOV_one_workers_story
+		icon = GFX_SOV_one_workers_story
+		relative_position_id = SOV_one_soldiers_story
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_one_soldiers_story
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = soviet_rework_troika.033
+		}
+	}
+	
+	focus = {
+		id = SOV_extensive_army_policy
+		icon = GFX_SOV_extensive_army_policy
+		relative_position_id = SOV_the_war_continues
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_the_war_continues
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_ideas = SOV_extensive_army_policy
+		}
+	}
+	
+	focus = {
+		id = SOV_and_on_and_on
+		icon = GFX_SOV_and_on_and_on
+		relative_position_id = SOV_the_war_continues
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_the_war_continues
+			focus = SOV_focus_on_spreading_the_revolution
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = SOV_mikhail_tukhachevsky
+						ruling_only = yes
+					}
+				}
+				country_event = soviet_rework_troika.034
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = SOV_grigory_zinovyev
+						ruling_only = yes
+					}
+				}
+				country_event = soviet_rework_troika.035
+			}
+			else = {
+				custom_effect_tooltip = SOV_victory_day_else_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_the_pigeon_with_the_olive_leaf
+		icon = GFX_SOV_the_pigeon_with_the_olive_leaf
+		relative_position_id = SOV_focus_on_spreading_the_revolution
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Iron_Curtain
+			focus = SOV_focus_on_spreading_the_revolution
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = SOV_the_pigeon_with_the_olive_leaf
+		}
+	}
+	
+	focus = {
+		id = SOV_economic_transition
+		icon = GFX_SOV_economic_transition
+		relative_position_id = SOV_Iron_Curtain
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 5.8
+		prerequisite = {
+			focus = SOV_Iron_Curtain
+			focus = SOV_focus_on_spreading_the_revolution
+			focus = SOV_one_soldiers_story
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					arms_factory > 0
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					arms_factory > 0
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					arms_factory > 0
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					arms_factory > 0
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					arms_factory > 0
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_howling_brown_bear
+		icon = GFX_SOV_howling_brown_bear
+		relative_position_id = SOV_the_pigeon_with_the_olive_leaf
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 5
+		prerequisite = {
+			focus = SOV_the_pigeon_with_the_olive_leaf
+			focus = SOV_economic_transition
+			focus = SOV_and_on_and_on
+			focus = SOV_extensive_army_policy
+			focus = SOV_one_workers_story
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
 		}
 	}
 }
