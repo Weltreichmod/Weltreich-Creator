@@ -1,0 +1,205 @@
+SOV_pick_wartime_propaganda_campaign_slot_effect = {
+	hidden_effect = {
+		if = {
+			limit = {
+				check_variable = { SOV_wartime_poster_left_icon_frame = SOV_wartime_propaganda_empty_slot_index }
+			}
+			set_variable = { SOV_wartime_poster_left_icon_frame = SOV_new_wartime_propaganda_campaign }
+			#Ageing posters
+			set_variable = { SOV_wartime_propaganda_left_poster_to_age = SOV_wartime_poster_left_icon_frame } #This is used to prevent the system to break if a propaganda campaign is cancelled
+			hidden_effect = {
+				country_event = { id = sov_camp_events.101 days = SOV_default_wartime_propaganda_campaign_old_days }
+				#set_country_flag = { flag = SOV_wartime_propaganda_left_days_remaining_flag days = SOV_default_wartime_propaganda_campaign_duration } #Surprise! This doesnät work with vars :D  Maybe in the future
+				if = { #Debug -> Faster time
+					limit = {
+						has_country_flag = SOV_debug_fast_wartime_propaganda_campaigns_flag
+					}
+					set_country_flag = { flag = SOV_wartime_propaganda_left_days_remaining_flag days = 5 }
+				}
+				else = { #Regular time
+					set_country_flag = { flag = SOV_wartime_propaganda_left_days_remaining_flag days = 180 } #Need code support to use a var here
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { SOV_wartime_poster_center_icon_frame = SOV_wartime_propaganda_empty_slot_index }
+			}
+			set_variable = { SOV_wartime_poster_center_icon_frame = SOV_new_wartime_propaganda_campaign }
+			#Ageing posters
+			set_variable = { SOV_wartime_propaganda_center_poster_to_age = SOV_wartime_poster_center_icon_frame } #This is used to prevent the system to break if a propaganda campaign is cancelled
+			hidden_effect = {
+				country_event = { id = sov_camp_events.102 days = SOV_default_wartime_propaganda_campaign_old_days }
+				#set_country_flag = { flag = SOV_wartime_propaganda_center_days_remaining_flag days = SOV_default_wartime_propaganda_campaign_duration } #Surprise! This doesnät work with vars :D  Maybe in the future
+				if = { #Debug -> Faster time
+					limit = {
+						has_country_flag = SOV_debug_fast_wartime_propaganda_campaigns_flag
+					}
+					set_country_flag = { flag = SOV_wartime_propaganda_center_days_remaining_flag days = 5 }
+				}
+				else = { #Regular time
+					set_country_flag = { flag = SOV_wartime_propaganda_center_days_remaining_flag days = 180 } #Need code support to use a var here
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { SOV_wartime_poster_right_icon_frame = SOV_wartime_propaganda_empty_slot_index }
+			}
+			set_variable = { SOV_wartime_poster_right_icon_frame = SOV_new_wartime_propaganda_campaign }
+			#Ageing posters
+			set_variable = { SOV_wartime_propaganda_right_poster_to_age = SOV_wartime_poster_right_icon_frame } #This is used to prevent the system to break if a propaganda campaign is cancelled
+			hidden_effect = {
+				country_event = { id = sov_camp_events.103 days = SOV_default_wartime_propaganda_campaign_old_days }
+				#set_country_flag = { flag = SOV_wartime_propaganda_right_days_remaining_flag days = SOV_default_wartime_propaganda_campaign_duration } #Surprise! This doesnät work with vars :D  Maybe in the future
+				if = { #Debug -> Faster time
+					limit = {
+						has_country_flag = SOV_debug_fast_wartime_propaganda_campaigns_flag
+					}
+					set_country_flag = { flag = SOV_wartime_propaganda_right_days_remaining_flag days = 5 }
+				}
+				else = { #Regular time
+					set_country_flag = { flag = SOV_wartime_propaganda_right_days_remaining_flag days = 180 } #Need code support to use a var here
+				}
+			}
+		}
+		set_variable = { SOV_new_wartime_propaganda_campaign = 0 } # Reset var
+		#add_to_variable = { SOV_wartime_propaganda_campaigns_taken = 1 } #Update propaganda campaigns counter
+	}
+}
+
+SOV_reset_wartime_propaganda_campaign_slot_effect = {
+	hidden_effect = {
+		if = {
+			limit = {
+				check_variable = { SOV_wartime_poster_left_icon_frame = SOV_wartime_propaganda_campaign_to_remove }
+			}
+			set_variable = { SOV_wartime_poster_left_icon_frame = SOV_wartime_propaganda_empty_slot_index }
+			#Clear aged posters
+			clear_variable = SOV_wartime_propaganda_left_poster_to_age
+			clr_country_flag = SOV_wartime_propaganda_left_slot_is_old_flag
+		}
+		else_if = {
+			limit = {
+				check_variable = { SOV_wartime_poster_center_icon_frame = SOV_wartime_propaganda_campaign_to_remove }
+			}
+			set_variable = { SOV_wartime_poster_center_icon_frame = SOV_wartime_propaganda_empty_slot_index }
+			#Clear aged posters
+			clear_variable = SOV_wartime_propaganda_center_poster_to_age
+			clr_country_flag = SOV_wartime_propaganda_center_slot_is_old_flag
+		}
+		else_if = { #This could be turned into an else, but leaving it like this to hopefully make it easier to see
+			limit = {
+				check_variable = { SOV_wartime_poster_right_icon_frame = SOV_wartime_propaganda_campaign_to_remove }
+			}
+			set_variable = { SOV_wartime_poster_right_icon_frame = SOV_wartime_propaganda_empty_slot_index }
+			#Clear aged posters
+			clear_variable = SOV_wartime_propaganda_right_poster_to_age
+			clr_country_flag = SOV_wartime_propaganda_right_slot_is_old_flag
+		}
+		set_variable = { SOV_wartime_propaganda_campaign_to_remove = 0 } # Reset var
+	}
+}
+
+RUS_pick_wartime_propaganda_campaign_slot_effect = {
+	hidden_effect = {
+		if = {
+			limit = {
+				check_variable = { RUS_wartime_poster_left_icon_frame = RUS_wartime_propaganda_empty_slot_index }
+			}
+			set_variable = { RUS_wartime_poster_left_icon_frame = RUS_new_wartime_propaganda_campaign }
+			#Ageing posters
+			set_variable = { RUS_wartime_propaganda_left_poster_to_age = RUS_wartime_poster_left_icon_frame } #This is used to prevent the system to break if a propaganda campaign is cancelled
+			hidden_effect = {
+				country_event = { id = RUS_camp_events.101 days = RUS_default_wartime_propaganda_campaign_old_days }
+				#set_country_flag = { flag = RUS_wartime_propaganda_left_days_remaining_flag days = RUS_default_wartime_propaganda_campaign_duration } #Surprise! This doesnät work with vars :D  Maybe in the future
+				if = { #Debug -> Faster time
+					limit = {
+						has_country_flag = RUS_debug_fast_wartime_propaganda_campaigns_flag
+					}
+					set_country_flag = { flag = RUS_wartime_propaganda_left_days_remaining_flag days = 5 }
+				}
+				else = { #Regular time
+					set_country_flag = { flag = RUS_wartime_propaganda_left_days_remaining_flag days = 180 } #Need code support to use a var here
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { RUS_wartime_poster_center_icon_frame = RUS_wartime_propaganda_empty_slot_index }
+			}
+			set_variable = { RUS_wartime_poster_center_icon_frame = RUS_new_wartime_propaganda_campaign }
+			#Ageing posters
+			set_variable = { RUS_wartime_propaganda_center_poster_to_age = RUS_wartime_poster_center_icon_frame } #This is used to prevent the system to break if a propaganda campaign is cancelled
+			hidden_effect = {
+				country_event = { id = RUS_camp_events.102 days = RUS_default_wartime_propaganda_campaign_old_days }
+				#set_country_flag = { flag = RUS_wartime_propaganda_center_days_remaining_flag days = RUS_default_wartime_propaganda_campaign_duration } #Surprise! This doesnät work with vars :D  Maybe in the future
+				if = { #Debug -> Faster time
+					limit = {
+						has_country_flag = RUS_debug_fast_wartime_propaganda_campaigns_flag
+					}
+					set_country_flag = { flag = RUS_wartime_propaganda_center_days_remaining_flag days = 5 }
+				}
+				else = { #Regular time
+					set_country_flag = { flag = RUS_wartime_propaganda_center_days_remaining_flag days = 180 } #Need code support to use a var here
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { RUS_wartime_poster_right_icon_frame = RUS_wartime_propaganda_empty_slot_index }
+			}
+			set_variable = { RUS_wartime_poster_right_icon_frame = RUS_new_wartime_propaganda_campaign }
+			#Ageing posters
+			set_variable = { RUS_wartime_propaganda_right_poster_to_age = RUS_wartime_poster_right_icon_frame } #This is used to prevent the system to break if a propaganda campaign is cancelled
+			hidden_effect = {
+				country_event = { id = RUS_camp_events.103 days = RUS_default_wartime_propaganda_campaign_old_days }
+				#set_country_flag = { flag = RUS_wartime_propaganda_right_days_remaining_flag days = RUS_default_wartime_propaganda_campaign_duration } #Surprise! This doesnät work with vars :D  Maybe in the future
+				if = { #Debug -> Faster time
+					limit = {
+						has_country_flag = RUS_debug_fast_wartime_propaganda_campaigns_flag
+					}
+					set_country_flag = { flag = RUS_wartime_propaganda_right_days_remaining_flag days = 5 }
+				}
+				else = { #Regular time
+					set_country_flag = { flag = RUS_wartime_propaganda_right_days_remaining_flag days = 180 } #Need code support to use a var here
+				}
+			}
+		}
+		set_variable = { RUS_new_wartime_propaganda_campaign = 0 } # Reset var
+		#add_to_variable = { RUS_wartime_propaganda_campaigns_taken = 1 } #Update propaganda campaigns counter
+	}
+}
+
+RUS_reset_wartime_propaganda_campaign_slot_effect = {
+	hidden_effect = {
+		if = {
+			limit = {
+				check_variable = { RUS_wartime_poster_left_icon_frame = RUS_wartime_propaganda_campaign_to_remove }
+			}
+			set_variable = { RUS_wartime_poster_left_icon_frame = RUS_wartime_propaganda_empty_slot_index }
+			#Clear aged posters
+			clear_variable = RUS_wartime_propaganda_left_poster_to_age
+			clr_country_flag = RUS_wartime_propaganda_left_slot_is_old_flag
+		}
+		else_if = {
+			limit = {
+				check_variable = { RUS_wartime_poster_center_icon_frame = RUS_wartime_propaganda_campaign_to_remove }
+			}
+			set_variable = { RUS_wartime_poster_center_icon_frame = RUS_wartime_propaganda_empty_slot_index }
+			#Clear aged posters
+			clear_variable = RUS_wartime_propaganda_center_poster_to_age
+			clr_country_flag = RUS_wartime_propaganda_center_slot_is_old_flag
+		}
+		else_if = { #This could be turned into an else, but leaving it like this to hopefully make it easier to see
+			limit = {
+				check_variable = { RUS_wartime_poster_right_icon_frame = RUS_wartime_propaganda_campaign_to_remove }
+			}
+			set_variable = { RUS_wartime_poster_right_icon_frame = RUS_wartime_propaganda_empty_slot_index }
+			#Clear aged posters
+			clear_variable = RUS_wartime_propaganda_right_poster_to_age
+			clr_country_flag = RUS_wartime_propaganda_right_slot_is_old_flag
+		}
+		set_variable = { RUS_wartime_propaganda_campaign_to_remove = 0 } # Reset var
+	}
+}

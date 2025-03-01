@@ -343,26 +343,21 @@ GER_NOT_blitz_france_at_first = {
 	}
 
 	enable = {
-		original_tag = GER
 		has_war_with = FRA
 		FRA = { has_idea = hidden_fra_idea }
 	}
 
-	abort = {
-		NOT = { FRA = { has_idea = hidden_fra_idea } }
-	}
+	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = front_control
-
 		tag = FRA
-
-		priority = 1000
+		priority = 500
 		ordertype = front
 		execution_type = careful
 		execute_order = no
+		manual_attack = no
 	}
-
 }
 
 GER_has_war_with_soviet = {
@@ -370,10 +365,9 @@ GER_has_war_with_soviet = {
 		original_tag = GER
 	}
 	enable = {
-		original_tag = GER
 		has_war_with = FRA
 		has_war_with = SOV
-		surrender_progress < 0.1
+		GER = { surrender_progress < 0.1 }
 	}
 	abort_when_not_enabled = yes
 	ai_strategy = {
@@ -383,29 +377,12 @@ GER_has_war_with_soviet = {
 		ordertype = front
 		execution_type = careful
 		execute_order = no
-		manual_attack = yes
+		manual_attack = no
 	}
-}
-
-GER_has_war_with_russia = {
-	allowed = {
-		original_tag = GER
-	}
-	enable = {
-		original_tag = GER
-		has_war_with = FRA
-		has_war_with = RUS
-		surrender_progress < 0.1
-	}
-	abort_when_not_enabled = yes
 	ai_strategy = {
-		type = front_control
+		type = front_unit_request
 		tag = FRA
-		priority = 500
-		ordertype = front
-		execution_type = careful
-		execute_order = no
-		manual_attack = yes
+		value = 500
 	}
 }
 
@@ -414,7 +391,6 @@ GER_blitz_sov = {
 		original_tag = GER
 	}
 	enable = {
-		original_tag = GER
 		has_war_with = SOV
 		NOT = { SOV = { has_idea = SOV_Great_Liberation_War } }
 	}
@@ -422,27 +398,6 @@ GER_blitz_sov = {
 	ai_strategy = {
 		type = front_control
 		tag = SOV
-		priority = 500
-		ordertype = front
-		execution_type = rush_weak
-		execute_order = yes
-		manual_attack = yes
-	}
-}
-
-GER_blitz_rus = {
-	allowed = {
-		original_tag = GER
-	}
-	enable = {
-		original_tag = GER
-		has_war_with = RUS
-		NOT = { RUS = { has_idea = SOV_Great_Liberation_War } }
-	}
-	abort_when_not_enabled = yes
-	ai_strategy = {
-		type = front_control
-		tag = RUS
 		priority = 500
 		ordertype = front
 		execution_type = rush_weak
@@ -959,13 +914,13 @@ bba_air_prod_1 = {
 	ai_strategy = {
 		type = equipment_production_factor
 		id = fighter
-		value = 25
+		value = 50
 	}
 
 	ai_strategy = {
 		type = equipment_production_min_factories
 		id = fighter
-		value = 6
+		value = 10
 	}
 
 	ai_strategy = {
@@ -1065,13 +1020,13 @@ bba_air_prod_2 = {
 	ai_strategy = {
 		type = equipment_production_factor
 		id = fighter
-		value = 25
+		value = 100
 	}
 
 	ai_strategy = {
 		type = equipment_production_min_factories
 		id = fighter
-		value = 8
+		value = 15
 	}
 
 	ai_strategy = {
@@ -1083,13 +1038,13 @@ bba_air_prod_2 = {
 	ai_strategy = {
 		type = equipment_production_factor
 		id = cas
-		value = 15
+		value = 20
 	}
 
 	ai_strategy = {
 		type = equipment_production_min_factories
 		id = cas
-		value = 3
+		value = 5
 	}
 
 	ai_strategy = {
