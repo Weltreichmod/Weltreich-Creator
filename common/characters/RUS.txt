@@ -8,7 +8,7 @@ characters={
 			}
 		}
 		country_leader = {
-			ideology = despotism
+			ideology = conservatism
 			traits={ popular_figurehead }
 		}
 		field_marshal = {
@@ -18,84 +18,6 @@ characters={
 			defense_skill = 3
 			planning_skill = 3
 			logistics_skill = 2
-		}
-	}
-	RUS_vladimir_kirillovich = {
-		name = RUS_vladimir_kirillovich
-
-		portraits = {
-			civilian = {
-				large = "gfx/leaders/RUS/RUS_vladimir_kirillovich.png"
-			}
-		}
-		country_leader = {
-			ideology = autocracy
-			traits={ Legitimate_heir_to_the_Romanovs }
-		}
-	}
-
-	RUS_rudiger_von_der_goltz = {
-		name = "RUS_rudiger_von_der_goltz"
-		advisor={
-			slot = political_advisor
-			idea_token = RUS_rudiger_von_der_goltz
-			can_be_fired = no
-			allowed  = {
-				original_tag  = RUS
-			}
-			traits  = {
-				 Chief_of_Military_Advisor_of_German_Empire_in_Russia
-			}
-			visible = {
-				RUS = { is_subject_of = GER }
-			}
-			ai_will_do  = {
-				factor  = 0
-			}
-		}
-		corps_commander={
-			traits={ infantry_officer brilliant_strategist }
-			skill=3
-			attack_skill=4
-			defense_skill=2
-			planning_skill=2
-			logistics_skill=1
-			visible = {
-				RUS = { is_subject_of = GER }
-			}
-		}
-		portraits={
-			civilian={
-				small="gfx/interface/ideas/RUS/RUS_rudiger_von_der_goltz.png"
-			}
-			civilian = {
-				large = "gfx/leaders/RUS/RUS_rudiger_von_der_goltz.png"
-			}
-		}
-	}
-	RUS_Friedrich_von_Prittwitz = {
-		name = "RUS_Friedrich_von_Prittwitz"
-		advisor={
-			slot = political_advisor
-			idea_token = RUS_Friedrich_von_Prittwitz
-			can_be_fired = no
-			allowed  = {
-				original_tag  = RUS
-			}
-			traits  = {
-				 Chief_of_Political_Advisor_of_German_Empire_in_Russia
-			}
-			visible = {
-				RUS = { is_subject_of = GER }
-			}
-			ai_will_do  = {
-				factor  = 0
-			}
-		}
-		portraits={
-			civilian={
-				small="gfx/interface/ideas/RUS/RUS_Friedrich_von_Prittwitz.png"
-			}
 		}
 	}
 	RUS_pavel_milyukov={
@@ -130,6 +52,27 @@ characters={
 		portraits={
 			civilian={
 				small="gfx/interface/ideas/RUS/idea_RUS_pavel_milyukov.png"
+			}
+		}
+	}
+	RUS_viktor_chernov={
+		name="RUS_viktor_chernov"
+		advisor={
+			slot = political_advisor
+			idea_token = RUS_viktor_chernov
+			visible = {
+				has_character_flag = RUS_civilwar
+			}
+			traits  = {
+				backroom_backstabber
+			}
+			ai_will_do  = {
+				factor  = 10.000
+			}
+		}
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/RUS/idea_RUS_viktor_chernov.png"
 			}
 		}
 	}
@@ -332,6 +275,57 @@ characters={
 			}
 		}
 	}
+	RUS_anton_denikin={
+		name="RUS_anton_denikin"
+		advisor={
+			slot = army_chief
+			idea_token = RUS_anton_denikin_army_chief
+			allowed  = {
+				original_tag  = RUS
+			}
+			traits  = {
+				army_chief_planning_2 
+			}
+			visible  = {
+				has_character_flag = RUS_civilwar
+			}
+			ai_will_do  = {
+				factor  = 1.000
+			}
+		}
+		advisor = {
+			slot = theorist
+			idea_token = RUS_anton_denikin_theorist
+			ledger = army
+			available = {
+				not_already_hired_except_as = theorist
+			}
+			visible  = {
+				has_character_flag = RUS_civilwar
+			}
+			traits = { military_theorist }
+			cost = 100
+		}
+		portraits={
+			army={
+				small="GFX_idea_RUS_anton_denikin"
+			}
+			army={
+				large="gfx/leaders/RUS/RUS_anton_denikin.png"
+			}
+		}
+		corps_commander={
+			traits={ media_personality ranger winter_specialist career_officer }
+			skill=3
+			attack_skill=3
+			defense_skill=3
+			planning_skill=3
+			logistics_skill=3
+			visible  = {
+				has_character_flag = RUS_civilwar
+			}
+		}
+	}
 	RUS_pavel_rafalovich_bermondtavalov = {
 		name="RUS_pavel_rafalovich_bermondtavalov"
 		portraits={
@@ -364,6 +358,42 @@ characters={
 			planning_skill=2
 			logistics_skill=1
 			legacy_id=92218
+			visible  = {
+				has_character_flag = RUS_civilwar
+			}
+		}
+	}
+	RUS_grigory_semyonov={
+		name="RUS_grigory_semyonov"
+		portraits={
+			army={
+				large="gfx/leaders/RUS/RUS_grigory_semenov.png"
+			}
+			army={
+				small="gfx/interface/ideas/RUS/RUS_grigory_semyonov.png"
+			}
+		}
+		advisor = {
+			slot = army_chief
+			idea_token = RUS_grigory_semyonov
+			allowed = {
+				original_tag = RUS
+			}
+			traits = {
+				army_chief_reform_2
+			}
+				cost = 100
+			ai_will_do = {
+				factor = 1.000
+			}
+		}
+		corps_commander={
+			traits={ career_officer media_personality cavalry_officer organizer hidden_sympathies harsh_leader trait_royalist }
+			skill=2
+			attack_skill=2
+			defense_skill=1
+			planning_skill=2
+			logistics_skill=2
 			visible  = {
 				has_character_flag = RUS_civilwar
 			}
@@ -551,7 +581,7 @@ characters={
 			cost = 150
 		}
 		corps_commander={
-			traits={ cavalry_officer royalist_wr }
+			traits={ cavalry_officer }
 			skill=1
 			attack_skill=1
 			defense_skill=1
@@ -577,8 +607,7 @@ characters={
 			planning_skill=1
 			logistics_skill=1
 			visible  = {
-				NOT = { has_country_flag = victory_of_royalists }
-				NOT = { has_country_flag = SOV_denikin_victory }
+				has_character_flag = RUS_civilwar
 			}
 		}
 	}
@@ -792,242 +821,5 @@ characters={
 			}
 			cost = 100
 		}
-	}
-	
-	#return
-	RUS_boris_lvovich_brasol = {
-		name = RUS_boris_lvovich_brasol
-		portraits = {
-			army = {
-				small = "gfx/interface/ideas/RUS/RUS_boris_lvovich_brasol.png"
-			}
-		}
-		advisor = {
-			slot = political_advisor
-			idea_token = RUS_boris_lvovich_brasol
-			visible = {
-				has_country_flag = RUS_with_royalists_flag
-				NOT = { has_country_flag = victory_of_arkhangelsky }
-			}
-			traits = { royalist }
-		}
-		country_leader = {
-			ideology = moderatism
-			traits={ The_Tsars_loyal_henchman }
-		}
-	}
-
-	RUS_ivan_solonevich = {
-		name = RUS_ivan_solonevich
-		portraits = {
-			army = {
-				small = "gfx/interface/ideas/RUS/RUS_ivan_solonevich.png"
-			}
-		}
-		advisor = {
-			slot = political_advisor
-			idea_token = RUS_ivan_solonevich
-			visible = {
-				has_country_flag = RUS_with_royalists_flag
-				NOT = { has_country_flag = victory_of_arkhangelsky }
-			}
-			traits = { royalist_writer }
-		}
-	}
-	
-	RUS_dmitri_alexandrovich = {
-		name = RUS_dmitri_alexandrovich
-		portraits = {
-			army = {
-				small = "gfx/interface/ideas/RUS/RUS_dmitri_alexandrovich.png"
-			}
-		}
-		advisor = {
-			slot = political_advisor
-			idea_token = RUS_dmitri_alexandrovich
-			available = {
-				has_government = neutrality
-			}
-			visible = {
-				has_country_flag = RUS_with_royalists_flag
-				NOT = { has_country_flag = victory_of_arkhangelsky }
-			}
-			traits = { silent_workhorse }
-		}
-	}
-	
-	RUS_anton_denikin={
-		name="RUS_anton_denikin"
-		advisor={
-			slot = army_chief
-			idea_token = RUS_anton_denikin_army_chief
-			allowed  = {
-				original_tag  = RUS
-			}
-			traits  = {
-				army_chief_planning_2 
-			}
-			visible  = {
-				has_character_flag = denikin_has_arrived
-			}
-			ai_will_do  = {
-				factor  = 1.000
-			}
-		}
-		advisor = {
-			slot = theorist
-			idea_token = RUS_anton_denikin_theorist
-			ledger = army
-			available = {
-				not_already_hired_except_as = theorist
-			}
-			visible  = {
-				has_character_flag = denikin_has_arrived
-			}
-			traits = { military_theorist }
-			cost = 100
-		}
-		portraits={
-			army={
-				small="GFX_idea_RUS_anton_denikin"
-			}
-			army={
-				large="gfx/leaders/RUS/RUS_anton_denikin.png"
-			}
-		}
-		corps_commander={
-			traits={ media_personality ranger winter_specialist career_officer }
-			skill=3
-			attack_skill=3
-			defense_skill=3
-			planning_skill=3
-			logistics_skill=3
-			visible  = {
-				has_character_flag = denikin_has_arrived
-			}
-		}
-	}
-	RUS_viktor_chernov={
-		name="RUS_viktor_chernov"
-		advisor={
-			slot = political_advisor
-			idea_token = RUS_viktor_chernov
-			can_be_fired = no
-			visible = {
-				has_character_flag = denikin_has_arrived
-			}
-			available = {
-				has_country_flag = set_path_of_russia
-			}
-			traits  = {
-				backroom_backstabber
-			}
-			ai_will_do  = {
-				factor  = 10.000
-			}
-		}
-		country_leader = {
-			ideology = social_democracy
-			traits={  }
-		}
-		portraits={
-			civilian={
-				large="gfx/leaders/RUS/RUS_viktor_chernov.png"
-				small="gfx/interface/ideas/RUS/idea_RUS_viktor_chernov.png"
-			}
-		}
-	}
-	
-	RUS_zinovy_peshkov = {
-		name = "RUS_zinovy_peshkov"
-		portraits = {
-			civilian = {
-				large = "gfx/leaders/RUS/RUS_zinovy_peshkov.png"
-				small = "gfx/interface/ideas/RUS/RUS_zinovy_peshkov.png"
-			}
-		}
-		advisor={
-			slot = political_advisor
-			idea_token = RUS_ivan_ilyin
-			can_be_fired = no
-			visible = {
-				has_character_flag = denikin_has_arrived
-			}
-			available = {
-				has_country_flag = set_path_of_russia
-			}
-			traits  = {
-				nationalist
-			}
-			ai_will_do  = {
-				factor  = 10.000
-			}
-		}
-	}
-
-	RUS_aleksandr_kerensky = {
-		name = RUS_aleksandr_kerensky
-
-		portraits = {
-			civilian = {
-				large = "gfx/leaders/RUS/RUS_aleksandr_kerensky.png"
-			}
-			army = {
-				small = "gfx/interface/ideas/RUS/idea_alexander_kerensky.dds"
-			}
-		}
-		country_leader = {
-			ideology = conservatism
-			expire = "1953.3.1.1"
-			traits={ popular_figurehead }
-			id = -1
-		}
-		advisor = {
-			slot = political_advisor
-			idea_token = RUS_aleksandr_kerensky
-			allowed = {
-					original_tag = SOV
-			}
-			traits = {
-				SWI_conservative_democrat
-			}
-			do_effect = {
-				NOT = {
-					has_government = democratic 
-				}
-			}
-			ai_will_do = {
-				factor = 0.000
-			}
-		}
-	}
-
-	RUS_aleksandr_verkhovsky = {
-		name = RUS_aleksandr_verkhovsky
-
-		portraits = {
-			civilian = {
-				large = "gfx/leaders/RUS/RUS_aleksandr_verkhovsky.png"
-			}
-		}
-		country_leader = {
-			ideology = conservatism
-			expire = "1953.3.1.1"
-			traits={  }
-			id = -1
-		}
-	}
-	
-	#for purge
-	RUS_maria_spiridonova = {
-		name = RUS_maria_spiridonova
-	}
-	
-	RUS_isaac_steinberg = {
-		name = RUS_isaac_steinberg
-	}
-	
-	RUS_andrei_kolegayev = {
-		name = RUS_andrei_kolegayev
 	}
 }

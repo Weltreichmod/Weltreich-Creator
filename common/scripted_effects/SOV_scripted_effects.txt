@@ -1,644 +1,641 @@
 #Rework
 bukharin_civilwar_decision = {
-	custom_effect_tooltip = bukharin_civilwar_tt
-	hidden_effect = {
-		set_global_flag = soviet_civilwar_by_workers_opposition_flag
-		create_dynamic_country = {
-			original_tag = SOV
-			every_state = {
-				limit = {
-					is_core_of = SOV
-				}
-				add_core_of = SOS
+	set_global_flag = soviet_civilwar_by_workers_opposition_flag
+	create_dynamic_country = {
+		original_tag = SOV
+		every_state = {
+			limit = {
+				is_core_of = SOV
 			}
-			set_capital = { state = 219 }
-			set_politics = {
-				ruling_party = communism
-				elections_allowed = no
+			add_core_of = SOS
+		}
+		set_capital = { state = 219 }
+		set_politics = {
+			ruling_party = communism
+			elections_allowed = no
+		}
+		set_popularities = {
+			democratic = 1
+			neutrality = 9
+			fascism = 4
+			communism = 86
+		}
+		load_focus_tree = soviet_focus_rework
+		set_country_flag = pass_events_flag
+		set_country_flag = SOV_troika_stalin_flag
+		complete_national_focus = SOV_death_of_kamenev
+		complete_national_focus = SOV_establish_the_troika
+		complete_national_focus = SOV_it_is_clear_to_us
+		complete_national_focus = SOV_the_only_path_that_is_viable
+		complete_national_focus = SOV_for_the_survival_of_the_union
+		complete_national_focus = SOV_is_the_path_of
+		complete_national_focus = SOV_the_secretary_compromise
+		complete_national_focus = SOV_the_troika_center
+		complete_national_focus = SOV_maintain_ministers
+		complete_national_focus = SOV_form_the_ministry_of_intelligence
+		complete_national_focus = SOV_ousting_militarists
+		set_cosmetic_tag = SOS
+		reserve_dynamic_country = yes
+		if = {
+			limit = {
+				SOV = { has_idea = SOV_idea_sluggish_industrialization }
 			}
-			set_popularities = {
-				democratic = 1
-				neutrality = 9
-				fascism = 4
-				communism = 86
+			add_ideas = SOV_idea_sluggish_industrialization
+		}
+		if = {
+			limit = {
+				SOV = { has_idea = SOV_precarious_country_high }
 			}
-			load_focus_tree = soviet_focus_rework
-			set_country_flag = pass_events_flag
-			set_country_flag = SOV_troika_stalin_flag
-			complete_national_focus = SOV_death_of_kamenev
-			complete_national_focus = SOV_establish_the_troika
-			complete_national_focus = SOV_it_is_clear_to_us
-			complete_national_focus = SOV_the_only_path_that_is_viable
-			complete_national_focus = SOV_for_the_survival_of_the_union
-			complete_national_focus = SOV_is_the_path_of
-			complete_national_focus = SOV_the_secretary_compromise
-			complete_national_focus = SOV_the_troika_center
-			complete_national_focus = SOV_maintain_ministers
-			complete_national_focus = SOV_form_the_ministry_of_intelligence
-			complete_national_focus = SOV_ousting_militarists
-			set_cosmetic_tag = SOS
-			reserve_dynamic_country = yes
-			if = {
-				limit = {
-					SOV = { has_idea = SOV_idea_sluggish_industrialization }
-				}
-				add_ideas = SOV_idea_sluggish_industrialization
-			}
-			if = {
-				limit = {
-					SOV = { has_idea = SOV_precarious_country_high }
-				}
-				add_ideas = SOV_precarious_country_high
-			}
-			add_ideas = Soviet_Civil_War
-			add_to_variable = { SOV_the_red_army_experience_gain_army_factor = SOV.SOV_the_red_army_experience_gain_army_factor }
-			add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = SOV.SOV_the_red_army_land_doctrine_cost_factor }
-			add_to_variable = { SOV_the_red_army_experience_loss_factor = SOV.SOV_the_red_army_experience_loss_factor }
-			add_to_variable = { SOV_the_red_army_dig_in_speed_factor = SOV.SOV_the_red_army_dig_in_speed_factor }
-			add_to_variable = { SOV_the_red_army_conscription_factor = SOV.SOV_the_red_army_conscription_factor }
-			add_to_variable = { SOV_the_red_army_training_time_factor = SOV.SOV_the_red_army_training_time_factor }
-			add_to_variable = { SOV_the_red_army_army_org_factor = SOV.SOV_the_red_army_army_org_factor }
-			add_to_variable = { SOV_the_red_army_mobilization_laws_cost_factor = SOV.SOV_the_red_army_mobilization_laws_cost_factor }
-			add_to_variable = { SOV_the_red_army_max_dig_in_factor = SOV.SOV_the_red_army_max_dig_in_factor }
-			add_to_variable = { SOV_the_red_army_political_power_factor = SOV.SOV_the_red_army_political_power_factor }
-			add_to_variable = { SOV_the_red_army_modifier_army_sub_unit_cavalry_speed_factor = SOV.SOV_the_red_army_modifier_army_sub_unit_cavalry_speed_factor }
-			add_to_variable = { SOV_the_red_army_cavalry_attack_factor = SOV.SOV_the_red_army_cavalry_attack_factor }
-			add_to_variable = { SOV_the_red_army_mobilization_speed = SOV.SOV_the_red_army_mobilization_speed }
-			add_dynamic_modifier = { modifier = SOV_the_red_army_dynamic_modifier }
-			add_to_variable = { SOV_red_fleet_navy_visibility = SOV.SOV_red_fleet_navy_visibility }
-			add_to_variable = { SOV_red_fleet_screening_efficiency = SOV.SOV_red_fleet_screening_efficiency }
-			add_to_variable = { SOV_red_fleet_positioning = SOV.SOV_red_fleet_positioning }
-			add_to_variable = { SOV_red_fleet_navy_refit_ic_cost = SOV.SOV_red_fleet_navy_refit_ic_cost }
-			add_to_variable = { SOV_red_fleet_repair_speed_factor = SOV.SOV_red_fleet_repair_speed_factor }
-			add_to_variable = { SOV_red_fleet_naval_coordination = SOV.SOV_red_fleet_naval_coordination }
-			add_to_variable = { SOV_the_red_fleet_political_power_factor = SOV.SOV_the_red_fleet_political_power_factor }
-			add_to_variable = { SOV_red_fleet_special_forces_cap = SOV.SOV_red_fleet_special_forces_cap }
-			add_to_variable = { SOV_red_fleet_invasion_preparation = SOV.SOV_red_fleet_invasion_preparation }
-			add_to_variable = { SOV_red_fleet_naval_invasion_capacity = SOV.SOV_red_fleet_naval_invasion_capacity }
-			add_dynamic_modifier = { modifier = SOV_the_red_fleet_dynamic_modifier }
-			add_to_variable = { SOV_soviet_airforce_air_wing_xp_loss_when_killed_factor = SOV.SOV_soviet_airforce_air_wing_xp_loss_when_killed_factor }
-			add_to_variable = { SOV_soviet_airforce_air_ace_generation_chance_factor = SOV.SOV_soviet_airforce_air_ace_generation_chance_factor }
-			add_to_variable = { SOV_soviet_airforce_air_accidents_factor = SOV.SOV_soviet_airforce_air_accidents_factor }
-			add_to_variable = { SOV_soviet_airforce_air_night_penalty = SOV.SOV_soviet_airforce_air_night_penalty }
-			add_to_variable = { SOV_soviet_airforce_air_weather_penalty = SOV.SOV_soviet_airforce_air_weather_penalty }
-			add_to_variable = { SOV_soviet_airforce_air_mission_xp_gain_factor = SOV.SOV_soviet_airforce_air_mission_xp_gain_factor }
-			add_to_variable = { SOV_soviet_airforce_air_training_xp_gain_factor = SOV.SOV_soviet_airforce_air_training_xp_gain_factor }
-			add_to_variable = { SOV_the_red_airforce_political_power_factor = SOV.SOV_the_red_airforce_political_power_factor }
-			add_dynamic_modifier = { modifier = SOV_soviet_airforce_dynamic_modifier }
-			set_variable = { SOV_army_professionalism_var = SOV.SOV_army_professionalism_var }
-			set_variable = { SOV_army_influence_var = SOV.SOV_army_influence_var }
-			set_variable = { SOV_army_factionalism_var = SOV.SOV_army_factionalism_var }		
-			set_variable = { SOV_navy_professionalism_var = SOV.SOV_navy_professionalism_var }
-			set_variable = { SOV_navy_technological_innovation_var = SOV.SOV_navy_technological_innovation_var }
-			set_variable = { SOV_navy_factionalism_var = SOV.SOV_navy_factionalism_var }			
-			set_variable = { SOV_airforce_pilot_training_var = SOV.SOV_airforce_pilot_training_var }
-			set_variable = { SOV_airforce_technological_innovation_var = SOV.SOV_airforce_technological_innovation_var }
-			set_variable = { SOV_airforce_factionalism_var = SOV.SOV_airforce_factionalism_var }
-			every_possible_country = {
-				limit = {
-					original_tag = SOV
-				}
-				SOV_troika = {
-					set_nationality = SOS
-				}
-				SOV_iosif_stalin = {
-					set_nationality = SOS
-				}
-				SOV_mikhail_kalinin = {
-					set_nationality = SOS
-				}
-				SOV_nikita_khrushchyov = {
-					set_nationality = SOS
-				}
-				SOV_lazar_kaganovich = {
-					set_nationality = SOS
-				}
-				SOV_ivan_smirnov = {
-					set_nationality = SOS
-				}
-				SOV_ivar_smilga = {
-					set_nationality = SOS
-				}
-				SOV_aleksey_rykov = {
-					set_nationality = SOS
-				}
-				SOV_grigory_sokolnikov = {
-					set_nationality = SOS
-				}
-				SOV_karl_radek = {
-					set_nationality = SOS
-				}
-				SOV_lev_trotsky = {
-					set_nationality = SOS
-				}
-				SOV_grigory_zinovyev = {
-					set_nationality = SOS
-				}
-				SOV_genrikh_yagoda = {
-					set_nationality = SOS
-				}
-				SOV_nikolay_yezhov = {
-					set_nationality = SOS
-				}
-				SOV_semyon_timoshenko = {
-					set_nationality = SOS
-				}
-				SOV_ivan_chernyakhovsky = {
-					set_nationality = SOS
-				}
-				SOV_grigory_kulik = {
-					set_nationality = SOS
-				}
-				SOV_aleksandr_yegorov = {
-					set_nationality = SOS
-				}
-				SOV_vladimir_kasatonov = {
-					set_nationality = SOS
-				}
-				SOV_yevgeny_preobrazhensky = {
-					set_nationality = SOS
-				}
+			add_ideas = SOV_precarious_country_high
+		}
+		add_ideas = Soviet_Civil_War
+		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = SOV.SOV_the_red_army_experience_gain_army_factor }
+		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = SOV.SOV_the_red_army_land_doctrine_cost_factor }
+		add_to_variable = { SOV_the_red_army_experience_loss_factor = SOV.SOV_the_red_army_experience_loss_factor }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = SOV.SOV_the_red_army_dig_in_speed_factor }
+		add_to_variable = { SOV_the_red_army_conscription_factor = SOV.SOV_the_red_army_conscription_factor }
+		add_to_variable = { SOV_the_red_army_training_time_factor = SOV.SOV_the_red_army_training_time_factor }
+		add_to_variable = { SOV_the_red_army_army_org_factor = SOV.SOV_the_red_army_army_org_factor }
+		add_to_variable = { SOV_the_red_army_mobilization_laws_cost_factor = SOV.SOV_the_red_army_mobilization_laws_cost_factor }
+		add_to_variable = { SOV_the_red_army_max_dig_in_factor = SOV.SOV_the_red_army_max_dig_in_factor }
+		add_to_variable = { SOV_the_red_army_political_power_factor = SOV.SOV_the_red_army_political_power_factor }
+		add_to_variable = { SOV_the_red_army_modifier_army_sub_unit_cavalry_speed_factor = SOV.SOV_the_red_army_modifier_army_sub_unit_cavalry_speed_factor }
+		add_to_variable = { SOV_the_red_army_cavalry_attack_factor = SOV.SOV_the_red_army_cavalry_attack_factor }
+		add_to_variable = { SOV_the_red_army_mobilization_speed = SOV.SOV_the_red_army_mobilization_speed }
+		add_dynamic_modifier = { modifier = SOV_the_red_army_dynamic_modifier }
+		add_to_variable = { SOV_red_fleet_navy_visibility = SOV.SOV_red_fleet_navy_visibility }
+		add_to_variable = { SOV_red_fleet_screening_efficiency = SOV.SOV_red_fleet_screening_efficiency }
+		add_to_variable = { SOV_red_fleet_positioning = SOV.SOV_red_fleet_positioning }
+		add_to_variable = { SOV_red_fleet_navy_refit_ic_cost = SOV.SOV_red_fleet_navy_refit_ic_cost }
+		add_to_variable = { SOV_red_fleet_repair_speed_factor = SOV.SOV_red_fleet_repair_speed_factor }
+		add_to_variable = { SOV_red_fleet_naval_coordination = SOV.SOV_red_fleet_naval_coordination }
+		add_to_variable = { SOV_the_red_fleet_political_power_factor = SOV.SOV_the_red_fleet_political_power_factor }
+		add_to_variable = { SOV_red_fleet_special_forces_cap = SOV.SOV_red_fleet_special_forces_cap }
+		add_to_variable = { SOV_red_fleet_invasion_preparation = SOV.SOV_red_fleet_invasion_preparation }
+		add_to_variable = { SOV_red_fleet_naval_invasion_capacity = SOV.SOV_red_fleet_naval_invasion_capacity }
+		add_dynamic_modifier = { modifier = SOV_the_red_fleet_dynamic_modifier }
+		add_to_variable = { SOV_soviet_airforce_air_wing_xp_loss_when_killed_factor = SOV.SOV_soviet_airforce_air_wing_xp_loss_when_killed_factor }
+		add_to_variable = { SOV_soviet_airforce_air_ace_generation_chance_factor = SOV.SOV_soviet_airforce_air_ace_generation_chance_factor }
+		add_to_variable = { SOV_soviet_airforce_air_accidents_factor = SOV.SOV_soviet_airforce_air_accidents_factor }
+		add_to_variable = { SOV_soviet_airforce_air_night_penalty = SOV.SOV_soviet_airforce_air_night_penalty }
+		add_to_variable = { SOV_soviet_airforce_air_weather_penalty = SOV.SOV_soviet_airforce_air_weather_penalty }
+		add_to_variable = { SOV_soviet_airforce_air_mission_xp_gain_factor = SOV.SOV_soviet_airforce_air_mission_xp_gain_factor }
+		add_to_variable = { SOV_soviet_airforce_air_training_xp_gain_factor = SOV.SOV_soviet_airforce_air_training_xp_gain_factor }
+		add_to_variable = { SOV_the_red_airforce_political_power_factor = SOV.SOV_the_red_airforce_political_power_factor }
+		add_dynamic_modifier = { modifier = SOV_soviet_airforce_dynamic_modifier }
+		set_variable = { SOV_army_professionalism_var = SOV.SOV_army_professionalism_var }
+		set_variable = { SOV_army_influence_var = SOV.SOV_army_influence_var }
+		set_variable = { SOV_army_factionalism_var = SOV.SOV_army_factionalism_var }		
+		set_variable = { SOV_navy_professionalism_var = SOV.SOV_navy_professionalism_var }
+		set_variable = { SOV_navy_technological_innovation_var = SOV.SOV_navy_technological_innovation_var }
+		set_variable = { SOV_navy_factionalism_var = SOV.SOV_navy_factionalism_var }			
+		set_variable = { SOV_airforce_pilot_training_var = SOV.SOV_airforce_pilot_training_var }
+		set_variable = { SOV_airforce_technological_innovation_var = SOV.SOV_airforce_technological_innovation_var }
+		set_variable = { SOV_airforce_factionalism_var = SOV.SOV_airforce_factionalism_var }
+		every_possible_country = {
+			limit = {
+				original_tag = SOV
 			}
 			SOV_troika = {
-				promote_character = yes						
+				set_nationality = SOS
+			}
+			SOV_iosif_stalin = {
+				set_nationality = SOS
+			}
+			SOV_mikhail_kalinin = {
+				set_nationality = SOS
+			}
+			SOV_nikita_khrushchyov = {
+				set_nationality = SOS
+			}
+			SOV_lazar_kaganovich = {
+				set_nationality = SOS
+			}
+			SOV_ivan_smirnov = {
+				set_nationality = SOS
+			}
+			SOV_ivar_smilga = {
+				set_nationality = SOS
+			}
+			SOV_aleksey_rykov = {
+				set_nationality = SOS
+			}
+			SOV_grigory_sokolnikov = {
+				set_nationality = SOS
+			}
+			SOV_karl_radek = {
+				set_nationality = SOS
+			}
+			SOV_lev_trotsky = {
+				set_nationality = SOS
+			}
+			SOV_grigory_zinovyev = {
+				set_nationality = SOS
+			}
+			SOV_genrikh_yagoda = {
+				set_nationality = SOS
+			}
+			SOV_nikolay_yezhov = {
+				set_nationality = SOS
+			}
+			SOV_semyon_timoshenko = {
+				set_nationality = SOS
+			}
+			SOV_ivan_chernyakhovsky = {
+				set_nationality = SOS
+			}
+			SOV_grigory_kulik = {
+				set_nationality = SOS
+			}
+			SOV_aleksandr_yegorov = {
+				set_nationality = SOS
+			}
+			SOV_vladimir_kasatonov = {
+				set_nationality = SOS
+			}
+			SOV_yevgeny_preobrazhensky = {
+				set_nationality = SOS
 			}
 		}
-		every_owned_state = {
+		SOV_troika = {
+			promote_character = yes						
+		}
+	}
+	every_owned_state = {
+		limit = {
+			NOT = {
+				state = 588
+				state = 590
+				state = 572
+				state = 654
+				state = 882
+				state = 40
+				state = 569
+				state = 568
+				state = 567
+				state = 564
+				state = 563
+				state = 566
+				state = 578
+				state = 570
+				state = 571
+				state = 403
+				state = 653
+				state = 580
+				state = 577
+				state = 579
+				state = 581
+				state = 398
+				state = 573
+				state = 408
+				state = 409
+				state = 657
+				state = 651
+				state = 582
+				state = 583
+				state = 406
+				state = 407
+				state = 652
+				state = 251
+				state = 401
+				state = 637
+				state = 874
+				state = 931
+				state = 207
+				state = 243
+				state = 242
+				state = 210
+				state = 810
+				state = 246
+				state = 209
+				state = 263
+				state = 208
+				state = 217
+				state = 236
+				state = 237
+				state = 232
+				state = 821
+				state = 828
+				state = 235
+				state = 827
+				state = 233
+				state = 208
+				state = 234
+				state = 238
+				state = 195
+				state = 244
+				state = 264
+				state = 218
+				state = 245
+				state = 224
+				state = 260
+				state = 265
+			}
+		}
+		transfer_state_to = SOS
+	}
+	SOS = {
+		inherit_technology = SOV
+		set_country_flag = select_play_character
+		if = {
 			limit = {
-				NOT = {
-					state = 588
-					state = 590
-					state = 572
-					state = 654
-					state = 882
-					state = 40
-					state = 569
-					state = 568
-					state = 567
-					state = 564
-					state = 563
-					state = 566
-					state = 578
-					state = 570
-					state = 571
-					state = 403
-					state = 653
-					state = 580
-					state = 577
-					state = 579
-					state = 581
-					state = 398
-					state = 573
-					state = 408
-					state = 409
-					state = 657
-					state = 651
-					state = 582
-					state = 583
-					state = 406
-					state = 407
-					state = 652
-					state = 251
-					state = 401
-					state = 637
-					state = 874
-					state = 931
-					state = 207
-					state = 243
-					state = 242
-					state = 210
-					state = 810
-					state = 246
-					state = 209
-					state = 263
-					state = 208
-					state = 217
-					state = 236
-					state = 237
-					state = 232
-					state = 821
-					state = 828
-					state = 235
-					state = 827
-					state = 233
-					state = 208
-					state = 234
-					state = 238
-					state = 195
-					state = 244
-					state = 264
-					state = 218
-					state = 245
-					state = 224
-					state = 260
-					state = 265
-				}
+				SOV = { has_completed_focus = SOV_The_Red_Terror_Marches_On }
 			}
-			transfer_state_to = SOS
+			add_ideas = SOV_The_Red_Terror
 		}
-		SOS = {
-			inherit_technology = SOV
-			set_country_flag = select_play_character
-			if = {
-				limit = {
-					SOV = { has_completed_focus = SOV_The_Red_Terror_Marches_On }
-				}
-				add_ideas = SOV_The_Red_Terror
-			}
-			division_template = {
-				name = "Strelkovaya Diviziya"
-				division_names_group = SOV_INF_01
+		division_template = {
+			name = "Strelkovaya Diviziya"
+			division_names_group = SOV_INF_01
 
-				regiments = {
-					infantry = { x = 0 y = 0 }
-					infantry = { x = 0 y = 1 }
-					infantry = { x = 0 y = 2 }
-					infantry = { x = 1 y = 0 }
-					infantry = { x = 1 y = 1 }
-					infantry = { x = 1 y = 2 }
-					infantry = { x = 2 y = 0 }
-					infantry = { x = 2 y = 1 }
-					infantry = { x = 2 y = 2 }
-				}
-				support = {
-					artillery = { x = 0 y = 0 } 	
-				}
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
+				infantry = { x = 1 y = 0 }
+				infantry = { x = 1 y = 1 }
+				infantry = { x = 1 y = 2 }
+				infantry = { x = 2 y = 0 }
+				infantry = { x = 2 y = 1 }
+				infantry = { x = 2 y = 2 }
 			}
-			division_template = {
-				name = "Gornostrelkovaya Diviziya"
-				division_names_group = SOV_MNT_01
+			support = {
+				artillery = { x = 0 y = 0 } 	
+			}
+		}
+		division_template = {
+			name = "Gornostrelkovaya Diviziya"
+			division_names_group = SOV_MNT_01
 
-				regiments = {
-					mountaineers = { x = 0 y = 0 }	
-					mountaineers = { x = 0 y = 1 }
-					mountaineers = { x = 0 y = 2 }	
-					mountaineers = { x = 1 y = 0 }
-					mountaineers = { x = 1 y = 1 }
-					mountaineers = { x = 1 y = 2 }
-					mountaineers = { x = 2 y = 0 }	
-					mountaineers = { x = 2 y = 1 }	
-					mountaineers = { x = 2 y = 2 }	
-					mountaineers = { x = 3 y = 0 }	
-					mountaineers = { x = 3 y = 1 }	
-					mountaineers = { x = 3 y = 2 }	
-				}
-				support = {
-					engineer = { x = 0 y = 0 }
-					artillery = { x = 0 y = 1 }
-				}
+			regiments = {
+				mountaineers = { x = 0 y = 0 }	
+				mountaineers = { x = 0 y = 1 }
+				mountaineers = { x = 0 y = 2 }	
+				mountaineers = { x = 1 y = 0 }
+				mountaineers = { x = 1 y = 1 }
+				mountaineers = { x = 1 y = 2 }
+				mountaineers = { x = 2 y = 0 }	
+				mountaineers = { x = 2 y = 1 }	
+				mountaineers = { x = 2 y = 2 }	
+				mountaineers = { x = 3 y = 0 }	
+				mountaineers = { x = 3 y = 1 }	
+				mountaineers = { x = 3 y = 2 }	
 			}
-			division_template = {
-				name = "Motostrelkovaya Diviziya"
-				division_names_group = SOV_MOT_01
-				regiments = {
-					motorized = { x = 0 y = 0 }
-					motorized = { x = 0 y = 1 }
-					motorized = { x = 0 y = 2 }
-					motorized = { x = 1 y = 0 }
-					motorized = { x = 1 y = 1 }
-					motorized = { x = 1 y = 2 }
-				}
+			support = {
+				engineer = { x = 0 y = 0 }
+				artillery = { x = 0 y = 1 }
 			}
-			division_template = {
-				name = "Kavaleriyskaya Diviziya"
-				division_names_group = SOV_CAV_01
+		}
+		division_template = {
+			name = "Motostrelkovaya Diviziya"
+			division_names_group = SOV_MOT_01
+			regiments = {
+				motorized = { x = 0 y = 0 }
+				motorized = { x = 0 y = 1 }
+				motorized = { x = 0 y = 2 }
+				motorized = { x = 1 y = 0 }
+				motorized = { x = 1 y = 1 }
+				motorized = { x = 1 y = 2 }
+			}
+		}
+		division_template = {
+			name = "Kavaleriyskaya Diviziya"
+			division_names_group = SOV_CAV_01
 
-				regiments = {
-					cavalry = { x = 0 y = 0 }
-					cavalry = { x = 0 y = 1 }
-					cavalry = { x = 1 y = 0 }
-					cavalry = { x = 1 y = 1 }
-				}
+			regiments = {
+				cavalry = { x = 0 y = 0 }
+				cavalry = { x = 0 y = 1 }
+				cavalry = { x = 1 y = 0 }
+				cavalry = { x = 1 y = 1 }
 			}
-			division_template = {
-				name = "Mekhanizirovaniy Korpus"
-				division_names_group = SOV_MEC_01
-				regiments = {
-					light_armor = { x = 0 y = 0 }
-					light_armor = { x = 0 y = 1 }
-					light_armor = { x = 1 y = 0 }		
-					light_armor = { x = 1 y = 1 }		
-					light_armor = { x = 1 y = 2 }		
-					motorized = { x = 2 y = 0 }		
-					motorized = { x = 2 y = 1 }	
-					motorized = { x = 2 y = 2 }		
-					motorized = { x = 2 y = 3 }		
-				}
+		}
+		division_template = {
+			name = "Mekhanizirovaniy Korpus"
+			division_names_group = SOV_MEC_01
+			regiments = {
+				light_armor = { x = 0 y = 0 }
+				light_armor = { x = 0 y = 1 }
+				light_armor = { x = 1 y = 0 }		
+				light_armor = { x = 1 y = 1 }		
+				light_armor = { x = 1 y = 2 }		
+				motorized = { x = 2 y = 0 }		
+				motorized = { x = 2 y = 1 }	
+				motorized = { x = 2 y = 2 }		
+				motorized = { x = 2 y = 3 }		
 			}
-			division_template = {
-				name = "Vozdushno-Desantnaya Brigada"
-				division_names_group = SOV_PAR_01
+		}
+		division_template = {
+			name = "Vozdushno-Desantnaya Brigada"
+			division_names_group = SOV_PAR_01
 
-				regiments = {
-					paratrooper = { x = 0 y = 0 }
-					paratrooper = { x = 0 y = 1 }
-				}
+			regiments = {
+				paratrooper = { x = 0 y = 0 }
+				paratrooper = { x = 0 y = 1 }
 			}
-			division_template = {
-				name = "Extrany Diviziya"
-				division_names_group = SOV_INF_01
+		}
+		division_template = {
+			name = "Extrany Diviziya"
+			division_names_group = SOV_INF_01
 
-				regiments = {
-					infantry = { x = 0 y = 0 }
-					infantry = { x = 0 y = 1 }
-					infantry = { x = 0 y = 2 }
-				}
-				priority = 0
-				is_locked = yes
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
 			}
-			247 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
-				}
+			priority = 0
+			is_locked = yes
+		}
+		247 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOS
+				count = 4
 			}
-			219 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
-				}
+		}
+		219 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOS
+				count = 4
 			}
-			220 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
-				}
+		}
+		220 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOS
+				count = 4
 			}
-			250 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
-				}
+		}
+		250 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOS
+				count = 4
 			}
-			399 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
-				}
+		}
+		399 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOS
+				count = 4
 			}
-			584 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
-				}
+		}
+		584 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOS
+				count = 4
 			}
-			516 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
-				}
+		}
+		516 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOS
+				count = 4
 			}
-			214 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
-				}
+		}
+		214 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOS
+				count = 4
 			}
-			880 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
+		}
+		880 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOS
+				count = 4
+			}
+		}
+	}
+	SOV = {
+		dismantle_faction = yes
+		transfer_units_fraction = {
+			target = SOS
+			size = 0.3
+			stockpile_ratio = 0.3
+			army_ratio = 0.3
+			navy_ratio = 0.3
+			air_ratio = 0.3
+			keep_unit_leaders_trigger = {
+				always = yes
+			}
+		}
+		add_ideas = Soviet_Civil_War
+		remove_ideas = home_of_revolution
+		if = {
+			limit = {
+				has_completed_focus = SOV_Prepare_the_Baricades
+			}
+			add_ideas = SOV_Prepare_the_Baricades
+		}
+		set_cosmetic_tag = SOB
+		declare_war_on = {
+			target = SOS
+			type = civil_war
+		}
+		SOV_nikolay_bukharin = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = leninism
+					traits = { economy_reformer }
 				}
 			}
 		}
-		SOV = {
-			dismantle_faction = yes
-			transfer_units_fraction = {
-				target = SOS
-				size = 0.3
-				stockpile_ratio = 0.3
-				army_ratio = 0.3
-				navy_ratio = 0.3
-				air_ratio = 0.3
-				keep_unit_leaders_trigger = {
-					always = yes
-				}
-			}
-			add_ideas = Soviet_Civil_War
-			remove_ideas = home_of_revolution
-			if = {
-				limit = {
-					has_completed_focus = SOV_Prepare_the_Baricades
-				}
-				add_ideas = SOV_Prepare_the_Baricades
-			}
-			set_cosmetic_tag = SOB
-			declare_war_on = {
-				target = SOS
-				type = civil_war
-			}
-			SOV_nikolay_bukharin = {
-				add_country_leader_role = {
-					promote_leader = yes
-					country_leader = {
-						ideology = leninism
-						traits = { economy_reformer }
-					}
-				}
-			}
-			set_global_flag = soviet_civilwar_focus
-			division_template = {
-				name = "Extrany Diviziya"
-				division_names_group = SOV_INF_01
+		set_global_flag = soviet_civilwar_focus
+		division_template = {
+			name = "Extrany Diviziya"
+			division_names_group = SOV_INF_01
 
-				regiments = {
-					infantry = { x = 0 y = 0 }
-					infantry = { x = 0 y = 1 }
-					infantry = { x = 0 y = 2 }
-				}
-				priority = 0
-				is_locked = yes 
+			regiments = {
+				infantry = { x = 0 y = 0 }
+				infantry = { x = 0 y = 1 }
+				infantry = { x = 0 y = 2 }
 			}
-			264 = {
+			priority = 0
+			is_locked = yes 
+		}
+		264 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		246 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		242 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		243 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		224 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		260 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		217 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		651 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		588 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		234 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		406 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		563 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		580 = {
+			create_unit = {
+				division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+				owner = SOB
+				count = 4
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = additional_divisions_in_eastern_russia
+			}
+			567 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"1. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
+				create_unit = {
+					division = "name = \"2. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
+					owner = SOB
+				}
+				create_unit = {
+					division = "name = \"3. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
+					owner = SOB
+				}
+				create_unit = {
+					division = "name = \"4. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
+					owner = SOB
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_country_flag = additional_divisions_in_western_russia
 			}
 			246 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"5. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
-			}
-			242 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"6. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
-			}
-			243 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"7. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
-			}
-			224 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"8. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
 			}
-			260 = {
+		}
+		if = {
+			limit = {
+				has_country_flag = additional_divisions_in_middle_russia
+			}
+			398 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"9. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
-			}
-			217 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"10. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
-			}
-			651 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"11. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
-			}
-			588 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"12. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
 			}
-			234 = {
+		}
+		if = {
+			limit = {
+				has_country_flag = additional_divisions_in_middle_asia
+			}
+			583 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"13. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
-			}
-			406 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"14. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
-			}
-			563 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"15. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
 				}
-			}
-			580 = {
 				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					division = "name = \"16. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 					owner = SOB
-					count = 4
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = additional_divisions_in_eastern_russia
-				}
-				567 = {
-					create_unit = {
-						division = "name = \"1. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"2. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"3. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"4. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = additional_divisions_in_western_russia
-				}
-				246 = {
-					create_unit = {
-						division = "name = \"5. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"6. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"7. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"8. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = additional_divisions_in_middle_russia
-				}
-				398 = {
-					create_unit = {
-						division = "name = \"9. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"10. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"11. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"12. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-				}
-			}
-			if = {
-				limit = {
-					has_country_flag = additional_divisions_in_middle_asia
-				}
-				583 = {
-					create_unit = {
-						division = "name = \"13. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"14. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"15. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
-					create_unit = {
-						division = "name = \"16. Strelkovaya Diviziya\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
-						owner = SOB
-					}
 				}
 			}
 		}
@@ -7404,7 +7401,7 @@ add_2_5_tukachevsky_coup_progress_effect = {
 		set_variable = {
 			var = SOV_tukachevsky_coup_progress_var
 			value = 100
-			tooltip = sov_tukachevsky_coup_progress_is_100
+			tooltip = sov_add_2_5_tukachevsky_coup_progress
 		}
 	}
 	else = {
@@ -7425,7 +7422,7 @@ remove_2_5_tukachevsky_coup_progress_effect = {
 		set_variable = {
 			var = SOV_tukachevsky_coup_progress_var
 			value = 0
-			tooltip = sov_tukachevsky_coup_progress_is_0
+			tooltip = sov_remove_2_5_tukachevsky_coup_progress
 		}
 	}
 	else = {
@@ -7446,7 +7443,7 @@ add_5_tukachevsky_coup_progress_effect = {
 		set_variable = {
 			var = SOV_tukachevsky_coup_progress_var
 			value = 100
-			tooltip = sov_tukachevsky_coup_progress_is_100
+			tooltip = sov_add_5_tukachevsky_coup_progress
 		}
 	}
 	else = {
@@ -7467,7 +7464,7 @@ remove_5_tukachevsky_coup_progress_effect = {
 		set_variable = {
 			var = SOV_tukachevsky_coup_progress_var
 			value = 0
-			tooltip = sov_tukachevsky_coup_progress_is_0
+			tooltip = sov_remove_5_tukachevsky_coup_progress
 		}
 	}
 	else = {
@@ -7488,7 +7485,7 @@ add_10_tukachevsky_coup_progress_effect = {
 		set_variable = {
 			var = SOV_tukachevsky_coup_progress_var
 			value = 100
-			tooltip = sov_tukachevsky_coup_progress_is_100
+			tooltip = sov_add_10_tukachevsky_coup_progress
 		}
 	}
 	else = {
@@ -7509,7 +7506,7 @@ remove_10_tukachevsky_coup_progress_effect = {
 		set_variable = {
 			var = SOV_tukachevsky_coup_progress_var
 			value = 0
-			tooltip = sov_tukachevsky_coup_progress_is_0
+			tooltip = sov_remove_10_tukachevsky_coup_progress
 		}
 	}
 	else = {
@@ -7530,7 +7527,7 @@ add_15_tukachevsky_coup_progress_effect = {
 		set_variable = {
 			var = SOV_tukachevsky_coup_progress_var
 			value = 100
-			tooltip = sov_tukachevsky_coup_progress_is_100
+			tooltip = sov_add_15_tukachevsky_coup_progress
 		}
 	}
 	else = {
@@ -7559,29 +7556,6 @@ remove_15_tukachevsky_coup_progress_effect = {
 			var = SOV_tukachevsky_coup_progress_var
 			value = -15
 			tooltip = sov_remove_15_tukachevsky_coup_progress
-		}
-	}
-}
-
-#Land Reform
-add_5_land_reform = {
-	if = {
-		limit = {
-			check_variable = {
-				RUS_land_reform_var > 94
-			}
-		}
-		set_variable = {
-			var = RUS_land_reform_var
-			value = 1
-			tooltip = RUS_land_reform_var_progress_is_100
-		}
-	}
-	else = {
-		add_to_variable = {
-			var = RUS_land_reform_var
-			value = 5
-			tooltip = RUS_land_reform_var_progress_add_5
 		}
 	}
 }
@@ -7632,7 +7606,6 @@ RUS_you_can_play_now = {
 		set_state_owner = 224
 		set_cosmetic_tag = league_of_all_russian_liberation
 		add_manpower = 50000
-		add_ideas = RUS_rudiger_von_der_goltz
 	}
 	SOV = {
 		set_state_controller = 222
@@ -7645,7 +7618,7 @@ RUS_you_can_play_now = {
 			}
 			set_autonomy = {
 				target = RUS
-				autonomous_state = autonomy_cooperating_country
+				autonomous_state = autonomy_protected_state
 				freedom_level = 0.2
 			}
 			else = {
@@ -7655,39 +7628,32 @@ RUS_you_can_play_now = {
 		add_to_faction = RUS
 	}
 	RUS = {
-		become_exiled_in = { target = GER legitimacy = 15 }
+		become_exiled_in = { target = GER legitimacy = 10 }
 		set_politics = {
-			ruling_party = neutrality
+			ruling_party = democratic
 			last_election = "1936.1.1"
 			election_frequency = 48
 			elections_allowed = yes
 		}
 		set_popularities = {
-			democratic = 14
+			democratic = 40
 			fascism = 36
-			neutrality = 40
+			neutrality = 14
 			communism = 10
 		}
 		declare_war_on = {
 			target = SOV
 			type = annex_everything
 		}
-		add_ideas = RUS_support_from_germany
-		if = {
-			limit = {
-				SOV = { has_idea = SOV_idea_sluggish_industrialization }
-			}
-			add_ideas = SOV_idea_sluggish_industrialization
-		}
 	}
 	64 = {
 		create_unit = {
-			division = "is_name_ordered = yes division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
+			division = "name = \"is_name_ordered = yes\" division_template = \"Strelkovaya Diviziya\" start_experience_factor = 0.1"
 			owner = RUS
 			count = 10
 		}
 		create_unit = {
-			division = "is_name_ordered = yes division_template = \"Kavaleriyskaya Diviziya\" start_experience_factor = 0.1"
+			division = "name = \"is_name_ordered = yes\" division_template = \"Kavaleriyskaya Diviziya\" start_experience_factor = 0.1"
 			owner = RUS
 			count = 3
 		}
@@ -7993,160 +7959,4 @@ BUL_revolution_by_soviet = {
 	}
 	add_ideas = with_soviet_idea
 	SOV = { add_timed_idea = { idea = SOV_support_revolution days = 200 } }
-}
-
-German_influence_add_30 = {
-	if = {
-		limit = {
-			check_variable = { RUS_influence_of_germany_progress_var > 69 }
-		}
-		set_variable = { RUS_influence_of_germany_progress_var = 100 }
-		custom_effect_tooltip = RUS_influence_of_germany_progress_var_is_100
-	}
-	else = {
-		add_to_variable = { RUS_influence_of_germany_progress_var = 30 }
-		custom_effect_tooltip = RUS_influence_of_germany_progress_var_add_30
-	}
-}
-
-German_influence_add_5 = {
-	if = {
-		limit = {
-			check_variable = { RUS_influence_of_germany_progress_var > 94 }
-		}
-		set_variable = { RUS_influence_of_germany_progress_var = 100 }
-		custom_effect_tooltip = RUS_influence_of_germany_progress_var_is_100
-	}
-	else = {
-		add_to_variable = { RUS_influence_of_germany_progress_var = 5 }
-		custom_effect_tooltip = RUS_influence_of_germany_progress_var_add_5
-	}
-}
-
-German_influence_add_2_5 = {
-	if = {
-		limit = {
-			check_variable = { RUS_influence_of_germany_progress_var > 97 }
-		}
-		set_variable = { RUS_influence_of_germany_progress_var = 100 }
-		custom_effect_tooltip = RUS_influence_of_germany_progress_var_is_100
-	}
-	else = {
-		add_to_variable = { RUS_influence_of_germany_progress_var = 2.5 }
-		custom_effect_tooltip = RUS_influence_of_germany_progress_var_add_2_5
-	}
-}
-
-German_influence_remove_2_5 = {
-	if = {
-		limit = {
-			check_variable = { RUS_influence_of_germany_progress_var < 3 }
-		}
-		set_variable = { RUS_influence_of_germany_progress_var = 0 }
-		custom_effect_tooltip = RUS_influence_of_germany_progress_var_is_0
-	}
-	else = {
-		add_to_variable = { RUS_influence_of_germany_progress_var = -2.5 }
-		custom_effect_tooltip = RUS_influence_of_germany_progress_var_de_2_5_tt
-	}
-}
-
-German_influence_remove_5 = {
-	if = {
-		limit = {
-			check_variable = { RUS_influence_of_germany_progress_var < 6 }
-		}
-		set_variable = { RUS_influence_of_germany_progress_var = 0 }
-		custom_effect_tooltip = RUS_influence_of_germany_progress_var_is_0
-	}
-	else = {
-		add_to_variable = { RUS_influence_of_germany_progress_var = -5 }
-		custom_effect_tooltip = RUS_influence_of_germany_progress_var_de_5_tt
-	}
-}
-
-add_10_denikin_coup_progress_effect = {
-	if = {
-		limit = {
-			check_variable = {
-				RUS_denikin_coup_progress_var > 89
-			}
-		}
-		set_variable = {
-			var = RUS_denikin_coup_progress_var
-			value = 100
-			tooltip = rus_denikin_coup_progress_is_100
-		}
-	}
-	else = {
-		add_to_variable = {
-			var = RUS_denikin_coup_progress_var
-			value = 10
-			tooltip = rus_add_10_denikin_coup_progress
-		}
-	}
-}
-remove_10_denikin_coup_progress_effect = {
-	if = {
-		limit = {
-			check_variable = {
-				RUS_denikin_coup_progress_var < 10
-			}
-		}
-		set_variable = {
-			var = RUS_denikin_coup_progress_var
-			value = 0
-			tooltip = rus_denikin_coup_progress_is_0
-		}
-	}
-	else = {
-		add_to_variable = {
-			var = RUS_denikin_coup_progress_var
-			value = -10
-			tooltip = rus_remove_10_denikin_coup_progress
-		}
-	}
-}
-
-add_10_royalists_progress_effect = {
-	if = {
-		limit = {
-			check_variable = {
-				RUS_royalists_progress_var > 89
-			}
-		}
-		set_variable = {
-			var = RUS_denikin_coup_progress_var
-			value = 100
-			tooltip = rus_royalists_progress_is_100
-		}
-	}
-	else = {
-		add_to_variable = {
-			var = RUS_denikin_coup_progress_var
-			value = 10
-			tooltip = rus_add_10_royalists_progress
-		}
-	}
-}
-remove_10_royalists_coup_progress_effect = {
-	if = {
-		limit = {
-			check_variable = {
-				RUS_royalists_progress_var < 10
-			}
-		}
-		set_variable = {
-			var = RUS_denikin_coup_progress_var
-			value = 0
-			tooltip = rus_royalists_progress_is_0
-		}
-	}
-	else = {
-		add_to_variable = {
-			var = RUS_denikin_coup_progress_var
-			value = -10
-			tooltip = rus_remove_10_royalists_progress
-		}
-	}
 }
