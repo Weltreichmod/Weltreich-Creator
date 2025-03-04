@@ -512,10 +512,17 @@ country_event = {
 		if = {
 			limit = {
 				TAN = {
+					exists = yes
 					has_country_flag = anti_russia_war_loser
 				}
 			}
 			MON = { annex_country = { target = TAN transfer_troops = no } }
+		}
+		if = {
+			limit = {
+				329 = { is_controlled_by = SOV }
+			}
+			SOV = { 329 = { transfer_state_to = MON } }
 		}
 		if = {
 			limit = {
@@ -898,8 +905,7 @@ country_event = {
 		every_state = {
 			limit = {
 				OR = {
-					is_owned_by = GOA
-					is_owned_by = GER
+					is_controlled_by = MGO
 				}
 				OR = {
 					state = 671
@@ -933,11 +939,9 @@ country_event = {
 		name = japan_wr.24.a
 		if = {
 			limit = {
-				#NOT = { has_war_with = GOA }
-				NOT = { has_war_with = GER }
+				NOT = { has_war_with = FROM }
 			}
-			#declare_war_on = { target = GOA  type = puppet_wargoal_focus }
-			declare_war_on = { target = GER  type = puppet_wargoal_focus }
+			declare_war_on = { target = FROM  type = puppet_wargoal_focus }
 		}
 		ai_chance = {
 			base = 10

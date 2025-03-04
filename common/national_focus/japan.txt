@@ -2015,13 +2015,37 @@
 		}
 		available = {
 			OR = {
-				MGO = { has_war = yes }
-				strength_ratio = {
-					tag = MGO
-					ratio > 1.3
+				MGO = {
+					has_war = yes
+					is_subject = no
+				}
+				AND = {
+					MGO = {
+						is_subject = no
+					}
+					strength_ratio = {
+						tag = MGO
+						ratio > 1.3
+					}
+				}
+				AND = {
+					MGO = {
+						is_subject = yes
+					}
+					MGM = {
+						has_war = yes
+					}
+				}
+				AND = {
+					MGO = {
+						is_subject = yes
+					}
+					strength_ratio = {
+						tag = MGM
+						ratio > 1.3
+					}
 				}
 			}
-			is_subject = no
 		}
 		bypass = {
 			OR = {
@@ -2034,7 +2058,18 @@
 		}
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
-			MGO = { country_event = japan_wr.23 }
+			if = {
+				limit = {
+					MGO = { is_subject = no }
+				}
+				MGO = { country_event = japan_wr.23 }
+			}
+			else_if = {
+				limit = {
+					MGO = { is_subject = yes }
+				}
+				MGM = { country_event = japan_wr.23 }
+			}
 			671 = { add_claim_by = JAP }
 			670 = { add_claim_by = JAP }
 			286 = { add_claim_by = JAP }

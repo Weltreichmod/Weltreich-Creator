@@ -1716,6 +1716,11 @@ country_event = {
 				}
 				RUS = {
 					drop_cosmetic_tag = yes
+					country_event = { id = soviet_rework_white.005 days = 21 }
+					country_event = { id = soviet_rework_white.011 days = 7 }
+					country_event = { id = soviet_rework_white.035 days = 12 }
+					set_country_flag = kill_communists_flag
+					mark_focus_tree_layout_dirty = yes
 				}
 				every_state = {
 					limit = {
@@ -2087,7 +2092,15 @@ country_event = {
 					add_core_of = RUS
 				}
 			}
-			SOV = { annex_country = { target = SOV transfer_troops = yes } }
+			SOV = {
+				set_capital = {
+				  state = 571
+				  remember_old_capital = no
+				}
+				mark_focus_tree_layout_dirty = yes
+				country_event = { id = soviet_rework_troika.038 days = 25 }
+				complete_national_focus = SOV_the_war_has_been_lost
+			}
 		}
 	}
 	option = {
@@ -2707,7 +2720,7 @@ country_event = {
 	fire_only_once = yes
 	option = {
 		name = Germany.80.a
-		#add_timed_idea = { idea = Operation_Bulldozer days = 55 }
+		add_timed_idea = { idea = Operation_Steel days = 80 }
 		add_war_support = 0.1
 		ai_chance = {
 			factor = 10
@@ -3683,6 +3696,25 @@ country_event = {
 		add_political_power = 10
 		ai_chance = {
 			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = Germany.1001
+	title = Germany.1001.t
+	desc = Germany.1001.d
+	hidden = yes
+	trigger = {
+		has_cosmetic_tag = GER_PROTECT
+		NOT = { is_subject_of = GER }
+	}
+	mean_time_to_happen = { days = 1 }
+	option = {
+		name = Germany.1001.a
+		drop_cosmetic_tag = yes
+		ai_chance = {
+			base = 1
 		}
 	}
 }
