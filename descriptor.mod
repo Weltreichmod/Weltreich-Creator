@@ -25,7 +25,7 @@ replace_path="gfx/loadingscreens"
 replace_path="map/strategicregions"
 replace_path="history/countries"
 replace_path="history/states"
-version="1.14.x"
+version="1.16.x"
 tags={
 	"Alternative History"
 	"Events"

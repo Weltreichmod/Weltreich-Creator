@@ -854,8 +854,8 @@ focus_tree = {
 	focus = {
 		id = RUS_we_are_back
 		icon = GFX_RUS_we_are_back
-		x = 7
-		y = 0
+		x = 2
+		y = -2
 		cost = 5.8
 		ai_will_do = {
 			factor = 10
@@ -1014,6 +1014,9 @@ focus_tree = {
 		}
 		mutually_exclusive = {
 			focus = RUS_general_election_in_russia
+		}
+		mutually_exclusive = {
+			focus = RUS_Sweep_away_Arkhangelskys_remnants
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -1239,6 +1242,7 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
+			country_event = soviet_rework_white.073
 			custom_effect_tooltip = RUS_consolidate_power_tt
 		}
 	}
@@ -1272,6 +1276,9 @@ focus_tree = {
 		}
 		mutually_exclusive = {
 			focus = RUS_general_election_in_russia
+		}
+		mutually_exclusive = {
+			focus = RUS_Sweep_away_Arkhangelskys_remnants
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -1445,6 +1452,7 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
+			country_event = soviet_rework_white.072
 			custom_effect_tooltip = RUS_consolidate_power_tt
 		}
 	}
@@ -1465,13 +1473,19 @@ focus_tree = {
 		}
 		available = {
 			has_country_flag = SOV_denikin_victory
-			has_idea = RUS_viktor_chernov
+			has_country_leader = {
+				character = RUS_viktor_chernov
+				ruling_only = yes
+			}
 		}
 		mutually_exclusive = {
 			focus = RUS_Restoration
 		}
 		mutually_exclusive = {
 			focus = RUS_president_of_russia
+		}
+		mutually_exclusive = {
+			focus = RUS_Sweep_away_Arkhangelskys_remnants
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -1657,6 +1671,234 @@ focus_tree = {
 		completion_reward = {
 			country_event = soviet_rework_white.069
 			add_ideas = RUS_february_continues
+		}
+	}
+	
+	#Dictatorship Independent
+	focus = {
+		id = RUS_Sweep_away_Arkhangelskys_remnants
+		icon = GFX_RUS_Sweep_away_Arkhangelskys_remnants
+		relative_position_id = RUS_All_Quiet_On_Russia
+		x = 9
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			has_country_flag = SOV_denikin_victory
+			has_country_leader = {
+				character = RUS_zinovy_peshkov
+				ruling_only = yes
+			}
+		}
+		mutually_exclusive = {
+			focus = RUS_Restoration
+		}
+		mutually_exclusive = {
+			focus = RUS_president_of_russia
+		}
+		mutually_exclusive = {
+			focus = RUS_general_election_in_russia
+		}
+		prerequisite = {
+			focus = RUS_All_Quiet_On_Russia
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = soviet_rework_white.070
+		}
+	}
+	
+	focus = {
+		id = RUS_The_most_Russian_style_government
+		icon = GFX_RUS_The_most_Russian_style_government
+		relative_position_id = RUS_Sweep_away_Arkhangelskys_remnants
+		x = -2
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = RUS_Sweep_away_Arkhangelskys_remnants
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = soviet_rework_white.071
+		}
+	}
+	
+	focus = {
+		id = RUS_border_closures
+		icon = GFX_RUS_border_closures
+		relative_position_id = RUS_Sweep_away_Arkhangelskys_remnants
+		x = 0
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 10
+		}
+		available = {
+			has_idea = RUS_the_great_exodus
+		}
+		prerequisite = {
+			focus = RUS_Sweep_away_Arkhangelskys_remnants
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = RUS_the_great_exodus
+				add_idea = RUS_the_great_exodus1
+			}
+			every_country = {
+				limit = {
+					has_idea = SOV_the_great_exodus
+				}
+				swap_ideas = {
+					remove_idea = SOV_the_great_exodus
+					add_idea = SOV_the_great_exodus1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = RUS_Mace_for_Communists
+		icon = GFX_RUS_Mace_for_Communists
+		relative_position_id = RUS_Sweep_away_Arkhangelskys_remnants
+		x = 2
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = RUS_Sweep_away_Arkhangelskys_remnants
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = RUS_Arresting_Bolshevik_Remnants_tt
+			add_to_variable = { 213:RUS_stabilization_var = 5 }
+			add_to_variable = { 214:RUS_stabilization_var = 5 }
+			add_to_variable = { 195:RUS_stabilization_var = 5 }
+			add_to_variable = { 219:RUS_stabilization_var = 5 }
+			add_to_variable = { 829:RUS_stabilization_var = 5 }
+			add_to_variable = { 249:RUS_stabilization_var = 5 }
+			add_to_variable = { 825:RUS_stabilization_var = 5 }
+			stabilization_map_calculate_frame = yes
+		}
+	}
+	
+	focus = {
+		id = RUS_Inspiring_Russians_pride
+		icon = GFX_RUS_Inspiring_Russians_pride
+		relative_position_id = RUS_The_most_Russian_style_government
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = RUS_The_most_Russian_style_government
+			focus = RUS_border_closures
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = RUS_russian_people_IRp
+		}
+	}
+	
+	focus = {
+		id = RUS_Bread_and_circuses
+		icon = GFX_RUS_Bread_and_circuses
+		relative_position_id = RUS_Inspiring_Russians_pride
+		x = 0
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = RUS_Inspiring_Russians_pride
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = RUS_Bread_and_circuses
+		}
+	}
+	
+	focus = {
+		id = RUS_Free_People
+		icon = GFX_RUS_Free_People
+		relative_position_id = RUS_border_closures
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = RUS_Mace_for_Communists
+			focus = RUS_border_closures
+		}
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = RUS_Free_People
+		}
+	}
+	
+	focus = {
+		id = RUS_Anti_German_propaganda
+		icon = GFX_RUS_Anti_German_propaganda
+		relative_position_id = RUS_Free_People
+		x = 0
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = RUS_Free_People
+		}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			GER = {
+				add_opinion_modifier = {
+					target = RUS
+					modifier = medium_decrease
+				}
+			}
+			RUS = {
+				add_opinion_modifier = {
+					target = GER
+					modifier = medium_decrease
+				}
+			}
+			add_war_support = 0.1
+		}
+	}
+	
+	focus = {
+		id = RUS_Republic_but_in_name_only
+		icon = GFX_RUS_Republic_but_in_name_only
+		relative_position_id = RUS_Bread_and_circuses
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 10
+		}
+		prerequisite = {
+			focus = RUS_Bread_and_circuses
+		}
+		prerequisite = {
+			focus = RUS_Anti_German_propaganda
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			set_cosmetic_tag = RUS_Republic
 		}
 	}
 	
