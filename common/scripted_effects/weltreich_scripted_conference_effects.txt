@@ -894,6 +894,13 @@ peace_conference_effect = {
 			}
 			transfer_state_to = EGY
 		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = SRI
+			}
+			transfer_state_to = SRI
+		}
 	}
 	#islands
 	if = {
@@ -1074,6 +1081,70 @@ peace_conference_effect = {
 				has_country_flag = defeat_austria_hungary_flag
 			}
 			country_event = wrwpe.8
+		}
+		if = {
+			limit = {
+				UKR = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					is_core_of = UKR
+					NOT = {
+						state = 73
+						state = 989
+					}
+				}
+				transfer_state_to = UKR
+			}
+		}
+		if = {
+			limit = {
+				UPR = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					is_core_of = UPR
+					NOT = {
+						state = 73
+						state = 989
+					}
+				}
+				transfer_state_to = UPR
+			}
+		}
+		if = {
+			limit = {
+				USS = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					is_core_of = USS
+					NOT = {
+						state = 73
+						state = 989
+					}
+				}
+				transfer_state_to = USS
+			}
+		}
+		if = {
+			limit = {
+				RUS = { has_country_flag = second_great_war_winner }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					is_core_of = UKR
+					NOT = {
+						state = 73
+						state = 989
+					}
+				}
+				transfer_state_to = RUS
+			}
 		}
 	}
 	#fate of US
@@ -1747,6 +1818,45 @@ german_puppet_effect = {
 		}
 	}
 	#to soviet eastern puppets
+	if = {
+		limit = {
+			UKR = { exists = yes }
+			UKR = { has_country_flag = second_great_war_loser }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = UKR
+				state = 989
+			}
+			transfer_state_to = POL
+		}
+	}
+	if = {
+		limit = {
+			UPR = { exists = yes }
+			UPR = { has_country_flag = second_great_war_loser }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = UPR
+				state = 989
+			}
+			transfer_state_to = POL
+		}
+	}
+	if = {
+		limit = {
+			USS = { exists = yes }
+			USS = { has_country_flag = second_great_war_loser }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = USS
+				state = 989
+			}
+			transfer_state_to = POL
+		}
+	}
 	if = {
 		limit = {
 			SOV = { has_country_flag = second_great_war_winner }
@@ -2732,11 +2842,22 @@ german_puppet_effect = {
 			}
 		}
 	}
+	if = {
+		limit = {
+			GER = { has_country_flag = second_great_war_loser }
+			RUS = { has_country_flag = second_great_war_winner }
+		}
+		RUS = {
+			news_event = soviet_rework_white.065
+			remove_ideas = country_isolation
+		}
+	}
 	#if sov-rus was defeated before germany fall
 	if = {
 		limit = {
 			GER = { has_country_flag = second_great_war_loser }
 			SOV = { has_country_flag = anti_russia_war_loser }
+			RUS = { exists = no }
 			NOT = { has_global_flag = you_cant_stop_now_flag }
 		}
 		SOV = {
@@ -2835,7 +2956,6 @@ german_puppet_effect = {
 		limit = {
 			GER = { has_country_flag = second_great_war_loser }
 			SOV = { has_country_flag = anti_russia_war_loser }
-			has_global_flag = you_cant_stop_now_flag
 		}
 		GER = { end_puppet = RUS }
 		every_state = {

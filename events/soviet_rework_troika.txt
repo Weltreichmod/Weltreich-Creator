@@ -887,6 +887,8 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.036.a
 		add_political_power = 50
+		custom_effect_tooltip = SOV_zinoviev_ending
+		hidden_effect = { play_song = "WR_ENDING_ZINOVIEV" }
 		ai_chance = {
 			base = 3
 		}
@@ -902,6 +904,8 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.037.a
 		add_political_power = 50
+		custom_effect_tooltip = SOV_tukhachevsky_fake_ending
+		country_event = { id = soviet_rework_troika.062 days = 31 }
 		ai_chance = {
 			base = 3
 		}
@@ -954,6 +958,8 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.040.a
 		add_political_power = 50
+		custom_effect_tooltip = SOV_stalin_ending
+		hidden_effect = { play_song = "WR_ENDING_STALIN" }
 		ai_chance = {
 			base = 3
 		}
@@ -969,6 +975,8 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.041.a
 		add_political_power = 50
+		custom_effect_tooltip = SOV_trotsky_ending
+		hidden_effect = { play_song = "WR_ENDING_TROTSKY" }
 		ai_chance = {
 			base = 3
 		}
@@ -984,6 +992,8 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.042.a
 		add_political_power = 50
+		custom_effect_tooltip = SOV_bukharin_ending
+		hidden_effect = { play_song = "WR_ENDING_BUKHARIN" }
 		ai_chance = {
 			base = 3
 		}
@@ -2046,6 +2056,58 @@ country_event = {
 }
 
 country_event = {
+	id = soviet_rework_troika.062
+	title = soviet_rework_troika.062.t
+	desc = soviet_rework_troika.062.d
+	picture = GFX_report_event_SOV_mongolia_fortify_border
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.062.a
+		unlock_decision_category_tooltip = SOV_collapsing_economy
+		set_country_flag = time_is_going_on_flag
+		country_event = { id = soviet_rework_troika.063 days = 10 }
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.063
+	title = soviet_rework_troika.063.t
+	desc = soviet_rework_troika.063.d
+	picture = GFX_report_event_lithuania_army
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.063.a
+		set_country_flag = war_is_going_on_flag
+		mark_focus_tree_layout_dirty = yes
+		hidden_effect = {
+			load_oob = "SOV_focus_9"
+		}
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.064
+	title = soviet_rework_troika.064.t
+	desc = soviet_rework_troika.064.d
+	picture = GFX_victory_tukhachevsky
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.064.a
+		custom_effect_tooltip = SOV_tukhachevsky_ending
+		hidden_effect = { play_song = "WR_ENDING_TUKHACHEVSKY" }
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
 	picture = GFX_report_event_french_resistance_01
 	id = soviet_rework_revolution.1
 	title = soviet_rework_revolution.1.t
@@ -2658,6 +2720,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = soviet_rework_white.011.a
+		set_country_flag = you_are_puppet_boy_flag
 		remove_ideas = RUS_rudiger_von_der_goltz
 		add_ideas = RUS_Friedrich_von_Prittwitz
 		ai_chance = {
@@ -4137,7 +4200,10 @@ news_event = {
 	immediate = {
 		hidden_effect = {
 			GER = { end_puppet = RUS }
-			RUS = { leave_faction = yes }
+			RUS = {
+				leave_faction = yes
+				add_ideas = country_isolation
+			}
 		}
 	}
 	option = {
@@ -4211,10 +4277,11 @@ country_event = {
 	option = {
 		name = soviet_rework_white.063.a
 		set_country_flag = will_war_against_rus
-		create_wargoal = {
-			type = puppet_wargoal_focus
+		declare_war_on = {
 			target = RUS
+			type = puppet_wargoal_focus
 		}
+		RUS = { add_ideas = RUS_russian_independent_war }
 		ai_chance = {
 			base = 100
 		}
@@ -4254,15 +4321,6 @@ news_event = {
 	major = yes
 	immediate = {
 		hidden_effect = {
-			every_country = {
-				limit = {
-					has_war_with = RUS
-				}
-				white_peace = {
-					tag = RUS
-					message = victory_of_RUS
-				}
-			}
 			RUS = {
 				country_event = { id = soviet_rework_white.066 days = 10 }
 			}
@@ -4308,13 +4366,22 @@ country_event = {
 	option = {
 		name = soviet_rework_white.066.b
 		retire_character = RUS_anton_denikin
+		set_politics = {
+			ruling_party = democratic
+			elections_allowed = yes
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = democratic
+			popularity = 0.1
+		}
 		RUS_viktor_chernov = {
 			add_country_leader_role = {
 				promote_leader = yes
 				country_leader = {
 					ideology = social_democracy
 				}
-			}						
+			}
 		}
 		set_country_flag = set_path_of_russia
 		ai_chance = {
@@ -4373,6 +4440,9 @@ country_event = {
 	option = {
 		name = soviet_rework_white.069.a
 		add_stability = 0.05
+		hidden_effect = {
+			play_song = "WR_ENDING_RUSSIA_HAPPY"
+		}
 		ai_chance = {
 			base = 10
 		}
@@ -4422,6 +4492,9 @@ country_event = {
 	major = yes
 	option = {
 		name = soviet_rework_white.072.a
+		hidden_effect = {
+			play_song = "WR_ENDING_RUSSIA_SAD"
+		}
 		ai_chance = {
 			base = 10
 		}
@@ -4437,6 +4510,27 @@ country_event = {
 	major = yes
 	option = {
 		name = soviet_rework_white.073.a
+		hidden_effect = {
+			play_song = "WR_ENDING_RUSSIA_SAD"
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	picture = kazan
+	id = soviet_rework_white.074
+	title = soviet_rework_white.074.t
+	desc = soviet_rework_white.074.d
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = soviet_rework_white.074.a
+		hidden_effect = {
+			play_song = "WR_ENDING_RUSSIA_SAD"
+		}
 		ai_chance = {
 			base = 10
 		}

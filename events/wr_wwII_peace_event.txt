@@ -1079,213 +1079,6 @@ country_event = {
 		every_state = {
 			limit = {
 				is_owned_by = AUH
-				is_core_of = UKR
-			}
-			transfer_state_to = UKR
-		}
-		every_state = {
-			limit = {
-				is_owned_by = AUH
-				is_core_of = ROM
-			}
-			transfer_state_to = ROM
-		}
-		if = {
-			limit = {
-				SER = {
-					exists = yes
-					NOT = { has_country_flag = second_great_war_loser }
-				}
-			}
-			every_state = {
-				limit = {
-					is_owned_by = AUH
-					OR = {
-						state = 764
-						state = 45
-						state = 109
-						state = 104
-						state = 804
-						state = 105
-						state = 103
-						state = 163
-					}
-				}
-				add_core_of = SER
-				transfer_state_to = SER
-			}
-			else = {
-				every_state = {
-					limit = {
-						is_owned_by = AUH
-						is_core_of = CRO
-					}
-					transfer_state_to = CRO
-				}
-				CRO = {
-					inherit_technology = AUH
-				}
-				every_state = {
-					limit = {
-						is_owned_by = AUH
-						is_core_of = BOS
-					}
-					transfer_state_to = BOS
-				}
-				BOS = {
-					inherit_technology = AUH
-				}
-				every_state = {
-					limit = {
-						is_owned_by = AUH
-						is_core_of = MNT
-					}
-					transfer_state_to = MNT
-				}
-				MNT = {
-					inherit_technology = AUH
-				}
-				if = {
-					limit = {
-						SER = { exists = yes }
-					}
-					every_state = {
-						limit = {
-							is_owned_by = AUH
-							state = 764
-						}
-						transfer_state_to = SER
-					}
-					else = {
-						every_state = {
-							limit = {
-								is_owned_by = AUH
-								state = 764
-							}
-							transfer_state_to = HUN
-						}
-					}
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_owned_by = AUH
-				is_core_of = HUN
-				NOT = { state = 933 }
-			}
-			transfer_state_to = HUN
-		}
-		HUN = {
-			inherit_technology = AUH
-		}
-		if = {
-			limit = {
-				AUH = { exists = yes }
-			}
-			AUS = {
-				add_timed_idea = { idea = war_reparations days = 1000 }
-				add_ideas = peace_treaty
-				annex_country = { target = AUH transfer_troops = yes }
-				inherit_technology = AUH
-			}
-			every_state = {
-				limit = {
-					is_owned_by = AUS
-				}
-				add_core_of = AUS
-			}
-			if = {
-				limit = {
-					has_dlc = "Together for Victory"
-				}
-				set_autonomy = {
-					target = AUS
-					autonomous_state = autonomy_puppet
-					freedom_level = 0.5
-				}
-				else = {
-					puppet = AUS
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_core_of = AUH
-			}
-			remove_core_of = AUH
-		}
-		ai_chance = {
-			base = 100
-		}
-	}
-	option = {
-		name = wrwpe.8.b
-		if = {
-			limit = {
-				SER = {
-					is_subject_of = AUH
-				}
-				AUH = {
-					end_puppet = SER
-				}
-			}
-		}
-		if = {
-			limit = {
-				SER = {
-					is_subject_of = ALB
-				}
-				ALB = {
-					end_puppet = SER
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_owned_by = AUH
-				is_core_of = CZE
-			}
-			transfer_state_to = CZE
-		}
-		CZE = {
-			inherit_technology = AUH
-			set_politics = {
-				ruling_party = democratic
-				election_frequency = 48
-				elections_allowed = yes
-			}
-		}
-		every_state = {
-			limit = {
-				is_owned_by = AUH
-				is_core_of = SLO
-			}
-			transfer_state_to = SLO
-		}
-		SLO = {
-			inherit_technology = AUH
-		}
-		every_state = {
-			limit = {
-				is_owned_by = AUH
-				OR = {
-					is_core_of = POL
-					state = 989
-				}
-			}
-			transfer_state_to = POL
-		}
-		every_state = {
-			limit = {
-				is_owned_by = AUH
-				is_core_of = UKR
-			}
-			transfer_state_to = UKR
-		}
-		every_state = {
-			limit = {
-				is_owned_by = AUH
 				is_core_of = ROM
 			}
 			transfer_state_to = ROM
@@ -1429,6 +1222,52 @@ country_event = {
 				}
 			}
 		}
+		if = {
+			limit = {
+				CZE = { exists = yes }
+			}
+			CZE = {
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				inherit_technology = AUH
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = CZE
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = CZE
+				}
+			}
+		}
+		if = {
+			limit = {
+				SLO = { exists = yes }
+			}
+			SLO = {
+				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = peace_treaty
+				inherit_technology = AUH
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SLO
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SLO
+				}
+			}
+		}
 		every_state = {
 			limit = {
 				is_core_of = AUH
@@ -1443,7 +1282,7 @@ country_event = {
 		}
 	}
 	option = {
-		name = wrwpe.8.c
+		name = wrwpe.8.b
 		annex_country = { target = AUH transfer_troops = no }
 		ai_chance = {
 			base = 0
@@ -2451,7 +2290,7 @@ country_event = {
 			}
 		}
 		ai_chance = {
-			base = 100
+			base = 1
 		}
 	}
 	option = {

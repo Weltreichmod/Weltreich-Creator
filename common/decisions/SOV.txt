@@ -90,7 +90,11 @@ SOV_comintern_decision = {
 	SOV_Intervention_in_the_Ukrainian_Civil_War = {
 		icon = GFX_decision_generic_protection
 		ai_will_do = {
-			base = 4000
+			base = 0
+			modifier = {
+				add = 4000
+				NOT = { has_country_flag = SOV_help_USS_flag }
+			}
 		}
 		custom_cost_trigger = {
 			has_political_power > 14
@@ -105,9 +109,12 @@ SOV_comintern_decision = {
 			}
 		}
 		days_remove = 100
+		complete_effect = {
+			set_country_flag = SOV_help_USS_flag
+		}
 		modifier = {
-				send_volunteer_size = 5
-				air_volunteer_cap = 50
+			send_volunteer_size = 5
+			air_volunteer_cap = 50
 		}
 	}
 	SOV_spread_the_revolution_to_eastern_europe_decision = {
@@ -722,9 +729,9 @@ SOV_comintern_decision = {
 				NOT = { has_country_flag = already_toggle_flag }
 				exists = yes
 				OR = {
-					original_tag = CZE
-					original_tag = SLO
-					original_tag = HUN
+					original_tag = SER
+					original_tag = BUL
+					original_tag = GRE
 					original_tag = ROM
 				}
 			}
@@ -732,7 +739,7 @@ SOV_comintern_decision = {
 		visible = {
 			has_completed_focus = SOV_Iron_Curtain
 			OR = {
-				has_country_flag = sov_africa_decisions_open
+				has_country_flag = sov_europe_decisions_open
 				is_ai = yes
 			}
 		}
@@ -760,7 +767,7 @@ SOV_comintern_decision = {
 		visible = {
 			has_completed_focus = SOV_Iron_Curtain
 			OR = {
-				has_country_flag = sov_africa_decisions_open
+				has_country_flag = sov_europe_decisions_open
 				is_ai = yes
 			}
 		}
@@ -773,9 +780,9 @@ SOV_comintern_decision = {
 				NOT = { has_country_flag = already_toggle_flag }
 				exists = yes
 				OR = {
-					original_tag = CZE
-					original_tag = SLO
-					original_tag = HUN
+					original_tag = SER
+					original_tag = BUL
+					original_tag = GRE
 					original_tag = ROM
 				}
 			}
@@ -1077,7 +1084,7 @@ SOV_wartime_propaganda_campaigns = {
 		days_re_enable = 100
 		cost = 30
 		modifier = {
-			monthly_population = 0.5
+			monthly_population = 0.05
 			stability_weekly = 0.001
 		}
 		complete_effect = {
@@ -1103,7 +1110,10 @@ SOV_the_red_army = {
 			}
 		}
 		days_remove = 14
-		cost = 15
+		custom_cost_trigger = {
+			has_army_experience > 4
+		}
+		custom_cost_text = army_experience_5_tt
 		ai_will_do = {
 			base = 0
 			modifier = {
@@ -1114,6 +1124,9 @@ SOV_the_red_army = {
 				add = 30
 				NOT = { check_variable = { SOV_army_professionalism_var > 40 } }
 			}
+		}
+		complete_effect = {
+			army_experience = -5						
 		}
 		remove_effect = {
 			add_2_5_army_professionalism_effect = yes
@@ -1149,7 +1162,10 @@ SOV_the_red_army = {
 			}
 		}
 		days_remove = 14
-		cost = 15
+		custom_cost_trigger = {
+			has_army_experience > 4
+		}
+		custom_cost_text = army_experience_5_tt
 		ai_will_do = {
 			base = 0
 			modifier = {
@@ -1160,6 +1176,9 @@ SOV_the_red_army = {
 				add = 30
 				NOT = { check_variable = { SOV_army_influence_var > 40 } }
 			}
+		}
+		complete_effect = {
+			army_experience = -5						
 		}
 		remove_effect = {
 			add_2_5_army_influence_effect = yes
@@ -1195,7 +1214,10 @@ SOV_the_red_army = {
 			}
 		}
 		days_remove = 14
-		cost = 15
+		custom_cost_trigger = {
+			has_army_experience > 4
+		}
+		custom_cost_text = army_experience_5_tt
 		ai_will_do = {
 			base = 0
 			modifier = {
@@ -1206,6 +1228,9 @@ SOV_the_red_army = {
 				add = 30
 				NOT = { check_variable = { SOV_army_factionalism_var < 60 } }
 			}
+		}
+		complete_effect = {
+			army_experience = -5						
 		}
 		remove_effect = {
 			remove_2_5_army_factionalism_effect = yes
@@ -1242,13 +1267,19 @@ SOV_the_red_army = {
 			}
 		}
 		days_remove = 14
-		cost = 15
+		custom_cost_trigger = {
+			has_navy_experience > 4
+		}
+		custom_cost_text = navy_experience_5_tt
 		ai_will_do = {
 			base = 0
 			modifier = {
 				add = 5
 				NOT = { check_variable = { SOV_navy_professionalism_var > 55 } }
 			}
+		}
+		complete_effect = {
+			navy_experience = -5						
 		}
 		remove_effect = {
 			add_2_5_navy_professionalism_effect = yes
@@ -1284,13 +1315,19 @@ SOV_the_red_army = {
 			}
 		}
 		days_remove = 14
-		cost = 15
+		custom_cost_trigger = {
+			has_navy_experience > 4
+		}
+		custom_cost_text = navy_experience_5_tt
 		ai_will_do = {
 			base = 0
 			modifier = {
 				add = 5
 				NOT = { check_variable = { SOV_navy_technological_innovation_var > 55 } }
 			}
+		}
+		complete_effect = {
+			navy_experience = -5						
 		}
 		remove_effect = {
 			add_2_5_navy_influence_effect = yes
@@ -1326,13 +1363,19 @@ SOV_the_red_army = {
 			}
 		}
 		days_remove = 14
-		cost = 15
+		custom_cost_trigger = {
+			has_navy_experience > 4
+		}
+		custom_cost_text = navy_experience_5_tt
 		ai_will_do = {
 			base = 0
 			modifier = {
 				add = 5
 				NOT = { check_variable = { SOV_navy_factionalism_var < 45 } }
 			}
+		}
+		complete_effect = {
+			navy_experience = -5						
 		}
 		remove_effect = {
 			remove_2_5_navy_factionalism_effect = yes
@@ -1369,7 +1412,10 @@ SOV_the_red_army = {
 			}
 		}
 		days_remove = 14
-		cost = 15
+		custom_cost_trigger = {
+			has_air_experience > 4
+		}
+		custom_cost_text = air_experience_5_tt
 		ai_will_do = {
 			base = 0
 			modifier = {
@@ -1380,6 +1426,9 @@ SOV_the_red_army = {
 				add = 30
 				NOT = { check_variable = { SOV_airforce_pilot_training_var > 40 } }
 			}
+		}
+		complete_effect = {
+			air_experience = -5						
 		}
 		remove_effect = {
 			add_2_5_airforce_professionalism_effect = yes
@@ -1415,7 +1464,10 @@ SOV_the_red_army = {
 			}
 		}
 		days_remove = 14
-		cost = 15
+		custom_cost_trigger = {
+			has_air_experience > 4
+		}
+		custom_cost_text = air_experience_5_tt
 		ai_will_do = {
 			base = 0
 			modifier = {
@@ -1426,6 +1478,9 @@ SOV_the_red_army = {
 				add = 30
 				NOT = { check_variable = { SOV_airforce_technological_innovation_var > 40 } }
 			}
+		}
+		complete_effect = {
+			air_experience = -5						
 		}
 		remove_effect = {
 			add_2_5_airforce_influence_effect = yes
@@ -1461,7 +1516,10 @@ SOV_the_red_army = {
 			}
 		}
 		days_remove = 14
-		cost = 15
+		custom_cost_trigger = {
+			has_air_experience > 4
+		}
+		custom_cost_text = air_experience_5_tt
 		ai_will_do = {
 			base = 0
 			modifier = {
@@ -1472,6 +1530,9 @@ SOV_the_red_army = {
 				add = 30
 				NOT = { check_variable = { SOV_airforce_factionalism_var < 60 } }
 			}
+		}
+		complete_effect = {
+			air_experience = -5						
 		}
 		remove_effect = {
 			remove_2_5_airforce_factionalism_effect = yes
@@ -2280,6 +2341,9 @@ SOV_Operation_Bagration = {
 		visible = {
 			has_completed_focus = SOV_first_kiev
 		}
+		available = {
+			NOT = { has_country_flag = other_offensive_active_flag }
+		}
 		allowed = {
 			OR = {
 				has_war_with = UKR
@@ -2313,6 +2377,9 @@ SOV_Operation_Bagration = {
 		visible = {
 			has_completed_focus = SOV_then_minsk
 		}
+		available = {
+			NOT = { has_country_flag = other_offensive_active_flag }
+		}
 		allowed = {
 			has_war_with = BLR
 			any_neighbor_country = BLR
@@ -2337,6 +2404,9 @@ SOV_Operation_Bagration = {
 		days_remove = 70
 		visible = {
 			has_completed_focus = SOV_now_warsaw
+		}
+		available = {
+			NOT = { has_country_flag = other_offensive_active_flag }
 		}
 		allowed = {
 			has_war_with = POL
@@ -2425,6 +2495,8 @@ SOV_Soviet_Union_decision = {
 					is_owned_by = SOV
 					OR = {
 						is_core_of = UKR
+						is_core_of = USS
+						is_core_of = UPR
 						is_core_of = BLR
 						is_core_of = LIT
 						is_core_of = POL
@@ -4113,6 +4185,383 @@ SOV_wartime_mobilization = {
 	}
 }
 
+SOV_collapsing_economy = {
+	SOV_the_clock_is_ticking = {
+		icon = GFX_clock
+		days_mission_timeout = 150
+		activation = {
+			original_tag = SOV
+			has_country_flag = time_is_going_on_flag
+			NOT = { has_idea = SOV_economic_collapse_1 }
+		}
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			NOT = { has_country_flag = time_is_going_on_flag }
+		}
+		priority = 100
+		timeout_effect = {
+			economy_is_dying = yes
+		}
+	}
+	SOV_crush_romania = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_European_Revolutionary_War
+			ROM = { exists = yes }
+			NOT = { ROM = { has_government = communism } }
+			ROM = { is_in_faction = no }
+			ROM = { is_subject = no }
+		}
+		available = {
+			has_war = no
+			NOT = { has_country_flag = ready_to_war_flag }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = ready_to_war_flag
+			set_country_flag = ROM_ready_to_war_flag
+		}
+		ai_will_do = {
+			factor = 4000
+		}
+		days_remove = 7
+		remove_effect = {
+			clr_country_flag = ready_to_war_flag
+			clr_country_flag = ROM_ready_to_war_flag
+			set_country_flag = war_with_rom_flag
+			declare_war_on = {
+				target = ROM
+				type = annex_everything
+			}
+		}
+	}
+	SOV_crush_slovakia = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_European_Revolutionary_War
+			SLO = { exists = yes }
+			NOT = { SLO = { has_government = communism } }
+			SLO = { is_in_faction = no }
+			SLO = { is_subject = no }
+		}
+		available = {
+			has_war = no
+			NOT = { has_country_flag = ready_to_war_flag }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = ready_to_war_flag
+			set_country_flag = SLO_ready_to_war_flag
+		}
+		ai_will_do = {
+			factor = 4000
+		}
+		days_remove = 7
+		remove_effect = {
+			clr_country_flag = ready_to_war_flag
+			clr_country_flag = SLO_ready_to_war_flag
+			set_country_flag = war_with_slo_flag
+			declare_war_on = {
+				target = SLO
+				type = annex_everything
+			}
+		}
+	}
+	SOV_crush_czech = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_European_Revolutionary_War
+			CZE = { exists = yes }
+			NOT = { CZE = { has_government = communism } }
+			CZE = { is_in_faction = no }
+			CZE = { is_subject = no }
+		}
+		available = {
+			has_war = no
+			NOT = { has_country_flag = ready_to_war_flag }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = ready_to_war_flag
+			set_country_flag = CZE_ready_to_war_flag
+		}
+		ai_will_do = {
+			factor = 4000
+		}
+		days_remove = 7
+		remove_effect = {
+			clr_country_flag = ready_to_war_flag
+			clr_country_flag = CZE_ready_to_war_flag
+			set_country_flag = war_with_cze_flag
+			declare_war_on = {
+				target = CZE
+				type = annex_everything
+			}
+		}
+	}
+	SOV_crush_hungary = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_European_Revolutionary_War
+			HUN = { exists = yes }
+			NOT = { HUN = { has_government = communism } }
+			HUN = { is_in_faction = no }
+			HUN = { is_subject = no }
+		}
+		available = {
+			has_war = no
+			NOT = { has_country_flag = ready_to_war_flag }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = ready_to_war_flag
+			set_country_flag = HUN_ready_to_war_flag
+		}
+		ai_will_do = {
+			factor = 4000
+		}
+		days_remove = 7
+		remove_effect = {
+			clr_country_flag = ready_to_war_flag
+			clr_country_flag = HUN_ready_to_war_flag
+			set_country_flag = war_with_hun_flag
+			declare_war_on = {
+				target = HUN
+				type = annex_everything
+			}
+		}
+	}
+	SOV_crush_austria = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_European_Revolutionary_War
+			AUS = { exists = yes }
+			NOT = { AUS = { has_government = communism } }
+			AUS = { is_in_faction = no }
+			AUS = { is_subject = no }
+		}
+		available = {
+			has_war = no
+			NOT = { has_country_flag = ready_to_war_flag }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = ready_to_war_flag
+			set_country_flag = AUS_ready_to_war_flag
+		}
+		ai_will_do = {
+			factor = 4000
+		}
+		days_remove = 7
+		remove_effect = {
+			clr_country_flag = ready_to_war_flag
+			clr_country_flag = AUS_ready_to_war_flag
+			set_country_flag = war_with_aus_flag
+			declare_war_on = {
+				target = AUS
+				type = annex_everything
+			}
+		}
+	}
+	SOV_crush_serbia = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_European_Revolutionary_War
+			SER = { exists = yes }
+			NOT = { SER = { has_government = communism } }
+			SER = { is_in_faction = no }
+			SER = { is_subject = no }
+		}
+		available = {
+			has_war = no
+			NOT = { has_country_flag = ready_to_war_flag }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = ready_to_war_flag
+			set_country_flag = SER_ready_to_war_flag
+		}
+		ai_will_do = {
+			factor = 4000
+		}
+		days_remove = 7
+		remove_effect = {
+			clr_country_flag = ready_to_war_flag
+			clr_country_flag = SER_ready_to_war_flag
+			set_country_flag = war_with_ser_flag
+			declare_war_on = {
+				target = SER
+				type = annex_everything
+			}
+		}
+	}
+	SOV_crush_bulgaria = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_European_Revolutionary_War
+			BUL = { exists = yes }
+			NOT = { BUL = { has_government = communism } }
+			BUL = { is_in_faction = no }
+			BUL = { is_subject = no }
+		}
+		available = {
+			has_war = no
+			NOT = { has_country_flag = ready_to_war_flag }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = ready_to_war_flag
+			set_country_flag = BUL_ready_to_war_flag
+		}
+		ai_will_do = {
+			factor = 4000
+		}
+		days_remove = 7
+		remove_effect = {
+			clr_country_flag = ready_to_war_flag
+			clr_country_flag = BUL_ready_to_war_flag
+			set_country_flag = war_with_bul_flag
+			declare_war_on = {
+				target = BUL
+				type = annex_everything
+			}
+		}
+	}
+	SOV_crush_croatia = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			has_completed_focus = SOV_European_Revolutionary_War
+			CRO = { exists = yes }
+			NOT = { CRO = { has_government = communism } }
+			CRO = { is_in_faction = no }
+			CRO = { is_subject = no }
+		}
+		available = {
+			has_war = no
+			NOT = { has_country_flag = ready_to_war_flag }
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = ready_to_war_flag
+			set_country_flag = CRO_ready_to_war_flag
+		}
+		ai_will_do = {
+			factor = 4000
+		}
+		days_remove = 7
+		remove_effect = {
+			clr_country_flag = ready_to_war_flag
+			clr_country_flag = CRO_ready_to_war_flag
+			set_country_flag = war_with_cro_flag
+			declare_war_on = {
+				target = CRO
+				type = annex_everything
+			}
+		}
+	}
+	SOV_Final_Showdown = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = SOV
+		}
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = SOV_Final_Showdown_trigger_tt
+				AND = {
+					OR = {
+						ROM = { exists = no }
+						ROM = { has_government = communism }
+						ROM = { is_subject = yes }
+						ROM = { is_in_faction = yes }
+					}
+					OR = {
+						SER = { exists = no }
+						SER = { has_government = communism }
+						SER = { is_subject = yes }
+						SER = { is_in_faction = yes }
+					}
+					OR = {
+						BUL = { exists = no }
+						BUL = { has_government = communism }
+						BUL = { is_subject = yes }
+						BUL = { is_in_faction = yes }
+					}
+					OR = {
+						SLO = { exists = no }
+						SLO = { has_government = communism }
+						SLO = { is_subject = yes }
+						SLO = { is_in_faction = yes }
+					}
+					OR = {
+						CZE = { exists = no }
+						CZE = { has_government = communism }
+						CZE = { is_subject = yes }
+						CZE = { is_in_faction = yes }
+					}
+					OR = {
+						HUN = { exists = no }
+						HUN = { has_government = communism }
+						HUN = { is_subject = yes }
+						HUN = { is_in_faction = yes }
+					}
+					OR = {
+						CRO = { exists = no }
+						CRO = { has_government = communism }
+						CRO = { is_subject = yes }
+						CRO = { is_in_faction = yes }
+					}
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = SOV_European_Revolutionary_War
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = ready_to_war_flag
+			set_country_flag = FRA_ready_to_war_flag
+		}
+		ai_will_do = {
+			factor = 4000
+		}
+		days_remove = 30
+		remove_effect = {
+			clr_country_flag = ready_to_war_flag
+			clr_country_flag = FRA_ready_to_war_flag
+			declare_war_on = {
+				target = FRA
+				type = annex_everything
+			}
+		}
+	}
+}
+
 ###Russia
 RUS_regional_stabilization = {
 	RUS_complete_of_stabilization = {
@@ -4177,13 +4626,11 @@ RUS_regional_stabilization = {
 				}
 			}
 		}
-		allowed = {
-			original_tag = RUS
-		}
 		available = {
 			ROOT = { exists = no }
 		}
 		timeout_effect = {
+			clr_country_flag = kill_communists_flag
 			remove_ideas = RUS_Remnants_of_Communism
 		}
 	}
@@ -4905,7 +5352,92 @@ RUS_wartime_mobilization_against_ger = {
 				add_stability = -0.05
 				add_war_support = -0.05
 			}
-			news_event = soviet_rework_white.064
+			news_event = soviet_rework_white.065
+			hidden_effect = {
+				RUS = { country_event = { id = soviet_rework_white.066 days = 7 } }
+				if = {
+					limit = {
+						WOL = { has_war_with = RUS }
+						WOL = { has_capitulated = yes }
+					}
+					RUS = { annex_country = { target = WOL transfer_troops = no } }
+				}
+				if = {
+					limit = {
+						218 = { is_controlled_by = RUS }
+					}
+					218 = { transfer_state_to = RUS }
+				}
+				if = {
+					limit = {
+						245 = { is_controlled_by = RUS }
+					}
+					245 = { transfer_state_to = RUS }
+				}
+				if = {
+					limit = {
+						260 = { is_controlled_by = RUS }
+					}
+					260 = { transfer_state_to = RUS }
+				}
+				if = {
+					limit = {
+						220 = { is_controlled_by = RUS }
+					}
+					220 = { transfer_state_to = RUS }
+				}
+				if = {
+					limit = {
+						988 = { is_controlled_by = RUS }
+					}
+					988 = { transfer_state_to = RUS }
+				}
+				if = {
+					limit = {
+						931 = { is_controlled_by = RUS }
+					}
+					931 = { transfer_state_to = RUS }
+				}
+				if = {
+					limit = {
+						207 = { is_controlled_by = RUS }
+					}
+					207 = { transfer_state_to = RUS }
+				}
+				if = {
+					limit = {
+						810 = { is_controlled_by = RUS }
+					}
+					810 = { transfer_state_to = RUS }
+				}
+				if = {
+					limit = {
+						216 = { is_controlled_by = RUS }
+					}
+					216 = { transfer_state_to = RUS }
+				}
+				if = {
+					limit = {
+						215 = { is_controlled_by = RUS }
+					}
+					215 = { transfer_state_to = RUS }
+				}
+				if = {
+					limit = {
+						213 = { is_controlled_by = RUS }
+					}
+					213 = { transfer_state_to = RUS }
+				}
+			}
+			every_country = {
+				limit = {
+					has_war_with = RUS
+				}
+				white_peace = {
+					tag = RUS
+					message = victory_of_RUS
+				}
+			}
 		}
 	}
 	RUS_public_conscription_against_ger = {
@@ -5147,7 +5679,7 @@ RUS_Propaganda = {
 		}
 		visible = {
 			OR = {
-				has_completed_focus = RUS_rebuilding_the_ruins
+				has_completed_focus = RUS_reaffirming_our_ideals
 				NOT = { has_war_with = SOV }
 			}
 		}
@@ -5187,7 +5719,7 @@ RUS_Propaganda = {
 			has_war_with = SOV
 		}
 		visible = {
-			has_completed_focus = RUS_rebuilding_the_ruins
+			has_completed_focus = RUS_reaffirming_our_ideals
 			has_war_with = SOV
 		}
 		days_remove = 180
@@ -5218,7 +5750,7 @@ RUS_Propaganda = {
 		}
 		visible = {
 			OR = {
-				has_completed_focus = RUS_rebuilding_the_ruins
+				has_completed_focus = RUS_reaffirming_our_ideals
 				NOT = { has_war_with = SOV }
 			}
 			has_war = yes
@@ -5394,21 +5926,21 @@ RUS_Movement_of_the_royalists = {
 		days_mission_timeout = 55
 		activation = {
 			original_tag = RUS
-			has_country_flag = RUS_with_royalists_flag
+			has_country_flag = RUS_struggle_with_royalists_flag
 		}
 		allowed = {
 			original_tag = RUS
 		}
 		available = {
-			NOT = { has_country_flag = RUS_with_royalists_flag }
+			NOT = { has_country_flag = RUS_struggle_with_royalists_flag }
 		}
 		visible = {
-			has_country_flag = RUS_with_royalists_flag
+			has_country_flag = RUS_struggle_with_royalists_flag
 		}
 		priority = 150
 		fire_only_once = yes
 		timeout_effect = {
-			clr_country_flag = RUS_with_royalists_flag
+			clr_country_flag = RUS_struggle_with_royalists_flag
 			hidden_effect = {
 				if = {
 					limit = {

@@ -1,0 +1,67 @@
+﻿###########################
+# india Events
+###########################
+
+add_namespace = india
+news_event = {
+	id = india.1
+	title = india.1.t
+	desc = india.1.d
+	picture = GFX_collapse_of_raj
+	trigger = {
+		RAJ = { is_subject = no }
+		original_tag = RAJ
+	}
+	major = yes
+	fire_only_once = yes
+	immediate = {
+		hidden_effect = {
+			RAJ = {
+				drop_cosmetic_tag = yes
+				set_politics = {
+					ruling_party = democratic
+					elections_allowed = yes
+					election_frequency = 48
+				}
+			}
+			every_state = {
+				limit = {
+					is_owned_by = RAJ
+					is_core_of = BRM
+				}
+				transfer_state_to = BRM
+			}
+			every_state = {
+				limit = {
+					is_owned_by = RAJ
+					OR = {
+						is_core_of = BAN
+						state = 432
+						state = 431
+					}
+				}
+				transfer_state_to = BAN
+			}
+			every_state = {
+				limit = {
+					is_owned_by = RAJ
+					is_core_of = PAK
+				}
+				transfer_state_to = PAK
+			}
+			every_state = {
+				limit = {
+					is_owned_by = RAJ
+					state = 434
+				}
+				transfer_state_to = TIB
+			}
+		}
+	}
+	option = {
+		name = india.1.a
+		ai_chance = {
+			factor = 3
+		}
+	}
+}
