@@ -1919,6 +1919,24 @@ country_event = {
 					USS = { has_country_flag = anti_russia_war_loser }
 					USS = { exists = yes }
 				}
+				GER = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = USS
+							autonomous_state = autonomy_oberbefehlshaberiat
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = USS
+						}
+					}
+				}
 				USS = {
 					set_cosmetic_tag = GER_UKR
 					retire_country_leader = yes
@@ -1993,6 +2011,24 @@ country_event = {
 				limit = {
 					UPR = { has_country_flag = anti_russia_war_loser }
 					UPR = { exists = yes }
+				}
+				GER = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = UPR
+							autonomous_state = autonomy_oberbefehlshaberiat
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = UPR
+						}
+					}
 				}
 				UPR = {
 					set_cosmetic_tag = GER_UKR
@@ -2409,17 +2445,6 @@ country_event = {
 			limit = {
 				is_owned_by = AUH
 				OR = {
-					state = 91
-					state = 89
-					state = 989
-				}
-			}
-			transfer_state_to = UKR
-		}
-		every_state = {
-			limit = {
-				is_owned_by = AUH
-				OR = {
 					state = 88
 					state = 72
 					state = 990
@@ -2550,6 +2575,7 @@ country_event = {
 						state = 84
 						state = 83
 						state = 82
+						state = 76
 						state = 975
 					}
 				}
@@ -2566,10 +2592,61 @@ country_event = {
 					is_owned_by = AUH
 					OR = {
 						state = 80
-						state = 975
+						state = 84
 					}
 				}
 				transfer_state_to = ROM
+			}
+		}
+		if = {
+			limit = {
+				UKR = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					OR = {
+						state = 91
+						state = 89
+						state = 989
+						state = 975
+					}
+				}
+				transfer_state_to = UKR
+			}
+		}
+		else_if = {
+			limit = {
+				USS = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					OR = {
+						state = 91
+						state = 89
+						state = 989
+						state = 975
+					}
+				}
+				transfer_state_to = USS
+			}
+		}
+		else_if = {
+			limit = {
+				UPR = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					OR = {
+						state = 91
+						state = 89
+						state = 989
+						state = 975
+					}
+				}
+				transfer_state_to = UPR
 			}
 		}
 		HUN = {
@@ -2592,19 +2669,6 @@ country_event = {
 				}
 				transfer_state_to = HUN
 			}
-			if = {
-				limit = {
-					has_dlc = "Together for Victory"
-				}
-				set_autonomy = {
-					target = CRO
-					autonomous_state = autonomy_puppet
-					freedom_level = 0.45
-				}
-				else = {
-					puppet = CRO
-				}
-			}
 			inherit_technology = AUH
 		}
 		every_country = {
@@ -2616,9 +2680,9 @@ country_event = {
 				limit = {
 					is_owned_by = AUH
 					OR = {
-						state = 84
-						state = 83
 						state = 82
+						state = 83
+						state = 76
 					}
 				}
 				transfer_state_to = HUN
@@ -3618,6 +3682,26 @@ country_event = {
 			}
 		}
 		add_timed_idea = { idea = Die_Wacht_Am_Rhein days = 365 }
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
+	id = Germany.93
+	title = Germany.93.t
+	desc = Germany.93.d
+	picture = GFX_he_was_hitler
+	fire_only_once = yes
+	trigger = {
+		original_tag = GER
+		has_country_flag = second_great_war_winner
+		has_global_flag = the_end_of_second_great_war
+	}
+	mean_time_to_happen = { days = 10 }
+	option = {
+		name = Germany.93.a
 		ai_chance = {
 			factor = 100
 		}

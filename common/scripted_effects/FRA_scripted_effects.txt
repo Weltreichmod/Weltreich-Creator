@@ -1,0 +1,85 @@
+###############################################
+#  ±5 Discontent effects  (0‒100 범위 안전)
+###############################################
+
+### +5 Bucard
+FRA_inc_bucard_discontent_5 = {
+    custom_effect_tooltip = FRA_inc_bucard_discontent_5_tt
+    add_to_variable = { var = fra_bucard_var  value = 5 }
+
+    if = {                                        # 95 이상 → 100 고정
+        limit = { check_variable = { var = fra_bucard_var  value > 94 } }
+        set_variable = { var = fra_bucard_var  value = 100 }
+    }
+}
+
+### −5 Bucard
+FRA_dec_bucard_discontent_5 = {
+    custom_effect_tooltip = FRA_dec_bucard_discontent_5_tt
+    add_to_variable = { var = fra_bucard_var  value = -5 }
+
+    if = {                                        # 5 이하 → 0 고정
+        limit = { check_variable = { var = fra_bucard_var  value < 6 } }
+        set_variable = { var = fra_bucard_var  value = 0 }
+    }
+}
+
+### +5 Doriot
+FRA_inc_doriot_discontent_5 = {
+    custom_effect_tooltip = FRA_inc_doriot_discontent_5_tt
+    add_to_variable = { var = fra_doriot_var  value = 5 }
+
+    if = {
+        limit = { check_variable = { var = fra_doriot_var  value > 94 } }
+        set_variable = { var = fra_doriot_var  value = 100 }
+    }
+}
+
+### −5 Doriot
+FRA_dec_doriot_discontent_5 = {
+    custom_effect_tooltip = FRA_dec_doriot_discontent_5_tt
+    add_to_variable = { var = fra_doriot_var  value = -5 }
+
+    if = {
+        limit = { check_variable = { var = fra_doriot_var  value < 6 } }
+        set_variable = { var = fra_doriot_var  value = 0 }
+    }
+}
+
+###3파전
+FRA_initialize_behind_the_curtain_of_power = {
+    set_variable = { support_valois = 50 }   # 발루아
+    set_variable = { support_bucard = 20 }   # 뷔카르
+    set_variable = { support_doriot = 30 }   # 도리오
+
+    # 누적 퍼센티지 계산 호출
+    FRA_update_behind_the_curtain_of_power = yes
+}
+
+FRA_update_behind_the_curtain_of_power = {
+    # (1) clamp support to [0,100]
+    clamp_variable = { var = support_valois  min = 0 max = 100 }
+    clamp_variable = { var = support_bucard  min = 0 max = 100 }
+    clamp_variable = { var = support_doriot  min = 0 max = 100 }
+
+    # (2) 합산 → total
+    set_temp_variable    = { total = support_doriot  }
+    add_to_temp_variable = { total = support_bucard }
+    add_to_temp_variable = { total = support_valois }
+
+    # (3) total 을 100으로 나눠 정규화 인자 계산
+    divide_temp_variable = { total = 100 }
+
+    # (4) 각 support 를 total 로 나누어 백분율 재계산
+    divide_variable = { support_doriot = total }
+    divide_variable = { support_bucard = total }
+    divide_variable = { support_valois = total }
+
+    # (5) pie progress 누적값 세팅
+    # pie2 = 도리오 단독 비율
+    set_variable = { pie2_progress = support_doriot }
+    # pie1 = 도리오 + 발루아 비율
+    set_variable    = { pie1_progress = pie2_progress }
+    add_to_variable = { pie1_progress = support_valois }
+    # 뷔카르(support_bucard) 비율은 pie1의 빈 영역(100 - pie1_progress) 에 background로 표현
+}

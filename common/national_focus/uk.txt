@@ -806,7 +806,7 @@ focus_tree = {
 		relative_position_id = all_the_way
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		prerequisite = {
 			focus = all_the_way
 		}
@@ -819,12 +819,18 @@ focus_tree = {
 		ai_will_do = {
 			factor = 1
 			modifier = {
-				factor = 10
+				factor = 50
 				has_war_with = GER
 			}
 			modifier = {
-				factor = 10
-				date > 1939.6.6
+				factor = 50
+				OR = {
+					date > 1939.6.6
+					AND = {
+						FRA = { has_war_with = GER }
+						NOT = { FRA = { has_war_with = ENG } }
+					}
+				}
 			}
 		}
 		completion_reward = {

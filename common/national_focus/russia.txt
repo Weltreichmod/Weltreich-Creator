@@ -43,6 +43,14 @@ focus_tree = {
 				has_country_flag = anti_russia_war_winner
 				has_country_flag = anti_russia_war_loser
 			}
+			OR = {
+				AND = {
+					GER = { is_subject = no }
+					GER = { has_war_with = SOV }
+					ROOT = { is_subject_of = GER }
+				}
+				ROOT = { exists = yes }
+			}
 		}
 		available = {
 			has_war_with = SOV
@@ -862,6 +870,7 @@ focus_tree = {
 		}
 		allow_branch = {
 			has_global_flag = german_soviet_war_ends
+			NOT = { has_country_flag = no_focus }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {

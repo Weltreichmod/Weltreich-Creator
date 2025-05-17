@@ -3,6 +3,7 @@
 ##################
 
 add_namespace = wrwpe
+add_namespace = wrwpe_hidden
 
 country_event = {
 	id = wrwpe.1
@@ -133,6 +134,12 @@ country_event = {
 			}
 			leave_faction = yes
 		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_loser
+			}
+			country_event = wrwpe_hidden.1
+		}
 		hidden_effect = {
 			if = {
 				limit = {
@@ -224,6 +231,21 @@ country_event = {
 					message = honorable_peace_ent
 				}
 			}
+			if = {
+				limit = {
+					SOV = { has_war_with = REI }
+				}
+				every_country = {
+					limit = {
+						is_in_faction_with = REI
+						has_capitulated = no
+					}
+					white_peace = {
+						tag = SOV
+						message = honorable_peace_ent
+					}
+				}
+			}
 			every_country = {
 				limit = {
 					is_in_faction_with = REI
@@ -297,8 +319,6 @@ country_event = {
 				OR = {
 					tag = ENT
 					is_in_faction_with = ENT
-					original_tag = RUS
-					is_in_faction_with = RUS
 					original_tag = SOV
 					is_in_faction_with = SOV
 				}
@@ -314,6 +334,12 @@ country_event = {
 				has_country_flag = second_great_war_loser
 			}
 			leave_faction = yes
+		}
+		every_country = {
+			limit = {
+				has_country_flag = second_great_war_loser
+			}
+			country_event = wrwpe_hidden.2
 		}
 		hidden_effect = {
 			every_country = {
@@ -473,6 +499,7 @@ country_event = {
 					state = 17
 					state = 18
 					state = 785
+					state = 993
 					state = 928
 					state = 27
 					state = 16
@@ -1033,11 +1060,11 @@ country_event = {
 		}
 		if = {
 			limit = {
-				SER = {
-					is_subject_of = ALB
-				}
 				ALB = {
-					end_puppet = SER
+					is_subject_of = AUH
+				}
+				AUH = {
+					end_puppet = ALB
 				}
 			}
 		}
@@ -1076,12 +1103,42 @@ country_event = {
 			}
 			transfer_state_to = POL
 		}
-		every_state = {
+		if = {
 			limit = {
-				is_owned_by = AUH
-				is_core_of = ROM
+				ROM = { has_country_flag = second_great_war_winner }
 			}
-			transfer_state_to = ROM
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					is_core_of = ROM
+				}
+				transfer_state_to = ROM
+			}
+			else = {
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						is_core_of = ROM
+						OR = {
+							state = 84
+							state = 80
+						}
+					}
+					transfer_state_to = ROM
+				}
+				every_state = {
+					limit = {
+						is_owned_by = AUH
+						OR = {
+							state = 82
+							state = 83
+							state = 76
+						}
+					}
+					add_core_of = HUN
+					transfer_state_to = HUN
+				}
+			}
 		}
 		if = {
 			limit = {
@@ -1094,8 +1151,6 @@ country_event = {
 				limit = {
 					is_owned_by = AUH
 					OR = {
-						state = 764
-						state = 45
 						state = 109
 						state = 104
 						state = 804
@@ -1113,61 +1168,71 @@ country_event = {
 						is_owned_by = AUH
 						is_core_of = CRO
 					}
-					transfer_state_to = CRO
-				}
-				CRO = {
-					inherit_technology = AUH
+					transfer_state_to = SER
 				}
 				every_state = {
 					limit = {
 						is_owned_by = AUH
 						is_core_of = BOS
 					}
-					transfer_state_to = BOS
-				}
-				BOS = {
-					inherit_technology = AUH
+					transfer_state_to = SER
 				}
 				every_state = {
 					limit = {
 						is_owned_by = AUH
 						is_core_of = MNT
 					}
-					transfer_state_to = MNT
-				}
-				MNT = {
-					inherit_technology = AUH
-				}
-				if = {
-					limit = {
-						SER = { exists = yes }
-					}
-					every_state = {
-						limit = {
-							is_owned_by = AUH
-							state = 764
-						}
-						transfer_state_to = SER
-					}
-					else = {
-						every_state = {
-							limit = {
-								is_owned_by = AUH
-								state = 764
-							}
-							transfer_state_to = HUN
-						}
-					}
+					transfer_state_to = SER
 				}
 			}
 		}
 		every_state = {
 			limit = {
 				is_owned_by = AUH
-				is_core_of = HUN
+				OR = {
+					is_core_of = HUN
+					state = 764
+					state = 45
+				}
 				NOT = { state = 933 }
 			}
 			transfer_state_to = HUN
+		}
+		if = {
+			limit = {
+				UKR = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					is_core_of = UKR
+				}
+				transfer_state_to = UKR
+			}
+		}
+		if = {
+			limit = {
+				UPR = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					is_core_of = UPR
+				}
+				transfer_state_to = UPR
+			}
+		}
+		if = {
+			limit = {
+				USS = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = AUH
+					is_core_of = USS
+				}
+				transfer_state_to = USS
+			}
 		}
 		if = {
 			limit = {
@@ -3601,6 +3666,247 @@ country_event = {
 		annex_country = { target = RAJ transfer_troops = no }
 		ai_chance = {
 			base = 0
+		}
+	}
+}
+
+#fate of Romania
+country_event = {
+	id = wrwpe.27
+	title = wrwpe.27.t
+	desc = wrwpe.27.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.27.a
+		if = {
+			limit = {
+				ROM = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = ROM
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = ROM
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.27.b
+		annex_country = { target = ROM transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of Bulgaria
+country_event = {
+	id = wrwpe.28
+	title = wrwpe.28.t
+	desc = wrwpe.28.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.28.a
+		if = {
+			limit = {
+				BUL = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = BUL
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = BUL
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.28.b
+		annex_country = { target = BUL transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of Greece
+country_event = {
+	id = wrwpe.29
+	title = wrwpe.29.t
+	desc = wrwpe.29.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.29.a
+		if = {
+			limit = {
+				GRE = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = GRE
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = GRE
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.29.b
+		annex_country = { target = GRE transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of Serbia
+country_event = {
+	id = wrwpe.30
+	title = wrwpe.30.t
+	desc = wrwpe.30.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.30.a
+		if = {
+			limit = {
+				SER = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = SER
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SER
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.30.b
+		annex_country = { target = SER transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#fate of Albania
+country_event = {
+	id = wrwpe.31
+	title = wrwpe.31.t
+	desc = wrwpe.31.d
+	is_triggered_only = yes
+	picture = GFX_report_event_generic_read_write
+	option = {
+		name = wrwpe.31.a
+		if = {
+			limit = {
+				ALB = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = ALB
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = ALB
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.31.b
+		annex_country = { target = ALB transfer_troops = no }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+#hidden
+country_event = {
+	id = wrwpe_hidden.1
+	title = wrwpe_hidden.1.t
+	desc = wrwpe_hidden.1.d
+	is_triggered_only = yes
+	hidden = yes
+	option = { #Peace
+		name = wrwpe_hidden.1.a
+        every_enemy_country = {
+            white_peace = {
+				tag = ROOT
+				message = honorable_peace
+			}
+        }
+		ai_chance = {
+			base = 100
+		}
+	}
+}
+
+country_event = {
+	id = wrwpe_hidden.2
+	title = wrwpe_hidden.2.t
+	desc = wrwpe_hidden.2.d
+	is_triggered_only = yes
+	hidden = yes
+	option = { #Peace
+		name = wrwpe_hidden.2.a
+        every_enemy_country = {
+            white_peace = {
+				tag = ROOT
+				message = honorable_peace_ent
+			}
+        }
+		ai_chance = {
+			base = 100
 		}
 	}
 }

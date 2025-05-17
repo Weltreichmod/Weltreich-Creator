@@ -45,8 +45,22 @@ focus_tree = {
 					NOT = { has_country_flag = pass_events_flag }
 				}
 				add_political_power = -50
-				country_event = soviet_rework_troika.001
 			}
+			hidden_effect = {
+				retire_character = SOV_lev_kamenev
+				remove_ideas = SOV_vladimir_milyutin
+				news_event = Soviet.89
+				SOV_Supreme_Soviet_of_Russia = {
+					add_country_leader_role = {
+						promote_leader = yes
+						country_leader = {
+							ideology = leninism
+							traits = { emergency_government }
+						}
+					}						
+				}
+			}
+			country_event = { id = soviet_rework_troika.073 days = 3 }
 		}
 	}
 	
@@ -64,6 +78,9 @@ focus_tree = {
 			focus = SOV_the_works_want_liberation
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_flag = Troika_is_built_flag
+		}
 		prerequisite = {
 			focus = SOV_death_of_kamenev
 		}
@@ -2111,6 +2128,7 @@ focus_tree = {
                 tooltip = SOV_rework_troika_unlocked_by_event_ctt		
                 always = no
 		    }
+			has_country_flag = Troika_is_built_flag
 		}
 		prerequisite = {
 			focus = SOV_death_of_kamenev
@@ -4317,6 +4335,133 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = SOV_Armored_Divisions
+		icon = GFX_focus_generic_tank_production
+		relative_position_id = SOV_strengthening_of_camouflage
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 14
+		}
+		allow_branch = {
+			has_country_leader = {
+				character = SOV_mikhail_tukhachevsky
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_strengthening_of_camouflage
+		}
+		available = {
+			if = {
+				limit = { has_dlc = "No Step Back" }
+				has_design_based_on = medium_tank_chassis
+			}
+			else = {
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = tooltip_has_tech_detailed
+						NAME = country_culture|medium_tank_equipment_1
+						TECH = medium_tank_equipment_1
+					}
+					has_tech = basic_medium_tank
+				}
+			}
+		}
+		completion_reward = {
+			division_template = {
+				name = "Gvardeyskaya Mekhanizirovannaya diviziya"
+				division_names_group = SOV_ARM_01
+				regiments = {
+					motorized = { x = 0 y = 0 }
+					motorized = { x = 0 y = 1 }
+					motorized = { x = 0 y = 2 }
+					motorized = { x = 1 y = 0 }
+					motorized = { x = 1 y = 1 }
+					medium_armor = { x = 2 y = 0 }
+					medium_armor = { x = 2 y = 1 }
+					medium_armor = { x = 2 y = 2 }
+					medium_armor = { x = 2 y = 3 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+				}
+				priority = 2
+			}
+			random_owned_controlled_state = {
+				prioritize = { 219 }
+				create_unit = {
+					division = "division_template = \"Gvardeyskaya Mekhanizirovannaya diviziya\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "division_template = \"Gvardeyskaya Mekhanizirovannaya diviziya\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "division_template = \"Gvardeyskaya Mekhanizirovannaya diviziya\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "division_template = \"Gvardeyskaya Mekhanizirovannaya diviziya\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "division_template = \"Gvardeyskaya Mekhanizirovannaya diviziya\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_Deep_Battle_Theory
+		icon = GFX_focus_generic_tank_air_support
+		relative_position_id = SOV_strengthening_of_camouflage
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 14
+		}
+		allow_branch = {
+			has_country_leader = {
+				character = SOV_mikhail_tukhachevsky
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_strengthening_of_camouflage
+		}
+		completion_reward = {
+			enable_tech_deep_battle_theory = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Were_coming
+		icon = GFX_focus_SOV_the_glory_of_the_red_army_communism
+		relative_position_id = SOV_Armored_Divisions
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 14
+		}
+		prerequisite = {
+			focus = SOV_Armored_Divisions
+		}
+		prerequisite = {
+			focus = SOV_Deep_Battle_Theory
+		}
+		completion_reward = {
+			add_ideas = SOV_Were_coming
+		}
+	}
+	
+	focus = {
 		id = SOV_mechanized_offensive
 		icon = GFX_SOV_mechanized_offensive
 		relative_position_id = SOV_motorized_military
@@ -6017,7 +6162,7 @@ focus_tree = {
 		}
 		cost = 5.8
 		prerequisite = {
-			focus = SOV_Doctrine_for_Bombing
+			focus = SOV_destroy_enemy_camp
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
@@ -6839,6 +6984,7 @@ focus_tree = {
 					has_country_flag = anti_russia_war_winner
 				}
 			}
+			has_war_with_majo = no
 		}
 		allow_branch = {
 			NOT = { has_country_flag = anti_russia_war_loser }
@@ -6941,6 +7087,9 @@ focus_tree = {
 					instant_build = yes
 				}	
 			}
+			hidden_effect = {
+				country_event = { id = soviet_rework_troika.071 days = 3 }
+			}
 		}
 	}
 	
@@ -7034,7 +7183,18 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			country_event = soviet_rework_troika.032
+			if = {
+				limit = {
+					has_country_leader = {
+						character = SOV_mikhail_tukhachevsky
+						ruling_only = yes
+					}
+				}
+				country_event = soviet_rework_troika.072
+			}
+			else = {
+				country_event = soviet_rework_troika.032
+			}
 		}
 	}
 	
@@ -7152,7 +7312,12 @@ focus_tree = {
 			focus = SOV_one_soldiers_story
 		}
 		available = {
-			NOT = { has_completed_focus = SOV_the_war_continues }
+			NOT = {
+				has_country_leader = {
+					character = SOV_mikhail_tukhachevsky
+					ruling_only = yes
+				}
+			}
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {

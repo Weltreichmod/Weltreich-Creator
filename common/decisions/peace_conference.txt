@@ -356,6 +356,36 @@ peace_deal = {
 						set_cosmetic_tag = FRA_petain
 					}
 				}
+				#멸망문구
+				set_global_flag = show_peace_popup_alert
+				REI = {
+					save_global_event_target_as = winning_country
+				}
+				ENT = {
+					save_global_event_target_as = losing_country
+				}
+				if = {
+					limit = {
+						event_target:losing_country = {
+							any_allied_country = { has_war_together_with = event_target:losing_country }
+						}
+					}
+					set_global_flag = losing_country_multiple
+				}
+				if = {
+					limit = {
+						event_target:winning_country = {
+							any_allied_country = { has_war_together_with = event_target:winning_country }
+						}
+					}
+					set_global_flag = winning_country_multiple
+				}
+				every_country = {
+					limit = { is_ai = no }	
+					add_to_variable = { global.peace_popup_dirty = 1 }
+				}
+				log = "war_won"
+				set_global_flag = war_won
 			}
             peace_conference_effect = yes
 			ENT = { dismantle_faction = yes }
@@ -593,6 +623,36 @@ peace_deal = {
 						transfer_state_to = JAP
 					}
 				}
+				#멸망문구
+				set_global_flag = show_peace_popup_alert
+				ENT = {
+					save_global_event_target_as = winning_country
+				}
+				REI = {
+					save_global_event_target_as = losing_country
+				}
+				if = {
+					limit = {
+						event_target:losing_country = {
+							any_allied_country = { has_war_together_with = event_target:losing_country }
+						}
+					}
+					set_global_flag = losing_country_multiple
+				}
+				if = {
+					limit = {
+						event_target:winning_country = {
+							any_allied_country = { has_war_together_with = event_target:winning_country }
+						}
+					}
+					set_global_flag = winning_country_multiple
+				}
+				every_country = {
+					limit = { is_ai = no }	
+					add_to_variable = { global.peace_popup_dirty = 1 }
+				}
+				log = "war_won"
+				set_global_flag = war_won
 			}
             peace_conference_effect = yes
 			REI = { dismantle_faction = yes }
@@ -636,6 +696,7 @@ peace_deal = {
 		timeout_effect = {
 			clr_global_flag = wwiii_flag
 			set_global_flag = wwiii_flag_ends
+			SOV = { set_country_flag = third_world_war_winner }
 			every_country = {
 				limit = {
 					OR = {
@@ -720,6 +781,7 @@ peace_deal = {
 		timeout_effect = {
 			clr_global_flag = wwiii_flag
 			set_global_flag = wwiii_flag_ends
+			SOV = { set_country_flag = third_world_war_winner }
 			every_country = {
 				limit = {
 					OR = {

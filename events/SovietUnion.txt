@@ -29,6 +29,19 @@ country_event = {
 					}
 				}
 			}
+			modifier = {
+				factor = 0
+				OR = {
+					has_country_leader = {
+						character = SOV_nikolay_bukharin
+						ruling_only = yes
+					}
+					has_country_leader = {
+						character = SOV_mikhail_tukhachevsky
+						ruling_only = yes
+					}
+				}
+			}
 		}
 	}	
 	option = {
@@ -2094,19 +2107,19 @@ country_event = {
 		OR = {
 			AND = {
 				surrender_progress > 0.65
-				casualties > 3000000
-			}
-			AND = {
-				surrender_progress > 0.6
-				casualties > 3500000
-			}
-			AND = {
-				surrender_progress > 0.55
 				casualties > 4000000
 			}
 			AND = {
-				surrender_progress > 0.5
+				surrender_progress > 0.6
 				casualties > 4500000
+			}
+			AND = {
+				surrender_progress > 0.55
+				casualties > 5000000
+			}
+			AND = {
+				surrender_progress > 0.5
+				casualties > 5500000
 			}
 		}
 		NOT = { has_idea = SOV_army_in_confusion }
@@ -2297,13 +2310,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = Soviet.67.a
-		add_ideas = SOV_disbanded_army
-		#hidden_effect = {
-		#	country_event = { id = Soviet.72 days = 7 }
-		#}
-		unlock_decision_category_tooltip = SOV_tukachevsky_coup
-		set_country_flag = SOV_tukachevsky_coup_start_flag
-		set_variable = { SOV_tukachevsky_coup_progress_var = SOV.SOV_army_influence_var }
+		country_event = soviet_rework_troika.066
 		ai_chance = {
 			factor = 6
 		}
@@ -2432,6 +2439,7 @@ country_event = {
 			promote_leader = yes
 			country_leader = {
 				ideology = leninism
+				desc="SOV_mikhail_tukhachevsky_desc"
 			}
 		}
 		set_party_name = {
@@ -2455,7 +2463,8 @@ country_event = {
 		}
 		set_country_flag = cant_use_bukharin
 		remove_ideas = SOV_disbanded_army
-		news_event = Soviet.84
+		mark_focus_tree_layout_dirty = yes
+		country_event = soviet_rework_troika.065
 		ai_chance = {
 			base = 5
 		}
@@ -2501,13 +2510,8 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = Soviet.75.a
-		random_list = {
-			60 = {
-				country_event = { id = Soviet.76 days = 7 }
-			}
-			40 = {
-				country_event = { id = Soviet.77 days = 7 }
-			}
+		hidden_effect = {
+			country_event = { id = Soviet.76 days = 7 }
 		}
 		ai_chance = {
 			base = 5
@@ -2523,10 +2527,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = Soviet.76.a
-		retire_character = SOV_nikolay_bukharin
-		retire_character = SOV_alexandra_kollontai
-		retire_character = SOV_aleksandr_shlyapnikov
-		retire_character = SOV_mikhail_tomsky
+		country_event = soviet_rework_troika.067
 		ai_chance = {
 			base = 5
 		}

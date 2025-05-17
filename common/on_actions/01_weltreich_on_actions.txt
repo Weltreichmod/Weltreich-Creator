@@ -6,6 +6,12 @@ on_actions = {
 				limit = { is_ai = no }
 				set_country_flag = show_welcome_splash
 			}
+			if = {
+				limit = {
+					original_tag = FRA
+				}
+				FRA_initialize_behind_the_curtain_of_power = yes
+			}
 		}
 	}
 	on_new_term_election = {
@@ -17,7 +23,10 @@ on_actions = {
 		effect = {
 			if = {
 				limit = {
-					GER = { has_war_with = SOV }
+					GER = {
+						has_war_with = SOV
+						is_subject = no
+					}
 				}
 				SOV = { country_event = { id = soviet_rework_white.001 days = 3 } }
 			}
@@ -355,6 +364,121 @@ on_actions = {
 			}
 			if = {
 				limit = {
+					original_tag = ROM
+					has_global_flag = second_world_war
+				}
+				if = {
+					limit = {
+						ROOT = { original_tag = ROM }
+						FROM = { is_subject = no }
+					}
+					FROM = { set_country_flag = defeat_romania_flag }
+					log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					else = {
+						every_country = {
+							limit = {
+								has_subject = FROM
+							}
+							set_country_flag = defeat_romania_flag
+						}
+						log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = BUL
+					has_global_flag = second_world_war
+				}
+				if = {
+					limit = {
+						ROOT = { original_tag = BUL }
+						FROM = { is_subject = no }
+					}
+					FROM = { set_country_flag = defeat_bulgaria_flag }
+					log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					else = {
+						every_country = {
+							limit = {
+								has_subject = FROM
+							}
+							set_country_flag = defeat_bulgaria_flag
+						}
+						log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = GRE
+					has_global_flag = second_world_war
+				}
+				if = {
+					limit = {
+						ROOT = { original_tag = GRE }
+						FROM = { is_subject = no }
+					}
+					FROM = { set_country_flag = defeat_greece_flag }
+					log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					else = {
+						every_country = {
+							limit = {
+								has_subject = FROM
+							}
+							set_country_flag = defeat_greece_flag
+						}
+						log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = SER
+					has_global_flag = second_world_war
+				}
+				if = {
+					limit = {
+						ROOT = { original_tag = SER }
+						FROM = { is_subject = no }
+					}
+					FROM = { set_country_flag = defeat_serbia_flag }
+					log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					else = {
+						every_country = {
+							limit = {
+								has_subject = FROM
+							}
+							set_country_flag = defeat_serbia_flag
+						}
+						log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ALB
+					has_global_flag = second_world_war
+				}
+				if = {
+					limit = {
+						ROOT = { original_tag = ALB }
+						FROM = { is_subject = no }
+					}
+					FROM = { set_country_flag = defeat_albania_flag }
+					log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					else = {
+						every_country = {
+							limit = {
+								has_subject = FROM
+							}
+							set_country_flag = defeat_albania_flag
+						}
+						log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
+					}
+				}
+			}
+			if = {
+				limit = {
 					SPA = { exists = yes }
 				}
 				if = {
@@ -594,6 +718,600 @@ on_actions = {
 				set_global_flag = german_soviet_war_ends
 				peace_conference_effect_for_russia = yes
 			}
+			#Second Great War - Fall of Comintern by Austria
+            if = {
+                limit = {
+					original_tag = SOV
+					any_enemy_country = {
+						original_tag = AUH
+					}
+					AUH = { is_subject = no }
+					GER = { is_subject_of = AUH }
+					has_global_flag = german_soviet_war
+					NOT = {
+						has_global_flag = german_soviet_war_ends
+					}
+                }
+				every_country = {
+					limit = {
+						OR = {
+							tag = ROOT
+							is_subject_of = ROOT
+						}
+						NOT = {
+							has_country_flag = anti_russia_war_winner
+						}
+					}
+					set_country_flag = anti_russia_war_loser
+				}
+				every_country = {
+					limit = {
+						OR = {
+							tag = FROM
+							is_in_faction_with = FROM
+							is_subject_of = FROM
+							has_war_with = ROOT
+						}
+						NOT = {
+							has_country_flag = anti_russia_war_loser
+						}
+						NOT = {
+							OR = {
+								original_tag = AUH
+								is_in_faction_with = AUH
+								is_subject_of = AUH
+								original_tag = JAP
+								is_in_faction_with = JAP
+								is_subject_of = JAP
+							}
+						}
+					}
+					set_country_flag = anti_russia_war_winner
+				}
+				if = {
+					limit = {
+						MON = {
+							is_in_faction_with = SOV
+							OR = {
+								has_war_with = AUH
+								has_war_with = JAP
+							}
+						}
+					}
+					MON = { set_country_flag = anti_russia_war_loser }
+				}
+				if = {
+					limit = {
+						USS = {
+							is_in_faction_with = SOV
+							OR = {
+								has_war_with = AUH
+								has_war_with = JAP
+							}
+						}
+					}
+					USS = { set_country_flag = anti_russia_war_loser }
+				}
+				if = {
+					limit = {
+						UPR = {
+							is_in_faction_with = SOV
+							OR = {
+								has_war_with = AUH
+								has_war_with = JAP
+							}
+						}
+					}
+					UPR = { set_country_flag = anti_russia_war_loser }
+				}
+				if = {
+					limit = {
+						TAN = {
+							is_in_faction_with = SOV
+							OR = {
+								has_war_with = AUH
+								has_war_with = JAP
+							}
+						}
+					}
+					TAN = { set_country_flag = anti_russia_war_loser }
+				}
+				if = {
+					limit = {
+						JAP = {
+							has_war_with = SOV
+							has_capitulated = no
+						}
+					}
+					JAP = { country_event = japan_wr.18 }
+					set_global_flag = jap_vic_against_sov
+				}
+				SOV = {
+					add_ideas = Treaty_of_Kazan1
+					country_lock_all_division_template = yes
+					if = {
+						limit = {
+							SOV = { NOT = { is_faction_leader = yes } }
+						}
+						every_country = {
+							limit = {
+								OR = {
+									original_tag = SOV
+									is_subject_of = SOV
+								}
+							}
+							leave_faction = yes
+						}
+					}
+					if = {
+						limit = {
+							SOV = { is_faction_leader = yes }
+						}
+						dismantle_faction = yes
+					}
+					remove_ideas = home_of_revolution
+				}
+				every_country = {
+					limit = {
+						has_war_with = SOV
+					}
+					white_peace = {
+						tag = SOV
+						message = unconditional_surrender_of_SOV
+					}
+				}
+				if = {
+					limit = {
+						MON = { has_country_flag = anti_russia_war_loser }
+					}
+					every_country = {
+						limit = {
+							has_war_with = MON
+						}
+						white_peace = {
+							tag = MON
+						}
+					}
+				}
+				if = {
+					limit = {
+						USS = { has_country_flag = anti_russia_war_loser }
+					}
+					every_country = {
+						limit = {
+							has_war_with = USS
+						}
+						white_peace = {
+							tag = USS
+						}
+					}
+				}
+				if = {
+					limit = {
+						UPR = { has_country_flag = anti_russia_war_loser }
+					}
+					every_country = {
+						limit = {
+							has_war_with = UPR
+						}
+						white_peace = {
+							tag = UPR
+						}
+					}
+				}
+				SOV = {
+					annex_country = {
+						target = SOV
+						transfer_troops = yes
+					}
+				}
+				clr_global_flag = german_soviet_war
+				set_global_flag = german_soviet_war_ends
+				peace_conference_effect_for_russia = yes
+				every_country = {
+					limit = {
+						is_subject_of = SOV
+					}
+					country_event = Soviet.4
+				}
+				every_state = {
+					limit = {
+						is_claimed_by = SOV
+					}
+					remove_claim_by = SOV
+				}
+				every_state = {
+					limit = {
+						OR = {
+							is_owned_by = GER
+							is_owned_by = UBD
+							is_owned_by = LAT
+							is_owned_by = EST
+							is_owned_by = LIT
+							is_owned_by = POL
+							is_owned_by = UKR
+						}
+					}
+					remove_core_of = SOV
+				}
+				if = {
+					limit = {
+						UKR = {
+							is_in_faction_with = AUH
+							NOT = { has_country_flag = anti_russia_war_loser }
+						}
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SOV
+							OR = {
+								state = 988
+								state = 245
+								state = 218
+								state = 260
+								state = 220
+							}
+						}
+						transfer_state_to = UKR
+					}
+				}
+				if = {
+					limit = {
+						USS = {
+							is_in_faction_with = AUH
+							NOT = { has_country_flag = anti_russia_war_loser }
+						}
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SOV
+							OR = {
+								state = 988
+								state = 245
+								state = 218
+								state = 260
+								state = 220
+							}
+						}
+						transfer_state_to = USS
+					}
+				}
+				if = {
+					limit = {
+						UPR = {
+							is_in_faction_with = AUH
+							NOT = { has_country_flag = anti_russia_war_loser }
+						}
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SOV
+							OR = {
+								state = 988
+								state = 245
+								state = 218
+								state = 260
+								state = 220
+							}
+						}
+						transfer_state_to = UPR
+					}
+				}
+				RUS = {
+					set_country_flag = no_focus
+					remove_country_leader_role = {
+						character = RUS_aleksey_arkhangelsky
+						ideology = despotism
+					}
+					add_country_leader_role = {
+						character = RUS_vladimir_kirillovich
+						promote_leader = yes
+						country_leader = {
+							ideology = autocracy
+						}
+					}
+					set_cosmetic_tag = RUS_kingdom
+				}
+				every_state = {
+					limit = {
+						is_owned_by = SOV
+						OR = {
+							state = 195
+							state = 208
+							state = 244
+							state = 209
+							state = 263
+							state = 210
+							state = 246
+							state = 242
+							state = 243
+							state = 247
+							state = 264
+							state = 214
+							state = 219
+							state = 205
+							state = 248
+							state = 250
+							state = 253
+							state = 224
+							state = 254
+							state = 256
+							state = 223
+							state = 222
+							state = 258
+							state = 257
+							state = 252
+							state = 255
+							state = 239
+							state = 265
+							state = 351
+							state = 829
+							state = 879
+							state = 880
+							state = 401
+							state = 251
+							state = 249
+							state = 652
+							state = 833
+							state = 400
+							state = 397
+							state = 651
+							state = 399
+							state = 398
+							state = 582
+							state = 573
+							state = 262
+							state = 958
+							state = 825
+							state = 581
+							state = 407
+							state = 406
+							state = 217
+							state = 245
+							state = 218
+							state = 236
+							state = 237
+							state = 238
+							state = 234
+							state = 235
+							state = 233
+							state = 827
+							state = 828
+							state = 232
+							state = 821
+						}
+					}
+					add_core_of = RUS
+					transfer_state_to = RUS
+				}
+				if = {
+					limit = {
+						RUS = { exists = yes }
+					}
+					AUH = {
+						if = {
+							limit = {
+								has_dlc = "Together for Victory"
+							}
+							set_autonomy = {
+								target = RUS
+								autonomous_state = autonomy_puppet
+								freedom_level = 0.5
+							}
+							else = {
+								puppet = RUS
+							}
+						}
+						add_to_faction = RUS
+					}
+				}
+				if = {
+					limit = {
+						FIN = {
+							NOT = {
+								is_in_faction_with = GER
+								has_country_flag = FIN_claim_Karelia
+							}
+						}
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SOV
+							OR = {
+								state = 213
+								state = 215
+								state = 216
+							}
+						}
+						add_core_of = RUS
+						transfer_state_to = RUS
+					}
+					else = {
+						every_state = {
+							limit = {
+								is_owned_by = SOV
+								OR = {
+									is_claimed_by = FIN
+									state = 213
+									state = 215
+									state = 216
+								}
+							}
+							transfer_state_to = FIN
+						}
+					}
+				}
+				931 = { transfer_state_to = BLR }
+				207 = { transfer_state_to = BLR }
+				810 = { transfer_state_to = UBD }
+				every_state = {
+					limit = {
+						is_owned_by = SOV
+						is_core_of = KAZ
+					}
+					transfer_state_to = KAZ
+				}
+				every_state = {
+					limit = {
+						is_owned_by = SOV
+						is_core_of = TUK
+					}
+					transfer_state_to = TUK
+				}
+				every_state = {
+					limit = {
+						OR = {
+							is_owned_by = SOV
+							is_owned_by = USS
+							is_owned_by = UPR
+						}
+						OR = {
+							state = 94
+							state = 194
+							state = 241
+						}
+					}
+					transfer_state_to = BLR
+				}
+				every_state = {
+					limit = {
+						OR = {
+							is_owned_by = SOV
+							is_owned_by = USS
+							is_owned_by = UPR
+						}
+						OR = {
+							state = 913
+						}
+					}
+					transfer_state_to = POL
+				}
+				if = {
+					limit = {
+						USS = { has_country_flag = anti_russia_war_loser }
+						USS = { exists = yes }
+					}
+					UKR = { annex_country = { target = USS transfer_troops = yes } }
+					AUH = {
+						if = {
+							limit = {
+								OR = {
+									has_dlc = "Together for Victory"
+									has_dlc = "Waking the Tiger"
+								}
+							}
+							set_autonomy = {
+								target = UKR
+								autonomous_state = autonomy_protected_state
+								freedom_level = 0.5
+							}
+							else = {
+								puppet = UKR
+							}
+						}
+					}
+					every_state = {
+						limit = {
+							is_owned_by = USS
+							OR = {
+								state = 94
+								state = 194
+							}
+						}
+						add_core_of = BLR
+						remove_core_of = USS
+						transfer_state_to = BLR
+					}
+					every_state = {
+						limit = {
+							is_owned_by = USS
+							state = 913
+						}
+						add_core_of = POL
+						remove_core_of = USS
+						transfer_state_to = POL
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SOV
+							OR = {
+								state = 988
+								state = 260
+								state = 220
+							}
+						}
+						transfer_state_to = RUS
+						add_core_of = RUS
+					}
+				}
+				if = {
+					limit = {
+						UPR = { has_country_flag = anti_russia_war_loser }
+						UPR = { exists = yes }
+					}
+					UKR = { annex_country = { target = UPR transfer_troops = yes } }
+					AUH = {
+						if = {
+							limit = {
+								OR = {
+									has_dlc = "Together for Victory"
+									has_dlc = "Waking the Tiger"
+								}
+							}
+							set_autonomy = {
+								target = UKR
+								autonomous_state = autonomy_protected_state
+								freedom_level = 0.5
+							}
+							else = {
+								puppet = UKR
+							}
+						}
+					}
+					every_state = {
+						limit = {
+							is_owned_by = UPR
+							OR = {
+								state = 94
+								state = 194
+							}
+						}
+						add_core_of = BLR
+						remove_core_of = UPR
+						transfer_state_to = BLR
+					}
+					every_state = {
+						limit = {
+							is_owned_by = UPR
+							state = 913
+						}
+						add_core_of = POL
+						remove_core_of = UPR
+						transfer_state_to = POL
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SOV
+							OR = {
+								state = 988
+								state = 260
+								state = 220
+							}
+						}
+						transfer_state_to = RUS
+						add_core_of = RUS
+					}
+				}
+				SOV = {
+					set_capital = {
+					  state = 571
+					  remember_old_capital = no
+					}
+					mark_focus_tree_layout_dirty = yes
+					country_event = { id = soviet_rework_troika.038 days = 25 }
+					complete_national_focus = SOV_the_war_has_been_lost
+				}
+			}
 			#Second Great War - Fall of Russia by Reichspakt
             if = {
                 limit = {
@@ -703,24 +1421,41 @@ on_actions = {
 						transfer_state_to = URL
 					}
 				}
-				else = {
-					GER = {
-						if = {
-							OR = {
-								has_dlc = "Together for Victory"
-								has_dlc = "Waking the Tiger"
-							}
-							set_autonomy = {
-								target = RUS
-								autonomous_state = autonomy_cooperating_country
-								freedom_level = 0.2
-							}
-							else = {
-								puppet = RUS
-							}
+				every_state = {
+					limit = {
+						is_owned_by = MOS
+						OR = {
+							state = 406
+							state = 407
 						}
 					}
+					transfer_state_to = WOL
+					add_core_of = WOL
 				}
+				every_state = {
+					limit = {
+						is_owned_by = MOS
+					}
+					add_core_of = MOS
+				}
+				#else = {
+				#	GER = {
+				#		if = {
+				#			OR = {
+				#				has_dlc = "Together for Victory"
+				#				has_dlc = "Waking the Tiger"
+				#			}
+				#			set_autonomy = {
+				#				target = RUS
+				#				autonomous_state = autonomy_cooperating_country
+				#				freedom_level = 0.2
+				#			}
+				#			else = {
+				#				puppet = RUS
+				#			}
+				#		}
+				#	}
+				#}
 				#GER = { country_event = Germany.88 }
 				clr_global_flag = german_russian_war
 				set_global_flag = german_russian_war_ends
@@ -1095,6 +1830,7 @@ on_actions = {
 				}
 				AUH = {
 					country_event = AUH.34
+					set_country_flag = victor_of_deutscher_Krieg
 					save_global_event_target_as = leader_of_reichspakt
 				}
 			}
@@ -2066,7 +2802,32 @@ on_actions = {
 					set_country_flag = sino_japanese_war_winner
 				}
 				CHI_defeat_annex = yes
-				JAP = { country_event = japan_wr.40 }
+				JAP = {
+					country_event = japan_wr.40
+					set_country_flag = victory_against_china
+				}
+				CHI = {
+					set_party_name = {
+						ideology = neutrality
+						long_name = CHI_JAP_party_long
+						name = CHI_JAP_party
+					}
+					set_party_name = {
+						ideology = democratic
+						long_name = CHI_JAP_party_long
+						name = CHI_JAP_party
+					}
+					set_party_name = {
+						ideology = fascism
+						long_name = CHI_JAP_party_long
+						name = CHI_JAP_party
+					}
+					set_party_name = {
+						ideology = communism
+						long_name = CHI_JAP_party_long
+						name = CHI_JAP_party
+					}
+				}
 			}
 			#for achievements
 			if = {

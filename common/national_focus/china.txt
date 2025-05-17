@@ -1856,9 +1856,6 @@
 		available = {
 			has_war = no
 		}
-		bypass = {
-			FNG = { exists = no }
-		}
 		ai_will_do = {
 			factor = 1
 			modifier = {
@@ -1867,9 +1864,21 @@
 			}
 		}
 		will_lead_to_war_with = FNG
+		will_lead_to_war_with = MAN
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			declare_war_on = { target = FNG  type = take_core_state }
+			if = {
+				limit = {
+					FNG = { exists = yes }
+				}
+				declare_war_on = { target = FNG  type = take_core_state }
+			}
+			if = {
+				limit = {
+					MAN = { exists = yes }
+				}
+				declare_war_on = { target = MAN  type = take_core_state }
+			}
 		}
 	}
 	
