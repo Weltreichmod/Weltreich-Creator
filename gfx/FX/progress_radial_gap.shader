@@ -1,5 +1,5 @@
 Includes = {
-	"tno_functions.fxh"
+	"functions.fxh"
 }
 
 PixelShader =

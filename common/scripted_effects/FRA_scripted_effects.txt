@@ -1,56 +1,8 @@
-###############################################
-#  ±5 Discontent effects  (0‒100 범위 안전)
-###############################################
-
-### +5 Bucard
-FRA_inc_bucard_discontent_5 = {
-    custom_effect_tooltip = FRA_inc_bucard_discontent_5_tt
-    add_to_variable = { var = fra_bucard_var  value = 5 }
-
-    if = {                                        # 95 이상 → 100 고정
-        limit = { check_variable = { var = fra_bucard_var  value > 94 } }
-        set_variable = { var = fra_bucard_var  value = 100 }
-    }
-}
-
-### −5 Bucard
-FRA_dec_bucard_discontent_5 = {
-    custom_effect_tooltip = FRA_dec_bucard_discontent_5_tt
-    add_to_variable = { var = fra_bucard_var  value = -5 }
-
-    if = {                                        # 5 이하 → 0 고정
-        limit = { check_variable = { var = fra_bucard_var  value < 6 } }
-        set_variable = { var = fra_bucard_var  value = 0 }
-    }
-}
-
-### +5 Doriot
-FRA_inc_doriot_discontent_5 = {
-    custom_effect_tooltip = FRA_inc_doriot_discontent_5_tt
-    add_to_variable = { var = fra_doriot_var  value = 5 }
-
-    if = {
-        limit = { check_variable = { var = fra_doriot_var  value > 94 } }
-        set_variable = { var = fra_doriot_var  value = 100 }
-    }
-}
-
-### −5 Doriot
-FRA_dec_doriot_discontent_5 = {
-    custom_effect_tooltip = FRA_dec_doriot_discontent_5_tt
-    add_to_variable = { var = fra_doriot_var  value = -5 }
-
-    if = {
-        limit = { check_variable = { var = fra_doriot_var  value < 6 } }
-        set_variable = { var = fra_doriot_var  value = 0 }
-    }
-}
-
 ###3파전
 FRA_initialize_behind_the_curtain_of_power = {
     set_variable = { support_valois = 50 }   # 발루아
-    set_variable = { support_bucard = 20 }   # 뷔카르
-    set_variable = { support_doriot = 30 }   # 도리오
+    set_variable = { support_bucard = 30 }   # 모라스
+    set_variable = { support_doriot = 20 }   # 도리오
 
     # 누적 퍼센티지 계산 호출
     FRA_update_behind_the_curtain_of_power = yes
@@ -76,10 +28,234 @@ FRA_update_behind_the_curtain_of_power = {
     divide_variable = { support_valois = total }
 
     # (5) pie progress 누적값 세팅
-    # pie2 = 도리오 단독 비율
-    set_variable = { pie2_progress = support_doriot }
-    # pie1 = 도리오 + 발루아 비율
+    # pie2 = 모라스 단독 비율
+    set_variable = { pie2_progress = support_bucard }
+    # pie1 = 모라스 + 발루아 비율
     set_variable    = { pie1_progress = pie2_progress }
     add_to_variable = { pie1_progress = support_valois }
-    # 뷔카르(support_bucard) 비율은 pie1의 빈 영역(100 - pie1_progress) 에 background로 표현
+    # 도리오(support_doriot) 비율은 pie1의 빈 영역(100 - pie1_progress) 에 background로 표현
+}
+##############################
+# FRA: 발루아–모라스–도리오 지지율 조정 이펙트 (2.5 / 5 / 10)
+##############################
+
+# ── 발루아 (Valois) 증가/감소 ──
+FRA_pcd_increase_valois_support_low = {
+    custom_effect_tooltip = FRA_pcd_increase_valois_support_low_tt
+    add_to_variable = { support_valois = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_valois_support_med = {
+    custom_effect_tooltip = FRA_pcd_increase_valois_support_med_tt
+    add_to_variable = { support_valois = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_valois_support_high = {
+    custom_effect_tooltip = FRA_pcd_increase_valois_support_high_tt
+    add_to_variable = { support_valois = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+
+FRA_pcd_decrease_valois_support_low = {
+    custom_effect_tooltip = FRA_pcd_decrease_valois_support_low_tt
+    subtract_from_variable = { support_valois = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_valois_support_med = {
+    custom_effect_tooltip = FRA_pcd_decrease_valois_support_med_tt
+    subtract_from_variable = { support_valois = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_valois_support_high = {
+    custom_effect_tooltip = FRA_pcd_decrease_valois_support_high_tt
+    subtract_from_variable = { support_valois = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+
+# ── 모라스 (Bucard) 증가/감소 ──
+FRA_pcd_increase_bucard_support_low = {
+    custom_effect_tooltip = FRA_pcd_increase_bucard_support_low_tt
+    add_to_variable = { support_bucard = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_bucard_support_med = {
+    custom_effect_tooltip = FRA_pcd_increase_bucard_support_med_tt
+    add_to_variable = { support_bucard = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_bucard_support_high = {
+    custom_effect_tooltip = FRA_pcd_increase_bucard_support_high_tt
+    add_to_variable = { support_bucard = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+
+FRA_pcd_decrease_bucard_support_low = {
+    custom_effect_tooltip = FRA_pcd_decrease_bucard_support_low_tt
+    subtract_from_variable = { support_bucard = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_bucard_support_med = {
+    custom_effect_tooltip = FRA_pcd_decrease_bucard_support_med_tt
+    subtract_from_variable = { support_bucard = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_bucard_support_high = {
+    custom_effect_tooltip = FRA_pcd_decrease_bucard_support_high_tt
+    subtract_from_variable = { support_bucard = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+
+# ── 도리오 (Doriot) 증가/감소 ──
+FRA_pcd_increase_doriot_support_low = {
+    custom_effect_tooltip = FRA_pcd_increase_doriot_support_low_tt
+    add_to_variable = { support_doriot = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_doriot_support_med = {
+    custom_effect_tooltip = FRA_pcd_increase_doriot_support_med_tt
+    add_to_variable = { support_doriot = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_doriot_support_high = {
+    custom_effect_tooltip = FRA_pcd_increase_doriot_support_high_tt
+    add_to_variable = { support_doriot = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+
+FRA_pcd_decrease_doriot_support_low = {
+    custom_effect_tooltip = FRA_pcd_decrease_doriot_support_low_tt
+    subtract_from_variable = { support_doriot = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_doriot_support_med = {
+    custom_effect_tooltip = FRA_pcd_decrease_doriot_support_med_tt
+    subtract_from_variable = { support_doriot = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_doriot_support_high = {
+    custom_effect_tooltip = FRA_pcd_decrease_doriot_support_high_tt
+    subtract_from_variable = { support_doriot = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+
+FRA_set_battle_of_paris_for_bucard = {
+	set_variable = { FRA_battle_of_paris_for_bucard = 100 }
+	subtract_from_variable = { FRA_battle_of_paris_for_bucard = FRA_battle_of_paris_main_bar }
+}
+
+### +5 Doriot
+FRA_inc_doriot_superiority_5 = {
+    custom_effect_tooltip = FRA_inc_doriot_superiority_5_tt
+    if = {
+        limit = { check_variable = { FRA_battle_of_paris_main_bar > 94 } }
+        set_variable = { var = FRA_battle_of_paris_main_bar  value = 100 }
+    }
+	else = {
+		add_to_variable = { var = FRA_battle_of_paris_main_bar  value = 5 }
+	}
+	FRA_set_battle_of_paris_for_bucard = yes
+}
+
+### +10 Doriot
+FRA_inc_doriot_superiority_10 = {
+    custom_effect_tooltip = FRA_inc_doriot_superiority_10_tt
+    if = {
+        limit = { check_variable = { FRA_battle_of_paris_main_bar > 89 } }
+        set_variable = { var = FRA_battle_of_paris_main_bar  value = 100 }
+    }
+	else = {
+		add_to_variable = { var = FRA_battle_of_paris_main_bar  value = 10 }
+	}
+	FRA_set_battle_of_paris_for_bucard = yes
+}
+
+### -5 Doriot
+FRA_dec_doriot_superiority_5 = {
+    custom_effect_tooltip = FRA_dec_doriot_superiority_5_tt
+    if = {
+        limit = { check_variable = { FRA_battle_of_paris_main_bar < 6 } }
+        set_variable = { var = FRA_battle_of_paris_main_bar  value = 0 }
+    }
+	else = {
+		add_to_variable = { var = FRA_battle_of_paris_main_bar  value = -5 }
+	}
+	FRA_set_battle_of_paris_for_bucard = yes
+}
+
+### -10 Doriot
+FRA_dec_doriot_superiority_10 = {
+    custom_effect_tooltip = FRA_dec_doriot_superiority_10_tt
+    if = {
+        limit = { check_variable = { FRA_battle_of_paris_main_bar < 11 } }
+        set_variable = { var = FRA_battle_of_paris_main_bar  value = 0 }
+    }
+	else = {
+		add_to_variable = { var = FRA_battle_of_paris_main_bar  value = -10 }
+	}
+	FRA_set_battle_of_paris_for_bucard = yes
+}
+
+gain_random_cryptology_dept_upgrade = {
+	custom_effect_tooltip = free_cryptology_dept_upgrade_tt
+	hidden_effect = {
+		if = {
+			limit = {
+				has_intelligence_agency = no
+			}
+			create_intelligence_agency = yes
+		}
+		else = {
+			random_list = {
+				1 = {
+					upgrade_intelligence_agency = upgrade_form_department
+					modifier = {
+						factor = 0
+						has_done_agency_upgrade = upgrade_form_department
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_decryption_boost
+					modifier = {
+						factor = 0
+						OR = {
+							has_done_agency_upgrade = upgrade_decryption_boost
+							NOT = { has_done_agency_upgrade = upgrade_form_department }
+						}
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_decryption_boost_2
+					modifier = {
+						factor = 0
+						OR = {
+							has_done_agency_upgrade = upgrade_decryption_boost_2
+							NOT = { has_done_agency_upgrade = upgrade_form_department }
+							NOT = { has_done_agency_upgrade = upgrade_decryption_boost }
+						}
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_crypto_strength
+					modifier = {
+						factor = 0
+						OR = {
+							has_done_agency_upgrade = upgrade_crypto_strength
+							NOT = { has_done_agency_upgrade = upgrade_form_department }
+						}
+					}
+				}
+				1 = {
+					upgrade_intelligence_agency = upgrade_crypto_strength_2
+					modifier = {
+						factor = 0
+						OR = {
+							has_done_agency_upgrade = upgrade_crypto_strength_2
+							NOT = { has_done_agency_upgrade = upgrade_form_department }
+							NOT = { has_done_agency_upgrade = upgrade_crypto_strength }
+						}
+					}
+				}
+			}
+		}
+	}
 }
