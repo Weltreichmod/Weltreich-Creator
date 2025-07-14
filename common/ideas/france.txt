@@ -610,6 +610,26 @@ ideas = {
 			}
 		}
 		
+		FRA_Intelligence_Warfare = {
+			picture = generic_build_infrastructure
+			allowed = { always = no }
+			modifier = {
+				crypto_strength = 1
+				decryption_power = 1
+				intelligence_agency_defense = 1
+			}
+		}
+		
+		FRA_Intelligence_Warfare_vanilla = {
+			name = FRA_Intelligence_Warfare
+			picture = generic_intel_bonus
+			allowed = { always = no }
+			modifier = {
+				encryption = 1
+				decryption = 1
+			}
+		}
+		
 		FRA_Fighter_Production_Program = {
 			picture = generic_air_fighter
 			allowed = {
@@ -783,7 +803,7 @@ ideas = {
 			}
 			equipment_bonus = {
 				motorized_equipment = {
-					build_cost_ic = -0.2
+					build_cost_ic = -0.1
 					instant = yes
 				}
 				mechanized_equipment = {
@@ -792,28 +812,313 @@ ideas = {
 				}
 			}
 		}
-		#----------------------------------------------
-
-		FRA_kill_the_kaiser = {
-			picture = generic_king_handled
+		FRA_unrestricted_submarine_warfare = {
+			picture = generic_navy_submarines
 			allowed = {
 				original_tag = FRA
 			}
 			available = {
 				NOT = { has_country_flag = second_great_war_loser }
-				NOT = { has_country_flag = second_great_war_winner }
 			}
-			targeted_modifier = {
-				tag = GER
-				breakthrough_bonus_against = 0.05
+			equipment_bonus = {
+				ship_hull_submarine = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
 			}
 			modifier = {
-				dig_in_speed_factor = 0.05
-				conscription_factor = 0.1
+				navy_submarine_attack_factor = 0.05
+				sub_retreat_speed = 0.1
+				convoy_raiding_efficiency_factor = 0.05
 			}
 		}
-		FRA_kill_the_kaiser_upgrade = {
-			name = FRA_kill_the_kaiser
+		FRA_anti_battleship_strategy = {
+			picture = SOV_mine_warfare
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				mines_planting_by_fleets_factor = 0.1
+				mines_sweeping_by_fleets_factor = 0.1
+				naval_mine_hit_chance = -0.05
+				naval_mines_damage_factor = 0.05
+			}
+		}
+		FRA_coastal_defense_guerilla = {
+			picture = generic_coastal_navy
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				coastal_bunker_effectiveness_factor = 0.2
+				amphibious_invasion_defence = 0.1
+				navy_screen_attack_factor = 0.10
+			}
+		}
+		FRA_french_navy = {
+			picture = generic_coastal_navy
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				production_speed_dockyard_factor = 0.1
+			}
+		}
+		FRA_french_navy_1 = {
+			picture = generic_coastal_navy
+			name = FRA_french_navy
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				production_speed_dockyard_factor = 0.1
+				convoy_escort_efficiency = 0.1
+				convoy_retreat_speed = 0.1
+			}
+		}
+		FRA_Reassert_Naval_Rearmament = {
+			picture = AUS_naval_efficiency_idea
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			equipment_bonus = {
+				ship_hull_light = {
+					build_cost_ic = -0.05
+					instant = yes
+				}
+				ship_hull_cruiser = {
+					build_cost_ic = -0.05
+					instant = yes
+				}
+				ship_hull_heavy = {
+					build_cost_ic = -0.1
+					instant = yes
+				}
+			}
+		}
+		FRA_Enhance_Naval_Air_Power = {
+			picture = generic_air_interception
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				naval_strike_targetting_factor = 0.1
+				air_nav_efficiency = 0.1
+				air_range_factor = 0.05
+			}
+		}
+		FRA_Unrest_Boiling_Over = {
+			picture = MEX_revolutionary_army
+			allowed = {
+				original_tag = FRA
+			}
+			modifier = {
+				political_power_factor = -1
+				stability_factor = -1
+				war_support_factor = -1
+				industrial_capacity_dockyard = -1
+				industrial_capacity_factory = -1
+				production_speed_buildings_factor = -1
+			}
+		}
+		
+		FRA_doriot_restoration_momentum1 = {
+			picture = FRA_down_marianne
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				political_power_factor = 0.02
+				stability_factor = 0.02
+				war_stability_factor = 0.02
+				drift_defence_factor = 0.05
+			}
+		}
+		
+		FRA_doriot_restoration_momentum2 = {
+			picture = FRA_down_marianne
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				political_power_factor = 0.02
+				stability_factor = 0.02
+				war_stability_factor = 0.02
+				drift_defence_factor = 0.05
+				political_advisor_cost_factor = -0.05
+				high_command_cost_factor = -0.05
+				army_advisor_cost_factor = -0.05
+				navy_advisor_cost_factor = -0.05
+				air_advisor_cost_factor = -0.05
+			}
+		}
+		
+		FRA_doriot_restoration_momentum3 = {
+			picture = FRA_down_marianne
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				political_power_factor = 0.04
+				stability_factor = 0.04
+				war_stability_factor = 0.04
+				drift_defence_factor = 0.05
+				political_advisor_cost_factor = -0.1
+				high_command_cost_factor = -0.1
+				army_advisor_cost_factor = -0.1
+				navy_advisor_cost_factor = -0.1
+				air_advisor_cost_factor = -0.1
+			}
+		}
+		
+		FRA_Mass_Mobilization = {
+			picture = RAJ_independence_movement
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				conscription_factor = 0.1
+				training_time_army_factor = -0.05
+				political_power_factor = 0.05
+			}
+		}
+		
+		FRA_Secret_Police = {
+			picture = generic_spy_political
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				intelligence_agency_defense = 0.1
+			}
+		}
+		
+		FRA_Class_Collaboration = {
+			picture = FRA_Class_Collaboration
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				production_speed_buildings_factor = 0.05
+				consumer_goods_factor = 0.05
+				stability_factor = 0.025
+			}
+		}
+		
+		FRA_National_Economic_Council = {
+			picture = GER_economy_of_conquest
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			research_bonus = {
+				industry = 0.1
+				synth_resources = 0.1
+			}
+			modifier = {
+				production_factory_start_efficiency_factor = 0.1
+			}
+		}
+		
+		FRA_Cooperative_Economy = {
+			picture = GER_recovering_economy
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				consumer_goods_factor = -0.1
+			}
+		}
+		
+		FRA_Establish_Coordination_Committee = {
+			picture = generic_production_bonus
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				line_change_production_efficiency_factor = 0.1
+				production_lack_of_resource_penalty_factor = -0.05
+			}
+		}
+		
+		FRA_Militarize_the_Countryside = {
+			picture = RAJ_private_military_complex
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				training_time_factor = -0.05
+				mobilization_speed = 0.1
+				resistance_activity = -0.05
+				supply_node_range = 0.025
+			}
+		}
+		FRA_french_economy = {
+			allowed = {
+				original_tag = FRA
+			}
+			available = {
+				NOT = { has_country_flag = second_great_war_loser }
+			}
+			modifier = {
+				production_speed_buildings_factor = 0.05
+				consumer_goods_factor = -0.1
+				stability_factor = 0.05
+				production_factory_start_efficiency_factor = 0.15
+				line_change_production_efficiency_factor = 0.15
+				production_lack_of_resource_penalty_factor = -0.1
+			}
+		}
+		#----------------------------------------------
+
+		FRA_kill_the_kaiser = {
 			picture = generic_king_handled
 			allowed = {
 				original_tag = FRA
@@ -1100,6 +1405,7 @@ ideas = {
 			modifier = {
 				political_power_factor = -0.1
 				stability_factor = -0.1
+				custom_modifier_tooltip = unstable_regime_tt
 			}
 		}
 
@@ -1115,6 +1421,7 @@ ideas = {
 			modifier = {
 				political_power_factor = -0.05
 				stability_factor = -0.05
+				custom_modifier_tooltip = unstable_regime_tt
 			}
 		}
 

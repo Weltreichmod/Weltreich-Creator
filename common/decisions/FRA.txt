@@ -472,328 +472,199 @@ FRA_declare_grand_french_etat = {
 
 #Rework
 FRA_Behind_the_Curtain_of_Power_category = {
-	# ────────────── Doriot ──────────────
-	FRA_commemorate_social_accord = {
-		icon = GFX_decision_eng_trade_unions_support
+	FRA_challenged_authority = {
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
 			original_tag = FRA
 		}
-		visible = {
-			has_country_leader = {
-				character = FRA_Georges_Valois
-				ruling_only = yes
+		activation = {
+			OR = {
+				has_idea = unstable_regime
+				has_idea = unstable_regime2
 			}
-			NOT = { has_completed_focus = FRA_absorb_the_reactionaries }
-			NOT = { has_country_flag = FRA_Unification_flag }
-			NOT = { has_completed_focus = FRA_defines_the_nation }
+			NOT = { has_completed_focus = FRA_Establish_Secret_Police }
 		}
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = FRA_yes_support_doriot_tt
-				NOT = { check_variable = { support_doriot = 0 } }
+			OR = {
+				AND = {
+					NOT = { has_idea = unstable_regime }
+					NOT = { has_idea = unstable_regime2 }
+				}
+				has_completed_focus = FRA_Establish_Secret_Police
 			}
 		}
-		priority = 10
-		cost = 35
-		ai_will_do = {
-			base = 0
-			modifier = {
-				add = 4000
-				check_variable = { support_doriot > 5 }
+		days_mission_timeout = 31
+		timeout_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_jacques_doriot
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_marcel_deat
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_nazbol_low = yes
 			}
-		}
-		complete_effect = {
-			FRA_pcd_decrease_doriot_support_med = yes
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_charles_maurras
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_maurras_low = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_francois_de_la_rocque
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_charles_de_gaulle
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_rocque_low = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_marcel_bucard
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_bucard_low = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_pierre_monatte
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_sfio_low = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_maurice_thorez
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_worker_verylow = yes
+			}
 		}
 	}
-	FRA_expand_factory_oversight = {
-		icon = GFX_decision_eng_trade_unions_support
+	FRA_challenged_authority_cheap = {
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
 			original_tag = FRA
 		}
-		visible = {
-			has_country_leader = {
-				character = FRA_Georges_Valois
-				ruling_only = yes
+		activation = {
+			OR = {
+				has_idea = unstable_regime
+				has_idea = unstable_regime2
 			}
-			NOT = { has_completed_focus = FRA_absorb_the_reactionaries }
-			NOT = { has_country_flag = FRA_Unification_flag }
-			NOT = { has_completed_focus = FRA_defines_the_nation }
+			has_completed_focus = FRA_Establish_Secret_Police
 		}
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = FRA_yes_support_doriot_tt
-				NOT = { check_variable = { support_doriot = 0 } }
+			AND = {
+				NOT = { has_idea = unstable_regime }
+				NOT = { has_idea = unstable_regime2 }
 			}
 		}
-		priority = 10
-		cost = 50
-		ai_will_do = {
-			base = 0
-			modifier = {
-				add = 4000
-				check_variable = { support_doriot > 5 }
+		days_mission_timeout = 31
+		timeout_effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_jacques_doriot
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_marcel_deat
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_nazbol_verylow = yes
 			}
-		}
-		complete_effect = {
-			FRA_pcd_decrease_doriot_support_high = yes
-		}
-	}
-	
-	FRA_commemorate_social_accord_cheap = {
-		icon = GFX_decision_eng_trade_unions_support
-		allowed = {
-			original_tag = FRA
-		}
-		visible = {
-			has_country_leader = {
-				character = FRA_Georges_Valois
-				ruling_only = yes
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_charles_maurras
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_maurras_verylow = yes
 			}
-			NOT = { has_completed_focus = FRA_absorb_the_reactionaries }
-			NOT = { has_country_flag = FRA_Unification_flag }
-			has_completed_focus = FRA_defines_the_nation
-		}
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = FRA_yes_support_doriot_tt
-				NOT = { check_variable = { support_doriot = 0 } }
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_francois_de_la_rocque
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_charles_de_gaulle
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_rocque_verylow = yes
 			}
-		}
-		priority = 10
-		cost = 30
-		ai_will_do = {
-			base = 0
-			modifier = {
-				add = 4000
-				check_variable = { support_doriot > 5 }
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_marcel_bucard
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_bucard_verylow = yes
 			}
-		}
-		complete_effect = {
-			FRA_pcd_decrease_doriot_support_med = yes
-		}
-	}
-	FRA_expand_factory_oversight_cheap = {
-		icon = GFX_decision_eng_trade_unions_support
-		allowed = {
-			original_tag = FRA
-		}
-		visible = {
-			has_country_leader = {
-				character = FRA_Georges_Valois
-				ruling_only = yes
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_pierre_monatte
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_sfio_low = yes
 			}
-			NOT = { has_completed_focus = FRA_absorb_the_reactionaries }
-			NOT = { has_country_flag = FRA_Unification_flag }
-			has_completed_focus = FRA_defines_the_nation
-		}
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = FRA_yes_support_doriot_tt
-				NOT = { check_variable = { support_doriot = 0 } }
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_maurice_thorez
+							ruling_only = yes
+						}
+					}
+				}
+				FRA_pcd_increase_support_worker_verylow = yes
 			}
-		}
-		priority = 10
-		cost = 45
-		ai_will_do = {
-			base = 0
-			modifier = {
-				add = 4000
-				check_variable = { support_doriot > 5 }
-			}
-		}
-		complete_effect = {
-			FRA_pcd_decrease_doriot_support_high = yes
-		}
-	}
-	# ────────────── Bucard ──────────────
-	FRA_reorganize_francist_militias = {
-		icon = GFX_decision_eng_trade_unions_demand
-		allowed = {
-			original_tag = FRA
-		}
-		visible = {
-			has_country_leader = {
-				character = FRA_Georges_Valois
-				ruling_only = yes
-			}
-			NOT = { has_completed_focus = FRA_absorb_the_reactionaries }
-			NOT = { has_country_flag = FRA_Unification_flag }
-			NOT = { has_completed_focus = FRA_defines_the_nation }
-		}
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = FRA_yes_support_bicard_tt
-				NOT = { check_variable = { support_bucard = 0 } }
-			}
-		}
-		priority = 10
-		cost = 35
-		ai_will_do = {
-			base = 0
-			modifier = {
-				add = 4000
-				check_variable = { support_bucard > 5 }
-			}
-		}
-		complete_effect = {
-			FRA_pcd_decrease_bucard_support_med = yes
-		}
-	}
-	FRA_reintegrate_rural_syndicates = {
-		icon = GFX_decision_eng_trade_unions_demand
-		allowed = {
-			original_tag = FRA
-		}
-		visible = {
-			has_country_leader = {
-				character = FRA_Georges_Valois
-				ruling_only = yes
-			}
-			NOT = { has_completed_focus = FRA_absorb_the_reactionaries }
-			NOT = { has_country_flag = FRA_Unification_flag }
-			NOT = { has_completed_focus = FRA_defines_the_nation }
-		}
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = FRA_yes_support_bicard_tt
-				NOT = { check_variable = { support_bucard = 0 } }
-			}
-		}
-		priority = 10
-		cost = 50
-		ai_will_do = {
-			base = 0
-			modifier = {
-				add = 4000
-				check_variable = { support_bucard > 5 }
-			}
-		}
-		complete_effect = {
-			FRA_pcd_decrease_bucard_support_high = yes
-		}
-	}
-	
-	FRA_reorganize_francist_militias_cheap = {
-		icon = GFX_decision_eng_trade_unions_demand
-		allowed = {
-			original_tag = FRA
-		}
-		visible = {
-			has_country_leader = {
-				character = FRA_Georges_Valois
-				ruling_only = yes
-			}
-			NOT = { has_completed_focus = FRA_absorb_the_reactionaries }
-			NOT = { has_country_flag = FRA_Unification_flag }
-			has_completed_focus = FRA_defines_the_nation
-		}
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = FRA_yes_support_bicard_tt
-				NOT = { check_variable = { support_bucard = 0 } }
-			}
-		}
-		priority = 10
-		cost = 30
-		ai_will_do = {
-			base = 0
-			modifier = {
-				add = 4000
-				check_variable = { support_bucard > 5 }
-			}
-		}
-		complete_effect = {
-			FRA_pcd_decrease_bucard_support_med = yes
-		}
-	}
-	FRA_reintegrate_rural_syndicates_cheap = {
-		icon = GFX_decision_eng_trade_unions_demand
-		allowed = {
-			original_tag = FRA
-		}
-		visible = {
-			has_country_leader = {
-				character = FRA_Georges_Valois
-				ruling_only = yes
-			}
-			NOT = { has_completed_focus = FRA_absorb_the_reactionaries }
-			NOT = { has_country_flag = FRA_Unification_flag }
-			has_completed_focus = FRA_defines_the_nation
-		}
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = FRA_yes_support_bicard_tt
-				NOT = { check_variable = { support_bucard = 0 } }
-			}
-		}
-		priority = 10
-		cost = 45
-		ai_will_do = {
-			base = 0
-			modifier = {
-				add = 4000
-				check_variable = { support_bucard > 5 }
-			}
-		}
-		complete_effect = {
-			FRA_pcd_decrease_bucard_support_high = yes
-		}
-	}
-	FRA_sanction_workers_memorial_march = {
-		icon = GFX_decision_generic_break_treaty
-		allowed = {
-			original_tag = FRA
-		}
-		visible = {
-			has_country_leader = {
-				character = FRA_Georges_Valois
-				ruling_only = yes
-			}
-			NOT = { has_completed_focus = FRA_absorb_the_reactionaries }
-			NOT = { has_country_flag = FRA_Unification_flag }
-		}
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = FRA_no_support_doriot_tt
-				NOT = { check_variable = { support_doriot = 100 } }
-			}
-		}
-		priority = 5
-		cost = 20
-		ai_will_do = {
-			base = 0
-		}
-		complete_effect = {
-			FRA_pcd_increase_doriot_support_med = yes
-		}
-	}
-	FRA_host_rural_francist_congress = {
-		icon = GFX_decision_generic_break_treaty
-		allowed = {
-			original_tag = FRA
-		}
-		visible = {
-			has_country_leader = {
-				character = FRA_Georges_Valois
-				ruling_only = yes
-			}
-			NOT = { has_completed_focus = FRA_absorb_the_reactionaries }
-			NOT = { has_country_flag = FRA_Unification_flag }
-		}
-		available = {
-			custom_trigger_tooltip = {
-				tooltip = FRA_no_support_bicard_tt
-				NOT = { check_variable = { support_bucard = 100 } }
-			}
-		}
-		priority = 5
-		cost = 20
-		ai_will_do = {
-			base = 0
-		}
-		complete_effect = {
-			FRA_pcd_increase_bucard_support_med = yes
 		}
 	}
 	debug_decision = {
@@ -807,6 +678,336 @@ FRA_Behind_the_Curtain_of_Power_category = {
 		complete_effect = {
 			FRA_initialize_behind_the_curtain_of_power = yes
 		}
+	}
+}
+
+FRA_mobilize_the_nation = {
+	FRA_Unrest_Boiling_Over = {
+		icon = GFX_decision_revolt
+		allowed = {
+			original_tag = FRA
+		}
+		activation = {
+			check_variable = { FRA_mobilize_the_nation_main_bar > 99 }
+			has_variable = FRA_mobilize_the_nation_main_bar
+		}
+		available = {
+			check_variable = { FRA_mobilize_the_nation_main_bar < 100 }
+			NOT = { has_variable = FRA_mobilize_the_nation_main_bar }
+		}
+		days_mission_timeout = 7
+		timeout_effect = {
+			remove_dynamic_modifier = { modifier = FRA_total_mobilization }
+			clear_variable = FRA_mobilize_the_nation_main_bar
+			add_ideas = FRA_Unrest_Boiling_Over
+		}
+	}
+	FRA_Streamline_Assembly_Lines = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			original_tag = FRA
+		}
+        allowed = {
+        }
+		visible = {
+			has_variable = FRA_mobilize_the_nation_main_bar
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+        days_remove = 30
+        fire_only_once = no
+		modifier = {
+			civilian_factory_use = 2
+		}
+		remove_effect = {
+			add_5_FRA_mobilize_the_nation_main_bar = yes
+			add_to_variable = {
+				FRA_total_mobilization_production_factory_efficiency_gain_factor = 0.02
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_production_factory_max_efficiency_factor = 0.02
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			if = {
+				limit = {
+					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+				}
+				add_to_variable = {
+					FRA_total_mobilization_political_power_factor = -0.02
+					tooltip = political_power_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_stability_factor = -0.02
+					tooltip = stability_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_war_support_factor = -0.02
+					tooltip = war_support_factor_tt
+				}
+			}
+		}
+        ai_will_do = {
+            base = 10
+			modifier = {
+				add = -10
+				check_variable = { FRA_mobilize_the_nation_main_bar > 50 }
+			}
+        }
+	}
+	FRA_Increase_War_Production = {
+		icon = GFX_decision_generic_prepare_civil_war
+		allowed = {
+			original_tag = FRA
+		}
+        allowed = {
+        }
+		visible = {
+			has_variable = FRA_mobilize_the_nation_main_bar
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+        days_remove = 30
+        fire_only_once = no
+		modifier = {
+			civilian_factory_use = 2
+		}
+		remove_effect = {
+			add_5_FRA_mobilize_the_nation_main_bar = yes
+			add_to_variable = {
+				FRA_total_mobilization_industrial_capacity_factory = 0.02
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_industrial_capacity_dockyard = 0.02
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			if = {
+				limit = {
+					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+				}
+				add_to_variable = {
+					FRA_total_mobilization_political_power_factor = -0.02
+					tooltip = political_power_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_stability_factor = -0.02
+					tooltip = stability_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_war_support_factor = -0.02
+					tooltip = war_support_factor_tt
+				}
+			}
+		}
+        ai_will_do = {
+            base = 10
+			modifier = {
+				add = -10
+				check_variable = { FRA_mobilize_the_nation_main_bar > 50 }
+			}
+        }
+	}
+    FRA_industrial_seizure = {
+        icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = FRA
+		}
+        allowed = {
+        }
+		visible = {
+			has_variable = FRA_mobilize_the_nation_main_bar
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+        days_remove = 30
+        fire_only_once = no
+		modifier = {
+			civilian_factory_use = 2
+		}
+		remove_effect = {
+			add_5_FRA_mobilize_the_nation_main_bar = yes
+			add_to_variable = {
+				FRA_total_mobilization_production_speed_arms_factory_factor = 0.02
+				tooltip = production_speed_arms_factory_factor_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_production_speed_industrial_complex_factor = 0.02
+				tooltip = production_speed_industrial_complex_factor_tt
+			}
+			if = {
+				limit = {
+					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+				}
+				add_to_variable = {
+					FRA_total_mobilization_political_power_factor = -0.02
+					tooltip = political_power_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_stability_factor = -0.02
+					tooltip = stability_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_war_support_factor = -0.02
+					tooltip = war_support_factor_tt
+				}
+			}
+		}
+        ai_will_do = {
+            base = 10
+			modifier = {
+				add = -10
+				check_variable = { FRA_mobilize_the_nation_main_bar > 50 }
+			}
+        }
+    }
+	FRA_Expand_Conscription_Laws = {
+		icon = GFX_decision_generic_reorganize_irregulars
+		allowed = {
+			original_tag = FRA
+		}
+        allowed = {
+        }
+		visible = {
+			has_variable = FRA_mobilize_the_nation_main_bar
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+        days_remove = 30
+        fire_only_once = no
+		modifier = {
+			civilian_factory_use = 2
+		}
+		remove_effect = {
+			add_5_FRA_mobilize_the_nation_main_bar = yes
+			add_to_variable = {
+				FRA_total_mobilization_conscription_factor = 0.02
+				tooltip = conscription_factor_tt
+			}
+			if = {
+				limit = {
+					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+				}
+				add_to_variable = {
+					FRA_total_mobilization_political_power_factor = -0.02
+					tooltip = political_power_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_stability_factor = -0.02
+					tooltip = stability_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_war_support_factor = -0.02
+					tooltip = war_support_factor_tt
+				}
+			}
+		}
+        ai_will_do = {
+            base = 10
+			modifier = {
+				add = -10
+				check_variable = { FRA_mobilize_the_nation_main_bar > 50 }
+			}
+        }
+	}
+	FRA_Patriotic_Propaganda_Campaign = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		allowed = {
+			original_tag = FRA
+		}
+        allowed = {
+        }
+		visible = {
+			has_variable = FRA_mobilize_the_nation_main_bar
+		}
+        days_remove = 15
+        fire_only_once = no
+		custom_cost_trigger = {
+			check_variable = { FRA_propaganda_money > 99 }
+		}
+		custom_cost_text =  FRA_need_100_tt
+		complete_effect = {
+			add_to_variable = { FRA_propaganda_money = -100 }
+		}
+		remove_effect = {
+			remove_5_FRA_mobilize_the_nation_main_bar = yes
+		}
+        ai_will_do = {
+            base = 10
+			modifier = {
+				add = -10
+				check_variable = { FRA_mobilize_the_nation_main_bar < 40 }
+			}
+        }
+	}
+	FRA_Enemy_at_the_Gates = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		allowed = {
+			original_tag = FRA
+		}
+        allowed = {
+        }
+		visible = {
+			has_variable = FRA_mobilize_the_nation_main_bar
+		}
+        days_remove = 15
+        fire_only_once = no
+		custom_cost_trigger = {
+			check_variable = { FRA_propaganda_money > 99 }
+		}
+		custom_cost_text =  FRA_need_100_tt
+		complete_effect = {
+			add_to_variable = { FRA_propaganda_money = -100 }
+		}
+		remove_effect = {
+			remove_5_FRA_mobilize_the_nation_main_bar = yes
+		}
+        ai_will_do = {
+            base = 10
+			modifier = {
+				add = -10
+				check_variable = { FRA_mobilize_the_nation_main_bar < 40 }
+			}
+        }
+	}
+	FRA_Secure_Propaganda_Funds = {
+		icon = GFX_decision_generic_fundraising
+		allowed = {
+			original_tag = FRA
+		}
+        allowed = {
+        }
+		visible = {
+			has_variable = FRA_mobilize_the_nation_main_bar
+		}
+		cost = 30
+        days_remove = 20
+        fire_only_once = no
+		remove_effect = {
+			add_to_variable = {
+				FRA_propaganda_money = 50
+			}
+			custom_effect_tooltip = FRA_Secure_Propaganda_Funds_tt
+		}
+        ai_will_do = {
+            base = 10
+			modifier = {
+				add = -10
+				check_variable = { FRA_propaganda_money > 200 }
+			}
+        }
 	}
 }
 
@@ -1135,10 +1336,10 @@ FRA_Establishment_of_a_State_Led_Economy = {
 	FRA_First_Expansion_of_factory_output = {
 		icon = GFX_decision_generic_industry
 		available = {
-			has_completed_focus = FRA_finish_and_start_second_military_industrialization
+			has_completed_focus = FRA_State_Led_Economic_Development
 		}
 		visible = {
-			has_completed_focus = FRA_finish_and_start_second_military_industrialization
+			has_completed_focus = FRA_State_Led_Economic_Development
 		}
 		fire_only_once = yes
 		allowed = {
@@ -1176,11 +1377,11 @@ FRA_Establishment_of_a_State_Led_Economy = {
 	FRA_Second_Expansion_of_factory_output = {
 		icon = GFX_decision_generic_industry
 		available = {
-			has_completed_focus = FRA_finish_and_start_second_military_industrialization
+			has_completed_focus = FRA_State_Led_Economic_Development
 			has_country_flag = FRA_First_Expansion_of_factory_output_done
 		}
 		visible = {
-			has_completed_focus = FRA_finish_and_start_second_military_industrialization
+			has_completed_focus = FRA_State_Led_Economic_Development
 		}
 		fire_only_once = yes
 		allowed = {
@@ -1217,10 +1418,10 @@ FRA_Establishment_of_a_State_Led_Economy = {
 	FRA_National_Economic_Mobilization = {
 		icon = GFX_decision_generic_consumer_goods
 		available = {
-			has_completed_focus = FRA_finish_and_start_second_military_industrialization
+			has_completed_focus = FRA_State_Led_Economic_Development
 		}
 		visible = {
-			has_completed_focus = FRA_finish_and_start_second_military_industrialization
+			has_completed_focus = FRA_State_Led_Economic_Development
 		}
 		fire_only_once = yes
 		allowed = {
@@ -1257,10 +1458,10 @@ FRA_Establishment_of_a_State_Led_Economy = {
 	FRA_Focus_on_Construction_of_Military_Factories = {
 		icon = GFX_decision_generic_construction
 		available = {
-			has_completed_focus = FRA_finish_and_start_second_military_industrialization
+			has_completed_focus = FRA_State_Led_Economic_Development
 		}
 		visible = {
-			has_completed_focus = FRA_finish_and_start_second_military_industrialization
+			has_completed_focus = FRA_State_Led_Economic_Development
 		}
 		fire_only_once = yes
 		allowed = {
@@ -1297,10 +1498,10 @@ FRA_Establishment_of_a_State_Led_Economy = {
 	FRA_Focus_on_Construction_of_Civilian_Factories = {
 		icon = GFX_decision_generic_construction
 		available = {
-			has_completed_focus = FRA_finish_and_start_second_military_industrialization
+			has_completed_focus = FRA_State_Led_Economic_Development
 		}
 		visible = {
-			has_completed_focus = FRA_finish_and_start_second_military_industrialization
+			has_completed_focus = FRA_State_Led_Economic_Development
 		}
 		fire_only_once = yes
 		allowed = {
@@ -1344,10 +1545,6 @@ political_situation = {
 		}
 		visible = {
 			GER = { is_subject_of = FRA }
-			has_country_leader = {
-				character = FRA_Georges_Valois
-				ruling_only = yes
-			}
 		}
 		fire_only_once = yes
 		allowed = {

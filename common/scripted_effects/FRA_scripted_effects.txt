@@ -1,8 +1,12 @@
-###3파전
+###6파전
 FRA_initialize_behind_the_curtain_of_power = {
-    set_variable = { support_valois = 50 }   # 발루아
-    set_variable = { support_bucard = 30 }   # 모라스
-    set_variable = { support_doriot = 20 }   # 도리오
+    set_variable = { support_worker  = 4 }  # 노동자당
+    set_variable = { support_sfio    = 6 }  # 사민당
+    set_variable = { support_nazbol = 50 }   # 나츠볼
+    set_variable = { support_maurras = 15 }   # 모라스
+    set_variable = { support_rocque = 15 }   # 공화질서당
+    set_variable = { support_bucard  = 10 }  # 프랑키스트당
+
 
     # 누적 퍼센티지 계산 호출
     FRA_update_behind_the_curtain_of_power = yes
@@ -10,131 +14,268 @@ FRA_initialize_behind_the_curtain_of_power = {
 
 FRA_update_behind_the_curtain_of_power = {
     # (1) clamp support to [0,100]
-    clamp_variable = { var = support_valois  min = 0 max = 100 }
+    clamp_variable = { var = support_worker  min = 0 max = 100 }
+    clamp_variable = { var = support_sfio    min = 0 max = 100 }
+    clamp_variable = { var = support_nazbol  min = 0 max = 100 }
+    clamp_variable = { var = support_maurras  min = 0 max = 100 }
+    clamp_variable = { var = support_rocque  min = 0 max = 100 }
     clamp_variable = { var = support_bucard  min = 0 max = 100 }
-    clamp_variable = { var = support_doriot  min = 0 max = 100 }
 
     # (2) 합산 → total
-    set_temp_variable    = { total = support_doriot  }
+    set_temp_variable    = { total = support_worker }
+    add_to_temp_variable = { total = support_sfio }
+    add_to_temp_variable = { total = support_nazbol }
+	add_to_temp_variable = { total = support_maurras }
+    add_to_temp_variable = { total = support_rocque }
     add_to_temp_variable = { total = support_bucard }
-    add_to_temp_variable = { total = support_valois }
 
     # (3) total 을 100으로 나눠 정규화 인자 계산
     divide_temp_variable = { total = 100 }
 
     # (4) 각 support 를 total 로 나누어 백분율 재계산
-    divide_variable = { support_doriot = total }
-    divide_variable = { support_bucard = total }
-    divide_variable = { support_valois = total }
+    divide_variable = { support_worker  = total }
+    divide_variable = { support_sfio    = total }
+    divide_variable = { support_rocque = total }
+    divide_variable = { support_maurras = total }
+    divide_variable = { support_nazbol = total }
+    divide_variable = { support_bucard  = total }
 
     # (5) pie progress 누적값 세팅
-    # pie2 = 모라스 단독 비율
-    set_variable = { pie2_progress = support_bucard }
-    # pie1 = 모라스 + 발루아 비율
-    set_variable    = { pie1_progress = pie2_progress }
-    add_to_variable = { pie1_progress = support_valois }
-    # 도리오(support_doriot) 비율은 pie1의 빈 영역(100 - pie1_progress) 에 background로 표현
+	set_variable = { pie5_progress = support_worker }
+	set_variable = { pie4_progress = pie5_progress }
+	add_to_variable = { pie4_progress = support_sfio }
+
+	set_variable = { pie3_progress = pie4_progress }
+	add_to_variable = { pie3_progress = support_bucard }
+
+	set_variable = { pie2_progress = pie3_progress }
+	add_to_variable = { pie2_progress = support_rocque }
+
+	set_variable = { pie1_progress = pie2_progress }
+	add_to_variable = { pie1_progress = support_nazbol }
 }
 ##############################
-# FRA: 발루아–모라스–도리오 지지율 조정 이펙트 (2.5 / 5 / 10)
+# FRA: 나츠볼–모라스–공화질서당 지지율 조정 이펙트 (2.5 / 5 / 10)
 ##############################
+# ── 민족볼셰비즘 (Nazbol) ──
+FRA_pcd_increase_support_nazbol_verylow = {
+    custom_effect_tooltip = FRA_pcd_increase_support_nazbol_verylow_tt
+    add_to_variable = { support_nazbol = 1.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_support_nazbol_low = {
+    custom_effect_tooltip = FRA_pcd_increase_support_nazbol_low_tt
+    add_to_variable = { support_nazbol = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_support_nazbol_med = {
+    custom_effect_tooltip = FRA_pcd_increase_support_nazbol_med_tt
+    add_to_variable = { support_nazbol = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_support_nazbol_high = {
+    custom_effect_tooltip = FRA_pcd_increase_support_nazbol_high_tt
+    add_to_variable = { support_nazbol = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_nazbol_low = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_nazbol_low_tt
+    subtract_from_variable = { support_nazbol = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_nazbol_med = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_nazbol_med_tt
+    subtract_from_variable = { support_nazbol = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_nazbol_high = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_nazbol_high_tt
+    subtract_from_variable = { support_nazbol = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
 
-# ── 발루아 (Valois) 증가/감소 ──
-FRA_pcd_increase_valois_support_low = {
-    custom_effect_tooltip = FRA_pcd_increase_valois_support_low_tt
-    add_to_variable = { support_valois = 2.5 }
+# ── 악세옹 프랑세즈 (Maurras) ──
+FRA_pcd_increase_support_maurras_verylow = {
+    custom_effect_tooltip = FRA_pcd_increase_support_maurras_verylow_tt
+    add_to_variable = { support_maurras = 1.5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_increase_valois_support_med = {
-    custom_effect_tooltip = FRA_pcd_increase_valois_support_med_tt
-    add_to_variable = { support_valois = 5 }
+FRA_pcd_increase_support_maurras_low = {
+    custom_effect_tooltip = FRA_pcd_increase_support_maurras_low_tt
+    add_to_variable = { support_maurras = 2.5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_increase_valois_support_high = {
-    custom_effect_tooltip = FRA_pcd_increase_valois_support_high_tt
-    add_to_variable = { support_valois = 10 }
+FRA_pcd_increase_support_maurras_med = {
+    custom_effect_tooltip = FRA_pcd_increase_support_maurras_med_tt
+    add_to_variable = { support_maurras = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_support_maurras_high = {
+    custom_effect_tooltip = FRA_pcd_increase_support_maurras_high_tt
+    add_to_variable = { support_maurras = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_maurras_low = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_maurras_low_tt
+    subtract_from_variable = { support_maurras = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_maurras_med = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_maurras_med_tt
+    subtract_from_variable = { support_maurras = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_maurras_high = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_maurras_high_tt
+    subtract_from_variable = { support_maurras = 10 }
     FRA_update_behind_the_curtain_of_power = yes
 }
 
-FRA_pcd_decrease_valois_support_low = {
-    custom_effect_tooltip = FRA_pcd_decrease_valois_support_low_tt
-    subtract_from_variable = { support_valois = 2.5 }
+# ── 공화질서당 (Rocque) ──
+FRA_pcd_increase_support_rocque_verylow = {
+    custom_effect_tooltip = FRA_pcd_increase_support_rocque_verylow_tt
+    add_to_variable = { support_rocque = 1.5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_decrease_valois_support_med = {
-    custom_effect_tooltip = FRA_pcd_decrease_valois_support_med_tt
-    subtract_from_variable = { support_valois = 5 }
+FRA_pcd_increase_support_rocque_low = {
+    custom_effect_tooltip = FRA_pcd_increase_support_rocque_low_tt
+    add_to_variable = { support_rocque = 2.5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_decrease_valois_support_high = {
-    custom_effect_tooltip = FRA_pcd_decrease_valois_support_high_tt
-    subtract_from_variable = { support_valois = 10 }
+FRA_pcd_increase_support_rocque_med = {
+    custom_effect_tooltip = FRA_pcd_increase_support_rocque_med_tt
+    add_to_variable = { support_rocque = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_support_rocque_high = {
+    custom_effect_tooltip = FRA_pcd_increase_support_rocque_high_tt
+    add_to_variable = { support_rocque = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_rocque_low = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_rocque_low_tt
+    subtract_from_variable = { support_rocque = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_rocque_med = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_rocque_med_tt
+    subtract_from_variable = { support_rocque = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_rocque_high = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_rocque_high_tt
+    subtract_from_variable = { support_rocque = 10 }
     FRA_update_behind_the_curtain_of_power = yes
 }
 
-# ── 모라스 (Bucard) 증가/감소 ──
-FRA_pcd_increase_bucard_support_low = {
-    custom_effect_tooltip = FRA_pcd_increase_bucard_support_low_tt
+# ── 프랑키스트당 (Bucard) ──
+FRA_pcd_increase_support_bucard_verylow = {
+    custom_effect_tooltip = FRA_pcd_increase_support_bucard_verylow_tt
+    add_to_variable = { support_bucard = 1.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_support_bucard_low = {
+    custom_effect_tooltip = FRA_pcd_increase_support_bucard_low_tt
     add_to_variable = { support_bucard = 2.5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_increase_bucard_support_med = {
-    custom_effect_tooltip = FRA_pcd_increase_bucard_support_med_tt
+FRA_pcd_increase_support_bucard_med = {
+    custom_effect_tooltip = FRA_pcd_increase_support_bucard_med_tt
     add_to_variable = { support_bucard = 5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_increase_bucard_support_high = {
-    custom_effect_tooltip = FRA_pcd_increase_bucard_support_high_tt
+FRA_pcd_increase_support_bucard_high = {
+    custom_effect_tooltip = FRA_pcd_increase_support_bucard_high_tt
     add_to_variable = { support_bucard = 10 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-
-FRA_pcd_decrease_bucard_support_low = {
-    custom_effect_tooltip = FRA_pcd_decrease_bucard_support_low_tt
+FRA_pcd_decrease_support_bucard_low = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_bucard_low_tt
     subtract_from_variable = { support_bucard = 2.5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_decrease_bucard_support_med = {
-    custom_effect_tooltip = FRA_pcd_decrease_bucard_support_med_tt
+FRA_pcd_decrease_support_bucard_med = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_bucard_med_tt
     subtract_from_variable = { support_bucard = 5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_decrease_bucard_support_high = {
-    custom_effect_tooltip = FRA_pcd_decrease_bucard_support_high_tt
+FRA_pcd_decrease_support_bucard_high = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_bucard_high_tt
     subtract_from_variable = { support_bucard = 10 }
     FRA_update_behind_the_curtain_of_power = yes
 }
 
-# ── 도리오 (Doriot) 증가/감소 ──
-FRA_pcd_increase_doriot_support_low = {
-    custom_effect_tooltip = FRA_pcd_increase_doriot_support_low_tt
-    add_to_variable = { support_doriot = 2.5 }
+# ── 프랑스 사민당 (SFIO) ──
+FRA_pcd_increase_support_sfio_verylow = {
+    custom_effect_tooltip = FRA_pcd_increase_support_sfio_verylow_tt
+    add_to_variable = { support_sfio = 1.5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_increase_doriot_support_med = {
-    custom_effect_tooltip = FRA_pcd_increase_doriot_support_med_tt
-    add_to_variable = { support_doriot = 5 }
+FRA_pcd_increase_support_sfio_low = {
+    custom_effect_tooltip = FRA_pcd_increase_support_sfio_low_tt
+    add_to_variable = { support_sfio = 2.5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_increase_doriot_support_high = {
-    custom_effect_tooltip = FRA_pcd_increase_doriot_support_high_tt
-    add_to_variable = { support_doriot = 10 }
+FRA_pcd_increase_support_sfio_med = {
+    custom_effect_tooltip = FRA_pcd_increase_support_sfio_med_tt
+    add_to_variable = { support_sfio = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_support_sfio_high = {
+    custom_effect_tooltip = FRA_pcd_increase_support_sfio_high_tt
+    add_to_variable = { support_sfio = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_sfio_low = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_sfio_low_tt
+    subtract_from_variable = { support_sfio = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_sfio_med = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_sfio_med_tt
+    subtract_from_variable = { support_sfio = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_sfio_high = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_sfio_high_tt
+    subtract_from_variable = { support_sfio = 10 }
     FRA_update_behind_the_curtain_of_power = yes
 }
 
-FRA_pcd_decrease_doriot_support_low = {
-    custom_effect_tooltip = FRA_pcd_decrease_doriot_support_low_tt
-    subtract_from_variable = { support_doriot = 2.5 }
+# ── 프랑스 노동자당 (Worker) ──
+FRA_pcd_increase_support_worker_verylow = {
+    custom_effect_tooltip = FRA_pcd_increase_support_worker_verylow_tt
+    add_to_variable = { support_worker = 1.5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_decrease_doriot_support_med = {
-    custom_effect_tooltip = FRA_pcd_decrease_doriot_support_med_tt
-    subtract_from_variable = { support_doriot = 5 }
+FRA_pcd_increase_support_worker_low = {
+    custom_effect_tooltip = FRA_pcd_increase_support_worker_low_tt
+    add_to_variable = { support_worker = 2.5 }
     FRA_update_behind_the_curtain_of_power = yes
 }
-FRA_pcd_decrease_doriot_support_high = {
-    custom_effect_tooltip = FRA_pcd_decrease_doriot_support_high_tt
-    subtract_from_variable = { support_doriot = 10 }
+FRA_pcd_increase_support_worker_med = {
+    custom_effect_tooltip = FRA_pcd_increase_support_worker_med_tt
+    add_to_variable = { support_worker = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_increase_support_worker_high = {
+    custom_effect_tooltip = FRA_pcd_increase_support_worker_high_tt
+    add_to_variable = { support_worker = 10 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_worker_low = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_worker_low_tt
+    subtract_from_variable = { support_worker = 2.5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_worker_med = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_worker_med_tt
+    subtract_from_variable = { support_worker = 5 }
+    FRA_update_behind_the_curtain_of_power = yes
+}
+FRA_pcd_decrease_support_worker_high = {
+    custom_effect_tooltip = FRA_pcd_decrease_support_worker_high_tt
+    subtract_from_variable = { support_worker = 10 }
     FRA_update_behind_the_curtain_of_power = yes
 }
 
@@ -256,6 +397,44 @@ gain_random_cryptology_dept_upgrade = {
 					}
 				}
 			}
+		}
+	}
+}
+
+add_5_FRA_mobilize_the_nation_main_bar = {
+    if = {
+        limit = { check_variable = { FRA_mobilize_the_nation_main_bar > 94 } }
+        set_variable = { var = FRA_mobilize_the_nation_main_bar  value = 100 }
+		effect_tooltip = {
+			add_to_variable = {
+				FRA_mobilize_the_nation_main_bar = 5
+				tooltip = mobilize_the_nation_factor_tt
+			}
+		}
+    }
+	else = {
+		add_to_variable = {
+			FRA_mobilize_the_nation_main_bar = 5
+			tooltip = mobilize_the_nation_factor_tt
+		}
+	}
+}
+
+remove_5_FRA_mobilize_the_nation_main_bar = {
+    if = {
+        limit = { check_variable = { FRA_mobilize_the_nation_main_bar < 6 } }
+        set_variable = { var = FRA_mobilize_the_nation_main_bar  value = 0 }
+		effect_tooltip = {
+			add_to_variable = {
+				FRA_mobilize_the_nation_main_bar = -5
+				tooltip = mobilize_the_nation_factor_tt
+			}
+		}
+    }
+	else = {
+		add_to_variable = {
+			FRA_mobilize_the_nation_main_bar = -5
+			tooltip = mobilize_the_nation_factor_tt
 		}
 	}
 }

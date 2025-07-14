@@ -22,6 +22,9 @@ float determineValue(float2 Offset, float2 NextOffset)
 	else{
 		value = Offset.x * noOfFrames;
 	}
+	if (value < 0.01f) {
+		value = 0.0f;
+	}
 	return value;
 }
 
