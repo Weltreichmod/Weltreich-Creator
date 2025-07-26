@@ -21,7 +21,7 @@
 	focus = {
 		id = FRA_rebirth_of_france
 		icon = GFX_FRA_rebirth_of_france
-		x = 5
+		x = -1
 		y = 0
 		cost = 5
 		ai_will_do = {
@@ -50,15 +50,22 @@
 		}
 	}
 	
+	########
+	#Doriot#
+	########
+	
 	focus = {
 		id = FRA_Doriot_Order_of_State
 		icon = GFX_FRA_Doriot_Order_of_State
 		relative_position_id = FRA_rebirth_of_france
-		x = -5
+		x = -7
 		y = 1
 		cost = 5
 		ai_will_do = {
 			factor = 6
+		}
+		mutually_exclusive = {
+			focus = FRA_Dea_New_Order
 		}
 		available = {
 			is_subject = no
@@ -131,6 +138,30 @@
 	}
 	
 	focus = {
+		id = FRA_Coopt_Political_Figures
+		icon = GFX_FRA_Coopt_Political_Figures
+		relative_position_id = FRA_Doriot_Liberate_France
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Doriot_Liberate_France
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			show_ideas_tooltip = FRA_bernard_de_vesins
+			show_ideas_tooltip = FRA_jacques_arthuys
+		}
+	}
+	
+	focus = {
 		id = FRA_Stabilize_Social_Order
 		icon = GFX_FRA_Stabilize_Social_Order
 		relative_position_id = FRA_Doriot_National_French_State
@@ -143,8 +174,10 @@
 		available = {
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
-			check_variable = { support_nazbol > 50 }
-			custom_trigger_tooltip = FRA_Stabilize_Social_Order_tt
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 50 }
+				tooltip = FRA_Stabilize_Social_Order_tt
+			}
 		}
 		prerequisite = {
 			focus = FRA_Doriot_National_French_State
@@ -364,6 +397,9 @@
 					tooltip = war_support_factor_tt
 				}
 			}
+			hidden_effect = {
+				country_event = france_wr.1000
+			}
 		}
 	}
 	
@@ -380,8 +416,10 @@
 		available = {
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
-			check_variable = { support_nazbol > 65 }
-			custom_trigger_tooltip = FRA_Purge_Democratic_Chaos_tt
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 65 }
+				tooltip = FRA_Purge_Democratic_Chaos_tt
+			}
 		}
 		prerequisite = {
 			focus = FRA_Unite_the_French_Nation
@@ -406,8 +444,10 @@
 		available = {
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
-			check_variable = { support_nazbol > 80 }
-			custom_trigger_tooltip = FRA_Establish_Party_Order_tt
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 80 }
+				tooltip = FRA_Establish_Party_Order_tt
+			}
 		}
 		prerequisite = {
 			focus = FRA_Purge_Democratic_Chaos
@@ -475,8 +515,10 @@
 		available = {
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
-			check_variable = { support_nazbol > 85 }
-			custom_trigger_tooltip = FRA_Leader_of_the_People_and_Nation_tt
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 85 }
+				tooltip = FRA_Leader_of_the_People_and_Nation_tt
+			}
 		}
 		prerequisite = {
 			focus = FRA_Establish_Secret_Police
@@ -835,6 +877,7 @@
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			add_ideas = FRA_National_Economic_Council
+			add_research_slot = 1
 		}
 	}
 	
@@ -875,8 +918,10 @@
 		available = {
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
-			check_variable = { support_nazbol > 65 }
-			custom_trigger_tooltip = FRA_Purge_Democratic_Chaos_tt
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 65 }
+				tooltip = FRA_Purge_Democratic_Chaos_tt
+			}
 		}
 		prerequisite = {
 			focus = FRA_Cooperative_Economy
@@ -902,6 +947,272 @@
 		id = FRA_Immortal_France
 		icon = GFX_FRA_Immortal_France
 		relative_position_id = FRA_Militarize_the_Countryside
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 90 }
+				tooltip = FRA_Immortal_France_tt
+			}
+		}
+		prerequisite = {
+			focus = FRA_national_mythos_of_degeneration_of_germans
+		}
+		prerequisite = {
+			focus = FRA_Leader_of_the_People_and_Nation
+		}
+		prerequisite = {
+			focus = FRA_Militarize_the_Countryside
+		}
+		prerequisite = {
+			focus = FRA_Focus_on_Armaments
+		}
+		prerequisite = {
+			focus = FRA_Break_Class_Conflict
+		}
+		cancelable = no
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		select_effect = {
+			country_event = { id = france_wr.55 days = 10 }
+		}
+		completion_reward = {
+			custom_effect_tooltip = FRA_no_political_fight_tt
+			remove_ideas = unstable_regime2
+			add_ideas = FRA_Immortal_France
+			clear_variable = FRA_mobilize_the_nation_main_bar
+			hidden_effect = {
+				if = {
+					limit = {
+						has_cosmetic_tag = Peoples_Republic_of_France
+					}
+					news_event = france_wr.58
+				}
+				else = {
+					news_event = france_wr.57
+				}
+				set_cosmetic_tag = FRA_doriot
+			}
+		}
+	}
+	
+	######
+	#Deat#
+	######
+	
+	focus = {
+		id = FRA_Dea_New_Order
+		icon = GFX_FRA_Dea_New_Order
+		relative_position_id = FRA_rebirth_of_france
+		x = 7
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = FRA_Doriot_Order_of_State
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			has_country_flag = set_the_path_of_france
+		}
+		prerequisite = {
+			focus = FRA_rebirth_of_france
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.16
+		}
+	}
+	
+	#Left
+	focus = {
+		id = FRA_Establish_Order
+		icon = GFX_FRA_Establish_Order
+		relative_position_id = FRA_Dea_New_Order
+		x = -3
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Dea_New_Order
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		id = FRA_Disband_Old_Parties
+		icon = GFX_FRA_Disband_Old_Parties
+		relative_position_id = FRA_Establish_Order
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 60 }
+				tooltip = FRA_Disband_Old_Parties_tt
+			}
+		}
+		prerequisite = {
+			focus = FRA_Establish_Order
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.17
+		}
+	}
+	
+	focus = {
+		id = FRA_Political_Police
+		icon = GFX_FRA_Political_Police
+		relative_position_id = FRA_Disband_Old_Parties
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Total_Control
+		}
+		prerequisite = {
+			focus = FRA_Disband_Old_Parties
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = FRA_Political_Police
+			country_event = france_wr.59
+		}
+	}
+	
+	focus = {
+		id = FRA_Dismantle_Trade_Unions
+		icon = GFX_FRA_Dismantle_Trade_Unions
+		relative_position_id = FRA_Establish_Order
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 60 }
+				tooltip = FRA_Disband_Old_Parties_tt
+			}
+		}
+		prerequisite = {
+			focus = FRA_Establish_Order
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.18
+		}
+	}
+	
+	focus = {
+		id = FRA_End_Class_Revolution
+		icon = GFX_FRA_End_Class_Revolution
+		relative_position_id = FRA_Dismantle_Trade_Unions
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Dismantle_Trade_Unions
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.60
+		}
+	}
+	
+	focus = {
+		id = FRA_deat_mass_industrialization
+		icon = GFX_FRA_deat_mass_industrialization
+		relative_position_id = FRA_Political_Police
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Political_Police
+		}
+		prerequisite = {
+			focus = FRA_End_Class_Revolution
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = FRA_deat_mass_industrialization
+		}
+	}
+	
+	focus = {
+		id = FRA_deat_planned_economy
+		icon = GFX_FRA_deat_planned_economy
+		relative_position_id = FRA_Political_Police
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Political_Police
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = FRA_deat_planned_economy
+		}
+	}
+	
+	focus = {
+		id = FRA_bureaucratic_economy
+		icon = GFX_FRA_bureaucratic_economy
+		relative_position_id = FRA_deat_mass_industrialization
 		x = 1
 		y = 1
 		cost = 5
@@ -911,16 +1222,637 @@
 		available = {
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
-			check_variable = { support_nazbol > 90 }
-			custom_trigger_tooltip = FRA_Immortal_France_tt
 		}
 		prerequisite = {
-			focus = FRA_Cooperative_Economy
+			focus = FRA_deat_mass_industrialization
+		}
+		prerequisite = {
+			focus = FRA_deat_planned_economy
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = FRA_technocracy_spirit
+			add_research_slot = 1
+		}
+	}
+	
+	focus = {
+		id = FRA_Dea_Everything_Is_Planned
+		icon = GFX_FRA_Dea_Everything_Is_Planned
+		relative_position_id = FRA_bureaucratic_economy
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_bureaucratic_economy
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			remove_trait = {
+				 character = FRA_marcel_deat
+				 ideology = neo_socialism
+				 trait = FRA_architect
+			}
+			add_trait = {
+				 character = FRA_marcel_deat
+				 ideology = neo_socialism
+				 trait = FRA_architect_better
+			}
+		}
+	}
+	
+	#Middle
+	focus = {
+		id = FRA_Authority
+		icon = GFX_FRA_Authority
+		relative_position_id = FRA_Dea_New_Order
+		x = 0
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Dea_New_Order
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 100
+		}
+	}
+	
+	focus = {
+		id = FRA_Total_Control
+		icon = GFX_FRA_Total_Control
+		relative_position_id = FRA_Authority
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Authority
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			unlock_decision_category_tooltip = FRA_mobilize_the_nation
+			add_to_variable = {
+				FRA_propaganda_money = 150
+			}
+			custom_effect_tooltip = FRA_Secure_Propaganda_Funds_focus_tt
+			add_5_FRA_mobilize_the_nation_main_bar = yes
+			add_to_variable = {
+				FRA_total_mobilization_production_factory_efficiency_gain_factor = 0.02
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_production_factory_max_efficiency_factor = 0.02
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_industrial_capacity_factory = 0.02
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_industrial_capacity_dockyard = 0.02
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_production_speed_arms_factory_factor = 0.02
+				tooltip = production_speed_arms_factory_factor_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_production_speed_industrial_complex_factor = 0.02
+				tooltip = production_speed_industrial_complex_factor_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_conscription_factor = 0.02
+				tooltip = conscription_factor_tt
+			}
+			if = {
+				limit = {
+					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+				}
+				add_to_variable = {
+					FRA_total_mobilization_political_power_factor = -0.02
+					tooltip = political_power_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_stability_factor = -0.02
+					tooltip = stability_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_war_support_factor = -0.02
+					tooltip = war_support_factor_tt
+				}
+			}
+			hidden_effect = {
+				country_event = france_wr.1000
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_New_Order_Unified_Party
+		icon = GFX_FRA_New_Order_Unified_Party
+		relative_position_id = FRA_Total_Control
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 65 }
+				tooltip = FRA_Purge_Democratic_Chaos_tt
+			}
+		}
+		prerequisite = {
+			focus = FRA_Total_Control
+		}
+		prerequisite = {
+			focus = FRA_Disband_Old_Parties
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			FRA_pcd_increase_support_nazbol_high = yes
+			country_event = france_wr.64
+		}
+	}
+	
+	focus = {
+		id = FRA_deat_coopt_doriotists
+		icon = GFX_FRA_deat_coopt_doriotists
+		relative_position_id = FRA_New_Order_Unified_Party
+		x = -1
+		y = 1
+		cost = 6.5
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = FRA_deat_purge_doriotists
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 70 }
+				tooltip = FRA_deat_purge_doriotists_tt
+			}
+			power_balance_value = {
+				id = FRA_government_infiltration
+				value > 0.7
+			}
+		}
+		prerequisite = {
+			focus = FRA_New_Order_Unified_Party
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.65
+		}
+	}
+	
+	focus = {
+		id = FRA_deat_purge_doriotists
+		icon = GFX_FRA_deat_purge_doriotists
+		relative_position_id = FRA_New_Order_Unified_Party
+		x = 1
+		y = 1
+		cost = 6.5
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = FRA_deat_coopt_doriotists
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 70 }
+				tooltip = FRA_deat_purge_doriotists_tt
+			}
+			power_balance_value = {
+				id = FRA_government_infiltration
+				value > 0.7
+			}
+		}
+		prerequisite = {
+			focus = FRA_New_Order_Unified_Party
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.66
+		}
+	}
+	
+	focus = {
+		id = FRA_march_with_the_military
+		icon = GFX_FRA_march_with_the_military
+		relative_position_id = FRA_deat_coopt_doriotists
+		x = 0
+		y = 1
+		cost = 6.5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 80 }
+				tooltip = FRA_Establish_Party_Order_tt
+			}
+		}
+		mutually_exclusive = {
+			focus = FRA_militarize_the_army
+		}
+		prerequisite = {
+			focus = FRA_deat_coopt_doriotists
+			focus = FRA_deat_purge_doriotists
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.69
+			add_to_variable = { support_nazbol = support_rocque }
+			set_variable = { support_rocque = 0 }
+			FRA_update_behind_the_curtain_of_power = yes
+			custom_effect_tooltip = FRA_march_with_the_military_tt
+		}
+	}
+	
+	focus = {
+		id = FRA_militarize_the_army
+		icon = GFX_FRA_militarize_the_army
+		relative_position_id = FRA_deat_purge_doriotists
+		x = 0
+		y = 1
+		cost = 6.5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 80 }
+				tooltip = FRA_Establish_Party_Order_tt
+			}
+		}
+		mutually_exclusive = {
+			focus = FRA_march_with_the_military
+		}
+		prerequisite = {
+			focus = FRA_deat_coopt_doriotists
+			focus = FRA_deat_purge_doriotists
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.70
+			add_to_variable = { support_nazbol = support_rocque }
+			set_variable = { support_rocque = 0 }
+			FRA_update_behind_the_curtain_of_power = yes
+			custom_effect_tooltip = FRA_march_with_the_military_tt
+		}
+	}
+	
+	focus = {
+		id = FRA_Dea_Unified_France
+		icon = GFX_FRA_Dea_Unified_France
+		relative_position_id = FRA_march_with_the_military
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				check_variable = { support_nazbol > 90 }
+				tooltip = FRA_Immortal_France_tt
+			}
+		}
+		prerequisite = {
+			focus = FRA_march_with_the_military
+			focus = FRA_militarize_the_army
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			custom_effect_tooltip = FRA_no_political_fight_tt
 			remove_ideas = unstable_regime2
+			remove_power_balance = { id = FRA_government_infiltration }
+		}
+	}
+	
+	#Right
+	focus = {
+		id = FRA_The_Nation
+		icon = GFX_FRA_The_Nation
+		relative_position_id = FRA_Dea_New_Order
+		x = 3
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Dea_New_Order
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_war_support = 0.1
+		}
+	}
+	
+	focus = {
+		id = FRA_Neo_Socialism
+		icon = GFX_FRA_Neo_Socialism
+		relative_position_id = FRA_The_Nation
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_The_Nation
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = FRA_Neo_Socialism
+		}
+	}
+	
+	focus = {
+		id = FRA_Urbanization
+		icon = GFX_FRA_Urbanization
+		relative_position_id = FRA_The_Nation
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_The_Nation
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			934 = { increase_state_category = yes }
+			22 = { increase_state_category = yes }
+			25 = { increase_state_category = yes }
+			806 = { increase_state_category = yes }
+			735 = { increase_state_category = yes }
+		}
+	}
+	
+	focus = {
+		id = FRA_deat_industrial_plan
+		icon = GFX_FRA_deat_industrial_plan
+		relative_position_id = FRA_Neo_Socialism
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Neo_Socialism
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			unlock_decision_category_tooltip = FRA_Militarization_of_the_French_Economy
+		}
+	}
+	
+	focus = {
+		id = FRA_deat_socialized_industry
+		icon = GFX_FRA_deat_socialized_industry
+		relative_position_id = FRA_Neo_Socialism
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Neo_Socialism
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_deat_new_socialist_state
+		icon = GFX_FRA_deat_new_socialist_state
+		relative_position_id = FRA_deat_industrial_plan
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_deat_industrial_plan
+		}
+		prerequisite = {
+			focus = FRA_deat_socialized_industry
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = FRA_Neo_Socialism
+				add_idea = FRA_Neo_Socialism_better
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_greater_german_revanchism
+		icon = GFX_FRA_greater_german_revanchism
+		relative_position_id = FRA_deat_socialized_industry
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_deat_socialized_industry
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = FRA_kill_the_kaiser
+		}
+	}
+	
+	focus = {
+		id = FRA_all_for_france
+		icon = GFX_FRA_all_for_france
+		relative_position_id = FRA_greater_german_revanchism
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_greater_german_revanchism
+		}
+		prerequisite = {
+			focus = FRA_deat_new_socialist_state
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = FRA_focused_production
+			country_event = france_wr.68
+		}
+	}
+	
+	focus = {
+		id = FRA_Dea_Everything_For_France
+		icon = GFX_FRA_Dea_Everything_For_France
+		relative_position_id = FRA_all_for_france
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_all_for_france
+		}
+		search_filters = {}
+		completion_reward = {
+			add_ideas = FRA_Dea_Everything_For_France
+		}
+	}
+	
+	focus = {
+		id = FRA_Proclaim_Peoples_State
+		icon = GFX_FRA_Proclaim_Peoples_State
+		relative_position_id = FRA_Dea_Unified_France
+		x = 0
+		y = 1
+		cost = 10
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		cancelable = no
+		prerequisite = {
+			focus = FRA_Dea_Everything_Is_Planned
+		}
+		prerequisite = {
+			focus = FRA_Dea_Unified_France
+		}
+		prerequisite = {
+			focus = FRA_Dea_Everything_For_France
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		select_effect = {
+			country_event = { id = france_wr.71 days = 10 }
+		}
+		completion_reward = {
+			news_event = france_wr.76
+			custom_effect_tooltip = FRA_Proclaim_Peoples_State_tt
+			hidden_effect = {
+				set_cosmetic_tag = FRA_deat
+				remove_ideas = FRA_dismantled_unions
+				remove_ideas = FRA_focused_production
+				remove_ideas = FRA_deat_planned_economy
+				add_ideas = FRA_france_by_people
+			}
 		}
 	}
 	
