@@ -416,6 +416,7 @@ FRA_declare_grand_french_etat = {
 		icon = GFX_decision_generic_form_nation
 		fire_only_once = yes
 		visible = {
+			always = no
 			has_government = fascism
 			has_country_flag = second_great_war_winner
 		}
@@ -472,6 +473,312 @@ FRA_declare_grand_french_etat = {
 
 #Rework
 FRA_Behind_the_Curtain_of_Power_category = {
+	FRA_political_war_clock_decision_maurras = {
+		name = FRA_political_war_clock_decision
+		allowed = {
+			original_tag = FRA
+		}
+		activation = {
+			has_country_flag = start_political_war_flag
+			check_variable = { support_maurras > 50 }
+			check_variable = { support_maurras > support_nazbol }
+			check_variable = { support_maurras > support_bucard }
+			check_variable = { support_maurras > support_rocque }
+			check_variable = { support_maurras > support_worker }
+			check_variable = { support_maurras > support_sfio }
+		}
+		available = {
+			NOT = { has_country_flag = start_political_war_flag }
+			custom_trigger_tooltip = {
+				tooltip = FRA_political_war_clock_decision_no_tt
+				OR = {
+					# 모라스 지지율이 50 이하인 경우
+					check_variable = {
+						var = support_maurras
+						value = 50
+						compare = less_than_or_equals
+					}
+					# 다른 정당 중 하나라도 모라스보다 같거나 높은 지지율일 경우
+					OR = {
+						check_variable = {
+							var = support_maurras
+							value = support_nazbol
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_maurras
+							value = support_bucard
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_maurras
+							value = support_rocque
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_maurras
+							value = support_worker
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_maurras
+							value = support_sfio
+							compare = less_than_or_equals
+						}
+					}
+				}
+			}
+		}
+		days_mission_timeout = 10
+		timeout_effect = {
+			clr_country_flag = start_political_war_flag
+		}
+	}
+	FRA_political_war_clock_decision_rocque = {
+		name = FRA_political_war_clock_decision
+		allowed = {
+			original_tag = FRA
+		}
+		activation = {
+			has_country_flag = start_political_war_flag
+			check_variable = { support_rocque > 50 }
+			check_variable = { support_rocque > support_nazbol }
+			check_variable = { support_rocque > support_bucard }
+			check_variable = { support_rocque > support_maurras }
+			check_variable = { support_rocque > support_worker }
+			check_variable = { support_rocque > support_sfio }
+		}
+		available = {
+			NOT = { has_country_flag = start_political_war_flag }
+			custom_trigger_tooltip = {
+				tooltip = FRA_political_war_clock_decision_no_tt
+				OR = {
+					# 공화질서당 지지율이 50 이하인 경우
+					check_variable = {
+						var = support_rocque
+						value = 50
+						compare = less_than_or_equals
+					}
+					# 다른 정당 중 하나라도 공화질서당보다 같거나 높은 지지율일 경우
+					OR = {
+						check_variable = {
+							var = support_rocque
+							value = support_nazbol
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_rocque
+							value = support_bucard
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_rocque
+							value = support_maurras
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_rocque
+							value = support_worker
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_rocque
+							value = support_sfio
+							compare = less_than_or_equals
+						}
+					}
+				}
+			}
+		}
+		days_mission_timeout = 10
+		timeout_effect = {
+			clr_country_flag = start_political_war_flag
+		}
+	}
+	FRA_political_war_clock_decision_bucard = {
+		name = FRA_political_war_clock_decision
+		allowed = {
+			original_tag = FRA
+		}
+		activation = {
+			has_country_flag = start_political_war_flag
+			check_variable = { support_bucard > 50 }
+			check_variable = { support_bucard > support_nazbol }
+			check_variable = { support_bucard > support_maurras }
+			check_variable = { support_bucard > support_rocque }
+			check_variable = { support_bucard > support_worker }
+			check_variable = { support_bucard > support_sfio }
+		}
+		available = {
+			NOT = { has_country_flag = start_political_war_flag }
+			custom_trigger_tooltip = {
+				tooltip = FRA_political_war_clock_decision_no_tt
+				OR = {
+					# 부카르 지지율이 50 이하인 경우
+					check_variable = {
+						var = support_bucard
+						value = 50
+						compare = less_than_or_equals
+					}
+					# 다른 정당 중 하나라도 부카르보다 같거나 높은 지지율일 경우
+					OR = {
+						check_variable = {
+							var = support_bucard
+							value = support_nazbol
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_bucard
+							value = support_maurras
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_bucard
+							value = support_rocque
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_bucard
+							value = support_worker
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_bucard
+							value = support_sfio
+							compare = less_than_or_equals
+						}
+					}
+				}
+			}
+		}
+		days_mission_timeout = 10
+		timeout_effect = {
+			clr_country_flag = start_political_war_flag
+			country_event = france_wr.83
+		}
+	}
+	FRA_political_war_clock_decision_worker = {
+		name = FRA_political_war_clock_decision
+		allowed = {
+			original_tag = FRA
+		}
+		activation = {
+			has_country_flag = start_political_war_flag
+			check_variable = { support_worker > 50 }
+			check_variable = { support_worker > support_nazbol }
+			check_variable = { support_worker > support_maurras }
+			check_variable = { support_worker > support_rocque }
+			check_variable = { support_worker > support_bucard }
+			check_variable = { support_worker > support_sfio }
+		}
+		available = {
+			NOT = { has_country_flag = start_political_war_flag }
+			custom_trigger_tooltip = {
+				tooltip = FRA_political_war_clock_decision_no_tt
+				OR = {
+					# 노동자당 지지율이 50 이하인 경우
+					check_variable = {
+						var = support_worker
+						value = 50
+						compare = less_than_or_equals
+					}
+					# 다른 정당 중 하나라도 노동자당보다 같거나 높은 지지율일 경우
+					OR = {
+						check_variable = {
+							var = support_worker
+							value = support_nazbol
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_worker
+							value = support_maurras
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_worker
+							value = support_rocque
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_worker
+							value = support_bucard
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_worker
+							value = support_sfio
+							compare = less_than_or_equals
+						}
+					}
+				}
+			}
+		}
+		days_mission_timeout = 10
+		timeout_effect = {
+			clr_country_flag = start_political_war_flag
+		}
+	}
+	FRA_political_war_clock_decision_sfio = {
+		name = FRA_political_war_clock_decision
+		allowed = {
+			original_tag = FRA
+		}
+		activation = {
+			has_country_flag = start_political_war_flag
+			check_variable = { support_sfio > 50 }
+			check_variable = { support_sfio > support_nazbol }
+			check_variable = { support_sfio > support_maurras }
+			check_variable = { support_sfio > support_rocque }
+			check_variable = { support_sfio > support_bucard }
+			check_variable = { support_sfio > support_worker }
+		}
+		available = {
+			NOT = { has_country_flag = start_political_war_flag }
+			custom_trigger_tooltip = {
+				tooltip = FRA_political_war_clock_decision_no_tt
+				OR = {
+					# 사민당 지지율이 50 이하인 경우
+					check_variable = {
+						var = support_sfio
+						value = 50
+						compare = less_than_or_equals
+					}
+					# 다른 정당 중 하나라도 사민당보다 같거나 높은 지지율일 경우
+					OR = {
+						check_variable = {
+							var = support_sfio
+							value = support_nazbol
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_sfio
+							value = support_maurras
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_sfio
+							value = support_rocque
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_sfio
+							value = support_bucard
+							compare = less_than_or_equals
+						}
+						check_variable = {
+							var = support_sfio
+							value = support_worker
+							compare = less_than_or_equals
+						}
+					}
+				}
+			}
+		}
+		days_mission_timeout = 10
+		timeout_effect = {
+			clr_country_flag = start_political_war_flag
+		}
+	}
 	#민볼
 	FRA_ideological_propaganda = {
 		icon = GFX_decision_eng_trade_unions_support
@@ -489,9 +796,10 @@ FRA_Behind_the_Curtain_of_Power_category = {
 					ruling_only = yes
 				}
 			}
+			NOT = { has_country_flag = start_political_war_flag }
 		}
-		days_remove = 15
-		cost = 15
+		days_remove = 10
+		cost = 10
 		remove_effect = {
 			FRA_pcd_increase_support_nazbol_low = yes
 		}
@@ -515,9 +823,10 @@ FRA_Behind_the_Curtain_of_Power_category = {
 					ruling_only = yes
 				}
 			}
+			NOT = { has_country_flag = start_political_war_flag }
 		}
-		days_remove = 20
-		cost = 25
+		days_remove = 15
+		cost = 15
 		remove_effect = {
 			FRA_pcd_increase_support_nazbol_med = yes
 		}
@@ -545,14 +854,19 @@ FRA_Behind_the_Curtain_of_Power_category = {
 					ruling_only = yes
 				}
 			}
+			NOT = { has_country_flag = start_political_war_flag }
 		}
-		days_remove = 25
-		cost = 35
+		days_remove = 20
+		cost = 20
 		remove_effect = {
 			FRA_pcd_increase_support_nazbol_high = yes
 		}
 		ai_will_do = { 
-			base = 0
+			base = 100
+			modifier = {
+				add = -100
+				check_variable = { support_nazbol > 99 }
+			}
 		}
 	}
 	#악세옹 프랑세즈
@@ -567,8 +881,8 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 15
-		cost = 15
+		days_remove = 10
+		cost = 10
 		remove_effect = {
 			FRA_pcd_increase_support_maurras_low = yes
 		}
@@ -587,8 +901,8 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 20
-		cost = 25
+		days_remove = 15
+		cost = 15
 		remove_effect = {
 			FRA_pcd_increase_support_maurras_med = yes
 		}
@@ -611,12 +925,34 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 25
-		cost = 35
+		days_remove = 20
+		cost = 20
 		remove_effect = {
 			FRA_pcd_increase_support_maurras_high = yes
 		}
 		ai_will_do = { 
+			base = 100
+			modifier = {
+				add = -100
+				check_variable = { support_maurras > 99 }
+			}
+		}
+	}
+	FRA_camelots_du_roi_march_5 = {
+		icon = GFX_decision_eng_trade_unions_support
+		name = FRA_camelots_du_roi_march
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_flag = start_political_war_flag
+		}
+		days_remove = 10
+		cost = 10
+		remove_effect = {
+			FRA_pcd_increase_support_maurras_med = yes
+		}
+		ai_will_do = {
 			base = 0
 		}
 	}
@@ -638,8 +974,8 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				}
 			}
 		}
-		days_remove = 15
-		cost = 15
+		days_remove = 10
+		cost = 10
 		remove_effect = {
 			FRA_pcd_increase_support_rocque_low = yes
 		}
@@ -664,8 +1000,8 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				}
 			}
 		}
-		days_remove = 20
-		cost = 25
+		days_remove = 15
+		cost = 15
 		remove_effect = {
 			FRA_pcd_increase_support_rocque_med = yes
 		}
@@ -683,17 +1019,45 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			original_tag = FRA
 		}
 		visible = {
-			has_country_leader = {
-				character = FRA_charles_maurras
-				ruling_only = yes
+			OR = {
+				has_country_leader = {
+					character = FRA_francois_de_la_rocque
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_charles_de_gaulle
+					ruling_only = yes
+				}
 			}
 		}
-		days_remove = 25
-		cost = 35
+		days_remove = 20
+		cost = 20
 		remove_effect = {
 			FRA_pcd_increase_support_rocque_high = yes
 		}
 		ai_will_do = { 
+			base = 100
+			modifier = {
+				add = -100
+				check_variable = { support_rocque > 99 }
+			}
+		}
+	}
+	FRA_veterans_rally_5 = {
+		icon = GFX_decision_eng_trade_unions_support
+		name = FRA_veterans_rally
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_flag = start_political_war_flag
+		}
+		days_remove = 10
+		cost = 10
+		remove_effect = {
+			FRA_pcd_increase_support_rocque_med = yes
+		}
+		ai_will_do = {
 			base = 0
 		}
 	}
@@ -709,8 +1073,8 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 15
-		cost = 15
+		days_remove = 10
+		cost = 10
 		remove_effect = {
 			FRA_pcd_increase_support_bucard_low = yes
 		}
@@ -729,8 +1093,8 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 20
-		cost = 25
+		days_remove = 15
+		cost = 15
 		remove_effect = {
 			FRA_pcd_increase_support_bucard_med = yes
 		}
@@ -753,10 +1117,32 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 25
-		cost = 35
+		days_remove = 20
+		cost = 20
 		remove_effect = {
 			FRA_pcd_increase_support_bucard_high = yes
+		}
+		ai_will_do = { 
+			base = 100
+			modifier = {
+				add = -100
+				check_variable = { support_bucard > 99 }
+			}
+		}
+	}
+	FRA_nationalist_appeal_5 = {
+		icon = GFX_decision_eng_trade_unions_support
+		name = FRA_nationalist_appeal
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_flag = start_political_war_flag
+		}
+		days_remove = 10
+		cost = 10
+		remove_effect = {
+			FRA_pcd_increase_support_bucard_med = yes
 		}
 		ai_will_do = { 
 			base = 0
@@ -774,8 +1160,8 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 15
-		cost = 15
+		days_remove = 10
+		cost = 10
 		remove_effect = {
 			FRA_pcd_increase_support_worker_low = yes
 		}
@@ -794,8 +1180,8 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 20
-		cost = 25
+		days_remove = 15
+		cost = 15
 		remove_effect = {
 			FRA_pcd_increase_support_worker_med = yes
 		}
@@ -818,10 +1204,32 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 25
-		cost = 35
+		days_remove = 20
+		cost = 20
 		remove_effect = {
 			FRA_pcd_increase_support_worker_high = yes
+		}
+		ai_will_do = { 
+			base = 100
+			modifier = {
+				add = -100
+				check_variable = { support_worker > 99 }
+			}
+		}
+	}
+	FRA_mobilize_workers_congress_5 = {
+		icon = GFX_decision_eng_trade_unions_support
+		name = FRA_mobilize_workers_congress
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_flag = start_political_war_flag
+		}
+		days_remove = 10
+		cost = 10
+		remove_effect = {
+			FRA_pcd_increase_support_worker_med = yes
 		}
 		ai_will_do = { 
 			base = 0
@@ -839,8 +1247,8 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 15
-		cost = 15
+		days_remove = 10
+		cost = 10
 		remove_effect = {
 			FRA_pcd_increase_support_worker_low = yes
 		}
@@ -859,8 +1267,8 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 20
-		cost = 25
+		days_remove = 15
+		cost = 15
 		remove_effect = {
 			FRA_pcd_increase_support_sfio_med = yes
 		}
@@ -883,15 +1291,68 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				ruling_only = yes
 			}
 		}
-		days_remove = 25
-		cost = 35
+		days_remove = 20
+		cost = 20
 		remove_effect = {
 			FRA_pcd_increase_support_sfio_high = yes
 		}
 		ai_will_do = { 
+			base = 100
+			modifier = {
+				add = -100
+				check_variable = { support_sfio > 99 }
+			}
+		}
+	}
+	FRA_psdf_expand_social_reforms_5 = {
+		icon = GFX_decision_eng_trade_unions_support
+		name = FRA_psdf_expand_social_reforms
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_flag = start_political_war_flag
+		}
+		days_remove = 10
+		cost = 10
+		remove_effect = {
+			FRA_pcd_increase_support_sfio_med = yes
+		}
+		ai_will_do = { 
 			base = 0
 		}
-	}	
+	}
+	#도전
+	FRA_challenged_authority_political_war = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		allowed = {
+			original_tag = FRA
+		}
+		activation = {
+			OR = {
+				has_idea = unstable_regime
+				has_idea = unstable_regime2
+			}
+			has_country_flag = start_political_war_flag
+		}
+		available = {
+			OR = {
+				AND = {
+					NOT = { has_idea = unstable_regime }
+					NOT = { has_idea = unstable_regime2 }
+				}
+				NOT = { has_country_flag = start_political_war_flag }
+			}
+		}
+		days_mission_timeout = 50
+		timeout_effect = {
+			FRA_pcd_increase_support_maurras_low = yes
+			FRA_pcd_increase_support_rocque_low = yes
+			FRA_pcd_increase_support_bucard_low = yes
+			FRA_pcd_increase_support_sfio_low = yes
+			FRA_pcd_increase_support_worker_low = yes
+		}
+	}
 	FRA_challenged_authority = {
 		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
@@ -903,6 +1364,8 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				has_idea = unstable_regime2
 			}
 			NOT = { has_completed_focus = FRA_Establish_Secret_Police }
+			NOT = { has_country_flag = start_political_war_flag }
+			NOT = { has_completed_focus = FRA_New_Order_Unified_Party }
 		}
 		available = {
 			OR = {
@@ -911,9 +1374,11 @@ FRA_Behind_the_Curtain_of_Power_category = {
 					NOT = { has_idea = unstable_regime2 }
 				}
 				has_completed_focus = FRA_Establish_Secret_Police
+				has_completed_focus = FRA_New_Order_Unified_Party
+				has_country_flag = start_political_war_flag
 			}
 		}
-		days_mission_timeout = 31
+		days_mission_timeout = 70
 		timeout_effect = {
 			if = {
 				limit = {
@@ -1003,7 +1468,10 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				has_idea = unstable_regime
 				has_idea = unstable_regime2
 			}
-			has_completed_focus = FRA_Establish_Secret_Police
+			OR = {
+				has_completed_focus = FRA_Establish_Secret_Police
+				has_completed_focus = FRA_New_Order_Unified_Party
+			}
 		}
 		available = {
 			AND = {
@@ -1011,7 +1479,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				NOT = { has_idea = unstable_regime2 }
 			}
 		}
-		days_mission_timeout = 31
+		days_mission_timeout = 70
 		timeout_effect = {
 			if = {
 				limit = {
@@ -2452,6 +2920,7 @@ FRA_government_infiltration_decisions = {
 		}
 		allowed = {
 			original_tag = FRA
+			has_completed_focus = FRA_Dea_Unified_France
 		}
 		fire_only_once = yes
 		available = {
@@ -2470,11 +2939,12 @@ FRA_government_infiltration_decisions = {
 			}
 			remove_trait = {
 				 character = FRA_jacques_doriot
-				 ideology = left_wing_nationalist
-				 trait = puppet_president
+				 ideology = national_popular_socialism
+				 trait = left_wing_nationalist
 			}
 			set_country_flag = doriot_is_puppet_flag
 			add_ideas = FRA_marcel_deat
+			remove_power_balance = { id = FRA_government_infiltration }
 		}
 		ai_will_do = {
 			base = 50
@@ -2492,6 +2962,7 @@ FRA_government_infiltration_decisions = {
 		}
 		allowed = {
 			original_tag = FRA
+			has_completed_focus = FRA_Dea_Unified_France
 		}
 		fire_only_once = yes
 		available = {
@@ -2505,6 +2976,7 @@ FRA_government_infiltration_decisions = {
 		remove_effect = {
 			news_event = france_wr.67
 			set_country_flag = doriot_is_so_dead_flag
+			remove_power_balance = { id = FRA_government_infiltration }
 		}
 		ai_will_do = {
 			base = 50

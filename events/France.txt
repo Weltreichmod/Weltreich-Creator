@@ -1400,16 +1400,22 @@ country_event = {
 	title = france_wr.8.t
 	desc = {
 		text = france_wr.8.d_1
-		check_variable = { doriot_var > 3 }
+		trigger = {
+			check_variable = { doriot_var > 3 }
+		}
 	}
 	desc = {
 		text = france_wr.8.d_2
-		check_variable = { deat_var > 3 }
+		trigger = {
+			check_variable = { deat_var > 3 }
+		}
 	}
 	desc = {
 		text = france_wr.8.d_3
-		check_variable = { doriot_var < 4 }
-		check_variable = { deat_var < 4 }
+		trigger = {
+			check_variable = { doriot_var < 4 }
+			check_variable = { deat_var < 4 }
+		}
 	}
 	picture = france_speech
 	is_triggered_only = yes
@@ -1435,6 +1441,7 @@ country_event = {
 	}
 	option = {
 		name = france_wr.8.a_3
+		country_event = { id = france_wr.77 days = 15 }
 		trigger = {
 			check_variable = { doriot_var < 4 }
 			check_variable = { deat_var < 4 }
@@ -1666,11 +1673,16 @@ country_event = {
 		FRA = { country_event = france_wr.21 }
 		effect_tooltip = {
 			ITA = {
-				add_popularity = {
-					ideology = fascism
-					popularity = 0.05
+				add_opinion_modifier = {
+					target = FRA
+					modifier = medium_increase
 				}
-				add_timed_idea = { idea = FRA_Funding_the_Nationalist_Movement_from_France days = 200 }
+			}
+			FRA = {
+				add_opinion_modifier = {
+					target = ITA
+					modifier = medium_increase
+				}
 			}
 		}
 		ai_chance = {
@@ -1695,11 +1707,16 @@ country_event = {
 	option = {
 		name = france_wr.21.a
 		ITA = {
-			add_popularity = {
-				ideology = fascism
-				popularity = 0.05
+			add_opinion_modifier = {
+				target = FRA
+				modifier = medium_increase
 			}
-			add_timed_idea = { idea = FRA_Funding_the_Nationalist_Movement_from_France days = 200 }
+		}
+		FRA = {
+			add_opinion_modifier = {
+				target = ITA
+				modifier = medium_increase
+			}
 		}
 		news_event = france_wr.23
 		ai_chance = {
@@ -2462,6 +2479,7 @@ news_event = {
 	desc = france_wr.57.d
 	picture = king_doriot
 	is_triggered_only = yes
+	major = yes
 	option = {
 		name = france_wr.57.a
 		ai_chance = {
@@ -2476,6 +2494,7 @@ news_event = {
 	desc = france_wr.58.d
 	picture = king_doriot
 	is_triggered_only = yes
+	major = yes
 	option = {
 		name = france_wr.58.a
 		ai_chance = {
@@ -2514,6 +2533,7 @@ country_event = {
 			id = FRA_government_infiltration
 			value = 0.025
 		}
+		FRA_pcd_decrease_support_worker_low = yes
 		ai_chance = {
 			base = 10
 		}
@@ -2621,6 +2641,7 @@ news_event = {
 	desc = france_wr.67.d
 	picture = assassination_of_valois
 	is_triggered_only = yes
+	major = yes
 	option = {
 		name = france_wr.67.a
 		retire_character = FRA_jacques_doriot
@@ -2672,6 +2693,7 @@ country_event = {
 		name = france_wr.70.a
 		retire_character = FRA_francois_de_la_rocque
 		retire_character = FRA_charles_de_gaulle
+		add_political_power = 100
 		ai_chance = {
 			base = 10
 		}
@@ -2701,7 +2723,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = france_wr.72.a
-		country_event = { id = france_wr.72 days = 10 }
+		country_event = { id = france_wr.73 days = 10 }
 		ai_chance = {
 			base = 10
 		}
@@ -2758,8 +2780,178 @@ news_event = {
 	desc = france_wr.76.d
 	picture = deat_final
 	is_triggered_only = yes
+	major = yes
 	option = {
 		name = france_wr.76.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.77
+	title = france_wr.77.t
+	desc = france_wr.77.d
+	picture = france_speech
+	is_triggered_only = yes
+	option = {
+		name = france_wr.77.a
+		FRA_pcd_decrease_support_nazbol_med = yes
+		country_event = { id = france_wr.80 days = 15 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.78
+	title = france_wr.78.t
+	desc = france_wr.78.d
+	picture = massive_backlash
+	is_triggered_only = yes
+	option = {
+		name = france_wr.78.a
+		add_political_power = -50
+		add_stability = -0.1
+		FRA_pcd_decrease_support_nazbol_high = yes
+		country_event = { id = france_wr.79 days = 15 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.79
+	title = france_wr.79.t
+	desc = france_wr.79.d
+	picture = massive_backlash
+	is_triggered_only = yes
+	option = {
+		name = france_wr.79.a
+		FRA_pcd_decrease_support_nazbol_high = yes
+		custom_effect_tooltip = start_political_war_tt
+		set_country_flag = start_political_war_flag
+		set_country_flag = start_political_war_flag_forever
+		mark_focus_tree_layout_dirty = yes
+		hidden_effect = {
+			country_event = { id = france_wr.81 days = 7 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.80
+	title = france_wr.80.t
+	desc = france_wr.80.d
+	picture = france_speech
+	is_triggered_only = yes
+	option = {
+		name = france_wr.80.a
+		country_event = { id = france_wr.78 days = 15 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.81
+	title = france_wr.81.t
+	desc = france_wr.81.d
+	picture = massive_backlash
+	is_triggered_only = yes
+	option = {
+		name = france_wr.81.a
+		add_stability = -0.025
+		country_event = { id = france_wr.82 days = 7 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.82
+	title = france_wr.82.t
+	desc = france_wr.82.d
+	picture = massive_backlash
+	is_triggered_only = yes
+	option = {
+		name = france_wr.82.a
+		add_stability = -0.025
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.83
+	title = france_wr.83.t
+	desc = france_wr.83.d
+	picture = bucard_picture
+	is_triggered_only = yes
+	option = {
+		name = france_wr.83.a
+		country_event = { id = france_wr.84 days = 3 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.84
+	title = france_wr.84.t
+	desc = france_wr.84.d
+	picture = bucard_picture
+	is_triggered_only = yes
+	option = {
+		name = france_wr.84.a
+		country_event = { id = france_wr.85 days = 3 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.85
+	title = france_wr.85.t
+	desc = france_wr.85.d
+	picture = bucard_picture
+	is_triggered_only = yes
+	option = {
+		name = france_wr.85.a
+		news_event = france_wr.86
+		retire_character = FRA_jacques_doriot
+		retire_character = FRA_marcel_deat
+		set_party_name = {
+			ideology = fascism
+			long_name = FRA_Francist
+			name = FRA_Francist
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+news_event = {
+	id = france_wr.86
+	title = france_wr.86.t
+	desc = france_wr.86.d
+	picture = march_paris
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = france_wr.86.a
 		ai_chance = {
 			base = 10
 		}
