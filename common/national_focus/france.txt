@@ -32,7 +32,8 @@
 			NOT = { has_country_flag = second_great_war_loser }
 		}
 		allow_branch = {
-			NOT = { has_country_flag = start_political_war_flag_forever }
+			#NOT = { has_country_flag = start_political_war_flag_forever }
+			always = no
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
@@ -447,8 +448,8 @@
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
 			custom_trigger_tooltip = {
-				check_variable = { support_nazbol > 80 }
-				tooltip = FRA_Establish_Party_Order_tt
+				check_variable = { support_nazbol > 70 }
+				tooltip = FRA_deat_purge_doriotists_tt
 			}
 		}
 		prerequisite = {
@@ -518,7 +519,7 @@
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
 			custom_trigger_tooltip = {
-				check_variable = { support_nazbol > 85 }
+				check_variable = { support_nazbol > 75 }
 				tooltip = FRA_Leader_of_the_People_and_Nation_tt
 			}
 		}
@@ -959,10 +960,12 @@
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
 			custom_trigger_tooltip = {
-				check_variable = { support_nazbol > 90 }
-				tooltip = FRA_Immortal_France_tt
+				check_variable = { support_nazbol > 80 }
+				tooltip = FRA_Establish_Party_Order_tt
 			}
 		}
+		cancel_if_invalid = no
+		continue_if_invalid = yes
 		prerequisite = {
 			focus = FRA_national_mythos_of_degeneration_of_germans
 		}
@@ -987,7 +990,6 @@
 			custom_effect_tooltip = FRA_no_political_fight_tt
 			remove_ideas = unstable_regime2
 			add_ideas = FRA_Immortal_France
-			clear_variable = FRA_mobilize_the_nation_main_bar
 			hidden_effect = {
 				if = {
 					limit = {
@@ -1072,8 +1074,8 @@
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
 			custom_trigger_tooltip = {
-				check_variable = { support_nazbol > 60 }
-				tooltip = FRA_Disband_Old_Parties_tt
+				check_variable = { support_nazbol > 50 }
+				tooltip = FRA_Stabilize_Social_Order_tt
 			}
 		}
 		prerequisite = {
@@ -1126,8 +1128,8 @@
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
 			custom_trigger_tooltip = {
-				check_variable = { support_nazbol > 60 }
-				tooltip = FRA_Disband_Old_Parties_tt
+				check_variable = { support_nazbol > 50 }
+				tooltip = FRA_Stabilize_Social_Order_tt
 			}
 		}
 		prerequisite = {
@@ -1504,8 +1506,8 @@
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
 			custom_trigger_tooltip = {
-				check_variable = { support_nazbol > 80 }
-				tooltip = FRA_Establish_Party_Order_tt
+				check_variable = { support_nazbol > 70 }
+				tooltip = FRA_deat_purge_doriotists_tt
 			}
 		}
 		mutually_exclusive = {
@@ -1539,8 +1541,8 @@
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
 			custom_trigger_tooltip = {
-				check_variable = { support_nazbol > 80 }
-				tooltip = FRA_Establish_Party_Order_tt
+				check_variable = { support_nazbol > 70 }
+				tooltip = FRA_deat_purge_doriotists_tt
 			}
 		}
 		mutually_exclusive = {
@@ -1574,8 +1576,8 @@
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
 			custom_trigger_tooltip = {
-				check_variable = { support_nazbol > 90 }
-				tooltip = FRA_Immortal_France_tt
+				check_variable = { support_nazbol > 80 }
+				tooltip = FRA_Establish_Party_Order_tt
 			}
 		}
 		prerequisite = {
@@ -1852,6 +1854,8 @@
 			NOT = { has_country_flag = second_great_war_loser }
 		}
 		cancelable = no
+		cancel_if_invalid = no
+		continue_if_invalid = yes
 		prerequisite = {
 			focus = FRA_Dea_Everything_Is_Planned
 		}
@@ -1875,6 +1879,79 @@
 				remove_ideas = FRA_deat_planned_economy
 				add_ideas = FRA_france_by_people
 			}
+		}
+	}
+	
+	########
+	#Bucard#
+	########
+	focus = {
+		id = FRA_Bucard_March
+		icon = GFX_FRA_Bucard_March
+		x = -1
+		y = 0
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allow_branch = {
+			#has_country_flag = FRA_bucard_victory_flag
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_political_power = 100
+			add_stability = 0.05
+		}
+	}
+	
+	focus = {
+		id = FRA_Francist_Order
+		icon = GFX_FRA_Francist_Order
+		relative_position_id = FRA_Bucard_March
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Bucard_March
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = FRA_Francist_March_Spirit
+		}
+	}
+	
+	#Left
+	focus = {
+		id = FRA_Expand_Security_Bureau
+		icon = GFX_FRA_Expand_Security_Bureau
+		relative_position_id = FRA_Francist_Order
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Francist_Order
+		}
+		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			add_ideas = FRA_Internal_Security_Spirit
 		}
 	}
 	
@@ -3271,7 +3348,6 @@
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
 			add_ideas = FRA_Artillery_Modernization
-			enable_tech_doctrine_of_devastation = yes
 			add_tech_bonus = {
 				name = FRA_Artillery_Modernization
 				bonus = 1.0
