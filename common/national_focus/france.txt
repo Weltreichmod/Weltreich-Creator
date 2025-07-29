@@ -1888,7 +1888,7 @@
 	focus = {
 		id = FRA_Bucard_March
 		icon = GFX_FRA_Bucard_March
-		x = -1
+		x = 7
 		y = 0
 		cost = 5
 		ai_will_do = {
@@ -1952,6 +1952,262 @@
 		search_filters = { FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
 		completion_reward = {
 			add_ideas = FRA_Internal_Security_Spirit
+			country_event = france_wr.87
+		}
+	}
+	
+	focus = {
+		id = FRA_Establish_Order_B
+		icon = GFX_FRA_Establish_Order_B
+		relative_position_id = FRA_Expand_Security_Bureau
+		x = -2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Expand_Security_Bureau
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = FRA_Francist_March_Spirit
+				add_idea = FRA_Consolidated_Order_Spirit
+			}
+			FRA_pcd_increase_support_bucard_med = yes
+		}
+	}
+	
+	focus = {
+		id = FRA_Advance_Francist_Movement
+		icon = GFX_FRA_Advance_Francist_Movement
+		relative_position_id = FRA_Establish_Order_B
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				tooltip = FRA_over_70_francist_tt
+				check_variable = { support_bucard > 70 }
+			}
+		}
+		prerequisite = {
+			focus = FRA_Establish_Order_B
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_ideas = FRA_Blue_Shirts_Spirit
+		}
+	}
+	
+	focus = {
+		id = FRA_France_For_French
+		icon = GFX_FRA_France_For_French
+		relative_position_id = FRA_Expand_Security_Bureau
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Expand_Security_Bureau
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.88
+		}
+	}
+	
+	focus = {
+		id = FRA_Quarantine_Red_Plague
+		icon = GFX_FRA_Quarantine_Red_Plague
+		relative_position_id = FRA_France_For_French
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				tooltip = FRA_over_65_francist_tt
+				check_variable = { support_bucard > 65 }
+			}
+		}
+		prerequisite = {
+			focus = FRA_France_For_French
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = FRA_Quarantine_Red_Plague
+			custom_effect_tooltip = FRA_Quarantine_Red_Plague_tt
+		}
+	}
+	
+	#Right
+	focus = {
+		id = FRA_State_and_Industry
+		icon = GFX_FRA_State_and_Industry
+		relative_position_id = FRA_Francist_Order
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_Francist_Order
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			unlock_decision_category_tooltip = FRA_mobilize_the_nation
+			add_to_variable = {
+				FRA_propaganda_money = 150
+			}
+			custom_effect_tooltip = FRA_Secure_Propaganda_Funds_focus_tt
+			add_5_FRA_mobilize_the_nation_main_bar = yes
+			add_to_variable = {
+				FRA_total_mobilization_production_factory_efficiency_gain_factor = 0.02
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_production_factory_max_efficiency_factor = 0.02
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_industrial_capacity_factory = 0.02
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_industrial_capacity_dockyard = 0.02
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_production_speed_arms_factory_factor = 0.02
+				tooltip = production_speed_arms_factory_factor_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_production_speed_industrial_complex_factor = 0.02
+				tooltip = production_speed_industrial_complex_factor_tt
+			}
+			add_to_variable = {
+				FRA_total_mobilization_conscription_factor = 0.02
+				tooltip = conscription_factor_tt
+			}
+			if = {
+				limit = {
+					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+				}
+				add_to_variable = {
+					FRA_total_mobilization_political_power_factor = -0.02
+					tooltip = political_power_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_stability_factor = -0.02
+					tooltip = stability_factor_tt
+				}
+				add_to_variable = {
+					FRA_total_mobilization_war_support_factor = -0.02
+					tooltip = war_support_factor_tt
+				}
+			}
+			hidden_effect = {
+				country_event = france_wr.1000
+			}
+			country_event = france_wr.89
+		}
+	}
+	
+	focus = {
+		id = FRA_Corporate_Union
+		icon = GFX_FRA_Corporate_Union
+		relative_position_id = FRA_State_and_Industry
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_State_and_Industry
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = FRA_Corporate_State_Union_Spirit
+		}
+	}
+	
+	focus = {
+		id = FRA_Expand_Armaments_Industry
+		icon = GFX_FRA_Expand_Armaments_Industry
+		relative_position_id = FRA_State_and_Industry
+		x = 2
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		prerequisite = {
+			focus = FRA_State_and_Industry
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
 		}
 	}
 	
@@ -2381,7 +2637,7 @@
 		relative_position_id = FRA_french_stance_on_the_world
 		x = -3
 		y = 1
-		cost = 5
+		cost = 2.9
 		ai_will_do = {
 			factor = 6
 		}
@@ -2429,7 +2685,7 @@
 		relative_position_id = FRA_make_the_statue_of_mentor
 		x = -1
 		y = 1
-		cost = 4.3
+		cost = 2.9
 		ai_will_do = {
 			factor = 6
 		}
@@ -2453,7 +2709,7 @@
 		relative_position_id = FRA_make_the_statue_of_mentor
 		x = 1
 		y = 1
-		cost = 4.3
+		cost = 2.9
 		ai_will_do = {
 			factor = 6
 		}
