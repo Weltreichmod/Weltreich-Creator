@@ -32,8 +32,7 @@
 			NOT = { has_country_flag = second_great_war_loser }
 		}
 		allow_branch = {
-			#NOT = { has_country_flag = start_political_war_flag_forever }
-			always = no
+			NOT = { has_country_flag = start_political_war_flag_forever }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
@@ -1267,16 +1266,16 @@
 						character = FRA_marcel_deat
 						ruling_only = yes
 					}
-					remove_trait = {
-						 character = FRA_marcel_deat
-						 ideology = neo_socialism
-						 trait = FRA_architect
-					}
-					add_trait = {
-						 character = FRA_marcel_deat
-						 ideology = neo_socialism
-						 trait = FRA_architect_better
-					}
+				}
+				remove_trait = {
+					 character = FRA_marcel_deat
+					 ideology = neo_socialism
+					 trait = FRA_architect
+				}
+				add_trait = {
+					 character = FRA_marcel_deat
+					 ideology = neo_socialism
+					 trait = FRA_architect_better
 				}
 			}
 			else = {
@@ -2888,10 +2887,6 @@
 				remove_idea = FRA_patriotic_enterprises_spirit
 				add_idea = FRA_union_of_patriotic_enterprises_spirit
 			}
-			add_popularity = {
-				ideology = neutrality
-				popularity = 0.05
-			}
 		}
 	}
 	
@@ -3144,10 +3139,6 @@
 		completion_reward = {
 			country_event = france_wr.104
 			FRA_pcd_increase_support_rocque_med = yes
-			add_popularity = {
-				ideology = neutrality
-				popularity = 0.1
-			}
 		}
 	}
 	
@@ -3176,10 +3167,6 @@
 		completion_reward = {
 			country_event = france_wr.106
 			FRA_pcd_increase_support_rocque_med = yes
-			add_popularity = {
-				ideology = neutrality
-				popularity = 0.05
-			}
 		}
 	}
 	
@@ -3217,10 +3204,6 @@
 				remove_idea = unstable_regime
 				add_idea = unstable_regime2
 			}
-			add_popularity = {
-				ideology = neutrality
-				popularity = 0.05
-			}
 		}
 	}
 	
@@ -3245,10 +3228,6 @@
 		search_filters = { FOCUS_FILTER_STABILITY }
 		completion_reward = {
 			country_event = france_wr.105
-			add_popularity = {
-				ideology = neutrality
-				popularity = 0.05
-			}
 		}
 	}
 	
@@ -3606,7 +3585,7 @@
 			NOT = { has_country_flag = second_great_war_loser }
 		}
 		allow_branch = {
-			#has_country_flag = FRA_charles_de_gaulle_victory_flag
+			has_country_flag = FRA_charles_de_gaulle_victory_flag
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -3689,10 +3668,6 @@
 			swap_ideas = {
 				remove_idea = unstable_regime
 				add_idea = unstable_regime2
-			}
-			add_popularity = {
-				ideology = neutrality
-				popularity = 0.05
 			}
 		}
 	}
@@ -3965,6 +3940,10 @@
 		available = {
 			is_subject = no
 			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				tooltip = FRA_over_75_republican_tt
+				check_variable = { support_rocque > 75 }
+			}
 		}
 		prerequisite = {
 			focus = FRA_patriotic_society
@@ -3979,6 +3958,49 @@
 				remove_ideas = FRA_vive_la_france_idea
 				remove_ideas = FRA_innovative_spirit_idea
 				add_ideas = FRA_indomitable_france_idea
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_great_france
+		icon = GFX_FRA_great_france
+		relative_position_id = FRA_indomitable_french_spirit
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_country_flag = second_great_war_loser }
+			custom_trigger_tooltip = {
+				tooltip = FRA_over_80_republican_tt
+				check_variable = { support_rocque > 80 }
+			}
+		}
+		prerequisite = {
+			focus = FRA_indomitable_french_spirit
+		}
+		prerequisite = {
+			focus = FRA_city_of_light
+		}
+		prerequisite = {
+			focus = FRA_for_france
+		}
+		cancelable = no
+		cancel_if_invalid = no
+		continue_if_invalid = yes
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			custom_effect_tooltip = FRA_no_political_fight_tt
+			remove_ideas = unstable_regime2
+			country_event = france_wr.128
+			set_politics = {
+				ruling_party = neutrality
+				elections_allowed = yes
+				election_frequency = 84
 			}
 		}
 	}

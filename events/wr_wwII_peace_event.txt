@@ -2204,44 +2204,12 @@ country_event = {
 	option = {
 		name = wrwpe.13.a
 		trigger = {
-			if = {
-				limit = {
-					original_tag = SOV
-				}
-				has_global_flag = fall_of_berlin_by_SOV
-			}
-			if = {
-				limit = {
-					original_tag = RUS
-				}
-				has_global_flag = fall_of_berlin_by_RUS
-			}
-		}
-		every_state = {
-			limit = {
-				is_owned_by = ROOT
-				OR = {
-					state = 68
-					state = 63
-					state = 66
-					state = 67
-					state = 762
-					state = 86
-					state = 85
-					state = 807
-					state = 5
-				}
-			}
-			transfer_state_to = POL
+			ROOT = { original_tag = SOV }
 		}
 		every_state = {
 			limit = {
 				is_owned_by = ROOT
 				is_core_of = GER
-				NOT = {
-					state = 188
-					state = 763
-				}
 			}
 			add_core_of = DDR
 			remove_core_of = GER
@@ -2269,10 +2237,7 @@ country_event = {
 				add_timed_idea = { idea = war_reparations days = 1000 }
 				add_ideas = peace_treaty
 			}
-			if = {
-				limit = { ROOT = { original_tag = RUS } }
-				DDR = { set_cosmetic_tag = GER_prussia }
-			}
+			DDR = { set_cosmetic_tag = DDR_under_military }
 		}
 		ai_chance = {
 			base = 100
@@ -2281,47 +2246,12 @@ country_event = {
 	option = {
 		name = wrwpe.13.b
 		trigger = {
-			if = {
-				limit = {
-					original_tag = SOV
-				}
-				NOT = { has_global_flag = fall_of_berlin_by_SOV }
-			}
-			if = {
-				limit = {
-					original_tag = RUS
-				}
-				NOT = { has_global_flag = fall_of_berlin_by_RUS }
-			}
+			ROOT = { original_tag = RUS }
 		}
-		every_state = {
-			limit = {
-				is_owned_by = ROOT
-				OR = {
-					state = 68
-					state = 63
-					state = 66
-					state = 67
-					state = 762
-					state = 86
-					state = 85
-					state = 807
-					state = 5
-				}
-			}
-			transfer_state_to = POL
-		}
-		ai_chance = {
-			base = 100
-		}
-	}
-	option = {
-		name = wrwpe.13.c
 		every_state = {
 			limit = {
 				is_owned_by = ROOT
 				is_core_of = GER
-				NOT = { state = 188 }
 			}
 			add_core_of = DDR
 			remove_core_of = GER
@@ -2349,19 +2279,10 @@ country_event = {
 				add_timed_idea = { idea = war_reparations days = 1000 }
 				add_ideas = peace_treaty
 			}
-			if = {
-				limit = { ROOT = { original_tag = RUS } }
-				DDR = { set_cosmetic_tag = GER_prussia }
-			}
+			DDR = { set_cosmetic_tag = GER_prussia }
 		}
 		ai_chance = {
-			base = 1
-		}
-	}
-	option = {
-		name = wrwpe.13.e
-		ai_chance = {
-			base = 0
+			base = 100
 		}
 	}
 }
@@ -2375,284 +2296,131 @@ country_event = {
 	picture = germany_map
 	option = {
 		name = wrwpe.14.a
-		every_state = {
-			limit = {
-				is_owned_by = FRA
-				NOT = {
-					is_core_of = FRA
-					is_claimed_by = FRA
-				}
-				is_core_of = BAY
-			}
-			transfer_state_to = BAY
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FRA
-				NOT = {
-					is_core_of = FRA
-					is_claimed_by = FRA
-				}
-				is_core_of = WUR
-			}
-			transfer_state_to = WUR
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FRA
-				NOT = {
-					is_core_of = FRA
-					is_claimed_by = FRA
-				}
-				is_core_of = BAD
-			}
-			transfer_state_to = BAD
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FRA
-				NOT = {
-					is_core_of = FRA
-					is_claimed_by = FRA
-				}
-				OR = {
-					is_core_of = HAN
-					is_core_of = OLD
-				}
-			}
-			transfer_state_to = HAN
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FRA
-				NOT = {
-					is_core_of = FRA
-					is_claimed_by = FRA
-				}
-				is_core_of = SHL
-			}
-			transfer_state_to = SHL
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FRA
-				NOT = {
-					is_core_of = FRA
-					is_claimed_by = FRA
-				}
-				is_core_of = GER
-			}
-			transfer_state_to = GER
-		}
 		if = {
 			limit = {
-				OR = {
-					RUS = { has_global_flag = fall_of_berlin_by_RUS }
-					SOV = { has_global_flag = fall_of_berlin_by_SOV }
-					AND = {
-						NOT = { SOV = { has_country_flag = second_great_war_winner } }
-						NOT = { RUS = { has_country_flag = second_great_war_winner } }
-					}
-				}
-			}
-			GER = {
-				set_cosmetic_tag = GER_Confederation_of_the_Rhine
-				create_country_leader = {
-					name = "CFR_government"
-					picture = "gfx/leaders/GER/CFR_government.png"
-					expire = "1965.1.1"
-					ideology = conservatism
-					traits = {
-					}
-				}
-				create_country_leader = {
-					name = "CFR_government"
-					picture = "gfx/leaders/GER/CFR_government.png"
-					expire = "1965.1.1"
-					ideology = marxism
-					traits = {
-					}
-				}
-				create_country_leader = {
-					name = "CFR_government"
-					picture = "gfx/leaders/GER/CFR_government.png"
-					expire = "1965.1.1"
-					ideology = fascism_ideology
-					traits = {
-					}
-				}
-				create_country_leader = {
-					name = "CFR_government"
-					picture = "gfx/leaders/GER/CFR_government.png"
-					expire = "1965.1.1"
-					ideology = moderatism
-					traits = {
-					}
-				}
-			}
-		}
-		else_if = {
-			limit = {
-				NOT = { RUS = { has_global_flag = fall_of_berlin_by_RUS } }
-				NOT = { SOV = { has_global_flag = fall_of_berlin_by_SOV } }
-				OR = {
-					SOV = { has_country_flag = second_great_war_winner }
-					RUS = { has_country_flag = second_great_war_winner }
-				}
-			}
-			create_dynamic_country = {
-				original_tag = GER
-				every_state = {
-					limit = {
-						is_owned_by = GER
-						OR = {
-							state = 42
-							state = 51
-							state = 55
-							state = 943
-							state = 57
-						}
-					}
-					add_core_of = CFR
-				}
-				set_capital = { state = 55 }
-				set_politics = {
-					ruling_party = neutrality
-					elections_allowed = no
-				}
-				set_popularities = {
-					democratic = 1
-					neutrality = 45
-					fascism = 50
-					communism = 4
-				}
-				set_cosmetic_tag = GER_Confederation_of_the_Rhine
-				reserve_dynamic_country = yes
+				ROOT = { original_tag = FRA }
 			}
 			every_state = {
 				limit = {
-					is_owned_by = GER
-					OR = {
-						state = 42
-						state = 51
-						state = 55
-						state = 943
-						state = 57
+					is_owned_by = ROOT
+					is_core_of = GER
+					NOT = {
+						is_core_of = FRA
+						is_claimed_by = FRA
 					}
 				}
-				transfer_state_to = CFR
-			}
-			CFR = {
-				create_country_leader = {
-					name = "CFR_government"
-					picture = "gfx/leaders/GER/CFR_government.png"
-					expire = "1965.1.1"
-					ideology = conservatism
-					traits = {
-					}
-				}
-				create_country_leader = {
-					name = "CFR_government"
-					picture = "gfx/leaders/GER/CFR_government.png"
-					expire = "1965.1.1"
-					ideology = marxism
-					traits = {
-					}
-				}
-				create_country_leader = {
-					name = "CFR_government"
-					picture = "gfx/leaders/GER/CFR_government.png"
-					expire = "1965.1.1"
-					ideology = fascism_ideology
-					traits = {
-					}
-				}
-				create_country_leader = {
-					name = "CFR_government"
-					picture = "gfx/leaders/GER/CFR_government.png"
-					expire = "1965.1.1"
-					ideology = moderatism
-					traits = {
-					}
-				}
-				inherit_technology = GER
-				division_template = {
-					name = "Infantry Division"
-					division_names_group = GER_Inf_01
-					regiments = {
-						infantry = { x = 0 y = 0 }
-						infantry = { x = 0 y = 1 }
-						infantry = { x = 0 y = 2 }
-						infantry = { x = 1 y = 0 }
-						infantry = { x = 1 y = 1 }
-						infantry = { x = 1 y = 2 }
-						infantry = { x = 2 y = 0 }
-						infantry = { x = 2 y = 1 }
-						infantry = { x = 2 y = 2 }
-					}
-					support = {
-						artillery = { x = 0 y = 0 } 
-						engineer = { x = 0 y = 1 }
-					}
-				}
-				division_template = {
-					name = "Cavalry Division"
-					division_names_group = GER_Cav_01
-					regiments = {
-						cavalry = { x = 0 y = 0 }
-						cavalry = { x = 0 y = 1 }
-						cavalry = { x = 1 y = 0 }
-						cavalry = { x = 1 y = 1 }
-					}
-					support = {
-						recon = { x = 0 y = 0 }
-					}
-				}
+				transfer_state_to = GER
 			}
 			if = {
 				limit = {
 					has_dlc = "Together for Victory"
-					CFR = { exists = yes }
+					GER = { exists = yes }
 				}
-				set_autonomy = {
-					target = CFR
-					autonomous_state = autonomy_puppet
-					freedom_level = 0.5
-				}
-			}
-			else_if = {
-				limit = {
-					CFR = { exists = yes }
-				}
-				puppet = CFR
-			}
-		}
-		if = {
-			limit = {
-				has_dlc = "Together for Victory"
-				GER = { exists = yes }
-			}
-			set_autonomy = {
-				target = GER
-				autonomous_state = autonomy_puppet
-				freedom_level = 0.5
-			}
-		}
-		else_if = {
-			limit = {
-				GER = { exists = yes }
-			}
-			puppet = GER
-		}
-		if = {
-			limit = {
-				USA = { has_country_flag = second_great_war_winner }
-			}
-			USA = {
-				if = {
-					limit = {
-						has_dlc = "Together for Victory"
+				FRA = {
+					set_autonomy = {
+						target = GER
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
 					}
+					else = {
+						puppet = GER
+					}
+				}
+				GER = { set_cosmetic_tag = GER_under_military }
+			}
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = ENG }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ROOT
+					OR = {
+						is_core_of = HAN
+						is_core_of = OLD
+						is_core_of = SHL
+					}
+				}
+				transfer_state_to = HAN
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					HAN = { exists = yes }
+				}
+				ENG = {
+					set_autonomy = {
+						target = HAN
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = HAN
+					}
+				}
+				HAN = { set_cosmetic_tag = HAN_under_military }
+				hidden_effect = {
+					HAN = {
+						inherit_technology = GER
+						add_timed_idea = { idea = war_reparations days = 1000 }
+						add_ideas = peace_treaty
+						retire_country_leader = HAN_Ernst_August_IV
+						hidden_effect = {
+							create_country_leader = {
+								name = "HAN_William_Hare"
+								picture = "gfx/leaders/ENG/HAN_William_Hare.png"
+								expire = "1965.1.1"
+								ideology = liberalism
+								traits = {
+								}
+							}
+							create_country_leader = {
+								name = "HAN_William_Hare"
+								picture = "gfx/leaders/ENG/HAN_William_Hare.png"
+								expire = "1965.1.1"
+								ideology = marxism
+								traits = {
+								}
+							}
+							create_country_leader = {
+								name = "HAN_William_Hare"
+								picture = "gfx/leaders/ENG/HAN_William_Hare.png"
+								expire = "1965.1.1"
+								ideology = ethnic_nationalism
+								traits = {
+								}
+							}
+							create_country_leader = {
+								name = "HAN_William_Hare"
+								picture = "gfx/leaders/ENG/HAN_William_Hare.png"
+								expire = "1965.1.1"
+								ideology = despotism
+								traits = {
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		if = {
+			limit = {
+				ROOT = { original_tag = USA }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = ROOT
+					is_core_of = BAY
+				}
+				transfer_state_to = BAY
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					BAY = { exists = yes }
+				}
+				USA = {
 					set_autonomy = {
 						target = BAY
 						autonomous_state = autonomy_puppet
@@ -2662,645 +2430,53 @@ country_event = {
 						puppet = BAY
 					}
 				}
-			}
-		}
-		else_if = {
-			limit = {
-				has_dlc = "Together for Victory"
-			}
-			set_autonomy = {
-				target = BAY
-				autonomous_state = autonomy_puppet
-				freedom_level = 0.5
-			}
-			else = {
-				puppet = BAY
-			}
-		}
-		if = {
-			limit = {
-				BAY = { exists = yes }
-				BAY = { is_subject_of = USA }
-			}
-			BAY = {
-				inherit_technology = GER
-				add_timed_idea = { idea = war_reparations days = 1000 }
-				add_ideas = peace_treaty
-				retire_country_leader = BAY_Rupprecht
+				BAY = { set_cosmetic_tag = BAY_under_military }
 				hidden_effect = {
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = liberalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = marxism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = ethnic_nationalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = despotism
-						traits = {
-						}
-					}
-				}
-			}
-		}
-		else_if = {
-			limit = {
-				BAY = { exists = yes }
-				BAY = { is_subject_of = FRA }
-			}
-			BAY = {
-				inherit_technology = GER
-				add_timed_idea = { idea = war_reparations days = 1000 }
-				add_ideas = peace_treaty
-				retire_country_leader = BAY_Rupprecht
-				hidden_effect = {
-					create_country_leader = {
-						name = "BAY_Paul_Ely"
-						picture = "gfx/leaders/BAY/BAY_Paul_Ely.png"
-						expire = "1965.1.1"
-						ideology = liberalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "BAY_Paul_Ely"
-						picture = "gfx/leaders/BAY/BAY_Paul_Ely.png"
-						expire = "1965.1.1"
-						ideology = marxism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "BAY_Paul_Ely"
-						picture = "gfx/leaders/BAY/BAY_Paul_Ely.png"
-						expire = "1965.1.1"
-						ideology = ethnic_nationalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "BAY_Paul_Ely"
-						picture = "gfx/leaders/BAY/BAY_Paul_Ely.png"
-						expire = "1965.1.1"
-						ideology = despotism
-						traits = {
-						}
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				WUR = { exists = yes }
-			}
-			if = {
-				limit = {
-					has_dlc = "Together for Victory"
-				}
-				set_autonomy = {
-					target = WUR
-					autonomous_state = autonomy_puppet
-					freedom_level = 0.5
-				}
-				else = {
-					puppet = WUR
-				}
-			}
-			WUR = {
-				inherit_technology = GER
-				add_timed_idea = { idea = war_reparations days = 1000 }
-				add_ideas = peace_treaty
-				retire_country_leader = WUR_Robert_von_Wurttemberg
-				hidden_effect = {
-					create_country_leader = {
-						name = "WUR_Henri_Hoppenot"
-						picture = "gfx/leaders/WUR/WUR_Henri_Hoppenot.png"
-						expire = "1965.1.1"
-						ideology = liberalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "WUR_Henri_Hoppenot"
-						picture = "gfx/leaders/WUR/WUR_Henri_Hoppenot.png"
-						expire = "1965.1.1"
-						ideology = marxism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "WUR_Henri_Hoppenot"
-						picture = "gfx/leaders/WUR/WUR_Henri_Hoppenot.png"
-						expire = "1965.1.1"
-						ideology = ethnic_nationalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "WUR_Henri_Hoppenot"
-						picture = "gfx/leaders/WUR/WUR_Henri_Hoppenot.png"
-						expire = "1965.1.1"
-						ideology = despotism
-						traits = {
-						}
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				BAD = { exists = yes }
-			}
-			if = {
-				limit = {
-					has_dlc = "Together for Victory"
-				}
-				set_autonomy = {
-					target = BAD
-					autonomous_state = autonomy_puppet
-					freedom_level = 0.5
-				}
-				else = {
-					puppet = BAD
-				}
-			}
-			BAD = {
-				inherit_technology = GER
-				add_timed_idea = { idea = war_reparations days = 1000 }
-				add_ideas = peace_treaty
-				retire_country_leader = BAD_Maximilian_von_Baden
-				hidden_effect = {
-					create_country_leader = {
-						name = "BAD_Louis_Joxe"
-						picture = "gfx/leaders/FRA/BAD_Louis_Joxe.png"
-						expire = "1965.1.1"
-						ideology = liberalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "BAD_Louis_Joxe"
-						picture = "gfx/leaders/FRA/BAD_Louis_Joxe.png"
-						expire = "1965.1.1"
-						ideology = marxism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "BAD_Louis_Joxe"
-						picture = "gfx/leaders/FRA/BAD_Louis_Joxe.png"
-						expire = "1965.1.1"
-						ideology = ethnic_nationalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "BAD_Louis_Joxe"
-						picture = "gfx/leaders/FRA/BAD_Louis_Joxe.png"
-						expire = "1965.1.1"
-						ideology = despotism
-						traits = {
-						}
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				ENG = { has_country_flag = second_great_war_winner }
-			}
-			ENG = {
-				if = {
-					limit = {
-						HAN = { exists = yes }
-					}
-					if = {
-						limit = {
-							has_dlc = "Together for Victory"
-						}
-						set_autonomy = {
-							target = HAN
-							autonomous_state = autonomy_puppet
-							freedom_level = 0.5
-						}
-						else = {
-							puppet = HAN
-						}
-					}
-				}
-				if = {
-					limit = {
-						SHL = { exists = yes }
-					}
-					if = {
-						limit = {
-							has_dlc = "Together for Victory"
-						}
-						set_autonomy = {
-							target = SHL
-							autonomous_state = autonomy_puppet
-							freedom_level = 0.5
-						}
-						else = {
-							puppet = SHL
-						}
-					}
-				}
-			}
-			else = {
-				if = {
-					limit = {
-						HAN = { exists = yes }
-					}
-					if = {
-						limit = {
-							has_dlc = "Together for Victory"
-						}
-						set_autonomy = {
-							target = HAN
-							autonomous_state = autonomy_puppet
-							freedom_level = 0.5
-						}
-						else = {
-							puppet = HAN
-						}
-					}
-				}
-				if = {
-					limit = {
-						SHL = { exists = yes }
-					}
-					if = {
-						limit = {
-							has_dlc = "Together for Victory"
-						}
-						set_autonomy = {
-							target = SHL
-							autonomous_state = autonomy_puppet
-							freedom_level = 0.5
-						}
-						else = {
-							puppet = SHL
-						}
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				SHL = { exists = yes }
-			}
-			SHL = {
-				inherit_technology = GER
-				add_timed_idea = { idea = war_reparations days = 1000 }
-				add_ideas = peace_treaty
-			}
-		}
-		if = {
-			limit = {
-				HAN = { exists = yes }
-			}
-			HAN = {
-				inherit_technology = GER
-				add_timed_idea = { idea = war_reparations days = 1000 }
-				add_ideas = peace_treaty
-				retire_country_leader = HAN_Ernst_August_IV
-				if = {
-					limit = {
-						HAN = { is_subject_of = ENG }
-					}
-					hidden_effect = {
-						create_country_leader = {
-							name = "HAN_William_Hare"
-							picture = "gfx/leaders/ENG/HAN_William_Hare.png"
-							expire = "1965.1.1"
-							ideology = liberalism
-							traits = {
+					BAY = {
+						inherit_technology = GER
+						add_timed_idea = { idea = war_reparations days = 1000 }
+						add_ideas = peace_treaty
+						retire_country_leader = BAY_Rupprecht
+						hidden_effect = {
+							create_country_leader = {
+								name = "USA_george_marshall"
+								picture = "gfx/leaders/BAY/USA_george_marshall.png"
+								expire = "1965.1.1"
+								ideology = liberalism
+								traits = {
+								}
+							}
+							create_country_leader = {
+								name = "USA_george_marshall"
+								picture = "gfx/leaders/BAY/USA_george_marshall.png"
+								expire = "1965.1.1"
+								ideology = marxism
+								traits = {
+								}
+							}
+							create_country_leader = {
+								name = "USA_george_marshall"
+								picture = "gfx/leaders/BAY/USA_george_marshall.png"
+								expire = "1965.1.1"
+								ideology = ethnic_nationalism
+								traits = {
+								}
+							}
+							create_country_leader = {
+								name = "USA_george_marshall"
+								picture = "gfx/leaders/BAY/USA_george_marshall.png"
+								expire = "1965.1.1"
+								ideology = despotism
+								traits = {
+								}
 							}
 						}
-						create_country_leader = {
-							name = "HAN_William_Hare"
-							picture = "gfx/leaders/ENG/HAN_William_Hare.png"
-							expire = "1965.1.1"
-							ideology = marxism
-							traits = {
-							}
-						}
-						create_country_leader = {
-							name = "HAN_William_Hare"
-							picture = "gfx/leaders/ENG/HAN_William_Hare.png"
-							expire = "1965.1.1"
-							ideology = ethnic_nationalism
-							traits = {
-							}
-						}
-						create_country_leader = {
-							name = "HAN_William_Hare"
-							picture = "gfx/leaders/ENG/HAN_William_Hare.png"
-							expire = "1965.1.1"
-							ideology = despotism
-							traits = {
-							}
-						}
-					}
-				}
-				else_if = {
-					limit = {
-						HAN = { is_subject_of = FRA }
-					}
-					hidden_effect = {
-						create_country_leader = {
-							name = "HAN_Christian_Fouchet"
-							picture = "gfx/leaders/FRA/HAN_Christian_Fouchet.png"
-							expire = "1965.1.1"
-							ideology = liberalism
-							traits = {
-							}
-						}
-						create_country_leader = {
-							name = "HAN_Christian_Fouchet"
-							picture = "gfx/leaders/FRA/HAN_Christian_Fouchet.png"
-							expire = "1965.1.1"
-							ideology = marxism
-							traits = {
-							}
-						}
-						create_country_leader = {
-							name = "HAN_Christian_Fouchet"
-							picture = "gfx/leaders/FRA/HAN_Christian_Fouchet.png"
-							expire = "1965.1.1"
-							ideology = ethnic_nationalism
-							traits = {
-							}
-						}
-						create_country_leader = {
-							name = "HAN_Christian_Fouchet"
-							picture = "gfx/leaders/FRA/HAN_Christian_Fouchet.png"
-							expire = "1965.1.1"
-							ideology = despotism
-							traits = {
-							}
-						}
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				NOT = { SOV = { has_country_flag = second_great_war_winner } }
-				NOT = { RUS = { has_country_flag = second_great_war_winner } }
-			}
-			every_state = {
-				limit = {
-					is_owned_by = GER
-					OR = {
-						state = 68
-						state = 63
-						state = 66
-						state = 67
-						state = 762
-						state = 86
-						state = 85
-						state = 807
-						state = 5
-						state = 763
-						state = 62
-						state = 61
-						state = 64
-						state = 957
-						state = 65
-						state = 60
-					}
-				}
-				add_core_of = DDR
-				remove_core_of = GER
-				transfer_state_to = DDR
-			}
-			if = {
-				limit = {
-					DDR = { exists = yes }
-				}
-				DDR = {
-					inherit_technology = GER
-					add_timed_idea = { idea = war_reparations days = 1000 }
-					add_ideas = peace_treaty
-					set_cosmetic_tag = GER_prussia
-				}
-				if = {
-					limit = {
-						has_dlc = "Together for Victory"
-					}
-					set_autonomy = {
-						target = DDR
-						autonomous_state = autonomy_puppet
-						freedom_level = 0.5
-					}
-					else = {
-						puppet = DDR
 					}
 				}
 			}
 		}
 		ai_chance = {
 			base = 100
-		}
-	}
-	option = {
-		name = wrwpe.14.b
-		if = {
-			limit = {
-				USA = { has_country_flag = second_great_war_winner }
-			}
-			every_state = {
-				limit = {
-					is_owned_by = FRA
-					NOT = {
-						is_core_of = FRA
-						is_claimed_by = FRA
-					}
-					is_core_of = BAY
-				}
-				transfer_state_to = BAY
-			}
-			USA = {
-				if = {
-					limit = {
-						has_dlc = "Together for Victory"
-					}
-					set_autonomy = {
-						target = BAY
-						autonomous_state = autonomy_puppet
-						freedom_level = 0.5
-					}
-					else = {
-						puppet = BAY
-					}
-				}
-			}
-			BAY = {
-				inherit_technology = GER
-				add_timed_idea = { idea = war_reparations days = 1000 }
-				add_ideas = peace_treaty
-				retire_country_leader = BAY_Rupprecht
-				hidden_effect = {
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = liberalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = marxism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = ethnic_nationalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = despotism
-						traits = {
-						}
-					}
-				}
-			}
-		}
-		if = {
-			limit = {
-				has_dlc = "Together for Victory"
-			}
-			set_autonomy = {
-				target = GER
-				autonomous_state = autonomy_puppet
-				freedom_level = 0.5
-			}
-			else = {
-				puppet = GER
-			}
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FRA
-				NOT = {
-					is_core_of = FRA
-					is_claimed_by = FRA
-				}
-				is_core_of = GER
-			}
-			transfer_state_to = GER
-		}
-		ai_chance = {
-			base = 1
-		}
-	}
-	option = {
-		name = wrwpe.13.e
-		if = {
-			limit = {
-				USA = { has_country_flag = second_great_war_winner }
-			}
-			every_state = {
-				limit = {
-					is_owned_by = FRA
-					NOT = {
-						is_core_of = FRA
-						is_claimed_by = FRA
-					}
-					is_core_of = BAY
-				}
-				transfer_state_to = BAY
-			}
-			USA = {
-				if = {
-					limit = {
-						has_dlc = "Together for Victory"
-					}
-					set_autonomy = {
-						target = BAY
-						autonomous_state = autonomy_puppet
-						freedom_level = 0.5
-					}
-					else = {
-						puppet = BAY
-					}
-				}
-			}
-			BAY = {
-				inherit_technology = GER
-				add_timed_idea = { idea = war_reparations days = 1000 }
-				add_ideas = peace_treaty
-				retire_country_leader = BAY_Rupprecht
-				hidden_effect = {
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = liberalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = marxism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = ethnic_nationalism
-						traits = {
-						}
-					}
-					create_country_leader = {
-						name = "USA_george_marshall"
-						picture = "gfx/leaders/BAY/USA_george_marshall.png"
-						expire = "1965.1.1"
-						ideology = despotism
-						traits = {
-						}
-					}
-				}
-			}
-		}
-		ai_chance = {
-			base = 0
 		}
 	}
 }
