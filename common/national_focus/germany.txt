@@ -1610,6 +1610,42 @@ focus_tree = {
 			remove_ideas = The_aftermath_of_the_Great_Depression3
 			remove_ideas = large_corporations_preferential_relief
 			remove_ideas = the_disposal_of_unprofitable_property
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
 		}
 	}
 	
@@ -2499,13 +2535,41 @@ focus_tree = {
 		x = 0
 		y = 6
 		cost = 5
-		available = { OR = { has_war_with = FRA has_war_with = SOV has_war_with = ENG } }
+		available = {
+			OR = {
+				has_war_with = FRA
+				has_war_with = SOV
+				has_war_with = ENG
+				date > 1940.1.1
+			}
+		}
 		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
 		ai_will_do = {
-			factor = 20
+			factor = 0
+			modifier = {
+				add = 100
+				has_war_with_major = yes
+			}
+			modifier = {
+				add = 100
+				date > 1940.5.1
+			}
 		}
+		will_lead_to_war_with = FRA
 		completion_reward = {
-			add_war_support = 0.1
+			if = {
+				limit = {
+					has_war_with = FRA
+				}
+				add_war_support = 0.1
+			}
+			else = {
+				declare_war_on = { target = FRA type = take_core_state }
+				add_named_threat = {
+					threat = 20
+					name = german_franco_war
+				}
+			}
 			#remove_ideas = conscription_issue
 		}
 	}
@@ -2885,6 +2949,60 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = war_economy
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
 		}
 	}
 	

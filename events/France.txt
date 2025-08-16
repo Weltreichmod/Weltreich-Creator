@@ -713,7 +713,6 @@ country_event = {
 	desc = france.28.d
 	picture = death_of_FRA_jean_iii
 	trigger = {
-		has_completed_focus = FRA_Orleanisme
 		date > 1940.8.25
 		has_country_leader = {
 			character = FRA_jean_iii
@@ -898,9 +897,13 @@ country_event = {
 	picture = death_of_FRA_jean_iii
 	trigger = {
 		tag = FRA
-		NOT = { has_completed_focus = FRA_Orleanisme }
 		date > 1940.8.25
-		NOT = { has_government = neutrality }
+		NOT = {
+			has_country_leader = {
+				character = FRA_jean_iii
+				ruling_only = yes
+			}
+		}
 	}
 	mean_time_to_happen = { days = 1 }
 	fire_only_once = yes
@@ -1176,16 +1179,21 @@ country_event = {
 	title = france.100.t
 	desc = france.100.d
 	picture = france_speech
-	trigger = {
-		tag = FRA
-		has_war_with = GER
-	}
-	mean_time_to_happen = { days = 1 }
-	fire_only_once = yes
+	is_triggered_only = yes
 	option = {
 		name = france.100.a
 		add_war_support = 0.05
 		add_timed_idea = { idea = FRA_for_victory days = 150 }
+		29 = { add_claim_by = FRA }
+		6 = { add_claim_by = FRA }
+		34 = { add_claim_by = FRA }
+		910 = { add_claim_by = FRA }
+		8 = { add_claim_by = FRA }
+		42 = { add_claim_by = FRA }
+		51 = { add_claim_by = FRA }
+		35 = { add_claim_by = FRA }
+		7 = { add_claim_by = FRA }
+		36 = { add_claim_by = FRA }
 		ai_chance = {
 			factor = 100
 		}
@@ -3707,6 +3715,261 @@ country_event = {
 }
 
 country_event = {
+	id = france_wr.129
+	title = france_wr.129.t
+	desc = france_wr.129.d
+	picture = GFX_report_event_crowd_in_prague
+	is_triggered_only = yes
+	option = {
+		name = france_wr.129.a
+		country_event = { id = france_wr.130 days = 5 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.130
+	title = france_wr.130.t
+	desc = france_wr.130.d
+	picture = GFX_report_event_crowd_in_prague
+	is_triggered_only = yes
+	option = {
+		name = france_wr.130.a
+		country_event = { id = france_wr.131 days = 5 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.131
+	title = france_wr.131.t
+	desc = france_wr.131.d
+	picture = GFX_report_event_crowd_in_prague
+	is_triggered_only = yes
+	option = {
+		name = france_wr.131.a
+		country_event = { id = france_wr.132 days = 7 }
+		16 = { set_demilitarized_zone = yes }
+		928 = { set_demilitarized_zone = yes }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.132
+	title = france_wr.132.t
+	desc = france_wr.132.d
+	picture = GFX_report_event_crowd_in_prague
+	is_triggered_only = yes
+	option = {
+		name = france_wr.132.a
+		country_event = { id = france_wr.133 days = 10 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.133
+	title = france_wr.133.t
+	desc = france_wr.133.d
+	picture = GFX_report_event_crowd_in_prague
+	is_triggered_only = yes
+	option = {
+		name = france_wr.133.a
+		news_event = france_wr.134
+		16 = { set_demilitarized_zone = no }
+		928 = { set_demilitarized_zone = no }
+		retire_character = FRA_jacques_doriot
+		retire_character = FRA_marcel_deat
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = neutrality
+			popularity = 0.7
+		}
+		hidden_effect = {
+			remove_country_leader_role = {
+				character = FRA_francois_de_la_rocque
+				ideology = national_orderism
+			}
+			remove_country_leader_role = {
+				character = FRA_charles_de_gaulle
+				ideology = national_orderism
+			}
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = FRA_action_francaise
+			name = FRA_action_francaise
+		}
+		complete_national_focus = FRA_focus_end_republican_madness
+		set_country_flag = maurras_victory_flag
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+news_event = {
+	id = france_wr.134
+	title = france_wr.134.t
+	desc = france_wr.134.d
+	picture = Maurras_on_march
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = france_wr.134.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.135
+	title = france_wr.135.t
+	desc = france_wr.135.d
+	picture = death_of_FRA_jean_iii
+	is_triggered_only = yes
+	option = {
+		name = france_wr.135.a
+		add_stability = 0.05
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.136
+	title = france_wr.136.t
+	desc = france_wr.136.d
+	picture = france_speech
+	is_triggered_only = yes
+	option = {
+		name = france_wr.136.a
+		add_ideas = FRA_spirit_abolish_racism
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.137
+	title = france_wr.137.t
+	desc = france_wr.137.d
+	picture = france_speech
+	is_triggered_only = yes
+	option = {
+		name = france_wr.137.a
+		FRA_dec_harmonious_order_0_05 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.138
+	title = france_wr.138.t
+	desc = france_wr.138.d
+	picture = GFX_democratic_pre_cand
+	is_triggered_only = yes
+	option = {
+		name = france_wr.138.a
+		random_owned_controlled_state = {
+			prioritize = { 785 }
+			limit = {
+				is_core_of = ROOT
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 993 }
+			limit = {
+				is_core_of = ROOT
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			prioritize = { 24 }
+			limit = {
+				is_core_of = ROOT
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.139
+	title = france_wr.139.t
+	desc = france_wr.139.d
+	picture = GFX_democratic_pre_cand
+	is_triggered_only = yes
+	option = {
+		name = france_wr.139.a
+		add_ideas = FRA_spirit_classicism
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.140
+	title = france_wr.140.t
+	desc = france_wr.140.d
+	picture = death_of_FRA_jean_iii
+	is_triggered_only = yes
+	option = {
+		name = france_wr.140.a
+		add_political_power = 15
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.141
+	title = france_wr.141.t
+	desc = france_wr.141.d
+	picture = france_speech
+	is_triggered_only = yes
+	option = {
+		name = france_wr.141.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
 	id = france_wr.1000
 	title = france_wr.1000.t
 	desc = france_wr.1000.d
@@ -3832,6 +4095,24 @@ country_event = {
 				}
 			}
 		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.1001
+	title = france_wr.1001.t
+	desc = france_wr.1001.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = france_wr.1001.a
+		GER = { enable_country_integration_60_compliance = yes }
+		BEL = { enable_country_integration_60_compliance = yes }
+		LUX = { enable_country_integration_60_compliance = yes }
+		HOL = { enable_country_integration_60_compliance = yes }
 		ai_chance = {
 			base = 10
 		}
