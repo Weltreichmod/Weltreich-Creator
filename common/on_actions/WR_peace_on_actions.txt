@@ -1,0 +1,227 @@
+on_actions = {
+    on_capitulation = {
+        effect = {
+            if = {
+				limit = {
+					ROOT = {
+						OR = {
+							AND = {
+								original_tag = GER
+								NOT = { FROM = { original_tag = GER } }
+							}
+							AND = {
+								original_tag = FRA
+								NOT = { FROM = { original_tag = FRA } }
+							}
+							AND = {
+								original_tag = ENG
+								NOT = { FROM = { original_tag = ENG } }
+							}
+							AND = {
+								original_tag = POL
+								NOT = { FROM = { original_tag = POL } }
+							}
+							AND = {
+								original_tag = CHI
+								NOT = { FROM = { original_tag = CHI } }
+							}
+							AND = {
+								original_tag = FNG
+								NOT = { FROM = { original_tag = FNG } }
+							}
+							AND = {
+								original_tag = JAP
+								NOT = { FROM = { original_tag = JAP } }
+							}
+							AND = {
+								original_tag = UKR
+								NOT = { FROM = { original_tag = UKR } }
+							}
+							AND = {
+								original_tag = UPR
+								NOT = { FROM = { original_tag = UPR } }
+							}
+							AND = {
+								original_tag = USS
+								NOT = { FROM = { original_tag = USS } }
+							}
+							AND = {
+								original_tag = UBD
+								NOT = { FROM = { original_tag = UBD } }
+							}
+							AND = {
+								original_tag = BLR
+								NOT = { FROM = { original_tag = BLR } }
+							}
+							AND = {
+								original_tag = LIT
+								NOT = { FROM = { original_tag = LIT } }
+							}
+							AND = {
+								original_tag = SOV
+								NOT = { FROM = { original_tag = SOV } }
+							}
+							AND = {
+								original_tag = ITA
+								NOT = { FROM = { original_tag = ITA } }
+							}
+							AND = {
+								original_tag = AUH
+								NOT = { FROM = { original_tag = AUH } }
+							}
+							AND = {
+								original_tag = BUL
+								NOT = { FROM = { original_tag = BUL } }
+							}
+							AND = {
+								original_tag = ROM
+								NOT = { FROM = { original_tag = ROM } }
+							}
+							AND = {
+								original_tag = GRE
+								NOT = { FROM = { original_tag = GRE } }
+							}
+							AND = {
+								original_tag = TUR
+								NOT = { FROM = { original_tag = TUR } }
+							}
+							AND = {
+								original_tag = USA
+								NOT = { FROM = { original_tag = USA } }
+							}
+							AND = {
+								original_tag = EGY
+								NOT = { FROM = { original_tag = EGY } }
+							}
+							AND = {
+								original_tag = VIN
+								NOT = { FROM = { original_tag = VIN } }
+							}
+							AND = {
+								original_tag = CZE
+								NOT = { FROM = { original_tag = CZE } }
+							}
+							AND = {
+								original_tag = MON
+								NOT = { FROM = { original_tag = MON } }
+							}
+							AND = {
+								original_tag = HUN
+								NOT = { FROM = { original_tag = HUN } }
+							}
+							AND = {
+								original_tag = ROM
+								NOT = { FROM = { original_tag = ROM } }
+							}
+							AND = {
+								original_tag = SER
+								NOT = { FROM = { original_tag = SER } }
+							}
+							AND = {
+								original_tag = BEL
+								NOT = { FROM = { original_tag = BEL } }
+							}
+							AND = {
+								original_tag = HOL
+								NOT = { FROM = { original_tag = HOL } }
+							}
+							AND = {
+								original_tag = IRE
+								NOT = { FROM = { original_tag = IRE } }
+							}
+							AND = {
+								original_tag = CAN
+								NOT = { FROM = { original_tag = CAN } }
+							}
+							AND = {
+								original_tag = DEN
+								NOT = { FROM = { original_tag = DEN } }
+							}
+							AND = {
+								original_tag = SWE
+								NOT = { FROM = { original_tag = SWE } }
+							}
+							AND = {
+								original_tag = NOR
+								NOT = { FROM = { original_tag = NOR } }
+							}
+							AND = {
+								original_tag = FIN
+								NOT = { FROM = { original_tag = FIN } }
+							}
+							AND = {
+								original_tag = ALB
+								NOT = { FROM = { original_tag = ALB } }
+							}
+							AND = {
+								original_tag = PHL
+								NOT = { FROM = { original_tag = PHL } }
+							}
+							AND = {
+								original_tag = KUR
+								NOT = { FROM = { original_tag = KUR } }
+							}
+							AND = {
+								original_tag = HJZ
+								NOT = { FROM = { original_tag = HJZ } }
+							}
+							AND = {
+								original_tag = IRQ
+								NOT = { FROM = { original_tag = IRQ } }
+							}
+							AND = {
+								original_tag = SYR
+								NOT = { FROM = { original_tag = SYR } }
+							}
+							AND = {
+								original_tag = PER
+								NOT = { FROM = { original_tag = PER } }
+							}
+							AND = {
+								original_tag = SOM
+								NOT = { FROM = { original_tag = SOM } }
+							}
+							AND = {
+								original_tag = ETH
+								NOT = { FROM = { original_tag = ETH } }
+							}
+							AND = {
+								original_tag = RUS
+								has_global_flag = german_soviet_war_ends
+							}
+						}
+					}
+				}
+				set_global_flag = show_peace_popup_alert
+				FROM = {
+					save_global_event_target_as = winning_country
+				}
+				ROOT = {
+					save_global_event_target_as = losing_country
+				}
+				if = {
+					limit = {
+						event_target:losing_country = {
+							any_allied_country = { has_war_together_with = event_target:losing_country }
+						}
+					}
+					set_global_flag = losing_country_multiple
+				}
+				if = {
+					limit = {
+						event_target:winning_country = {
+							any_allied_country = { has_war_together_with = event_target:winning_country }
+						}
+					}
+					set_global_flag = winning_country_multiple
+				}
+				every_country = {
+					limit = { is_ai = no }	
+					add_to_variable = { global.peace_popup_dirty = 1 }
+				}
+				log = "war_won"
+				set_global_flag = war_won
+            }
+        }
+    }
+}

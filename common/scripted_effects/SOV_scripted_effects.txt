@@ -3358,15 +3358,33 @@ bukharin_civilwar_focus = {
 		}
 	}
 	SOS = {
-		transfer_units_fraction = {
-			target = SOB
-			size = 0.1
-			stockpile_ratio = 0.2
-			army_ratio = 0.2
-			navy_ratio = 0.2
-			air_ratio = 0.1
-			keep_unit_leaders_trigger = {
-				always = yes
+		if = {
+			limit = {
+				is_ai = no
+			}
+			transfer_units_fraction = {
+				target = SOB
+				size = 0.1
+				stockpile_ratio = 0.2
+				army_ratio = 0.2
+				navy_ratio = 0.2
+				air_ratio = 0.1
+				keep_unit_leaders_trigger = {
+					always = yes
+				}
+			}
+		}
+		else = {
+			transfer_units_fraction = {
+				target = SOB
+				size = 0.1
+				stockpile_ratio = 0.05
+				army_ratio = 0.05
+				navy_ratio = 0.05
+				air_ratio = 0.05
+				keep_unit_leaders_trigger = {
+					always = yes
+				}
 			}
 		}
 		declare_war_on = {
@@ -3571,120 +3589,6 @@ Second_Russian_Civilwar = {
 	}
 }
 
-kolchak_increase_effect = {
-	if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly_Official_krensky_3
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly_Official_krensky_3
-			add_idea = RUS_Constituent_Assembly_Official_krensky_2
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly_Official_krensky_2
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly_Official_krensky_2
-			add_idea = RUS_Constituent_Assembly_Official_krensky_1
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly_Official_krensky_1
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly_Official_krensky_1
-			add_idea = RUS_Constituent_Assembly
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly
-			add_idea = RUS_Constituent_Assembly_Official_klochak_1
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly_Official_klochak_1
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly_Official_klochak_1
-			add_idea = RUS_Constituent_Assembly_Official_klochak_2
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly_Official_klochak_2
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly_Official_klochak_2
-			add_idea = RUS_Constituent_Assembly_Official_klochak_3
-		}
-	}
-}
-
-krensky_increase_effect = {
-	if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly_Official_klochak_3
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly_Official_klochak_3
-			add_idea = RUS_Constituent_Assembly_Official_klochak_2
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly_Official_klochak_2
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly_Official_klochak_2
-			add_idea = RUS_Constituent_Assembly_Official_klochak_1
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly_Official_klochak_1
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly_Official_klochak_1
-			add_idea = RUS_Constituent_Assembly
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly
-			add_idea = RUS_Constituent_Assembly_Official_krensky_1
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly_Official_krensky_1
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly_Official_krensky_1
-			add_idea = RUS_Constituent_Assembly_Official_krensky_2
-		}
-	}
-	else_if = {
-		limit = {
-			has_idea = RUS_Constituent_Assembly_Official_krensky_2
-		}
-		swap_ideas = {
-			remove_idea = RUS_Constituent_Assembly_Official_krensky_2
-			add_idea = RUS_Constituent_Assembly_Official_krensky_3
-		}
-	}
-}
-
 #
 # Army
 #
@@ -3703,7 +3607,7 @@ add_2_5_army_professionalism_effect = {
 		set_variable = { SOV_the_red_army_experience_gain_army_factor = 0.1 }
 		set_variable = { SOV_the_red_army_land_doctrine_cost_factor = -0.2 }
 		set_variable = { SOV_the_red_army_experience_loss_factor = -0.2 }
-		set_variable = { SOV_the_red_army_dig_in_speed_factor = -0.1 }
+		set_variable = { SOV_the_red_army_dig_in_speed_factor = 0.1 }
 		custom_effect_tooltip = SOV_full_army_professionalism
     }
     # Case 2: Professionalism between 75 and 97.5
@@ -3728,7 +3632,7 @@ add_2_5_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = 0.005 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = -0.01 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = -0.01 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.005 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.005 }
 		custom_effect_tooltip = SOV_add_2_5_army_professionalism_var
         
         # Show tooltip and apply political power penalty
@@ -3749,7 +3653,7 @@ add_2_5_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = 0.005 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = -0.01 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = -0.01 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.005 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.005 }
 		custom_effect_tooltip = SOV_add_2_5_army_professionalism_var
     }
 }
@@ -3768,7 +3672,7 @@ remove_2_5_army_professionalism_effect = {
 		set_variable = { SOV_the_red_army_experience_gain_army_factor = -0.1 }
 		set_variable = { SOV_the_red_army_land_doctrine_cost_factor = 0.2 }
 		set_variable = { SOV_the_red_army_experience_loss_factor = 0.2 }
-		set_variable = { SOV_the_red_army_dig_in_speed_factor = 0.1 }
+		set_variable = { SOV_the_red_army_dig_in_speed_factor = -0.1 }
 		custom_effect_tooltip = SOV_no_army_professionalism
     }
     # Case 2: Professionalism between 2.5 and 75
@@ -3793,7 +3697,7 @@ remove_2_5_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = -0.005 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = 0.01 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = 0.01 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.005 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.005 }
 		custom_effect_tooltip = SOV_remove_2_5_army_professionalism_var
         
         # Show tooltip and apply remove political power penalty
@@ -3814,7 +3718,7 @@ remove_2_5_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = -0.005 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = 0.01 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = 0.01 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.005 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.005 }
 		custom_effect_tooltip = SOV_remove_2_5_army_professionalism_var
     }
 }
@@ -3833,7 +3737,7 @@ add_5_army_professionalism_effect = {
 		set_variable = { SOV_the_red_army_experience_gain_army_factor = 0.1 }
 		set_variable = { SOV_the_red_army_land_doctrine_cost_factor = -0.2 }
 		set_variable = { SOV_the_red_army_experience_loss_factor = -0.2 }
-		set_variable = { SOV_the_red_army_dig_in_speed_factor = -0.1 }
+		set_variable = { SOV_the_red_army_dig_in_speed_factor = 0.1 }
 		custom_effect_tooltip = SOV_full_army_professionalism
     }
     # Case 2: Professionalism between 75 and 97.5
@@ -3858,7 +3762,7 @@ add_5_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = 0.01 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = -0.02 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = -0.02 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.01 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.01 }
 		custom_effect_tooltip = SOV_add_5_army_professionalism_var
         
         # Show tooltip and apply political power penalty
@@ -3879,7 +3783,7 @@ add_5_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = 0.01 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = -0.02 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = -0.02 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.01 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.01 }
 		custom_effect_tooltip = SOV_add_5_army_professionalism_var
     }
 }
@@ -3898,7 +3802,7 @@ remove_5_army_professionalism_effect = {
 		set_variable = { SOV_the_red_army_experience_gain_army_factor = -0.1 }
 		set_variable = { SOV_the_red_army_land_doctrine_cost_factor = 0.2 }
 		set_variable = { SOV_the_red_army_experience_loss_factor = 0.2 }
-		set_variable = { SOV_the_red_army_dig_in_speed_factor = 0.1 }
+		set_variable = { SOV_the_red_army_dig_in_speed_factor = -0.1 }
 		custom_effect_tooltip = SOV_no_army_professionalism
     }
     # Case 2: Professionalism between 2.5 and 75
@@ -3923,7 +3827,7 @@ remove_5_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = -0.01 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = 0.02 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = 0.02 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.01 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.01 }
 		custom_effect_tooltip = SOV_remove_5_army_professionalism_var
         
         # Show tooltip and apply remove political power penalty
@@ -3944,7 +3848,7 @@ remove_5_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = -0.01 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = 0.02 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = 0.02 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.01 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.01 }
 		custom_effect_tooltip = SOV_remove_5_army_professionalism_var
     }
 }
@@ -3963,7 +3867,7 @@ add_10_army_professionalism_effect = {
 		set_variable = { SOV_the_red_army_experience_gain_army_factor = 0.1 }
 		set_variable = { SOV_the_red_army_land_doctrine_cost_factor = -0.2 }
 		set_variable = { SOV_the_red_army_experience_loss_factor = -0.2 }
-		set_variable = { SOV_the_red_army_dig_in_speed_factor = -0.1 }
+		set_variable = { SOV_the_red_army_dig_in_speed_factor = 0.1 }
 		custom_effect_tooltip = SOV_full_army_professionalism
     }
     # Case 2: Professionalism between 75 and 97.5
@@ -3988,7 +3892,7 @@ add_10_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = 0.02 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = -0.04 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = -0.04 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.02 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.02 }
 		custom_effect_tooltip = SOV_add_10_army_professionalism_var
         
         # Show tooltip and apply political power penalty
@@ -4009,7 +3913,7 @@ add_10_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = 0.02 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = -0.04 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = -0.04 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.02 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.02 }
 		custom_effect_tooltip = SOV_add_10_army_professionalism_var
     }
 }
@@ -4028,7 +3932,7 @@ remove_10_army_professionalism_effect = {
 		set_variable = { SOV_the_red_army_experience_gain_army_factor = -0.1 }
 		set_variable = { SOV_the_red_army_land_doctrine_cost_factor = 0.2 }
 		set_variable = { SOV_the_red_army_experience_loss_factor = 0.2 }
-		set_variable = { SOV_the_red_army_dig_in_speed_factor = 0.1 }
+		set_variable = { SOV_the_red_army_dig_in_speed_factor = -0.1 }
 		custom_effect_tooltip = SOV_no_army_professionalism
     }
     # Case 2: Professionalism between 2.5 and 75
@@ -4053,7 +3957,7 @@ remove_10_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = -0.02 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = 0.04 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = 0.04 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.02 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.02 }
 		custom_effect_tooltip = SOV_remove_10_army_professionalism_var
         
         # Show tooltip and apply remove political power penalty
@@ -4074,7 +3978,7 @@ remove_10_army_professionalism_effect = {
 		add_to_variable = { SOV_the_red_army_experience_gain_army_factor = -0.02 }
 		add_to_variable = { SOV_the_red_army_land_doctrine_cost_factor = 0.04 }
 		add_to_variable = { SOV_the_red_army_experience_loss_factor = 0.04 }
-		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = 0.02 }
+		add_to_variable = { SOV_the_red_army_dig_in_speed_factor = -0.02 }
 		custom_effect_tooltip = SOV_remove_10_army_professionalism_var
     }
 }
@@ -7628,9 +7532,9 @@ RUS_you_can_play_now = {
 		add_core_of = RUS
 	}
 	RUS = {
+		inherit_technology = SOV
 		set_state_owner = 222
 		set_state_owner = 224
-		set_cosmetic_tag = league_of_all_russian_liberation
 		add_manpower = 50000
 		add_ideas = RUS_rudiger_von_der_goltz
 	}
@@ -8116,14 +8020,14 @@ add_10_royalists_progress_effect = {
 			}
 		}
 		set_variable = {
-			var = RUS_denikin_coup_progress_var
+			var = RUS_royalists_progress_var
 			value = 100
 			tooltip = rus_royalists_progress_is_100
 		}
 	}
 	else = {
 		add_to_variable = {
-			var = RUS_denikin_coup_progress_var
+			var = RUS_royalists_progress_var
 			value = 10
 			tooltip = rus_add_10_royalists_progress
 		}
@@ -8137,16 +8041,1317 @@ remove_10_royalists_coup_progress_effect = {
 			}
 		}
 		set_variable = {
-			var = RUS_denikin_coup_progress_var
+			var = RUS_royalists_progress_var
 			value = 0
 			tooltip = rus_royalists_progress_is_0
 		}
 	}
 	else = {
 		add_to_variable = {
-			var = RUS_denikin_coup_progress_var
+			var = RUS_royalists_progress_var
 			value = -10
 			tooltip = rus_remove_10_royalists_progress
+		}
+	}
+}
+
+#Collapsing Economy
+economy_is_dying = {
+	if = {
+		limit = {
+			NOT = { has_idea = SOV_economic_crisis }
+			NOT = { has_idea = SOV_economic_crisis_1 }
+			NOT = { has_idea = SOV_economic_recession }
+			NOT = { has_idea = SOV_economic_recession_1 }
+			NOT = { has_idea = SOV_economic_collapse }
+			NOT = { has_idea = SOV_economic_collapse_1 }
+		}
+		add_ideas = SOV_economic_crisis
+	}
+	else_if = {
+		limit = {
+			has_idea = SOV_economic_crisis
+		}
+		swap_ideas = {
+			remove_idea = SOV_economic_crisis
+			add_idea = SOV_economic_crisis_1
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = SOV_economic_crisis_1
+		}
+		swap_ideas = {
+			remove_idea = SOV_economic_crisis_1
+			add_idea = SOV_economic_recession
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = SOV_economic_recession
+		}
+		swap_ideas = {
+			remove_idea = SOV_economic_recession
+			add_idea = SOV_economic_recession_1
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = SOV_economic_recession_1
+		}
+		swap_ideas = {
+			remove_idea = SOV_economic_recession_1
+			add_idea = SOV_economic_collapse
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = SOV_economic_collapse
+		}
+		swap_ideas = {
+			remove_idea = SOV_economic_collapse
+			add_idea = SOV_economic_collapse_1
+		}
+	}
+}
+
+#Good Economy
+economy_is_good = {
+	if = {
+		limit = {
+			has_idea = SOV_economic_collapse_1
+		}
+		swap_ideas = {
+			remove_idea = SOV_economic_collapse_1
+			add_idea = SOV_economic_collapse
+		}
+		add_days_mission_timeout = {
+			mission = SOV_the_clock_is_ticking
+			days = 50
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = SOV_economic_collapse
+		}
+		swap_ideas = {
+			remove_idea = SOV_economic_collapse
+			add_idea = SOV_economic_recession_1
+		}
+		add_days_mission_timeout = {
+			mission = SOV_the_clock_is_ticking
+			days = 50
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = SOV_economic_recession_1
+		}
+		swap_ideas = {
+			remove_idea = SOV_economic_recession_1
+			add_idea = SOV_economic_recession
+		}
+		add_days_mission_timeout = {
+			mission = SOV_the_clock_is_ticking
+			days = 50
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = SOV_economic_recession
+		}
+		swap_ideas = {
+			remove_idea = SOV_economic_recession
+			add_idea = SOV_economic_crisis_1
+		}
+		add_days_mission_timeout = {
+			mission = SOV_the_clock_is_ticking
+			days = 50
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = SOV_economic_crisis_1
+		}
+		swap_ideas = {
+			remove_idea = SOV_economic_crisis_1
+			add_idea = SOV_economic_crisis
+		}
+		add_days_mission_timeout = {
+			mission = SOV_the_clock_is_ticking
+			days = 50
+		}
+	}
+	else_if = {
+		limit = {
+			has_idea = SOV_economic_crisis
+		}
+		remove_ideas = SOV_economic_crisis
+		add_days_mission_timeout = {
+			mission = SOV_the_clock_is_ticking
+			days = 50
+		}
+	}
+}
+
+SOV_fall_in_wwiii = {
+	every_country = {
+		limit = {
+			is_subject_of = SOV
+			has_country_flag = third_world_war_loser
+			capital_scope = { is_on_continent = europe }
+		}
+		FRA = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = PREV
+					autonomous_state = autonomy_satellite
+				}
+			}
+			else = {
+				puppet = PREV
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				POL = { exists = no }
+				POL = { has_country_flag = third_world_war_loser }
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					is_owned_by = SOV
+					is_owned_by = DDR
+				}
+				OR = {
+					is_core_of = POL
+					state = 763
+					state = 5
+					state = 85
+					state = 807
+					state = 86
+					state = 66
+					state = 67
+					state = 762
+					state = 87
+					state = 98
+					state = 63
+					state = 68
+				}
+			}
+			transfer_state_to = POL
+		}
+		if = {
+			limit = {
+				NOT = { POL = { is_subject_of = FRA } }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = POL
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = POL
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				LIT = { exists = no }
+				LIT = { has_country_flag = third_world_war_loser }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				OR = {
+					is_core_of = LIT
+					state = 188
+				}
+			}
+			transfer_state_to = LIT
+		}
+		if = {
+			limit = {
+				NOT = { LIT = { is_subject_of = FRA } }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = LIT
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = LIT
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				EST = { exists = no }
+				EST = { has_country_flag = third_world_war_loser }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				is_core_of = EST
+			}
+			transfer_state_to = EST
+		}
+		if = {
+			limit = {
+				NOT = { EST = { is_subject_of = FRA } }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = EST
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = EST
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				LAT = { exists = no }
+				LAT = { has_country_flag = third_world_war_loser }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				OR = {
+					is_core_of = LAT
+					state = 810
+				}
+			}
+			transfer_state_to = LAT
+		}
+		if = {
+			limit = {
+				NOT = { LAT = { is_subject_of = FRA } }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = LAT
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = LAT
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				BLR = { exists = no }
+				BLR = { has_country_flag = third_world_war_loser }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				is_core_of = BLR
+			}
+			transfer_state_to = BLR
+		}
+		if = {
+			limit = {
+				NOT = { BLR = { is_subject_of = FRA } }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = BLR
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = BLR
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				UKR = { exists = no }
+				UKR = { has_country_flag = third_world_war_loser }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				is_core_of = UKR
+			}
+			transfer_state_to = UKR
+		}
+		if = {
+			limit = {
+				NOT = { UKR = { is_subject_of = FRA } }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = UKR
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = UKR
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			RUS = { exists = no }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				OR = {
+					state = 195
+					state = 208
+					state = 244
+					state = 209
+					state = 263
+					state = 210
+					state = 246
+					state = 242
+					state = 243
+					state = 247
+					state = 264
+					state = 214
+					state = 219
+					state = 205
+					state = 248
+					state = 250
+					state = 253
+					state = 224
+					state = 254
+					state = 256
+					state = 223
+					state = 222
+					state = 258
+					state = 257
+					state = 252
+					state = 255
+					state = 239
+					state = 265
+					state = 351
+					state = 829
+					state = 879
+					state = 880
+					state = 401
+					state = 251
+					state = 249
+					state = 652
+					state = 833
+					state = 400
+					state = 397
+					state = 651
+					state = 399
+					state = 398
+					state = 582
+					state = 573
+					state = 262
+					state = 958
+					state = 825
+					state = 581
+					state = 407
+					state = 406
+					state = 216
+					state = 215
+					state = 213
+					state = 220
+					state = 988
+					state = 260
+					state = 218
+					state = 217
+					state = 245
+					state = 236
+					state = 237
+					state = 238
+					state = 234
+					state = 235
+					state = 233
+					state = 827
+					state = 828
+					state = 232
+					state = 821
+				}
+			}
+			add_core_of = RUS
+			transfer_state_to = RUS
+		}
+		RUS = { drop_cosmetic_tag = yes }
+		if = {
+			limit = {
+				NOT = { RUS = { is_subject_of = FRA } }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = RUS
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = RUS
+				}
+			}
+		}
+	}
+	every_state = {
+		limit = {
+			is_owned_by = SOV
+			is_core_of = KAZ
+		}
+		transfer_state_to = KAZ
+	}
+	every_state = {
+		limit = {
+			is_owned_by = SOV
+			is_core_of = TUK
+		}
+		transfer_state_to = TUK
+	}
+	SOV = {
+		set_capital = {
+		  state = 571
+		  remember_old_capital = no
+		}
+		mark_focus_tree_layout_dirty = yes
+		country_event = { id = soviet_rework_troika.038 days = 25 }
+		complete_national_focus = SOV_the_war_has_been_lost
+	}
+}
+
+death_of_FRA = {
+	every_country = {
+		limit = {
+			has_country_flag = third_world_war_loser
+		}
+		SOV = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = PREV
+					autonomous_state = autonomy_satellite
+				}
+			}
+			else = {
+				puppet = PREV
+			}
+		}
+	}
+	if = {
+		limit = {
+			GER = { has_country_flag = third_world_war_loser }
+		}
+		DDR = {
+			annex_country = {
+				target = GER
+				transfer_troops = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			WUR = { has_country_flag = third_world_war_loser }
+		}
+		DDR = {
+			annex_country = {
+				target = WUR
+				transfer_troops = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			BAD = { has_country_flag = third_world_war_loser }
+		}
+		DDR = {
+			annex_country = {
+				target = BAD
+				transfer_troops = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			CFR = { has_country_flag = third_world_war_loser }
+		}
+		DDR = {
+			annex_country = {
+				target = CFR
+				transfer_troops = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				BAY = { has_country_flag = third_world_war_loser }
+				BAY = { has_country_flag = third_world_war_half_loser }
+			}
+		}
+		DDR = {
+			annex_country = {
+				target = BAY
+				transfer_troops = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				HAN = { has_country_flag = third_world_war_loser }
+				HAN = { has_country_flag = third_world_war_half_loser }
+			}
+		}
+		DDR = {
+			annex_country = {
+				target = HAN
+				transfer_troops = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				SHL = { has_country_flag = third_world_war_loser }
+				SHL = { has_country_flag = third_world_war_half_loser }
+			}
+		}
+		DDR = {
+			annex_country = {
+				target = SHL
+				transfer_troops = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				ENG = { has_country_flag = third_world_war_loser }
+				ENG = { has_country_flag = third_world_war_half_loser }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = GER
+			}
+			transfer_state_to = DDR
+		}
+	}
+	#free british colonies
+	if = {
+		limit = {
+			ENG = { has_country_flag = third_world_war_loser }
+		}
+		ENG = { drop_cosmetic_tag = yes }
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = CAN
+			}
+			transfer_state_to = CAN
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = AST
+			}
+			transfer_state_to = AST
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = NZL
+			}
+			transfer_state_to = NZL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = RAJ
+			}
+			transfer_state_to = RAJ
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = GYA
+			}
+			transfer_state_to = GYA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = BLZ
+			}
+			transfer_state_to = BLZ
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = BAH
+			}
+			transfer_state_to = BAH
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = JAM
+			}
+			transfer_state_to = JAM
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = TRI
+			}
+			transfer_state_to = TRI
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = BAS
+			}
+			transfer_state_to = BAS
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = TRI
+			}
+			transfer_state_to = TRI
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				OR = {
+					state = 980
+					state = 333
+				}
+			}
+			transfer_state_to = FMS
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				OR = {
+					state = 712
+					state = 711
+				}
+			}
+			transfer_state_to = INS
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = SOL
+			}
+			transfer_state_to = SOL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = SRL
+			}
+			transfer_state_to = SRL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = KUW
+			}
+			transfer_state_to = KUW
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = QAT
+			}
+			transfer_state_to = QAT
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = UAE
+			}
+			transfer_state_to = UAE
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = FIJ
+			}
+			transfer_state_to = FIJ
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = CYP
+			}
+			transfer_state_to = CYP
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				state = 270
+			}
+			transfer_state_to = CHL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				state = 720
+			}
+			transfer_state_to = ARG
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				state = 446
+			}
+			transfer_state_to = EGY
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				state = 726
+			}
+			transfer_state_to = NZL
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = SRI
+			}
+			transfer_state_to = SRI
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				OR = {
+					is_core_of = KEN
+					state = 844
+				}
+			}
+			transfer_state_to = KEN
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = UGA
+			}
+			transfer_state_to = UGA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = RWA
+			}
+			transfer_state_to = RWA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = BRD
+			}
+			transfer_state_to = BRD
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = TZN
+			}
+			transfer_state_to = TZN
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = MLW
+			}
+			transfer_state_to = MLW
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = ZAM
+			}
+			transfer_state_to = ZAM
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = NMB
+			}
+			transfer_state_to = NMB
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = MLD
+			}
+			transfer_state_to = MLD
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = NGA
+			}
+			transfer_state_to = NGA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = GHA
+			}
+			transfer_state_to = GHA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = GAM
+			}
+			transfer_state_to = GAM
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = SIE
+			}
+			transfer_state_to = SIE
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = PNG
+			}
+			transfer_state_to = PNG
+		}
+	}
+	every_state = {
+		limit = {
+			is_owned_by = FRA
+			is_core_of = GER
+		}
+		transfer_state_to = DDR
+	}
+	if = {
+		limit = {
+			FRA = { has_country_flag = third_world_war_loser }
+		}
+		FRA = { drop_cosmetic_tag = yes }
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = CAN
+			}
+			transfer_state_to = CAN
+		}
+		if = {
+			limit = {
+				SPA = {
+					exists = yes
+				}
+			}
+			FRA = {
+				every_state = {
+					limit = {
+						is_owned_by = FRA
+						OR = {
+							is_core_of = SPA
+							state = 290
+							state = 699
+							state = 783
+							state = 178
+							state = 297
+						}
+					}
+					transfer_state_to = SPA
+				}
+			}
+		}
+		else = {
+			FRA = {
+				every_state = {
+					limit = {
+						is_owned_by = FRA
+						OR = {
+							is_core_of = SPR
+							state = 290
+							state = 699
+							state = 783
+							state = 178
+							state = 297
+						}
+					}
+					transfer_state_to = SPR
+				}
+			}
+		}
+		FRA = {
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = ADO
+				}
+				transfer_state_to = ADO
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = CAY
+				}
+				transfer_state_to = CAY
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = MOR
+				}
+				transfer_state_to = MOR
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = ALG
+				}
+				transfer_state_to = ALG
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = TUN
+				}
+				transfer_state_to = TUN
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = MRT
+				}
+				transfer_state_to = MRT
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = MLI
+				}
+				transfer_state_to = MLI
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = SEN
+				}
+				transfer_state_to = SEN
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = GNA
+				}
+				transfer_state_to = GNA
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = VOL
+				}
+				transfer_state_to = VOL
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = IVO
+				}
+				transfer_state_to = IVO
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = NGR
+				}
+				transfer_state_to = NGR
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = CHA
+				}
+				transfer_state_to = CHA
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = TOG
+				}
+				transfer_state_to = TOG
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = DAH
+				}
+				transfer_state_to = DAH
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = CMR
+				}
+				transfer_state_to = CMR
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = CAR
+				}
+				transfer_state_to = CAR
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = GAB
+				}
+				transfer_state_to = GAB
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = RCG
+				}
+				transfer_state_to = RCG
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = MAD
+				}
+				transfer_state_to = MAD
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = VIN
+				}
+				transfer_state_to = VIN
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = LAO
+				}
+				transfer_state_to = LAO
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = CAM
+				}
+				transfer_state_to = CAM
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = TAH
+				}
+				transfer_state_to = TAH
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					is_core_of = SUR
+				}
+				transfer_state_to = SUR
+			}
+		}
+	}
+	if = {
+		limit = {
+			POR = { has_country_flag = third_world_war_loser }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = POR
+				is_core_of = MZB
+			}
+			transfer_state_to = MZB
+		}
+		every_state = {
+			limit = {
+				is_owned_by = POR
+				is_core_of = GNB
+			}
+			transfer_state_to = GNB
+		}
+		every_state = {
+			limit = {
+				is_owned_by = POR
+				is_core_of = ANG
+			}
+			transfer_state_to = ANG
+		}
+	}
+	SOV = {
+		if = {
+			limit = {
+				NOT = { DDR = { is_subject_of = SOV } }
+				DDR = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = DDR
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = DDR
+				}
+			}
+		}
+	}
+	every_state = {
+		limit = {
+			is_owned_by = DDR
+		}
+		add_core_of = DDR
+	}
+	if = {
+		limit = {
+			HOL = { exists = no }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = HOL
+			}
+			transfer_state_to = HOL
+		}
+	}
+	SOV = {
+		if = {
+			limit = {
+				HOL = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = HOL
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = HOL
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			BEL = { exists = no }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				is_core_of = BEL
+			}
+			transfer_state_to = BEL
+		}
+	}
+	SOV = {
+		if = {
+			limit = {
+				BEL = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = BEL
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = BEL
+				}
+			}
+		}
+	}
+	SOV = {
+		clr_country_flag = time_is_going_on_flag
+		remove_ideas = SOV_economic_crisis
+		remove_ideas = SOV_economic_crisis_1
+		remove_ideas = SOV_economic_recession
+		remove_ideas = SOV_economic_recession_1
+		remove_ideas = SOV_economic_collapse
+		remove_ideas = SOV_economic_collapse_1
+		if = {
+			limit = {
+				has_country_leader = {
+					character = SOV_mikhail_tukhachevsky
+					ruling_only = yes
+				}
+			}
+			country_event = soviet_rework_troika.064
 		}
 	}
 }

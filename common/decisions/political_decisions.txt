@@ -1744,23 +1744,6 @@ political_actions = {
 
 		available = {
             fascism > 0.1
-            if = {
-				limit = {
-					tag = SPR
-				}
-				NOT = {
-					has_idea = SPR_political_violence
-				}
-			}
-			if = {
-				limit = {
-					has_aat = yes 
-					original_tag = NOR 
-				}
-				NOT = { 
-					has_idea = NOR_anti_communist_sentiment_ns
-				}
-			}
         }
 	
 		modifier = {
@@ -1830,14 +1813,6 @@ political_actions = {
 
 		available = {
             democratic > 0.1
-            if = {
-				limit = {
-					tag = SPR
-				}
-				NOT = {
-					has_idea = SPR_political_violence
-				}
-			}
         }
 	
 		modifier = {
@@ -1870,14 +1845,6 @@ political_actions = {
 
 		available = {
             communism > 0.1
-            if = {
-				limit = {
-					tag = SPR
-				}
-				NOT = {
-					has_idea = SPR_political_violence
-				}
-			}
         }
 	
 		modifier = {
@@ -1906,41 +1873,6 @@ political_actions = {
 
 		available = {
 			fascism < 0.2
-			IF = {
-				limit = {
-					tag = SPR
-				}
-				NOT = {
-					has_idea = SPR_political_violence
-				}
-			}
-			IF = {
-				limit = {
-					has_aat = yes 
-					original_tag = NOR 
-				}
-				NOT = {
-					has_idea = NOR_anti_communist_sentiment_ns
-				}
-			}
-			IF = {
-				limit = {
-					# TODO JA, add the correct dlc requirements
-					has_dlc = "Arms Against Tyranny"
-					original_tag = CHL
-				}
-				custom_trigger_tooltip = {
-					tooltip = CHL_can_not_have_anarchy_tt
-					NOT = {
-						OR = {
-							has_idea = idea_CHL_near_anarchic_society
-							has_idea = idea_CHL_near_anarchic_society_2
-							has_idea = idea_CHL_near_anarchic_society_3
-							has_idea = idea_CHL_near_anarchic_society_4
-						}
-					}
-				}
-			}
 		}
 
 		visible = {
@@ -2006,32 +1938,11 @@ political_actions = {
 
 		available = {
 			democratic < 0.2
-			IF = {
-				limit = {
-					tag = SPR
-				}
-				NOT = {
-					has_idea = SPR_political_violence
-				}
-			}
 		}
 
 		visible = {
 			NOT = { has_government = democratic }
 			democratic > 0
-			IF = { 
-				limit = { 
-					has_dlc = "Battle for the Bosporus"	
-				}
-				NOT = { original_tag = GRE }
-			}
-			IF = {
-				limit = {
-					# TODO JA, change to the correct dlc target
-					has_dlc = "Arms Against Tyranny"
-				}
-				NOT = { original_tag = CHL }
-			}
 		}
 
 		remove_trigger = {
@@ -2086,51 +1997,16 @@ political_actions = {
 
 		available = {
 			communism < 0.2
-			IF = {
-				limit = {
-					tag = SPR
-				}
-				NOT = {
-					has_idea = SPR_political_violence
-				}
-			}
-			IF = {
-				limit = {
-					# TODO JA, add the correct dlc requirements
-					has_dlc = "Arms Against Tyranny"
-					original_tag = CHL
-				}
-				custom_trigger_tooltip = {
-					tooltip = CHL_can_not_have_anarchy_tt
-					NOT = {
-						OR = {
-							has_idea = idea_CHL_near_anarchic_society
-							has_idea = idea_CHL_near_anarchic_society_2
-							has_idea = idea_CHL_near_anarchic_society_3
-							has_idea = idea_CHL_near_anarchic_society_4
-						}
-					}
-				}
-			}
 		}
 
 		visible = {
 			NOT = { has_government = communism }
 			communism > 0
-			IF = { 
-				limit = { 
-					has_dlc = "Battle for the Bosporus"	
-				}
-				NOT = { original_tag = GRE }
-			}
 		}
 
 		remove_trigger = {
 			hidden_trigger = {
-				OR = {
-					has_government = communism
-					has_country_flag = DEN_allow_communism_flag
-				}
+				has_government = communism
 			}
 		}
 	
@@ -2177,16 +2053,6 @@ political_actions = {
 		
 		ai_will_do = {
 			factor = 0
-			modifier = {
-				add = 2000
-				original_tag = FIN
-				FIN_is_historical_ai = yes
-				OR = {
-					has_idea = communist_pressure
-					communism > 0.08
-				}
-				NOT = { has_completed_focus = FIN_the_lone_wolf }
-			}
 		}
 	}
 	
@@ -2195,40 +2061,10 @@ political_actions = {
 		icon = generic_political_discourse
 
 		available = {
-			if = {
-				limit = {
-					tag = SPR
-				}
-				NOT = {
-					has_idea = SPR_political_violence
-				}
-			}
-			if = {
-				limit = {
-					has_dlc = "Battle for the Bosporus"
-					original_tag = BUL
-				}
-				NOT = {
-					has_country_flag = {
-						flag = BUL_freedom_of_press_flag
-						days < 365
-					}
-					focus_progress = {
-						focus = BUL_freedom_of_press
-						progress > 0
-					}
-				}
-			}
 		}
 
 		visible = {
 			has_government = fascism
-			if = { 
-				limit = { 
-					has_dlc = "Battle for the Bosporus"
-				}
-				NOT = { original_tag = GRE }
-			}
 		}
 	
 		modifier = {
@@ -2251,49 +2087,10 @@ political_actions = {
 		icon = generic_political_discourse
 
 		available = {
-			if = {
-				limit = {
-					tag = SPR
-				}
-				NOT = {
-					has_idea = SPR_political_violence
-				}
-			}
-			if = {
-				limit = {
-					tag = TUR
-					has_dlc = "Battle for the Bosporus"
-				}
-				NOT = {
-					has_completed_focus = TUR_privatize_the_anadolu_agency
-				}
-			}
-			if = {
-				limit = {
-					original_tag = BUL
-					has_dlc = "Battle for the Bosporus"				
-				}
-				NOT = {
-					has_country_flag = {
-						flag = BUL_freedom_of_press_flag
-						days < 365
-					}
-					focus_progress = {
-						focus = BUL_freedom_of_press
-						progress > 0
-					}
-				}
-			}
 		}
 
 		visible = {
 			has_government = democratic
-			if = { 
-				limit = { 
-					has_dlc = "Battle for the Bosporus"
-				}
-				NOT = { original_tag = GRE }
-			}
 		}
 		
 		modifier = {
@@ -2316,40 +2113,10 @@ political_actions = {
 		icon = generic_political_discourse
 
 		available = {
-			if = {
-				limit = {
-					tag = SPR
-				}
-				NOT = {
-					has_idea = SPR_political_violence
-				}
-			}
-			if = {
-				limit = {
-					original_tag = BUL
-					has_dlc = "Battle for the Bosporus"
-				}
-				NOT = {
-					has_country_flag = {
-						flag = BUL_freedom_of_press_flag
-						days < 365
-					}
-					focus_progress = {
-						focus = BUL_freedom_of_press
-						progress > 0
-					}
-				}
-			}
 		}
 
 		visible = {
 			has_government = communism
-			if = { 
-				limit = { 
-					has_dlc = "Battle for the Bosporus"
-				}
-				NOT = { original_tag = GRE }
-			}
 		}
 	
 		modifier = {
@@ -2372,49 +2139,10 @@ political_actions = {
 		icon = generic_political_discourse
 
 		available = {
-			if = {
-				limit = {
-					tag = SPR
-				}
-				NOT = {
-					has_idea = SPR_political_violence
-				}
-			}
-			if = {
-				limit = {
-					tag = TUR
-					has_dlc = "Battle for the Bosporus"
-				}
-				NOT = {
-					has_completed_focus = TUR_privatize_the_anadolu_agency
-				}
-			}
-			if = {
-				limit = {
-					original_tag = BUL
-					has_dlc = "Battle for the Bosporus"
-				}
-				NOT = {
-					has_country_flag = {
-						flag = BUL_freedom_of_press_flag
-						days < 365
-					}
-					focus_progress = {
-						focus = BUL_freedom_of_press
-						progress > 0
-					}
-				}
-			}
 		}
 
 		visible = {
 			has_government = neutrality
-			if = { 
-				limit = { 
-					has_dlc = "Battle for the Bosporus"
-				}
-				NOT = { original_tag = GRE }
-			}
 		}
 	
 		modifier = {
@@ -2429,15 +2157,6 @@ political_actions = {
 		
 		ai_will_do = {
 			factor = 0
-			modifier = { #Help Historical AI Finland
-				add = 10
-				has_dlc = "Arms Against Tyranny"
-				original_tag = FIN
-				FIN_is_historical_ai = yes
-				has_government = neutrality
-				NOT = { has_completed_focus = FIN_the_lone_wolf }
-				neutrality < 0.85
-			}
 		}
 	}
 }

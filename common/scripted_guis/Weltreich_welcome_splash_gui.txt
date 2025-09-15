@@ -16,9 +16,176 @@ scripted_gui = {
 		effects = {
 			mod_options_button_click = {
 				clr_country_flag = show_welcome_splash
-				country_event = update_event.1
+				if = {
+					limit = {
+						is_ai = no
+						OR = {
+							original_tag = USA
+							original_tag = ENG
+							original_tag = FRA
+							original_tag = GER
+							original_tag = SOV
+							original_tag = AUH
+							original_tag = TUR
+							original_tag = JAP
+							original_tag = ITA
+							original_tag = BUL
+							original_tag = GRE
+							original_tag = FNG
+							original_tag = CHI
+							original_tag = SAF
+							original_tag = CAN
+						}
+					}
+					set_variable = { WR_country_desc_splash_variable = 1 }
+					set_variable = { country_guide_page_count = 5 }
+					set_variable_to_random = WR_country_desc_splash_refresh
+				}
 			}
 		}
+	}
+	
+	WR_country_desc_splash = {
+		context_type = player_context
+		window_name = "WR_country_desc_splash_container"
+		dirty = WR_country_desc_splash_refresh
+
+		ai_enabled = { always = no }
+
+		visible = {
+			has_variable = WR_country_desc_splash_variable
+		}
+		
+		triggers = {
+			tab_1_click_enabled = { NOT = { check_variable = { WR_country_desc_splash_variable = 1 } } }
+			tab_2_click_enabled = { NOT = { check_variable = { WR_country_desc_splash_variable = 2 } } }
+			tab_3_click_enabled = { NOT = { check_variable = { WR_country_desc_splash_variable = 3 } } }
+			tab_4_click_enabled = { NOT = { check_variable = { WR_country_desc_splash_variable = 4 } } }
+		}
+
+
+		effects = {
+			tab_1_click = {
+				set_variable = { WR_country_desc_splash_variable = 1 }
+				set_variable_to_random = WR_country_desc_splash_refresh
+			}
+			tab_2_click = {
+				set_variable = { WR_country_desc_splash_variable = 2 }
+				set_variable_to_random = WR_country_desc_splash_refresh
+			}
+			tab_3_click = {
+				set_variable = { WR_country_desc_splash_variable = 3 }
+				set_variable_to_random = WR_country_desc_splash_refresh
+			}
+			tab_4_click = {
+				set_variable = { WR_country_desc_splash_variable = 4 }
+				set_variable_to_random = WR_country_desc_splash_refresh
+			}
+
+			mod_options_button_click = {
+				clear_variable = WR_country_desc_splash_variable
+				set_variable_to_random = WR_country_desc_splash_refresh
+			}
+		}
+	}
+	
+	WR_country_desc_splash_tab_1 = {
+		context_type = player_context
+		window_name = WR_country_desc_splash_tab_1_container
+		parent_window_name = "WR_country_desc_splash_container"
+		dirty = WR_country_desc_splash_refresh
+
+		ai_enabled = { always = no }
+
+		visible = {
+			check_variable = { WR_country_desc_splash_variable = 1 }
+		}
+
+		properties = {
+			WR_country_desc_splash_tab_1_background_icon = {
+				image = "[ROOT.GetCountryIntroBackground]"
+			}
+		}
+	}
+	
+	WR_country_desc_splash_tab_2 = {
+		context_type = player_context
+		window_name = WR_country_desc_splash_tab_2_container
+		parent_window_name = "WR_country_desc_splash_container"
+		dirty = WR_country_desc_splash_refresh
+
+		ai_enabled = { always = no }
+
+		visible = {
+			check_variable = { WR_country_desc_splash_variable = 2 }
+		}
+
+		properties = {
+			WR_country_desc_splash_tab_2_background_icon = {
+				image = "[ROOT.GetCountryIntroBackground]"
+			}
+		}
+	}
+	
+	WR_country_desc_splash_tab_3 = {
+		context_type = player_context
+		window_name = WR_country_desc_splash_tab_3_container
+		parent_window_name = "WR_country_desc_splash_container"
+		dirty = WR_country_desc_splash_refresh
+
+		ai_enabled = { always = no }
+
+		visible = {
+			check_variable = { WR_country_desc_splash_variable = 3 }
+		}
+		
+		triggers = {
+			country_guide_page_indicator_box_visible = {
+				has_variable = country_guide_page_count
+			}
+			country_guide_page_indicator_visible = {
+				has_variable = country_guide_page_count
+			}
+			guide_flip_back_visible = {
+				has_variable = country_guide_page_count
+			}
+			guide_flip_forward_visible = {
+				has_variable = country_guide_page_count
+			}
+
+			guide_flip_back_click_enabled = { check_variable = { curr_page_guide > 0 } }
+			guide_flip_forward_click_enabled = { check_variable = { curr_page_guide < country_guide_page_count } }
+		}
+		
+		effects = {
+			guide_flip_back_click = {
+				subtract_from_variable = { curr_page_guide = 1 }
+				set_variable_to_random = WR_country_desc_splash_refresh
+			}
+			guide_flip_forward_click = {
+				add_to_variable = { curr_page_guide = 1 }
+				set_variable_to_random = WR_country_desc_splash_refresh
+			}
+		}
+	}
+	
+	WR_country_desc_splash_tab_4 = {
+		context_type = player_context
+		window_name = WR_country_desc_splash_tab_4_container
+		parent_window_name = "WR_country_desc_splash_container"
+		dirty = WR_country_desc_splash_refresh
+
+		ai_enabled = { always = no }
+
+		visible = {
+			check_variable = { WR_country_desc_splash_variable = 4 }
+		}
+
+		#properties = {
+		#	WR_country_desc_splash_tab_1_background_icon = {
+		#		image = "[ROOT.GetCountryIntroBackground]"
+		#	}
+		#}
 	}
 }
 

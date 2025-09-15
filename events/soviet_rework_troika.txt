@@ -12,13 +12,6 @@ country_event = {
 	title = soviet_rework_troika.001.t
 	desc = soviet_rework_troika.001.d
 	is_triggered_only = yes
-	immediate = {
-		hidden_effect = {
-			retire_character = SOV_lev_kamenev
-			remove_ideas = SOV_vladimir_milyutin
-			news_event = Soviet.89
-		}
-	}
 	option = {
 		name = soviet_rework_troika.001.a
 		ai_chance = {
@@ -39,6 +32,7 @@ country_event = {
 		}
 		custom_effect_tooltip = SOV_troika_positive_ctt
 		complete_national_focus = SOV_establish_the_troika
+		set_country_flag = Troika_is_built_flag
 	}
 	option = {
 		name = soviet_rework_troika.001.b
@@ -70,6 +64,7 @@ country_event = {
 			}
 		}
 		custom_effect_tooltip = SOV_troika_negative_ctt
+		set_country_flag = Troika_is_built_flag
 		complete_national_focus = SOV_the_works_want_liberation
 	}
 }
@@ -687,6 +682,9 @@ country_event = {
 			}
 		}
 		retire_character = SOV_semyon_budyonny
+		retire_character = SOV_pavel_dybenko
+		retire_character = SOV_sergey_kamenev
+		retire_character = SOV_mikhail_bonch_bruyevich
 		ai_chance = {
 			factor = 3
 		}
@@ -884,6 +882,8 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.036.a
 		add_political_power = 50
+		custom_effect_tooltip = SOV_zinoviev_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_ZINOVIEV" }
 		ai_chance = {
 			base = 3
 		}
@@ -899,6 +899,8 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.037.a
 		add_political_power = 50
+		custom_effect_tooltip = SOV_tukhachevsky_fake_ending
+		country_event = { id = soviet_rework_troika.062 days = 31 }
 		ai_chance = {
 			base = 3
 		}
@@ -951,6 +953,8 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.040.a
 		add_political_power = 50
+		custom_effect_tooltip = SOV_stalin_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_STALIN" }
 		ai_chance = {
 			base = 3
 		}
@@ -966,6 +970,8 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.041.a
 		add_political_power = 50
+		custom_effect_tooltip = SOV_trotsky_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_TROTSKY" }
 		ai_chance = {
 			base = 3
 		}
@@ -981,6 +987,8 @@ country_event = {
 	option = {
 		name = soviet_rework_troika.042.a
 		add_political_power = 50
+		custom_effect_tooltip = SOV_bukharin_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_BUKHARIN" }
 		ai_chance = {
 			base = 3
 		}
@@ -1046,7 +1054,7 @@ news_event = {
 				original_tag = SOV
 				has_global_flag = jap_vic_against_sov
 			}
-			SOV = { country_event = { soviet_rework_troika.047 days = 25 } }
+			SOV = { country_event = { id = soviet_rework_troika.047 days = 25 } }
 		}
 		else_if = {
 			limit = {
@@ -1329,7 +1337,7 @@ country_event = {
 				limit = {
 					has_global_flag = jap_vic_against_sov
 				}
-				SOV = { country_event = { soviet_rework_troika.056 days = 23 } }
+				SOV = { country_event = { id = soviet_rework_troika.056 days = 23 } }
 			}
 			else_if = {
 				limit = {
@@ -2029,6 +2037,252 @@ country_event = {
 }
 
 country_event = {
+	id = soviet_rework_troika.061
+	title = soviet_rework_troika.061.t
+	desc = soviet_rework_troika.061.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.061.a
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.062
+	title = soviet_rework_troika.062.t
+	desc = soviet_rework_troika.062.d
+	picture = GFX_report_event_SOV_mongolia_fortify_border
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.062.a
+		unlock_decision_category_tooltip = SOV_collapsing_economy
+		set_country_flag = time_is_going_on_flag
+		country_event = { id = soviet_rework_troika.063 days = 10 }
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.063
+	title = soviet_rework_troika.063.t
+	desc = soviet_rework_troika.063.d
+	picture = GFX_report_event_lithuania_army
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.063.a
+		set_country_flag = war_is_going_on_flag
+		mark_focus_tree_layout_dirty = yes
+		hidden_effect = {
+			load_oob = "SOV_focus_9"
+		}
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.064
+	title = soviet_rework_troika.064.t
+	desc = soviet_rework_troika.064.d
+	picture = GFX_victory_tukhachevsky
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.064.a
+		custom_effect_tooltip = SOV_tukhachevsky_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_TUKHACHEVSKY" }
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.065
+	title = soviet_rework_troika.065.t
+	desc = soviet_rework_troika.065.d
+	picture = GFX_victory_tukhachevsky
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.065.a
+		news_event = Soviet.84
+		hidden_effect = {
+			country_event = { id = soviet_rework_troika.068 days = 70 }
+		}
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.066
+	title = soviet_rework_troika.066.t
+	desc = soviet_rework_troika.066.d
+	picture = GFX_victory_tukhachevsky
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.066.a
+		add_ideas = SOV_disbanded_army
+		unlock_decision_category_tooltip = SOV_tukachevsky_coup
+		set_country_flag = SOV_tukachevsky_coup_start_flag
+		set_variable = { SOV_tukachevsky_coup_progress_var = SOV.SOV_army_influence_var }
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.067
+	title = soviet_rework_troika.067.t
+	desc = soviet_rework_troika.067.d
+	picture = bukharin_purge
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.067.a
+		country_event = Soviet.77
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.068
+	title = soviet_rework_troika.068.t
+	desc = soviet_rework_troika.068.d
+	picture = GFX_SOV_friend_of_tukhachevsky
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.068.a
+		set_country_flag = event68isdone_flag
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.069
+	title = soviet_rework_troika.069.t
+	desc = soviet_rework_troika.069.d
+	picture = GFX_SOV_friend_of_tukhachevsky
+	trigger = {
+		has_country_flag = event68isdone_flag
+		has_war_with = GER
+	}
+	fire_only_once = yes
+	option = {
+		name = soviet_rework_troika.069.a
+		set_country_flag = event69isdone_flag
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.070
+	title = soviet_rework_troika.070.t
+	desc = soviet_rework_troika.070.d
+	picture = GFX_SOV_friend_of_tukhachevsky
+	trigger = {
+		has_country_flag = event69isdone_flag
+		has_country_flag = second_great_war_winner
+	}
+	fire_only_once = yes
+	option = {
+		name = soviet_rework_troika.070.a
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.071
+	title = soviet_rework_troika.071.t
+	desc = soviet_rework_troika.071.d
+	picture = GFX_old_soldier
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.071.a
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.072
+	title = soviet_rework_troika.072.t
+	desc = soviet_rework_troika.072.d
+	picture = GFX_old_soldier
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.072.a
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.073
+	title = soviet_rework_troika.073.t
+	desc = soviet_rework_troika.073.d
+	picture = GFX_troika_1
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.073.a
+		country_event = { id = soviet_rework_troika.074 days = 5 }
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.074
+	title = soviet_rework_troika.074.t
+	desc = soviet_rework_troika.074.d
+	picture = GFX_troika_1
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.074.a
+		country_event = { id = soviet_rework_troika.075 days = 5 }
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
+	id = soviet_rework_troika.075
+	title = soviet_rework_troika.075.t
+	desc = soviet_rework_troika.075.d
+	picture = GFX_troika_1
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.075.a
+		remove_country_leader_role = {
+			character = SOV_Supreme_Soviet_of_Russia
+			ideology = leninism
+		}
+		country_event = { id = soviet_rework_troika.001 days = 5 }
+		ai_chance = {
+			base = 3
+		}
+	}
+}
+
+country_event = {
 	picture = GFX_report_event_french_resistance_01
 	id = soviet_rework_revolution.1
 	title = soviet_rework_revolution.1.t
@@ -2518,7 +2772,7 @@ country_event = {
 	}
 	option = {
 		name = soviet_rework_white.005.a
-		add_stability = -0.035
+		add_stability = -0.05
 		hidden_effect = {
 			if = {
 				limit = {
@@ -2641,6 +2895,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = soviet_rework_white.011.a
+		set_country_flag = you_are_puppet_boy_flag
 		remove_ideas = RUS_rudiger_von_der_goltz
 		add_ideas = RUS_Friedrich_von_Prittwitz
 		ai_chance = {
@@ -2687,6 +2942,19 @@ country_event = { #First
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = THE_AGE_OF_DEMOCRACY
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = MILITARY_GOVERNMENT
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 	option = {
@@ -2698,6 +2966,26 @@ country_event = { #First
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = RUS_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = RETURN_OF_THE_TSAR
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = CLIQUE_OF_ARKHANGELSKY
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 }
@@ -2764,6 +3052,19 @@ country_event = { #Second
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = THE_AGE_OF_DEMOCRACY
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = MILITARY_GOVERNMENT
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 	option = {
@@ -2775,6 +3076,26 @@ country_event = { #Second
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = RUS_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = RETURN_OF_THE_TSAR
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = CLIQUE_OF_ARKHANGELSKY
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 }
@@ -2842,6 +3163,19 @@ country_event = { #Third
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = THE_AGE_OF_DEMOCRACY
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = MILITARY_GOVERNMENT
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 	option = {
@@ -2853,6 +3187,26 @@ country_event = { #Third
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = RUS_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = RETURN_OF_THE_TSAR
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = CLIQUE_OF_ARKHANGELSKY
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 }
@@ -2897,6 +3251,19 @@ country_event = { #Fourth
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+				modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = THE_AGE_OF_DEMOCRACY
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = MILITARY_GOVERNMENT
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 	option = {
@@ -2908,6 +3275,26 @@ country_event = { #Fourth
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = RUS_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = RETURN_OF_THE_TSAR
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = CLIQUE_OF_ARKHANGELSKY
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 }
@@ -2978,6 +3365,30 @@ country_event = { #Fifth
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = RUS_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = THE_AGE_OF_DEMOCRACY
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = MILITARY_GOVERNMENT
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = CLIQUE_OF_ARKHANGELSKY
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 	option = {
@@ -2987,6 +3398,13 @@ country_event = { #Fifth
 		}
 		ai_chance = {
 			base = 10
+			modifier = {
+				has_game_rule = {
+					rule = RUS_AI_BEHAVIOR 
+					option = RETURN_OF_THE_TSAR
+				}
+				factor = 0
+			}
 		}
 	}
 }
@@ -3009,6 +3427,19 @@ country_event = { #Sixth
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = THE_AGE_OF_DEMOCRACY
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = MILITARY_GOVERNMENT
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 	option = {
@@ -3020,6 +3451,26 @@ country_event = { #Sixth
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = RUS_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = RETURN_OF_THE_TSAR
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = CLIQUE_OF_ARKHANGELSKY
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 }
@@ -3086,6 +3537,19 @@ country_event = { #Last
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = THE_AGE_OF_DEMOCRACY
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = MILITARY_GOVERNMENT
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 	option = {
@@ -3097,6 +3561,26 @@ country_event = { #Last
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				OR = {
+					AND = {
+						is_historical_focus_on = yes
+						has_game_rule = {
+							rule = RUS_AI_BEHAVIOR
+							option = DEFAULT
+						}
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = RETURN_OF_THE_TSAR
+					}
+					has_game_rule = {
+						rule = RUS_AI_BEHAVIOR 
+						option = CLIQUE_OF_ARKHANGELSKY
+					}
+				}
+				factor = 0
+			}
 		}
 	}
 }
@@ -3261,7 +3745,6 @@ country_event = {
 		has_country_flag = you_must_keep_stability_flag
 		has_stability < 0.15
 		NOT = { has_idea = Russia_in_turmoil }
-		is_subject_of = GER
 	}
 	option = {
 		name = soviet_rework_white.036.a
@@ -3466,6 +3949,13 @@ country_event = { #Royalists - First
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				has_game_rule = {
+					rule = RUS_AI_BEHAVIOR 
+					option = RETURN_OF_THE_TSAR
+				}
+				factor = 0
+			}
 		}
 	}
 }
@@ -3529,6 +4019,13 @@ country_event = { #Arkhangelsky - Second
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				has_game_rule = {
+					rule = RUS_AI_BEHAVIOR 
+					option = RETURN_OF_THE_TSAR
+				}
+				factor = 0
+			}
 		}
 	}
 	option = { #Royalists
@@ -3602,6 +4099,13 @@ country_event = { #Royalists - Third
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				has_game_rule = {
+					rule = RUS_AI_BEHAVIOR 
+					option = RETURN_OF_THE_TSAR
+				}
+				factor = 0
+			}
 		}
 	}
 	option = { #Royalists
@@ -3685,6 +4189,13 @@ country_event = { #Arkhangelsky - Last
 		add_political_power = -5
 		ai_chance = {
 			base = 10
+			modifier = {
+				has_game_rule = {
+					rule = RUS_AI_BEHAVIOR 
+					option = RETURN_OF_THE_TSAR
+				}
+				factor = 0
+			}
 		}
 	}
 }
@@ -3726,7 +4237,7 @@ country_event = {
 }
 
 country_event = {
-	picture = GFX_denikin_event
+	picture = GFX_report_event_generic_read_write
 	id = soviet_rework_white.056
 	title = soviet_rework_white.056.t
 	desc = soviet_rework_white.056.d
@@ -3864,7 +4375,17 @@ news_event = {
 	immediate = {
 		hidden_effect = {
 			GER = { end_puppet = RUS }
-			RUS = { leave_faction = yes }
+			RUS = {
+				leave_faction = yes
+				add_ideas = country_isolation
+				add_stability = 0.25
+			}
+			every_country = {
+				limit = {
+					has_war_with = RUS
+				}
+				white_peace = RUS
+			}
 		}
 	}
 	option = {
@@ -3938,10 +4459,11 @@ country_event = {
 	option = {
 		name = soviet_rework_white.063.a
 		set_country_flag = will_war_against_rus
-		create_wargoal = {
-			type = puppet_wargoal_focus
+		declare_war_on = {
 			target = RUS
+			type = puppet_wargoal_focus
 		}
+		RUS = { add_ideas = RUS_russian_independent_war }
 		ai_chance = {
 			base = 100
 		}
@@ -3981,15 +4503,6 @@ news_event = {
 	major = yes
 	immediate = {
 		hidden_effect = {
-			every_country = {
-				limit = {
-					has_war_with = RUS
-				}
-				white_peace = {
-					tag = RUS
-					message = victory_of_RUS
-				}
-			}
 			RUS = {
 				country_event = { id = soviet_rework_white.066 days = 10 }
 			}
@@ -4011,18 +4524,57 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = soviet_rework_white.066.a
-		add_ideas = RUS_zinovy_peshkov
+		retire_character = RUS_anton_denikin
+		RUS_zinovy_peshkov = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = despotism
+				}
+			}						
+		}
 		set_country_flag = set_path_of_russia
 		ai_chance = {
 			base = 10
+			modifier = {
+				has_game_rule = {
+					rule = RUS_AI_BEHAVIOR 
+					option = THE_AGE_OF_DEMOCRACY
+				}
+				factor = 0
+			}
 		}
 	}
 	option = {
 		name = soviet_rework_white.066.b
-		add_ideas = RUS_viktor_chernov
+		retire_character = RUS_anton_denikin
+		set_politics = {
+			ruling_party = democratic
+			elections_allowed = yes
+			election_frequency = 48
+		}
+		add_popularity = {
+			ideology = democratic
+			popularity = 0.1
+		}
+		RUS_viktor_chernov = {
+			add_country_leader_role = {
+				promote_leader = yes
+				country_leader = {
+					ideology = social_democracy
+				}
+			}
+		}
 		set_country_flag = set_path_of_russia
 		ai_chance = {
 			base = 10
+			modifier = {
+				has_game_rule = {
+					rule = RUS_AI_BEHAVIOR 
+					option = MILITARY_GOVERNMENT
+				}
+				factor = 0
+			}
 		}
 	}
 }
@@ -4048,7 +4600,6 @@ country_event = {
 	title = soviet_rework_white.068.t
 	desc = soviet_rework_white.068.d
 	is_triggered_only = yes
-	major = yes
 	option = {
 		name = soviet_rework_white.068.a
 		retire_character = RUS_maria_spiridonova
@@ -4066,10 +4617,96 @@ country_event = {
 	title = soviet_rework_white.069.t
 	desc = soviet_rework_white.069.d
 	is_triggered_only = yes
-	major = yes
 	option = {
 		name = soviet_rework_white.069.a
 		add_stability = 0.05
+		hidden_effect = {
+			scoped_play_song = "WR_ENDING_RUSSIA_HAPPY"
+		}
+		set_country_flag = happy_russia_flag
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	picture = GFX_kill_badguys
+	id = soviet_rework_white.070
+	title = soviet_rework_white.070.t
+	desc = soviet_rework_white.070.d
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_white.070.a
+		add_timed_idea = { idea = rus_political_purge days = 150 }
+		add_manpower = -100
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	picture = GFX_report_event_generic_read_write
+	id = soviet_rework_white.071
+	title = soviet_rework_white.071.t
+	desc = soviet_rework_white.071.d
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_white.071.a
+		add_ideas = RUS_russian_government
+		add_country_leader_trait = President_of_All_Russia
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	picture = GFX_RUS_aleksey_arkhangelsky
+	id = soviet_rework_white.072
+	title = soviet_rework_white.072.t
+	desc = soviet_rework_white.072.d
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_white.072.a
+		hidden_effect = {
+			scoped_play_song = "WR_ENDING_RUSSIA_SAD"
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	picture = GFX_purge_tsar
+	id = soviet_rework_white.073
+	title = soviet_rework_white.073.t
+	desc = soviet_rework_white.073.d
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_white.073.a
+		hidden_effect = {
+			scoped_play_song = "WR_ENDING_RUSSIA_SAD"
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	picture = kazan
+	id = soviet_rework_white.074
+	title = soviet_rework_white.074.t
+	desc = soviet_rework_white.074.d
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_white.074.a
+		hidden_effect = {
+			scoped_play_song = "WR_ENDING_RUSSIA_SAD"
+		}
 		ai_chance = {
 			base = 10
 		}

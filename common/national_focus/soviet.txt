@@ -45,8 +45,22 @@ focus_tree = {
 					NOT = { has_country_flag = pass_events_flag }
 				}
 				add_political_power = -50
-				country_event = soviet_rework_troika.001
 			}
+			hidden_effect = {
+				retire_character = SOV_lev_kamenev
+				remove_ideas = SOV_vladimir_milyutin
+				news_event = Soviet.89
+				SOV_Supreme_Soviet_of_Russia = {
+					add_country_leader_role = {
+						promote_leader = yes
+						country_leader = {
+							ideology = leninism
+							traits = { emergency_government }
+						}
+					}						
+				}
+			}
+			country_event = { id = soviet_rework_troika.073 days = 3 }
 		}
 	}
 	
@@ -64,6 +78,9 @@ focus_tree = {
 			focus = SOV_the_works_want_liberation
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			has_country_flag = Troika_is_built_flag
+		}
 		prerequisite = {
 			focus = SOV_death_of_kamenev
 		}
@@ -887,7 +904,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_ousting_trotsky
-		icon = GFX_SOV_ousting_zinoviev
+		icon = GFX_SOV_Trial_of_the_militarists
 		relative_position_id = SOV_set_a_trap
 		x = 1
 		y = 1
@@ -1270,7 +1287,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_Arrest_the_Zinovievists
-		icon = GFX_SOV_Arrest_the_Zinovievists
+		icon = GFX_SOV_ousting_zinoviev
 		relative_position_id = SOV_military_methods_of_communist_hegemony
 		x = 1
 		y = 1
@@ -1344,7 +1361,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_Arrest_Stalin
-		icon = GFX_SOV_Arrest_the_Stalin
+		icon = GFX_SOV_replace_the_secretary
 		relative_position_id = SOV_Reduce_secretary_permissions
 		x = 1
 		y = 1
@@ -1706,6 +1723,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = SOV_government_of_workers
+			add_research_slot = 1
 		}
 	}
 	
@@ -1855,7 +1873,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_Bureau_of_Military_Research
-		icon = GFX_SOV_Bureau_of_Military_Research
+		icon = GFX_focus_research2
 		relative_position_id = SOV_Eliminate_factionalism_in_the_military
 		x = -1
 		y = 1
@@ -1881,6 +1899,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = SOV_Bureau_of_Military_Research
+			add_research_slot = 1
 		}
 	}
 	
@@ -2109,6 +2128,7 @@ focus_tree = {
                 tooltip = SOV_rework_troika_unlocked_by_event_ctt		
                 always = no
 		    }
+			has_country_flag = Troika_is_built_flag
 		}
 		prerequisite = {
 			focus = SOV_death_of_kamenev
@@ -3210,6 +3230,7 @@ focus_tree = {
 				amount = 1000
 				producer = SOV
 			}
+			add_research_slot = 1
 		}
 	}
 	
@@ -3434,6 +3455,7 @@ focus_tree = {
 					clr_country_flag = sov_faction
 				}
 			}
+			add_research_slot = 1
 		}
 	}
 	
@@ -3687,10 +3709,6 @@ focus_tree = {
 		ai_will_do = {
 			factor = 100
 		}
-		available = {
-			has_war_with = UKR
-			has_war_with = BLR
-		}
 		prerequisite = {
 			focus = SOV_cut_off_the_snakes_head
 		}
@@ -3751,14 +3769,6 @@ focus_tree = {
 		cost = 5
 		ai_will_do = {
 			factor = 100
-		}
-		available = {
-			OR = {
-				has_war_with = UBD
-				has_war_with = EST
-				has_war_with = LAT
-			}
-			has_war_with = LIT
 		}
 		prerequisite = {
 			focus = SOV_cut_off_the_snakes_head
@@ -4325,6 +4335,133 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = SOV_Armored_Divisions
+		icon = GFX_focus_generic_tank_production
+		relative_position_id = SOV_strengthening_of_camouflage
+		x = -1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 14
+		}
+		allow_branch = {
+			has_country_leader = {
+				character = SOV_mikhail_tukhachevsky
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_strengthening_of_camouflage
+		}
+		available = {
+			if = {
+				limit = { has_dlc = "No Step Back" }
+				has_design_based_on = medium_tank_chassis
+			}
+			else = {
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = tooltip_has_tech_detailed
+						NAME = country_culture|medium_tank_equipment_1
+						TECH = medium_tank_equipment_1
+					}
+					has_tech = basic_medium_tank
+				}
+			}
+		}
+		completion_reward = {
+			division_template = {
+				name = "Gvardeyskaya Mekhanizirovannaya diviziya"
+				division_names_group = SOV_ARM_01
+				regiments = {
+					motorized = { x = 0 y = 0 }
+					motorized = { x = 0 y = 1 }
+					motorized = { x = 0 y = 2 }
+					motorized = { x = 1 y = 0 }
+					motorized = { x = 1 y = 1 }
+					medium_armor = { x = 2 y = 0 }
+					medium_armor = { x = 2 y = 1 }
+					medium_armor = { x = 2 y = 2 }
+					medium_armor = { x = 2 y = 3 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+				}
+				priority = 2
+			}
+			random_owned_controlled_state = {
+				prioritize = { 219 }
+				create_unit = {
+					division = "division_template = \"Gvardeyskaya Mekhanizirovannaya diviziya\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "division_template = \"Gvardeyskaya Mekhanizirovannaya diviziya\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "division_template = \"Gvardeyskaya Mekhanizirovannaya diviziya\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "division_template = \"Gvardeyskaya Mekhanizirovannaya diviziya\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+				create_unit = {
+					division = "division_template = \"Gvardeyskaya Mekhanizirovannaya diviziya\" start_experience_factor = 0.2"
+					owner = ROOT
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = SOV_Deep_Battle_Theory
+		icon = GFX_focus_generic_tank_air_support
+		relative_position_id = SOV_strengthening_of_camouflage
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 14
+		}
+		allow_branch = {
+			has_country_leader = {
+				character = SOV_mikhail_tukhachevsky
+				ruling_only = yes
+			}
+		}
+		prerequisite = {
+			focus = SOV_strengthening_of_camouflage
+		}
+		completion_reward = {
+			enable_tech_deep_battle_theory = yes
+		}
+	}
+	
+	focus = {
+		id = SOV_Were_coming
+		icon = GFX_focus_SOV_the_glory_of_the_red_army_communism
+		relative_position_id = SOV_Armored_Divisions
+		x = 1
+		y = 1
+		cost = 5.8
+		ai_will_do = {
+			factor = 14
+		}
+		prerequisite = {
+			focus = SOV_Armored_Divisions
+		}
+		prerequisite = {
+			focus = SOV_Deep_Battle_Theory
+		}
+		completion_reward = {
+			add_ideas = SOV_Were_coming
+		}
+	}
+	
+	focus = {
 		id = SOV_mechanized_offensive
 		icon = GFX_SOV_mechanized_offensive
 		relative_position_id = SOV_motorized_military
@@ -4750,7 +4887,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_expand_kamenev_line
-		icon = GFX_SOV_expand_kamenev_line
+		icon = GFX_goal_generic_fortify_city
 		relative_position_id = SOV_human_resources
 		x = 3
 		y = 1
@@ -4984,7 +5121,7 @@ focus_tree = {
 	#Red Fleet
 	focus = {
 		id = SOV_soviet_red_fleet
-		icon = GFX_goal_generic_build_navy
+		icon = GFX_SOV_soviet_red_fleet
 		x = 26
 		y = 8
 		cost = 5.8
@@ -5541,7 +5678,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_carrier
-		icon = GFX_SOV_carrier
+		icon = GFX_goal_generic_navy_carrier
 		relative_position_id = SOV_torpedo_from_the_sky
 		x = 0
 		y = 1
@@ -5565,7 +5702,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_base_strike
-		icon = GFX_SOV_base_strike
+		icon = GFX_focus_generic_air_bases
 		relative_position_id = SOV_carrier
 		x = -1
 		y = 1
@@ -5766,7 +5903,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_pilot_training
-		icon = GFX_focus_SOV_flying_clubs
+		icon = GFX_SOV_pilot_training
 		relative_position_id = SOV_Technological_advances
 		x = -1
 		y = 1
@@ -5823,7 +5960,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_Doctrine_for_Air_supremacy
-		icon = GFX_SOV_Doctrine_for_Air_supremacy
+		icon = GFX_goal_generic_air_fighter
 		relative_position_id = SOV_Improving_the_Air_Force_Situation
 		x = 0
 		y = 1
@@ -5965,7 +6102,7 @@ focus_tree = {
 	
 	focus = {
 		id = SOV_Doctrine_for_Bombing
-		icon = GFX_SOV_Doctrine_for_Bombing
+		icon = GFX_goal_generic_air_bomber
 		relative_position_id = SOV_air_force_reform
 		x = 5
 		y = 2
@@ -6025,7 +6162,7 @@ focus_tree = {
 		}
 		cost = 5.8
 		prerequisite = {
-			focus = SOV_Doctrine_for_Bombing
+			focus = SOV_destroy_enemy_camp
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
@@ -6600,11 +6737,9 @@ focus_tree = {
 			focus = SOV_the_final_push_against_economic_backwardness
 		}
 		completion_reward = {
-			swap_ideas = {
-				remove_ideas = SOV_idea_sluggish_industrialization2
-				remove_idea = SOV_the_final_push_against_economic_backwardness
-				add_idea = SOV_developed_economy
-			}
+			remove_ideas = SOV_idea_sluggish_industrialization2
+			remove_ideas = SOV_the_final_push_against_economic_backwardness
+			add_ideas = SOV_developed_economy
 		}
 	}
 	
@@ -6820,13 +6955,13 @@ focus_tree = {
 			focus = SOV_the_slow_push_towards_progress
 		}
 		completion_reward = {
+			remove_ideas = SOV_idea_sluggish_industrialization3
 			remove_ideas = SOV_support_for_New_Economic_Policy_2
 			remove_ideas = SOV_expand_kolkhozes
 			remove_ideas = SOV_give_concessions_to_the_kulaks
 			remove_ideas = SOV_abolish_sovkhozes
 			remove_ideas = SOV_the_slow_push_towards_progress
 			add_ideas = SOV_communist_economy
-			remove_ideas = SOV_idea_sluggish_industrialization3
 		}
 	}
 	
@@ -6843,9 +6978,13 @@ focus_tree = {
 		cost = 5.8
 		available = {
 			custom_trigger_tooltip = {
-				tooltip = SOV_victory_day_tt		
-				has_country_flag = second_great_war_winner
+				tooltip = SOV_victory_day_tt	
+				OR = {
+					has_country_flag = second_great_war_winner
+					has_country_flag = anti_russia_war_winner
+				}
 			}
+			has_war_with_majo = no
 		}
 		allow_branch = {
 			NOT = { has_country_flag = anti_russia_war_loser }
@@ -6948,6 +7087,9 @@ focus_tree = {
 					instant_build = yes
 				}	
 			}
+			hidden_effect = {
+				country_event = { id = soviet_rework_troika.071 days = 3 }
+			}
 		}
 	}
 	
@@ -7041,7 +7183,18 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			country_event = soviet_rework_troika.032
+			if = {
+				limit = {
+					has_country_leader = {
+						character = SOV_mikhail_tukhachevsky
+						ruling_only = yes
+					}
+				}
+				country_event = soviet_rework_troika.072
+			}
+			else = {
+				country_event = soviet_rework_troika.032
+			}
 		}
 	}
 	
@@ -7157,6 +7310,14 @@ focus_tree = {
 			focus = SOV_Iron_Curtain
 			focus = SOV_focus_on_spreading_the_revolution
 			focus = SOV_one_soldiers_story
+		}
+		available = {
+			NOT = {
+				has_country_leader = {
+					character = SOV_mikhail_tukhachevsky
+					ruling_only = yes
+				}
+			}
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
@@ -7275,6 +7436,26 @@ focus_tree = {
 			focus = SOV_extensive_army_policy
 			focus = SOV_one_workers_story
 		}
+		available = {
+			OR = {
+				AND = {
+					has_completed_focus = SOV_extensive_army_policy
+					has_completed_focus = SOV_and_on_and_on
+					has_completed_focus = SOV_one_workers_story
+				}
+				AND = {
+					has_completed_focus = SOV_the_pigeon_with_the_olive_leaf
+					has_completed_focus = SOV_and_on_and_on
+					has_completed_focus = SOV_one_workers_story
+					has_completed_focus = SOV_economic_transition
+				}
+				AND = {
+					has_completed_focus = SOV_the_pigeon_with_the_olive_leaf
+					has_completed_focus = SOV_one_workers_story
+					has_completed_focus = SOV_economic_transition
+				}
+			}
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			if = {
@@ -7328,6 +7509,28 @@ focus_tree = {
 		}
 	}
 	
+	focus = {
+		id = SOV_European_Revolutionary_War
+		icon = GFX_SOV_European_Revolutionary_War
+		relative_position_id = SOV_howling_brown_bear
+		x = 0
+		y = 1
+		allow_branch = {
+			has_country_flag = war_is_going_on_flag
+		}
+		ai_will_do = {
+			factor = 10
+		}
+		cost = 2
+		prerequisite = {
+			focus = SOV_howling_brown_bear
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			custom_effect_tooltip = SOV_European_Revolutionary_War_tt
+		}
+	}
+	
 	#After The End of The War - You Lost!
 	focus = {
 		id = SOV_the_war_has_been_lost
@@ -7348,7 +7551,10 @@ focus_tree = {
 		cancelable = no
 		available_if_capitulated = yes
 		allow_branch = {
-			has_country_flag = anti_russia_war_loser
+			OR = {
+				has_country_flag = anti_russia_war_loser
+				has_country_flag = third_world_war_loser
+			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -7371,6 +7577,11 @@ focus_tree = {
 		y = 1
 		ai_will_do = {
 			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = stop_the_collapse_flag }
+			}
 		}
 		cost = 5.8
 		cancelable = no
@@ -7395,6 +7606,11 @@ focus_tree = {
 		y = 1
 		ai_will_do = {
 			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = stop_the_collapse_flag }
+			}
 		}
 		cost = 5.8
 		prerequisite = {
@@ -7446,6 +7662,11 @@ focus_tree = {
 		ai_will_do = {
 			factor = 10
 		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = stop_the_collapse_flag }
+			}
+		}
 		cost = 5.8
 		prerequisite = {
 			focus = SOV_the_great_trial
@@ -7469,6 +7690,11 @@ focus_tree = {
 		y = 1
 		ai_will_do = {
 			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = stop_the_collapse_flag }
+			}
 		}
 		cost = 5.8
 		prerequisite = {
@@ -7494,6 +7720,11 @@ focus_tree = {
 		ai_will_do = {
 			factor = 10
 		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = stop_the_collapse_flag }
+			}
+		}
 		cost = 5.8
 		prerequisite = {
 			focus = SOV_industrial_emergency_recovery
@@ -7517,6 +7748,11 @@ focus_tree = {
 		y = 1
 		ai_will_do = {
 			factor = 10
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = stop_the_collapse_flag }
+			}
 		}
 		cost = 5.8
 		prerequisite = {
@@ -7542,6 +7778,11 @@ focus_tree = {
 		ai_will_do = {
 			factor = 10
 		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = stop_the_collapse_flag }
+			}
+		}
 		cost = 5.8
 		prerequisite = {
 			focus = SOV_facing_food_challenges
@@ -7566,6 +7807,11 @@ focus_tree = {
 		ai_will_do = {
 			factor = 10
 		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = stop_the_collapse_flag }
+			}
+		}
 		cost = 10
 		prerequisite = {
 			focus = SOV_securing_siberian_resources
@@ -7580,10 +7826,17 @@ focus_tree = {
 			focus = SOV_the_last_days_of_soviet_wr
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		cancelable = no
 		completion_reward = {
 			add_stability = 0.05
+			set_global_flag = you_cant_stop_now_flag
 			hidden_effect = {
-				news_event = soviet_rework_troika.045
+				if = {
+					limit = {
+						NOT = { has_country_flag = stop_the_collapse_flag }
+					}
+					news_event = soviet_rework_troika.045
+				}
 			}
 		}
 	}

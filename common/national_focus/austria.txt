@@ -1877,7 +1877,7 @@ focus_tree = {
 	focus = {
 		id = Austrio_Hungarian_Military_power
 		icon = GFX_goal_generic_build_tank
-		x = 41
+		x = 43
 		y = 0
 		cost = 10
 		ai_will_do = {
@@ -1896,7 +1896,7 @@ focus_tree = {
 		relative_position_id = Austrio_Hungarian_Military_power
 		x = -8
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 3
 		}
@@ -1907,9 +1907,113 @@ focus_tree = {
 		completion_reward = {
 			army_experience = 25
 			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = AUH_Language_education
+		icon = GFX_AUH_Language_education
+		relative_position_id = Austrio_Hungarian_Army
+		x = -3
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = Austrio_Hungarian_Army
+		}
+		completion_reward = {
 			swap_ideas = {
 				remove_idea = AUH_Bewaffnete_Macht
 				add_idea = AUH_Bewaffnete_Macht_1
+			}
+		}
+	}
+	
+	focus = {
+		id = AUH_Healing_ethnic_conflicts
+		icon = GFX_AUH_Healing_ethnic_conflicts
+		relative_position_id = AUH_Language_education
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = AUH_Language_education
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = AUH_Bewaffnete_Macht_1
+				add_idea = AUH_Bewaffnete_Macht_2
+			}
+		}
+	}
+	
+	focus = {
+		id = AUH_Officer_corps_restructuring
+		icon = GFX_focus_generic_military_mission
+		relative_position_id = AUH_Healing_ethnic_conflicts
+		x = -1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = AUH_Healing_ethnic_conflicts
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = AUH_Bewaffnete_Macht_2
+				add_idea = AUH_Bewaffnete_Macht_3
+			}
+		}
+	}
+	
+	focus = {
+		id = AUH_Infantry_reinforcement
+		icon = GFX_AUH_Infantry_reinforcement
+		relative_position_id = AUH_Healing_ethnic_conflicts
+		x = 1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = AUH_Healing_ethnic_conflicts
+		}
+		prerequisite = {
+			focus = war_propaganda
+		}
+		completion_reward = {
+			enable_tech_infantry_reinforcement = yes
+		}
+	}
+	
+	focus = {
+		id = AUH_A_rising_army
+		icon = GFX_AUH_A_rising_army
+		relative_position_id = AUH_Officer_corps_restructuring
+		x = 1
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = AUH_Officer_corps_restructuring
+		}
+		prerequisite = {
+			focus = AUH_Infantry_reinforcement
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = AUH_Bewaffnete_Macht_3
+				add_idea = AUH_Bewaffnete_Macht_4
 			}
 		}
 	}
@@ -1920,7 +2024,7 @@ focus_tree = {
 		relative_position_id = Austrio_Hungarian_Army
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -1935,10 +2039,6 @@ focus_tree = {
 				uses = 1 
 				category = support_tech
 			}
-			swap_ideas = {
-				remove_idea = AUH_Bewaffnete_Macht_1
-				add_idea = AUH_Bewaffnete_Macht_2
-			}
 		}
 	}
 	
@@ -1948,7 +2048,7 @@ focus_tree = {
 		relative_position_id = Austrio_Hungarian_Army
 		x = 2
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -1957,6 +2057,7 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
+			add_ideas = improvement_infantry_weapons
 			add_tech_bonus = {
 				name = improvement_infantry_weapons
 				bonus = 0.75
@@ -1972,7 +2073,7 @@ focus_tree = {
 		relative_position_id = improvement_infantry_weapons
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -1987,6 +2088,11 @@ focus_tree = {
 				uses = 2 
 				category = artillery
 			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 500
+				producer = AUH
+			}
 		}
 	}
 	
@@ -1996,7 +2102,7 @@ focus_tree = {
 		relative_position_id = improvement_infantry_weapons
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2015,12 +2121,44 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = AUH_Resource_extraction
+		icon = GFX_AUH_Resource_extraction
+		relative_position_id = Landship
+		x = 0
+		y = 1
+		cost = 7.2
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = Landship
+		}
+		available = {
+			70 = { is_controlled_by = AUH }
+			43 = { is_controlled_by = AUH }
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_resource = {
+				type = steel
+				amount = 10
+				state = 43
+			}
+			add_resource = {
+				type = tungsten
+				amount = 10
+				state = 70
+			}
+		}
+	}
+	
+	focus = {
 		id = war_propaganda
 		icon = GFX_goal_generic_propaganda
 		relative_position_id = Modernize_support_technology
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 6
 		}
@@ -2030,10 +2168,6 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
 		completion_reward = {
 			add_war_support = 0.075
-			swap_ideas = {
-				remove_idea = AUH_Bewaffnete_Macht_2
-				add_idea = AUH_Bewaffnete_Macht_3
-			}
 		}
 	}
 	
@@ -2043,7 +2177,7 @@ focus_tree = {
 		relative_position_id = war_propaganda
 		x = 0
 		y = 2
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 10
 		}
@@ -2055,7 +2189,6 @@ focus_tree = {
 				remove_idea = great_war_winner3
 				add_idea = great_war_winner2
 			}
-			remove_ideas = AUH_Bewaffnete_Macht_3
 		}
 	}
 	
@@ -2065,7 +2198,7 @@ focus_tree = {
 		relative_position_id = war_propaganda
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 10
 		}
@@ -2092,7 +2225,7 @@ focus_tree = {
 		relative_position_id = motorized_infantry
 		x = 2
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 10
 		}
@@ -2200,7 +2333,7 @@ focus_tree = {
 		relative_position_id = Austrio_Hungarian_Military_power
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2220,7 +2353,7 @@ focus_tree = {
 		relative_position_id = KuK_Kriegsmarine
 		x = -3
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2241,7 +2374,7 @@ focus_tree = {
 		relative_position_id = KuK_Kriegsmarine
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2262,7 +2395,7 @@ focus_tree = {
 		relative_position_id = Kaiserliche_dockyard_Invitation
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2290,7 +2423,7 @@ focus_tree = {
 		relative_position_id = Adriatic_dockyard
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2309,7 +2442,7 @@ focus_tree = {
 		relative_position_id = Vienna_Heavy_Industries_Invitation
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2369,7 +2502,7 @@ focus_tree = {
 		relative_position_id = coastal_defense
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2406,7 +2539,7 @@ focus_tree = {
 		relative_position_id = KuK_Kriegsmarine
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2432,7 +2565,7 @@ focus_tree = {
 		relative_position_id = Decisive_Battle
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2456,7 +2589,7 @@ focus_tree = {
 		relative_position_id = KuK_Kriegsmarine
 		x = 3
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2482,7 +2615,7 @@ focus_tree = {
 		relative_position_id = covert_attack
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2506,7 +2639,7 @@ focus_tree = {
 		relative_position_id = Battleship_RESEARCH
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2531,7 +2664,7 @@ focus_tree = {
 		relative_position_id = the_age_of_carriers
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2555,7 +2688,7 @@ focus_tree = {
 		relative_position_id = the_age_of_carriers
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2580,7 +2713,7 @@ focus_tree = {
 		relative_position_id = Austrio_Hungarian_Military_power
 		x = 8
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2600,7 +2733,7 @@ focus_tree = {
 		relative_position_id = KuK_Air_Force
 		x = -2
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2625,7 +2758,7 @@ focus_tree = {
 		relative_position_id = Development_Air_Force_Doctrine
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2652,7 +2785,7 @@ focus_tree = {
 		relative_position_id = Budapest_Airport
 		x = -1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2678,7 +2811,7 @@ focus_tree = {
 		relative_position_id = Budapest_Airport
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2704,7 +2837,7 @@ focus_tree = {
 		relative_position_id = KuK_Air_Force
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2741,7 +2874,7 @@ focus_tree = {
 		relative_position_id = synthetic_refinery_Construction
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2765,7 +2898,7 @@ focus_tree = {
 		relative_position_id = synthetic_refinery_Construction
 		x = 2
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2789,7 +2922,7 @@ focus_tree = {
 		relative_position_id = Heavy_Fighter
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2813,7 +2946,7 @@ focus_tree = {
 		relative_position_id = age_of_Fighter
 		x = 0
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}
@@ -2837,7 +2970,7 @@ focus_tree = {
 		relative_position_id = naval_Bomber
 		x = 1
 		y = 1
-		cost = 10
+		cost = 7.2
 		ai_will_do = {
 			factor = 2
 		}

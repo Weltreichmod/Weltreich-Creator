@@ -18,6 +18,10 @@ characters={
 			defense_skill = 3
 			planning_skill = 3
 			logistics_skill = 2
+			visible = {
+				NOT = { has_character_flag = denikin_has_arrived }
+				NOT = { has_country_flag = victory_of_royalists }
+			}
 		}
 	}
 	RUS_vladimir_kirillovich = {
@@ -87,6 +91,7 @@ characters={
 			}
 			visible = {
 				RUS = { is_subject_of = GER }
+				has_country_flag = you_are_puppet_boy_flag
 			}
 			ai_will_do  = {
 				factor  = 0
@@ -793,6 +798,22 @@ characters={
 			cost = 100
 		}
 	}
+	RUS_Ivan_Ilyin = {
+		name = RUS_Ivan_Ilyin
+		portraits = {
+			army = {
+				small = "gfx/interface/ideas/RUS/RUS_Ivan_Ilyin.png"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = RUS_Ivan_Ilyin
+			available = {
+				has_country_flag = victory_of_arkhangelsky
+			}
+			traits = { silent_workhorse }
+		}
+	}
 	
 	#return
 	RUS_boris_lvovich_brasol = {
@@ -805,8 +826,11 @@ characters={
 		advisor = {
 			slot = political_advisor
 			idea_token = RUS_boris_lvovich_brasol
-			visible = {
-				has_country_flag = RUS_with_royalists_flag
+			available = {
+				OR = {
+					has_country_flag = RUS_with_royalists_flag
+					has_country_flag = victory_of_royalists
+				}
 				NOT = { has_country_flag = victory_of_arkhangelsky }
 			}
 			traits = { royalist }
@@ -918,6 +942,10 @@ characters={
 			}
 			available = {
 				has_country_flag = set_path_of_russia
+				has_country_leader = {
+					name = RUS_viktor_chernov
+					ruling_only = yes
+				}
 			}
 			traits  = {
 				backroom_backstabber
@@ -925,10 +953,6 @@ characters={
 			ai_will_do  = {
 				factor  = 10.000
 			}
-		}
-		country_leader = {
-			ideology = social_democracy
-			traits={  }
 		}
 		portraits={
 			civilian={
@@ -948,13 +972,17 @@ characters={
 		}
 		advisor={
 			slot = political_advisor
-			idea_token = RUS_ivan_ilyin
+			idea_token = RUS_zinovy_peshkov
 			can_be_fired = no
 			visible = {
 				has_character_flag = denikin_has_arrived
 			}
 			available = {
 				has_country_flag = set_path_of_russia
+				has_country_leader = {
+					name = RUS_zinovy_peshkov
+					ruling_only = yes
+				}
 			}
 			traits  = {
 				nationalist
