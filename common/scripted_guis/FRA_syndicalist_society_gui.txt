@@ -1,0 +1,134 @@
+scripted_gui = {
+	
+	FRA_syndicalist_society = {
+		
+		context_type = decision_category #player_context
+		window_name = "FRA_syndicalist_society_window"
+		visible = {
+			tag = FRA
+		}
+		
+		properties = {
+			map_icon = {
+				frame = fra_map_v:gui_display_frame_fra
+				image = "GFX_FRA_state_[?fra_map_v]"
+				x = FRA_map_x^fra_map_i
+				y = FRA_map_y^fra_map_i
+			}
+			map_button = {
+				frame = FRA_map_button_frame
+				image = "GFX_FRA_state_selected_[?fra_map_v]"
+				x = FRA_map_x^fra_map_i
+				y = FRA_map_y^fra_map_i
+			}
+		}
+
+		dynamic_lists = {
+			maps_gridbox = {
+				array = FRA_map_array
+				entry_container = FRA_GUI_Map_Entry
+				value = fra_map_v
+				index = fra_map_i
+			}
+		}
+
+		triggers = {
+			map_button_visible = {
+				if = {
+					limit = {
+						check_variable = { FRA_selected_state = fra_map_v }
+					}
+					set_temp_variable = { FRA_map_button_frame = 2 }
+				}
+
+				else = {
+					set_temp_variable = { FRA_map_button_frame = 1 }
+				}
+			}
+		}
+
+		effects = {
+			map_button_click = {
+				set_variable = { FRA_selected_state = fra_map_v }
+				if = {
+					limit = {
+						check_variable = { FRA_selected_state = 14 }
+					}
+					FRA = {
+						set_country_flag = FRA_north_west_click_Visible
+						clr_country_flag = FRA_west_click_Visible
+						clr_country_flag = FRA_south_west_click_Visible
+						clr_country_flag = FRA_south_click_Visible
+						clr_country_flag = FRA_north_east_click_Visible
+						clr_country_flag = FRA_south_east_click_Visible
+					}
+				}
+				if = {
+					limit = {
+						check_variable = { FRA_selected_state = 23 }
+					}
+					FRA = {
+						clr_country_flag = FRA_north_west_click_Visible
+						set_country_flag = FRA_west_click_Visible
+						clr_country_flag = FRA_south_west_click_Visible
+						clr_country_flag = FRA_south_click_Visible
+						clr_country_flag = FRA_north_east_click_Visible
+						clr_country_flag = FRA_south_east_click_Visible
+					}
+				}
+				if = {
+					limit = {
+						check_variable = { FRA_selected_state = 19 }
+					}
+					FRA = {
+						clr_country_flag = FRA_north_west_click_Visible
+						clr_country_flag = FRA_west_click_Visible
+						set_country_flag = FRA_south_west_click_Visible
+						clr_country_flag = FRA_south_click_Visible
+						clr_country_flag = FRA_north_east_click_Visible
+						clr_country_flag = FRA_south_east_click_Visible
+					}
+				}
+				if = {
+					limit = {
+						check_variable = { FRA_selected_state = 25 }
+					}
+					FRA = {
+						clr_country_flag = FRA_north_west_click_Visible
+						clr_country_flag = FRA_west_click_Visible
+						clr_country_flag = FRA_south_west_click_Visible
+						set_country_flag = FRA_south_click_Visible
+						clr_country_flag = FRA_north_east_click_Visible
+						clr_country_flag = FRA_south_east_click_Visible
+					}
+				}
+				if = {
+					limit = {
+						check_variable = { FRA_selected_state = 928 }
+					}
+					FRA = {
+						clr_country_flag = FRA_north_west_click_Visible
+						clr_country_flag = FRA_west_click_Visible
+						clr_country_flag = FRA_south_west_click_Visible
+						clr_country_flag = FRA_south_click_Visible
+						set_country_flag = FRA_north_east_click_Visible
+						clr_country_flag = FRA_south_east_click_Visible
+					}
+				}
+				if = {
+					limit = {
+						check_variable = { FRA_selected_state = 21 }
+					}
+					FRA = {
+						clr_country_flag = FRA_north_west_click_Visible
+						clr_country_flag = FRA_west_click_Visible
+						clr_country_flag = FRA_south_west_click_Visible
+						clr_country_flag = FRA_south_click_Visible
+						clr_country_flag = FRA_north_east_click_Visible
+						set_country_flag = FRA_south_east_click_Visible
+					}
+				}
+			}
+		}
+	}
+}

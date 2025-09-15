@@ -55,14 +55,84 @@ on_actions = {
 				}
 			}
 		}
+		effect = {
+			if = {
+				limit = {
+					NOT = {
+						has_power_balance_modifier = {
+							id = FRA_Political_Conflict
+							modifier = FRA_government_to_right
+						}
+					}
+					has_completed_focus = FRA_republic_of_fraternity
+				}
+				add_power_balance_modifier = {
+					id = FRA_Political_Conflict
+					modifier = FRA_government_to_right
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = {
+						has_power_balance_modifier = {
+							id = FRA_Political_Conflict
+							modifier = FRA_government_to_left
+						}
+					}
+					has_completed_focus = FRA_republic_of_liberty
+				}
+				add_power_balance_modifier = {
+					id = FRA_Political_Conflict
+					modifier = FRA_government_to_left
+				}
+			}
+		}
+	}
+	on_monthly_FRA = {
+		effect = {
+			if = {
+				limit = {
+					FRA = {
+						NOT = { has_country_flag = second_great_war_loser }
+						has_government = democratic
+						has_dynamic_modifier = {
+							modifier = FRA_consumer_goods_factor_decision
+						}
+					}
+				}
+				set_variable = { FRA_civ_num = num_of_civilian_factories }
+				set_variable = { FRA_mil_num = num_of_military_factories }
+				set_variable = { FRA_civ_mil_ratio = FRA_mil_num }
+				divide_variable = {
+					var = FRA_civ_mil_ratio
+					value = FRA_civ_num
+				}
+			}
+		}
 	}
 	on_assume_faction_leadership = {
 		effect = {
 			if = {
-				limit = { FROM = { tag = ENT } }
+				limit = {
+					FROM = {
+						tag = ENT
+						has_idea = ENT_leader
+					}
+				}
 				FROM = { remove_ideas = ENT_leader }
 				save_global_event_target_as = leader_of_national_entente
 				add_ideas = ENT_leader
+			}
+			if = {
+				limit = {
+					FROM = {
+						tag = ENT
+						has_idea = FRA_liberation_committee
+					}
+				}
+				FROM = { remove_ideas = FRA_liberation_committee }
+				save_global_event_target_as = leader_of_national_entente
+				add_ideas = FRA_liberation_committee
 			}
 			if = {
 				limit = { FROM = { tag = REI } }

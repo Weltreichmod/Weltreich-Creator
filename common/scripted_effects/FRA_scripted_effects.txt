@@ -439,6 +439,25 @@ remove_5_FRA_mobilize_the_nation_main_bar = {
 	}
 }
 
+remove_10_FRA_mobilize_the_nation_main_bar = {
+    if = {
+        limit = { check_variable = { FRA_mobilize_the_nation_main_bar < 11 } }
+        set_variable = { var = FRA_mobilize_the_nation_main_bar  value = 0 }
+		effect_tooltip = {
+			add_to_variable = {
+				FRA_mobilize_the_nation_main_bar = -10
+				tooltip = mobilize_the_nation_factor_tt
+			}
+		}
+    }
+	else = {
+		add_to_variable = {
+			FRA_mobilize_the_nation_main_bar = -10
+			tooltip = mobilize_the_nation_factor_tt
+		}
+	}
+}
+
 FRA_inc_bucard_resolve_2_5 = {
     custom_effect_tooltip = FRA_inc_bucard_resolve_2_5_tt
     if = {
@@ -1061,11 +1080,11 @@ FRA_dec_harmonious_order_0_1 = {
 FRA_harmonious_order_m100tom75 = {
 	set_variable = { 
 		tooltip = consumer_goods_factor_tt
-		FRA_harmonious_order_consumer_goods_factor = 1
+		FRA_harmonious_order_consumer_goods_factor = 0.15
 	}
 	set_variable = { 
 		tooltip = conscription_factor_tt
-		FRA_harmonious_order_conscription_factor = -1
+		FRA_harmonious_order_conscription_factor = -0.15
 	}
 	hidden_effect = {
 		set_variable = { FRA_harmonious_order_stability_factor = 0 }
@@ -1077,11 +1096,11 @@ FRA_harmonious_order_m100tom75 = {
 FRA_harmonious_order_m75tom50 = {
 	set_variable = { 
 		tooltip = consumer_goods_factor_tt
-		FRA_harmonious_order_consumer_goods_factor = 0.5
+		FRA_harmonious_order_consumer_goods_factor = 0.075
 	}
 	set_variable = { 
 		tooltip = conscription_factor_tt
-		FRA_harmonious_order_conscription_factor = -0.5
+		FRA_harmonious_order_conscription_factor = -0.075
 	}
 	hidden_effect = {
 		set_variable = { FRA_harmonious_order_stability_factor = 0 }
@@ -1116,57 +1135,11 @@ FRA_harmonious_order_m50tom25 = {
 FRA_harmonious_order_m25tom10 = {
 	set_variable = { 
 		tooltip = consumer_goods_factor_tt
-		FRA_harmonious_order_consumer_goods_factor = -0.5
+		FRA_harmonious_order_consumer_goods_factor = -0.075
 	}
 	set_variable = { 
 		tooltip = conscription_factor_tt
-		FRA_harmonious_order_conscription_factor = 0.5
-	}
-	set_variable = {
-		tooltip = stability_factor_tt
-		FRA_harmonious_order_stability_factor = 0.025
-	}
-	set_variable = {
-		tooltip = industrial_capacity_factory_tt
-		FRA_harmonious_order_industrial_capacity_factory = 0.025
-	}
-	set_variable = {
-		tooltip = industrial_capacity_dockyard_tt
-		FRA_harmonious_order_industrial_capacity_dockyard = 0.025
-	}
-}
-#-0.1<=x<0.1
-FRA_harmonious_order_m10to10 = {
-	set_variable = { 
-		tooltip = consumer_goods_factor_tt
-		FRA_harmonious_order_consumer_goods_factor = -1
-	}
-	set_variable = { 
-		tooltip = conscription_factor_tt
-		FRA_harmonious_order_conscription_factor = 1
-	}
-	set_variable = {
-		tooltip = stability_factor_tt
-		FRA_harmonious_order_stability_factor = 1
-	}
-	set_variable = {
-		tooltip = industrial_capacity_factory_tt
-		FRA_harmonious_order_industrial_capacity_factory = 1
-	}
-	set_variable = {
-		tooltip = industrial_capacity_dockyard_tt
-		FRA_harmonious_order_industrial_capacity_dockyard = 1
-	}
-}
-#0.1<=x<0.25
-FRA_harmonious_order_10to25 = {
-	set_variable = { 
-		tooltip = consumer_goods_factor_tt
-		FRA_harmonious_order_consumer_goods_factor = -0.025
-	}
-	set_variable = { 
-		tooltip = conscription_factor_tt
-		FRA_harmonious_order_conscription_factor = 0.025
+		FRA_harmonious_order_conscription_factor = 0.075
 	}
 	set_variable = {
 		tooltip = stability_factor_tt
@@ -1179,6 +1152,52 @@ FRA_harmonious_order_10to25 = {
 	set_variable = {
 		tooltip = industrial_capacity_dockyard_tt
 		FRA_harmonious_order_industrial_capacity_dockyard = 0.05
+	}
+}
+#-0.1<=x<0.1
+FRA_harmonious_order_m10to10 = {
+	set_variable = { 
+		tooltip = consumer_goods_factor_tt
+		FRA_harmonious_order_consumer_goods_factor = -0.15
+	}
+	set_variable = { 
+		tooltip = conscription_factor_tt
+		FRA_harmonious_order_conscription_factor = 0.15
+	}
+	set_variable = {
+		tooltip = stability_factor_tt
+		FRA_harmonious_order_stability_factor = 0.15
+	}
+	set_variable = {
+		tooltip = industrial_capacity_factory_tt
+		FRA_harmonious_order_industrial_capacity_factory = 0.15
+	}
+	set_variable = {
+		tooltip = industrial_capacity_dockyard_tt
+		FRA_harmonious_order_industrial_capacity_dockyard = 0.15
+	}
+}
+#0.1<=x<0.25
+FRA_harmonious_order_10to25 = {
+	set_variable = { 
+		tooltip = consumer_goods_factor_tt
+		FRA_harmonious_order_consumer_goods_factor = -0.05
+	}
+	set_variable = { 
+		tooltip = conscription_factor_tt
+		FRA_harmonious_order_conscription_factor = 0.05
+	}
+	set_variable = {
+		tooltip = stability_factor_tt
+		FRA_harmonious_order_stability_factor = 0.075
+	}
+	set_variable = {
+		tooltip = industrial_capacity_factory_tt
+		FRA_harmonious_order_industrial_capacity_factory = 0.075
+	}
+	set_variable = {
+		tooltip = industrial_capacity_dockyard_tt
+		FRA_harmonious_order_industrial_capacity_dockyard = 0.075
 	}
 }
 #0.25<=x<0.5
@@ -1208,15 +1227,15 @@ FRA_harmonious_order_25to50 = {
 FRA_harmonious_order_50to75 = {
 	set_variable = {
 		tooltip = stability_factor_tt
-		FRA_harmonious_order_stability_factor = -0.05
+		FRA_harmonious_order_stability_factor = -0.075
 	}
 	set_variable = {
 		tooltip = industrial_capacity_factory_tt
-		FRA_harmonious_order_industrial_capacity_factory = -0.05
+		FRA_harmonious_order_industrial_capacity_factory = -0.075
 	}
 	set_variable = {
 		tooltip = industrial_capacity_dockyard_tt
-		FRA_harmonious_order_industrial_capacity_dockyard = -0.05
+		FRA_harmonious_order_industrial_capacity_dockyard = -0.075
 	}
 	hidden_effect = {
 		set_variable = { FRA_harmonious_order_consumer_goods_factor = 0 }
@@ -1227,18 +1246,3326 @@ FRA_harmonious_order_50to75 = {
 FRA_harmonious_order_75to100 = {
 	set_variable = {
 		tooltip = stability_factor_tt
-		FRA_harmonious_order_stability_factor = -0.1
+		FRA_harmonious_order_stability_factor = -0.15
 	}
 	set_variable = {
 		tooltip = industrial_capacity_factory_tt
-		FRA_harmonious_order_industrial_capacity_factory = -0.1
+		FRA_harmonious_order_industrial_capacity_factory = -0.15
 	}
 	set_variable = {
 		tooltip = industrial_capacity_dockyard_tt
-		FRA_harmonious_order_industrial_capacity_dockyard = -0.1
+		FRA_harmonious_order_industrial_capacity_dockyard = -0.15
 	}
 	hidden_effect = {
 		set_variable = { FRA_harmonious_order_consumer_goods_factor = 0 }
 		set_variable = { FRA_harmonious_order_conscription_factor = 0 }
+	}
+}
+
+setup_fra_map = {
+	hidden_effect = {
+		clear_array = FRA_map_array
+		clear_array = FRA_map_x
+		clear_array = FRA_map_y
+
+		add_to_array = { FRA_map_array = 14 }
+		add_to_array = { FRA_map_x = 110 }
+		add_to_array = { FRA_map_y = 30 }
+
+		add_to_array = { FRA_map_array = 23 }
+		add_to_array = { FRA_map_x = 154 }
+		add_to_array = { FRA_map_y = 60 }
+
+		add_to_array = { FRA_map_array = 19 }
+		add_to_array = { FRA_map_x = 170 }
+		add_to_array = { FRA_map_y = 141 }
+
+		add_to_array = { FRA_map_array = 25 }
+		add_to_array = { FRA_map_x = 196 }
+		add_to_array = { FRA_map_y = 108 }
+
+		add_to_array = { FRA_map_array = 928 }
+		add_to_array = { FRA_map_x = 207 }
+		add_to_array = { FRA_map_y = 15 }
+
+		add_to_array = { FRA_map_array = 21 }
+		add_to_array = { FRA_map_x = 276 }
+		add_to_array = { FRA_map_y = 105 }
+	}
+}
+
+### +5% Mobilization
+FRA_inc_syndicalist_society_0_05 = {
+    custom_effect_tooltip = FRA_inc_syndicalist_society_0_05_tt
+    if = {
+        limit = { check_variable = { FRA_syndicalist_society_main_bar > 0.95 } }  # 95% 이상이면
+        set_variable = { var = FRA_syndicalist_society_main_bar value = 1 }       # 100%로 고정
+		set_variable = {
+			FRA_syndicalist_society_production_speed_arms_factory_factor = 0.2
+		}
+		set_variable = {
+			FRA_syndicalist_society_production_speed_industrial_complex_factor = 0.2
+		}
+		set_variable = {
+			FRA_syndicalist_society_industrial_capacity_factory = 0.2
+		}
+		set_variable = {
+			FRA_syndicalist_society_industrial_capacity_dockyard = 0.2
+		}
+		set_variable = {
+			FRA_syndicalist_society_production_factory_efficiency_gain_factor = 0.2
+		}
+		set_variable = {
+			FRA_syndicalist_society_production_factory_max_efficiency_factor = 0.2
+		}
+		effect_tooltip = {
+			add_to_variable = {
+				FRA_syndicalist_society_production_speed_arms_factory_factor = 0.01
+				tooltip = production_speed_arms_factory_factor_tt
+			}
+			add_to_variable = {
+				FRA_syndicalist_society_production_speed_industrial_complex_factor = 0.01
+				tooltip = production_speed_industrial_complex_factor_tt
+			}
+			add_to_variable = {
+				FRA_syndicalist_society_industrial_capacity_factory = 0.01
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				FRA_syndicalist_society_industrial_capacity_dockyard = 0.01
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			add_to_variable = {
+				FRA_syndicalist_society_production_factory_efficiency_gain_factor = 0.01
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				FRA_syndicalist_society_production_factory_max_efficiency_factor = 0.01
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+		}
+    }
+    else = {
+        add_to_variable = { var = FRA_syndicalist_society_main_bar value = 0.05 }
+		add_to_variable = {
+			FRA_syndicalist_society_production_speed_arms_factory_factor = 0.01
+			tooltip = production_speed_arms_factory_factor_tt
+		}
+		add_to_variable = {
+			FRA_syndicalist_society_production_speed_industrial_complex_factor = 0.01
+			tooltip = production_speed_industrial_complex_factor_tt
+		}
+		add_to_variable = {
+			FRA_syndicalist_society_industrial_capacity_factory = 0.01
+			tooltip = industrial_capacity_factory_tt
+		}
+		add_to_variable = {
+			FRA_syndicalist_society_industrial_capacity_dockyard = 0.01
+			tooltip = industrial_capacity_dockyard_tt
+		}
+		add_to_variable = {
+			FRA_syndicalist_society_production_factory_efficiency_gain_factor = 0.01
+			tooltip = production_factory_efficiency_gain_factor_tt
+		}
+		add_to_variable = {
+			FRA_syndicalist_society_production_factory_max_efficiency_factor = 0.01
+			tooltip = production_factory_max_efficiency_factor_tt
+		}
+    }
+}
+
+### -5% Mobilization
+FRA_dec_syndicalist_society_0_05 = {
+    custom_effect_tooltip = FRA_dec_syndicalist_society_0_05_tt
+    if = {
+        limit = { check_variable = { FRA_syndicalist_society_main_bar < 0.05 } }  # 5% 미만이면
+        set_variable = { var = FRA_syndicalist_society_main_bar value = 0 }       # 0%로 고정
+		set_variable = {
+			FRA_syndicalist_society_production_speed_arms_factory_factor = 0
+		}
+		set_variable = {
+			FRA_syndicalist_society_production_speed_industrial_complex_factor = 0
+		}
+		set_variable = {
+			FRA_syndicalist_society_industrial_capacity_factory = 0
+		}
+		set_variable = {
+			FRA_syndicalist_society_industrial_capacity_dockyard = 0
+		}
+		set_variable = {
+			FRA_syndicalist_society_production_factory_efficiency_gain_factor = 0
+		}
+		set_variable = {
+			FRA_syndicalist_society_production_factory_max_efficiency_factor = 0
+		}
+		effect_tooltip = {
+			add_to_variable = {
+				FRA_syndicalist_society_production_speed_arms_factory_factor = -0.01
+				tooltip = production_speed_arms_factory_factor_tt
+			}
+			add_to_variable = {
+				FRA_syndicalist_society_production_speed_industrial_complex_factor = -0.01
+				tooltip = production_speed_industrial_complex_factor_tt
+			}
+			add_to_variable = {
+				FRA_syndicalist_society_industrial_capacity_factory = -0.01
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				FRA_syndicalist_society_industrial_capacity_dockyard = -0.01
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			add_to_variable = {
+				FRA_syndicalist_society_production_factory_efficiency_gain_factor = -0.01
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				FRA_syndicalist_society_production_factory_max_efficiency_factor = -0.01
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+		}
+    }
+    else = {
+        add_to_variable = { var = FRA_syndicalist_society_main_bar value = -0.05 }
+		add_to_variable = {
+			FRA_syndicalist_society_production_speed_arms_factory_factor = -0.01
+			tooltip = production_speed_arms_factory_factor_tt
+		}
+		add_to_variable = {
+			FRA_syndicalist_society_production_speed_industrial_complex_factor = -0.01
+			tooltip = production_speed_industrial_complex_factor_tt
+		}
+		add_to_variable = {
+			FRA_syndicalist_society_industrial_capacity_factory = -0.01
+			tooltip = industrial_capacity_factory_tt
+		}
+		add_to_variable = {
+			FRA_syndicalist_society_industrial_capacity_dockyard = -0.01
+			tooltip = industrial_capacity_dockyard_tt
+		}
+		add_to_variable = {
+			FRA_syndicalist_society_production_factory_efficiency_gain_factor = -0.01
+			tooltip = production_factory_efficiency_gain_factor_tt
+		}
+		add_to_variable = {
+			FRA_syndicalist_society_production_factory_max_efficiency_factor = -0.01
+			tooltip = production_factory_max_efficiency_factor_tt
+		}
+    }
+}
+
+FRA_decision_invisible_hand_inital_effect = {
+	add_dynamic_modifier = { modifier = FRA_consumer_goods_factor_decision }
+	set_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0 }
+	set_variable = { FRA_consumer_goods_factor_decision_production_speed_buildings_factor = 0 }
+	set_variable = { FRA_consumer_goods_factor_decision_research_speed_factor = 0 }
+	set_variable = { FRA_consumer_goods_factor_decision_industrial_capacity_factory = 0 }
+	set_variable = { FRA_consumer_goods_factor_decision_industrial_capacity_dockyard = 0 }
+	set_variable = { FRA_civ_mil_ratio = 0 }
+	set_variable = { FRA_civ_num = 0 }
+	set_variable = { FRA_mil_num = 0 }
+}
+
+FRA_decision_invisible_hand_add_2_5 = {
+    if = {
+        limit = { check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0.375 } }
+        set_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.4 }
+		set_variable = { FRA_consumer_goods_factor_decision_production_speed_buildings_factor = -0.3 }
+		set_variable = { FRA_consumer_goods_factor_decision_research_speed_factor = -0.3 }
+		set_variable = { FRA_consumer_goods_factor_decision_industrial_capacity_factory = 0.3 }
+		set_variable = { FRA_consumer_goods_factor_decision_industrial_capacity_dockyard = 0.3 }
+		effect_tooltip = {
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.025
+				tooltip = consumer_goods_factor_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_production_speed_buildings_factor = -0.015
+				tooltip = production_speed_buildings_factor_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_research_speed_factor = -0.015
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_industrial_capacity_factory = 0.015
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_industrial_capacity_dockyard = 0.015
+				tooltip = industrial_capacity_dockyard_tt
+			}
+		}
+	}
+	else = {
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.025
+			tooltip = consumer_goods_factor_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_production_speed_buildings_factor = -0.015
+			tooltip = production_speed_buildings_factor_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_research_speed_factor = -0.015
+			tooltip = research_speed_factor_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_industrial_capacity_factory = 0.015
+			tooltip = industrial_capacity_factory_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_industrial_capacity_dockyard = 0.015
+			tooltip = industrial_capacity_dockyard_tt
+		}
+	}
+}
+
+FRA_decision_invisible_hand_add_5 = {
+    if = {
+        limit = { check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0.35 } }
+        set_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.4 }
+		set_variable = { FRA_consumer_goods_factor_decision_production_speed_buildings_factor = -0.3 }
+		set_variable = { FRA_consumer_goods_factor_decision_research_speed_factor = -0.3 }
+		set_variable = { FRA_consumer_goods_factor_decision_industrial_capacity_factory = 0.3 }
+		set_variable = { FRA_consumer_goods_factor_decision_industrial_capacity_dockyard = 0.3 }
+		effect_tooltip = {
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.05
+				tooltip = consumer_goods_factor_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_production_speed_buildings_factor = -0.03
+				tooltip = production_speed_buildings_factor_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_research_speed_factor = -0.03
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_industrial_capacity_factory = 0.03
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_industrial_capacity_dockyard = 0.03
+				tooltip = industrial_capacity_dockyard_tt
+			}
+		}
+	}
+	else = {
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.05
+			tooltip = consumer_goods_factor_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_production_speed_buildings_factor = -0.03
+			tooltip = production_speed_buildings_factor_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_research_speed_factor = -0.03
+			tooltip = research_speed_factor_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_industrial_capacity_factory = 0.03
+			tooltip = industrial_capacity_factory_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_industrial_capacity_dockyard = 0.03
+			tooltip = industrial_capacity_dockyard_tt
+		}
+	}
+}
+
+FRA_decision_invisible_hand_remove_2_5 = {
+    if = {
+        limit = { check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor < 0.025 } }
+        set_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0 }
+		set_variable = { FRA_consumer_goods_factor_decision_production_speed_buildings_factor = 0 }
+		set_variable = { FRA_consumer_goods_factor_decision_research_speed_factor = 0 }
+		set_variable = { FRA_consumer_goods_factor_decision_industrial_capacity_factory = 0 }
+		set_variable = { FRA_consumer_goods_factor_decision_industrial_capacity_dockyard = 0 }
+		effect_tooltip = {
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_consumer_goods_factor = -0.025
+				tooltip = consumer_goods_factor_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_production_speed_buildings_factor = 0.015
+				tooltip = production_speed_buildings_factor_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_research_speed_factor = 0.015
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_industrial_capacity_factory = -0.015
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				FRA_consumer_goods_factor_decision_industrial_capacity_dockyard = -0.015
+				tooltip = industrial_capacity_dockyard_tt
+			}
+		}
+	}
+	else = {
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_consumer_goods_factor = -0.025
+			tooltip = consumer_goods_factor_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_production_speed_buildings_factor = 0.015
+			tooltip = production_speed_buildings_factor_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_research_speed_factor = 0.015
+			tooltip = research_speed_factor_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_industrial_capacity_factory = -0.015
+			tooltip = industrial_capacity_factory_tt
+		}
+		add_to_variable = {
+			FRA_consumer_goods_factor_decision_industrial_capacity_dockyard = -0.015
+			tooltip = industrial_capacity_dockyard_tt
+		}
+	}
+}
+
+FRA_add_factories_effect = {
+	if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.4 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.375 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.35 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.325 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.3 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.275 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.25 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.225 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.2 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.175 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.15 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.125 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.15 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.125 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.1 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.075 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.05 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+	else_if = {
+		limit = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0.025 }
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}	
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+				instant_build = yes
+			}
+		}
+	}
+}
+
+FRA_social_economic_reforms_research_add_5 = {
+	add_to_variable = { FRA_research_main_var = 5 }
+	custom_effect_tooltip = FRA_research_main_bar_increase_5
+	add_to_variable = {
+		FRA_research_modifier_research_speed_factor = 0.005
+		tooltip = research_speed_factor_tt
+	}
+	add_to_variable = {
+		FRA_research_modifier_military_industrial_organization_research_bonus = 0.005
+		tooltip = military_industrial_organization_research_bonus_tt
+	}
+	add_to_variable = {
+		FRA_research_modifier_scientist_research_bonus_factor = 0.005
+		tooltip = MODIFIER_SCIENTIST_RESEARCH_BONUS_FACTOR_tt
+	}
+}
+
+FRA_social_economic_reforms_research_remove_5 = {
+	add_to_variable = { FRA_research_main_var = -5 }
+	custom_effect_tooltip = FRA_research_main_bar_decrease_5
+	add_to_variable = {
+		FRA_research_modifier_research_speed_factor = -0.005
+		tooltip = research_speed_factor_tt
+	}
+	add_to_variable = {
+		FRA_research_modifier_military_industrial_organization_research_bonus = -0.005
+		tooltip = military_industrial_organization_research_bonus_tt
+	}
+	add_to_variable = {
+		FRA_research_modifier_scientist_research_bonus_factor = -0.005
+		tooltip = MODIFIER_SCIENTIST_RESEARCH_BONUS_FACTOR_tt
+	}
+}
+
+FRA_social_economic_reforms_industry_add_5 = {
+	add_to_variable = { FRA_industry_main_var = 5 }
+	custom_effect_tooltip = FRA_industry_main_bar_increase_5
+	add_to_variable = {
+		FRA_industry_modifier_industrial_capacity_dockyard = 0.01
+		tooltip = industrial_capacity_dockyard_tt
+	}
+	add_to_variable = {
+		FRA_industry_modifier_industrial_capacity_factory = 0.01
+		tooltip = industrial_capacity_factory_tt
+	}
+	add_to_variable = {
+		FRA_industry_modifier_production_speed_buildings_factor = 0.01
+		tooltip = production_speed_buildings_factor_tt
+	}
+}
+
+FRA_social_economic_reforms_industry_remove_5 = {
+	add_to_variable = { FRA_industry_main_var = -5 }
+	custom_effect_tooltip = FRA_industry_main_bar_decrease_5
+	add_to_variable = {
+		FRA_industry_modifier_industrial_capacity_dockyard = -0.01
+		tooltip = industrial_capacity_dockyard_tt
+	}
+	add_to_variable = {
+		FRA_industry_modifier_industrial_capacity_factory = -0.01
+		tooltip = industrial_capacity_factory_tt
+	}
+	add_to_variable = {
+		FRA_industry_modifier_production_speed_buildings_factor = -0.01
+		tooltip = production_speed_buildings_factor_tt
+	}
+}
+
+FRA_social_economic_reforms_military_add_5 = {
+	add_to_variable = { FRA_military_main_var = 5 }
+	custom_effect_tooltip = FRA_military_main_bar_increase_5
+	add_to_variable = {
+		FRA_military_modifier_conscription_factor = 0.005
+		tooltip = conscription_factor_tt
+	}
+	add_to_variable = {
+		FRA_military_modifier_training_time_factor = -0.005
+		tooltip = training_time_factor_tt
+	}
+	add_to_variable = {
+		FRA_military_modifier_army_morale_factor = 0.01
+		tooltip = army_morale_factor_tt
+	}
+	add_to_variable = {
+		FRA_military_modifier_army_org_factor = 0.01
+		tooltip = army_org_factor_tt
+	}
+}
+
+FRA_social_economic_reforms_military_remove_5 = {
+	add_to_variable = { FRA_military_main_var = 5 }
+	custom_effect_tooltip = FRA_military_main_bar_decrease_5
+	add_to_variable = {
+		FRA_military_modifier_conscription_factor = -0.005
+		tooltip = conscription_factor_tt
+	}
+	add_to_variable = {
+		FRA_military_modifier_training_time_factor = 0.005
+		tooltip = training_time_factor_tt
+	}
+	add_to_variable = {
+		FRA_military_modifier_army_morale_factor = -0.01
+		tooltip = army_morale_factor_tt
+	}
+	add_to_variable = {
+		FRA_military_modifier_army_org_factor = -0.01
+		tooltip = army_org_factor_tt
 	}
 }

@@ -70,6 +70,30 @@ ideas = {
 
 			cancel_if_invalid = no
 		}
+		
+		free_market_economy = {
+
+			picture = free_market_economy
+
+			allowed = {
+				always = no
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				consumer_goods_expected_value = 0.35
+				research_speed_factor = 0.05
+				local_resources_factor = 0.1
+				production_factory_efficiency_gain_factor = 0.05
+			}
+
+			cancel_if_invalid = no
+
+			ai_will_do = {
+   				factor = 0
+   			}
+		}
 
 		civilian_economy = {
 
@@ -399,6 +423,26 @@ ideas = {
 			cancel_if_invalid = no
 		}
 		
+		national_mobilized_economy = {
+			picture = totaler_krieg_economy
+			allowed = {
+				always = no
+			}
+			allowed_to_remove = {
+				always = no
+			}
+			removal_cost = -1
+			modifier = {
+				consumer_goods_expected_value = 0.25
+				production_speed_arms_factory_factor = 0.05
+				production_speed_industrial_complex_factor = -0.05
+				conscription_factor = -0.05
+				conversion_cost_civ_to_mil_factor= -0.1
+				conversion_cost_mil_to_civ_factor = -0.1
+			}
+			cancel_if_invalid = no
+		}
+		
 		corporate_economy = {
 			picture = corporate_economy
 			allowed = {
@@ -436,6 +480,36 @@ ideas = {
 				consumer_goods_expected_value = 0.25
 				production_speed_buildings_factor = 0.15
 				production_factory_efficiency_gain_factor = 0.05
+				global_building_slots_factor = 0.05
+			}
+
+			cancel_if_invalid = no
+
+			ai_will_do = {
+   				factor = 0
+   			}
+		}
+		
+		syndicalist_economy = {
+
+			picture = new_economic_policy
+
+			allowed = {
+				always = no
+			}
+			allowed_to_remove = {
+				OR = {
+					surrender_progress > 0.75
+					NOT = { has_government = communism }
+				}
+			}
+
+			removal_cost = -1
+
+			modifier = {
+				consumer_goods_expected_value = 0.25
+				production_speed_buildings_factor = 0.05
+				production_factory_efficiency_gain_factor = 0.025
 				global_building_slots_factor = 0.05
 			}
 
@@ -548,13 +622,6 @@ ideas = {
 		free_trade = {
 
 			available = {
-				if = {
-					limit = {
-						original_tag = SPR
-						has_dlc = "La Resistance"
-					}
-					NOT = { has_completed_focus = SPR_all_must_bear_the_torch }
-				}
 			}
 
 			cost = 150
@@ -604,20 +671,11 @@ ideas = {
 		export_focus = {
 
 			available = {
-
 				if = {
 					limit = {
-						original_tag = CHI
-						has_dlc = "Waking the Tiger"
+						original_tag = FRA
 					}
-					NOT = { has_idea = CHI_nine_power_treaty }
-				}
-				if = {
-					limit = {
-						original_tag = SPR
-						has_dlc = "La Resistance"
-					}
-					NOT = { has_completed_focus = SPR_all_must_bear_the_torch }
+					NOT = { has_completed_focus = FRA_world_free_trade }
 				}
 			}
 
@@ -686,22 +744,24 @@ ideas = {
 							has_idea = tot_economic_mobilisation
 						}
 					}
+					AND = {
+						original_tag = FRA						
+						OR = {
+							has_idea = partial_economic_mobilisation
+							has_idea = war_economy
+							has_idea = tot_economic_mobilisation
+							has_idea = national_mobilized_economy
+							has_idea = syndicalist_economy
+						}
+					}
 				}
 
 
 				if = {
 					limit = {
-						original_tag = CHI
-						has_dlc = "Waking the Tiger"
+						original_tag = FRA
 					}
-					NOT = { has_idea = CHI_nine_power_treaty }
-				}
-				if = {
-					limit = {
-						original_tag = SPR
-						has_dlc = "La Resistance"
-					}
-					NOT = { has_completed_focus = SPR_all_must_bear_the_torch }
+					NOT = { has_completed_focus = FRA_world_free_trade }
 				}
 			}
 
@@ -761,18 +821,6 @@ ideas = {
 				OR = {
 					has_idea = war_economy
 					has_idea = tot_economic_mobilisation
-				}
-				OR = {
-					NOT = {	tag = SOV }
-					NOT = { has_opinion_modifier = MR_pact }
-				}
-
-				if = {
-					limit = {
-						original_tag = CHI
-						has_dlc = "Waking the Tiger"
-					}
-					NOT = { has_idea = CHI_nine_power_treaty }
 				}
 			}
 

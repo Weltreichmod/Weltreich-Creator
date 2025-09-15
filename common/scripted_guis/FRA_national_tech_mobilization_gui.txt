@@ -1,0 +1,140 @@
+scripted_gui = {
+	
+	FRA_national_tech_mobilization = {
+		
+		context_type = decision_category #player_context
+		window_name = "FRA_national_tech_mobilization_window"
+		visible = {
+			tag = FRA
+		}
+
+		triggers = {
+			FRA_national_tech_mobilization_none_visible = {
+				has_country_flag = FRA_none_in_slot_flag
+			}
+			FRA_national_tech_mobilization_army_visible = {
+				has_country_flag = FRA_army_in_slot_flag
+			}
+			FRA_national_tech_mobilization_air_visible = {
+				has_country_flag = FRA_air_in_slot_flag
+			}
+			FRA_national_tech_mobilization_navy_visible = {
+				has_country_flag = FRA_navy_in_slot_flag
+			}
+			FRA_national_tech_mobilization_electronic_visible = {
+				has_country_flag = FRA_electronic_in_slot_flag
+			}
+			FRA_national_tech_mobilization_industry_visible = {
+				has_country_flag = FRA_industry_in_slot_flag
+			}
+		}
+		effects = {
+			FRA_national_tech_mobilization_none_click = {
+				set_country_flag = FRA_GUI_Info_Window_Visible
+			}
+			FRA_national_tech_mobilization_army_click = {
+				set_country_flag = FRA_GUI_Info_Window_Visible
+			}
+			FRA_national_tech_mobilization_air_click = {
+				set_country_flag = FRA_GUI_Info_Window_Visible
+			}
+			FRA_national_tech_mobilization_navy_click = {
+				set_country_flag = FRA_GUI_Info_Window_Visible
+			}
+			FRA_national_tech_mobilization_electronic_click = {
+				set_country_flag = FRA_GUI_Info_Window_Visible
+			}
+			FRA_national_tech_mobilization_industry_click = {
+				set_country_flag = FRA_GUI_Info_Window_Visible
+			}
+		}
+	}
+	
+	FRA_national_tech_mobilization_GUI_Window = {
+		context_type = player_context
+		window_name = "FRA_national_tech_mobilization_GUI_Window"
+		visible = {
+			has_country_flag = FRA_GUI_Info_Window_Visible
+		}
+		triggers = {
+			FRA_ntm_new_ui_army_click_enabled = {
+				has_political_power > 99
+				NOT = { has_country_flag = FRA_army_in_slot_flag }
+			}
+			FRA_ntm_new_ui_air_click_enabled = {
+				has_political_power > 99
+				NOT = { has_country_flag = FRA_air_in_slot_flag }
+			}
+			FRA_ntm_new_ui_navy_click_enabled = {
+				has_political_power > 99
+				NOT = { has_country_flag = FRA_navy_in_slot_flag }
+			}
+			FRA_ntm_new_ui_electronic_click_enabled = {
+				has_political_power > 99
+				NOT = { has_country_flag = FRA_electronic_in_slot_flag }
+			}
+			FRA_ntm_new_ui_industry_click_enabled = {
+				has_political_power > 99
+				NOT = { has_country_flag = FRA_industry_in_slot_flag }
+			}
+		}
+		effects = {
+			close_click = {
+				clr_country_flag = FRA_GUI_Info_Window_Visible
+			}
+			FRA_ntm_new_ui_none_click = {
+				set_country_flag = FRA_none_in_slot_flag
+				clr_country_flag = FRA_army_in_slot_flag
+				clr_country_flag = FRA_air_in_slot_flag
+				clr_country_flag = FRA_navy_in_slot_flag
+				clr_country_flag = FRA_electronic_in_slot_flag
+				clr_country_flag = FRA_industry_in_slot_flag
+			}
+			FRA_ntm_new_ui_army_click = {
+				clr_country_flag = FRA_none_in_slot_flag
+				set_country_flag = FRA_army_in_slot_flag
+				clr_country_flag = FRA_air_in_slot_flag
+				clr_country_flag = FRA_navy_in_slot_flag
+				clr_country_flag = FRA_electronic_in_slot_flag
+				clr_country_flag = FRA_industry_in_slot_flag
+				add_political_power = -100
+			}
+			FRA_ntm_new_ui_air_click = {
+				clr_country_flag = FRA_none_in_slot_flag
+				clr_country_flag = FRA_army_in_slot_flag
+				set_country_flag = FRA_air_in_slot_flag
+				clr_country_flag = FRA_navy_in_slot_flag
+				clr_country_flag = FRA_electronic_in_slot_flag
+				clr_country_flag = FRA_industry_in_slot_flag
+				add_political_power = -100
+			}
+			FRA_ntm_new_ui_navy_click = {
+				clr_country_flag = FRA_none_in_slot_flag
+				clr_country_flag = FRA_army_in_slot_flag
+				clr_country_flag = FRA_air_in_slot_flag
+				set_country_flag = FRA_navy_in_slot_flag
+				clr_country_flag = FRA_electronic_in_slot_flag
+				clr_country_flag = FRA_industry_in_slot_flag
+				add_political_power = -100
+			}
+			FRA_ntm_new_ui_electronic_click = {
+				clr_country_flag = FRA_none_in_slot_flag
+				clr_country_flag = FRA_army_in_slot_flag
+				clr_country_flag = FRA_air_in_slot_flag
+				clr_country_flag = FRA_navy_in_slot_flag
+				set_country_flag = FRA_electronic_in_slot_flag
+				clr_country_flag = FRA_industry_in_slot_flag
+				add_political_power = -100
+			}
+			FRA_ntm_new_ui_industry_click = {
+				clr_country_flag = FRA_none_in_slot_flag
+				clr_country_flag = FRA_army_in_slot_flag
+				clr_country_flag = FRA_air_in_slot_flag
+				clr_country_flag = FRA_navy_in_slot_flag
+				clr_country_flag = FRA_electronic_in_slot_flag
+				set_country_flag = FRA_industry_in_slot_flag
+				add_political_power = -100
+			}
+		}
+	}
+}

@@ -486,6 +486,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			check_variable = { support_maurras > support_rocque }
 			check_variable = { support_maurras > support_worker }
 			check_variable = { support_maurras > support_sfio }
+			NOT = { has_country_flag = second_great_war_loser }
 		}
 		available = {
 			NOT = { has_country_flag = start_political_war_flag }
@@ -548,6 +549,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			check_variable = { support_rocque > support_maurras }
 			check_variable = { support_rocque > support_worker }
 			check_variable = { support_rocque > support_sfio }
+			NOT = { has_country_flag = second_great_war_loser }
 		}
 		available = {
 			NOT = { has_country_flag = start_political_war_flag }
@@ -610,6 +612,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			check_variable = { support_bucard > support_rocque }
 			check_variable = { support_bucard > support_worker }
 			check_variable = { support_bucard > support_sfio }
+			NOT = { has_country_flag = second_great_war_loser }
 		}
 		available = {
 			NOT = { has_country_flag = start_political_war_flag }
@@ -672,6 +675,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			check_variable = { support_worker > support_rocque }
 			check_variable = { support_worker > support_bucard }
 			check_variable = { support_worker > support_sfio }
+			NOT = { has_country_flag = second_great_war_loser }
 		}
 		available = {
 			NOT = { has_country_flag = start_political_war_flag }
@@ -718,6 +722,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 		days_mission_timeout = 10
 		timeout_effect = {
 			clr_country_flag = start_political_war_flag
+			country_event = france_wr.143
 		}
 	}
 	FRA_political_war_clock_decision_sfio = {
@@ -733,6 +738,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			check_variable = { support_sfio > support_rocque }
 			check_variable = { support_sfio > support_bucard }
 			check_variable = { support_sfio > support_worker }
+			NOT = { has_country_flag = second_great_war_loser }
 		}
 		available = {
 			NOT = { has_country_flag = start_political_war_flag }
@@ -779,6 +785,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 		days_mission_timeout = 10
 		timeout_effect = {
 			clr_country_flag = start_political_war_flag
+			country_event = france_wr.163
 		}
 	}
 	#민볼
@@ -798,7 +805,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 					ruling_only = yes
 				}
 			}
-			NOT = { has_country_flag = start_political_war_flag }
+			NOT = { has_country_flag = start_political_war_flag_forever }
 		}
 		days_remove = 10
 		cost = 10
@@ -825,7 +832,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 					ruling_only = yes
 				}
 			}
-			NOT = { has_country_flag = start_political_war_flag }
+			NOT = { has_country_flag = start_political_war_flag_forever }
 		}
 		days_remove = 15
 		cost = 15
@@ -833,11 +840,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_nazbol_med = yes
 		}
 		ai_will_do = { 
-			base = 100
-			modifier = {
-				add = -100
-				check_variable = { support_nazbol > 99 }
-			}
+			base = 0
 		}
 	}
 	FRA_pup_congress = {
@@ -856,7 +859,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 					ruling_only = yes
 				}
 			}
-			NOT = { has_country_flag = start_political_war_flag }
+			NOT = { has_country_flag = start_political_war_flag_forever }
 		}
 		days_remove = 20
 		cost = 20
@@ -867,7 +870,10 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			base = 100
 			modifier = {
 				add = -100
-				check_variable = { support_nazbol > 99 }
+				OR = {
+					check_variable = { support_nazbol > 85 }
+					has_country_flag = FRA_yes_coup_flag
+				}
 			}
 		}
 	}
@@ -878,9 +884,19 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			original_tag = FRA
 		}
 		visible = {
-			has_country_leader = {
-				character = FRA_charles_maurras
-				ruling_only = yes
+			OR = {
+				has_country_leader = {
+					character = FRA_charles_maurras
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_jean_iii
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_henry_vi
+					ruling_only = yes
+				}
 			}
 		}
 		days_remove = 10
@@ -898,9 +914,19 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			original_tag = FRA
 		}
 		visible = {
-			has_country_leader = {
-				character = FRA_charles_maurras
-				ruling_only = yes
+			OR = {
+				has_country_leader = {
+					character = FRA_charles_maurras
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_jean_iii
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_henry_vi
+					ruling_only = yes
+				}
 			}
 		}
 		days_remove = 15
@@ -909,11 +935,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_maurras_med = yes
 		}
 		ai_will_do = { 
-			base = 100
-			modifier = {
-				add = -100
-				check_variable = { support_maurras > 99 }
-			}
+			base = 0
 		}
 	}
 	FRA_camelots_du_roi_march = {
@@ -922,9 +944,19 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			original_tag = FRA
 		}
 		visible = {
-			has_country_leader = {
-				character = FRA_charles_maurras
-				ruling_only = yes
+			OR = {
+				has_country_leader = {
+					character = FRA_charles_maurras
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_jean_iii
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_henry_vi
+					ruling_only = yes
+				}
 			}
 		}
 		days_remove = 20
@@ -936,7 +968,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			base = 100
 			modifier = {
 				add = -100
-				check_variable = { support_maurras > 99 }
+				check_variable = { support_maurras > 85 }
 			}
 		}
 	}
@@ -956,6 +988,16 @@ FRA_Behind_the_Curtain_of_Power_category = {
 		}
 		ai_will_do = {
 			base = 0
+			modifier = {
+				add = 4000
+				OR = {
+					has_country_flag = FRA_go_to_maurras_flag
+					has_game_rule = {
+						rule = FRA_AI_BEHAVIOR
+						option = CHARLES_MAURRAS_AND_THE_KING
+					}
+				}
+			}
 		}
 	}
 	#공화 질서당
@@ -1008,11 +1050,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_rocque_med = yes
 		}
 		ai_will_do = { 
-			base = 100
-			modifier = {
-				add = -100
-				check_variable = { support_rocque > 99 }
-			}
+			base = 0
 		}
 	}
 	FRA_veterans_rally = {
@@ -1041,7 +1079,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			base = 100
 			modifier = {
 				add = -100
-				check_variable = { support_rocque > 99 }
+				check_variable = { support_rocque > 85 }
 			}
 		}
 	}
@@ -1061,6 +1099,21 @@ FRA_Behind_the_Curtain_of_Power_category = {
 		}
 		ai_will_do = {
 			base = 0
+			modifier = {
+				add = 4000
+				OR = {
+					has_country_flag = FRA_go_to_de_la_roque_flag
+					has_country_flag = FRA_go_to_de_gualle_flag
+					has_game_rule = {
+						rule = FRA_AI_BEHAVIOR
+						option = THE_REPUBLIC_OF_DE_LA_ROCQUE
+					}
+					has_game_rule = {
+						rule = FRA_AI_BEHAVIOR
+						option = DE_GAULLE_AND_FRANCE
+					}
+				}
+			}
 		}
 	}
 	#프랑키스트
@@ -1101,11 +1154,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_bucard_med = yes
 		}
 		ai_will_do = { 
-			base = 100
-			modifier = {
-				add = -100
-				check_variable = { support_bucard > 99 }
-			}
+			base = 0
 		}
 	}
 	FRA_nationalist_appeal = {
@@ -1128,7 +1177,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			base = 100
 			modifier = {
 				add = -100
-				check_variable = { support_bucard > 99 }
+				check_variable = { support_bucard > 85 }
 			}
 		}
 	}
@@ -1148,6 +1197,16 @@ FRA_Behind_the_Curtain_of_Power_category = {
 		}
 		ai_will_do = { 
 			base = 0
+			modifier = {
+				add = 4000
+				OR = {
+					has_country_flag = FRA_go_to_bucard_flag
+					has_game_rule = {
+						rule = FRA_AI_BEHAVIOR
+						option = BUCARDS_FACTION
+					}
+				}
+			}
 		}
 	}
 	#노동자당
@@ -1188,11 +1247,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_worker_med = yes
 		}
 		ai_will_do = { 
-			base = 100
-			modifier = {
-				add = -100
-				check_variable = { support_worker > 99 }
-			}
+			base = 0
 		}
 	}
 	FRA_mobilize_workers_congress = {
@@ -1215,7 +1270,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			base = 100
 			modifier = {
 				add = -100
-				check_variable = { support_worker > 99 }
+				check_variable = { support_worker > 85 }
 			}
 		}
 	}
@@ -1235,6 +1290,16 @@ FRA_Behind_the_Curtain_of_Power_category = {
 		}
 		ai_will_do = { 
 			base = 0
+			modifier = {
+				add = 4000
+				OR = {
+					has_country_flag = FRA_go_to_worker_flag
+					has_game_rule = {
+						rule = FRA_AI_BEHAVIOR
+						option = MONAT_AND_SYNDICALISM
+					}
+				}
+			}
 		}
 	}
 	#사민당
@@ -1244,9 +1309,19 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			original_tag = FRA
 		}
 		visible = {
-			has_country_leader = {
-				character = FRA_leon_blum
-				ruling_only = yes
+			OR = {
+				has_country_leader = {
+					character = FRA_leon_blum
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_paul_reynaud
+					ruling_only = yes
+				}
+				has_country_flag = {
+					character = FRA_french_parliment
+					ruling_only = yes
+				}
 			}
 		}
 		days_remove = 10
@@ -1264,9 +1339,19 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			original_tag = FRA
 		}
 		visible = {
-			has_country_leader = {
-				character = FRA_leon_blum
-				ruling_only = yes
+			OR = {
+				has_country_leader = {
+					character = FRA_leon_blum
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_paul_reynaud
+					ruling_only = yes
+				}
+				has_country_flag = {
+					character = FRA_french_parliment
+					ruling_only = yes
+				}
 			}
 		}
 		days_remove = 15
@@ -1275,11 +1360,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_sfio_med = yes
 		}
 		ai_will_do = { 
-			base = 100
-			modifier = {
-				add = -100
-				check_variable = { support_sfio > 99 }
-			}
+			base = 0
 		}
 	}
 	FRA_psdf_expand_social_reforms = {
@@ -1288,9 +1369,19 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			original_tag = FRA
 		}
 		visible = {
-			has_country_leader = {
-				character = FRA_pierre_monatte
-				ruling_only = yes
+			OR = {
+				has_country_leader = {
+					character = FRA_leon_blum
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_paul_reynaud
+					ruling_only = yes
+				}
+				has_country_flag = {
+					character = FRA_french_parliment
+					ruling_only = yes
+				}
 			}
 		}
 		days_remove = 20
@@ -1302,7 +1393,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			base = 100
 			modifier = {
 				add = -100
-				check_variable = { support_sfio > 99 }
+				check_variable = { support_sfio > 85 }
 			}
 		}
 	}
@@ -1322,6 +1413,16 @@ FRA_Behind_the_Curtain_of_Power_category = {
 		}
 		ai_will_do = { 
 			base = 0
+			modifier = {
+				add = 4000
+				OR = {
+					has_country_flag = FRA_go_to_sdp_flag
+					has_game_rule = {
+						rule = FRA_AI_BEHAVIOR
+						option = RETURN_OF_THE_DEMOCRATIC_REPUBLIC
+					}
+				}
+			}
 		}
 	}
 	#도전
@@ -1336,6 +1437,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				has_idea = unstable_regime2
 			}
 			has_country_flag = start_political_war_flag
+			NOT = { has_country_flag = second_great_war_loser }
 		}
 		available = {
 			OR = {
@@ -1371,6 +1473,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			NOT = { has_completed_focus = FRA_unified_republic }
 			NOT = { has_completed_focus = FRA_indomitable_french_spirit }
 			NOT = { has_completed_focus = FRA_spirit_pays_reel }
+			NOT = { has_country_flag = second_great_war_loser }
 		}
 		available = {
 			OR = {
@@ -1484,7 +1587,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				limit = {
 					NOT = {
 						has_country_leader = {
-							character = FRA_pierre_monatte
+							character = FRA_leon_blum
 							ruling_only = yes
 						}
 					}
@@ -1495,14 +1598,39 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				limit = {
 					NOT = {
 						has_country_leader = {
-							character = FRA_leon_blum
+							character = FRA_pierre_monatte
 							ruling_only = yes
 						}
 						has_completed_focus = FRA_Quarantine_Red_Plague
 						has_completed_focus = FRA_focus_cut_off_leftist_influence
+						has_country_flag = FRA_worker_is_dead_flag
 					}
 				}
 				FRA_pcd_increase_support_worker_low = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_pierre_monatte
+							ruling_only = yes
+						}
+					}
+					NOT = { has_country_flag = FRA_worker_is_dead_flag }
+				}
+				FRA_pcd_increase_support_worker_low = yes
+			}
+			if = {
+				limit = {
+					NOT = {
+						has_country_leader = {
+							character = FRA_pierre_monatte
+							ruling_only = yes
+						}
+					}
+					has_country_flag = FRA_worker_is_dead_flag 
+				}
+				FRA_pcd_increase_support_worker_verylow = yes
 			}
 		}
 	}
@@ -1523,6 +1651,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 				has_completed_focus = FRA_indomitable_french_spirit
 				has_completed_focus = FRA_spirit_pays_reel
 			}
+			NOT = { has_country_flag = second_great_war_loser }
 		}
 		available = {
 			AND = {
@@ -1635,6 +1764,7 @@ FRA_mobilize_the_nation = {
 		activation = {
 			check_variable = { FRA_mobilize_the_nation_main_bar > 99 }
 			has_variable = FRA_mobilize_the_nation_main_bar
+			NOT = { has_country_flag = second_great_war_loser }
 		}
 		available = {
 			check_variable = { FRA_mobilize_the_nation_main_bar < 100 }
@@ -1662,7 +1792,7 @@ FRA_mobilize_the_nation = {
 			has_variable = FRA_mobilize_the_nation_main_bar
 		}
 		custom_cost_trigger = {
-			num_of_civilian_factories > 1
+			num_of_civilian_factories_available_for_projects > 1
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_2_civ
@@ -1704,10 +1834,34 @@ FRA_mobilize_the_nation = {
 			}
 		}
         ai_will_do = {
-            base = 10
+            base = 75
 			modifier = {
-				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar > 50 }
+				add = -75
+				OR = {
+					check_variable = { FRA_mobilize_the_nation_main_bar > 35 }
+					check_variable = { FRA_propaganda_money < 200 }
+				}
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor > 0.1 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory < 0.1 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor < 0.1 }
+				check_variable = { FRA_total_mobilization_conscription_factor < 0.05 }
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor > 0.2 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory < 0.2 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor < 0.2 }
+				check_variable = { FRA_total_mobilization_conscription_factor < 0.1 }
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor > 0.3 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory < 0.3 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor < 0.3 }
+				check_variable = { FRA_total_mobilization_conscription_factor < 0.15 }
 			}
         }
 	}
@@ -1726,7 +1880,7 @@ FRA_mobilize_the_nation = {
 			has_variable = FRA_mobilize_the_nation_main_bar
 		}
 		custom_cost_trigger = {
-			num_of_civilian_factories > 1
+			num_of_civilian_factories_available_for_projects > 1
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_2_civ
@@ -1768,10 +1922,34 @@ FRA_mobilize_the_nation = {
 			}
 		}
         ai_will_do = {
-            base = 10
+            base = 75
 			modifier = {
-				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar > 50 }
+				add = -75
+				OR = {
+					check_variable = { FRA_mobilize_the_nation_main_bar > 35 }
+					check_variable = { FRA_propaganda_money < 200 }
+				}
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor < 0.1 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory > 0.1 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor < 0.1 }
+				check_variable = { FRA_total_mobilization_conscription_factor < 0.05 }
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor < 0.2 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory > 0.2 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor < 0.2 }
+				check_variable = { FRA_total_mobilization_conscription_factor < 0.1 }
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor < 0.3 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory > 0.3 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor < 0.3 }
+				check_variable = { FRA_total_mobilization_conscription_factor < 0.15 }
 			}
         }
 	}
@@ -1790,7 +1968,7 @@ FRA_mobilize_the_nation = {
 			has_variable = FRA_mobilize_the_nation_main_bar
 		}
 		custom_cost_trigger = {
-			num_of_civilian_factories > 1
+			num_of_civilian_factories_available_for_projects > 1
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_2_civ
@@ -1832,10 +2010,34 @@ FRA_mobilize_the_nation = {
 			}
 		}
         ai_will_do = {
-            base = 10
+            base = 75
 			modifier = {
-				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar > 50 }
+				add = -75
+				OR = {
+					check_variable = { FRA_mobilize_the_nation_main_bar > 35 }
+					check_variable = { FRA_propaganda_money < 200 }
+				}
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor < 0.1 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory < 0.1 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor > 0.1 }
+				check_variable = { FRA_total_mobilization_conscription_factor < 0.05 }
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor < 0.2 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory < 0.2 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor > 0.2 }
+				check_variable = { FRA_total_mobilization_conscription_factor < 0.1 }
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor < 0.3 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory < 0.3 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor > 0.3 }
+				check_variable = { FRA_total_mobilization_conscription_factor < 0.15 }
 			}
         }
     }
@@ -1854,7 +2056,7 @@ FRA_mobilize_the_nation = {
 			has_variable = FRA_mobilize_the_nation_main_bar
 		}
 		custom_cost_trigger = {
-			num_of_civilian_factories > 1
+			num_of_civilian_factories_available_for_projects > 1
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_2_civ
@@ -1892,10 +2094,34 @@ FRA_mobilize_the_nation = {
 			}
 		}
         ai_will_do = {
-            base = 10
+            base = 75
 			modifier = {
-				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar > 50 }
+				add = -75
+				OR = {
+					check_variable = { FRA_mobilize_the_nation_main_bar > 35 }
+					check_variable = { FRA_propaganda_money < 200 }
+				}
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor < 0.1 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory < 0.1 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor < 0.1 }
+				check_variable = { FRA_total_mobilization_conscription_factor > 0.05 }
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor < 0.2 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory < 0.2 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor < 0.2 }
+				check_variable = { FRA_total_mobilization_conscription_factor > 0.1 }
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_total_mobilization_production_factory_efficiency_gain_factor < 0.3 }
+				check_variable = { FRA_total_mobilization_industrial_capacity_factory < 0.3 }
+				check_variable = { FRA_total_mobilization_production_speed_arms_factory_factor < 0.3 }
+				check_variable = { FRA_total_mobilization_conscription_factor > 0.15 }
 			}
         }
 	}
@@ -1929,7 +2155,7 @@ FRA_mobilize_the_nation = {
 			}
 			if = {
 				limit = {
-					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+					check_variable = { FRA_total_mobilization_political_power_factor < 0 }
 				}
 				add_to_variable = {
 					FRA_total_mobilization_political_power_factor = 0.02
@@ -1949,7 +2175,7 @@ FRA_mobilize_the_nation = {
             base = 10
 			modifier = {
 				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar < 51 }
+				check_variable = { FRA_mobilize_the_nation_main_bar < 36 }
 			}
         }
 	}
@@ -1983,7 +2209,7 @@ FRA_mobilize_the_nation = {
 			}
 			if = {
 				limit = {
-					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+					check_variable = { FRA_total_mobilization_political_power_factor < 0 }
 				}
 				add_to_variable = {
 					FRA_total_mobilization_political_power_factor = 0.02
@@ -2003,7 +2229,7 @@ FRA_mobilize_the_nation = {
             base = 10
 			modifier = {
 				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar < 51 }
+				check_variable = { FRA_mobilize_the_nation_main_bar < 36 }
 			}
         }
 	}
@@ -2037,7 +2263,7 @@ FRA_mobilize_the_nation = {
 			}
 			if = {
 				limit = {
-					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+					check_variable = { FRA_total_mobilization_political_power_factor < 0 }
 				}
 				add_to_variable = {
 					FRA_total_mobilization_political_power_factor = 0.02
@@ -2057,7 +2283,7 @@ FRA_mobilize_the_nation = {
             base = 10
 			modifier = {
 				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar < 51 }
+				check_variable = { FRA_mobilize_the_nation_main_bar < 36 }
 			}
         }
 	}
@@ -2087,7 +2313,7 @@ FRA_mobilize_the_nation = {
 			}
 			if = {
 				limit = {
-					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+					check_variable = { FRA_total_mobilization_political_power_factor < 0 }
 				}
 				add_to_variable = {
 					FRA_total_mobilization_political_power_factor = 0.02
@@ -2107,7 +2333,7 @@ FRA_mobilize_the_nation = {
             base = 10
 			modifier = {
 				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar < 51 }
+				check_variable = { FRA_mobilize_the_nation_main_bar < 36 }
 			}
         }
 	}
@@ -2142,27 +2368,27 @@ FRA_mobilize_the_nation = {
 			remove_5_FRA_mobilize_the_nation_main_bar = yes
 			if = {
 				limit = {
-					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+					check_variable = { FRA_total_mobilization_political_power_factor < 0 }
 				}
 				add_to_variable = {
-					FRA_total_mobilization_political_power_factor = -0.02
+					FRA_total_mobilization_political_power_factor = 0.02
 					tooltip = political_power_factor_tt
 				}
 				add_to_variable = {
-					FRA_total_mobilization_stability_factor = -0.02
+					FRA_total_mobilization_stability_factor = 0.02
 					tooltip = stability_factor_tt
 				}
 				add_to_variable = {
-					FRA_total_mobilization_war_support_factor = -0.02
+					FRA_total_mobilization_war_support_factor = 0.02
 					tooltip = war_support_factor_tt
 				}
 			}
 		}
         ai_will_do = {
-            base = 10
+            base = 75
 			modifier = {
-				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar < 40 }
+				add = -75
+				check_variable = { FRA_mobilize_the_nation_main_bar < 20 }
 			}
         }
 	}
@@ -2194,30 +2420,30 @@ FRA_mobilize_the_nation = {
 			add_to_variable = { FRA_propaganda_money = -100 }
 		}
 		remove_effect = {
-			remove_5_FRA_mobilize_the_nation_main_bar = yes
+			remove_10_FRA_mobilize_the_nation_main_bar = yes
 			if = {
 				limit = {
-					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+					check_variable = { FRA_total_mobilization_political_power_factor < 0 }
 				}
 				add_to_variable = {
-					FRA_total_mobilization_political_power_factor = -0.02
+					FRA_total_mobilization_political_power_factor = 0.02
 					tooltip = political_power_factor_tt
 				}
 				add_to_variable = {
-					FRA_total_mobilization_stability_factor = -0.02
+					FRA_total_mobilization_stability_factor = 0.02
 					tooltip = stability_factor_tt
 				}
 				add_to_variable = {
-					FRA_total_mobilization_war_support_factor = -0.02
+					FRA_total_mobilization_war_support_factor = 0.02
 					tooltip = war_support_factor_tt
 				}
 			}
 		}
         ai_will_do = {
-            base = 10
+            base = 75
 			modifier = {
-				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar < 40 }
+				add = -75
+				check_variable = { FRA_mobilize_the_nation_main_bar < 20 }
 			}
         }
 	}
@@ -2249,30 +2475,30 @@ FRA_mobilize_the_nation = {
 			add_to_variable = { FRA_propaganda_money = -70 }
 		}
 		remove_effect = {
-			remove_5_FRA_mobilize_the_nation_main_bar = yes
+			remove_10_FRA_mobilize_the_nation_main_bar = yes
 			if = {
 				limit = {
-					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+					check_variable = { FRA_total_mobilization_political_power_factor < 0 }
 				}
 				add_to_variable = {
-					FRA_total_mobilization_political_power_factor = -0.02
+					FRA_total_mobilization_political_power_factor = 0.02
 					tooltip = political_power_factor_tt
 				}
 				add_to_variable = {
-					FRA_total_mobilization_stability_factor = -0.02
+					FRA_total_mobilization_stability_factor = 0.02
 					tooltip = stability_factor_tt
 				}
 				add_to_variable = {
-					FRA_total_mobilization_war_support_factor = -0.02
+					FRA_total_mobilization_war_support_factor = 0.02
 					tooltip = war_support_factor_tt
 				}
 			}
 		}
         ai_will_do = {
-            base = 10
+            base = 75
 			modifier = {
-				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar < 40 }
+				add = -75
+				check_variable = { FRA_mobilize_the_nation_main_bar < 20 }
 			}
         }
 	}
@@ -2304,30 +2530,30 @@ FRA_mobilize_the_nation = {
 			add_to_variable = { FRA_propaganda_money = -70 }
 		}
 		remove_effect = {
-			remove_5_FRA_mobilize_the_nation_main_bar = yes
+			remove_10_FRA_mobilize_the_nation_main_bar = yes
 			if = {
 				limit = {
-					check_variable = { FRA_mobilize_the_nation_main_bar > 59 }
+					check_variable = { FRA_total_mobilization_political_power_factor < 0 }
 				}
 				add_to_variable = {
-					FRA_total_mobilization_political_power_factor = -0.02
+					FRA_total_mobilization_political_power_factor = 0.02
 					tooltip = political_power_factor_tt
 				}
 				add_to_variable = {
-					FRA_total_mobilization_stability_factor = -0.02
+					FRA_total_mobilization_stability_factor = 0.02
 					tooltip = stability_factor_tt
 				}
 				add_to_variable = {
-					FRA_total_mobilization_war_support_factor = -0.02
+					FRA_total_mobilization_war_support_factor = 0.02
 					tooltip = war_support_factor_tt
 				}
 			}
 		}
         ai_will_do = {
-            base = 10
+            base = 75
 			modifier = {
-				add = -10
-				check_variable = { FRA_mobilize_the_nation_main_bar < 40 }
+				add = -75
+				check_variable = { FRA_mobilize_the_nation_main_bar < 20 }
 			}
         }
 	}
@@ -2341,20 +2567,24 @@ FRA_mobilize_the_nation = {
 		visible = {
 			has_variable = FRA_mobilize_the_nation_main_bar
 		}
-		cost = 30
+		cost = 15
         days_remove = 20
         fire_only_once = no
 		remove_effect = {
 			add_to_variable = {
-				FRA_propaganda_money = 50
+				FRA_propaganda_money = 100
 			}
 			custom_effect_tooltip = FRA_Secure_Propaganda_Funds_tt
 		}
         ai_will_do = {
-            base = 10
+            base = 2000
 			modifier = {
-				add = -10
-				check_variable = { FRA_propaganda_money > 200 }
+				add = -2000
+				check_variable = { FRA_propaganda_money > 500 }
+			}
+			modifier = {
+				add = -75
+				check_variable = { FRA_propaganda_money > 300 }
 			}
         }
 	}
@@ -2377,7 +2607,7 @@ FRA_Militarization_of_the_French_Economy = {
 		}
 		days_remove = 50
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -2430,7 +2660,7 @@ FRA_Militarization_of_the_French_Economy = {
 		}
 		days_remove = 50
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -2483,7 +2713,7 @@ FRA_Militarization_of_the_French_Economy = {
 		}
 		days_remove = 50
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -2536,7 +2766,7 @@ FRA_Militarization_of_the_French_Economy = {
 		}
 		days_remove = 50
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -2589,7 +2819,7 @@ FRA_Militarization_of_the_French_Economy = {
 		}
 		days_remove = 50
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -2642,7 +2872,7 @@ FRA_Militarization_of_the_French_Economy = {
 		}
 		days_remove = 50
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -2696,7 +2926,7 @@ FRA_Establishment_of_a_State_Led_Economy = {
 		}
 		days_remove = 30
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -2738,7 +2968,7 @@ FRA_Establishment_of_a_State_Led_Economy = {
 		}
 		days_remove = 30
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -2778,7 +3008,7 @@ FRA_Establishment_of_a_State_Led_Economy = {
 		}
 		days_remove = 30
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -2818,7 +3048,7 @@ FRA_Establishment_of_a_State_Led_Economy = {
 		}
 		days_remove = 30
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -2858,7 +3088,7 @@ FRA_Establishment_of_a_State_Led_Economy = {
 		}
 		days_remove = 30
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -2896,6 +3126,7 @@ foreign_politics = {
 					original_tag = BUL
 					original_tag = ROM
 				}
+				is_in_faction = no
 			}
 		}
 		visible = {
@@ -2957,7 +3188,7 @@ foreign_politics = {
 				date > 1943.1.1
 			}
 			modifier = {
-				add = 1000
+				add = 75
 				FROM = { original_tag = ROM }
 				date > 1940.5.1
 				SOV = { has_war_with = GER }
@@ -3032,7 +3263,7 @@ FRA_government_infiltration_decisions = {
 	FRA_puppet_doriot = {
 		icon = GFX_decision_SWI_elect_confederation_president
 		available = {
-			has_completed_focus = FRA_Dea_New_Order
+			has_completed_focus = FRA_deat_coopt_doriotists
 		}
 		visible = {
 			has_completed_focus = FRA_Dea_New_Order
@@ -3040,7 +3271,6 @@ FRA_government_infiltration_decisions = {
 		}
 		allowed = {
 			original_tag = FRA
-			has_completed_focus = FRA_Dea_Unified_France
 		}
 		fire_only_once = yes
 		available = {
@@ -3049,7 +3279,7 @@ FRA_government_infiltration_decisions = {
 				value > 0.9
 			}
 		}
-		cost = 50
+		cost = 10
 		days_remove = 60
 		complete_effect = {
 			set_country_flag = doriot_is_puppet_flag
@@ -3065,18 +3295,27 @@ FRA_government_infiltration_decisions = {
 				 ideology = national_popular_socialism
 				 trait = left_wing_nationalist
 			}
+			FRA_jacques_doriot = {
+				set_portraits = {
+					civilian = { large = "gfx/leaders/FRA/FRA_jacques_doriot_puppet.png" }
+				}
+			}
+			set_country_leader_description = {
+				ideology = national_popular_socialism
+				desc = FRA_jacques_doriot_desc_puppet
+			}
 			add_ideas = FRA_marcel_deat
 			remove_power_balance = { id = FRA_government_infiltration }
 		}
 		ai_will_do = {
-			base = 50
+			base = 150
 		}
 		priority = 10
 	}
 	FRA_eliminate_doriot = {
 		icon = GFX_decision_generic_assassination
 		available = {
-			has_completed_focus = FRA_Dea_New_Order
+			has_completed_focus = FRA_deat_purge_doriotists
 		}
 		visible = {
 			has_completed_focus = FRA_Dea_New_Order
@@ -3093,7 +3332,7 @@ FRA_government_infiltration_decisions = {
 				value > 0.9
 			}
 		}
-		cost = 50
+		cost = 10
 		days_remove = 60
 		complete_effect = {
 			set_country_flag = doriot_is_so_dead_flag
@@ -3108,7 +3347,7 @@ FRA_government_infiltration_decisions = {
 			}
 		}
 		ai_will_do = {
-			base = 50
+			base = 150
 		}
 		priority = 10
 	}
@@ -3123,7 +3362,7 @@ FRA_government_infiltration_decisions = {
 		allowed = {
 			original_tag = FRA
 		}
-		cost = 25
+		cost = 20
 		days_remove = 20
 		remove_effect = {
 			add_power_balance_value = {
@@ -3154,7 +3393,7 @@ FRA_government_infiltration_decisions = {
 		allowed = {
 			original_tag = FRA
 		}
-		cost = 25
+		cost = 20
 		days_remove = 20
 		remove_effect = {
 			add_power_balance_value = {
@@ -3185,7 +3424,7 @@ FRA_government_infiltration_decisions = {
 		allowed = {
 			original_tag = FRA
 		}
-		cost = 25
+		cost = 20
 		days_remove = 20
 		remove_effect = {
 			add_power_balance_value = {
@@ -3216,7 +3455,7 @@ FRA_government_infiltration_decisions = {
 		allowed = {
 			original_tag = FRA
 		}
-		cost = 40
+		cost = 30
 		days_remove = 20
 		remove_effect = {
 			add_power_balance_value = {
@@ -3247,7 +3486,7 @@ FRA_government_infiltration_decisions = {
 		allowed = {
 			original_tag = FRA
 		}
-		cost = 40
+		cost = 30
 		days_remove = 20
 		remove_effect = {
 			add_power_balance_value = {
@@ -3616,7 +3855,7 @@ FRA_bucards_resolve_category = {
 		ai_will_do = {
 			base = 0
 			modifier = {
-				add = 1000
+				add = 75
 				has_war_with_major = yes
 			}
 		}
@@ -3941,7 +4180,7 @@ FRA_labor_for_france = {
 		}
 		days_remove = 30
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -3982,7 +4221,7 @@ FRA_labor_for_france = {
 		}
 		days_remove = 30
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -4022,7 +4261,7 @@ FRA_labor_for_france = {
 		}
 		days_remove = 30
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -4062,7 +4301,7 @@ FRA_labor_for_france = {
 		}
 		days_remove = 30
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -4102,7 +4341,7 @@ FRA_labor_for_france = {
 		}
 		days_remove = 50
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -4142,7 +4381,7 @@ FRA_labor_for_france = {
 		}
 		days_remove = 30
 		custom_cost_trigger = {
-			num_of_civilian_factories > 2
+			num_of_civilian_factories_available_for_projects > 2
 			has_political_power > 19
 		}
 		custom_cost_text = decision_cost_3_civ
@@ -4184,8 +4423,8 @@ FRA_harmonious_order = {
 		allowed = {
 			original_tag = FRA
 		}
-		#cost = 15
-		#days_remove = 15
+		cost = 15
+		days_remove = 15
 		remove_effect = {
 			FRA_dec_harmonious_order_0_025 = yes
 		}
@@ -4205,8 +4444,8 @@ FRA_harmonious_order = {
 		allowed = {
 			original_tag = FRA
 		}
-		#cost = 30
-		#days_remove = 15
+		cost = 30
+		days_remove = 15
 		remove_effect = {
 			FRA_dec_harmonious_order_0_05 = yes
 		}
@@ -4230,8 +4469,8 @@ FRA_harmonious_order = {
 		allowed = {
 			original_tag = FRA
 		}
-		#cost = 45
-		#days_remove = 15
+		cost = 45
+		days_remove = 15
 		remove_effect = {
 			FRA_dec_harmonious_order_0_1 = yes
 		}
@@ -4251,8 +4490,8 @@ FRA_harmonious_order = {
 		allowed = {
 			original_tag = FRA
 		}
-		#cost = 15
-		#days_remove = 15
+		cost = 15
+		days_remove = 15
 		remove_effect = {
 			FRA_inc_harmonious_order_0_025 = yes
 		}
@@ -4272,8 +4511,8 @@ FRA_harmonious_order = {
 		allowed = {
 			original_tag = FRA
 		}
-		#cost = 30
-		#days_remove = 15
+		cost = 30
+		days_remove = 15
 		remove_effect = {
 			FRA_inc_harmonious_order_0_05 = yes
 		}
@@ -4297,8 +4536,8 @@ FRA_harmonious_order = {
 		allowed = {
 			original_tag = FRA
 		}
-		#cost = 45
-		#days_remove = 15
+		cost = 45
+		days_remove = 15
 		remove_effect = {
 			FRA_inc_harmonious_order_0_1 = yes
 		}
@@ -4312,6 +4551,7 @@ FRA_harmonious_order = {
 		activation = {
 			has_completed_focus = FRA_focus_decentralization
 			NOT = { check_variable = { FRA_harmonious_order_main_bar = -1 } }
+			NOT = { has_country_flag = second_great_war_loser }
 		}
 		available = {
 			check_variable = { FRA_harmonious_order_main_bar = -1 }
@@ -4320,6 +4560,2904 @@ FRA_harmonious_order = {
 		priority = 1
 		timeout_effect = {
 			FRA_dec_harmonious_order_0_05 = yes
+		}
+	}
+}
+
+FRA_national_tech_mobilization = {
+	FRA_focus_army_research = {
+		icon = GFX_decision_SWE_set_army_budget
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			NOT = { has_country_flag = FRA_army_in_slot_flag }
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+			has_political_power > 49
+		}
+		custom_cost_text = decision_cost_5_civ
+		modifier = {
+			civilian_factory_use = 5
+			research_bonus = {
+				infantry_weapons = 0.1
+				artillery = 0.1
+			}
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+			set_country_flag = FRA_research_is_going_on_army_flag
+			add_ideas = FRA_focus_army_research
+			add_political_power = -50
+		}
+		remove_effect = {
+			clr_country_flag = FRA_research_is_going_on_flag
+			clr_country_flag = FRA_research_is_going_on_army_flag
+			remove_ideas = FRA_focus_army_research
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	FRA_focus_army_research_cheap = {
+		name = FRA_focus_army_research
+		icon = GFX_decision_SWE_set_army_budget
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_flag = FRA_army_in_slot_flag
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+			set_country_flag = FRA_research_is_going_on_army_flag
+			add_ideas = FRA_focus_army_research_1
+			add_political_power = -25
+		}
+		remove_effect = {
+			clr_country_flag = FRA_research_is_going_on_flag
+			clr_country_flag = FRA_research_is_going_on_army_flag
+			remove_ideas = FRA_focus_army_research_1
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	FRA_focus_air_research = {
+		icon = GFX_decision_SWE_set_air_budget
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			NOT = { has_country_flag = FRA_air_in_slot_flag }
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+			has_political_power > 49
+		}
+		custom_cost_text = decision_cost_5_civ
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+			set_country_flag = FRA_research_is_going_on_air_flag
+			add_ideas = FRA_focus_air_research
+			add_political_power = -50
+		}
+		remove_effect = {
+			clr_country_flag = FRA_research_is_going_on_flag
+			clr_country_flag = FRA_research_is_going_on_air_flag
+			remove_ideas = FRA_focus_air_research
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	FRA_focus_air_research_cheap = {
+		name = FRA_focus_air_research
+		icon = GFX_decision_SWE_set_air_budget
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_flag = FRA_air_in_slot_flag
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+			set_country_flag = FRA_research_is_going_on_air_flag
+			add_ideas = FRA_focus_air_research_1
+			add_political_power = -25
+		}
+		remove_effect = {
+			clr_country_flag = FRA_research_is_going_on_flag
+			clr_country_flag = FRA_research_is_going_on_air_flag
+			remove_ideas = FRA_focus_air_research_1
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	FRA_focus_navy_research = {
+		icon = GFX_decision_SWE_set_navy_budget
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			NOT = { has_country_flag = FRA_navy_in_slot_flag }
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+			has_political_power > 49
+		}
+		custom_cost_text = decision_cost_5_civ
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+			set_country_flag = FRA_research_is_going_on_navy_flag
+			add_ideas = FRA_focus_navy_research
+			add_political_power = -50
+		}
+		remove_effect = {
+			clr_country_flag = FRA_research_is_going_on_flag
+			clr_country_flag = FRA_research_is_going_on_navy_flag
+			remove_ideas = FRA_focus_navy_research
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	FRA_focus_navy_research_cheap = {
+		name = FRA_focus_navy_research
+		icon = GFX_decision_SWE_set_navy_budget
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_flag = FRA_navy_in_slot_flag
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+			set_country_flag = FRA_research_is_going_on_navy_flag
+			add_ideas = FRA_focus_navy_research_1
+			add_political_power = -25
+		}
+		remove_effect = {
+			clr_country_flag = FRA_research_is_going_on_flag
+			clr_country_flag = FRA_research_is_going_on_navy_flag
+			remove_ideas = FRA_focus_navy_research_1
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	FRA_focus_electronics_research = {
+		icon = GFX_decision_generic_electricity
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			NOT = { has_country_flag = FRA_electronic_in_slot_flag }
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+			has_political_power > 49
+		}
+		custom_cost_text = decision_cost_5_civ
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+			set_country_flag = FRA_research_is_going_on_electronics_flag
+			add_ideas = FRA_focus_electronics_research
+			add_political_power = -50
+		}
+		remove_effect = {
+			clr_country_flag = FRA_research_is_going_on_flag
+			clr_country_flag = FRA_research_is_going_on_electronics_flag
+			remove_ideas = FRA_focus_electronics_research
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	FRA_focus_electronics_research_cheap = {
+		name = FRA_focus_electronics_research
+		icon = GFX_decision_generic_electricity
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_flag = FRA_electronic_in_slot_flag
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+			set_country_flag = FRA_research_is_going_on_electronics_flag
+			add_ideas = FRA_focus_electronics_research_1
+			add_political_power = -25
+		}
+		remove_effect = {
+			clr_country_flag = FRA_research_is_going_on_flag
+			clr_country_flag = FRA_research_is_going_on_electronics_flag
+			remove_ideas = FRA_focus_electronics_research_1
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	FRA_focus_industry_research = {
+		icon = GFX_decision_generic_factory
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			NOT = { has_country_flag = FRA_industry_in_slot_flag }
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+			has_political_power > 49
+		}
+		custom_cost_text = decision_cost_5_civ
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+			set_country_flag = FRA_research_is_going_on_industry_flag
+			add_ideas = FRA_focus_industry_research
+			add_political_power = -50
+		}
+		remove_effect = {
+			clr_country_flag = FRA_research_is_going_on_flag
+			clr_country_flag = FRA_research_is_going_on_industry_flag
+			remove_ideas = FRA_focus_industry_research
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+	FRA_focus_industry_research_cheap = {
+		name = FRA_focus_industry_research
+		icon = GFX_decision_generic_factory
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_flag = FRA_industry_in_slot_flag
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+			set_country_flag = FRA_research_is_going_on_industry_flag
+			add_ideas = FRA_focus_industry_research_1
+			add_political_power = -25
+		}
+		remove_effect = {
+			clr_country_flag = FRA_research_is_going_on_flag
+			clr_country_flag = FRA_research_is_going_on_industry_flag
+			remove_ideas = FRA_focus_industry_research_1
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+}
+
+FRA_syndicalist_society = {
+	#North West
+	FRA_decision_regional_population_attraction_northwest = {
+		name = FRA_decision_regional_population_attraction
+		icon = GFX_decision_generic_operation
+		available = {
+			NOT = { has_country_flag = FRA_northwest_is_going_on_flag }
+			FRA_north_west_trigger = yes
+		}
+		visible = {
+			FRA_north_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_northwest_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 14
+						state = 15
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_northwest_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 14
+						state = 15
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_regional_modernization_support_northwest = {
+		name = FRA_decision_regional_modernization_support
+		icon = GFX_decision_generic_construction
+		available = {
+			NOT = { has_country_flag = FRA_northwest_is_going_on_flag }
+			FRA_north_west_trigger = yes
+		}
+		visible = {
+			FRA_north_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_northwest_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 14
+						state = 15
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_northwest_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 14
+						state = 15
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_nb_dairy_union_trade = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		available = {
+			NOT = { has_country_flag = FRA_northwest_is_going_on_flag }
+			FRA_north_west_trigger = yes
+		}
+		visible = {
+			FRA_north_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 60
+		cost = 40
+		modifier = {
+			stability_weekly_factor = 0.02
+		}
+		complete_effect = {
+			set_country_flag = FRA_northwest_is_going_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_northwest_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				has_stability > 0.9
+			}
+		}
+	}
+	FRA_decision_nb_dairy_union_equipment = {
+		icon = GFX_decision_generic_motorized
+		available = {
+			NOT = { has_country_flag = FRA_northwest_is_going_on_flag }
+			FRA_north_west_trigger = yes
+		}
+		visible = {
+			FRA_north_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_northwest_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 14
+						state = 15
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_industrial_expansion
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_northwest_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 14
+						state = 15
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_industrial_expansion
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	#West
+	FRA_decision_regional_population_attraction_west = {
+		name = FRA_decision_regional_population_attraction
+		icon = GFX_decision_generic_operation
+		available = {
+			NOT = { has_country_flag = FRA_west_is_going_on_flag }
+			FRA_west_trigger = yes
+		}
+		visible = {
+			FRA_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_west_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 23
+						state = 30
+						state = 33
+						state = 24
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_west_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 23
+						state = 30
+						state = 33
+						state = 24
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_regional_modernization_support_west = {
+		name = FRA_decision_regional_modernization_support
+		icon = GFX_decision_generic_construction
+		available = {
+			NOT = { has_country_flag = FRA_west_is_going_on_flag }
+			FRA_west_trigger = yes
+		}
+		visible = {
+			FRA_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_west_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 23
+						state = 30
+						state = 33
+						state = 24
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_west_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 23
+						state = 30
+						state = 33
+						state = 24
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_southern_craft_union_purchase = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		available = {
+			NOT = { has_country_flag = FRA_west_is_going_on_flag }
+			FRA_west_trigger = yes
+		}
+		visible = {
+			FRA_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 60
+		cost = 40
+		modifier = {
+			political_power_factor = 0.1
+		}
+		complete_effect = {
+			set_country_flag = FRA_west_is_going_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_west_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				has_political_power > 100
+			}
+		}
+	}
+	FRA_decision_southern_craft_union_military = {
+		icon = GFX_decision_generic_factory
+		available = {
+			NOT = { has_country_flag = FRA_west_is_going_on_flag }
+			FRA_west_trigger = yes
+		}
+		visible = {
+			FRA_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_west_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 23
+						state = 30
+						state = 33
+						state = 24
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_military_industry_expansion
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_west_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 23
+						state = 30
+						state = 33
+						state = 24
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_military_industry_expansion
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	#South west
+	FRA_decision_regional_population_attraction_southwest = {
+		name = FRA_decision_regional_population_attraction
+		icon = GFX_decision_generic_operation
+		available = {
+			NOT = { has_country_flag = FRA_southwest_is_going_on_flag }
+			FRA_south_west_trigger = yes
+		}
+		visible = {
+			FRA_south_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_southwest_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 19
+						state = 806
+						state = 31
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_southwest_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 19
+						state = 806
+						state = 31
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_regional_modernization_support_southwest = {
+		name = FRA_decision_regional_modernization_support
+		icon = GFX_decision_generic_construction
+		available = {
+			NOT = { has_country_flag = FRA_southwest_is_going_on_flag }
+			FRA_south_west_trigger = yes
+		}
+		visible = {
+			FRA_south_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_southwest_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 19
+						state = 806
+						state = 31
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_southwest_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 19
+						state = 806
+						state = 31
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_food_craft_union_trade = {
+		icon = GFX_decision_eng_trade_unions_demand
+		available = {
+			NOT = { has_country_flag = FRA_southwest_is_going_on_flag }
+			FRA_south_west_trigger = yes
+		}
+		visible = {
+			FRA_south_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_southwest_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 19
+						state = 806
+						state = 31
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_food_trade_distribution
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_southwest_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 19
+						state = 806
+						state = 31
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_food_trade_distribution
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_spirit_partial_automation_support = {
+		icon = GFX_decision_generic_research
+		available = {
+			NOT = { has_country_flag = FRA_southwest_is_going_on_flag }
+			FRA_south_west_trigger = yes
+		}
+		visible = {
+			FRA_south_west_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+			research_speed_factor = 0.1
+		}
+		complete_effect = {
+			set_country_flag = FRA_southwest_is_going_on_flag
+			add_political_power = -25
+		}
+		remove_effect = {
+			clr_country_flag = FRA_southwest_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	#South
+	FRA_decision_regional_population_attraction_south = {
+		name = FRA_decision_regional_population_attraction
+		icon = GFX_decision_generic_operation
+		available = {
+			NOT = { has_country_flag = FRA_south_is_going_on_flag }
+			FRA_south_trigger = yes
+		}
+		visible = {
+			FRA_south_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_south_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 25
+						state = 22
+						state = 26
+						state = 1
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_south_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 25
+						state = 22
+						state = 26
+						state = 1
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_regional_modernization_support_south = {
+		name = FRA_decision_regional_modernization_support
+		icon = GFX_decision_generic_construction
+		available = {
+			NOT = { has_country_flag = FRA_south_is_going_on_flag }
+			FRA_south_trigger = yes
+		}
+		visible = {
+			FRA_south_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_south_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 25
+						state = 22
+						state = 26
+						state = 1
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_south_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 25
+						state = 22
+						state = 26
+						state = 1
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_agriculture_coop_modernization = {
+		icon = GFX_decision_generic_disband_irregulars
+		available = {
+			NOT = { has_country_flag = FRA_south_is_going_on_flag }
+			FRA_south_trigger = yes
+		}
+		visible = {
+			FRA_south_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+			monthly_population = 0.1
+		}
+		complete_effect = {
+			set_country_flag = FRA_south_is_going_on_flag
+			add_political_power = -25
+		}
+		remove_effect = {
+			clr_country_flag = FRA_south_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_agriculture_coop_trade = {
+		icon = GFX_decision_generic_consumer_goods
+		available = {
+			NOT = { has_country_flag = FRA_south_is_going_on_flag }
+			FRA_south_trigger = yes
+		}
+		visible = {
+			FRA_south_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+			consumer_goods_factor = -0.15
+		}
+		complete_effect = {
+			set_country_flag = FRA_south_is_going_on_flag
+			add_political_power = -25
+		}
+		remove_effect = {
+			clr_country_flag = FRA_south_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	#North east
+	FRA_decision_regional_population_attraction_northeast = {
+		name = FRA_decision_regional_population_attraction
+		icon = GFX_decision_generic_operation
+		available = {
+			NOT = { has_country_flag = FRA_northeast_is_going_on_flag }
+			FRA_north_east_trigger = yes
+		}
+		visible = {
+			FRA_north_east_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_northeast_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 928
+						state = 16
+						state = 993
+						state = 785
+						state = 18
+						state = 27
+						state = 17
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_northeast_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 928
+						state = 16
+						state = 993
+						state = 785
+						state = 18
+						state = 27
+						state = 17
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_regional_modernization_support_northeast = {
+		name = FRA_decision_regional_modernization_support
+		icon = GFX_decision_generic_construction
+		available = {
+			NOT = { has_country_flag = FRA_northeast_is_going_on_flag }
+			FRA_north_east_trigger = yes
+		}
+		visible = {
+			FRA_north_east_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_northeast_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 928
+						state = 16
+						state = 993
+						state = 785
+						state = 18
+						state = 27
+						state = 17
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_northeast_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 928
+						state = 16
+						state = 993
+						state = 785
+						state = 18
+						state = 27
+						state = 17
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_idf_industrial_union_factory = {
+		icon = GFX_decision_generic_factory
+		available = {
+			NOT = { has_country_flag = FRA_northeast_is_going_on_flag }
+			FRA_north_east_trigger = yes
+		}
+		visible = {
+			FRA_north_east_trigger = yes
+			NOT = { check_variable = { over_5_times > 5 } }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 60
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_northeast_is_going_on_flag
+			add_political_power = -25
+			add_to_variable = { over_5_times = 1 }
+			custom_effect_tooltip = over_5_times_tt
+		}
+		remove_effect = {
+			clr_country_flag = FRA_northeast_is_going_on_flag
+			random_list = {
+				20 = {
+					928 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				20 = {
+					993 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				20 = {
+					785 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				20 = {
+					27 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+				20 = {
+					17 = {
+						add_extra_state_shared_building_slots = 1
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			FRA_inc_syndicalist_society_0_05 = yes
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_idf_industrial_union_military = {
+		icon = GFX_decision_FIN_weapon_caches
+		available = {
+			NOT = { has_country_flag = FRA_northeast_is_going_on_flag }
+			FRA_north_east_trigger = yes
+		}
+		visible = {
+			FRA_north_east_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_northeast_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 928
+						state = 16
+						state = 993
+						state = 785
+						state = 18
+						state = 27
+						state = 17
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_military_industry_expansion
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_northeast_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 928
+						state = 16
+						state = 993
+						state = 785
+						state = 18
+						state = 27
+						state = 17
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_military_industry_expansion
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	#South east
+	FRA_decision_regional_population_attraction_southeast = {
+		name = FRA_decision_regional_population_attraction
+		icon = GFX_decision_generic_operation
+		available = {
+			NOT = { has_country_flag = FRA_southeast_is_going_on_flag }
+			FRA_south_east_trigger = yes
+		}
+		visible = {
+			FRA_south_east_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_southeast_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 21
+						state = 851
+						state = 934
+						state = 935
+						state = 32
+						state = 20
+						state = 735
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_southeast_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 21
+						state = 851
+						state = 934
+						state = 935
+						state = 32
+						state = 20
+						state = 735
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_population_attraction
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_regional_modernization_support_southeast = {
+		name = FRA_decision_regional_modernization_support
+		icon = GFX_decision_generic_construction
+		available = {
+			NOT = { has_country_flag = FRA_southeast_is_going_on_flag }
+			FRA_south_east_trigger = yes
+		}
+		visible = {
+			FRA_south_east_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = FRA_southeast_is_going_on_flag
+			add_political_power = -25
+			every_state = {
+				limit = {
+					OR = {
+						state = 21
+						state = 851
+						state = 934
+						state = 935
+						state = 32
+						state = 20
+						state = 735
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		remove_effect = {
+			clr_country_flag = FRA_southeast_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+			every_state = {
+				limit = {
+					OR = {
+						state = 21
+						state = 851
+						state = 934
+						state = 935
+						state = 32
+						state = 20
+						state = 735
+					}
+				}
+				remove_dynamic_modifier = {
+					modifier = FRA_spirit_regional_modernization_support
+				}
+			}
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_logistics_coop_infra = {
+		icon = GFX_decision_generic_electricity
+		available = {
+			NOT = { has_country_flag = FRA_southeast_is_going_on_flag }
+			FRA_south_east_trigger = yes
+		}
+		visible = {
+			FRA_south_east_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+			production_speed_infrastructure_factor = 0.2
+		}
+		complete_effect = {
+			set_country_flag = FRA_southeast_is_going_on_flag
+			add_political_power = -25
+		}
+		remove_effect = {
+			clr_country_flag = FRA_southeast_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_logistics_coop_supply = {
+		icon = GFX_decision_generic_construction
+		available = {
+			NOT = { has_country_flag = FRA_southeast_is_going_on_flag }
+			FRA_south_east_trigger = yes
+		}
+		visible = {
+			FRA_south_east_trigger = yes
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 90
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 24
+		}
+		custom_cost_text = decision_cost_3_civ_25pol
+		modifier = {
+			civilian_factory_use = 3
+			production_speed_supply_node_factor = 0.15
+			supply_factor = 0.05
+		}
+		complete_effect = {
+			set_country_flag = FRA_southeast_is_going_on_flag
+			add_political_power = -25
+		}
+		remove_effect = {
+			clr_country_flag = FRA_southeast_is_going_on_flag
+			FRA_inc_syndicalist_society_0_05 = yes
+		}
+		ai_will_do = {
+			base = 75
+			modifier = {
+				add = -70
+				check_variable = { FRA_syndicalist_society_main_bar > 0.8 }
+			}
+			modifier = {
+				add = -75
+				num_of_civilian_factories_available_for_projects < 8
+			}
+		}
+	}
+	FRA_decision_reduce_syndicalist_society = {
+		icon = GFX_decision_SWI_consolidate_council_power
+		allowed = {
+			original_tag = FRA
+		}
+		activation = {
+			check_variable = { FRA_syndicalist_society_main_bar > 0 }
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		available = {
+			check_variable = { FRA_syndicalist_society_main_bar = 0 }
+		}
+		days_mission_timeout = 100
+		timeout_effect = {
+			country_event = france_wr.162
+			FRA_dec_syndicalist_society_0_05 = yes
+		}
+	}
+}
+
+FRA_Political_Conflict_decisions = {
+	#SFIO
+	FRA_decision_sfio_workers_meeting = {
+		icon = GFX_decision_generic_civil_support
+		visible = {
+			has_completed_focus = FRA_republic_of_fraternity
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 14
+		cost = 15
+		remove_effect = {
+			add_power_balance_value = {
+				id = FRA_Political_Conflict
+				value = -0.025
+			}
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				add = -100
+				power_balance_value = {
+					id = FRA_Political_Conflict
+					value < -0.9
+				}
+			}
+		}
+	}
+	FRA_decision_sfio_union_alliance = {
+		icon = GFX_decision_generic_nationalism
+		visible = {
+			has_completed_focus = FRA_republic_of_fraternity
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 14
+		cost = 15
+		remove_effect = {
+			add_power_balance_value = {
+				id = FRA_Political_Conflict
+				value = -0.025
+			}
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				add = -100
+				power_balance_value = {
+					id = FRA_Political_Conflict
+					value < -0.9
+				}
+			}
+		}
+	}
+	FRA_decision_sfio_welfare_campaign = {
+		icon = GFX_decision_generic_fundraising
+		visible = {
+			has_completed_focus = FRA_republic_of_fraternity
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 14
+		cost = 25
+		remove_effect = {
+			add_power_balance_value = {
+				id = FRA_Political_Conflict
+				value = -0.05
+			}
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				add = -100
+				power_balance_value = {
+					id = FRA_Political_Conflict
+					value < -0.9
+				}
+			}
+		}
+	}
+	FRA_decision_sfio_peasant_support = {
+		icon = GFX_decision_generic_political_rally
+		visible = {
+			has_completed_focus = FRA_republic_of_fraternity
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 14
+		cost = 25
+		remove_effect = {
+			add_power_balance_value = {
+				id = FRA_Political_Conflict
+				value = -0.05
+			}
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				add = -100
+				power_balance_value = {
+					id = FRA_Political_Conflict
+					value < -0.9
+				}
+			}
+		}
+	}
+	FRA_decision_sfio_peasant_support = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		visible = {
+			has_completed_focus = FRA_republic_of_fraternity
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 14
+		cost = 40
+		remove_effect = {
+			add_power_balance_value = {
+				id = FRA_Political_Conflict
+				value = -0.1
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+	
+	#ARD
+	FRA_decision_ard_market_reform = {
+		icon = GFX_decision_generic_consumer_goods
+		visible = {
+			has_completed_focus = FRA_republic_of_liberty
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 14
+		cost = 15
+		remove_effect = {
+			add_power_balance_value = {
+				id = FRA_Political_Conflict
+				value = 0.025
+			}
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				add = -100
+				power_balance_value = {
+					id = FRA_Political_Conflict
+					value > 0.9
+				}
+			}
+		}
+	}
+	FRA_decision_ard_press_campaign = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		visible = {
+			has_completed_focus = FRA_republic_of_liberty
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 14
+		cost = 15
+		remove_effect = {
+			add_power_balance_value = {
+				id = FRA_Political_Conflict
+				value = 0.025
+			}
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				add = -100
+				power_balance_value = {
+					id = FRA_Political_Conflict
+					value > 0.9
+				}
+			}
+		}
+	}
+	FRA_decision_ard_middle_class_support = {
+		icon = GFX_decision_generic_welfare
+		visible = {
+			has_completed_focus = FRA_republic_of_liberty
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 14
+		cost = 25
+		remove_effect = {
+			add_power_balance_value = {
+				id = FRA_Political_Conflict
+				value = 0.05
+			}
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				add = -100
+				power_balance_value = {
+					id = FRA_Political_Conflict
+					value > 0.9
+				}
+			}
+		}
+	}
+	FRA_decision_ard_youth_forum = {
+		icon = GFX_decision_eng_blackshirt_march
+		visible = {
+			has_completed_focus = FRA_republic_of_liberty
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 14
+		cost = 25
+		remove_effect = {
+			add_power_balance_value = {
+				id = FRA_Political_Conflict
+				value = 0.05
+			}
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				add = -100
+				power_balance_value = {
+					id = FRA_Political_Conflict
+					value > 0.9
+				}
+			}
+		}
+	}
+	FRA_decision_ard_renault_speech = {
+		icon = GFX_decision_generic_construction
+		visible = {
+			has_completed_focus = FRA_republic_of_liberty
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 14
+		cost = 40
+		remove_effect = {
+			add_power_balance_value = {
+				id = FRA_Political_Conflict
+				value = 0.1
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+}
+
+FRA_decision_invisible_hand = {
+	FRA_decision_financial_deregulation = {
+		icon = GFX_decision_generic_fundraising
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 100
+		cost = 20
+		available = {
+			NOT = { has_country_flag = political_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = political_is_on_flag
+			FRA_decision_invisible_hand_add_2_5 = yes
+			add_ideas = FRA_spirit_revitalized_economy
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			remove_ideas = FRA_spirit_revitalized_economy
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor < 0.2 }
+			}
+		}
+	}
+	FRA_decision_free_trade_agreement = {
+		icon = GFX_decision_steel
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 100
+		cost = 20
+		available = {
+			NOT = { has_country_flag = political_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = political_is_on_flag
+			FRA_decision_invisible_hand_add_2_5 = yes
+			add_ideas = FRA_spirit_resource_extraction
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			remove_ideas = FRA_spirit_resource_extraction
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor < 0.2 }
+			}
+		}
+	}
+	FRA_decision_encourage_innovation = {
+		icon = GFX_decision_gre_paying_ifc_debt
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 100
+		cost = 40
+		available = {
+			NOT = { has_country_flag = political_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = political_is_on_flag
+			FRA_decision_invisible_hand_add_5 = yes
+			add_ideas = FRA_spirit_corporate_research
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			remove_ideas = FRA_spirit_corporate_research
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor < 0.2 }
+			}
+		}
+	}
+	FRA_decision_convert_civ_to_mil = {
+		icon = GFX_decision_generic_factory
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 80
+		available = {
+			any_state = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				has_built = {
+					type = industrial_complex
+					value > 0
+				}
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					is_controlled_by = ROOT
+					is_owned_by = ROOT
+					has_built = {
+						type = industrial_complex
+						value > 0
+					}
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 85
+				check_variable = { FRA_civ_mil_ratio < 0.8 }
+			}
+		}
+	}
+	FRA_decision_periodic_civilian_factory_1 = {
+		name = FRA_decision_periodic_civilian_factory
+		icon = GFX_decision_generic_construction
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		priority = 10
+		activation = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
+			NOT = { has_tech = construction_c }
+			NOT = { has_tech = construction_b }
+			NOT = { has_tech = construction_a }
+			NOT = { has_tech = construction5 }
+			NOT = { has_tech = construction4 }
+			NOT = { has_tech = construction3 }
+			NOT = { has_tech = construction2 }
+			NOT = { has_tech = construction1 }
+			NOT = { has_country_flag = second_great_war_loser }
+			has_government = democratic
+			has_dynamic_modifier = {
+				modifier = FRA_consumer_goods_factor_decision
+			}
+			any_state = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		available = {
+			OR = {
+				has_tech = construction1
+				has_country_flag = second_great_war_loser
+				NOT = { has_government = democratic }
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0 }
+			}
+		}
+		days_mission_timeout = 130
+		timeout_effect = {
+			FRA_add_factories_effect = yes
+		}
+	}
+	FRA_decision_periodic_civilian_factory_2 = {
+		name = FRA_decision_periodic_civilian_factory
+		icon = GFX_decision_generic_construction
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		priority = 10
+		activation = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
+			has_tech = construction1
+			NOT = { has_country_flag = second_great_war_loser }
+			has_government = democratic
+			has_dynamic_modifier = {
+				modifier = FRA_consumer_goods_factor_decision
+			}
+			any_state = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		available = {
+			OR = {
+				has_tech = construction2
+				has_country_flag = second_great_war_loser
+				NOT = { has_government = democratic }
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0 }
+			}
+		}
+		days_mission_timeout = 125
+		timeout_effect = {
+			FRA_add_factories_effect = yes
+		}
+	}
+	FRA_decision_periodic_civilian_factory_3 = {
+		name = FRA_decision_periodic_civilian_factory
+		icon = GFX_decision_generic_construction
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		priority = 10
+		activation = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
+			has_tech = construction2
+			NOT = { has_country_flag = second_great_war_loser }
+			has_government = democratic
+			has_dynamic_modifier = {
+				modifier = FRA_consumer_goods_factor_decision
+			}
+			any_state = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		available = {
+			OR = {
+				has_tech = construction3
+				has_country_flag = second_great_war_loser
+				NOT = { has_government = democratic }
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0 }
+			}
+		}
+		days_mission_timeout = 120
+		timeout_effect = {
+			FRA_add_factories_effect = yes
+		}
+	}
+	FRA_decision_periodic_civilian_factory_4 = {
+		name = FRA_decision_periodic_civilian_factory
+		icon = GFX_decision_generic_construction
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		priority = 10
+		activation = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
+			has_tech = construction3
+			NOT = { has_country_flag = second_great_war_loser }
+			has_government = democratic
+			has_dynamic_modifier = {
+				modifier = FRA_consumer_goods_factor_decision
+			}
+			any_state = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		available = {
+			OR = {
+				has_tech = construction4
+				has_country_flag = second_great_war_loser
+				NOT = { has_government = democratic }
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0 }
+			}
+		}
+		days_mission_timeout = 115
+		timeout_effect = {
+			FRA_add_factories_effect = yes
+		}
+	}
+	FRA_decision_periodic_civilian_factory_5 = {
+		name = FRA_decision_periodic_civilian_factory
+		icon = GFX_decision_generic_construction
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		priority = 10
+		activation = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
+			has_tech = construction4
+			NOT = { has_country_flag = second_great_war_loser }
+			has_government = democratic
+			has_dynamic_modifier = {
+				modifier = FRA_consumer_goods_factor_decision
+			}
+			any_state = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		available = {
+			OR = {
+				has_tech = construction5
+				has_country_flag = second_great_war_loser
+				NOT = { has_government = democratic }
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0 }
+			}
+		}
+		days_mission_timeout = 110
+		timeout_effect = {
+			FRA_add_factories_effect = yes
+		}
+	}
+	FRA_decision_periodic_civilian_factory_6 = {
+		name = FRA_decision_periodic_civilian_factory
+		icon = GFX_decision_generic_construction
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		priority = 10
+		activation = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
+			has_tech = construction5
+			NOT = { has_country_flag = second_great_war_loser }
+			has_government = democratic
+			has_dynamic_modifier = {
+				modifier = FRA_consumer_goods_factor_decision
+			}
+			any_state = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		available = {
+			OR = {
+				has_tech = construction_a
+				has_country_flag = second_great_war_loser
+				NOT = { has_government = democratic }
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0 }
+			}
+		}
+		days_mission_timeout = 105
+		timeout_effect = {
+			FRA_add_factories_effect = yes
+		}
+	}
+	FRA_decision_periodic_civilian_factory_7 = {
+		name = FRA_decision_periodic_civilian_factory
+		icon = GFX_decision_generic_construction
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		priority = 10
+		activation = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
+			has_tech = construction_a
+			NOT = { has_country_flag = second_great_war_loser }
+			has_government = democratic
+			has_dynamic_modifier = {
+				modifier = FRA_consumer_goods_factor_decision
+			}
+			any_state = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		available = {
+			OR = {
+				has_tech = construction_b
+				has_country_flag = second_great_war_loser
+				NOT = { has_government = democratic }
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0 }
+			}
+		}
+		days_mission_timeout = 100
+		timeout_effect = {
+			FRA_add_factories_effect = yes
+		}
+	}
+	FRA_decision_periodic_civilian_factory_8 = {
+		name = FRA_decision_periodic_civilian_factory
+		icon = GFX_decision_generic_construction
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		priority = 10
+		activation = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
+			has_tech = construction_b
+			NOT = { has_country_flag = second_great_war_loser }
+			has_government = democratic
+			has_dynamic_modifier = {
+				modifier = FRA_consumer_goods_factor_decision
+			}
+			any_state = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		available = {
+			OR = {
+				has_tech = construction_c
+				has_country_flag = second_great_war_loser
+				NOT = { has_government = democratic }
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0 }
+			}
+		}
+		days_mission_timeout = 95
+		timeout_effect = {
+			FRA_add_factories_effect = yes
+		}
+	}
+	FRA_decision_periodic_civilian_factory_9 = {
+		name = FRA_decision_periodic_civilian_factory
+		icon = GFX_decision_generic_construction
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		priority = 10
+		activation = {
+			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
+			has_tech = construction_c
+			NOT = { has_country_flag = second_great_war_loser }
+			has_government = democratic
+			has_dynamic_modifier = {
+				modifier = FRA_consumer_goods_factor_decision
+			}
+			any_state = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		available = {
+			OR = {
+				has_country_flag = second_great_war_loser
+				NOT = { has_government = democratic }
+				check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor = 0 }
+			}
+		}
+		days_mission_timeout = 90
+		timeout_effect = {
+			FRA_add_factories_effect = yes
+		}
+	}
+}
+
+FRA_social_economic_reforms = {
+	FRA_decision_increase_research_grant = {
+		icon = GFX_decision_generic_fundraising
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 30
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+			NOT = { check_variable = { FRA_research_main_var = 100 } }
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			FRA_social_economic_reforms_research_add_5 = yes
+			if = {
+				limit = {
+					check_variable = { FRA_research_main_var > 70 }
+				}
+				add_to_variable = {
+					FRA_research_modifier_consumer_goods_factor = 0.025
+					tooltip = consumer_goods_factor_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				check_variable = { FRA_research_main_var < 60 }
+			}
+		}
+	}
+	FRA_decision_reduce_research_grant = {
+		icon = GFX_decision_generic_break_treaty
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 30
+		cost = 30
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+			NOT = { check_variable = { FRA_research_main_var = 0 } }
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			FRA_social_economic_reforms_research_remove_5 = yes
+			if = {
+				limit = {
+					check_variable = { FRA_research_main_var > 70 }
+				}
+				add_to_variable = {
+					FRA_research_modifier_consumer_goods_factor = -0.025
+					tooltip = consumer_goods_factor_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				check_variable = { FRA_research_main_var > 70 }
+			}
+		}
+	}
+	FRA_decision_expand_industrial_zones = {
+		icon = GFX_decision_generic_factory
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 30
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+			NOT = { check_variable = { FRA_industry_main_var = 100 } }
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			FRA_social_economic_reforms_industry_add_5 = yes
+			if = {
+				limit = {
+					check_variable = { FRA_industry_main_var > 70 }
+				}
+				add_to_variable = {
+					FRA_industry_modifier_consumer_goods_factor = 0.025
+					tooltip = consumer_goods_factor_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				check_variable = { FRA_industry_main_var < 60 }
+			}
+		}
+	}
+	FRA_decision_limit_industrial_expansion = {
+		icon = GFX_decision_generic_break_treaty
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 30
+		cost = 30
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+			NOT = { check_variable = { FRA_industry_main_var = 0 } }
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			FRA_social_economic_reforms_industry_remove_5 = yes
+			if = {
+				limit = {
+					check_variable = { FRA_industry_main_var > 70 }
+				}
+				add_to_variable = {
+					FRA_industry_modifier_consumer_goods_factor = -0.025
+					tooltip = consumer_goods_factor_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				check_variable = { FRA_industry_main_var > 70 }
+			}
+		}
+	}
+	FRA_decision_strengthen_military_research = {
+		icon = GFX_decision_generic_construction
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 30
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+			NOT = { check_variable = { FRA_military_main_var = 100 } }
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			FRA_social_economic_reforms_military_add_5 = yes
+			if = {
+				limit = {
+					check_variable = { FRA_military_main_var > 70 }
+				}
+				add_to_variable = {
+					FRA_military_modifier_consumer_goods_factor = 0.025
+					tooltip = consumer_goods_factor_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				check_variable = { FRA_military_main_var < 60 }
+			}
+		}
+	}
+	FRA_decision_cut_military_research = {
+		icon = GFX_decision_generic_break_treaty
+		visible = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 30
+		cost = 30
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+			NOT = { check_variable = { FRA_military_main_var = 0 } }
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			FRA_social_economic_reforms_industry_remove_5 = yes
+			if = {
+				limit = {
+					check_variable = { FRA_military_main_var > 70 }
+				}
+				add_to_variable = {
+					FRA_military_modifier_consumer_goods_factor = -0.025
+					tooltip = consumer_goods_factor_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				check_variable = { FRA_military_main_var > 70 }
+			}
 		}
 	}
 }

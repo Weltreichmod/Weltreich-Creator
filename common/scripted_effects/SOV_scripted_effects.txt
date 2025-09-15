@@ -346,32 +346,37 @@ bukharin_civilwar_decision = {
 				priority = 0
 				is_locked = yes
 			}
-			247 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
+			if = {
+				limit = {
+					SOV = { is_ai = no }
 				}
-			}
-			219 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
+				247 = {
+					create_unit = {
+						division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+						owner = SOS
+						count = 4
+					}
 				}
-			}
-			220 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
+				219 = {
+					create_unit = {
+						division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+						owner = SOS
+						count = 4
+					}
 				}
-			}
-			250 = {
-				create_unit = {
-					division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
-					owner = SOS
-					count = 4
+				220 = {
+					create_unit = {
+						division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+						owner = SOS
+						count = 4
+					}
+				}
+				250 = {
+					create_unit = {
+						division = "name = \"1. Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+						owner = SOS
+						count = 4
+					}
 				}
 			}
 			399 = {
@@ -412,15 +417,33 @@ bukharin_civilwar_decision = {
 		}
 		SOV = {
 			dismantle_faction = yes
-			transfer_units_fraction = {
-				target = SOS
-				size = 0.3
-				stockpile_ratio = 0.3
-				army_ratio = 0.3
-				navy_ratio = 0.3
-				air_ratio = 0.3
-				keep_unit_leaders_trigger = {
-					always = yes
+			if = {
+				limit = {
+					SOV = { is_ai = yes }
+				}
+				transfer_units_fraction = {
+					target = SOS
+					size = 0.2
+					stockpile_ratio = 0.15
+					army_ratio = 0.2
+					navy_ratio = 0.15
+					air_ratio = 0.15
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+			}
+			else = {
+				transfer_units_fraction = {
+					target = SOS
+					size = 0.3
+					stockpile_ratio = 0.3
+					army_ratio = 0.3
+					navy_ratio = 0.3
+					air_ratio = 0.3
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
 				}
 			}
 			add_ideas = Soviet_Civil_War
@@ -8276,9 +8299,11 @@ SOV_fall_in_wwiii = {
 		}
 		every_state = {
 			limit = {
-				is_owned_by = SOV
 				OR = {
-					is_core_of = LIT
+					AND = {
+						is_owned_by = SOV
+						is_core_of = LIT
+					}
 					state = 188
 				}
 			}
@@ -8419,8 +8444,13 @@ SOV_fall_in_wwiii = {
 		every_state = {
 			limit = {
 				is_owned_by = SOV
-				is_core_of = UKR
+				OR = {
+					is_core_of = UKR
+					is_core_of = USS
+					is_core_of = UPR
+				}
 			}
+			add_core_of = UKR
 			transfer_state_to = UKR
 		}
 		if = {
@@ -8439,6 +8469,108 @@ SOV_fall_in_wwiii = {
 				}
 				else = {
 					puppet = UKR
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				GEO = { exists = no }
+				GEO = { has_country_flag = third_world_war_loser }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				is_core_of = GEO
+			}
+			transfer_state_to = GEO
+		}
+		if = {
+			limit = {
+				NOT = { GEO = { is_subject_of = FRA } }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = GEO
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = GEO
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				AZR = { exists = no }
+				AZR = { has_country_flag = third_world_war_loser }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				is_core_of = AZR
+			}
+			transfer_state_to = AZR
+		}
+		if = {
+			limit = {
+				NOT = { AZR = { is_subject_of = FRA } }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = AZR
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = AZR
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				ARM = { exists = no }
+				ARM = { has_country_flag = third_world_war_loser }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				is_core_of = ARM
+			}
+			transfer_state_to = ARM
+		}
+		if = {
+			limit = {
+				NOT = { ARM = { is_subject_of = FRA } }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = ARM
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = ARM
 				}
 			}
 		}
