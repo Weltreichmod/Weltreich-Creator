@@ -452,116 +452,25 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = wrwpe.5.a
-		create_dynamic_country = {
-			original_tag = FRA
-			set_capital = { state = 928 }
-			set_cosmetic_tag = FRG
-			if = {
-				limit = {
-					GER = {
-						has_government = neutrality
-					}
-				}
-				create_country_leader = {
-					name = "GER_victoria"
-					picture = "gfx/leaders/GER/GER_Victoria_Louise.png"
-					ideology = autocracy
-					traits = { Imperial_connections }
-				}
-			}
-			create_country_leader = {
-				name = "GER_alfred_jodl"
-				picture = "GFX_portrait_GER_alfred_jodl" 
-				ideology = fascism_ideology
-				traits = { foreign_leader allegiance_to_germany }
-			}
-			create_country_leader = {
-				name = "FRA_gouvernement_provisoire"
-				picture = "gfx/leaders/FRA/FRA_provisional_government.png"
-				ideology = conservatism
-				traits = {
-					allegiance_to_germany
-				}
-			}
-			create_country_leader = {
-				name = "FRA_gouvernement_provisoire"
-				picture = "gfx/leaders/FRA/FRA_provisional_government.png"
-				ideology = syndicalism
-				traits = {
-					allegiance_to_germany
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FRA
-				OR = {
-					state = 17
-					state = 18
-					state = 785
-					state = 993
-					state = 928
-					state = 27
-					state = 16
-					state = 24
-					state = 15
-					state = 30
-					state = 14
-					state = 23
-				}
-			}
-			transfer_state_to = FRG
-			add_core_of = FRG
-			remove_core_of = FRA
-		}
-		FRG = {
-			inherit_technology = FRA
-			division_template = {
-				name = "Infantry Division"
-				division_names_group = FRA_INF_01
-				regiments = {
-					infantry = { x = 0 y = 0 }
-					infantry = { x = 0 y = 1 }
-					infantry = { x = 0 y = 2 }
-					infantry = { x = 1 y = 0 }
-					infantry = { x = 1 y = 1 }
-					infantry = { x = 1 y = 2 }
-					infantry = { x = 2 y = 0 }
-					infantry = { x = 2 y = 1 }
-					infantry = { x = 2 y = 2 }
-				}
-				support = {
-					artillery = { x = 0 y = 0 } 
-					engineer = { x = 0 y = 1 }
-				}
-			}
-			division_template = {
-				name = "Cavalry Division"
-				division_names_group = FRA_CAV_01
-				regiments = {
-					cavalry = { x = 0 y = 0 }
-					cavalry = { x = 0 y = 1 }
-					cavalry = { x = 1 y = 0 }
-					cavalry = { x = 1 y = 1 }
-				}
-				support = {
-					recon = { x = 0 y = 0 }
-				}
-			}
-		}
 		if = {
 			limit = {
-				has_dlc = "Together for Victory"
+				FRA = { exists = yes }
 			}
-			set_autonomy = {
-				target = FRG
-				autonomous_state = autonomy_puppet
-				freedom_level = 0.5
-			}
-			else = {
-				puppet = FRG
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = FRA
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = FRA
+				}
 			}
 		}
+		country_event = { id = wrwpe.32 days = 30 }
 		country_event = wrwpe.9
 		ai_chance = {
 			base = 100
@@ -569,115 +478,71 @@ country_event = {
 	}
 	option = {
 		name = wrwpe.5.b
-		FRA = {
-			set_capital = { state = 26 }
-		}
-		create_dynamic_country = {
-			original_tag = FRA
-			set_capital = { state = 928 }
-			set_cosmetic_tag = FRG
-			if = {
-				limit = {
-					GER = {
-						has_government = neutrality
-					}
-				}
-				create_country_leader = {
-					name = "GER_victoria"
-					picture = "gfx/leaders/GER/GER_Victoria_Louise.png"
-					ideology = autocracy
-					traits = { Imperial_connections }
-				}
-			}
-			create_country_leader = {
-				name = "GER_alfred_jodl"
-				picture = "GFX_portrait_GER_alfred_jodl" 
-				ideology = fascism_ideology
-				traits = { foreign_leader allegiance_to_germany }
-			}
-			create_country_leader = {
-				name = "FRA_gouvernement_provisoire"
-				picture = "gfx/leaders/FRA/FRA_provisional_government.png"
-				ideology = conservatism
-				traits = {
-					allegiance_to_germany
-				}
-			}
-			create_country_leader = {
-				name = "FRA_gouvernement_provisoire"
-				picture = "gfx/leaders/FRA/FRA_provisional_government.png"
-				ideology = syndicalism
-				traits = {
-					allegiance_to_germany
-				}
-			}
-		}
-		every_state = {
-			limit = {
-				is_owned_by = FRA
-			}
-			transfer_state_to = FRG
-			add_core_of = FRG
-			remove_core_of = FRA
-		}
-		FRG = {
-			inherit_technology = FRA
-			division_template = {
-				name = "Infantry Division"
-				division_names_group = FRA_INF_01
-				regiments = {
-					infantry = { x = 0 y = 0 }
-					infantry = { x = 0 y = 1 }
-					infantry = { x = 0 y = 2 }
-					infantry = { x = 1 y = 0 }
-					infantry = { x = 1 y = 1 }
-					infantry = { x = 1 y = 2 }
-					infantry = { x = 2 y = 0 }
-					infantry = { x = 2 y = 1 }
-					infantry = { x = 2 y = 2 }
-				}
-				support = {
-					artillery = { x = 0 y = 0 } 
-					engineer = { x = 0 y = 1 }
-				}
-			}
-			division_template = {
-				name = "Cavalry Division"
-				division_names_group = FRA_CAV_01
-				regiments = {
-					cavalry = { x = 0 y = 0 }
-					cavalry = { x = 0 y = 1 }
-					cavalry = { x = 1 y = 0 }
-					cavalry = { x = 1 y = 1 }
-				}
-				support = {
-					recon = { x = 0 y = 0 }
-				}
-			}
-		}
 		if = {
 			limit = {
-				has_dlc = "Together for Victory"
+				FRA = { exists = yes }
 			}
-			set_autonomy = {
-				target = FRG
-				autonomous_state = autonomy_puppet
-				freedom_level = 0.5
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = FRA
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = FRA
+				}
 			}
-			else = {
-				puppet = FRG
+			FRA = {
+				retire_country_leader = yes
+				create_country_leader = {
+					name = "Military_Government"
+					picture = "gfx/leaders/FRA/FRA_french_government.png"
+					ideology = despotism
+				}
+				create_country_leader = {
+					name = "Military_Government"
+					picture = "gfx/leaders/FRA/FRA_french_government.png"
+					ideology = fascism_ideology
+				}
+				create_country_leader = {
+					name = "Military_Government"
+					picture = "gfx/leaders/FRA/FRA_french_government.png"
+					ideology = conservatism
+				}
+				create_country_leader = {
+					name = "Military_Government"
+					picture = "gfx/leaders/FRA/FRA_french_government.png"
+					ideology = syndicalism
+				}
+				set_cosmetic_tag = FRA_under_military
+				set_party_name = {
+					ideology = neutrality
+					long_name = FRA_under_military
+					name = FRA_under_military
+				}
+				set_party_name = {
+					ideology = fascism
+					long_name = FRA_under_military
+					name = FRA_under_military
+				}
+				set_party_name = {
+					ideology = democratic
+					long_name = FRA_under_military
+					name = FRA_under_military
+				}
+				set_party_name = {
+					ideology = communism
+					long_name = FRA_under_military
+					name = FRA_under_military
+				}
 			}
 		}
 		country_event = wrwpe.9
 		ai_chance = {
-			base = 10
-		}
-	}
-	option = {
-		name = wrwpe.5.c
-		annex_country = { target = FRA transfer_troops = no }
-		ai_chance = {
-			base = 0
+			base = 100
 		}
 	}
 }
@@ -3049,6 +2914,159 @@ country_event = {
 		annex_country = { target = ALB transfer_troops = no }
 		ai_chance = {
 			base = 0
+		}
+	}
+}
+
+#fate of france2
+country_event = {
+	id = wrwpe.32
+	title = wrwpe.32.t
+	desc = wrwpe.32.d
+	picture = france_map
+	is_triggered_only = yes
+	option = {
+		name = wrwpe.32.a
+		drop_cosmetic_tag = yes
+		set_cosmetic_tag = FRA_cooperating_country
+		if = {
+			limit = {
+				FRA = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = FRA
+					autonomous_state = autonomy_cooperating_country
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = FRA
+				}
+			}
+		}
+		FRA = {
+			if = {
+				limit = {
+					has_government = fascism
+					OR = {
+						has_country_flag = peoplesparty_won
+						has_country_flag = FRA_bucard_victory_flag
+					}
+				}
+				set_party_name = {
+					ideology = fascism
+					long_name = French_Government
+					name = French_Government
+				}
+				else_if = {
+					limit = {
+						has_government = fascism
+						NOT = { has_country_flag = peoplesparty_won }
+						NOT = { has_country_flag = FRA_bucard_victory_flag }
+					}
+					set_party_name = {
+						ideology = fascism
+						long_name = French_Government
+						name = French_Government
+					}
+					change_NO = yes
+					change_AF = yes
+					change_FWP = yes
+					change_DU = yes
+				}
+			}
+			if = {
+				limit = {
+					has_government = neutrality
+					OR = {
+						has_country_flag = FRA_de_la_rocque_victory_flag
+						has_country_flag = FRA_charles_de_gaulle_victory_flag
+						has_country_flag = maurras_victory_flag
+					}
+				}
+				set_party_name = {
+					ideology = neutrality
+					long_name = French_Government
+					name = French_Government
+				}
+				else_if = {
+					limit = {
+						has_government = neutrality
+						NOT = { has_country_flag = FRA_de_la_rocque_victory_flag }
+						NOT = { has_country_flag = FRA_charles_de_gaulle_victory_flag }
+						NOT = { has_country_flag = maurras_victory_flag }
+					}
+					set_party_name = {
+						ideology = neutrality
+						long_name = French_Government
+						name = French_Government
+					}
+					change_AFPU = yes
+					change_MB = yes
+					change_FWP = yes
+					change_DU = yes
+				}
+			}
+			if = {
+				limit = {
+					has_government = communism
+					has_country_flag = FRA_monatte_victory_flag
+				}
+				set_party_name = {
+					ideology = communism
+					long_name = French_Government
+					name = French_Government
+				}
+				else_if = {
+					limit = {
+						has_government = communism
+						NOT = { has_country_flag = FRA_monatte_victory_flag }
+					}
+					set_party_name = {
+						ideology = communism
+						long_name = French_Government
+						name = French_Government
+					}
+					change_AFPU = yes
+					change_MB = yes
+					change_NO = yes
+					change_AF = yes
+					change_DU = yes
+				}
+			}
+			if = {
+				limit = {
+					has_government = democratic
+					has_country_flag = democrats_victory_flag
+				}
+				set_party_name = {
+					ideology = democratic
+					long_name = French_Government
+					name = French_Government
+				}
+				else_if = {
+					limit = {
+						has_government = democratic
+						NOT = { has_country_flag = democrats_victory_flag }
+					}
+					set_party_name = {
+						ideology = democratic
+						long_name = French_Government
+						name = French_Government
+					}
+					change_AFPU = yes
+					change_MB = yes
+					change_NO = yes
+					change_AF = yes
+					change_FWP = yes
+				}
+			}
+		}
+		ai_chance = {
+			base = 100
 		}
 	}
 }

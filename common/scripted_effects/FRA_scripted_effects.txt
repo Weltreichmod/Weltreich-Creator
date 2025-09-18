@@ -4569,3 +4569,140 @@ FRA_social_economic_reforms_military_remove_5 = {
 		tooltip = army_org_factor_tt
 	}
 }
+
+### +5% National Unity (Doriot)
+FRA_inc_doriot_national_unity_5 = {
+    custom_effect_tooltip = FRA_inc_doriot_national_unity_5_tt
+    if = {
+        limit = { check_variable = { FRA_decision_doriot_national_unity_main_var > 94 } }
+        set_variable = { var = FRA_decision_doriot_national_unity_main_var value = 100 }
+    }
+    else = {
+        add_to_variable = { var = FRA_decision_doriot_national_unity_main_var value = 5 }
+    }
+}
+
+### -2.5% National Unity (Doriot)
+FRA_dec_doriot_national_unity_2_5 = {
+    custom_effect_tooltip = FRA_dec_doriot_national_unity_2_5_tt
+    if = {
+        limit = { check_variable = { FRA_decision_doriot_national_unity_main_var < 2.6 } }
+        set_variable = { var = FRA_decision_doriot_national_unity_main_var value = 0 }
+    }
+    else = {
+        add_to_variable = { var = FRA_decision_doriot_national_unity_main_var value = -2.5 }
+    }
+}
+
+#인민연합 교체
+change_AFPU = {
+	if = {
+		limit = {
+			has_country_flag = peoplesparty_won
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = FRA_Francist
+			name = FRA_Francist
+		}
+		promote_character = {
+			character = FRA_marcel_bucard
+			ideology = fascism_ideology
+		}
+	}
+}
+
+#뷔카르 교체
+change_MB = {
+	if = {
+		limit = {
+			has_country_flag = FRA_bucard_victory_flag
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = FRA_French_Popular_Party_long
+			name = FRA_French_Popular_Party
+		}
+		promote_character = {
+			character = FRA_jacques_doriot
+			ideology = national_popular_socialism
+		}
+	}
+}
+
+#공화질서당 교체
+change_NO = {
+	if = {
+		limit = {
+			OR = {
+				has_country_flag = FRA_de_la_rocque_victory_flag
+				has_country_flag = FRA_charles_de_gaulle_victory_flag
+			}
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = FRA_Republican_Union
+			name = FRA_Republican_Union
+		}
+		promote_character = {
+			character = FRA_charles_maurras
+			ideology = national_integralist
+		}
+	}
+}
+
+#모라스 교체
+change_AF = {
+	if = {
+		limit = {
+			has_country_flag = maurras_victory_flag
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = FRA_Republican_Union
+			name = FRA_Republican_Union
+		}
+		promote_character = {
+			character = FRA_francois_de_la_rocque
+			ideology = national_orderism
+		}
+	}
+}
+
+#모나트 교체
+change_FWP = {
+	if = {
+		limit = {
+			has_country_flag = FRA_monatte_victory_flag
+		}
+		set_party_name = {
+			ideology = communism
+			long_name = French_Workers_Councils
+			name = French_Workers_Councils
+		}
+		create_country_leader = {
+			name = "French_Workers_Councils"
+			picture = "gfx/leaders/FRA/French_Workers_Councils.png"
+			ideology = syndicalism
+		}
+	}
+}
+
+#민주당 교체
+change_DU = {
+	if = {
+		limit = {
+			has_country_flag = democrats_victory_flag
+		}
+		set_party_name = {
+			ideology = democratic
+			long_name = FRA_french_parliment
+			name = FRA_french_parliment
+		}
+		create_country_leader = {
+			name = "FRA_french_parliment"
+			picture = "gfx/leaders/FRA/FRA_provisional_government.png"
+			ideology = syndicalism
+		}
+	}
+}

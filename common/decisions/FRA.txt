@@ -3884,7 +3884,7 @@ FRA_bucards_resolve_category = {
 				FRA_bucard_modifier_army_attack_speed_factor = 0.1
 				tooltip = army_attack_speed_factor_tt
 			}
-			add_to_variable = { FRA_bucards_resolve_category_main_bar = -5 }
+			add_to_variable = { FRA_bucards_resolve_category_main_bar = -10 }
 		}
 		remove_effect = {
 			custom_effect_tooltip = FRA_bucard_army_drill_initiative_bad_tt
@@ -3947,6 +3947,168 @@ FRA_bucards_resolve_category = {
 		}
 		ai_will_do = {
 			base = 0
+		}
+	}
+}
+
+FRA_decision_doriot_national_unity = {
+	FRA_decision_doriot_unity_stability = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_leader = {
+				character = FRA_jacques_doriot
+				ruling_only = yes
+			}
+		}
+		days_remove = 50
+		custom_cost_trigger = {
+			check_variable = { FRA_decision_doriot_national_unity_main_var > 2.4 }
+		}
+		custom_cost_text = decision_cost_doriot_2_5_tt
+		complete_effect = {
+			FRA_dec_doriot_national_unity_2_5 = yes
+			set_country_flag = political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			add_stability = 0.05
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				has_stability < 0.5
+			}
+		}
+	}
+	FRA_decision_doriot_industry_boost = {
+		icon = GFX_decision_ger_military_buildup
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_leader = {
+				character = FRA_jacques_doriot
+				ruling_only = yes
+			}
+		}
+		days_remove = 80
+		custom_cost_trigger = {
+			check_variable = { FRA_decision_doriot_national_unity_main_var > 2.4 }
+		}
+		custom_cost_text = decision_cost_doriot_2_5_tt
+		complete_effect = {
+			FRA_dec_doriot_national_unity_2_5 = yes
+			set_country_flag = political_is_on_flag
+		}
+		modifier = {
+			industrial_capacity_factory = 0.15
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				stockpile_ratio = {
+					archetype = infantry_equipment
+					ratio < 1.2
+				}
+			}
+		}
+	}
+	FRA_decision_doriot_construction_rush = {
+		icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_leader = {
+				character = FRA_jacques_doriot
+				ruling_only = yes
+			}
+		}
+		days_remove = 80
+		custom_cost_trigger = {
+			check_variable = { FRA_decision_doriot_national_unity_main_var > 2.4 }
+		}
+		custom_cost_text = decision_cost_doriot_2_5_tt
+		complete_effect = {
+			FRA_dec_doriot_national_unity_2_5 = yes
+			set_country_flag = political_is_on_flag
+		}
+		modifier = {
+			production_speed_buildings_factor = 0.15
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+		}
+		ai_will_do = {
+			base = 60
+		}
+	}
+	FRA_decision_doriot_military_fortify = {
+		icon = GFX_decision_generic_military
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_leader = {
+				character = FRA_jacques_doriot
+				ruling_only = yes
+			}
+		}
+		days_remove = 80
+		custom_cost_trigger = {
+			check_variable = { FRA_decision_doriot_national_unity_main_var > 2.4 }
+		}
+		custom_cost_text = decision_cost_doriot_2_5_tt
+		complete_effect = {
+			FRA_dec_doriot_national_unity_2_5 = yes
+			set_country_flag = political_is_on_flag
+		}
+		modifier = {
+			army_attack_factor = 0.1
+			army_defence_factor = 0.1
+			army_strength_factor = 0.1
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				has_war_with_major = yes
+			}
+		}
+	}
+	FRA_decision_doriot_unity_drive = {
+		icon = GFX_decision_generic_speech
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_leader = {
+				character = FRA_jacques_doriot
+				ruling_only = yes
+			}
+		}
+		days_remove = 20
+		cost = 25
+		remove_effect = {
+			FRA_inc_doriot_national_unity_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 120
+				check_variable = { FRA_decision_doriot_national_unity_main_var < 70 }
+			}
 		}
 	}
 }
