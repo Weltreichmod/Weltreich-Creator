@@ -11,8 +11,8 @@
 	}
 
 	continuous_focus_position = {
-		x = 3000
-		y = 1100
+		x = 2300
+		y = 1200
 	}
 
 	
@@ -4241,6 +4241,7 @@
 					level = 1
 				}
 			}
+			unlock_decision_category_tooltip = FRA_regional_development_category
 			swap_ideas = {
 				remove_idea = FRA_de_gaulle_guidance_idea_2
 				add_idea = FRA_de_gaulle_guidance_idea_3
@@ -6349,6 +6350,7 @@
 		search_filters = { FOCUS_FILTER_ARMY_XP }
 		completion_reward = {
 			add_ideas = FRA_spirit_elite_army
+			add_ideas = volunteer_only
 		}
 	}
 	
@@ -6513,7 +6515,7 @@
 			country_event = france_wr.190
 			add_power_balance_value = {
 				id = FRA_Political_Conflict
-				value = 0.05
+				value = 0.1
 			}
 		}
 	}
@@ -7496,7 +7498,7 @@
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			country_event = france_wr.24
+			#country_event = france_wr.24
 			add_ideas = FRA_greater_proletarian_france
 		}
 	}
@@ -9548,6 +9550,1264 @@
 					category = cat_torpedoes
 				}
 			}
+		}
+	}
+	
+	#Victory
+	focus = {
+		id = FRA_the_century_of_france
+		icon = GFX_FRA_the_century_of_france
+		x = 11
+		y = 12
+		cost = 5
+		allow_branch = {
+			NOT = { has_country_flag = second_great_war_loser }
+		}
+		available = {
+			has_country_flag = second_great_war_winner
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.197
+		}
+	}
+	
+	#Economy
+	focus = {
+		id = FRA_begin_reconstruction
+		icon = GFX_FRA_begin_reconstruction
+		relative_position_id = FRA_the_century_of_france
+		x = -8
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_the_century_of_france
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = FRA_economic_uplift
+		}
+	}
+	
+	focus = {
+		id = FRA_convert_military_industry_focus
+		icon = GFX_FRA_begin_reconstruction_focus
+		relative_position_id = FRA_begin_reconstruction
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_begin_reconstruction
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			unlock_decision_category_tooltip = FRA_peacetime_economy_category
+		}
+	}
+	
+	focus = {
+		id = FRA_new_construction_focus
+		icon = GFX_FRA_new_construction_focus
+		relative_position_id = FRA_convert_military_industry_focus
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_convert_military_industry_focus
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = FRA_advanced_city
+		}
+	}
+	
+	focus = {
+		id = FRA_economic_focus
+		icon = GFX_FRA_economic_focus
+		relative_position_id = FRA_begin_reconstruction
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_begin_reconstruction
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_timed_idea = { idea = FRA_economic_focus_idea days = 365 }
+		}
+	}
+	
+	focus = {
+		id = FRA_exploit_spoils_focus
+		icon = GFX_FRA_exploit_spoils_focus
+		relative_position_id = FRA_economic_focus
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_economic_focus
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = france_wr.198
+		}
+	}
+	
+	focus = {
+		id = FRA_economic_cruise_focus
+		icon = GFX_FRA_economic_cruise_focus
+		relative_position_id = FRA_new_construction_focus
+		x = 2
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_new_construction_focus
+		}
+		prerequisite = {
+			focus = FRA_exploit_spoils_focus
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = FRA_advanced_city
+				add_ideas = FRA_advanced_city_2
+			}
+		}
+	}
+	
+	#Social
+	focus = {
+		id = FRA_reintegration_of_veterans_focus
+		icon = GFX_FRA_reintegration_of_veterans_focus
+		relative_position_id = FRA_the_century_of_france
+		x = -4
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_the_century_of_france
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_timed_idea = { idea = FRA_veterans_support_idea days = 365 }
+			hidden_effect = {
+				country_event = { id = france_wr.203 days = 300 }
+			}
+			custom_effect_tooltip = FRA_reintegration_of_veterans_focus_tt
+		}
+	}
+	
+	focus = {
+		id = FRA_monuments_to_the_fallen_focus
+		icon = GFX_FRA_monuments_to_the_fallen_focus
+		relative_position_id = FRA_reintegration_of_veterans_focus
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_reintegration_of_veterans_focus
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.204
+		}
+	}
+	
+	focus = {
+		id = FRA_establish_national_day_focus
+		icon = GFX_FRA_establish_national_day_focus
+		relative_position_id = FRA_reintegration_of_veterans_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_reintegration_of_veterans_focus
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.205
+		}
+	}
+	
+	focus = {
+		id = FRA_national_unity_campaign_focus
+		icon = GFX_FRA_national_unity_campaign_focus
+		relative_position_id = FRA_monuments_to_the_fallen_focus
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_monuments_to_the_fallen_focus
+		}
+		prerequisite = {
+			focus = FRA_establish_national_day_focus
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_ideas = FRA_national_unity_campaign_focus
+		}
+	}
+	
+	focus = {
+		id = FRA_revival_arts_culture_focus
+		icon = GFX_FRA_revival_arts_culture_focus
+		relative_position_id = FRA_monuments_to_the_fallen_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_monuments_to_the_fallen_focus
+		}
+		prerequisite = {
+			focus = FRA_establish_national_day_focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = france_wr.206
+		}
+	}
+	
+	focus = {
+		id = FRA_expand_healthcare_focus
+		icon = GFX_FRA_expand_healthcare_focus
+		relative_position_id = FRA_establish_national_day_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_monuments_to_the_fallen_focus
+		}
+		prerequisite = {
+			focus = FRA_establish_national_day_focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = FRA_expand_healthcare_focus
+		}
+	}
+	
+	focus = {
+		id = FRA_expand_social_welfare_focus
+		icon = GFX_FRA_expand_social_welfare_focus
+		relative_position_id = FRA_national_unity_campaign_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+			OR = {
+				has_country_leader = {
+					character = FRA_francois_de_la_rocque
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_leon_blum
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_paul_reynaud
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_pierre_monatte
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_charles_maurras
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_jean_iii
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_henry_vi
+					ruling_only = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_national_unity_campaign_focus
+		}
+		prerequisite = {
+			focus = FRA_revival_arts_culture_focus
+		}
+		mutually_exclusive = {
+			focus = FRA_state_propaganda_focus
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = FRA_expand_social_welfare_focus
+		}
+	}
+	
+	focus = {
+		id = FRA_strengthen_youth_education_focus
+		icon = GFX_FRA_strengthen_youth_education_focus
+		relative_position_id = FRA_expand_social_welfare_focus
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_expand_social_welfare_focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			unlock_decision_category_tooltip = FRA_education_investment_category
+			set_variable = { FRA_education_point = 0 }
+		}
+	}
+	
+	focus = {
+		id = FRA_state_propaganda_focus
+		icon = GFX_FRA_state_propaganda_focus
+		relative_position_id = FRA_revival_arts_culture_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+			OR = {
+				has_country_leader = {
+					character = FRA_jacques_doriot
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_marcel_deat
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_charles_de_gaulle
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_marcel_bucard
+					ruling_only = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_expand_healthcare_focus
+		}
+		prerequisite = {
+			focus = FRA_revival_arts_culture_focus
+		}
+		mutually_exclusive = {
+			focus = FRA_expand_social_welfare_focus
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.207
+		}
+	}
+	
+	focus = {
+		id = FRA_veterans_associations_focus
+		icon = GFX_FRA_veterans_associations_focus
+		relative_position_id = FRA_state_propaganda_focus
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_state_propaganda_focus
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.208
+		}
+	}
+	
+	#Military
+	focus = {
+		id = FRA_european_hegemony_focus
+		icon = GFX_FRA_european_hegemony_focus
+		relative_position_id = FRA_the_century_of_france
+		x = 5
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_the_century_of_france
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			country_event = france_wr.199
+		}
+	}
+	
+	focus = {
+		id = FRA_new_technology_focus
+		icon = GFX_FRA_new_technology_focus
+		relative_position_id = FRA_european_hegemony_focus
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = FRA_joint_research_focus
+		}
+		prerequisite = {
+			focus = FRA_european_hegemony_focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = FRA_new_technology_idea
+		}
+	}
+	
+	focus = {
+		id = FRA_lessons_of_war_focus
+		icon = GFX_FRA_lessons_of_war_focus
+		relative_position_id = FRA_new_technology_focus
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_joint_research_focus
+			focus = FRA_new_technology_focus
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_AIR_XP FOCUS_FILTER_NAVY_XP FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			army_experience = 50
+			air_experience = 50
+			navy_experience = 50
+			add_doctrine_cost_reduction = {
+				name = FRA_lessons_of_war_focus_army
+				cost_reduction = 0.5
+				uses = 1
+				category = land_doctrine
+			}
+			add_doctrine_cost_reduction = {
+				name = FRA_lessons_of_war_focus_air
+				cost_reduction = 0.5
+				uses = 1
+				category = air_doctrine
+			}
+			add_doctrine_cost_reduction = {
+				name = FRA_lessons_of_war_focus_navy
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_joint_research_focus
+		icon = GFX_FRA_joint_research_focus
+		relative_position_id = FRA_european_hegemony_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		mutually_exclusive = {
+			focus = FRA_new_technology_focus
+		}
+		prerequisite = {
+			focus = FRA_european_hegemony_focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_to_tech_sharing_group = european_joint_research_institute
+			every_country = {
+				limit = {
+					is_in_faction_with = ROOT
+					is_subject = no
+				}
+				country_event = france_wr.200
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_military_research_institutes_focus
+		icon = GFX_FRA_military_research_institutes_focus
+		relative_position_id = FRA_joint_research_focus
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_joint_research_focus
+			focus = FRA_new_technology_focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = {
+					any_state = {
+						is_owned_by = FRA
+					}
+				}
+				has_building = {
+					type = land_facility
+					value > 0
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = land_facility
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			else = {
+				add_breakthrough_points = {
+				  specialization = specialization_land
+				  value = 2
+				}
+			}
+			if = {
+				limit = {
+					any_state = {
+						is_owned_by = FRA
+					}
+				}
+				has_building = {
+					type = air_facility
+					value > 0
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = air_facility
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			else = {
+				add_breakthrough_points = {
+				  specialization = specialization_air
+				  value = 2
+				}
+			}
+			if = {
+				limit = {
+					any_state = {
+						is_owned_by = FRA
+					}
+				}
+				has_building = {
+					type = naval_facility
+					value > 0
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = naval_facility
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			else = {
+				add_breakthrough_points = {
+				  specialization = specialization_naval
+				  value = 2
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_armored_development_focus
+		icon = GFX_FRA_armored_development_focus
+		relative_position_id = FRA_lessons_of_war_focus
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_lessons_of_war_focus
+		}
+		prerequisite = {
+			focus = FRA_military_research_institutes_focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = FRA_armored_doctrine_idea
+		}
+	}
+	
+	focus = {
+		id = FRA_naval_reform_focus
+		icon = GFX_FRA_naval_reform_focus
+		relative_position_id = FRA_lessons_of_war_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_lessons_of_war_focus
+		}
+		prerequisite = {
+			focus = FRA_military_research_institutes_focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = FRA_modern_navy_idea
+		}
+	}
+	
+	focus = {
+		id = FRA_new_generation_aircraft_focus
+		icon = GFX_FRA_new_generation_aircraft_focus
+		relative_position_id = FRA_military_research_institutes_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_lessons_of_war_focus
+		}
+		prerequisite = {
+			focus = FRA_military_research_institutes_focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = FRA_master_of_skies_idea
+		}
+	}
+	
+	focus = {
+		id = FRA_expand_special_forces_focus
+		icon = GFX_FRA_expand_special_forces_focus
+		relative_position_id = FRA_naval_reform_focus
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_armored_development_focus
+		}
+		prerequisite = {
+			focus = FRA_naval_reform_focus
+		}
+		search_filters = { }
+		completion_reward = {
+			add_ideas = FRA_special_forces_idea
+		}
+	}
+	
+	focus = {
+		id = FRA_redefine_military_doctrine
+		icon = GFX_FRA_redefine_military_doctrine
+		relative_position_id = FRA_naval_reform_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_new_generation_aircraft_focus
+		}
+		prerequisite = {
+			focus = FRA_naval_reform_focus
+		}
+		search_filters = { }
+		completion_reward = {
+			add_ideas = FRA_redefine_military_doctrine
+		}
+	}
+	
+	focus = {
+		id = FRA_grande_armee_focus
+		icon = GFX_FRA_grande_armee_focus
+		relative_position_id = FRA_expand_special_forces_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_expand_special_forces_focus
+		}
+		prerequisite = {
+			focus = FRA_redefine_military_doctrine
+		}
+		search_filters = { }
+		completion_reward = {
+			add_ideas = FRA_grande_armee_idea
+		}
+	}
+	
+	#Diplomacy
+	focus = {
+		id = FRA_world_focus
+		icon = GFX_FRA_world_focus
+		relative_position_id = FRA_european_hegemony_focus
+		x = 4
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_european_hegemony_focus
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.209
+		}
+	}
+	
+	focus = {
+		id = FRA_swiss_bond
+		icon = GFX_FRA_swiss_bond
+		relative_position_id = FRA_world_focus
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_world_focus
+		}
+		bypass = {
+			OR = {
+				SWI = { exists = no }
+				SWI = { is_subject = yes }
+				AND = {
+					SWI = { is_in_faction = yes }
+					NOT = { SWI = { is_in_faction_with = FRA } }
+				}
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = FRA_marcel_bucard
+						ruling_only = yes
+					}
+				}
+				SWI = { country_event = france_wr.213 }
+				845 = { add_claim_by = FRA }
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = FRA_pierre_monatte
+						ruling_only = yes
+					}
+				}
+				if = {
+					limit = {
+						SWI = { is_in_faction_with = FRA }
+					}
+					SWI = { leave_faction = yes }
+				}
+				declare_war_on = { target = SWI type = puppet_wargoal_focus }
+				set_global_flag = FRA_SWI_revolution_flag
+			}
+			else = {
+				SWI = { country_event = france_wr.210 }
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_iberian_influence
+		icon = GFX_FRA_iberian_influence
+		relative_position_id = FRA_world_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_world_focus
+		}
+		bypass = {
+			OR = {
+				SPR = { exists = no }
+				SPR = { is_subject = yes }
+				AND = {
+					SPR = { is_in_faction = yes }
+					NOT = { SPR = { is_in_faction_with = FRA } }
+				}
+			}
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = FRA_marcel_bucard
+						ruling_only = yes
+					}
+				}
+				SPR = { country_event = spain.1 }
+			}
+			else_if = {
+				limit = {
+					has_country_leader = {
+						character = FRA_pierre_monatte
+						ruling_only = yes
+					}
+					NOT = { SPR = { has_government = ROOT } }
+				}
+				if = {
+					limit = {
+						SPR = { is_in_faction_with = FRA }
+					}
+					SPR = { leave_faction = yes }
+				}
+				declare_war_on = { type = puppet_wargoal_focus target = SPR }
+				set_global_flag = FRA_SPR_revolution_flag
+			}
+			else = {
+				country_event = france_wr.216
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_encourage_italian_anti_communism
+		icon = GFX_FRA_encourage_italian_anti_communism
+		relative_position_id = FRA_iberian_influence
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+			NOT = { has_government = communism }
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_iberian_influence
+		}
+		allow_branch = {
+			NOT = { has_country_flag = FRA_monatte_victory_flag }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = {
+					ITA = { has_government = communism }
+				}
+				create_wargoal = { type = puppet_wargoal_focus target = ITA }
+			}
+			else = {
+				ITA = { country_event = france_wr.229 }
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_spread_revolution_italy
+		icon = GFX_FRA_spread_revolution_italy
+		relative_position_id = FRA_iberian_influence
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+			ITA = { NOT = { has_government = communism } }
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_iberian_influence
+		}
+		allow_branch = {
+			has_country_flag = FRA_monatte_victory_flag
+		}
+		will_lead_to_war_with = ITA
+		completion_reward = {
+			if = {
+				limit = {
+					ITA = { is_in_faction_with = FRA }
+				}
+				ITA = { leave_faction = yes }
+			}
+			declare_war_on = { target = ITA type = puppet_wargoal_focus }
+			set_global_flag = FRA_ITA_revolution_flag
+		}
+	}
+	
+	focus = {
+		id = FRA_return_to_africa
+		icon = GFX_FRA_return_to_africa
+		relative_position_id = FRA_swiss_bond
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_swiss_bond
+		}
+		prerequisite = {
+			focus = FRA_iberian_influence
+		}
+		search_filters = { }
+		completion_reward = {
+			add_ideas = FRA_return_to_africa
+		}
+	}
+	
+	focus = {
+		id = FRA_nordic_trade_agreement
+		icon = GFX_FRA_nordic_trade_agreement
+		relative_position_id = FRA_return_to_africa
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_return_to_africa
+		}
+		search_filters = { }
+		completion_reward = {
+			unlock_decision_category_tooltip = FRA_nordic_trade_agreement
+		}
+	}
+	
+	focus = {
+		id = FRA_return_to_indochina
+		icon = GFX_FRA_return_to_indochina
+		relative_position_id = FRA_return_to_africa
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+			OR = {
+				671 = { is_owned_by = FRA }
+				670 = { is_owned_by = FRA }
+				286 = { is_owned_by = FRA }
+				741 = { is_owned_by = FRA }
+				992 = { is_owned_by = FRA }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_return_to_africa
+		}
+		search_filters = { }
+		completion_reward = {
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					OR = {
+						state = 671
+						state = 670
+						state = 286
+						state = 741
+						state = 992
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = domination_of_indochina
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_guardian_of_balance
+		icon = GFX_FRA_guardian_of_balance
+		relative_position_id = FRA_nordic_trade_agreement
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_nordic_trade_agreement
+		}
+		prerequisite = {
+			focus = FRA_return_to_indochina
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = FRA_guardian_of_balance
+		}
+	}
+	
+	focus = {
+		id = FRA_defense_plan_against_soviets
+		icon = GFX_FRA_defense_plan_against_soviets
+		relative_position_id = FRA_grande_armee_focus
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+			SOV = { has_country_flag = second_great_war_winner }
+			SOV = { is_subject = no }
+			SOV = { exists = yes }
+		}
+		mutually_exclusive = {
+			focus = FRA_operation_charlemagne
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				OR = {
+					has_country_leader = {
+						character = FRA_marcel_bucard
+						ruling_only = yes
+					}
+					has_country_leader = {
+						character = FRA_pierre_monatte
+						ruling_only = yes
+					}
+				}
+			}
+		}
+		prerequisite = {
+			focus = FRA_grande_armee_focus
+		}
+		prerequisite = {
+			focus = FRA_guardian_of_balance
+		}
+		completion_reward = {
+			every_country = {
+				limit = {
+					is_in_faction_with = FRA
+				}
+				add_ideas = FRA_defense_plan_against_soviets
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_operation_charlemagne
+		icon = GFX_FRA_operation_charlemagne
+		relative_position_id = FRA_guardian_of_balance
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+			SOV = { has_country_flag = second_great_war_winner }
+			SOV = { is_subject = no }
+			SOV = { exists = yes }
+		}
+		mutually_exclusive = {
+			focus = FRA_defense_plan_against_soviets
+		}
+		ai_will_do = {
+			factor = 6
+			modifier = {
+				factor = 0
+				NOT = {
+					OR = {
+						has_country_leader = {
+							character = FRA_marcel_bucard
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_pierre_monatte
+							ruling_only = yes
+						}
+					}
+				}
+			}
+		}
+		prerequisite = {
+			focus = FRA_grande_armee_focus
+		}
+		prerequisite = {
+			focus = FRA_guardian_of_balance
+		}
+		will_lead_to_war_with = SOV
+		completion_reward = {
+			declare_war_on = { target = SOV type = puppet_wargoal_focus }
 		}
 	}
 	

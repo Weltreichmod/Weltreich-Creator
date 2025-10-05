@@ -337,12 +337,76 @@ peace_conference_effect = {
 			FNG = { annex_country = { target = GZC transfer_troops = no } }
 		}
 	}
+	#leave communism france
+	every_country = {
+		limit = {
+			NOT = {
+				has_government = communism
+			}
+			is_in_faction_with = FRA
+			has_country_flag = second_great_war_winner
+			FRA = {
+				OR = {
+					has_government = commusnim
+					has_country_leader = {
+						character = FRA_pierre_monatte
+						ruling_only = yes
+					}
+				}
+			}
+			NOT = {
+				original_tag = ENG
+			}
+		}
+		country_event = { id = france_wr.233 days = 30 }
+	}
+	#Britain
+	if = {
+		limit = {
+			ENG = { has_country_flag = second_great_war_winner }
+		}
+		if = {
+			limit = {
+				OR = {
+					FRA = { has_government = communism }
+					AND = {
+						OR = {
+							ENG = { has_government = democratic }
+							ENG = { has_government = neutrality }
+						}
+						FRA = {
+							has_government = fascism
+							NOT = {
+								has_country_leader = {
+									character = FRA_jacques_doriot
+									ruling_only = yes
+								}
+							}
+						}
+					}
+				}
+			}
+			ENG = { country_event = { id = britain.66 days = 30 } }
+		}
+	}
 	#free german puppet
 	german_puppet_effect = yes
 	#fate of germany
 	if = {
 		limit = {
 			GER = { has_country_flag = second_great_war_loser }
+		}
+		if = {
+			limit = {
+				NOT = { DEN = { has_country_flag = second_great_war_loser } }
+				DEN = { exists = yes }
+			}
+			every_state = {
+				limit = {
+					state = 911
+				}
+				transfer_state_to = DEN
+			}
 		}
 		every_country = {
 			limit = {
@@ -354,33 +418,53 @@ peace_conference_effect = {
 		}
 		if = {
 			limit = {
-				USA = { has_country_flag = second_great_war_winner }
-			}
-			every_state = {
-				limit = {
-					is_owned_by = GER
-					is_core_of = BAY
+				FRA = {
+					has_country_flag = second_great_war_winner
+					has_idea = national_mobilized_economy
 				}
-				transfer_state_to = USA
 			}
-			USA = { country_event = wrwpe.14 }
+			country_event = { id = france_wr.196 days = 30 }
+			load_oob = "FRA_victory_focus"
 		}
 		if = {
 			limit = {
-				ENG = { has_country_flag = second_great_war_winner }
+				FRA = {
+					has_country_flag = second_great_war_winner
+				}
+			}
+			FRA = { add_ideas = FRA_veterans_integration_idea }
+		}
+		#SHL is under uk
+		if = {
+			limit = {
+				ENG = {
+					has_country_flag = second_great_war_winner
+					OR = {
+						has_completed_focus = Demand_Hanover
+						has_completed_focus = the_last_battle
+					}
+				}
 			}
 			every_state = {
 				limit = {
 					is_owned_by = GER
-					OR = {
-						is_core_of = HAN
-						is_core_of = OLD
-						is_core_of = SHL
+					is_core_of = SHL
+				}
+				transfer_state_to = SHL
+			}
+			ENG = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						SHL = { exists = yes }
+					}
+					set_autonomy = {
+						target = SHL
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
 					}
 				}
-				transfer_state_to = ENG
 			}
-			ENG = { country_event = wrwpe.14 }
 		}
 		if = {
 			limit = {
@@ -600,9 +684,15 @@ peace_conference_effect = {
 		if = {
 			limit = {
 				FRA = { has_country_flag = second_great_war_winner }
-				OR = {
-					SOV = { has_country_flag = second_great_war_loser }
-					RUS = { has_country_flag = second_great_war_loser }
+				AND = {
+					OR = {
+						SOV = { has_country_flag = anti_russia_war_loser }
+						NOT = { has_global_flag = german_soviet_war_started_flag }
+					}
+					OR = {
+						RUS = { has_country_flag = anti_russia_war_loser_mk_two }
+						NOT = { has_global_flag = german_russian_war_started_flag }
+					}
 				}
 			}
 			FRA = {
@@ -668,7 +758,7 @@ peace_conference_effect = {
 					FRA = { has_country_flag = second_great_war_winner }
 					EST = {
 						exists = yes
-						has_country_flag = puppet_to_sov_or_rus
+						has_country_flag = puppet_to_fra
 					}
 				}
 				FRA = {
@@ -692,7 +782,7 @@ peace_conference_effect = {
 					FRA = { has_country_flag = second_great_war_winner }
 					LAT = {
 						exists = yes
-						has_country_flag = puppet_to_sov_or_rus
+						has_country_flag = puppet_to_fra
 					}
 				}
 				FRA = {
@@ -869,6 +959,8 @@ peace_conference_effect = {
 		REI = { country_event = wrwpe.5 }
 		FRA = {
 			remove_ideas = national_mobilized_economy
+			remove_ideas = syndicalist_economy
+			remove_ideas = free_market_economy
 			remove_dynamic_modifier = FRA_total_mobilization
 			remove_dynamic_modifier = FRA_bucard_modifier
 			remove_dynamic_modifier = FRA_syndicalist_society_main_modifier
@@ -877,6 +969,185 @@ peace_conference_effect = {
 			remove_dynamic_modifier = FRA_research_modifier
 			remove_dynamic_modifier = FRA_industry_modifier
 			remove_dynamic_modifier = FRA_military_modifier
+			set_cosmetic_tag = FRA_cooperating_country
+			hidden_effect = {
+				set_party_name = {
+					ideology = fascism
+					long_name = FRA_Francist
+					name = FRA_Francist
+				}
+				set_party_name = {
+					ideology = neutrality
+					long_name = FRA_neutrality_party
+					name = FRA_neutrality_party
+				}
+				set_party_name = {
+					ideology = democratic
+					long_name = FRA_democratic_party
+					name = FRA_democratic_party
+				}
+				set_party_name = {
+					ideology = communism
+					long_name = FRA_communism_party_long
+					name = FRA_communism_party
+				}
+			}
+			if = {
+				limit = {
+					has_government = fascism
+					OR = {
+						has_country_flag = peoplesparty_won
+						has_country_flag = FRA_bucard_victory_flag
+					}
+				}
+				set_party_name = {
+					ideology = fascism
+					long_name = French_Government
+					name = French_Government
+				}
+				create_country_leader = {
+					name = "FRA_Pierre_Laval"
+					picture = "gfx/leaders/FRA/FRA_Pierre_Laval.png"
+					ideology = fascism_ideology
+				}
+			}
+			else_if = {
+				limit = {
+					has_government = fascism
+					NOT = { has_country_flag = peoplesparty_won }
+					NOT = { has_country_flag = FRA_bucard_victory_flag }
+				}
+				set_party_name = {
+					ideology = fascism
+					long_name = French_Government
+					name = French_Government
+				}
+				change_NO = yes
+				change_AF = yes
+				change_FWP = yes
+				change_DU = yes
+				create_country_leader = {
+					name = "FRA_Pierre_Laval"
+					picture = "gfx/leaders/FRA/FRA_Pierre_Laval.png"
+					ideology = fascism_ideology
+				}
+			}
+			else_if = {
+				limit = {
+					has_government = neutrality
+					OR = {
+						has_country_flag = FRA_de_la_rocque_victory_flag
+						has_country_flag = FRA_charles_de_gaulle_victory_flag
+						has_country_flag = maurras_victory_flag
+					}
+				}
+				set_party_name = {
+					ideology = neutrality
+					long_name = French_Government
+					name = French_Government
+				}
+				create_country_leader = {
+					name = "FRA_Pierre_Laval"
+					picture = "gfx/leaders/FRA/FRA_Pierre_Laval.png"
+					ideology = despotism
+				}
+			}
+			else_if = {
+				limit = {
+					has_government = neutrality
+					NOT = { has_country_flag = FRA_de_la_rocque_victory_flag }
+					NOT = { has_country_flag = FRA_charles_de_gaulle_victory_flag }
+					NOT = { has_country_flag = maurras_victory_flag }
+				}
+				set_party_name = {
+					ideology = neutrality
+					long_name = French_Government
+					name = French_Government
+				}
+				change_AFPU = yes
+				change_MB = yes
+				change_FWP = yes
+				change_DU = yes
+				create_country_leader = {
+					name = "FRA_Pierre_Laval"
+					picture = "gfx/leaders/FRA/FRA_Pierre_Laval.png"
+					ideology = despotism
+				}
+			}
+			else_if = {
+				limit = {
+					has_government = communism
+					has_country_flag = FRA_monatte_victory_flag
+				}
+				set_party_name = {
+					ideology = communism
+					long_name = French_Government
+					name = French_Government
+				}
+				create_country_leader = {
+					name = "FRA_Maurice_Thorez"
+					picture = "gfx/leaders/FRA/FRA_Maurice_Thorez.png"
+					ideology = marxism
+				}
+			}
+			else_if = {
+				limit = {
+					has_government = communism
+					NOT = { has_country_flag = FRA_monatte_victory_flag }
+				}
+				set_party_name = {
+					ideology = communism
+					long_name = French_Government
+					name = French_Government
+				}
+				change_AFPU = yes
+				change_MB = yes
+				change_NO = yes
+				change_AF = yes
+				change_DU = yes
+				create_country_leader = {
+					name = "FRA_Maurice_Thorez"
+					picture = "gfx/leaders/FRA/FRA_Maurice_Thorez.png"
+					ideology = marxism
+				}
+			}
+			else_if = {
+				limit = {
+					has_government = democratic
+					has_country_flag = democrats_victory_flag
+				}
+				set_party_name = {
+					ideology = democratic
+					long_name = French_Government
+					name = French_Government
+				}
+				create_country_leader = {
+					name = "FRA_Pierre_Laval"
+					picture = "gfx/leaders/FRA/FRA_Pierre_Laval.png"
+					ideology = conservatism
+				}
+			}
+			else_if = {
+				limit = {
+					has_government = democratic
+					NOT = { has_country_flag = democrats_victory_flag }
+				}
+				set_party_name = {
+					ideology = democratic
+					long_name = French_Government
+					name = French_Government
+				}
+				change_AFPU = yes
+				change_MB = yes
+				change_NO = yes
+				change_AF = yes
+				change_FWP = yes
+				create_country_leader = {
+					name = "FRA_Pierre_Laval"
+					picture = "gfx/leaders/FRA/FRA_Pierre_Laval.png"
+					ideology = conservatism
+				}
+			}
 		}
 		every_state = {
 			limit = {
@@ -1346,7 +1617,10 @@ peace_conference_effect = {
 		every_state = {
 			limit = {
 				is_owned_by = ENG
-				is_core_of = KEN
+				OR = {
+					is_core_of = KEN
+					state = 844
+				}
 			}
 			transfer_state_to = KEN
 		}
@@ -1356,6 +1630,34 @@ peace_conference_effect = {
 				is_core_of = UGA
 			}
 			transfer_state_to = UGA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = NGA
+			}
+			transfer_state_to = NGA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = GHA
+			}
+			transfer_state_to = GHA
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = GAM
+			}
+			transfer_state_to = GAM
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ENG
+				is_core_of = SIE
+			}
+			transfer_state_to = SIE
 		}
 	}
 	#islands
@@ -2467,6 +2769,28 @@ german_puppet_effect = {
 			}
 			LAT = { set_country_flag = puppet_to_sov_or_rus }
 		}
+		if = {
+			limit = {
+				EST = { exists = no }
+				FRA = { has_country_flag = second_great_war_winner }
+				OR = {
+					SOV = { has_country_flag = anti_russia_war_loser }
+					NOT = { has_global_flag = german_soviet_war_started_flag }
+				}
+			}
+			EST = { set_country_flag = puppet_to_fra }
+		}
+		if = {
+			limit = {
+				LAT = { exists = no }
+				FRA = { has_country_flag = second_great_war_winner }
+				OR = {
+					SOV = { has_country_flag = anti_russia_war_loser }
+					NOT = { has_global_flag = german_soviet_war_started_flag }
+				}
+			}
+			LAT = { set_country_flag = puppet_to_fra }
+		}
 		every_state = {
 			limit = {
 				is_owned_by = UBD
@@ -2923,25 +3247,48 @@ german_puppet_effect = {
 				has_country_flag = second_great_war_loser
 			}
 		}
-		every_state = {
+		if = {
 			limit = {
-				is_owned_by = GER
-				is_core_of = BEL
+				has_country_leader = {
+					character = FRA_pierre_monatte
+					ruling_only = yes
+				}
 			}
-			transfer_state_to = BEL
-		}
-		FRA = {
-			if = {
+			every_state = {
 				limit = {
-					has_dlc = "Together for Victory"
+					is_owned_by = GER
+					is_core_of = BEL
+					OR = {
+						state = 34
+						state = 910
+					}
 				}
-				set_autonomy = {
-					target = BEL
-					autonomous_state = autonomy_puppet
-					freedom_level = 0.5
+				transfer_state_to = FRA
+			}
+			HOL = { annex_country = { target = BEL transfer_troops = no } }
+		}
+		else = {
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					is_core_of = BEL
 				}
-				else = {
-					puppet = BEL
+				transfer_state_to = BEL
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						BEL = { exists = yes }
+					}
+					set_autonomy = {
+						target = BEL
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = BEL
+					}
 				}
 			}
 		}
@@ -2963,12 +3310,34 @@ german_puppet_effect = {
 		}
 		if = {
 			limit = {
-				HOL = { exists = yes }
+				has_country_leader = {
+					character = FRA_pierre_monatte
+					ruling_only = yes
+				}
 			}
 			FRA = {
 				if = {
 					limit = {
 						has_dlc = "Together for Victory"
+						HOL = { exists = yes }
+					}
+					set_autonomy = {
+						target = HOL
+						autonomous_state = autonomy_satellite
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = HOL
+					}
+				}
+			}
+		}
+		else = {
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						HOL = { exists = yes }
 					}
 					set_autonomy = {
 						target = HOL
@@ -3039,29 +3408,49 @@ german_puppet_effect = {
 			GER = { has_country_flag = second_great_war_loser }
 			8 = { is_owned_by = GER }
 		}
-		FRA = {
-			if = {
-				limit = {
-					has_dlc = "Together for Victory"
-				}
-				set_autonomy = {
-					target = LUX
-					autonomous_state = autonomy_puppet
-					freedom_level = 0.5
-				}
-				else = {
-					puppet = LUX
-				}
-			}
-		}
-		every_state = {
+		if = {
 			limit = {
-				is_owned_by = GER
-				is_core_of = LUX
+				has_country_leader = {
+					character = FRA_pierre_monatte
+					ruling_only = yes
+				}
 			}
-			transfer_state_to = LUX
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					is_core_of = LUX
+				}
+				transfer_state_to = FRA
+			}
 		}
-		LUX = { inherit_technology = FRA }
+		else = {
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					is_core_of = LUX
+				}
+				transfer_state_to = LUX
+			}
+			LUX = { inherit_technology = FRA }
+			else = {
+				FRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							LUX = { exists = yes }
+						}
+						set_autonomy = {
+							target = LUX
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = LUX
+						}
+					}
+				}
+			}
+		}
 	}
 	#morocco
 	if = {
@@ -4839,5 +5228,830 @@ peace_conference_effect_for_russia = {
 				}
 			}
 		}
+	}
+}
+
+#Divide Germany
+doriot_deat_germany = {
+	if = {
+		limit = {
+			has_completed_focus = FRA_Doriot_Order_of_State
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				OR = {
+					state = 959
+					state = 50
+					state = 52
+					state = 53
+					state = 54
+				}
+			}
+			add_core_of = G02
+			transfer_state_to = G02
+		}
+		G01 = {
+			annex_country = { target = GER transfer_troops = yes }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = G01
+			}
+			add_core_of = G01
+		}
+		G01 = {
+			set_cosmetic_tag = NGR_doriot
+			inherit_technology = GER
+			add_timed_idea = { idea = war_reparations days = 700 }
+			add_ideas = peace_treaty
+			set_party_name = {
+				ideology = democratic
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			set_party_name = {
+				ideology = communism
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			set_party_name = {
+				ideology = fascism
+				long_name = Supreme_Council_for_National_Reconstruction_long
+				name = Supreme_Council_for_National_Reconstruction
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			create_country_leader = {
+				name = "GER_werner_von_fritsch"
+				picture = "gfx/leaders/GER/GER_werner_von_fritsch.png"
+				ideology = national_popular_socialism
+			}
+		}
+		G02 = {
+			set_cosmetic_tag = SGR_doriot
+			inherit_technology = GER
+			add_timed_idea = { idea = war_reparations days = 700 }
+			add_ideas = peace_treaty
+			set_party_name = {
+				ideology = democratic
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			set_party_name = {
+				ideology = communism
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			set_party_name = {
+				ideology = fascism
+				long_name = South_German_Peoples_Revolutionary_Party_long
+				name = South_German_Peoples_Revolutionary_Party
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			create_country_leader = {
+				name = "GER_ernst_rohm"
+				picture = "gfx/leaders/GER/GER_ernst_rohm.png"
+				ideology = national_popular_socialism
+			}
+		}
+		FRA = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					G01 = { exists = yes }
+				}
+				set_autonomy = {
+					target = G01
+					autonomous_state = autonomy_cooperating_country
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = G01
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					G01 = { exists = yes }
+				}
+				set_autonomy = {
+					target = G02
+					autonomous_state = autonomy_cooperating_country
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = G02
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			has_completed_focus = FRA_Dea_New_Order
+		}
+		every_state = {
+			limit = {
+				is_owned_by = GER
+				OR = {
+					state = 959
+					state = 50
+					state = 52
+					state = 53
+					state = 54
+				}
+			}
+			add_core_of = G02
+			transfer_state_to = G02
+		}
+		G01 = {
+			annex_country = { target = GER transfer_troops = yes }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = G01
+			}
+			add_core_of = G01
+		}
+		G01 = {
+			set_cosmetic_tag = NGR_deat
+			inherit_technology = GER
+			add_timed_idea = { idea = war_reparations days = 700 }
+			add_ideas = peace_treaty
+			set_party_name = {
+				ideology = democratic
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			set_party_name = {
+				ideology = communism
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			set_party_name = {
+				ideology = fascism
+				long_name = NGR_deat_party_long
+				name = NGR_deat_party
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			create_country_leader = {
+				name = "GER_martin_bormann"
+				picture = GFX_portrait_GER_martin_bormann
+				ideology = neo_socialism
+			}
+		}
+		G02 = {
+			set_cosmetic_tag = SGR_deat
+			inherit_technology = GER
+			add_timed_idea = { idea = war_reparations days = 700 }
+			add_ideas = peace_treaty
+			set_party_name = {
+				ideology = democratic
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			set_party_name = {
+				ideology = communism
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			set_party_name = {
+				ideology = fascism
+				long_name = SGR_deat_party_long
+				name = SGR_deat_party
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			create_country_leader = {
+				name = "GER_otto_strasser"
+				picture = GFX_portrait_GER_otto_strasser
+				ideology = neo_socialism
+			}
+		}
+		FRA = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					G01 = { exists = yes }
+				}
+				set_autonomy = {
+					target = G01
+					autonomous_state = autonomy_cooperating_country
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = G01
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					G01 = { exists = yes }
+				}
+				set_autonomy = {
+					target = G02
+					autonomous_state = autonomy_cooperating_country
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = G02
+				}
+			}
+		}
+	}
+}
+
+maurras_germany = {
+	every_state = {
+		limit = {
+			is_owned_by = GER
+			OR = {
+				state = 42
+				state = 51
+			}
+		}
+		transfer_state_to = FRA
+	}
+	every_state = {
+		limit = {
+			is_owned_by = GER
+			OR = {
+				state = 943
+				state = 959
+				state = 50
+				state = 52
+				state = 53
+				state = 55
+				state = 54
+				state = 57
+				state = 56
+				state = 942
+				state = 60
+				state = 59
+				state = 65
+				state = 957
+			}
+		}
+		transfer_state_to = G01
+	}
+	every_state = {
+		limit = {
+			state = 55
+		}
+		add_core_of = G01
+	}
+	G01 = {
+		set_cosmetic_tag = NGR_maurras
+		inherit_technology = GER
+		add_timed_idea = { idea = war_reparations days = 700 }
+		add_ideas = peace_treaty
+		set_party_name = {
+			ideology = democratic
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = communism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = FRA_action_francaise
+			name = FRA_action_francaise
+		}
+		create_country_leader = {
+			name = "FRA_jacques_bainville"
+			picture = "gfx/leaders/FRA/FRA_jacques_bainville.png"
+			ideology = integral_nationalism
+		}
+		GER = { enable_country_integration_80_compliance = yes }
+	}
+	GER = {
+		set_cosmetic_tag = GER_maurras
+		set_party_name = {
+			ideology = democratic
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = communism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = GER_neutrality_party_long
+			name = GER_neutrality_party
+		}
+		create_country_leader = {
+			name = "GER_friedrich_v"
+			picture = "gfx/leaders/GER/GER_friedrich_v.png"
+			ideology = autocracy
+		}
+	}
+	FRA = {
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+				G01 = { exists = yes }
+			}
+			set_autonomy = {
+				target = G01
+				autonomous_state = autonomy_province_government
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = G01
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+				GER = { exists = yes }
+			}
+			set_autonomy = {
+				target = GER
+				autonomous_state = autonomy_cooperating_country
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = GER
+			}
+		}
+	}
+}
+
+francois_de_la_rocque_germany = {
+	G01 = {
+		annex_country = { target = GER transfer_troops = yes }
+	}
+	every_state = {
+		limit = {
+			is_owned_by = G01
+		}
+		add_core_of = G01
+	}
+	G01 = {
+		set_cosmetic_tag = NGR_rocque
+		inherit_technology = GER
+		add_timed_idea = { idea = war_reparations days = 700 }
+		add_ideas = peace_treaty
+		if = {
+			limit = {
+				FRA = { has_government = neutrality }
+			}
+			set_party_name = {
+				ideology = democratic
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = RECON_party_long
+				name = RECON_party
+			}
+			create_country_leader = {
+				name = "GER_Franz_Papen"
+				picture = "gfx/leaders/GER/GER_Franz_Papen.png"
+				ideology = oligarchism
+			}
+		}
+		if = {
+			limit = {
+				FRA = { has_government = democratic }
+			}
+			set_party_name = {
+				ideology = democratic
+				long_name = RECON_party_long
+				name = RECON_party
+			}
+			set_party_name = {
+				ideology = neutrality
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			create_country_leader = {
+				name = "GER_Franz_Papen"
+				picture = "gfx/leaders/GER/GER_Franz_Papen.png"
+				ideology = conservatism
+			}
+		}
+		set_party_name = {
+			ideology = communism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+	}
+	FRA = {
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+				G01 = { exists = yes }
+			}
+			set_autonomy = {
+				target = G01
+				autonomous_state = autonomy_cooperating_country
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = G01
+			}
+		}
+	}
+}
+
+charles_de_gaulle_germany = {
+	every_state = {
+		limit = {
+			is_owned_by = GER
+			state = 943
+		}
+		transfer_state_to = FRA
+	}
+	G01 = {
+		annex_country = { target = GER transfer_troops = yes }
+	}
+	every_state = {
+		limit = {
+			is_owned_by = G01
+		}
+		add_core_of = G01
+	}
+	G01 = {
+		set_cosmetic_tag = GER_Confederation_of_the_Rhine
+		inherit_technology = GER
+		add_timed_idea = { idea = war_reparations days = 700 }
+		add_ideas = peace_treaty
+		set_party_name = {
+			ideology = democratic
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = communism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = RECON_party_long
+			name = RECON_party_long
+		}
+		create_country_leader = {
+			name = "GER_Franz_Papen"
+			picture = "gfx/leaders/GER/GER_Franz_Papen.png"
+			ideology = oligarchism
+		}
+	}
+	FRA = {
+		GER = { enable_country_integration_80_compliance = yes }
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+				G01 = { exists = yes }
+			}
+			set_autonomy = {
+				target = G01
+				autonomous_state = autonomy_cooperating_country
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = G01
+			}
+		}
+	}
+}
+
+marcel_bucard_germany = {
+	every_state = {
+		limit = {
+			is_owned_by = GER
+			OR = {
+				state = 42
+				state = 51
+				state = 55
+				state = 943
+				state = 57
+				state = 56
+				state = 942
+				state = 59
+				state = 58
+				state = 911
+			}
+		}
+		add_core_of = G01
+		transfer_state_to = G01
+	}
+	every_state = {
+		limit = {
+			is_owned_by = GER
+			OR = {
+				state = 959
+				state = 50
+				state = 52
+				state = 53
+				state = 54
+			}
+		}
+		add_core_of = G02
+		transfer_state_to = G02
+	}
+	G03 = {
+		annex_country = { target = GER transfer_troops = yes }
+	}
+	every_state = {
+		limit = {
+			is_owned_by = G03
+		}
+		add_core_of = G03
+	}
+	G01 = {
+		set_cosmetic_tag = WGR_bucard
+		inherit_technology = GER
+		add_timed_idea = { idea = war_reparations days = 700 }
+		add_ideas = peace_treaty
+		set_party_name = {
+			ideology = democratic
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = communism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = GER_military_government
+			name = GER_military_government
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		create_country_leader = {
+			name = "FRA_jean_filiol"
+			picture = "gfx/leaders/FRA/FRA_jean_filiol.png"
+			ideology = fascism_ideology
+		}
+	}
+	G02 = {
+		set_cosmetic_tag = SGR_bucard
+		inherit_technology = GER
+		add_timed_idea = { idea = war_reparations days = 700 }
+		add_ideas = peace_treaty
+		set_party_name = {
+			ideology = democratic
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = communism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = GER_military_government
+			name = GER_military_government
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		create_country_leader = {
+			name = "FRA_jacques_barnaud"
+			picture = "gfx/leaders/FRA/FRA_jacques_barnaud.png"
+			ideology = fascism_ideology
+		}
+	}
+	G03 = {
+		set_cosmetic_tag = EGR_bucard
+		inherit_technology = GER
+		add_timed_idea = { idea = war_reparations days = 700 }
+		add_ideas = peace_treaty
+		set_party_name = {
+			ideology = democratic
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = communism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = GER_military_government
+			name = GER_military_government
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		create_country_leader = {
+			name = "FRA_maxime_weygand"
+			picture = GFX_portrait_FRA_maxime_weygand
+			ideology = fascism_ideology
+		}
+	}
+	FRA = {
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+				G01 = { exists = yes }
+			}
+			set_autonomy = {
+				target = G01
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = G01
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+				G02 = { exists = yes }
+			}
+			set_autonomy = {
+				target = G02
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = G02
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+				G03 = { exists = yes }
+			}
+			set_autonomy = {
+				target = G03
+				autonomous_state = autonomy_puppet
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = G03
+			}
+		}
+	}
+}
+
+pierre_monatte_germany = {
+	G01 = {
+		annex_country = { target = GER transfer_troops = yes }
+	}
+	every_state = {
+		limit = {
+			is_owned_by = G01
+		}
+		add_core_of = G01
+	}
+	G01 = {
+		set_cosmetic_tag = NGR_monatte
+		inherit_technology = GER
+		add_ideas = peace_treaty
+		set_party_name = {
+			ideology = democratic
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = communism
+			long_name = GER_anarcho_syndicalist_party_long
+			name = GER_anarcho_syndicalist_party
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = WR_Banned
+			name = WR_Banned
+		}
+		create_country_leader = {
+			name = "GER_rudolf_rocker"
+			picture = "gfx/leaders/GER/GER_rudolf_rocker.png"
+			ideology = syndicalism
+		}
+	}
+}
+
+democratic_germany = {
+	G01 = {
+		annex_country = { target = GER transfer_troops = yes }
+	}
+	every_state = {
+		limit = {
+			is_owned_by = G01
+		}
+		add_core_of = G01
+	}
+	G01 = {
+		set_cosmetic_tag = NGR_democratic
+		inherit_technology = GER
+		add_timed_idea = { idea = war_reparations days = 700 }
+		add_ideas = peace_treaty
+		set_party_name = {
+			ideology = democratic
+			long_name = GER_free_democratic_party_long
+			name = GER_free_democratic_party
+		}
+		set_party_name = {
+			ideology = communism
+			long_name = GER_communism_party
+			name = GER_communism_party
+		}
+		set_party_name = {
+			ideology = fascism
+			long_name = GER_fdap_party_long
+			name = GER_fdap_party
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = GER_nvp_party_long
+			name = GER_nvp_party
+		}
+		create_country_leader = {
+			name = "GER_theodor_heuss"
+			picture = "gfx/leaders/GER/GER_theodor_heuss.png"
+			ideology = liberalism
+		}
+		create_country_leader = {
+			name = "GER_ernst_thalmann"
+			picture = GFX_portrait_GER_ernst_thalmann
+			ideology = marxism
+		}
+		create_country_leader = {
+			name = "GER_otto_strasser"
+			picture = GFX_portrait_GER_otto_strasser
+			ideology = ethnic_nationalism
+		}
+		create_country_leader = {
+			name = "GER_otto_schmidt_hannover"
+			picture = "gfx/leaders/GER/GER_otto_schmidt_hannover.png"
+			ideology = oligarchism
+		}
+	}
+	FRA = {
+		if = {
+			limit = {
+				has_dlc = "Together for Victory"
+				G01 = { exists = yes }
+			}
+			set_autonomy = {
+				target = G01
+				autonomous_state = autonomy_cooperating_country
+				freedom_level = 0.5
+			}
+			else = {
+				puppet = G01
+			}
+		}
+		country_event = { id = france_wr.232 days = 10 }
 	}
 }

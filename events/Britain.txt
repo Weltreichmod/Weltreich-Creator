@@ -70,7 +70,7 @@ country_event = {
 		hidden_effect = {
 			remove_ideas = preparations_for_the_general_election
 			remove_ideas = rise_of_fascism
-			remove_ideas = the_Communist_uprising
+			#remove_ideas = the_Communist_uprising
 			set_country_flag = ENG_1936_general_election
 		}
 	}
@@ -165,62 +165,62 @@ country_event = {
 			}
 		}
 	}
-	option = {
-		name = britain.3.c
-		set_politics = {
-			ruling_party = communism
-			election_frequency = 48
-			elections_allowed = yes
-		}
-		hidden_effect = {
-			set_country_flag = communism_in_ENG
-			country_event = { id = britain.12 days = 10 }
-		}
-		add_popularity = {
-			ideology = communism
-			popularity = 0.3
-		}
-		remove_ideas = an_unpopular_government
-		hidden_effect = {
-			country_event = { id = britain.18 days = 7 }
-			country_event = { id = britain.19 days = 10 }
-			country_event = { id = britain.20 days = 5 }
-			mark_focus_tree_layout_dirty = yes
-		}
-		custom_effect_tooltip = ENG_focus_tree_change
-		news_event = britain.8
-		ai_chance = {
-			base = 30
-			modifier = {
-				OR = {
-					AND = {
-						is_historical_focus_on = yes
-						has_game_rule = {
-							rule = ENG_ai_behavior
-							option = DEFAULT
-						}
-					}
-					has_game_rule = {
-						rule = ENG_ai_behavior 
-						option = FASCISM_ENGAGE_IN_CONTINENTAL_AFFAIRS
-					}
-					has_game_rule = {
-						rule = ENG_ai_behavior 
-						option = FASCISM_COLONY_INTEGRATION_POLICY
-					}
-					has_game_rule = {
-						rule = ENG_ai_behavior 
-						option = DEMOCRATIC
-					}
-					has_game_rule = {
-						rule = ENG_ai_behavior 
-						option = NEUTRILITY
-					}
-				}
-				add = -30
-			}
-		}
-	}
+	#option = {
+	#	name = britain.3.c
+	#	set_politics = {
+	#		ruling_party = communism
+	#		election_frequency = 48
+	#		elections_allowed = yes
+	#	}
+	#	hidden_effect = {
+	#		set_country_flag = communism_in_ENG
+	#		country_event = { id = britain.12 days = 10 }
+	#	}
+	#	add_popularity = {
+	#		ideology = communism
+	#		popularity = 0.3
+	#	}
+	#	remove_ideas = an_unpopular_government
+	#	hidden_effect = {
+	#		country_event = { id = britain.18 days = 7 }
+	#		country_event = { id = britain.19 days = 10 }
+	#		country_event = { id = britain.20 days = 5 }
+	#		mark_focus_tree_layout_dirty = yes
+	#	}
+	#	custom_effect_tooltip = ENG_focus_tree_change
+	#	news_event = britain.8
+	#	ai_chance = {
+	#		base = 30
+	#		modifier = {
+	#			OR = {
+	#				AND = {
+	#					is_historical_focus_on = yes
+	#					has_game_rule = {
+	#						rule = ENG_ai_behavior
+	#						option = DEFAULT
+	#					}
+	#				}
+	#				has_game_rule = {
+	#					rule = ENG_ai_behavior 
+	#					option = FASCISM_ENGAGE_IN_CONTINENTAL_AFFAIRS
+	#				}
+	#				has_game_rule = {
+	#					rule = ENG_ai_behavior 
+	#					option = FASCISM_COLONY_INTEGRATION_POLICY
+	#				}
+	#				has_game_rule = {
+	#					rule = ENG_ai_behavior 
+	#					option = DEMOCRATIC
+	#				}
+	#				has_game_rule = {
+	#					rule = ENG_ai_behavior 
+	#					option = NEUTRILITY
+	#				}
+	#			}
+	#			add = -30
+	#		}
+	#	}
+	#}
 }
 
 country_event = {
@@ -357,7 +357,7 @@ country_event = {
 	id = britain.10
 	title = britain.10.t
 	desc = britain.10.d
-	picture = communism_eng
+	picture = GFX_report_event_generic_sign_treaty2
 	is_triggered_only = yes
 	option = {
 		name = britain.10.a
@@ -424,7 +424,11 @@ country_event = {
 		remove_ideas = communists_backlash
 		add_popularity = {
 			ideology = communism
-			popularity = -1.0
+			popularity = -0.1
+		}
+		add_popularity = {
+			ideology = democratic
+			popularity = -0.05
 		}
 		ai_chance = {
 			factor = 100
@@ -1575,6 +1579,87 @@ country_event = {
 	option = {
 		name = britain.65.a
 		drop_cosmetic_tag = yes
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = britain.66
+	title = britain.66.t
+	desc = britain.66.d
+	is_triggered_only = yes
+	option = {
+		name = britain.66.a
+		clr_global_flag = FRA_ENG_AA
+		leave_faction = yes
+		set_country_flag = seek_usa_ally
+		unlock_decision_category_tooltip = ENG_us_cooperation_category
+		create_faction = Commonwealth_of_Nations
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = britain.67
+	title = britain.67.t
+	desc = britain.67.d
+	is_triggered_only = yes
+	option = {
+		name = britain.67.a
+		ENG = {
+			country_event = { id = britain.68 }
+			give_guarantee = USA
+			add_ideas = ENG_USA_economic_agreement_idea
+		}
+		give_guarantee = ENG
+		add_ideas = ENG_USA_economic_agreement_idea_usa
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = britain.67.b
+		ENG = { country_event = { id = britain.69 } }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = britain.68
+	title = britain.68.t
+	desc = britain.68.d
+	is_triggered_only = yes
+	option = {
+		name = britain.68.a
+		effect_tooltip = {
+			ENG = {
+				give_guarantee = USA
+				add_ideas = ENG_USA_economic_agreement_idea
+			}
+			USA = {
+				give_guarantee = ENG
+				add_ideas = ENG_USA_economic_agreement_idea_usa
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = britain.69
+	title = britain.69.t
+	desc = britain.69.d
+	is_triggered_only = yes
+	option = {
+		name = britain.69.a
 		ai_chance = {
 			base = 1
 		}

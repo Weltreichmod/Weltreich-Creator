@@ -1423,6 +1423,7 @@ on_actions = {
 					#add_ideas = Treaty_of_Nizhny_Novgorod
 					remove_ideas = country_isolation
 					country_lock_all_division_template = yes
+					set_country_flag = anti_russia_war_loser_mk_two
 				}
 				every_country = {
 					limit = {
@@ -2002,6 +2003,111 @@ on_actions = {
 				ITA = {
 					news_event = italy.27
 				}
+			}
+			if = {
+				limit = {
+					original_tag = SPR
+					has_global_flag = FRA_SPR_revolution_flag
+					FRA = {
+						has_war_with = PREV
+						is_subject = no
+						has_capitulated = no
+					}
+				}
+				FRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							SPR = { exists = yes }
+						}
+						set_autonomy = {
+							target = SPR
+							autonomous_state = autonomy_satellite
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = SPR
+						}
+					}
+				}
+				SPR = {
+					create_country_leader = {
+						name = "SPR_juan_garcia_oliver"
+						picture = "gfx/leaders/SPR/SPR_juan_garcia_oliver.png" 
+						ideology = syndicalism
+					}
+				}
+				clr_global_flag = FRA_SPR_revolution_flag
+			}
+			if = {
+				limit = {
+					original_tag = ITA
+					has_global_flag = FRA_ITA_revolution_flag
+					FRA = {
+						has_war_with = PREV
+						is_subject = no
+						has_capitulated = no
+					}
+				}
+				FRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							ITA = { exists = yes }
+						}
+						set_autonomy = {
+							target = ITA
+							autonomous_state = autonomy_satellite
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = ITA
+						}
+					}
+				}
+				ITA = {
+					create_country_leader = {
+						name = "ITA_edmondo_pelusini"
+						picture = "gfx/leaders/ITA/ITA_edmondo_pelusini.png" 
+						ideology = syndicalism
+					}
+				}
+				clr_global_flag = FRA_ITA_revolution_flag
+			}
+			if = {
+				limit = {
+					original_tag = SWI
+					has_global_flag = FRA_SWI_revolution_flag
+					FRA = {
+						has_war_with = PREV
+						is_subject = no
+						has_capitulated = no
+					}
+				}
+				FRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							SWI = { exists = yes }
+						}
+						set_autonomy = {
+							target = SWI
+							autonomous_state = autonomy_satellite
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = SWI
+						}
+					}
+				}
+				SWI = {
+					create_country_leader = {
+						name = "SWI_robert_grimm"
+						picture = "gfx/leaders/SWI/SWI_robert_grimm.png" 
+						ideology = syndicalism
+					}
+				}
+				clr_global_flag = FRA_SWI_revolution_flag
 			}
 			if = {
 				limit = {

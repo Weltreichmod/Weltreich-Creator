@@ -3,7 +3,6 @@ FRA_Attack_BEL = {
 		icon = GFX_decision_hol_draw_up_staff_plans
 		available = {
 			has_war_with = GER
-			has_war_with = BEL
 		}	
 		visible = {
 			tag = FRA
@@ -29,6 +28,15 @@ FRA_Attack_BEL = {
 				}
 				declare_war_on = {
 					target = HOL
+					type = puppet_wargoal_focus
+				}
+			}
+			if = {
+				limit = {
+					NOT = { has_war_with = BEL }
+				}
+				declare_war_on = {
+					target = BEL
 					type = puppet_wargoal_focus
 				}
 			}
@@ -404,69 +412,6 @@ democratic_alliance = {
 		}
 		remove_effect = {
 			SPR = { country_event = { days = 7 id = italy.14 } }
-		}
-	}
-}
-
-FRA_declare_grand_french_etat = {
-	FRA_declare_grand_french_etat = {
-		allowed = {
-			original_tag = FRA
-		}
-		icon = GFX_decision_generic_form_nation
-		fire_only_once = yes
-		visible = {
-			always = no
-			has_government = fascism
-			has_country_flag = second_great_war_winner
-		}
-		available = {
-			14 = { is_owned_by = FRA }
-			30 = { is_owned_by = FRA }
-			15 = { is_owned_by = FRA }
-			23 = { is_owned_by = FRA }
-			19 = { is_owned_by = FRA }
-			806 = { is_owned_by = FRA }
-			31 = { is_owned_by = FRA }
-			25 = { is_owned_by = FRA }
-			22 = { is_owned_by = FRA }
-			21 = { is_owned_by = FRA }
-			851 = { is_owned_by = FRA }
-			934 = { is_owned_by = FRA }
-			935 = { is_owned_by = FRA }
-			735 = { is_owned_by = FRA }
-			20 = { is_owned_by = FRA }
-			32 = { is_owned_by = FRA }
-			26 = { is_owned_by = FRA }
-			33 = { is_owned_by = FRA }
-			27 = { is_owned_by = FRA }
-			17 = { is_owned_by = FRA }
-			24 = { is_owned_by = FRA }
-			18 = { is_owned_by = FRA }
-			16 = { is_owned_by = FRA }
-			928 = { is_owned_by = FRA }
-			785 = { is_owned_by = FRA }
-			993 = { is_owned_by = FRA }
-			165 = { is_owned_by = FRA }
-			1 = { is_owned_by = FRA }
-			909 = { is_owned_by = FRA }
-			28 = { is_owned_by = FRA }
-			29 = { is_owned_by = FRA }
-			6 = { is_owned_by = FRA }
-			34 = { is_owned_by = FRA }
-			910 = { is_owned_by = FRA }
-			8 = { is_owned_by = FRA }
-			42 = { is_owned_by = FRA }
-			51 = { is_owned_by = FRA }
-			35 = { is_owned_by = FRA }
-			7 = { is_owned_by = FRA }
-			36 = { is_owned_by = FRA }
-		}
-		complete_effect = {
-			set_cosmetic_tag = GRAND_FRANCE
-		}
-		ai_will_do = { 
-			base = 4000
 		}
 	}
 }
@@ -3125,8 +3070,11 @@ foreign_politics = {
 					original_tag = GRE
 					original_tag = BUL
 					original_tag = ROM
+					original_tag = SER
+					original_tag = ALB
 				}
 				is_in_faction = no
+				is_subject = no
 			}
 		}
 		visible = {
@@ -3141,6 +3089,9 @@ foreign_politics = {
 						OR = {
 							original_tag = GRE
 							original_tag = BUL
+							original_tag = ROM
+							original_tag = SER
+							original_tag = ALB
 						}
 					}
 				}
@@ -3175,6 +3126,9 @@ foreign_politics = {
 						OR = {
 							original_tag = GRE
 							original_tag = BUL
+							original_tag = ROM
+							original_tag = SER
+							original_tag = ALB
 						}
 					}
 				}
@@ -3202,6 +3156,9 @@ foreign_politics = {
 				OR = {
 					original_tag = GRE
 					original_tag = BUL
+					original_tag = ROM
+					original_tag = SER
+					original_tag = ALB
 				}
 			}
 		}
@@ -3233,6 +3190,9 @@ foreign_politics = {
 				OR = {
 					original_tag = GRE
 					original_tag = BUL
+					original_tag = ROM
+					original_tag = SER
+					original_tag = ALB
 				}
 			}
 		}
@@ -5233,7 +5193,7 @@ FRA_syndicalist_society = {
 		days_remove = 60
 		cost = 40
 		modifier = {
-			stability_weekly_factor = 0.02
+			stability_weekly = 0.02
 		}
 		complete_effect = {
 			set_country_flag = FRA_northwest_is_going_on_flag
@@ -6951,12 +6911,12 @@ FRA_decision_invisible_hand = {
 		allowed = {
 			original_tag = FRA
 		}
-		days_remove = 80
+		days_remove = 70
 		available = {
 			any_state = {
 				is_controlled_by = ROOT
 				is_owned_by = ROOT
-				has_built = {
+				has_building = {
 					type = industrial_complex
 					value > 0
 				}
@@ -6974,7 +6934,45 @@ FRA_decision_invisible_hand = {
 				limit = {
 					is_controlled_by = ROOT
 					is_owned_by = ROOT
-					has_built = {
+					has_building = {
+						type = industrial_complex
+						value > 0
+					}
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_controlled_by = ROOT
+					is_owned_by = ROOT
+					has_building = {
+						type = industrial_complex
+						value > 0
+					}
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_controlled_by = ROOT
+					is_owned_by = ROOT
+					has_building = {
 						type = industrial_complex
 						value > 0
 					}
@@ -7059,6 +7057,7 @@ FRA_decision_invisible_hand = {
 		activation = {
 			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
 			has_tech = construction1
+			NOT = { has_tech = construction2 }
 			NOT = { has_country_flag = second_great_war_loser }
 			has_government = democratic
 			has_dynamic_modifier = {
@@ -7100,6 +7099,7 @@ FRA_decision_invisible_hand = {
 		activation = {
 			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
 			has_tech = construction2
+			NOT = { has_tech = construction3 }
 			NOT = { has_country_flag = second_great_war_loser }
 			has_government = democratic
 			has_dynamic_modifier = {
@@ -7141,6 +7141,7 @@ FRA_decision_invisible_hand = {
 		activation = {
 			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
 			has_tech = construction3
+			NOT = { has_tech = construction4 }
 			NOT = { has_country_flag = second_great_war_loser }
 			has_government = democratic
 			has_dynamic_modifier = {
@@ -7182,6 +7183,7 @@ FRA_decision_invisible_hand = {
 		activation = {
 			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
 			has_tech = construction4
+			NOT = { has_tech = construction5 }
 			NOT = { has_country_flag = second_great_war_loser }
 			has_government = democratic
 			has_dynamic_modifier = {
@@ -7223,6 +7225,7 @@ FRA_decision_invisible_hand = {
 		activation = {
 			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
 			has_tech = construction5
+			NOT = { has_tech = construction_a }
 			NOT = { has_country_flag = second_great_war_loser }
 			has_government = democratic
 			has_dynamic_modifier = {
@@ -7264,6 +7267,7 @@ FRA_decision_invisible_hand = {
 		activation = {
 			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
 			has_tech = construction_a
+			NOT = { has_tech = construction_b }
 			NOT = { has_country_flag = second_great_war_loser }
 			has_government = democratic
 			has_dynamic_modifier = {
@@ -7305,6 +7309,7 @@ FRA_decision_invisible_hand = {
 		activation = {
 			check_variable = { FRA_consumer_goods_factor_decision_consumer_goods_factor > 0 }
 			has_tech = construction_b
+			NOT = { has_tech = construction_c }
 			NOT = { has_country_flag = second_great_war_loser }
 			has_government = democratic
 			has_dynamic_modifier = {
@@ -7620,6 +7625,680 @@ FRA_social_economic_reforms = {
 				add = 75
 				check_variable = { FRA_military_main_var > 70 }
 			}
+		}
+	}
+}
+
+FRA_peacetime_economy_category = {
+	FRA_convert_mil_to_civ = {
+		icon = GFX_decision_generic_factory
+		target_trigger = {
+			FROM = {
+				any_state = {
+					is_controlled_by = ROOT
+					is_owned_by = ROOT
+					is_core_of = ROOT
+					has_building = {
+						type = industrial_complex
+						value > 0
+					}
+				}
+			}
+		}
+		visible = {
+			is_subject = no
+			has_completed_focus = FRA_convert_military_industry_focus
+		}
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+		cost = 20
+		days_remove = 50
+		remove_effect = {
+			FROM = {
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+}
+
+FRA_education_investment_category = {
+	FRA_basic_restoration_decision = {
+		icon = GFX_decision_generic_operation
+		visible = {
+			is_subject = no
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 40
+		custom_cost_trigger = {
+			check_variable = { FRA_education_point > 9 }
+		}
+		custom_cost_text = FRA_education_point_10
+		fire_only_once = yes
+		complete_effect = {
+			add_to_variable = { FRA_education_point = -10 }
+		}
+		remove_effect = {
+			set_country_flag = FRA_basic_restoration_decision_done
+			add_ideas = FRA_education_reforme
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	FRA_expand_higher_education_decision = {
+		icon = GFX_decision_hol_radio_oranje
+		visible = {
+			is_subject = no
+		}
+		available = {
+			has_country_flag = FRA_basic_restoration_decision_done
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 50
+		custom_cost_trigger = {
+			check_variable = { FRA_education_point > 19 }
+		}
+		custom_cost_text = FRA_education_point_20
+		fire_only_once = yes
+		complete_effect = {
+			add_to_variable = { FRA_education_point = -20 }
+		}
+		remove_effect = {
+			set_country_flag = FRA_expand_higher_education_decision_done
+			swap_ideas = { 
+			  remove_idea = FRA_education_reforme 
+			  add_idea = FRA_education_reforme_1 
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	FRA_establish_research_institutes_decision = {
+		icon = GFX_decision_generic_research
+		visible = {
+			is_subject = no
+		}
+		available = {
+			has_country_flag = FRA_expand_higher_education_decision_done
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 50
+		custom_cost_trigger = {
+			check_variable = { FRA_education_point > 29 }
+		}
+		custom_cost_text = FRA_education_point_30
+		fire_only_once = yes
+		complete_effect = {
+			add_to_variable = { FRA_education_point = -30 }
+		}
+		remove_effect = {
+			swap_ideas = { 
+			  remove_idea = FRA_education_reforme_1 
+			  add_idea = FRA_education_reforme_2 
+			}
+			add_research_slot = 1
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	FRA_gain_education_points_decision = {
+		icon = GFX_decision_eng_trade_unions_support
+		visible = {
+			is_subject = no
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		days_remove = 25
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		remove_effect = {
+			add_to_variable = { FRA_education_point = 1 }
+			custom_effect_tooltip = FRA_gain_education_points_decision_tt
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 75
+				check_variable = { FRA_education_point < 35 }
+			}
+		}
+	}
+}
+
+FRA_regional_development_category = {
+	FRA_develop_paris = {
+		icon = GFX_decision_generic_merge_plant_materiel
+		visible = {
+			is_subject = no
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		available = {
+			NOT = { has_country_flag = political_is_on_flag }
+			has_full_control_of_state = 928
+		}
+		days_remove = 50
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		fire_only_once = yes
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			928 = { increase_state_category = yes }
+			random_owned_controlled_state = {
+				prioritize = { 928 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	FRA_develop_bordeaux = {
+		icon = GFX_decision_generic_merge_plant_materiel
+		visible = {
+			is_subject = no
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		available = {
+			NOT = { has_country_flag = political_is_on_flag }
+			has_full_control_of_state = 19
+		}
+		days_remove = 50
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		fire_only_once = yes
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			19 = { increase_state_category = yes }
+			random_owned_controlled_state = {
+				prioritize = { 19 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	FRA_develop_provence = {
+		icon = GFX_decision_generic_merge_plant_materiel
+		visible = {
+			is_subject = no
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		available = {
+			NOT = { has_country_flag = political_is_on_flag }
+			has_full_control_of_state = 851
+		}
+		days_remove = 50
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		fire_only_once = yes
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			851 = { increase_state_category = yes }
+			random_owned_controlled_state = {
+				prioritize = { 851 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	FRA_develop_brittany = {
+		icon = GFX_decision_generic_merge_plant_materiel
+		visible = {
+			is_subject = no
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		available = {
+			NOT = { has_country_flag = political_is_on_flag }
+			has_full_control_of_state = 14
+		}
+		days_remove = 50
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		fire_only_once = yes
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			14 = { increase_state_category = yes }
+			random_owned_controlled_state = {
+				prioritize = { 14 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	FRA_develop_lyon = {
+		icon = GFX_decision_generic_merge_plant_materiel
+		visible = {
+			is_subject = no
+		}
+		allowed = {
+			original_tag = FRA
+		}
+		available = {
+			NOT = { has_country_flag = political_is_on_flag }
+			has_full_control_of_state = 20
+		}
+		days_remove = 50
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		fire_only_once = yes
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			set_country_flag = political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			20 = { increase_state_category = yes }
+			random_owned_controlled_state = {
+				prioritize = { 20 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+}
+
+FRA_german_question = {
+	FRA_german_question_timer = {
+		icon = GFX_decision_hol_war_on_pacifism
+		allowed = {
+			OR = {
+				original_tag = FRA
+				original_tag = ENG
+				original_tag = USA
+			}
+		}
+		activation = {
+			has_country_flag = second_great_war_winner
+			OR = {
+				original_tag = FRA
+				original_tag = ENG
+				original_tag = USA
+			}
+		}
+		available = {
+			always = no
+		}
+		fire_only_once = yes
+		days_mission_timeout = 60
+		timeout_effect = {
+			set_global_flag = start_fight_about_GER_flag
+			if = {
+				limit = {
+					OR = {
+						AND = {
+							ENG = { has_country_flag = second_great_war_winner }
+							FRA = { has_country_flag = second_great_war_winner }
+						}
+						AND = {
+							USA = { has_country_flag = second_great_war_winner }
+							FRA = { has_country_flag = second_great_war_winner }
+						}
+					}
+				}
+				country_event = wrwpe.33
+				if = {
+					limit = {
+						ROOT = { original_tag = FRA }
+					}
+					set_variable = { FRA_german_point_var = 60 }
+				}
+				if = {
+					limit = {
+						USA = { has_country_flag = second_great_war_winner }
+					}
+					if = {
+						limit = {
+							ROOT = { original_tag = ENG }
+						}
+						set_variable = { ENG_german_point_var = 30 }
+					}
+					if = {
+						limit = {
+							ROOT = { original_tag = USA }
+						}
+						set_variable = { USA_german_point_var = 45 }
+					}
+				}
+				else = {
+					if = {
+						limit = {
+							ROOT = { original_tag = ENG }
+						}
+						set_variable = { ENG_german_point_var = 50 }
+					}
+					if = {
+						limit = {
+							ROOT = { original_tag = USA }
+						}
+						set_variable = { USA_german_point_var = 0 }
+					}
+				}
+			}
+			else = {
+				FRA = { country_event = wrwpe.34 }
+			}
+		}
+	}
+}
+
+FRA_integrate_francia = {
+	FRA_integrate_francia = {
+		icon = GFX_decision_eng_trade_unions_support
+		visible = {
+			OR = {
+				has_country_leader = {
+					character = FRA_charles_maurras
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_jean_iii
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_henry_vi
+					ruling_only = yes
+				}
+			}
+			G01 = { is_subject_of = FRA }
+		}
+		available = {
+			all_state = {
+				limit = {
+					is_owned_by = G01
+					is_core_of = G01
+				}
+			}
+		}
+		complete_effect = {
+			annex_country = {
+				target = G01
+				transfer_troops = yes
+			}
+			every_state = {
+				limit = {
+					is_core_of = G01
+				}
+				add_core_of = FRA
+				remove_core_of = G01
+				remove_core_of = GER
+			}
+		}
+		ai_will_do = {
+			base = 1000
+		}
+	}
+	FRA_support_garrison = {
+		icon = GFX_decision_eng_blackshirt_march
+		visible = {
+			OR = {
+				has_country_leader = {
+					character = FRA_charles_maurras
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_jean_iii
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_henry_vi
+					ruling_only = yes
+				}
+			}
+			G01 = { is_subject_of = FRA }
+		}
+		available = {
+			has_equipment = { infantry_equipment > 499 }
+			has_manpower > 199
+		}
+		cost = 30
+		days_remove = 20
+		remove_effect = {
+			send_equipment = {
+				target = G01
+				type = infantry_equipment
+				amount = 500
+			}
+			add_manpower = -200
+			G01 = { add_manpower = 200 }
+		}
+	}
+	FRA_modernize_garrison = {
+		icon = GFX_decision_infiltrate_state
+		visible = {
+			OR = {
+				has_country_leader = {
+					character = FRA_charles_maurras
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_jean_iii
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_henry_vi
+					ruling_only = yes
+				}
+			}
+			G01 = { is_subject_of = FRA }
+		}
+		cost = 50
+		days_remove = 180
+		complete_effect = {
+			add_ideas = FRA_modernize_garrison_spirit
+		}
+		remove_effect = {
+			remove_ideas = FRA_modernize_garrison_spirit
+		}
+	}
+}
+
+FRA_nordic_trade_agreement = {
+	FRA_nordic_trade_agreement_decision = {
+		target_trigger = {
+			OR = {
+				original_tag = FIN
+				original_tag = SWE
+				original_tag = DEN
+				original_tag = NOR
+			}
+			is_subject = no
+			NOT = { is_in_faction_with = SOV }
+		}
+		visible = {
+			is_subject = no
+		}
+		cost = 20
+		complete_effect = {
+			FROM = { country_event = france_wr.226 }
+		}
+		ai_will_do = {
+			base = 10
+		}
+	}
+}
+
+FRA_form_european_socialist_federation = {
+	FRA_form_european_socialist_federation = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = FRA
+		}
+		visible = {
+			has_country_leader = {
+				character = FRA_pierre_monatte
+				ruling_only = yes
+			}
+		}
+		available = {
+			is_subject = no
+			has_country_flag = second_great_war_winner
+			GER = { is_subject_of = FRA }
+			ITA = { is_subject_of = FRA }
+			SWI = { is_subject_of = FRA }
+			SPR = { is_subject_of = FRA }
+		}
+		priority = 100
+		days_remove = 20
+		cost = 10
+		remove_effect = {
+			annex_country = {
+				target = GER
+				target = ITA
+				target = SWI
+				target = SPR
+				transfer_troops = yes
+			}
+			GER = { enable_country_integration_80_compliance = yes }
+			ITA = { enable_country_integration_80_compliance = yes }
+			SWI = { enable_country_integration_80_compliance = yes }
+			SPR = { enable_country_integration_80_compliance = yes }
+			BEL = { enable_country_integration_80_compliance = yes }
+			LUX = { enable_country_integration_80_compliance = yes }
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+}
+
+FRA_german_territorial_question = {
+	the_fate_of_austria = {
+		icon = GFX_decision_eng_trade_unions_support
+		visible = {
+			OR = {
+				G01 = { is_subject_of = FRA }
+				G02 = { is_subject_of = FRA }
+			}
+			OR = {
+				AUS = { is_subject_of = FRA }
+				AND = {
+					848 = { is_owned_by = FRA }
+					153 = { is_owned_by = FRA }
+					152 = { is_owned_by = FRA }
+					4 = { is_owned_by = FRA }
+				}
+			}
+		}
+		available = {
+			OR = {
+				G01 = { is_subject_of = FRA }
+				G02 = { is_subject_of = FRA }
+			}
+			OR = {
+				AUS = { is_subject_of = FRA }
+				AND = {
+					848 = { is_owned_by = FRA }
+					153 = { is_owned_by = FRA }
+					152 = { is_owned_by = FRA }
+					4 = { is_owned_by = FRA }
+				}
+			}
+		}
+		complete_effect = {
+			country_event = france_wr.235
 		}
 	}
 }

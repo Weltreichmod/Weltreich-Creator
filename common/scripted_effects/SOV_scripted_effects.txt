@@ -8254,18 +8254,10 @@ SOV_fall_in_wwiii = {
 				}
 				OR = {
 					is_core_of = POL
-					state = 763
-					state = 5
-					state = 85
-					state = 807
 					state = 86
-					state = 66
-					state = 67
-					state = 762
 					state = 87
 					state = 98
-					state = 63
-					state = 68
+					state = 762
 				}
 			}
 			transfer_state_to = POL
@@ -8288,6 +8280,29 @@ SOV_fall_in_wwiii = {
 					puppet = POL
 				}
 			}
+		}
+	}
+	if = {
+		limit = {
+			DDR = { has_country_flag = third_world_war_loser }
+		}
+		if = {
+			limit = {
+				GER = { exists = yes }
+			}
+			GER = { annex_country = { target = DDR transfer_troops = yes } }
+		}
+		else_if = {
+			limit = {
+				G03 = { exists = yes }
+			}
+			G03 = { annex_country = { target = DDR transfer_troops = yes } }
+		}
+		else_if = {
+			limit = {
+				G01 = { exists = yes }
+			}
+			G01 = { annex_country = { target = DDR transfer_troops = yes } }
 		}
 	}
 	if = {
@@ -8824,6 +8839,48 @@ death_of_FRA = {
 			transfer_state_to = DDR
 		}
 	}
+	if = {
+		limit = {
+			OR = {
+				G01 = { has_country_flag = third_world_war_loser }
+				G01 = { has_country_flag = third_world_war_half_loser }
+			}
+		}
+		DDR = {
+			annex_country = {
+				target = G01
+				transfer_troops = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				G02 = { has_country_flag = third_world_war_loser }
+				G02 = { has_country_flag = third_world_war_half_loser }
+			}
+		}
+		DDR = {
+			annex_country = {
+				target = G02
+				transfer_troops = yes
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
+				G03 = { has_country_flag = third_world_war_loser }
+				G03 = { has_country_flag = third_world_war_half_loser }
+			}
+		}
+		DDR = {
+			annex_country = {
+				target = G03
+				transfer_troops = yes
+			}
+		}
+	}
 	#free british colonies
 	if = {
 		limit = {
@@ -9124,7 +9181,20 @@ death_of_FRA = {
 		limit = {
 			FRA = { has_country_flag = third_world_war_loser }
 		}
-		FRA = { drop_cosmetic_tag = yes }
+		FRA = {
+			drop_cosmetic_tag = yes
+			remove_ideas = national_mobilized_economy
+			remove_ideas = syndicalist_economy
+			remove_ideas = free_market_economy
+			remove_dynamic_modifier = FRA_total_mobilization
+			remove_dynamic_modifier = FRA_bucard_modifier
+			remove_dynamic_modifier = FRA_syndicalist_society_main_modifier
+			remove_dynamic_modifier = FRA_harmonious_order_modifier
+			remove_dynamic_modifier = FRA_consumer_goods_factor_decision
+			remove_dynamic_modifier = FRA_research_modifier
+			remove_dynamic_modifier = FRA_industry_modifier
+			remove_dynamic_modifier = FRA_military_modifier
+		}
 		every_state = {
 			limit = {
 				is_owned_by = FRA

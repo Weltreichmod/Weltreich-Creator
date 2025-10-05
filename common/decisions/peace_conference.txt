@@ -870,3 +870,337 @@ peace_deal = {
 		}
 	}
 }
+
+dominance_in_germany = {
+	OPG_dominance_timer = {
+		icon = GFX_decision_hol_war_on_pacifism
+		allowed = {
+			OR = {
+				original_tag = FRA
+				original_tag = ENG
+				original_tag = USA
+			}
+		}
+		visible = {
+			has_country_flag = second_great_war_winner
+			has_global_flag = start_fight_about_GER_flag
+			OR = {
+				original_tag = FRA
+				original_tag = ENG
+				original_tag = USA
+			}
+		}
+		activation = {
+			has_global_flag = start_fight_about_GER_flag
+			OR = {
+				original_tag = FRA
+				original_tag = ENG
+				original_tag = USA
+			}
+		}
+		available = {
+			NOT = { has_global_flag = start_fight_about_GER_flag }
+		}
+		priority = 10
+		days_mission_timeout = 200
+		timeout_effect = {
+			clr_global_flag = start_fight_about_GER_flag
+			if = {
+				limit = {
+					OR = {
+						check_variable = { FRA_german_point_var > ENG_german_point_var }
+						check_variable = { FRA_german_point_var = ENG_german_point_var }
+					}
+					OR = {
+						check_variable = { FRA_german_point_var > USA_german_point_var }
+						check_variable = { FRA_german_point_var = USA_german_point_var }
+					}
+				}
+				FRA = { country_event = wrwpe.34 }
+			}
+			else_if = {
+				limit = {
+					check_variable = { USA_german_point_var > FRA_german_point_var }
+					OR = {
+						check_variable = { USA_german_point_var > ENG_german_point_var }
+						check_variable = { USA_german_point_var = ENG_german_point_var }
+					}
+				}
+				USA = { country_event = wrwpe.35 }
+			}
+			else = {
+				ENG = { country_event = wrwpe.36 }
+			}
+		}
+	}
+	OPG_influence_troops = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			OR = {
+				original_tag = FRA
+				original_tag = ENG
+				original_tag = USA
+			}
+		}
+		visible = {
+			has_country_flag = second_great_war_winner
+			has_global_flag = start_fight_about_GER_flag
+		}
+		available = {
+			has_manpower > 100
+		}
+		cost = 15
+		days_remove = 10
+		complete_effect = {
+			add_manpower = -100
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					original_tag = FRA
+				}
+				add_to_variable = {
+					FRA_german_point_var = 3
+					tooltip = FRA_german_point_var_tt
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ENG
+				}
+				add_to_variable = {
+					ENG_german_point_var = 3
+					tooltip = ENG_german_point_var_tt
+				}
+			}
+			if = {
+				limit = {
+					original_tag = USA
+				}
+				add_to_variable = {
+					USA_german_point_var = 3
+					tooltip = USA_german_point_var_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+	OPG_influence_equipment = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			OR = {
+				original_tag = FRA
+				original_tag = ENG
+				original_tag = USA
+			}
+		}
+		visible = {
+			has_country_flag = second_great_war_winner
+			has_global_flag = start_fight_about_GER_flag
+		}
+		cost = 15
+		days_remove = 10
+		custom_cost_trigger = {
+			has_equipment = { infantry_equipment > 99 }
+			has_equipment = { artillery_equipment > 9 }
+		}
+		custom_cost_text = 100_infantry_equipment_10_artillery_equipment
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = -100
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = -10
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					original_tag = FRA
+				}
+				add_to_variable = {
+					FRA_german_point_var = 3
+					tooltip = FRA_german_point_var_tt
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ENG
+				}
+				add_to_variable = {
+					ENG_german_point_var = 3
+					tooltip = ENG_german_point_var_tt
+				}
+			}
+			if = {
+				limit = {
+					original_tag = USA
+				}
+				add_to_variable = {
+					USA_german_point_var = 3
+					tooltip = USA_german_point_var_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+	OPG_influence_propaganda = {
+		icon = GFX_decision_generic_speech
+		allowed = {
+			OR = {
+				original_tag = FRA
+				original_tag = ENG
+				original_tag = USA
+			}
+		}
+		visible = {
+			has_country_flag = second_great_war_winner
+			has_global_flag = start_fight_about_GER_flag
+		}
+		cost = 50
+		days_remove = 25
+		remove_effect = {
+			if = {
+				limit = {
+					original_tag = FRA
+				}
+				add_to_variable = {
+					FRA_german_point_var = 5
+					tooltip = FRA_german_point_var_tt
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ENG
+				}
+				add_to_variable = {
+					ENG_german_point_var = 5
+					tooltip = ENG_german_point_var_tt
+				}
+			}
+			if = {
+				limit = {
+					original_tag = USA
+				}
+				add_to_variable = {
+					USA_german_point_var = 5
+					tooltip = USA_german_point_var_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+	OPG_influence_aid = {
+		icon = GFX_decision_gre_paying_ifc_debt
+		allowed = {
+			OR = {
+				original_tag = FRA
+				original_tag = ENG
+				original_tag = USA
+			}
+		}
+		visible = {
+			has_country_flag = second_great_war_winner
+			has_global_flag = start_fight_about_GER_flag
+		}
+		days_remove = 20
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					original_tag = FRA
+				}
+				add_to_variable = {
+					FRA_german_point_var = 5
+					tooltip = FRA_german_point_var_tt
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ENG
+				}
+				add_to_variable = {
+					ENG_german_point_var = 5
+					tooltip = ENG_german_point_var_tt
+				}
+			}
+			if = {
+				limit = {
+					original_tag = USA
+				}
+				add_to_variable = {
+					USA_german_point_var = 5
+					tooltip = USA_german_point_var_tt
+				}
+			}
+		}
+	}
+	OPG_influence_convoy = {
+		icon = GFX_decision_generic_merge_plant_ship
+		allowed = {
+			OR = {
+				original_tag = FRA
+				original_tag = ENG
+				original_tag = USA
+			}
+		}
+		visible = {
+			has_country_flag = second_great_war_winner
+			has_global_flag = start_fight_about_GER_flag
+		}
+		available = {
+			has_equipment = { convoy_1 > 9 }
+		}
+		cost = 15
+		days_remove = 10
+		complete_effect = {
+			add_equipment_to_stockpile = { 
+				type = convoy_1
+				amount = -10
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					original_tag = FRA
+				}
+				add_to_variable = {
+					FRA_german_point_var = 5
+					tooltip = FRA_german_point_var_tt
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ENG
+				}
+				add_to_variable = {
+					ENG_german_point_var = 5
+					tooltip = ENG_german_point_var_tt
+				}
+			}
+			if = {
+				limit = {
+					original_tag = USA
+				}
+				add_to_variable = {
+					USA_german_point_var = 5
+					tooltip = USA_german_point_var_tt
+				}
+			}
+		}
+	}
+}

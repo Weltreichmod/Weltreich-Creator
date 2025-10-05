@@ -490,7 +490,12 @@ ENG_ally_with_france = {
 			}
 		}
 	}
-	abort_when_not_enabled = yes
+	abort = {
+		OR = {
+			has_war_with = FRA
+			FRA = { exists = no }
+		}
+	}
 	ai_strategy = {
 		type = alliance
 		id = "FRA"
@@ -512,6 +517,24 @@ ENG_ally_with_germany = {
 	ai_strategy = {
 		type = alliance
 		id = "GER"
+		value = 500
+	}
+}
+
+ENG_ally_with_soviet = {
+	allowed = { original_tag = ENG }
+	enable = {
+		has_global_flag = ENG_SOV_ally
+	}
+	abort = {
+		OR = {
+			has_war_with = SOV
+			SOV = { exists = no }
+		}
+	}
+	ai_strategy = {
+		type = alliance
+		id = "SOV"
 		value = 500
 	}
 }
