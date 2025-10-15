@@ -4706,10 +4706,6 @@ FRA_national_tech_mobilization = {
 		custom_cost_text = decision_cost_5_civ
 		modifier = {
 			civilian_factory_use = 5
-			research_bonus = {
-				infantry_weapons = 0.1
-				artillery = 0.1
-			}
 		}
 		complete_effect = {
 			set_country_flag = FRA_research_is_going_on_flag
@@ -8024,7 +8020,6 @@ FRA_german_question = {
 		fire_only_once = yes
 		days_mission_timeout = 60
 		timeout_effect = {
-			set_global_flag = start_fight_about_GER_flag
 			if = {
 				limit = {
 					OR = {
@@ -8038,47 +8033,29 @@ FRA_german_question = {
 						}
 					}
 				}
+				set_global_flag = start_fight_about_GER_flag
 				country_event = wrwpe.33
-				if = {
-					limit = {
-						ROOT = { original_tag = FRA }
-					}
-					set_variable = { FRA_german_point_var = 60 }
-				}
+				set_variable = { global.FRA_german_point_var = 60 }
 				if = {
 					limit = {
 						USA = { has_country_flag = second_great_war_winner }
 					}
-					if = {
-						limit = {
-							ROOT = { original_tag = ENG }
-						}
-						set_variable = { ENG_german_point_var = 30 }
-					}
-					if = {
-						limit = {
-							ROOT = { original_tag = USA }
-						}
-						set_variable = { USA_german_point_var = 45 }
-					}
+					set_variable = { global.ENG_german_point_var = 30 }
+					set_variable = { global.USA_german_point_var = 45 }
 				}
-				else = {
-					if = {
-						limit = {
-							ROOT = { original_tag = ENG }
-						}
-						set_variable = { ENG_german_point_var = 50 }
+				else_if = {
+					limit = {
+						NOT = { USA = { has_country_flag = second_great_war_winner } }
 					}
-					if = {
-						limit = {
-							ROOT = { original_tag = USA }
-						}
-						set_variable = { USA_german_point_var = 0 }
-					}
+					set_variable = { global.ENG_german_point_var = 50 }
+					set_variable = { global.USA_german_point_var = 0 }
 				}
 			}
 			else = {
-				FRA = { country_event = wrwpe.34 }
+				FRA = {
+					country_event = { id = wrwpe.34 days = 50 }
+					set_country_flag = FRA_win_germany_flag
+				}
 			}
 		}
 	}
@@ -8125,6 +8102,7 @@ FRA_integrate_francia = {
 				remove_core_of = G01
 				remove_core_of = GER
 			}
+			set_country_flag = annexed_G01_flag
 		}
 		ai_will_do = {
 			base = 1000
@@ -8221,7 +8199,7 @@ FRA_nordic_trade_agreement = {
 }
 
 FRA_form_european_socialist_federation = {
-	FRA_form_european_socialist_federation = {
+	FRA_form_european_socialist_federation_o = {
 		icon = GFX_decision_eng_trade_unions_support
 		allowed = {
 			original_tag = FRA
@@ -8235,31 +8213,131 @@ FRA_form_european_socialist_federation = {
 		available = {
 			is_subject = no
 			has_country_flag = second_great_war_winner
-			GER = { is_subject_of = FRA }
-			ITA = { is_subject_of = FRA }
-			SWI = { is_subject_of = FRA }
-			SPR = { is_subject_of = FRA }
+			G01 = { has_country_flag = revolution_done_flag }
+			ITA = { has_country_flag = revolution_done_flag }
+			SWI = { has_country_flag = revolution_done_flag }
+			SPR = { has_country_flag = revolution_done_flag }
 		}
 		priority = 100
 		days_remove = 20
 		cost = 10
 		remove_effect = {
+			FRA = { set_cosmetic_tag = EUR_socialist_federation }
 			annex_country = {
-				target = GER
+				target = G01
+				transfer_troops = yes
+			}
+			annex_country = {
 				target = ITA
+				transfer_troops = yes
+			}
+			annex_country = {
 				target = SWI
+				transfer_troops = yes
+			}
+			annex_country = {
 				target = SPR
 				transfer_troops = yes
 			}
-			GER = { enable_country_integration_80_compliance = yes }
-			ITA = { enable_country_integration_80_compliance = yes }
-			SWI = { enable_country_integration_80_compliance = yes }
-			SPR = { enable_country_integration_80_compliance = yes }
-			BEL = { enable_country_integration_80_compliance = yes }
-			LUX = { enable_country_integration_80_compliance = yes }
+			annex_country = {
+				target = HOL
+				transfer_troops = yes
+			}
+			G01 = { enable_country_integration_60_compliance = yes }
+			ITA = { enable_country_integration_60_compliance = yes }
+			SWI = { enable_country_integration_60_compliance = yes }
+			SPR = { enable_country_integration_60_compliance = yes }
+			SPA = { enable_country_integration_60_compliance = yes }
+			HOL = { enable_country_integration_60_compliance = yes }
+			BEL = { enable_country_integration_60_compliance = yes }
+			LUX = { enable_country_integration_60_compliance = yes }
 		}
 		ai_will_do = {
 			base = 100
+		}
+	}
+	FRA_revolutionary_transformation_decision = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		visible = {
+			is_subject = no
+		}
+		target_trigger = {
+			FROM = {
+				is_subject_of = FRA
+				NOT = { has_country_flag = revolution_done_flag }
+				OR = {
+					original_tag = G01
+					original_tag = ITA
+					original_tag = SWI
+					original_tag = SPR
+					original_tag = HOL
+				}
+			}
+		}
+		days_remove = 20
+		cost = 25
+		remove_effect = {
+			custom_effect_tooltip = FRA_revolutionary_transformation_decision_tt
+			if = {
+				limit = {
+					FROM = { original_tag = HOL }
+				}
+				if = {
+					limit = {
+						check_variable = { HOLrevolution = 95 }
+					}
+					HOL = { set_country_flag = revolution_done_flag }
+				}
+				add_to_variable = { HOLrevolution = 5 }
+			}
+			if = {
+				limit = {
+					FROM = { original_tag = G01 }
+				}
+				if = {
+					limit = {
+						check_variable = { GERrevolution = 95 }
+					}
+					G01 = { set_country_flag = revolution_done_flag }
+				}
+				add_to_variable = { GERrevolution = 5 }
+			}
+			if = {
+				limit = {
+					FROM = { original_tag = SPR }
+				}
+				if = {
+					limit = {
+						check_variable = { SPRrevolution = 95 }
+					}
+					SPR = { set_country_flag = revolution_done_flag }
+				}
+				add_to_variable = { SPRrevolution = 5 }
+			}
+			if = {
+				limit = {
+					FROM = { original_tag = ITA }
+				}
+				if = {
+					limit = {
+						check_variable = { ITArevolution = 95 }
+					}
+					ITA = { set_country_flag = revolution_done_flag }
+				}
+				add_to_variable = { ITArevolution = 5 }
+			}
+			if = {
+				limit = {
+					FROM = { original_tag = SWI }
+				}
+				if = {
+					limit = {
+						check_variable = { SWIrevolution = 95 }
+					}
+					SWI = { set_country_flag = revolution_done_flag }
+				}
+				add_to_variable = { SWIrevolution = 5 }
+			}
 		}
 	}
 }
@@ -8267,6 +8345,10 @@ FRA_form_european_socialist_federation = {
 FRA_german_territorial_question = {
 	the_fate_of_austria = {
 		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = FRA
+		}
+		fire_only_once = yes
 		visible = {
 			OR = {
 				G01 = { is_subject_of = FRA }
@@ -8283,22 +8365,241 @@ FRA_german_territorial_question = {
 			}
 		}
 		available = {
-			OR = {
-				G01 = { is_subject_of = FRA }
-				G02 = { is_subject_of = FRA }
-			}
-			OR = {
-				AUS = { is_subject_of = FRA }
-				AND = {
-					848 = { is_owned_by = FRA }
-					153 = { is_owned_by = FRA }
-					152 = { is_owned_by = FRA }
-					4 = { is_owned_by = FRA }
-				}
-			}
+			has_country_flag = FRA_win_germany_flag
 		}
 		complete_effect = {
 			country_event = france_wr.235
+		}
+	}
+	the_fate_of_posen = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = FRA
+		}
+		fire_only_once = yes
+		visible = {
+			OR = {
+				AND = {
+					G03 = { is_subject_of = FRA }
+					86 = { is_owned_by = G03 }
+					POL = { is_subject_of = FRA }
+					87 = { is_owned_by = POL }
+				}
+				AND = {
+					G02 = { is_subject_of = FRA }
+					86 = { is_owned_by = G02 }
+					POL = { is_subject_of = FRA }
+					87 = { is_owned_by = POL }
+				}
+				AND = {
+					G01 = { is_subject_of = FRA }
+					86 = { is_owned_by = G01 }
+					POL = { is_subject_of = FRA }
+					87 = { is_owned_by = POL }
+				}
+				AND = {
+					GER = { is_subject_of = FRA }
+					86 = { is_owned_by = GER }
+					POL = { is_subject_of = FRA }
+					87 = { is_owned_by = POL }
+				}
+			}
+		}
+		available = {
+			has_country_flag = FRA_win_germany_flag
+		}
+		complete_effect = {
+			country_event = france_wr.247
+		}
+	}
+	the_fate_of_silesia = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = FRA
+		}
+		fire_only_once = yes
+		visible = {
+			OR = {
+				AND = {
+					G03 = { is_subject_of = FRA }
+					762 = { is_owned_by = G03 }
+					67 = { is_owned_by = G03 }
+					66 = { is_owned_by = G03 }
+				}
+				AND = {
+					G02 = { is_subject_of = FRA }
+					762 = { is_owned_by = G02 }
+					67 = { is_owned_by = G02 }
+					66 = { is_owned_by = G02 }
+				}
+				AND = {
+					G01 = { is_subject_of = FRA }
+					762 = { is_owned_by = G01 }
+					67 = { is_owned_by = G01 }
+					66 = { is_owned_by = G01 }
+				}
+				AND = {
+					GER = { is_subject_of = FRA }
+					762 = { is_owned_by = GER }
+					67 = { is_owned_by = GER }
+					66 = { is_owned_by = GER }
+				}
+			}
+		}
+		available = {
+			has_country_flag = FRA_win_germany_flag
+		}
+		complete_effect = {
+			country_event = france_wr.248
+		}
+	}
+	the_fate_of_preussen = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = FRA
+		}
+		fire_only_once = yes
+		visible = {
+			OR = {
+				AND = {
+					G03 = { is_subject_of = FRA }
+					807 = { is_owned_by = G03 }
+					5 = { is_owned_by = G03 }
+					763 = { is_owned_by = G03 }
+				}
+				AND = {
+					G02 = { is_subject_of = FRA }
+					807 = { is_owned_by = G02 }
+					5 = { is_owned_by = G02 }
+					763 = { is_owned_by = G02 }
+				}
+				AND = {
+					G01 = { is_subject_of = FRA }
+					807 = { is_owned_by = G01 }
+					5 = { is_owned_by = G01 }
+					763 = { is_owned_by = G01 }
+				}
+				AND = {
+					GER = { is_subject_of = FRA }
+					807 = { is_owned_by = GER }
+					5 = { is_owned_by = GER }
+					763 = { is_owned_by = GER }
+				}
+			}
+		}
+		available = {
+			has_country_flag = FRA_win_germany_flag
+		}
+		complete_effect = {
+			country_event = france_wr.249
+		}
+	}
+}
+
+FRA_scientific_renaissance_category = {
+	FRA_army_research_decision = {
+		icon = GFX_decision_generic_army_support
+		cost = 20
+		days_remove = 80
+		allowed = {
+			original_tag = FRA
+		}
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+			land_facility > 0
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+		}
+		modifier = {
+			research_bonus = {
+				infantry_weapons = 0.1
+				artillery = 0.1
+			}
+		}
+		remove_effect = {
+			add_breakthrough_points = {
+			  specialization = specialization_land
+			  value = 1
+			}
+			clr_country_flag = FRA_research_is_going_on_flag
+		}
+	}
+	FRA_air_research_decision = {
+		icon = GFX_decision_SWE_set_air_budget
+		cost = 20
+		days_remove = 80
+		allowed = {
+			original_tag = FRA
+		}
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+			air_facility > 0
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+		}
+		modifier = {
+			research_bonus = {
+				air_equipment = 0.1
+			}
+		}
+		remove_effect = {
+			add_breakthrough_points = {
+			  specialization = specialization_air
+			  value = 1
+			}
+			clr_country_flag = FRA_research_is_going_on_flag
+		}
+	}
+	FRA_navy_research_decision = {
+		icon = GFX_decision_generic_naval
+		cost = 20
+		days_remove = 80
+		allowed = {
+			original_tag = FRA
+		}
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+			naval_facility > 0
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+		}
+		modifier = {
+			research_bonus = {
+				naval_equipment = 0.1
+			}
+		}
+		remove_effect = {
+			add_breakthrough_points = {
+			  specialization = specialization_naval
+			  value = 1
+			}
+			clr_country_flag = FRA_research_is_going_on_flag
+		}
+	}
+	FRA_nuclear_research_decision = {
+		icon = GFX_decision_generic_ignite_civil_war
+		cost = 20
+		days_remove = 80
+		allowed = {
+			original_tag = FRA
+		}
+		available = {
+			NOT = { has_country_flag = FRA_research_is_going_on_flag }
+			nuclear_facility > 0
+			has_tech = atomic_research
+		}
+		complete_effect = {
+			set_country_flag = FRA_research_is_going_on_flag
+		}
+		remove_effect = {
+			add_breakthrough_points = {
+			  specialization = specialization_nuclear
+			  value = 1
+			}
+			clr_country_flag = FRA_research_is_going_on_flag
 		}
 	}
 }

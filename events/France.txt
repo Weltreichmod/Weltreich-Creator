@@ -1208,13 +1208,35 @@ country_event = {
 		add_timed_idea = { idea = FRA_for_victory days = 150 }
 		if = {
 			limit = {
-				NOT = {
+				has_country_leader = {
+					character = FRA_pierre_monatte
+					ruling_only = yes
+				}
+			}
+			34 = { add_claim_by = FRA }
+			910 = { add_claim_by = FRA }
+			8 = { add_claim_by = FRA }
+		}
+		else_if = {
+			limit = {
+				OR = {
 					has_country_leader = {
-						character = FRA_pierre_monatte
+						character = FRA_leon_blum
+						ruling_only = yes
+					}
+					has_country_leader = {
+						character = FRA_paul_reynaud
 						ruling_only = yes
 					}
 				}
 			}
+			34 = { add_claim_by = FRA }
+			910 = { add_claim_by = FRA }
+			8 = { add_claim_by = FRA }
+			42 = { add_claim_by = FRA }
+			51 = { add_claim_by = FRA }
+		}
+		else = {
 			29 = { add_claim_by = FRA }
 			6 = { add_claim_by = FRA }
 			34 = { add_claim_by = FRA }
@@ -4464,7 +4486,7 @@ country_event = {
 			country_event = { id = france_wr.149 days = 5 }
 		}
 		ai_chance = {
-			base = 10
+			base = 0
 		}
 	}
 	option = {
@@ -4496,7 +4518,7 @@ country_event = {
 			country_event = { id = france_wr.150 days = 5 }
 		}
 		ai_chance = {
-			base = 10
+			base = 0
 		}
 	}
 	option = {
@@ -4528,7 +4550,7 @@ country_event = {
 			country_event = { id = france_wr.151 days = 5 }
 		}
 		ai_chance = {
-			base = 10
+			base = 0
 		}
 	}
 	option = {
@@ -4560,7 +4582,7 @@ country_event = {
 			country_event = { id = france_wr.152 days = 5 }
 		}
 		ai_chance = {
-			base = 10
+			base = 0
 		}
 	}
 	option = {
@@ -4592,7 +4614,7 @@ country_event = {
 			country_event = { id = france_wr.153 days = 5 }
 		}
 		ai_chance = {
-			base = 10
+			base = 0
 		}
 	}
 	option = {
@@ -5446,7 +5468,8 @@ country_event = {
 		name = france_wr.196.a
 		clear_variable = FRA_mobilize_the_nation_main_bar
 		remove_ideas = national_mobilized_economy
-		remove_dynamic_modifier = FRA_total_mobilization
+		add_ideas = low_economic_mobilisation
+		remove_dynamic_modifier = { modifier = FRA_total_mobilization }
 		custom_effect_tooltip = FRA_unable_mobiliazation
 		ai_chance = {
 			base = 1
@@ -6425,9 +6448,15 @@ country_event = {
 			}
 			if = {
 				limit = {
-					AUH = { exists = yes }
+					AUS = { exists = yes }
 				}
 				G02 = { annex_country = { target = AUS transfer_troops = yes } }
+				every_state = {
+					limit = {
+						is_core_of = AUS
+					}
+					add_core_of = G02
+				}
 			}
 			else = {
 				every_state = {
@@ -6447,6 +6476,7 @@ country_event = {
 						is_owned_by = FRA
 					}
 					transfer_state_to = G02
+					add_core_of = G02
 				}
 			}
 		}
@@ -6456,9 +6486,15 @@ country_event = {
 			}
 			if = {
 				limit = {
-					AUH = { exists = yes }
+					AUS = { exists = yes }
 				}
 				G01 = { annex_country = { target = AUS transfer_troops = yes } }
+				every_state = {
+					limit = {
+						is_core_of = AUS
+					}
+					add_core_of = G01
+				}
 			}
 			else = {
 				every_state = {
@@ -6478,6 +6514,7 @@ country_event = {
 						is_owned_by = FRA
 					}
 					transfer_state_to = G01
+					add_core_of = G01
 				}
 			}
 		}
@@ -6489,6 +6526,806 @@ country_event = {
 		name = france_wr.235.b
 		ai_chance = {
 			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.236
+	title = france_wr.236.t
+	desc = france_wr.236.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			SOV = { country_event = france_wr.237 }
+		}
+	}
+	option = {
+		name = france_wr.236.a
+		every_country = {
+			limit = { is_in_faction_with = SOV }
+			every_country = {
+				limit = { is_in_faction_with = FRA }
+				give_military_access = PREV
+			}
+			set_country_flag = 100_access_days_flag
+		}
+		custom_effect_tooltip = give_military_access_to_FRA_tt
+		hidden_effect = {
+			country_event = { id = france_wr.238 days = 100 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.237
+	title = france_wr.237.t
+	desc = france_wr.237.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = france_wr.237.a
+		every_country = {
+			limit = { is_in_faction_with = FRA }
+			every_country = {
+				limit = { is_in_faction_with = SOV }
+				give_military_access = PREV
+			}
+			set_country_flag = 100_access_days_flag
+		}
+		custom_effect_tooltip = give_military_access_to_FRA_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.238
+	title = france_wr.238.t
+	desc = france_wr.238.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = france_wr.238.a
+		every_country = {
+			limit = {
+				has_country_flag = 100_access_days_flag
+			}
+			every_other_country = {
+				limit = {
+					has_country_flag = 100_access_days_flag
+				}
+				diplomatic_relation = {
+					country = PREV
+					relation = military_access
+					active = no
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.239
+	title = france_wr.239.t
+	desc = france_wr.239.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = france_wr.239.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.240
+	title = france_wr.240.t
+	desc = france_wr.240.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = france_wr.240.a
+		G01 = {
+			retire_ideology_leader = fascism
+			create_country_leader = {
+				name = "FRA_jean_filiol"
+				picture = "gfx/leaders/FRA/FRA_jean_filiol.png"
+				ideology = fascism_ideology
+			}
+		}
+		G02 = {
+			retire_ideology_leader = fascism
+			create_country_leader = {
+				name = "FRA_jacques_barnaud"
+				picture = "gfx/leaders/FRA/FRA_jacques_barnaud.png"
+				ideology = fascism_ideology
+			}
+		}
+		G03 = {
+			retire_ideology_leader = fascism
+			create_country_leader = {
+				name = "FRA_maxime_weygand"
+				picture = GFX_portrait_FRA_maxime_weygand
+				ideology = fascism_ideology
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.241
+	title = france_wr.241.t
+	desc = france_wr.241.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = france_wr.241.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.242
+	title = france_wr.242.t
+	desc = france_wr.242.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = france_wr.242.a
+		G01 = {
+			add_ideas = GER_weimar_constitution_idea
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.243
+	title = france_wr.243.t
+	desc = france_wr.243.d
+	picture = GFX_report_event_peasant_revolt
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = france_wr.243.a
+		G01 = { add_ideas = GER_purge_campaign_idea }
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = france_wr.243.b
+		G01 = { add_ideas = GER_great_revolution_idea }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.244
+	title = france_wr.244.t
+	desc = france_wr.244.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = france_wr.244.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.245
+	title = france_wr.245.t
+	desc = france_wr.245.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = france_wr.245.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.246
+	title = france_wr.246.t
+	desc = france_wr.246.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = france_wr.246.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.247
+	title = france_wr.247.t
+	desc = france_wr.247.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = france_wr.247.a
+		if = {
+			limit = {
+				G03 = { is_subject_of = FRA }
+				86 = { is_owned_by = G03 }
+			}
+			every_state = {
+				limit = {
+					state = 86
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = G03
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				G02 = { is_subject_of = FRA }
+				86 = { is_owned_by = G02 }
+			}
+			every_state = {
+				limit = {
+					state = 86
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = G02
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				G01 = { is_subject_of = FRA }
+				86 = { is_owned_by = G01 }
+			}
+			every_state = {
+				limit = {
+					state = 86
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = G01
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				GER = { is_subject_of = FRA }
+				86 = { is_owned_by = GER }
+			}
+			every_state = {
+				limit = {
+					state = 86
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = GER
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = france_wr.247.b
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.248
+	title = france_wr.248.t
+	desc = france_wr.248.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = france_wr.248.a
+		ai_chance = {
+			base = 0
+		}
+	}
+	option = {
+		name = france_wr.248.b
+		if = {
+			limit = {
+				G03 = { is_subject_of = FRA }
+				762 = { is_owned_by = G03 }
+				67 = { is_owned_by = G03 }
+				66 = { is_owned_by = G03 }
+			}
+			every_state = {
+				limit = {
+					is_core_of = SIL
+				}
+				transfer_state_to = SIL
+				remove_core_of = G03
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				G02 = { is_subject_of = FRA }
+				762 = { is_owned_by = G02 }
+				67 = { is_owned_by = G02 }
+				66 = { is_owned_by = G02 }
+			}
+			every_state = {
+				limit = {
+					is_core_of = SIL
+				}
+				transfer_state_to = SIL
+				remove_core_of = G02
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				G01 = { is_subject_of = FRA }
+				762 = { is_owned_by = G01 }
+				67 = { is_owned_by = G01 }
+				66 = { is_owned_by = G01 }
+			}
+			every_state = {
+				limit = {
+					is_core_of = SIL
+				}
+				transfer_state_to = SIL
+				remove_core_of = G01
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				GER = { is_subject_of = FRA }
+				762 = { is_owned_by = GER }
+				67 = { is_owned_by = GER }
+				66 = { is_owned_by = GER }
+			}
+			every_state = {
+				limit = {
+					is_core_of = SIL
+				}
+				transfer_state_to = SIL
+				remove_core_of = GER
+			}
+		}
+		FRA = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					SIL = { exists = yes }
+				}
+				set_autonomy = {
+					target = SIL
+					autonomous_state = autonomy_cooperating_country
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SIL
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = france_wr.248.c
+		trigger = {
+			POL = { is_subject_of = FRA }
+		}
+		if = {
+			limit = {
+				G03 = { is_subject_of = FRA }
+				762 = { is_owned_by = G03 }
+				67 = { is_owned_by = G03 }
+				66 = { is_owned_by = G03 }
+			}
+			every_state = {
+				limit = {
+					is_core_of = SIL
+					NOT = {
+						state = 762
+					}
+				}
+				transfer_state_to = SIL
+				remove_core_of = G03
+				remove_core_of = GER
+			}
+			every_state = {
+				limit = {
+					state = 762
+				}
+				transfer_state_to = POL
+				remove_core_of = G03
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				G02 = { is_subject_of = FRA }
+				762 = { is_owned_by = G02 }
+				67 = { is_owned_by = G02 }
+				66 = { is_owned_by = G02 }
+			}
+			every_state = {
+				limit = {
+					is_core_of = SIL
+					NOT = {
+						state = 762
+					}
+				}
+				transfer_state_to = SIL
+				remove_core_of = G02
+				remove_core_of = GER
+			}
+			every_state = {
+				limit = {
+					state = 762
+				}
+				transfer_state_to = POL
+				remove_core_of = G02
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				G01 = { is_subject_of = FRA }
+				762 = { is_owned_by = G01 }
+				67 = { is_owned_by = G01 }
+				66 = { is_owned_by = G01 }
+			}
+			every_state = {
+				limit = {
+					is_core_of = SIL
+					NOT = {
+						state = 762
+					}
+				}
+				transfer_state_to = SIL
+				remove_core_of = G01
+				remove_core_of = GER
+			}
+			every_state = {
+				limit = {
+					state = 762
+				}
+				transfer_state_to = POL
+				remove_core_of = G01
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				GER = { is_subject_of = FRA }
+				762 = { is_owned_by = GER }
+				67 = { is_owned_by = GER }
+				66 = { is_owned_by = GER }
+			}
+			every_state = {
+				limit = {
+					is_core_of = SIL
+					NOT = {
+						state = 762
+					}
+				}
+				transfer_state_to = SIL
+				remove_core_of = GER
+			}
+			every_state = {
+				limit = {
+					state = 762
+				}
+				transfer_state_to = POL
+				remove_core_of = GER
+			}
+		}
+		FRA = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					SIL = { exists = yes }
+				}
+				set_autonomy = {
+					target = SIL
+					autonomous_state = autonomy_cooperating_country
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = SIL
+				}
+			}
+		}
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.249
+	title = france_wr.249.t
+	desc = france_wr.249.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = france_wr.249.a
+		if = {
+			limit = {
+				G03 = { is_subject_of = FRA }
+				807 = { is_owned_by = G03 }
+				5 = { is_owned_by = G03 }
+				763 = { is_owned_by = G03 }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = G03
+					OR = {
+						state = 807
+						state = 5
+						state = 763
+						state = 188
+					}
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = G03
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				G02 = { is_subject_of = FRA }
+				807 = { is_owned_by = G02 }
+				5 = { is_owned_by = G02 }
+				763 = { is_owned_by = G02 }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = G02
+					OR = {
+						state = 807
+						state = 5
+						state = 763
+						state = 188
+					}
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = G02
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				G01 = { is_subject_of = FRA }
+				807 = { is_owned_by = G01 }
+				5 = { is_owned_by = G01 }
+				763 = { is_owned_by = G01 }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = G01
+					OR = {
+						state = 807
+						state = 5
+						state = 763
+						state = 188
+					}
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = G01
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				GER = { is_subject_of = FRA }
+				807 = { is_owned_by = GER }
+				5 = { is_owned_by = GER }
+				763 = { is_owned_by = GER }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					OR = {
+						state = 807
+						state = 5
+						state = 763
+						state = 188
+					}
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = GER
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = france_wr.249.b
+		ai_chance = {
+			base = 0
+		}
+	}
+	option = {
+		name = france_wr.249.c
+		trigger = {
+			OR = {
+				188 = { is_owned_by = GER }
+				188 = { is_owned_by = G03 }
+				188 = { is_owned_by = G02 }
+				188 = { is_owned_by = G01 }
+			}
+			LIT = { is_subject_of = FRA }
+		}
+		if = {
+			limit = {
+				G03 = { is_subject_of = FRA }
+				807 = { is_owned_by = G03 }
+				5 = { is_owned_by = G03 }
+				763 = { is_owned_by = G03 }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = G03
+					OR = {
+						state = 807
+						state = 5
+						state = 763
+					}
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = G03
+				remove_core_of = GER
+			}
+			every_state = {
+				limit = {
+					is_owned_by = G03
+					state = 188
+				}
+				transfer_state_to = LIT
+				add_core_of = LIT
+				remove_core_of = G03
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				G02 = { is_subject_of = FRA }
+				807 = { is_owned_by = G02 }
+				5 = { is_owned_by = G02 }
+				763 = { is_owned_by = G02 }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = G02
+					OR = {
+						state = 807
+						state = 5
+						state = 763
+					}
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = G02
+				remove_core_of = GER
+			}
+			every_state = {
+				limit = {
+					is_owned_by = G02
+					state = 188
+				}
+				transfer_state_to = LIT
+				add_core_of = LIT
+				remove_core_of = G02
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				G01 = { is_subject_of = FRA }
+				807 = { is_owned_by = G01 }
+				5 = { is_owned_by = G01 }
+				763 = { is_owned_by = G01 }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = G01
+					OR = {
+						state = 807
+						state = 5
+						state = 763
+					}
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = G01
+				remove_core_of = GER
+			}
+			every_state = {
+				limit = {
+					is_owned_by = G01
+					state = 188
+				}
+				transfer_state_to = LIT
+				add_core_of = LIT
+				remove_core_of = G01
+				remove_core_of = GER
+			}
+		}
+		else_if = {
+			limit = {
+				GER = { is_subject_of = FRA }
+				807 = { is_owned_by = GER }
+				5 = { is_owned_by = GER }
+				763 = { is_owned_by = GER }
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					OR = {
+						state = 807
+						state = 5
+						state = 763
+					}
+				}
+				transfer_state_to = POL
+				add_core_of = POL
+				remove_core_of = GER
+			}
+			every_state = {
+				limit = {
+					is_owned_by = GER
+					state = 188
+				}
+				transfer_state_to = LIT
+				add_core_of = LIT
+				remove_core_of = GER
+			}
+		}
+		ai_chance = {
+			base = 10
 		}
 	}
 }
@@ -6633,10 +7470,38 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = france_wr.1001.a
-		GER = { enable_country_integration_60_compliance = yes }
-		BEL = { enable_country_integration_60_compliance = yes }
-		LUX = { enable_country_integration_60_compliance = yes }
-		HOL = { enable_country_integration_60_compliance = yes }
+		if = {
+			limit = {
+				OR = {
+					has_country_leader = {
+						character = FRA_pierre_monatte
+						ruling_only = yes
+					}
+					has_country_leader = {
+						character = FRA_leon_blum
+						ruling_only = yes
+					}
+					has_country_leader = {
+						character = FRA_paul_reynaud
+						ruling_only = yes
+					}
+				}
+			}
+			34 = { enable_state_integration_80_compliance = yes }
+			910 = { enable_state_integration_80_compliance = yes }
+			8 = { enable_state_integration_80_compliance = yes }
+		}
+		else = {
+			34 = { enable_state_integration_80_compliance = yes }
+			910 = { enable_state_integration_80_compliance = yes }
+			8 = { enable_state_integration_80_compliance = yes }
+			6 = { enable_state_integration_80_compliance = yes }
+			42 = { enable_state_integration_80_compliance = yes }
+			51 = { enable_state_integration_80_compliance = yes }
+			35 = { enable_state_integration_80_compliance = yes }
+			36 = { enable_state_integration_80_compliance = yes }
+			7 = { enable_state_integration_80_compliance = yes }
+		}
 		ai_chance = {
 			base = 10
 		}

@@ -295,24 +295,6 @@ russian_civil_war_FRA = {
 	}
 }
 
-FRA_send_volunteers_UPR = {
-	allowed = {
-		original_tag = FRA
-	}
-	enable = {
-		UPR = { has_war_with = UKR }
-		country_exists = FRA
-	}
-	abort = {
-		NOT = { UPR = { has_war_with = UKR } }
-	}
-	ai_strategy = {
-		type = send_volunteers_desire
-		id = UPR
-		value = 999
-	}
-}
-
 FRA_ally_with_britain = {
 	allowed = { original_tag = FRA }
 	enable = {
@@ -1041,5 +1023,35 @@ FRA_research_industry = {
 		type = research_weight_factor
 		id = industry
 		value = 1000
+	}
+}
+
+FRA_dont_help_UPR_civil_war = {
+	allowed = {
+		original_tag = FRA
+	}
+	enable = {
+		OR = {
+			UPR = { has_war_with = UKR }
+			UPR = { has_war_with = USS }
+			UKR = { has_war_with = USS }
+		}
+	}
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = UKR
+		value = -999
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = UPR
+		value = -999
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = USS
+		value = -999
 	}
 }

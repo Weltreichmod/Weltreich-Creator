@@ -5120,7 +5120,7 @@
 	focus = {
 		id = FRA_revolution_in_paris
 		icon = GFX_FRA_revolution_in_paris
-		x = 7
+		x = 6
 		y = 0
 		cost = 4.3
 		ai_will_do = {
@@ -7900,7 +7900,6 @@
 				category = land_doctrine
 			}
 		}
-		    
 	}
 	
 	focus = {
@@ -8384,16 +8383,16 @@
 		}
 		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_AIR_XP }
 		completion_reward = {
-		    enable_tech_gunsmoke_and_flames = yes
+			enable_tech_gunsmoke_and_flames = yes
 			army_experience = 30
-			air_experience = 10 
+			air_experience = 10
 		    add_doctrine_cost_reduction = {
 				name = FRA_The_raging_storm
 				cost_reduction = 0.5
 				uses = 1
 				category = land_doctrine
 			}
-	    }
+		}
 	}
 	
 	focus = {
@@ -8598,7 +8597,7 @@
 		}
 		search_filters = {  }
 		completion_reward = {
-		    enable_tech_Widespread_Devastation = yes
+			enable_tech_Widespread_Devastation = yes
 			if = {
 				limit = {
 					has_idea = FRA_Bombers
@@ -8654,7 +8653,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_shock_and_awe = yes
+			enable_tech_shock_and_awe = yes
 			add_ideas = FRA_railway_guns
 			if = {
 				limit = { has_dlc = "No Step Back" }
@@ -8718,7 +8717,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_Role_of_the_Vehicle = yes
+			enable_tech_Role_of_the_Vehicle = yes
 			add_ideas = FRA_motorisation_idea
 			add_tech_bonus = {
 				name = FRA_Role_of_the_Vehicle
@@ -8774,7 +8773,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_Foch_Doctrine = yes
+			enable_tech_Foch_Doctrine = yes
 			add_doctrine_cost_reduction = {
 				name = FRA_Fire_Superiority_Doctrine
 				cost_reduction = 0.5
@@ -8821,9 +8820,9 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		enable_tech_demolition_tank = yes
+			enable_tech_demolition_tank = yes
 			add_tech_bonus = {
-				name = FRA_demolition_tank
+				name = FRA_Support_Role_of_Armor
 				bonus = 1.0
 				uses = 1
 				category = armor
@@ -9600,7 +9599,7 @@
 		id = FRA_begin_reconstruction
 		icon = GFX_FRA_begin_reconstruction
 		relative_position_id = FRA_the_century_of_france
-		x = -8
+		x = -14
 		y = 1
 		cost = 5
 		available = {
@@ -9739,7 +9738,7 @@
 		id = FRA_reintegration_of_veterans_focus
 		icon = GFX_FRA_reintegration_of_veterans_focus
 		relative_position_id = FRA_the_century_of_france
-		x = -4
+		x = -10
 		y = 1
 		cost = 5
 		available = {
@@ -10029,12 +10028,2002 @@
 		}
 	}
 	
+	#So Long Germany
+	focus = {
+		id = GER_barbaric_empire
+		icon = GFX_GER_barbaric_empire
+		relative_position_id = FRA_the_century_of_france
+		x = 2
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			has_country_flag = FRA_win_germany_flag
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_the_century_of_france
+		}
+		completion_reward = {
+			custom_effect_tooltip = GER_barbaric_empire_tt
+			hidden_effect = {
+				every_owned_state = {
+					limit = {
+						OR = {
+							is_core_of = GER
+							is_core_of = LUX
+							is_core_of = BEL
+							is_core_of = HOL
+						}
+					}
+					add_resistance = -5
+					add_compliance = 5
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_unify_low_countries
+		icon = GFX_FRA_unify_low_countries
+		relative_position_id = GER_barbaric_empire
+		x = -9
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			OR = {
+				has_country_leader = {
+					character = FRA_jacques_doriot
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_marcel_deat
+					ruling_only = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = GER_barbaric_empire
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			custom_effect_tooltip = FRA_unify_low_countries_tt
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					OR = {
+						is_core_of = HOL
+						is_core_of = BEL
+						is_core_of = LUX
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_unify_low_countries
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_dismantle_german_industry
+		icon = GFX_FRA_dismantle_german_industry
+		relative_position_id = GER_barbaric_empire
+		x = -7
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			OR = {
+				has_country_leader = {
+					character = FRA_jacques_doriot
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_marcel_deat
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_marcel_bucard
+					ruling_only = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = GER_barbaric_empire
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = FRA_dismantle_german_industry_tt
+			country_event = france_wr.239
+			if = {
+				limit = {
+					G01 = { is_subject_of = GER }
+				}
+				G01 = {
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = arms_factory
+								value > 0
+							}
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = arms_factory
+								value > 0
+							}
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = arms_factory
+								value > 0
+							}
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = arms_factory
+								value > 0
+							}
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							has_building = {
+								type = arms_factory
+								value > 0
+							}
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = arms_factory
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = arms_factory
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = arms_factory
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = arms_factory
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = arms_factory
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					G02 = { is_subject_of = GER }
+				}			
+				G02 = {
+					random_owned_state = {
+						limit = {
+							is_core_of = G02
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G02
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G02
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G02
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G02
+							has_building = {
+								type = industrial_complex
+								value > 0
+							}
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G02
+							has_building = {
+								type = arms_factory
+								value > 0
+							}
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G02
+							has_building = {
+								type = arms_factory
+								value > 0
+							}
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G02
+							has_building = {
+								type = arms_factory
+								value > 0
+							}
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = arms_factory
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = arms_factory
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = FRA
+						free_building_slots = {
+							building = arms_factory
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_appoint_supervisors
+		icon = GFX_FRA_appoint_supervisors
+		relative_position_id = GER_barbaric_empire
+		x = -5
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			has_country_leader = {
+				character = FRA_marcel_deat
+				ruling_only = yes
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = GER_barbaric_empire
+		}
+		completion_reward = {
+			country_event = france_wr.240
+		}
+	}
+	
+	focus = {
+		id = FRA_crushing_of_pride
+		icon = GFX_FRA_crushing_of_pride
+		relative_position_id = FRA_unify_low_countries
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_unify_low_countries
+		}
+		prerequisite = {
+			focus = FRA_dismantle_german_industry
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			custom_effect_tooltip = FRA_dismantle_german_industry_tt
+			if = {
+				limit = {
+					G01 = { is_subject_of = FRA }
+				}
+				G01 = { add_ideas = FRA_crushed_pride }
+			}
+			if = {
+				limit = {
+					G02 = { is_subject_of = FRA }
+				}
+				G02 = { add_ideas = FRA_crushed_pride }
+			}
+			if = {
+				limit = {
+					G03 = { is_subject_of = FRA }
+				}
+				G03 = { add_ideas = FRA_crushed_pride }
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_establish_domination
+		icon = GFX_FRA_establish_domination
+		relative_position_id = FRA_crushing_of_pride
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_crushing_of_pride
+		}
+		search_filters = { }
+		completion_reward = {
+			custom_effect_tooltip = FRA_dismantle_german_industry_tt
+			if = {
+				limit = {
+					G01 = { is_subject_of = FRA }
+				}
+				G01 = {
+					add_autonomy_ratio = {
+						value = -0.10
+						localization = uk_india_focus
+					}
+				}
+			}
+			if = {
+				limit = {
+					G02 = { is_subject_of = FRA }
+				}
+				G02 = {
+					add_autonomy_ratio = {
+						value = -0.10
+						localization = uk_india_focus
+					}
+				}
+			}
+			if = {
+				limit = {
+					G03 = { is_subject_of = FRA }
+				}
+				G03 = {
+					add_autonomy_ratio = {
+						value = -0.10
+						localization = uk_india_focus
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_total_campification_of_germany
+		icon = GFX_FRA_total_campification_of_germany
+		relative_position_id = FRA_appoint_supervisors
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_appoint_supervisors
+		}
+		completion_reward = {
+			custom_effect_tooltip = FRA_dismantle_german_industry_tt
+			country_event = france_wr.241
+			if = {
+				limit = {
+					G01 = { is_subject_of = FRA }
+				}
+				G01 = { add_ideas = FRA_concentration_camp_state_idea_WGR }
+			}
+			if = {
+				limit = {
+					G02 = { is_subject_of = FRA }
+				}
+				G02 = { add_ideas = FRA_concentration_camp_state_idea_SGR }
+			}
+			if = {
+				limit = {
+					G03 = { is_subject_of = FRA }
+				}
+				G03 = { add_ideas = FRA_concentration_camp_state_idea_EGR }
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_frenchification_of_low_countries
+		icon = GFX_FRA_frenchification_of_low_countries
+		relative_position_id = FRA_appoint_supervisors
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_appoint_supervisors
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			custom_effect_tooltip = FRA_unify_low_countries_tt
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					OR = {
+						is_core_of = HOL
+						is_core_of = BEL
+						is_core_of = LUX
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_frenchification_of_low_countries
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_arbeit_macht_frei
+		icon = GFX_FRA_arbeit_macht_frei
+		relative_position_id = FRA_total_campification_of_germany
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_total_campification_of_germany
+		}
+		prerequisite = {
+			focus = FRA_frenchification_of_low_countries
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = FRA_german_industrial_imports_idea
+		}
+	}
+	
+	focus = {
+		id = FRA_plunder_of_science_and_technology
+		icon = GFX_FRA_plunder_of_science_and_technology
+		relative_position_id = FRA_dismantle_german_industry
+		x = 0
+		y = 2
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_dismantle_german_industry
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = FRA_german_scientists_idea
+		}
+	}
+	
+	focus = {
+		id = FRA_master_of_new_europe
+		icon = GFX_FRA_master_of_new_europe
+		relative_position_id = FRA_plunder_of_science_and_technology
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_establish_domination
+			focus = FRA_plunder_of_science_and_technology
+			focus = FRA_arbeit_macht_frei
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = FRA_european_hegemony_idea
+		}
+	}
+	
+	focus = {
+		id = FRA_divide_and_rule_focus
+		icon = GFX_FRA_divide_and_rule_focus
+		relative_position_id = GER_barbaric_empire
+		x = -3
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			OR = {
+				has_country_leader = {
+					character = FRA_francois_de_la_rocque
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_charles_de_gaulle
+					ruling_only = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = GER_barbaric_empire
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			G01 = { add_ideas = GER_french_collaborators_idea }
+		}
+	}
+	
+	focus = {
+		id = FRA_resource_plunder_focus
+		icon = GFX_FRA_resource_plunder_focus
+		relative_position_id = GER_barbaric_empire
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			OR = {
+				has_country_leader = {
+					character = FRA_francois_de_la_rocque
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_charles_de_gaulle
+					ruling_only = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = GER_barbaric_empire
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			give_resource_rights = { receiver = FRA state = 50 }
+			give_resource_rights = { receiver = FRA state = 52 }
+			give_resource_rights = { receiver = FRA state = 60 }
+		}
+	}
+	
+	focus = {
+		id = FRA_amputation_of_germany_focus
+		icon = GFX_FRA_amputation_of_germany_focus
+		relative_position_id = FRA_divide_and_rule_focus
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_divide_and_rule_focus
+		}
+		prerequisite = {
+			focus = FRA_resource_plunder_focus
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			G01 = { add_ideas = GER_widespread_partition_idea }
+		}
+	}
+	
+	focus = {
+		id = FRA_scientific_renaissance_focus
+		icon = GFX_FRA_scientific_renaissance_focus
+		relative_position_id = FRA_amputation_of_germany_focus
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_amputation_of_germany_focus
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			unlock_decision_category_tooltip = FRA_scientific_renaissance_category
+		}
+	}
+	
+	focus = {
+		id = FRA_natural_borders_unification_focus
+		icon = GFX_FRA_natural_borders_unification_focus
+		relative_position_id = FRA_amputation_of_germany_focus
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_amputation_of_germany_focus
+			focus = FRA_brandenburg_resource_exploitation_focus
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			custom_effect_tooltip = FRA_dismantle_german_industry_tt
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					OR = {
+						is_core_of = HOL
+						is_core_of = BEL
+						is_core_of = LUX
+						is_core_of = GER
+					}
+				}
+				add_dynamic_modifier = {
+					modifier = FRA_natural_borders_unification_focus
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_eternal_victory_focus
+		icon = GFX_FRA_eternal_victory_focus
+		relative_position_id = FRA_scientific_renaissance_focus
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_scientific_renaissance_focus
+		}
+		prerequisite = {
+			focus = FRA_natural_borders_unification_focus
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = FRA_fruits_of_victory_idea
+		}
+	}
+	
+	focus = {
+		id = FRA_lost_french_lands_focus
+		icon = GFX_FRA_lost_french_lands_focus
+		relative_position_id = GER_barbaric_empire
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			OR = {
+				has_country_leader = {
+					character = FRA_charles_maurras
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_jean_iii
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_henry_vi
+					ruling_only = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = GER_barbaric_empire
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			custom_effect_tooltip = FRA_dismantle_german_industry_tt
+			G01 = {
+				every_state = {
+					limit = {
+						is_owned_by = G01
+						is_core_of = GER
+					}
+					add_dynamic_modifier = {
+						modifier = FRA_lost_french_lands_focus
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_brandenburg_resource_exploitation_focus
+		icon = GFX_FRA_brandenburg_resource_exploitation_focus
+		relative_position_id = FRA_lost_french_lands_focus
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_lost_french_lands_focus
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			GER = {
+				random_owned_state = {
+					limit = {
+						is_core_of = GER
+						has_building = {
+							type = arms_factory
+							value > 0
+						}
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = GER
+						has_building = {
+							type = arms_factory
+							value > 0
+						}
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = GER
+						has_building = {
+							type = arms_factory
+							value > 0
+						}
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = GER
+						has_building = {
+							type = arms_factory
+							value > 0
+						}
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_state = {
+					limit = {
+						is_core_of = GER
+						has_building = {
+							type = arms_factory
+							value > 0
+						}
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+			if = {
+				limit = {
+					G01 = { is_subject_of = FRA }
+				}
+				G01 = {
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = G01
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+			else = {
+				FRA = {
+					random_owned_state = {
+						limit = {
+							is_core_of = FRA
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = FRA
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = FRA
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = FRA
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+					random_owned_state = {
+						limit = {
+							is_core_of = FRA
+							free_building_slots = {
+								building = industrial_complex
+								size > 0
+								include_locked = no
+							}
+						}
+						add_building_construction = {
+							type = industrial_complex
+							level = 1
+							instant_build = yes
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_francia_garrison_support_focus
+		icon = GFX_FRA_francia_garrison_support_focus
+		relative_position_id = FRA_lost_french_lands_focus
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		bypass = {
+			NOT = { G01 = { is_subject_of = FRA } }
+		}
+		prerequisite = {
+			focus = FRA_lost_french_lands_focus
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_manpower = -50000
+			G01 = {
+				add_manpower = 50000
+			}
+			FRA = {
+				send_equipment = {
+					target = G01
+					type = infantry_equipment
+					amount = 5000
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_nuclear_physics_renaissance_focus
+		icon = GFX_FRA_nuclear_physics_renaissance_focus
+		relative_position_id = FRA_francia_garrison_support_focus
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_brandenburg_resource_exploitation_focus
+		}
+		prerequisite = {
+			focus = FRA_francia_garrison_support_focus
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					nuclear_facility = 0
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = yes
+						}
+					}
+					add_building_construction = {
+						type = nuclear_facility
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_tech = atomic_research
+				}
+				add_breakthrough_points = {
+					specialization = specialization_nuclear
+					value = 3
+				}
+			}
+			else = {
+				add_tech_bonus = {
+					bonus = 0.5
+					uses = 1
+					technology = atomic_research
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_eternal_france_focus
+		icon = GFX_FRA_eternal_france_focus
+		relative_position_id = FRA_nuclear_physics_renaissance_focus
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			has_country_flag = annexed_G01_flag
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_natural_borders_unification_focus
+		}
+		prerequisite = {
+			focus = FRA_nuclear_physics_renaissance_focus
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_ideas = FRA_eternal_kingdom_idea
+		}
+	}
+	
+	focus = {
+		id = FRA_purge_prussian_remnants_focus
+		icon = GFX_FRA_purge_prussian_remnants_focus
+		relative_position_id = GER_barbaric_empire
+		x = 3
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			OR = {
+				has_country_leader = {
+					character = FRA_paul_reynaud
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_leon_blum
+					ruling_only = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = GER_barbaric_empire
+		}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		completion_reward = {
+			G01 = {
+				add_ideas = GER_zero_hour_idea
+				add_ideas = volunteer_only
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_rhine_west_frenchification_focus
+		icon = GFX_FRA_rhine_west_frenchification_focus
+		relative_position_id = GER_barbaric_empire
+		x = 5
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			OR = {
+				has_country_leader = {
+					character = FRA_paul_reynaud
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_leon_blum
+					ruling_only = yes
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = GER_barbaric_empire
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			custom_effect_tooltip = FRA_dismantle_german_industry_tt
+			every_state = {
+				limit = {
+					is_owned_by = FRA
+					OR = {
+						is_core_of = BEL
+						is_core_of = HOL
+						is_core_of = LUX
+						is_core_of = GER
+					}
+					add_compliance = 10
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_radical_reform_focus
+		icon = GFX_FRA_radical_reform_focus
+		relative_position_id = FRA_purge_prussian_remnants_focus
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_purge_prussian_remnants_focus
+		}
+		prerequisite = {
+			focus = FRA_rhine_west_frenchification_focus
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = FRA_dismantle_german_industry_tt
+			if = {
+				limit = {
+					G01 = { is_subject_of = FRA }
+				}
+				G01 = {
+					add_popularity = {
+						ideology = democratic
+						popularity = 0.3
+					}
+					add_stability = -0.05
+				}
+			}
+			if = {
+				limit = {
+					BAY = { is_subject_of = FRA }
+				}
+				BAY = {
+					add_popularity = {
+						ideology = democratic
+						popularity = 0.3
+					}
+					add_stability = -0.05
+				}
+			}
+			if = {
+				limit = {
+					SAX = { is_subject_of = FRA }
+				}
+				SAX = {
+					add_popularity = {
+						ideology = democratic
+						popularity = 0.3
+					}
+					add_stability = -0.05
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_social_reorganization_focus
+		icon = GFX_FRA_social_reorganization_focus
+		relative_position_id = FRA_radical_reform_focus
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_radical_reform_focus
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.242
+		}
+	}
+	
+	focus = {
+		id = FRA_liberator_of_europe_focus
+		icon = GFX_FRA_liberator_of_europe_focus
+		relative_position_id = FRA_social_reorganization_focus
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_social_reorganization_focus
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = FRA_liberator_of_europe_idea
+		}
+	}
+	
+	focus = {
+		id = FRA_flame_of_revolution
+		icon = GFX_FRA_flame_of_revolution
+		relative_position_id = GER_barbaric_empire
+		x = 7
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			has_country_leader = {
+				character = FRA_pierre_monatte
+				ruling_only = yes
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = GER_barbaric_empire
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			unlock_decision_category_tooltip = FRA_form_european_socialist_federation
+			set_variable = { HOLrevolution = 0 }
+			set_variable = { GERrevolution = 0 }
+			set_variable = { SPRrevolution = 0 }
+			set_variable = { ITArevolution = 0 }
+			set_variable = { SWIrevolution = 0 }
+		}
+	}
+	
+	focus = {
+		id = FRA_humanitarian_aid_focus
+		icon = GFX_FRA_humanitarian_aid_focus
+		relative_position_id = FRA_radical_reform_focus
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		bypass = {
+			has_cosmetic_tag = EUR_socialist_federation
+		}
+		prerequisite = {
+			focus = FRA_purge_of_the_empire
+			focus = FRA_radical_reform_focus
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			G01 = { add_timed_idea = { idea = FRA_humanitarian_aid_focus days = 365 } }
+			if = {
+				limit = {
+					has_country_leader = {
+						character = FRA_paul_reynaud
+						ruling_only = yes
+					}
+				}
+				country_event = france_wr.244
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = FRA_leon_blum
+						ruling_only = yes
+					}
+				}
+				country_event = france_wr.245
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = FRA_pierre_monatte
+						ruling_only = yes
+					}
+				}
+				country_event = france_wr.246
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_purge_of_the_empire
+		icon = GFX_FRA_purge_of_the_empire
+		relative_position_id = FRA_flame_of_revolution
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_flame_of_revolution
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = france_wr.243
+		}
+	}
+	
+	focus = {
+		id = FRA_revolutionary_comrades_focus
+		icon = GFX_FRA_revolutionary_comrades_focus
+		relative_position_id = FRA_purge_of_the_empire
+		x = 0
+		y = 2
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		bypass = {
+			has_cosmetic_tag = EUR_socialist_federation
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = FRA_humanitarian_aid_focus
+		}
+		prerequisite = {
+			focus = FRA_flame_of_revolution
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = FRA_revolutionary_comrades_focus_tt
+			if = {
+				limit = {
+					check_variable = { HOLrevolution = 90 }
+				}
+				HOL = { set_country_flag = revolution_done_flag }
+			}
+			add_to_variable = { HOLrevolution = 10 }
+			if = {
+				limit = {
+					check_variable = { GERrevolution = 90 }
+				}
+				G01 = { set_country_flag = revolution_done_flag }
+			}
+			add_to_variable = { GERrevolution = 10 }
+			if = {
+				limit = {
+					check_variable = { SPRrevolution = 90 }
+				}
+				SPR = { set_country_flag = revolution_done_flag }
+			}
+			add_to_variable = { SPRrevolution = 10 }
+			if = {
+				limit = {
+					check_variable = { ITArevolution = 90 }
+				}
+				ITA = { set_country_flag = revolution_done_flag }
+			}
+			add_to_variable = { ITArevolution = 10 }
+			if = {
+				limit = {
+					check_variable = { SWIrevolution = 90 }
+				}
+				SWI = { set_country_flag = revolution_done_flag }
+			}
+			add_to_variable = { SWIrevolution = 10 }
+		}
+	}
+
 	#Military
 	focus = {
 		id = FRA_european_hegemony_focus
 		icon = GFX_FRA_european_hegemony_focus
 		relative_position_id = FRA_the_century_of_france
-		x = 5
+		x = 12
 		y = 1
 		cost = 5
 		available = {
@@ -10146,6 +12135,7 @@
 				limit = {
 					is_in_faction_with = ROOT
 					is_subject = no
+					NOT = { original_tag = FRA }
 				}
 				country_event = france_wr.200
 			}
@@ -10173,25 +12163,15 @@
 		completion_reward = {
 			if = {
 				limit = {
-					any_state = {
-						is_owned_by = FRA
-					}
+					land_facility = 0
+					controls_state = 928
 				}
-				has_building = {
-					type = land_facility
-					value > 0
-				}
-				random_owned_controlled_state = {
-					limit = {
-						free_building_slots = {
-							size > 0
-							include_locked = no
-						}
-					}
+				928 = {
 					add_building_construction = {
 						type = land_facility
 						level = 1
 						instant_build = yes
+						province = 9534
 					}
 				}
 			}
@@ -10203,25 +12183,15 @@
 			}
 			if = {
 				limit = {
-					any_state = {
-						is_owned_by = FRA
-					}
+					air_facility = 0
+					controls_state = 24
 				}
-				has_building = {
-					type = air_facility
-					value > 0
-				}
-				random_owned_controlled_state = {
-					limit = {
-						free_building_slots = {
-							size > 0
-							include_locked = no
-						}
-					}
+				24 = {
 					add_building_construction = {
 						type = air_facility
 						level = 1
 						instant_build = yes
+						province = 512
 					}
 				}
 			}
@@ -10233,25 +12203,15 @@
 			}
 			if = {
 				limit = {
-					any_state = {
-						is_owned_by = FRA
-					}
+					naval_facility = 0
+					controls_state = 993
 				}
-				has_building = {
-					type = naval_facility
-					value > 0
-				}
-				random_owned_controlled_state = {
-					limit = {
-						free_building_slots = {
-							size > 0
-							include_locked = no
-						}
-					}
+				993 = {
 					add_building_construction = {
 						type = naval_facility
 						level = 1
 						instant_build = yes
+						province = 9434
 					}
 				}
 			}
