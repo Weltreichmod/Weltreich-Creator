@@ -7904,7 +7904,7 @@
 	
 	focus = {
 		id = FRA_the_most_powerful_artillery
-		icon = GFX_FRA_the_most_powerful_artillery
+		icon = GFX_FRA_Sky_Artillery
 		relative_position_id = FRA_The_raging_storm
 		x = -3
 		y = 1
@@ -7942,6 +7942,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
+		    enable_tech_mechanized_infantry = yes
 			add_tech_bonus = {
 				name = FRA_mechanized_infantry
 				bonus = 1.0
@@ -7954,7 +7955,7 @@
 	
 	focus = {
 		id = FRA_Artillery_Saturation_Fire
-		icon = GFX_FRA_Artillery_Saturation_Fire
+		icon = GFX_FRA_Motorization_of_the_Entire_Army
 		relative_position_id = FRA_The_raging_storm
 		x = 1
 		y = 1
@@ -7967,27 +7968,14 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-			enable_tech_artillery_saturation_fire = yes
-			if = {
-				limit = {
-					has_tech = artillery1
-				}
-				add_tech_bonus = {
-					name = FRA_Artillery_Saturation_Fire
-					bonus = 1.0
-					uses = 2
-					category = artillery
-				}
-			}
-			else = {
-				set_technology = { artillery1 = 1 }
-			}
+			enable_tech_Motorization_of_the_Entire_Army = yes
+			add_ideas = FRA_motorisation_idea
 		}
 	}
 	
 	focus = {
 		id = FRA_air_superiority
-		icon = GFX_FRA_air_superiority
+		icon = GFX_FRA_Comprehensive_Pressure
 		relative_position_id = FRA_The_raging_storm
 		x = 3
 		y = 1
@@ -8000,6 +7988,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
+		    enable_tech_Comprehensive_Pressure = yes
 			if = {
 				limit = { is_special_project_completed = sp:sp_air_radar }
 				781 = {
@@ -8028,7 +8017,7 @@
 	
 	focus = {
 		id = FRA_close_air_support_doctrine
-		icon = GFX_FRA_close_air_support_doctrine
+		icon = GFX_FRA_Offensive_Support
 		relative_position_id = FRA_the_most_powerful_artillery
 		x = -3
 		y = 1
@@ -8041,18 +8030,19 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
+		    enable_tech_Offensive_Support = yes
 			add_doctrine_cost_reduction = {
 				name = FRA_close_air_support_doctrine
 				cost_reduction = 0.5
 				uses = 2
-				category = cat_battlefield_support
+				category = air_doctrine
 			}
 		}
 	}
 	
 	focus = {
 		id = FRA_Rubber_for_the_Steel_Tide
-		icon = GFX_FRA_Rubber_for_the_Steel_Tide
+		icon = GFX_FRA_War_Machine_of_the_Sky
 		relative_position_id = FRA_the_most_powerful_artillery
 		x = -1
 		y = 1
@@ -8065,6 +8055,13 @@
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
+		    add_ideas = FRA_Rubber_for_the_Steel_Tide
+		    add_tech_bonus = {
+				name = FRA_Fighter_Development_Program
+				bonus = 1.0
+				uses = 1
+				category = light_fighter
+			}
 			random_owned_controlled_state = {
 				limit = {
 					is_core_of = ROOT
@@ -8087,7 +8084,7 @@
 	
 	focus = {
 		id = FRA_destruction_through_maneuver
-		icon = GFX_FRA_destruction_through_maneuver
+		icon = GFX_FRA_Armored_Assault
 		relative_position_id = FRA_The_raging_storm
 		x = -2
 		y = 2
@@ -8096,7 +8093,7 @@
 			factor = 2
 		}
 		prerequisite = {
-			focus = FRA_The_raging_storm
+			focus = FRA_mechanized_infantry
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
@@ -8106,7 +8103,7 @@
 	
 	focus = {
 		id = FRA_tank_charge
-		icon = GFX_FRA_tank_charge
+		icon = GFX_FRA_Coordination_of_Operations
 		relative_position_id = FRA_mechanized_infantry
 		x = 1
 		y = 1
@@ -8122,14 +8119,49 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-			if = {
+		    enable_tech_Coordination_of_Operations = yes
+		    if = {
 				limit = {
-					has_dlc = "No Step Back"
+					has_dlc = "La Resistance"
 				}
+				gain_random_cryptology_dept_upgrade = yes
 				add_ideas = FRA_tank_charge
 			}
 			else = {
+				add_tech_bonus = {
+					name = FRA_Encrypted_Wireless_Communications
+					bonus = 1.0
+					uses = 2
+					category = encryption_tech
+				}
 				add_ideas = FRA_tank_charge_vanilla
+			}
+		}
+	}
+	
+	focus = {
+		id = FRA_Encrypted_Wireless_Communications
+		icon = GFX_FRA_Assault_of_Steel
+		relative_position_id = FRA_air_superiority
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 2
+		}
+		prerequisite = {
+			focus = FRA_Artillery_Saturation_Fire
+		}
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+		    if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				add_ideas = FRA_Encrypted_Wireless_Communications
+			}
+			else = {
+				add_ideas = FRA_Encrypted_Wireless_Communications_vanilla
 			}
 			add_tech_bonus = {
 				name = FRA_tank_charge
@@ -8149,42 +8181,8 @@
 	}
 	
 	focus = {
-		id = FRA_Encrypted_Wireless_Communications
-		icon = GFX_FRA_Encrypted_Wireless_Communications
-		relative_position_id = FRA_air_superiority
-		x = -1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 2
-		}
-		prerequisite = {
-			focus = FRA_air_superiority
-		}
-		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_RESEARCH }
-		completion_reward = {
-			if = {
-				limit = {
-					has_dlc = "La Resistance"
-				}
-				gain_random_cryptology_dept_upgrade = yes
-				add_ideas = FRA_Encrypted_Wireless_Communications
-			}
-			else = {
-				add_tech_bonus = {
-					name = FRA_Encrypted_Wireless_Communications
-					bonus = 1.0
-					uses = 2
-					category = encryption_tech
-				}
-				add_ideas = FRA_Encrypted_Wireless_Communications_vanilla
-			}
-		}
-	}
-	
-	focus = {
 		id = FRA_Overwhelming_Firepower_in_an_Instant
-		icon = GFX_FRA_Overwhelming_Firepower_in_an_Instant
+		icon = GFX_Instantaneous_Fire_Projection
 		relative_position_id = FRA_air_superiority
 		x = 1
 		y = 1
@@ -8197,6 +8195,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
+		    enable_tech_Instantaneous_Fire_Projection = yes
 			add_breakthrough_progress = {
 				specialization = specialization_air
 				value = 0.5
@@ -8236,7 +8235,7 @@
 	
 	focus = {
 		id = FRA_Fighter_Development_Program
-		icon = GFX_FRA_Fighter_Development_Program
+		icon = GFX_FRA_Lightning_in_the_Storm
 		relative_position_id = FRA_Rubber_for_the_Steel_Tide
 		x = 1
 		y = 1
@@ -8245,26 +8244,17 @@
 			factor = 2
 		}
 		prerequisite = {
-			focus = FRA_destruction_through_maneuver
-		}
-		prerequisite = {
 			focus = FRA_Rubber_for_the_Steel_Tide
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-			add_tech_bonus = {
-				name = FRA_Fighter_Development_Program
-				bonus = 1.0
-				uses = 1
-				category = light_fighter
-			}
-			add_ideas = FRA_Fighter_Production_Program
+			add_ideas = FRA_Fighter_Development_Program
 		}
 	}
 	
 	focus = {
 		id = FRA_Anti_Tank_Research
-		icon = GFX_FRA_Anti_Tank_Research
+		icon = GFX_FRA_Thunder
 		relative_position_id = FRA_tank_charge
 		x = -1
 		y = 1
@@ -8272,38 +8262,21 @@
 		ai_will_do = {
 			factor = 2
 		}
+		mutually_exclusive = {
+            focus = FRA_Armored_Thrust_Doctrine
+        }
 		prerequisite = {
 			focus = FRA_tank_charge
 		}
-		search_filters = { FOCUS_FILTER_RESEARCH }
-		completion_reward = {
-			add_tech_bonus = {
-				name = FRA_Anti_Tank_Research
-				bonus = 1.0
-				uses = 1
-				category = cat_anti_tank
-			}
-		}
-	}
-	
-	focus = {
-		id = FRA_Armored_Thrust_Doctrine
-		icon = GFX_FRA_Armored_Thrust_Doctrine
-		relative_position_id = FRA_tank_charge
-		x = 1
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 2
-		}
 		prerequisite = {
-			focus = FRA_tank_charge
-			focus = FRA_Encrypted_Wireless_Communications
+			focus = FRA_destruction_through_maneuver
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
+		    add_ideas = FRA_Anti_Tank_Research
+		    enable_tech_Thunder = yes
 			add_doctrine_cost_reduction = {
-				name = FRA_Armored_Thrust_Doctrine
+				name = FRA_Anti_Tank_Research
 				cost_reduction = 0.5
 				uses = 2
 				category = cat_mobile_warfare
@@ -8312,8 +8285,40 @@
 	}
 	
 	focus = {
+		id = FRA_Armored_Thrust_Doctrine
+		icon = GFX_FRA_Torrential_rain
+		relative_position_id = FRA_tank_charge
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 2
+		}
+		  mutually_exclusive = {
+            focus = FRA_Anti_Tank_Research
+        }
+		prerequisite = {
+			focus = FRA_tank_charge
+		}
+		prerequisite = {
+			focus = FRA_Encrypted_Wireless_Communications
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+		    add_ideas = FRA_Armored_Thrust_Doctrine
+		    enable_tech_Torrential_rain = yes
+			add_doctrine_cost_reduction = {
+				name = FRA_Armored_Thrust_Doctrine
+				cost_reduction = 0.5
+				uses = 2
+				category = cat_mass_assault
+			}
+		}
+	}
+	
+	focus = {
 		id = FRA_Role_of_the_Infantry
-		icon = GFX_FRA_Role_of_the_Infantry
+		icon = GFX_FRA_Wave_of_Vehicles
 		relative_position_id = FRA_air_superiority
 		x = 0
 		y = 2
@@ -8339,7 +8344,7 @@
 	
 	focus = {
 		id = FRA_Support_Equipment_Research
-		icon = GFX_FRA_Support_Equipment_Research
+		icon = GFX_FRA_Flexible_Support_Coordination
 		relative_position_id = FRA_Overwhelming_Firepower_in_an_Instant
 		x = 1
 		y = 1
@@ -8352,7 +8357,9 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
+		    enable_tech_Flexible_Support_Coordination = yes
 			add_tech_bonus = {
+			    
 				name = FRA_Overwhelming_Firepower_in_an_Instant
 				bonus = 1.0
 				uses = 1
@@ -8447,6 +8454,10 @@
 				bonus = 1.0
 				uses = 1
 				category = cat_anti_tank
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 1.0
 			}
 		}
 	}
@@ -8794,6 +8805,10 @@
 		search_filters = { }
 		completion_reward = {
 			enable_tech_barrage_concentration = yes
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 0.5
+			}
 		}
 	}
 	
