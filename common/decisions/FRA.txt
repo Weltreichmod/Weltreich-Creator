@@ -1272,7 +1272,7 @@ FRA_Behind_the_Curtain_of_Power_category = {
 		days_remove = 10
 		cost = 10
 		remove_effect = {
-			FRA_pcd_increase_support_worker_low = yes
+			FRA_pcd_increase_support_sfio_low = yes
 		}
 		ai_will_do = { 
 			base = 0
@@ -8083,10 +8083,8 @@ FRA_integrate_francia = {
 		}
 		available = {
 			all_state = {
-				limit = {
-					is_owned_by = G01
-					is_core_of = G01
-				}
+				is_owned_by = G01
+				is_core_of = G01
 			}
 		}
 		complete_effect = {
@@ -8165,10 +8163,10 @@ FRA_integrate_francia = {
 		cost = 50
 		days_remove = 180
 		complete_effect = {
-			add_ideas = FRA_modernize_garrison_spirit
+			G01 = { add_ideas = FRA_modernize_garrison_spirit }
 		}
 		remove_effect = {
-			remove_ideas = FRA_modernize_garrison_spirit
+			G01 = { remove_ideas = FRA_modernize_garrison_spirit }
 		}
 	}
 }
@@ -8492,6 +8490,30 @@ FRA_german_territorial_question = {
 		}
 		complete_effect = {
 			country_event = france_wr.249
+		}
+	}
+	the_fate_of_the_rhineland = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = FRA
+		}
+		fire_only_once = yes
+		visible = {
+			OR = {
+				has_country_leader = {
+					character = FRA_leon_blum
+					ruling_only = yes
+				}
+				has_country_leader = {
+					character = FRA_paul_reynaud
+					ruling_only = yes
+				}
+			}
+			42 = { is_owned_by = FRA }
+			51 = { is_owned_by = FRA }
+		}
+		complete_effect = {
+			country_event = france_wr.250
 		}
 	}
 }

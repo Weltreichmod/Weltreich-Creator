@@ -6620,7 +6620,6 @@ country_event = {
 	desc = france_wr.239.d
 	picture = GFX_report_event_spr_civil_war_faction_defeated
 	is_triggered_only = yes
-	hidden = yes
 	option = {
 		name = france_wr.239.a
 		ai_chance = {
@@ -6635,7 +6634,6 @@ country_event = {
 	desc = france_wr.240.d
 	picture = GFX_report_event_generic_sign_treaty2
 	is_triggered_only = yes
-	hidden = yes
 	option = {
 		name = france_wr.240.a
 		G01 = {
@@ -6674,7 +6672,6 @@ country_event = {
 	desc = france_wr.241.d
 	picture = GFX_report_event_spr_civil_war_faction_defeated
 	is_triggered_only = yes
-	hidden = yes
 	option = {
 		name = france_wr.241.a
 		ai_chance = {
@@ -6689,7 +6686,6 @@ country_event = {
 	desc = france_wr.242.d
 	picture = GFX_report_event_generic_sign_treaty2
 	is_triggered_only = yes
-	hidden = yes
 	option = {
 		name = france_wr.242.a
 		G01 = {
@@ -6707,7 +6703,6 @@ country_event = {
 	desc = france_wr.243.d
 	picture = GFX_report_event_peasant_revolt
 	is_triggered_only = yes
-	hidden = yes
 	option = {
 		name = france_wr.243.a
 		G01 = { add_ideas = GER_purge_campaign_idea }
@@ -6730,7 +6725,6 @@ country_event = {
 	desc = france_wr.244.d
 	picture = GFX_report_event_generic_sign_treaty2
 	is_triggered_only = yes
-	hidden = yes
 	option = {
 		name = france_wr.244.a
 		ai_chance = {
@@ -6745,7 +6739,6 @@ country_event = {
 	desc = france_wr.245.d
 	picture = GFX_report_event_generic_sign_treaty2
 	is_triggered_only = yes
-	hidden = yes
 	option = {
 		name = france_wr.245.a
 		ai_chance = {
@@ -6760,7 +6753,6 @@ country_event = {
 	desc = france_wr.246.d
 	picture = GFX_report_event_generic_sign_treaty2
 	is_triggered_only = yes
-	hidden = yes
 	option = {
 		name = france_wr.246.a
 		ai_chance = {
@@ -7056,6 +7048,9 @@ country_event = {
 				remove_core_of = GER
 			}
 		}
+		SIL = {
+			inherit_technology = GER
+		}
 		FRA = {
 			if = {
 				limit = {
@@ -7326,6 +7321,246 @@ country_event = {
 		}
 		ai_chance = {
 			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.250
+	title = france_wr.250.t
+	desc = france_wr.250.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = france_wr.250.a
+		if = {
+			limit = {
+				OR = {
+					has_country_leader = {
+						character = FRA_leon_blum
+						ruling_only = yes
+					}
+					has_country_leader = {
+						character = FRA_paul_reynaud
+						ruling_only = yes
+					}
+				}
+				42 = { is_owned_by = FRA }
+				51 = { is_owned_by = FRA }
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 42
+						state = 51
+					}
+				}
+				transfer_state_to = G02
+				add_core_of = G02
+			}
+			G02 = {
+				inherit_technology = GER
+				set_cosmetic_tag = GER_Confederation_of_the_Rhine
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = conservatism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = marxism
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = fascism_ideology
+					traits = {
+					}
+				}
+				create_country_leader = {
+					name = "CFR_government"
+					picture = "gfx/leaders/GER/CFR_government.png"
+					expire = "1965.1.1"
+					ideology = moderatism
+					traits = {
+					}
+				}
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						G02 = { exists = yes }
+					}
+					set_autonomy = {
+						target = G02
+						autonomous_state = autonomy_satellite
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = G02
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = france_wr.250.b
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.251
+	title = france_wr.251.t
+	desc = france_wr.251.d
+	picture = GFX_petain
+	is_triggered_only = yes
+	option = {
+		name = france_wr.251.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.252
+	title = france_wr.252.t
+	desc = france_wr.252.d
+	picture = GFX_petain
+	is_triggered_only = yes
+	option = {
+		name = france_wr.252.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.253
+	title = france_wr.253.t
+	desc = france_wr.253.d
+	picture = GFX_petain
+	is_triggered_only = yes
+	option = {
+		name = france_wr.253.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.254
+	title = france_wr.254.t
+	desc = france_wr.254.d
+	picture = GFX_petain
+	is_triggered_only = yes
+	option = {
+		name = france_wr.254.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.255
+	title = france_wr.255.t
+	desc = france_wr.255.d
+	picture = GFX_petain
+	is_triggered_only = yes
+	option = {
+		name = france_wr.255.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.256
+	title = france_wr.256.t
+	desc = france_wr.256.d
+	picture = GFX_petain
+	is_triggered_only = yes
+	option = {
+		name = france_wr.256.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.257
+	title = france_wr.257.t
+	desc = france_wr.257.d
+	picture = GFX_petain
+	is_triggered_only = yes
+	option = {
+		name = france_wr.257.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.258
+	title = france_wr.258.t
+	desc = france_wr.258.d
+	picture = GFX_petain
+	is_triggered_only = yes
+	option = {
+		name = france_wr.258.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.259
+	title = france_wr.259.t
+	desc = france_wr.259.d
+	picture = doriot_picture
+	is_triggered_only = yes
+	option = {
+		name = france_wr.259.a
+		custom_effect_tooltip = FRA_doriot_ending
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.260
+	title = france_wr.260.t
+	desc = france_wr.260.d
+	picture = deat_picture
+	is_triggered_only = yes
+	option = {
+		name = france_wr.260.a
+		custom_effect_tooltip = FRA_deat_ending
+		ai_chance = {
+			base = 1
 		}
 	}
 }

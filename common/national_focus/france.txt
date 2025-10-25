@@ -7376,6 +7376,12 @@
 			706 = { add_claim_by = FRA }
 			713 = { add_claim_by = FRA }
 			268 = { add_claim_by = FRA }
+			538 = { add_claim_by = FRA }
+			295 = { add_claim_by = FRA }
+			718 = { add_claim_by = FRA }
+			888 = { add_claim_by = FRA }
+			890 = { add_claim_by = FRA }
+			889 = { add_claim_by = FRA }
 		}
 	}
 	
@@ -7475,7 +7481,9 @@
 				}
 				country_event = france_wr.170
 			}
-			country_event = france_wr.19
+			else = {
+				country_event = france_wr.19
+			}
 		}
 	}
 	
@@ -7942,7 +7950,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_mechanized_infantry = yes
+			enable_tech_mechanized_infantry = yes
 			add_tech_bonus = {
 				name = FRA_mechanized_infantry
 				bonus = 1.0
@@ -7988,7 +7996,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_Comprehensive_Pressure = yes
+			enable_tech_Comprehensive_Pressure = yes
 			if = {
 				limit = { is_special_project_completed = sp:sp_air_radar }
 				781 = {
@@ -8030,7 +8038,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_Offensive_Support = yes
+			enable_tech_Offensive_Support = yes
 			add_doctrine_cost_reduction = {
 				name = FRA_close_air_support_doctrine
 				cost_reduction = 0.5
@@ -8055,9 +8063,9 @@
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-		    add_ideas = FRA_Rubber_for_the_Steel_Tide
+			add_ideas = FRA_Rubber_for_the_Steel_Tide_idea
 		    add_tech_bonus = {
-				name = FRA_Fighter_Development_Program
+				name = FRA_Rubber_for_the_Steel_Tide
 				bonus = 1.0
 				uses = 1
 				category = light_fighter
@@ -8085,9 +8093,9 @@
 	focus = {
 		id = FRA_destruction_through_maneuver
 		icon = GFX_FRA_Armored_Assault
-		relative_position_id = FRA_The_raging_storm
-		x = -2
-		y = 2
+		relative_position_id = FRA_mechanized_infantry
+		x = -1
+		y = 1
 		cost = 5
 		ai_will_do = {
 			factor = 2
@@ -8119,22 +8127,28 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_Coordination_of_Operations = yes
-		    if = {
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				add_ideas = FRA_tank_charge
+			}
+			else = {
+				add_ideas = FRA_tank_charge_vanilla
+			}
+			if = {
 				limit = {
 					has_dlc = "La Resistance"
 				}
 				gain_random_cryptology_dept_upgrade = yes
-				add_ideas = FRA_tank_charge
 			}
 			else = {
 				add_tech_bonus = {
-					name = FRA_Encrypted_Wireless_Communications
+					name = FRA_tank_charge_encryption
 					bonus = 1.0
 					uses = 2
 					category = encryption_tech
 				}
-				add_ideas = FRA_tank_charge_vanilla
 			}
 		}
 	}
@@ -8150,21 +8164,12 @@
 			factor = 2
 		}
 		prerequisite = {
-			focus = FRA_Artillery_Saturation_Fire
+			focus = FRA_air_superiority
 		}
 		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    if = {
-				limit = {
-					has_dlc = "No Step Back"
-				}
-				add_ideas = FRA_Encrypted_Wireless_Communications
-			}
-			else = {
-				add_ideas = FRA_Encrypted_Wireless_Communications_vanilla
-			}
 			add_tech_bonus = {
-				name = FRA_tank_charge
+				name = FRA_Encrypted_Wireless_Communications
 				bonus = 1
 				uses = 1
 				category = armor
@@ -8195,7 +8200,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_Instantaneous_Fire_Projection = yes
+			enable_tech_Instantaneous_Fire_Projection = yes
 			add_breakthrough_progress = {
 				specialization = specialization_air
 				value = 0.5
@@ -8273,7 +8278,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    add_ideas = FRA_Anti_Tank_Research
+			add_ideas = FRA_Anti_Tank_Research_idea
 		    enable_tech_Thunder = yes
 			add_doctrine_cost_reduction = {
 				name = FRA_Anti_Tank_Research
@@ -8294,7 +8299,7 @@
 		ai_will_do = {
 			factor = 2
 		}
-		  mutually_exclusive = {
+		mutually_exclusive = {
             focus = FRA_Anti_Tank_Research
         }
 		prerequisite = {
@@ -8305,7 +8310,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    add_ideas = FRA_Armored_Thrust_Doctrine
+			add_ideas = FRA_Armored_Thrust_Doctrine_idea
 		    enable_tech_Torrential_rain = yes
 			add_doctrine_cost_reduction = {
 				name = FRA_Armored_Thrust_Doctrine
@@ -8357,9 +8362,8 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_Flexible_Support_Coordination = yes
+			enable_tech_Flexible_Support_Coordination = yes
 			add_tech_bonus = {
-			    
 				name = FRA_Overwhelming_Firepower_in_an_Instant
 				bonus = 1.0
 				uses = 1
@@ -8368,6 +8372,10 @@
 			add_equipment_to_stockpile = {
 				type = support_equipment
 				amount = 500
+			}
+			add_breakthrough_progress = {
+				specialization = specialization_land
+				value = 1.0
 			}
 		}
 	}
@@ -8455,10 +8463,6 @@
 				uses = 1
 				category = cat_anti_tank
 			}
-			add_breakthrough_progress = {
-				specialization = specialization_land
-				value = 1.0
-			}
 		}
 	}
 	
@@ -8536,7 +8540,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_Barrage_of_Storm = yes
+			enable_tech_Barrage_of_Storm = yes
 			if = {
 				limit = {
 					has_idea = FRA_Bombers
@@ -8570,7 +8574,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_Escort_the_Bombers = yes
+			enable_tech_Escort_the_Bombers = yes
 			add_ideas = FRA_Escort_the_Bombers
 			add_tech_bonus = {
 				name = FRA_Escort_the_Bombers
@@ -8748,7 +8752,7 @@
 		}
 		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
-		    enable_tech_Joffre_Doctrine = yes
+			enable_tech_Joffre_Doctrine = yes
 			add_doctrine_cost_reduction = {
 				name = FRA_Grand_Strategy_Doctrine
 				cost_reduction = 0.5
@@ -9598,6 +9602,86 @@
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = france_wr.197
+			hidden_effect = {
+				if = {
+					limit = {
+						has_country_leader = {
+							character = FRA_jacques_doriot
+							ruling_only = yes
+						}
+					}
+					country_event = { id = france_wr.251 days = 50 }
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							character = FRA_marcel_deat
+							ruling_only = yes
+						}
+					}
+					country_event = { id = france_wr.252 days = 50 }
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							character = FRA_francois_de_la_rocque
+							ruling_only = yes
+						}
+					}
+					country_event = { id = france_wr.253 days = 50 }
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							character = FRA_charles_de_gaulle
+							ruling_only = yes
+						}
+					}
+					country_event = { id = france_wr.254 days = 50 }
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							character = FRA_marcel_bucard
+							ruling_only = yes
+						}
+					}
+					country_event = { id = france_wr.255 days = 50 }
+				}
+				if = {
+					limit = {
+						OR = {
+							has_country_leader = {
+								character = FRA_leon_blum
+								ruling_only = yes
+							}
+							has_country_leader = {
+								character = FRA_paul_reynaud
+								ruling_only = yes
+							}
+						}
+					}
+					country_event = { id = france_wr.256 days = 50 }
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							character = FRA_charles_maurras
+							ruling_only = yes
+						}
+					}
+					country_event = { id = france_wr.257 days = 50 }
+				}
+				if = {
+					limit = {
+						has_country_leader = {
+							character = FRA_pierre_monatte
+							ruling_only = yes
+						}
+					}
+					country_event = { id = france_wr.258 days = 50 }
+				}
+			}
 		}
 	}
 	
@@ -9735,7 +9819,7 @@
 		completion_reward = {
 			swap_ideas = {
 				remove_idea = FRA_advanced_city
-				add_ideas = FRA_advanced_city_2
+				add_idea = FRA_advanced_city_2
 			}
 		}
 	}
@@ -10822,7 +10906,7 @@
 		available = {
 			is_subject = no
 			has_country_leader = {
-				character = FRA_marcel_deat
+				character = FRA_marcel_bucard
 				ruling_only = yes
 			}
 		}
@@ -12764,6 +12848,7 @@
 			SOV = { has_country_flag = second_great_war_winner }
 			SOV = { is_subject = no }
 			SOV = { exists = yes }
+			NOT = { has_war_with = SOV }
 		}
 		mutually_exclusive = {
 			focus = FRA_defense_plan_against_soviets
