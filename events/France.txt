@@ -1236,6 +1236,23 @@ country_event = {
 			42 = { add_claim_by = FRA }
 			51 = { add_claim_by = FRA }
 		}
+		else_if = {
+			limit = {
+				has_country_leader = {
+					character = FRA_jacques_doriot
+					ruling_only = yes
+				}
+				NOT = { has_country_flag = deat_in_power_flag }
+			}
+			29 = { add_claim_by = FRA }
+			6 = { add_claim_by = FRA }
+			34 = { add_claim_by = FRA }
+			910 = { add_claim_by = FRA }
+			8 = { add_claim_by = FRA }
+			42 = { add_claim_by = FRA }
+			51 = { add_claim_by = FRA }
+			35 = { add_claim_by = FRA }
+		}
 		else = {
 			29 = { add_claim_by = FRA }
 			6 = { add_claim_by = FRA }
@@ -1910,7 +1927,7 @@ country_event = {
 	picture = GFX_fake_no_its_true
 	is_triggered_only = yes
 	option = {
-		name = france_wr.2.a
+		name = france_wr.13.a
 		add_ideas = FRA_kill_the_kaiser
 		ai_chance = {
 			base = 100
@@ -3957,29 +3974,29 @@ country_event = {
 			}
 			set_party_name = {
 				ideology = neutrality
-				long_name = FRA_action_francaise
-				name = FRA_action_francaise
+				long_name = FRA_jeunesses_patriotes
+				name = FRA_jeunesses_patriotes
 			}
-			create_country_leader = {
-				name = FRA_francois_de_la_rocque_democracy
-				desc = "FRA_francois_de_la_rocque_desc"
-				picture = "gfx/leaders/FRA/FRA_francois_de_la_rocque.png"
-				expire = "1965.1.1"
-				ideology = conservatism
-				traits = {
-					FRA_colonel
-					FRA_president
+			FRA_francois_de_la_rocque_democracy = {
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = conservatism
+						traits = { FRA_colonel FRA_president }
+					}
+				}					
+			}
+			hidden_effect = {
+				set_country_leader_description = {
+					ideology = conservatism
+					desc = FRA_francois_de_la_rocque_desc
 				}
 			}
 			create_country_leader = {
-				name = FRA_charles_maurras_neutrality
-				desc = "FRA_charles_maurras_desc"
-				picture = "gfx/leaders/FRA/FRA_charles_maurras.png"
+				name = FRA_pierre_taittinger
+				picture = "gfx/leaders/FRA/FRA_pierre_taittinger.png"
 				expire = "1965.1.1"
-				ideology = integral_nationalism
-				traits = {
-					national_integralist
-				}
+				ideology = despotism
 			}
 		}
 		add_popularity = {
@@ -4186,37 +4203,23 @@ country_event = {
 		928 = { set_demilitarized_zone = no }
 		retire_character = FRA_jacques_doriot
 		retire_character = FRA_marcel_deat
-		set_party_name = {
-			ideology = fascism
-			long_name = FRA_Francist
-			name = FRA_Francist
-		}
 		set_politics = {
-			ruling_party = neutrality
+			ruling_party = fascism
 			elections_allowed = no
 			election_frequency = 48
 		}
-		add_popularity = {
-			ideology = neutrality
-			popularity = 0.7
-		}
-		hidden_effect = {
-			remove_country_leader_role = {
-				character = FRA_francois_de_la_rocque
-				ideology = national_orderism
-			}
-			remove_country_leader_role = {
-				character = FRA_charles_de_gaulle
-				ideology = national_orderism
-			}
-		}
 		set_party_name = {
-			ideology = neutrality
+			ideology = fascism
 			long_name = FRA_action_francaise
 			name = FRA_action_francaise
 		}
+		remove_country_leader_role = {
+			character = FRA_marcel_bucard
+			ideology = revanchism
+		}
 		complete_national_focus = FRA_focus_end_republican_madness
 		set_country_flag = maurras_victory_flag
+		mark_focus_tree_layout_dirty = yes
 		ai_chance = {
 			base = 10
 		}
@@ -5828,6 +5831,13 @@ country_event = {
 	option = {
 		name = france_wr.209.a
 		add_political_power = 15
+		if = {
+			limit = {
+				ENT = { original_tag = FRA }
+			}
+			set_faction_name = Paris_Accord
+		}
+		news_event = france_wr.294
 		ai_chance = {
 			base = 1
 		}
@@ -6450,13 +6460,13 @@ country_event = {
 				limit = {
 					AUS = { exists = yes }
 				}
-				G02 = { annex_country = { target = AUS transfer_troops = yes } }
 				every_state = {
 					limit = {
-						is_core_of = AUS
+						is_owned_by = AUS
 					}
-					add_core_of = G02
+					add_core_of = G01
 				}
+				G01 = { annex_country = { target = AUS transfer_troops = yes } }
 			}
 			else = {
 				every_state = {
@@ -6472,6 +6482,7 @@ country_event = {
 							state = 853
 							state = 102
 							state = 933
+							state = 852
 						}
 						is_owned_by = FRA
 					}
@@ -6488,13 +6499,13 @@ country_event = {
 				limit = {
 					AUS = { exists = yes }
 				}
-				G01 = { annex_country = { target = AUS transfer_troops = yes } }
 				every_state = {
 					limit = {
-						is_core_of = AUS
+						is_owned_by = AUS
 					}
 					add_core_of = G01
 				}
+				G01 = { annex_country = { target = AUS transfer_troops = yes } }
 			}
 			else = {
 				every_state = {
@@ -6510,6 +6521,7 @@ country_event = {
 							state = 853
 							state = 102
 							state = 933
+							state = 852
 						}
 						is_owned_by = FRA
 					}
@@ -7544,6 +7556,7 @@ country_event = {
 	option = {
 		name = france_wr.259.a
 		custom_effect_tooltip = FRA_doriot_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_FRANCE_DORIOT_DEAT" }
 		ai_chance = {
 			base = 1
 		}
@@ -7559,8 +7572,909 @@ country_event = {
 	option = {
 		name = france_wr.260.a
 		custom_effect_tooltip = FRA_deat_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_FRANCE_DORIOT_DEAT" }
 		ai_chance = {
 			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.261
+	title = france_wr.261.t
+	desc = france_wr.261.d
+	picture = roquce_picture
+	is_triggered_only = yes
+	option = {
+		name = france_wr.261.a
+		custom_effect_tooltip = FRA_roquce_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_FRANCE_R_G" }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.262
+	title = france_wr.262.t
+	desc = france_wr.262.d
+	picture = de_gualle
+	is_triggered_only = yes
+	option = {
+		name = france_wr.262.a
+		custom_effect_tooltip = FRA_de_gualle_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_FRANCE_R_G" }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.263
+	title = france_wr.263.t
+	desc = france_wr.263.d
+	picture = bucard_picture
+	is_triggered_only = yes
+	option = {
+		name = france_wr.263.a
+		custom_effect_tooltip = FRA_bucard_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_FRANCE_BUCARD" }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.264
+	title = france_wr.264.t
+	desc = france_wr.264.d
+	picture = france_flag
+	is_triggered_only = yes
+	option = {
+		name = france_wr.264.a
+		custom_effect_tooltip = FRA_democracy_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_FRANCE_DEMOCRACY" }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.265
+	title = france_wr.265.t
+	desc = france_wr.265.d
+	picture = maurras_picture
+	is_triggered_only = yes
+	option = {
+		name = france_wr.265.a
+		custom_effect_tooltip = FRA_maurras_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_FRANCE_MAURRAS" }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.266
+	title = france_wr.266.t
+	desc = france_wr.266.d
+	picture = monatte_picture
+	is_triggered_only = yes
+	option = {
+		name = france_wr.266.a
+		custom_effect_tooltip = FRA_monatte_ending
+		hidden_effect = { scoped_play_song = "WR_ENDING_FRANCE_MONARTT" }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.267
+	title = france_wr.267.t
+	desc = france_wr.267.d
+	picture = GFX_report_event_generic_factory
+	fire_only_once = yes
+	mean_time_to_happen = { days = 50 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_flag = deat_in_power_flag
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.267.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.268
+	title = france_wr.268.t
+	desc = france_wr.268.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 50 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_jacques_doriot
+			ruling_only = yes
+		}
+		NOT = { has_country_flag = deat_in_power_flag }
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.268.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.269
+	title = france_wr.269.t
+	desc = france_wr.269.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 50 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_marcel_bucard
+			ruling_only = yes
+		}
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.269.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.270
+	title = france_wr.270.t
+	desc = france_wr.270.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 50 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		OR = {
+			has_country_leader = {
+				character = FRA_francois_de_la_rocque
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = FRA_francois_de_la_rocque_democracy
+				ruling_only = yes
+			}
+		}
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.270.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.271
+	title = france_wr.271.t
+	desc = france_wr.271.d
+	picture = de_gualle
+	fire_only_once = yes
+	mean_time_to_happen = { days = 50 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_charles_de_gaulle
+			ruling_only = yes
+		}
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.271.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.272
+	title = france_wr.272.t
+	desc = france_wr.272.d
+	picture = GFX_report_event_soldiers_in_france
+	fire_only_once = yes
+	mean_time_to_happen = { days = 50 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		OR = {
+			has_country_leader = {
+				character = FRA_charles_maurras
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = FRA_jean_iii
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = FRA_henry_vi
+				ruling_only = yes
+			}
+		}
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.272.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.273
+	title = france_wr.273.t
+	desc = france_wr.273.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 50 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_paul_reynaud
+			ruling_only = yes
+		}
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.273.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.274
+	title = france_wr.274.t
+	desc = france_wr.274.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 50 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_leon_blum
+			ruling_only = yes
+		}
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.274.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.275
+	title = france_wr.275.t
+	desc = france_wr.275.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 50 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_pierre_monatte
+			ruling_only = yes
+		}
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.275.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.276
+	title = france_wr.276.t
+	desc = france_wr.276.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_flag = deat_in_power_flag
+		has_completed_focus = FRA_Firepower_Firepower_Firepower
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.276.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.277
+	title = france_wr.277.t
+	desc = france_wr.277.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_flag = deat_in_power_flag
+		has_completed_focus = FRA_The_raging_storm
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.277.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.278
+	title = france_wr.278.t
+	desc = france_wr.278.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_marcel_bucard
+			ruling_only = yes
+		}
+		has_completed_focus = FRA_The_raging_storm
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.278.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.279
+	title = france_wr.279.t
+	desc = france_wr.279.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_marcel_bucard
+			ruling_only = yes
+		}
+		has_completed_focus = FRA_Firepower_Firepower_Firepower
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.279.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.280
+	title = france_wr.280.t
+	desc = france_wr.280.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		OR = {
+			has_country_leader = {
+				character = FRA_francois_de_la_rocque
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = FRA_francois_de_la_rocque_democracy
+				ruling_only = yes
+			}
+		}
+		has_completed_focus = FRA_The_raging_storm
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.280.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.281
+	title = france_wr.281.t
+	desc = france_wr.281.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		OR = {
+			has_country_leader = {
+				character = FRA_francois_de_la_rocque
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = FRA_francois_de_la_rocque_democracy
+				ruling_only = yes
+			}
+		}
+		has_completed_focus = FRA_Firepower_Firepower_Firepower
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.281.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.282
+	title = france_wr.282.t
+	desc = france_wr.282.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_paul_reynaud
+			ruling_only = yes
+		}
+		has_completed_focus = FRA_Firepower_Firepower_Firepower
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.282.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.283
+	title = france_wr.283.t
+	desc = france_wr.283.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_paul_reynaud
+			ruling_only = yes
+		}
+		has_completed_focus = FRA_The_raging_storm
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.283.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.284
+	title = france_wr.284.t
+	desc = france_wr.284.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_leon_blum
+			ruling_only = yes
+		}
+		has_completed_focus = FRA_Firepower_Firepower_Firepower
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.284.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.285
+	title = france_wr.285.t
+	desc = france_wr.285.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_leon_blum
+			ruling_only = yes
+		}
+		has_completed_focus = FRA_The_raging_storm
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.285.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.286
+	title = france_wr.286.t
+	desc = france_wr.286.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		OR = {
+			has_country_leader = {
+				character = FRA_charles_maurras
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = FRA_jean_iii
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = FRA_henry_vi
+				ruling_only = yes
+			}
+		}
+		has_completed_focus = FRA_Firepower_Firepower_Firepower
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.286.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.287
+	title = france_wr.287.t
+	desc = france_wr.287.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		OR = {
+			has_country_leader = {
+				character = FRA_charles_maurras
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = FRA_jean_iii
+				ruling_only = yes
+			}
+			has_country_leader = {
+				character = FRA_henry_vi
+				ruling_only = yes
+			}
+		}
+		has_completed_focus = FRA_The_raging_storm
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.287.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.288
+	title = france_wr.288.t
+	desc = france_wr.288.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_charles_de_gaulle
+			ruling_only = yes
+		}
+		has_completed_focus = FRA_Firepower_Firepower_Firepower
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.288.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.289
+	title = france_wr.289.t
+	desc = france_wr.289.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_charles_de_gaulle
+			ruling_only = yes
+		}
+		has_completed_focus = FRA_The_raging_storm
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.289.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.290
+	title = france_wr.290.t
+	desc = france_wr.290.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_jacques_doriot
+			ruling_only = yes
+		}
+		NOT = { has_country_flag = deat_in_power_flag }
+		has_completed_focus = FRA_Firepower_Firepower_Firepower
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.290.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.291
+	title = france_wr.291.t
+	desc = france_wr.291.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_jacques_doriot
+			ruling_only = yes
+		}
+		NOT = { has_country_flag = deat_in_power_flag }
+		has_completed_focus = FRA_The_raging_storm
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.291.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.292
+	title = france_wr.292.t
+	desc = france_wr.292.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_pierre_monatte
+			ruling_only = yes
+		}
+		has_completed_focus = FRA_Firepower_Firepower_Firepower
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.292.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.293
+	title = france_wr.293.t
+	desc = france_wr.293.d
+	picture = GFX_report_event_spr_civil_war_faction_defeated
+	fire_only_once = yes
+	mean_time_to_happen = { days = 150 }
+	trigger = {
+		original_tag = FRA
+		has_war_with = GER
+		has_country_leader = {
+			character = FRA_pierre_monatte
+			ruling_only = yes
+		}
+		has_completed_focus = FRA_The_raging_storm
+		any_state = {
+			is_owned_by = GER
+			is_controlled_by = FRA
+		}
+	}
+	option = {
+		name = france_wr.293.a
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+news_event = {
+	id = france_wr.294
+	title = france_wr.294.t
+	desc = france_wr.294.d
+	picture = FRA_paris_faction
+	major = yes
+	is_triggered_only = yes
+	option = {
+		name = france_wr.294.a
+		ai_chance = {
+			base = 10
 		}
 	}
 }
@@ -7726,6 +8640,22 @@ country_event = {
 			910 = { enable_state_integration_80_compliance = yes }
 			8 = { enable_state_integration_80_compliance = yes }
 		}
+		else_if = {
+			limit = {
+				has_country_leader = {
+					character = FRA_jacques_doriot
+					ruling_only = yes
+				}
+				NOT = { has_country_flag = deat_in_power_flag }
+			}
+			34 = { enable_state_integration_80_compliance = yes }
+			910 = { enable_state_integration_80_compliance = yes }
+			8 = { enable_state_integration_80_compliance = yes }
+			6 = { enable_state_integration_80_compliance = yes }
+			42 = { enable_state_integration_80_compliance = yes }
+			51 = { enable_state_integration_80_compliance = yes }
+			35 = { enable_state_integration_80_compliance = yes }
+		}
 		else = {
 			34 = { enable_state_integration_80_compliance = yes }
 			910 = { enable_state_integration_80_compliance = yes }
@@ -7737,6 +8667,21 @@ country_event = {
 			36 = { enable_state_integration_80_compliance = yes }
 			7 = { enable_state_integration_80_compliance = yes }
 		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = france_wr.1002
+	title = france_wr.1002.t
+	desc = france_wr.1002.d
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = france_wr.1002.a
+		set_global_flag = over_six_weeks_flag
 		ai_chance = {
 			base = 10
 		}

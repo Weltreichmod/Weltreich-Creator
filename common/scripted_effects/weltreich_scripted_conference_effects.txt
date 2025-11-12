@@ -470,19 +470,23 @@ peace_conference_effect = {
 				}
 				transfer_state_to = BEL
 			}
-			FRA = {
-				if = {
-					limit = {
-						has_dlc = "Together for Victory"
-						BEL = { exists = yes }
-					}
-					set_autonomy = {
-						target = BEL
-						autonomous_state = autonomy_puppet
-						freedom_level = 0.5
-					}
-					else = {
-						puppet = BEL
+			if = {
+				limit = {
+					BEL = { exists = yes }
+				}
+				FRA = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = BEL
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = BEL
+						}
 					}
 				}
 			}
@@ -505,29 +509,13 @@ peace_conference_effect = {
 			transfer_state_to = FRA
 		}
 		if = {
-			limit = {
-				FRA = {
-					OR = {
-						has_country_leader = {
-							character = FRA_pierre_monatte
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = FRA_leon_blum
-							ruling_only = yes
-						}
-						has_country_leader = {
-							character = FRA_paul_reynaud
-							ruling_only = yes
-						}
-					}
-				}
+			limit  ={
+				HOL = { exists = yes }
 			}
 			FRA = {
 				if = {
 					limit = {
 						has_dlc = "Together for Victory"
-						HOL = { exists = yes }
 					}
 					set_autonomy = {
 						target = HOL
@@ -539,21 +527,21 @@ peace_conference_effect = {
 					}
 				}
 			}
-		}
-		else = {
-			FRA = {
-				if = {
-					limit = {
-						has_dlc = "Together for Victory"
-						HOL = { exists = yes }
+			if = {
+				limit = {
+					FRA = {
+						has_country_leader = {
+							character = FRA_jacques_doriot
+							ruling_only = yes
+						}
+						NOT = { has_country_flag = deat_in_power_flag }
 					}
-					set_autonomy = {
-						target = HOL
-						autonomous_state = autonomy_puppet
-						freedom_level = 0.5
-					}
-					else = {
-						puppet = HOL
+				}
+				HOL = {
+					create_country_leader = {
+						name = "HOL_Dirk_Jan_de_Geer"
+						picture = "gfx/leaders/HOL/HOL_Dirk_Jan_de_Geer.png" 
+						ideology = national_popular_socialism
 					}
 				}
 			}
@@ -628,19 +616,23 @@ peace_conference_effect = {
 			}
 			LUX = { inherit_technology = FRA }
 			else = {
-				FRA = {
-					if = {
-						limit = {
-							has_dlc = "Together for Victory"
-							LUX = { exists = yes }
-						}
-						set_autonomy = {
-							target = LUX
-							autonomous_state = autonomy_puppet
-							freedom_level = 0.5
-						}
-						else = {
-							puppet = LUX
+				if = {
+					limit  ={
+						LUX = { exists = yes }
+					}
+					FRA = {
+						if = {
+							limit = {
+								has_dlc = "Together for Victory"
+							}
+							set_autonomy = {
+								target = LUX
+								autonomous_state = autonomy_satellite
+								freedom_level = 0.5
+							}
+							else = {
+								puppet = LUX
+							}
 						}
 					}
 				}
@@ -5378,7 +5370,11 @@ peace_conference_effect_for_russia = {
 doriot_deat_germany = {
 	if = {
 		limit = {
-			NOT = { has_completed_focus = FRA_Dea_New_Order }
+			has_country_leader = {
+				character = FRA_jacques_doriot
+				ruling_only = yes
+			}
+			NOT = { has_country_flag = deat_in_power_flag }
 		}
 		every_state = {
 			limit = {
@@ -5498,7 +5494,7 @@ doriot_deat_germany = {
 	}
 	if = {
 		limit = {
-			has_completed_focus = FRA_Dea_New_Order
+			has_country_flag = deat_in_power_flag
 		}
 		every_state = {
 			limit = {
@@ -5674,13 +5670,13 @@ maurras_germany = {
 		}
 		set_party_name = {
 			ideology = fascism
-			long_name = WR_Banned
-			name = WR_Banned
+			long_name = FRA_action_francaise
+			name = FRA_action_francaise
 		}
 		set_party_name = {
 			ideology = neutrality
-			long_name = FRA_action_francaise
-			name = FRA_action_francaise
+			long_name = WR_Banned
+			name = WR_Banned
 		}
 		create_country_leader = {
 			name = "FRA_jacques_bainville"
@@ -5703,18 +5699,18 @@ maurras_germany = {
 		}
 		set_party_name = {
 			ideology = fascism
-			long_name = WR_Banned
-			name = WR_Banned
+			long_name = GER_neutrality_party_long
+			name = GER_neutrality_party
 		}
 		set_party_name = {
 			ideology = neutrality
-			long_name = GER_neutrality_party_long
-			name = GER_neutrality_party
+			long_name = WR_Banned
+			name = WR_Banned
 		}
 		create_country_leader = {
 			name = "GER_friedrich_v"
 			picture = "gfx/leaders/GER/GER_friedrich_v.png"
-			ideology = autocracy
+			ideology = fascism_ideology
 		}
 	}
 	FRA = {

@@ -34,6 +34,7 @@ on_actions = {
 						is_subject = no
 					}
 				}
+				FRA = { country_event = { id = france_wr.1002 days = 42 } }
 				FRA = { country_event = { id = france.100 days = 1 } }
 			}
 		}
@@ -2627,170 +2628,16 @@ on_actions = {
 				}
 				FRS = { annex_country = { target = FRA transfer_troops = yes } country_event = france.46 }
 			}
-			#Mukden incident
 			if = {
 				limit = {
-					original_tag = FNG
-					FNG = { is_in_faction = no }
-					JAP = {
-						has_war_with = PREV
-						has_capitulated = no
-					}
+					tag = NEA
+					has_war_with = MAN
 				}
-				every_country = {
-					limit = {
-						has_war_with = FNG
-						OR = {
-							original_tag = JAP
-							is_in_faction_with = JAP
-							is_subject_of = JAP
-						}
-					}
-					white_peace = FNG
+				MAN = { annex_country = { target = NEA transfer_troops = no } }
+				add_victory_points = {
+					province = 9781
+					value = -2
 				}
-				clr_global_flag = JAP_Mukden_incident_flag
-				set_global_flag = end_of_mukden_incident_flag
-				JAP = {
-					if = {
-						limit = {
-							OR = {
-								has_dlc = "Together for Victory"
-								has_dlc = "Waking the Tiger"
-							}
-						}
-						set_autonomy = {
-							target = MAN
-							autonomous_state = autonomy_wtt_imperial_protectorate
-							freedom_level = 0.5
-						}
-						else = {
-							puppet = MAN
-						}
-					}
-				}
-				every_state = {
-					limit = {
-						is_owned_by = FNG
-						OR = {
-							state = 716
-							state = 328
-							state = 717
-							state = 610
-							state = 715
-							state = 714
-							state = 761
-							state = 961
-							state = 999
-							state = 1000
-						}
-					}
-					add_core_of = MAN
-					transfer_state_to = MAN
-				}
-				JAP = {
-					if = {
-						limit = {
-							OR = {
-								has_dlc = "Together for Victory"
-								has_dlc = "Waking the Tiger"
-							}
-						}
-						set_autonomy = {
-							target = MEN
-							autonomous_state = autonomy_wtt_imperial_protectorate
-							freedom_level = 0.5
-						}
-						else = {
-							puppet = MEN
-						}
-					}
-				}
-				every_state = {
-					limit = {
-						is_owned_by = FNG
-						OR = {
-							state = 612
-							state = 611
-						}
-					}
-					add_core_of = MEN
-					transfer_state_to = MEN
-				}
-				every_state = {
-					limit = {
-						is_owned_by = FNG
-						state = 609
-					}
-					transfer_state_to = JAP
-				}
-				if = {
-					limit = {
-						FNG = { has_war_with = CHI }
-					}
-					every_country = {
-						limit = {
-							has_war_with = FNG
-							OR = {
-								original_tag = CHI
-								is_in_faction_with = CHI
-								is_subject_of = CHI
-							}
-						}
-						white_peace = FNG
-					}
-					every_state = {
-						limit = {
-							is_core_of = FNG
-						}
-						remove_core_of = FNG
-						add_core_of = CHI
-					}
-					CHI = { annex_country = { target = FNG transfer_troops = yes } }
-				}
-				JAP = { country_event = japan_wr.16 }
-				if = {
-					limit = {
-						NOT = { FNG = { has_war_with = CHI } }
-					}
-					FNG = { news_event = { id = wr_news.2 days = 14 } }
-				}
-			}
-			#KMT civil war
-			if = {
-				limit = {
-					tag = CHI
-					has_global_flag = kmt_civil_war
-					CHR = {
-						has_war_with = PREV
-						has_capitulated = no
-					}
-				}
-				CHR = { annex_country = { target = CHI transfer_troops = yes } }
-				every_state = {
-					limit = {
-						is_core_of = CHI
-					}
-					remove_core_of = CHI
-				}
-				clr_global_flag = kmt_civil_war
-			}
-			if = {
-				limit = {
-					tag = CHR
-					has_global_flag = spanish_civil_war
-					CHI = {
-						has_war_with = PREV
-						has_capitulated = no
-					}
-				}
-				CHI = { annex_country = { target = CHR transfer_troops = yes } }
-				every_state = {
-					limit = {
-						is_core_of = CHR
-					}
-					remove_core_of = CHR
-				}
-				clr_global_flag = kmt_civil_war
 			}
 			#소련내전
 			if = {

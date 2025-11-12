@@ -120,7 +120,13 @@ yellow_peril = {
 			tooltip = yellow_peril_trigger
 			is_subject = no
 			has_war = no
-			has_country_flag = yellow_peril_flag
+			OR = {
+				AND = {
+					GER = { has_country_flag = second_great_war_loser }
+					JAP = { has_country_flag = second_great_war_winner }
+				}
+				has_country_flag = yellow_peril_flag
+			}
 		}
 	}
 }
@@ -153,10 +159,6 @@ revenge_of_1812 = {
 			tooltip = revenge_of_1812_trigger
 			is_subject = no
 			has_country_flag = second_great_war_winner
-			has_country_leader = {
-				character = FRA_napoleon_vi
-				ruling_only = yes
-			}
 			has_country_flag = revenge_of_1812_flag
 		}
 	}
@@ -273,5 +275,22 @@ thousand_year_empire = {
 	}
 	happened = {
 		has_completed_focus = Kostantiniyye_Treaty_Organization
+	}
+}
+
+FRA_blitzkrieg = {
+	possible = {
+		difficulty > 1
+		has_any_custom_difficulty_setting = no
+		game_rules_allow_achievements = yes
+		original_tag = FRA
+	}
+	happened = {
+		custom_trigger_tooltip = {
+			tooltip = FRA_blitzkrieg_trigger
+			is_subject = no
+			has_country_flag = second_great_war_winner
+			NOT = { has_global_flag = over_six_weeks_flag }
+		}
 	}
 }

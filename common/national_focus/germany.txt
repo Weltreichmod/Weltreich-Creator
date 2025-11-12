@@ -1610,6 +1610,7 @@ focus_tree = {
 			remove_ideas = The_aftermath_of_the_Great_Depression3
 			remove_ideas = large_corporations_preferential_relief
 			remove_ideas = the_disposal_of_unprofitable_property
+			add_ideas = GER_economic_boom
 			random_owned_controlled_state = {
 				limit = {
 					is_core_of = ROOT
@@ -2490,21 +2491,14 @@ focus_tree = {
 		x = 0
 		y = 1
 		cost = 10
-		bypass = {
+		available = {
+			BEL = { is_in_faction_with = GER }
 			OR = {
-				BEL = {
-					NOT = {
-						has_idea = Belgian_resistance
-					}
+				AND = {
+					BEL = { has_war_with_major = yes }
+					GER = { has_war_with_major = yes }
 				}
-				BEL = {
-					NOT = {
-						is_subject_of = GER
-					}
-				}
-				BEL = {
-					exists = no
-				}
+				GER = { has_country_flag = second_great_war_winner }
 			}
 		}
 		prerequisite = {
@@ -2518,11 +2512,25 @@ focus_tree = {
 			is_subject = no
 		}
 		completion_reward = {
-			BEL = { remove_ideas = Belgian_resistance }
 			BEL = {
 				add_popularity = {
 					ideology = neutrality
 					popularity = 0.15
+				}
+			}
+			GER = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = BEL
+						autonomous_state = autonomy_satellite
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = BEL
+					}
 				}
 			}
 		}
@@ -2542,6 +2550,9 @@ focus_tree = {
 				has_war_with = ENG
 				date > 1940.1.1
 			}
+			NOT = { has_country_flag = second_great_war_winner }
+			NOT = { has_country_flag = second_great_war_loser }
+			is_subject = no
 		}
 		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
 		ai_will_do = {

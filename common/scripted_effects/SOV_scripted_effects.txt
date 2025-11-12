@@ -8218,24 +8218,54 @@ economy_is_good = {
 }
 
 SOV_fall_in_wwiii = {
-	every_country = {
+	if = {
 		limit = {
-			is_subject_of = SOV
-			has_country_flag = third_world_war_loser
-			capital_scope = { is_on_continent = europe }
+			ENG = { has_country_flag = third_world_war_winner }
 		}
-		FRA = {
-			if = {
-				limit = {
-					has_dlc = "Together for Victory"
+		every_country = {
+			limit = {
+				is_subject_of = SOV
+				has_country_flag = third_world_war_loser
+				capital_scope = { is_on_continent = europe }
+				NOT = { original_tag = EST }
+				NOT = { original_tag = FIN }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = PREV
+						autonomous_state = autonomy_satellite
+					}
 				}
-				set_autonomy = {
-					target = PREV
-					autonomous_state = autonomy_satellite
+				else = {
+					puppet = PREV
 				}
 			}
-			else = {
-				puppet = PREV
+		}
+	}
+	else = {
+		every_country = {
+			limit = {
+				is_subject_of = SOV
+				has_country_flag = third_world_war_loser
+				capital_scope = { is_on_continent = europe }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = PREV
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = PREV
+				}
 			}
 		}
 	}
@@ -8247,23 +8277,27 @@ SOV_fall_in_wwiii = {
 						character = FRA_jacques_doriot
 						ruling_only = yes
 					}
+					NOT = { has_country_flag = deat_in_power_flag }
 				}
 				country_event = { id = france_wr.259 days = 10 }
 			}
 			if = {
 				limit = {
-					has_country_leader = {
-						character = FRA_marcel_deat
-						ruling_only = yes
-					}
+					has_country_flag = deat_in_power_flag
 				}
 				country_event = { id = france_wr.260 days = 10 }
 			}
 			if = {
 				limit = {
-					has_country_leader = {
-						character = FRA_francois_de_la_rocque
-						ruling_only = yes
+					OR = {
+						has_country_leader = {
+							character = FRA_francois_de_la_rocque
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_francois_de_la_rocque_democracy
+							ruling_only = yes
+						}
 					}
 				}
 				country_event = { id = france_wr.261 days = 10 }
@@ -8288,30 +8322,41 @@ SOV_fall_in_wwiii = {
 			}
 			if = {
 				limit = {
-					has_country_leader = {
-						character = FRA_leon_blum
-						ruling_only = yes
+					OR = {
+						has_country_leader = {
+							character = FRA_leon_blum
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_paul_reynaud
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_french_parliment
+							ruling_only = yes
+						}
 					}
 				}
 				country_event = { id = france_wr.264 days = 10 }
 			}
 			if = {
 				limit = {
-					has_country_leader = {
-						character = FRA_paul_reynaud
-						ruling_only = yes
+					OR = {
+						has_country_leader = {
+							character = FRA_charles_maurras
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_jean_iii
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_henry_vi
+							ruling_only = yes
+						}
 					}
 				}
 				country_event = { id = france_wr.265 days = 10 }
-			}
-			if = {
-				limit = {
-					has_country_leader = {
-						character = FRA_charles_maurras
-						ruling_only = yes
-					}
-				}
-				country_event = { id = france_wr.266 days = 10 }
 			}
 			if = {
 				limit = {
@@ -8320,7 +8365,7 @@ SOV_fall_in_wwiii = {
 						ruling_only = yes
 					}
 				}
-				country_event = { id = france_wr.267 days = 10 }
+				country_event = { id = france_wr.266 days = 10 }
 			}
 		}
 	}
@@ -8463,6 +8508,25 @@ SOV_fall_in_wwiii = {
 		}
 		if = {
 			limit = {
+				ENG = { has_country_flag = third_world_war_winner }
+			}
+			ENG = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = EST
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = EST
+				}
+			}
+		}
+		else_if = {
+			limit = {
 				NOT = { EST = { is_subject_of = FRA } }
 			}
 			FRA = {
@@ -8486,6 +8550,7 @@ SOV_fall_in_wwiii = {
 			OR = {
 				LAT = { exists = no }
 				LAT = { has_country_flag = third_world_war_loser }
+				LAT = { is_subject_of = FRA }
 			}
 		}
 		every_state = {
@@ -8521,8 +8586,62 @@ SOV_fall_in_wwiii = {
 	if = {
 		limit = {
 			OR = {
+				FIN = { exists = no }
+				FIN = { has_country_flag = third_world_war_loser }
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				is_core_of = FIN
+			}
+			transfer_state_to = FIN
+		}
+		if = {
+			limit = {
+				ENG = { has_country_flag = third_world_war_winner }
+			}
+			ENG = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = FIN
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = FIN
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = { FIN = { is_subject_of = FRA } }
+			}
+			FRA = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = FIN
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = FIN
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
+			OR = {
 				BLR = { exists = no }
 				BLR = { has_country_flag = third_world_war_loser }
+				BLR = { is_subject_of = FRA }
 			}
 		}
 		every_state = {
@@ -8590,6 +8709,7 @@ SOV_fall_in_wwiii = {
 				}
 			}
 		}
+		UKR = { set_cosmetic_tag = Blue_UKR }
 	}
 	if = {
 		limit = {
@@ -8695,6 +8815,66 @@ SOV_fall_in_wwiii = {
 	}
 	if = {
 		limit = {
+			NOV = { exists = no }
+			ENG = { has_country_flag = third_world_war_winner }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				state = 195
+			}
+			transfer_state_to = ENG
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SOV
+				OR = {
+					state = 210
+					state = 209
+					state = 208
+					state = 263
+					state = 244
+					state = 264
+					state = 216
+					state = 215
+					state = 213
+					state = 351
+					state = 880
+					state = 879
+					state = 958
+					state = 214
+					state = 397
+					state = 262
+					state = 825
+					state = 581
+				}
+			}
+			add_core_of = NOV
+			transfer_state_to = NOV
+		}
+		NOV = { inherit_technology = RUS }
+		if = {
+			limit = {
+				NOT = { NOV = { is_subject_of = ENG } }
+			}
+			ENG = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+					}
+					set_autonomy = {
+						target = NOV
+						autonomous_state = autonomy_satellite
+					}
+				}
+				else = {
+					puppet = NOV
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
 			RUS = { exists = no }
 		}
 		every_state = {
@@ -8792,6 +8972,103 @@ SOV_fall_in_wwiii = {
 				}
 				else = {
 					puppet = RUS
+				}
+			}
+		}
+		if = {
+			limit = {
+				FRA = {
+					OR = {
+						has_country_leader = {
+							character = FRA_paul_reynaud
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_leon_blum
+							ruling_only = yes
+						}
+					}
+				}
+			}
+			RUS = {
+				create_country_leader = {
+					name = "RUS_Vasily_Maklakov"
+					picture = "gfx/leaders/RUS/RUS_Vasily_Maklakov.png" 
+					ideology = liberalism
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				FRA = {
+					OR = {
+						has_country_leader = {
+							character = FRA_charles_maurras
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_jean_iii
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = FRA_henry_vi
+							ruling_only = yes
+						}
+					}
+				}
+			}
+			RUS = {
+				remove_country_leader_role = {
+					character = RUS_aleksey_arkhangelsky
+					ideology = despotism
+				}
+				add_country_leader_role = {
+					character = RUS_vladimir_kirillovich
+					promote_leader = yes
+					country_leader = {
+						ideology = autocracy
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				FRA = {
+					has_country_leader = {
+						character = FRA_pierre_monatte
+						ruling_only = yes
+					}
+				}
+			}
+			RUS = {
+				create_country_leader = {
+					name = "RUS_Russian_Syndicalist_Council"
+					picture = "gfx/leaders/RUS/RUS_Russian_Syndicalist_Council.png" 
+					ideology = syndicalism
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				FRA = { has_government = neutrality }
+			}
+			RUS = {
+				create_country_leader = {
+					name = "RUS_Viktor_Larionov"
+					picture = "gfx/leaders/RUS/RUS_Viktor_Larionov.png" 
+					ideology = despotism
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				FRA = { has_government = fascism }
+			}
+			RUS = {
+				create_country_leader = {
+					name = "RUS_Viktor_Larionov"
+					picture = "gfx/leaders/RUS/RUS_Viktor_Larionov.png" 
+					ideology = fascism_ideology
 				}
 			}
 		}
@@ -9283,7 +9560,11 @@ death_of_FRA = {
 	every_state = {
 		limit = {
 			is_owned_by = FRA
-			is_core_of = GER
+			OR = {
+				state = 28
+				state = 42
+				state = 51
+			}
 		}
 		transfer_state_to = DDR
 	}
@@ -9378,15 +9659,27 @@ death_of_FRA = {
 			every_state = {
 				limit = {
 					is_owned_by = FRA
-					is_core_of = ALG
+					OR = {
+						state = 459
+						state = 513
+						state = 460
+						state = 514
+					}
 				}
+				add_core_of = ALG
+				remove_core_of = FRA
 				transfer_state_to = ALG
 			}
 			every_state = {
 				limit = {
 					is_owned_by = FRA
-					is_core_of = TUN
+					OR = {
+						state = 458
+						state = 665
+					}
 				}
+				add_core_of = TUN
+				remove_core_of = FRA
 				transfer_state_to = TUN
 			}
 			every_state = {
@@ -9560,8 +9853,12 @@ death_of_FRA = {
 	SOV = {
 		if = {
 			limit = {
-				NOT = { DDR = { is_subject_of = SOV } }
-				DDR = { exists = yes }
+				DDR = { exists = no }
+			}
+			DDR = {
+				annex_country = { target = G01 transfer_troops = yes }
+				annex_country = { target = G02 transfer_troops = yes }
+				annex_country = { target = G03 transfer_troops = yes }
 			}
 			if = {
 				limit = {
@@ -9591,8 +9888,14 @@ death_of_FRA = {
 		every_state = {
 			limit = {
 				is_owned_by = FRA
-				is_core_of = HOL
+				OR = {
+					state = 35
+					state = 7
+					state = 36
+				}
 			}
+			add_core_of = HOL
+			remove_core_of = GER
 			transfer_state_to = HOL
 		}
 	}
@@ -9623,9 +9926,49 @@ death_of_FRA = {
 		every_state = {
 			limit = {
 				is_owned_by = FRA
-				is_core_of = BEL
+				OR = {
+					state = 6
+					state = 34
+					state = 910
+				}
 			}
+			add_core_of = BEL
+			remove_core_of = GER
 			transfer_state_to = BEL
+		}
+	}
+	if = {
+		limit = {
+			LUX = { exists = no }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = FRA
+				state = 8
+			}
+			add_core_of = LUX
+			remove_core_of = GER
+			transfer_state_to = LUX
+		}
+	}
+	SOV = {
+		if = {
+			limit = {
+				LUX = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = LUX
+					autonomous_state = autonomy_puppet
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = LUX
+				}
+			}
 		}
 	}
 	SOV = {

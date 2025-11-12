@@ -1299,15 +1299,27 @@ country_event = {
 		every_state = {
 			limit = {
 				is_owned_by = FRA
-				is_core_of = ALG
+				OR = {
+					state = 459
+					state = 513
+					state = 460
+					state = 514
+				}
 			}
+			add_core_of = ALG
+			remove_core_of = FRA
 			transfer_state_to = ALG
 		}
 		every_state = {
 			limit = {
 				is_owned_by = FRA
-				is_core_of = TUN
+				OR = {
+					state = 458
+					state = 665
+				}
 			}
+			add_core_of = TUN
+			remove_core_of = FRA
 			transfer_state_to = TUN
 		}
 		every_state = {
@@ -3043,6 +3055,7 @@ country_event = {
 					OR = {
 						has_country_flag = peoplesparty_won
 						has_country_flag = FRA_bucard_victory_flag
+						has_country_flag = maurras_victory_flag
 					}
 				}
 				set_party_name = {
@@ -3061,6 +3074,7 @@ country_event = {
 					has_government = fascism
 					NOT = { has_country_flag = peoplesparty_won }
 					NOT = { has_country_flag = FRA_bucard_victory_flag }
+					NOT = { has_country_flag = maurras_victory_flag }
 				}
 				set_party_name = {
 					ideology = fascism
@@ -3068,7 +3082,6 @@ country_event = {
 					name = French_Government
 				}
 				change_NO = yes
-				change_AF = yes
 				change_FWP = yes
 				change_DU = yes
 				create_country_leader = {
@@ -3083,7 +3096,6 @@ country_event = {
 					OR = {
 						has_country_flag = FRA_de_la_rocque_victory_flag
 						has_country_flag = FRA_charles_de_gaulle_victory_flag
-						has_country_flag = maurras_victory_flag
 					}
 				}
 				set_party_name = {
@@ -3102,7 +3114,6 @@ country_event = {
 					has_government = neutrality
 					NOT = { has_country_flag = FRA_de_la_rocque_victory_flag }
 					NOT = { has_country_flag = FRA_charles_de_gaulle_victory_flag }
-					NOT = { has_country_flag = maurras_victory_flag }
 				}
 				set_party_name = {
 					ideology = neutrality
@@ -3110,6 +3121,7 @@ country_event = {
 					name = French_Government
 				}
 				change_AFPU = yes
+				change_AF = yes
 				change_MB = yes
 				change_FWP = yes
 				change_DU = yes
@@ -3262,9 +3274,15 @@ country_event = {
 		}
 		else_if = {
 			limit = {
-				has_country_leader = {
-					character = FRA_francois_de_la_rocque
-					ruling_only = yes
+				OR = {
+					has_country_leader = {
+						character = FRA_francois_de_la_rocque
+						ruling_only = yes
+					}
+					has_country_leader = {
+						character = FRA_francois_de_la_rocque_democracy
+						ruling_only = yes
+					}
 				}
 			}
 			francois_de_la_rocque_germany = yes

@@ -240,25 +240,12 @@ Gerboise_Bleue = {
 		ai_will_do = {
 			base = 4000
 		}
-		days_remove = 365
+		days_remove = 200
+		fire_only_once = yes
 		remove_effect = {
-			if = {
-				limit = {
-					NOT = { has_tech = atomic_research }
-					NOT = { is_researching_technology = atomic_research }
-				}
-				add_tech_bonus = {
-					name = Uranium_Extraction
-					bonus = 0.2
-					uses = 1
-					technology = atomic_research
-				}
-			}
-			else = {
-				add_breakthrough_progress = {
-					specialization = specialization_nuclear
-					value = 0.2
-				}
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 0.3
 			}
 			set_country_flag = nuke_bomb_flag
 		}
@@ -785,7 +772,14 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_nazbol_med = yes
 		}
 		ai_will_do = { 
-			base = 0
+			base = 75
+			modifier = {
+				add = -75
+				OR = {
+					check_variable = { support_nazbol > 85 }
+					has_country_flag = FRA_yes_coup_flag
+				}
+			}
 		}
 	}
 	FRA_pup_congress = {
@@ -812,9 +806,9 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_nazbol_high = yes
 		}
 		ai_will_do = { 
-			base = 100
+			base = 150
 			modifier = {
-				add = -100
+				add = -150
 				OR = {
 					check_variable = { support_nazbol > 85 }
 					has_country_flag = FRA_yes_coup_flag
@@ -880,7 +874,11 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_maurras_med = yes
 		}
 		ai_will_do = { 
-			base = 0
+			base = 75
+			modifier = {
+				add = -75
+				check_variable = { support_maurras > 85 }
+			}
 		}
 	}
 	FRA_camelots_du_roi_march = {
@@ -910,9 +908,9 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_maurras_high = yes
 		}
 		ai_will_do = { 
-			base = 100
+			base = 150
 			modifier = {
-				add = -100
+				add = -150
 				check_variable = { support_maurras > 85 }
 			}
 		}
@@ -995,7 +993,11 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_rocque_med = yes
 		}
 		ai_will_do = { 
-			base = 0
+			base = 75
+			modifier = {
+				add = -75
+				check_variable = { support_rocque > 85 }
+			}
 		}
 	}
 	FRA_veterans_rally = {
@@ -1021,9 +1023,9 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_rocque_high = yes
 		}
 		ai_will_do = { 
-			base = 100
+			base = 150
 			modifier = {
-				add = -100
+				add = -150
 				check_variable = { support_rocque > 85 }
 			}
 		}
@@ -1099,7 +1101,11 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_bucard_med = yes
 		}
 		ai_will_do = { 
-			base = 0
+			base = 75
+			modifier = {
+				add = -75
+				check_variable = { support_bucard > 85 }
+			}
 		}
 	}
 	FRA_nationalist_appeal = {
@@ -1119,9 +1125,9 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_bucard_high = yes
 		}
 		ai_will_do = { 
-			base = 100
+			base = 150
 			modifier = {
-				add = -100
+				add = -150
 				check_variable = { support_bucard > 85 }
 			}
 		}
@@ -1192,7 +1198,11 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_worker_med = yes
 		}
 		ai_will_do = { 
-			base = 0
+			base = 75
+			modifier = {
+				add = -75
+				check_variable = { support_worker > 85 }
+			}
 		}
 	}
 	FRA_mobilize_workers_congress = {
@@ -1212,9 +1222,9 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_worker_high = yes
 		}
 		ai_will_do = { 
-			base = 100
+			base = 150
 			modifier = {
-				add = -100
+				add = -150
 				check_variable = { support_worker > 85 }
 			}
 		}
@@ -1305,7 +1315,11 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_sfio_med = yes
 		}
 		ai_will_do = { 
-			base = 0
+			base = 75
+			modifier = {
+				add = -75
+				check_variable = { support_sfio > 85 }
+			}
 		}
 	}
 	FRA_psdf_expand_social_reforms = {
@@ -1335,9 +1349,9 @@ FRA_Behind_the_Curtain_of_Power_category = {
 			FRA_pcd_increase_support_sfio_high = yes
 		}
 		ai_will_do = { 
-			base = 100
+			base = 150
 			modifier = {
-				add = -100
+				add = -150
 				check_variable = { support_sfio > 85 }
 			}
 		}
@@ -2856,211 +2870,6 @@ FRA_Militarization_of_the_French_Economy = {
 	}
 }
 
-FRA_Establishment_of_a_State_Led_Economy = {
-	FRA_First_Expansion_of_factory_output = {
-		icon = GFX_decision_generic_industry
-		available = {
-			has_completed_focus = FRA_State_Led_Economic_Development
-		}
-		visible = {
-			has_completed_focus = FRA_State_Led_Economic_Development
-		}
-		fire_only_once = yes
-		allowed = {
-			original_tag = FRA
-		}
-		days_remove = 30
-		custom_cost_trigger = {
-			num_of_civilian_factories_available_for_projects > 2
-			has_political_power > 19
-		}
-		custom_cost_text = decision_cost_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			add_political_power = -20
-			set_country_flag = doing_somthing_do_not_ai
-		}
-		remove_effect = {
-			custom_effect_tooltip = FRA_First_Expansion_of_factory_output_tt
-			hidden_effect = {
-				add_to_variable = { FRA_national_syndicalism_economy_industrial_capacity_factory = 0.05 }
-			}
-			set_country_flag = FRA_First_Expansion_of_factory_output_done
-			clr_country_flag = doing_somthing_do_not_ai
-		}
-		ai_will_do = {
-			base = 4000
-			modifier = {
-				add = -4000
-				has_country_flag = doing_somthing_do_not_ai
-			}
-		}
-	}
-	FRA_Second_Expansion_of_factory_output = {
-		icon = GFX_decision_generic_industry
-		available = {
-			has_completed_focus = FRA_State_Led_Economic_Development
-			has_country_flag = FRA_First_Expansion_of_factory_output_done
-		}
-		visible = {
-			has_completed_focus = FRA_State_Led_Economic_Development
-		}
-		fire_only_once = yes
-		allowed = {
-			original_tag = FRA
-		}
-		days_remove = 30
-		custom_cost_trigger = {
-			num_of_civilian_factories_available_for_projects > 2
-			has_political_power > 19
-		}
-		custom_cost_text = decision_cost_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			add_political_power = -20
-			set_country_flag = doing_somthing_do_not_ai
-		}
-		remove_effect = {
-			custom_effect_tooltip = FRA_First_Expansion_of_factory_output_tt
-			hidden_effect = {
-				add_to_variable = { FRA_national_syndicalism_economy_industrial_capacity_factory = 0.05 }
-			}
-			clr_country_flag = doing_somthing_do_not_ai
-		}
-		ai_will_do = {
-			base = 4000
-			modifier = {
-				add = -4000
-				has_country_flag = doing_somthing_do_not_ai
-			}
-		}
-	}
-	FRA_National_Economic_Mobilization = {
-		icon = GFX_decision_generic_consumer_goods
-		available = {
-			has_completed_focus = FRA_State_Led_Economic_Development
-		}
-		visible = {
-			has_completed_focus = FRA_State_Led_Economic_Development
-		}
-		fire_only_once = yes
-		allowed = {
-			original_tag = FRA
-		}
-		days_remove = 30
-		custom_cost_trigger = {
-			num_of_civilian_factories_available_for_projects > 2
-			has_political_power > 19
-		}
-		custom_cost_text = decision_cost_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			add_political_power = -20
-			set_country_flag = doing_somthing_do_not_ai
-		}
-		remove_effect = {
-			custom_effect_tooltip = FRA_National_Economic_Mobilization_tt
-			hidden_effect = {
-				add_to_variable = { add_to_variable = { FRA_national_syndicalism_economy_consumer_goods_factor  = -0.075 }
-			}
-			clr_country_flag = doing_somthing_do_not_ai
-		}
-		ai_will_do = {
-			base = 4000
-			modifier = {
-				add = -4000
-				has_country_flag = doing_somthing_do_not_ai
-			}
-		}
-	}
-	FRA_Focus_on_Construction_of_Military_Factories = {
-		icon = GFX_decision_generic_construction
-		available = {
-			has_completed_focus = FRA_State_Led_Economic_Development
-		}
-		visible = {
-			has_completed_focus = FRA_State_Led_Economic_Development
-		}
-		fire_only_once = yes
-		allowed = {
-			original_tag = FRA
-		}
-		days_remove = 30
-		custom_cost_trigger = {
-			num_of_civilian_factories_available_for_projects > 2
-			has_political_power > 19
-		}
-		custom_cost_text = decision_cost_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			add_political_power = -20
-			set_country_flag = doing_somthing_do_not_ai
-		}
-		remove_effect = {
-			custom_effect_tooltip = FRA_Focus_on_Construction_of_Military_Factories_tt
-			hidden_effect = {
-				add_to_variable = { add_to_variable = { FRA_national_syndicalism_economy_production_speed_arms_factory_factor = 0.05 }
-			}
-			clr_country_flag = doing_somthing_do_not_ai
-		}
-		ai_will_do = {
-			base = 4000
-			modifier = {
-				add = -4000
-				has_country_flag = doing_somthing_do_not_ai
-			}
-		}
-	}
-	FRA_Focus_on_Construction_of_Civilian_Factories = {
-		icon = GFX_decision_generic_construction
-		available = {
-			has_completed_focus = FRA_State_Led_Economic_Development
-		}
-		visible = {
-			has_completed_focus = FRA_State_Led_Economic_Development
-		}
-		fire_only_once = yes
-		allowed = {
-			original_tag = FRA
-		}
-		days_remove = 30
-		custom_cost_trigger = {
-			num_of_civilian_factories_available_for_projects > 2
-			has_political_power > 19
-		}
-		custom_cost_text = decision_cost_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			add_political_power = -20
-			set_country_flag = doing_somthing_do_not_ai
-		}
-		remove_effect = {
-			custom_effect_tooltip = FRA_Focus_on_Construction_of_Civilian_Factories_tt
-			hidden_effect = {
-				add_to_variable = { add_to_variable = { FRA_national_syndicalism_economy_production_speed_industrial_complex_factor = 0.05 }
-			}
-			clr_country_flag = doing_somthing_do_not_ai
-		}
-		ai_will_do = {
-			base = 4000
-			modifier = {
-				add = -4000
-				has_country_flag = doing_somthing_do_not_ai
-			}
-		}
-	}
-}
-
 foreign_politics = {
 	gre_and_bul = {
 		icon = GFX_decision_generic_operation
@@ -3234,6 +3043,8 @@ FRA_government_infiltration_decisions = {
 		}
 		fire_only_once = yes
 		available = {
+			has_completed_focus = FRA_deat_coopt_doriotists
+			has_completed_focus = FRA_Dea_Unified_France
 			power_balance_value = {
 				id = FRA_government_infiltration
 				value > 0.9
@@ -3266,6 +3077,7 @@ FRA_government_infiltration_decisions = {
 			}
 			add_ideas = FRA_marcel_deat
 			remove_power_balance = { id = FRA_government_infiltration }
+			set_country_flag = deat_in_power_flag
 		}
 		ai_will_do = {
 			base = 150
@@ -3283,7 +3095,6 @@ FRA_government_infiltration_decisions = {
 		}
 		allowed = {
 			original_tag = FRA
-			has_completed_focus = FRA_Dea_Unified_France
 		}
 		fire_only_once = yes
 		available = {
@@ -3291,6 +3102,8 @@ FRA_government_infiltration_decisions = {
 				id = FRA_government_infiltration
 				value > 0.9
 			}
+			has_completed_focus = FRA_deat_purge_doriotists
+			has_completed_focus = FRA_Dea_Unified_France
 		}
 		cost = 10
 		days_remove = 60
@@ -3305,6 +3118,17 @@ FRA_government_infiltration_decisions = {
 				long_name = FRA_government_no_doriot
 				name = FRA_government_no_doriot
 			}
+			add_trait = {
+				 character = FRA_marcel_deat
+				 ideology = neo_socialism
+				 trait = FRA_the_sole_leader
+			}
+			add_trait = {
+				 character = FRA_marcel_deat
+				 ideology = neo_socialism
+				 trait = FRA_master_of_war
+			}
+			set_country_flag = deat_in_power_flag
 		}
 		ai_will_do = {
 			base = 150
@@ -3869,14 +3693,38 @@ FRA_bucards_resolve_category = {
 				ruling_only = yes
 			}
 		}
+		available = {
+			check_variable = {
+				FRA_bucards_resolve_category_main_bar < 101
+			}
+			NOT = { has_country_flag = propaganda_is_in_progress }
+		}
 		cost = 20
 		days_remove = 15
 		priority = 2
+		complete_effect = {
+			set_country_flag = propaganda_is_in_progress
+		}
 		remove_effect = {
-			add_to_variable = {
-				FRA_bucards_resolve_category_main_bar = 10
-				tooltip = FRA_inc_bucard_resolve_10_tt
+			if = {
+				limit = {
+					FRA_bucards_resolve_category_main_bar < 91
+				}
+				add_to_variable = {
+					FRA_bucards_resolve_category_main_bar = 10
+					tooltip = FRA_inc_bucard_resolve_10_tt
+				}
 			}
+			else = {
+				set_variable = {
+					FRA_bucards_resolve_category_main_bar = 100
+				}
+				effect_tooltip = {
+					FRA_bucards_resolve_category_main_bar = 10
+					tooltip = FRA_inc_bucard_resolve_10_tt
+				}
+			}
+			clr_country_flag = propaganda_is_in_progress
 		}
 		ai_will_do = {
 			base = 0
@@ -3896,14 +3744,38 @@ FRA_bucards_resolve_category = {
 				ruling_only = yes
 			}
 		}
+		available = {
+			check_variable = {
+				FRA_bucards_resolve_category_main_bar < 101
+			}
+			NOT = { has_country_flag = propaganda_is_in_progress }
+		}
 		cost = 40
 		days_remove = 15
 		priority = 1
+		complete_effect = {
+			set_country_flag = propaganda_is_in_progress
+		}
 		remove_effect = {
-			add_to_variable = {
-				FRA_bucards_resolve_category_main_bar = 20
-				tooltip = FRA_inc_bucard_resolve_20_tt
+			if = {
+				limit = {
+					FRA_bucards_resolve_category_main_bar < 81
+				}
+				add_to_variable = {
+					FRA_bucards_resolve_category_main_bar = 20
+					tooltip = FRA_inc_bucard_resolve_20_tt
+				}
 			}
+			else = {
+				set_variable = {
+					FRA_bucards_resolve_category_main_bar = 100
+				}
+				effect_tooltip = {
+					FRA_bucards_resolve_category_main_bar = 20
+					tooltip = FRA_inc_bucard_resolve_20_tt
+				}
+			}
+			clr_country_flag = propaganda_is_in_progress
 		}
 		ai_will_do = {
 			base = 0
@@ -3976,7 +3848,7 @@ FRA_decision_doriot_national_unity = {
 				add = 75
 				stockpile_ratio = {
 					archetype = infantry_equipment
-					ratio < 1.2
+					ratio < 1
 				}
 			}
 		}
@@ -4008,7 +3880,7 @@ FRA_decision_doriot_national_unity = {
 			clr_country_flag = political_is_on_flag
 		}
 		ai_will_do = {
-			base = 60
+			base = 30
 		}
 	}
 	FRA_decision_doriot_military_fortify = {
@@ -4066,7 +3938,7 @@ FRA_decision_doriot_national_unity = {
 		ai_will_do = {
 			base = 0
 			modifier = {
-				add = 120
+				add = 100
 				check_variable = { FRA_decision_doriot_national_unity_main_var < 70 }
 			}
 		}
@@ -7628,17 +7500,13 @@ FRA_social_economic_reforms = {
 FRA_peacetime_economy_category = {
 	FRA_convert_mil_to_civ = {
 		icon = GFX_decision_generic_factory
+		state_target = yes
 		target_trigger = {
 			FROM = {
-				any_state = {
-					is_controlled_by = ROOT
-					is_owned_by = ROOT
-					is_core_of = ROOT
-					has_building = {
-						type = industrial_complex
-						value > 0
-					}
-				}
+				is_controlled_by = FRA
+				is_owned_by = FRA
+				is_core_of = FRA
+				arms_factory > 0
 			}
 		}
 		visible = {
@@ -7651,11 +7519,11 @@ FRA_peacetime_economy_category = {
 		days_remove = 50
 		remove_effect = {
 			FROM = {
-				remove_building = {
+				add_building_construction = {
 					type = industrial_complex
 					level = 1
 				}
-				add_building_construction = {
+				remove_building = {
 					type = arms_factory
 					level = 1
 					instant_build = yes
@@ -8008,6 +7876,7 @@ FRA_german_question = {
 		}
 		activation = {
 			has_country_flag = second_great_war_winner
+			GER = { has_country_flag = second_great_war_loser }
 			OR = {
 				original_tag = FRA
 				original_tag = ENG
@@ -8053,7 +7922,7 @@ FRA_german_question = {
 			}
 			else = {
 				FRA = {
-					country_event = { id = wrwpe.34 days = 50 }
+					country_event = wrwpe.34
 					set_country_flag = FRA_win_germany_flag
 				}
 			}
@@ -8368,6 +8237,9 @@ FRA_german_territorial_question = {
 		complete_effect = {
 			country_event = france_wr.235
 		}
+		ai_will_do = {
+			base = 500
+		}
 	}
 	the_fate_of_posen = {
 		icon = GFX_decision_eng_trade_unions_support
@@ -8408,6 +8280,9 @@ FRA_german_territorial_question = {
 		}
 		complete_effect = {
 			country_event = france_wr.247
+		}
+		ai_will_do = {
+			base = 500
 		}
 	}
 	the_fate_of_silesia = {
@@ -8450,6 +8325,9 @@ FRA_german_territorial_question = {
 		complete_effect = {
 			country_event = france_wr.248
 		}
+		ai_will_do = {
+			base = 500
+		}
 	}
 	the_fate_of_preussen = {
 		icon = GFX_decision_eng_trade_unions_support
@@ -8491,6 +8369,9 @@ FRA_german_territorial_question = {
 		complete_effect = {
 			country_event = france_wr.249
 		}
+		ai_will_do = {
+			base = 500
+		}
 	}
 	the_fate_of_the_rhineland = {
 		icon = GFX_decision_eng_trade_unions_support
@@ -8514,6 +8395,9 @@ FRA_german_territorial_question = {
 		}
 		complete_effect = {
 			country_event = france_wr.250
+		}
+		ai_will_do = {
+			base = 500
 		}
 	}
 }
