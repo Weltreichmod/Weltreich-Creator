@@ -355,6 +355,7 @@
 		}
 		allow_branch = {
 			has_country_flag = CHI_sichuan_famine_start_flag
+			NOT = { has_country_flag = finally_solve_problem_in_sichan_flag }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_MANPOWER }
 		completion_reward = {
@@ -510,29 +511,407 @@
 				limit = {
 					has_idea = CHI_sichuan_famine_3_c
 				}
-				remove_ideas = CHI_sichuan_famine_3_c
+				country_event = { id = china_wr.20 days = 30 }
 			}
 			else_if = {
 				limit = {
 					has_idea = CHI_sichuan_famine_4_a
 				}
-				remove_ideas = CHI_sichuan_famine_4_a
+				country_event = { id = china_wr.20 days = 20 }
 			}
 			else_if = {
 				limit = {
 					has_idea = CHI_sichuan_famine_4_b
 				}
-				remove_ideas = CHI_sichuan_famine_4_b
+				country_event = { id = china_wr.20 days = 10 }
 			}
 			else_if = {
 				limit = {
 					has_idea = CHI_sichuan_famine_4_c
 				}
-				remove_ideas = CHI_sichuan_famine_4_c
+				country_event = china_wr.20
 			}
 			else = {
 				custom_effect_tooltip = CHI_sichuan_full_logistics_mobilization_focus_tt
 			}
+		}
+	}
+	
+	#Second
+	focus = {
+		id = CHI_prepare_insufficient_election
+		icon = GFX_CHI_prepare_insufficient_election
+		x = 10
+		y = 0
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		allow_branch = {
+			has_country_flag = finally_solve_problem_in_sichan_flag
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = { id = china_wr.21 days = 3 }
+			country_event = china_wr.36
+		}
+	}
+	
+	focus = {
+		id = CHI_minsheng_junfu
+		icon = GFX_CHI_minsheng_junfu
+		relative_position_id = CHI_prepare_insufficient_election
+		x = -2
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = CHI_minquan_xianzheng
+		}
+		mutually_exclusive = {
+			focus = CHI_beifang_tongyi
+		}
+		prerequisite = {
+			focus = CHI_prepare_insufficient_election
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.22
+			hidden_effect = {
+				country_event = { id = china_wr.29 days = 20 }
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_appeal_to_workers
+		icon = GFX_CHI_appeal_to_workers
+		relative_position_id = CHI_minsheng_junfu
+		x = -1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_minsheng_junfu
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.25
+		}
+	}
+	
+	focus = {
+		id = CHI_mass_rally_for_the_people
+		icon = GFX_CHI_mass_rally_for_the_people
+		relative_position_id = CHI_appeal_to_workers
+		x = -1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_appeal_to_workers
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.31
+		}
+	}
+	
+	focus = {
+		id = CHI_southwest_speaking_tour
+		icon = GFX_CHI_southwest_speaking_tour
+		relative_position_id = CHI_appeal_to_workers
+		x = 1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_appeal_to_workers
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = CHI_southwest_tour_decisions_tt
+		}
+	}
+	
+	focus = {
+		id = CHI_campaign_with_zhaier
+		icon = GFX_CHI_campaign_with_zhaier
+		relative_position_id = CHI_mass_rally_for_the_people
+		x = 1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_mass_rally_for_the_people
+		}
+		prerequisite = {
+			focus = CHI_southwest_speaking_tour
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.33
+		}
+	}
+	
+	focus = {
+		id = CHI_minquan_xianzheng
+		icon = GFX_CHI_minquan_xianzheng
+		relative_position_id = CHI_prepare_insufficient_election
+		x = 0
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = CHI_minsheng_junfu
+		}
+		mutually_exclusive = {
+			focus = CHI_beifang_tongyi
+		}
+		prerequisite = {
+			focus = CHI_prepare_insufficient_election
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.23
+			hidden_effect = {
+				country_event = { id = china_wr.29 days = 20 }
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_rally_moderates
+		icon = GFX_CHI_rally_moderates
+		relative_position_id = CHI_minquan_xianzheng
+		x = -1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_minquan_xianzheng
+			focus = CHI_minsheng_junfu
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.26
+		}
+	}
+	
+	focus = {
+		id = CHI_voice_of_freedom
+		icon = GFX-CHI_voice_of_freedom
+		relative_position_id = CHI_minquan_xianzheng
+		x = 1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_minquan_xianzheng
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.30
+		}
+	}
+	
+	focus = {
+		id = CHI_tsinghua_speech
+		icon = GFX_CHI_tsinghua_speech
+		relative_position_id = CHI_voice_of_freedom
+		x = -1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_voice_of_freedom
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			CHI_inc_hu_shih_var_2 = yes
+		}
+	}
+	
+	focus = {
+		id = CHI_debate_on_freedom
+		icon = GFX_CHI_debate_on_freedom
+		relative_position_id = CHI_voice_of_freedom
+		x = 1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_voice_of_freedom
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.32
+		}
+	}
+	
+	focus = {
+		id = CHI_follow_hu_shi
+		icon = GFX_CHI_follow_hu_shi
+		relative_position_id = CHI_tsinghua_speech
+		x = 1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_tsinghua_speech
+		}
+		prerequisite = {
+			focus = CHI_debate_on_freedom
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.34
+		}
+	}
+	
+	focus = {
+		id = CHI_beifang_tongyi
+		icon = GFX_CHI_beifang_tongyi
+		relative_position_id = CHI_prepare_insufficient_election
+		x = 4
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = CHI_minquan_xianzheng
+		}
+		mutually_exclusive = {
+			focus = CHI_minsheng_junfu
+		}
+		prerequisite = {
+			focus = CHI_prepare_insufficient_election
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.24
+			hidden_effect = {
+				country_event = { id = china_wr.29 days = 20 }
+				random_list = {
+					50 = {
+						set_country_flag = CHI_HU_SHI_FLAG
+					}
+					50 = {
+						set_country_flag = CHI_CAI_E_FLAG
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_suppress_gangsters
+		icon = GFX_CHI_suppress_gangsters
+		relative_position_id = CHI_beifang_tongyi
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_beifang_tongyi
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.27
+		}
+	}
+	
+	focus = {
+		id = CHI_utilize_green_gang
+		icon = GFX_CHI_utilize_green_gang
+		relative_position_id = CHI_beifang_tongyi
+		x = 1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_beifang_tongyi
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.28
+		}
+	}
+	
+	focus = {
+		id = CHI_inspire_nationalism
+		icon = GFX_CHI_inspire_nationalism
+		relative_position_id = CHI_suppress_gangsters
+		x = 1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_suppress_gangsters
+		}
+		prerequisite = {
+			focus = CHI_utilize_green_gang
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			CHI_inc_wang_jingwei_var_3 = yes
+		}
+	}
+	
+	focus = {
+		id = CHI_wang_jingwei_leads
+		icon = GFX_CHI_wang_jingwei_leads
+		relative_position_id = CHI_inspire_nationalism
+		x = 0
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_inspire_nationalism
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.35
 		}
 	}
 }

@@ -1,881 +1,116 @@
-CHI_integrate_warloads = {
-	CHI_integrate_name_warloads = {
-		icon = GFX_decision_hol_draw_up_staff_plans
-		target_trigger = {
-			FROM = {
-				has_country_flag = Chinese_warlord
-				is_subject_of = CHI
-			}
-		}
-		visible = {
-			is_subject = no
-			has_completed_focus = CHI_cooperation_with_warlords
-			FROM = {
-				has_country_flag = Chinese_warlord
-				is_subject_of = CHI
-			}
-		}
-		cancel_if_not_visible = yes
-		cost = 40
-		days_remove = 90
-		remove_effect = {
-			CHI = { annex_country = { target = FROM transfer_troops = yes } }
-		}
-		ai_will_do = {
-			base = 1000
-		}
-	}
-}
-
-CHI_sino_japanese_war = {
-	CHI_Creation_of_United_Fronts = {
-		icon = GFX_decision_generic_civil_support
+CHI_presidential_election_preparation_category = {
+	CHI_voice_of_freedom_dei = {
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
 			original_tag = CHI
 		}
 		visible = {
-			has_war_with = JAP
-			is_in_faction = no
-			is_subject = no
+			has_country_flag = CHI_voice_of_freedom_dei_flag
+			check_variable = { CHI_voice_of_freedom_dei_var = 4 }
 		}
-		cost = 30
-		days_remove = 7
+		days_remove = 3
 		ai_will_do = {
 			base = 4000
 		}
 		remove_effect = {
-			country_event = china_wr.1
-		}
-	}
-	CHI_move_capital_to_chongqing = {
-		icon = GFX_decision_eng_trade_unions_support
-		allowed = {
-			original_tag = CHI
-		}
-		visible = {
-			has_war_with = JAP
-			NOT = { CHI = { controls_province = 11913 } }
-			NOT = { 748 = { is_owned_by = CHI } }
-			is_subject = no
-		}
-		cost = 30
-		ai_will_do = {
-			base = 4000
-		}
-		complete_effect = {
-			every_state = {
-				limit = {
-					OR = {
-						state = 605
-						state = 748
-					}
-				}
-				transfer_state_to = CHI
+			add_popularity = {
+				ideology = democratic
+				popularity = 0.02
 			}
-			CHI = {
-				set_capital = {state = 748}
-			}
-		}
-	}
-}
-
-CHI_warlord_era = {
-	CHI_joining_united_fronts = {
-		icon = GFX_decision_generic_operation
-		allowed = {
-			is_chinese_country = yes
-		}
-		ai_will_do = {
-			base = 4000
-		}
-		fire_only_once = yes
-		visible = {
-			is_chinese_country = yes
-			is_faction_leader = no
-			is_subject = no
-			has_war_with = JAP
-			CHI = { is_faction_leader = yes }
-		}
-		complete_effect = {
-			CHI = { country_event = china_wr.26 }
-		}
-	}
-	CHI_german_advisors_reinvitation = {
-		icon = GFX_decision_generic_military
-		allowed = {
-			original_tag = CHI
-		}
-		cost = 45
-		ai_will_do = {
-			base = 4000
-		}
-		fire_only_once = yes
-		visible = {
-			NOT = { has_idea = CHI_german_advisors }
-			NOT = { has_idea = CHI_german_advisors_strong }
-			is_subject = no
-			CHR = {
-				OR = {
-					exists = no
-					AND = {
-						NOT = { has_idea = CHI_german_advisors }
-						NOT = { has_idea = CHI_german_advisors_strong }
-					}
-				}
-			}
-			NOT = { has_completed_focus = CHI_formation_of_an_independent_command }
-		}
-		complete_effect = {
-			GER = { country_event = china_wr.7 }
-		}
-	}
-	CHI_warlord_coring = {
-		icon = GFX_decision_generic_operation
-		allowed = {
-			has_country_flag = Chinese_warlord
-		}
-		state_target = yes
-		target_trigger = {
-			FROM = {
-				OR = {
-					is_chinese_area = yes
-					state = 524
-				}
-			}
-		}
-		on_map_mode = map_and_decisions_view
-		days_remove = 30
-		visible = {
-			has_country_flag = Chinese_warlord
-			NOT = { has_country_flag = sino_japanese_war_loser }
-			is_subject = no
-			controls_state = FROM
-			NOT = {
-				FROM = {
-					is_core_of = PREV
-				}
-			}
-		}
-		cancel_if_not_visible = yes
-		cost = 10
-		remove_effect = {
-			FROM = {
-				every_country = {
-					limit = {
-						has_country_flag = Chinese_warlord
-						NOT = {
-							tag = ROOT
-						}
-					}
-					remove_state_core = PREV
-				}
-				add_core_of = PREV
-			}
-		}
-		ai_will_do = {
-			base = 0
-			modifier = {
-				add = 100
-				FROM = {
-					is_owned_by = PREV
-				}
-			}
-		}
-	}
-	CHI_annex_south_warloads = {
-		icon = GFX_decision_CHL_carabineros
-		available = {
-			has_completed_focus = CHI_annex_liangguang
-			FROM = { is_neighbor_of = ROOT }
-			has_war = no
-		}
-		target_trigger = {
-			FROM = {
-				OR = {
-					original_tag = GXC
-					original_tag = GUD
-				}
-				OR = {
-					is_subject = no
-					is_subject_of = ROOT
-				}
-			}
-		}
-		fire_only_once = yes
-		cost = 20
-		visible = {
-			has_completed_focus = CHI_annex_liangguang
-			is_subject = no
-		}
-		ai_will_do = {
-			base = 4000
-		}
-		complete_effect = {
-			FROM = {
-				country_event = china_wr.19
+			custom_effect_tooltip = CHI_voice_of_freedom_dei_tt
+			hidden_effect = {
 				if = {
 					limit = {
-						is_in_faction_with = ROOT
+						NOT = { has_variable = CHI_voice_of_freedom_dei_var }
 					}
-					leave_faction = yes
+					set_variable = { CHI_voice_of_freedom_dei_var = 1 }
 				}
-			}
-		}
-	}
-	CHI_annex_westsouth_warloads = {
-		icon = GFX_decision_CHL_carabineros
-		available = {
-			has_completed_focus = CHI_westsouthern_warlord
-			FROM = { is_neighbor_of = ROOT }
-			has_war = no
-		}
-		target_trigger = {
-			FROM = {
-				OR = {
-					original_tag = SIC
-					original_tag = XIK
-					original_tag = YUN
-					original_tag = GZC
-				}
-				OR = {
-					is_subject = no
-					is_subject_of = ROOT
-				}
-			}
-		}
-		fire_only_once = yes
-		cost = 20
-		visible = {
-			has_completed_focus = CHI_westsouthern_warlord
-			is_subject = no
-		}
-		ai_will_do = {
-			base = 4000
-		}
-		complete_effect = {
-			FROM = {
-				country_event = china_wr.19
-				if = {
+				else_if = {
 					limit = {
-						is_in_faction_with = ROOT
+						has_variable = CHI_voice_of_freedom_dei_var
 					}
-					leave_faction = yes
+					add_to_variable = { CHI_voice_of_freedom_dei_var = 1 }
 				}
 			}
 		}
 	}
-	CHI_annex_westnorth_warloads = {
-		icon = GFX_decision_CHL_carabineros
-		available = {
-			has_completed_focus = CHI_westnorthern_warlord
-			FROM = { is_neighbor_of = ROOT }
-			has_war = no
-		}
-		target_trigger = {
-			FROM = {
-				OR = {
-					original_tag = SHX
-					original_tag = PRC
-					original_tag = XSM
-					original_tag = GSM
-					original_tag = NSM
-					original_tag = SIK
-				}
-				OR = {
-					is_subject = no
-					is_subject_of = ROOT
-				}
-			}
-		}
-		fire_only_once = yes
-		cost = 20
-		visible = {
-			has_completed_focus = CHI_westnorthern_warlord
-			is_subject = no
-		}
-		ai_will_do = {
-			base = 4000
-		}
-		complete_effect = {
-			FROM = {
-				country_event = china_wr.19
-				if = {
-					limit = {
-						is_in_faction_with = ROOT
-					}
-					leave_faction = yes
-				}
-			}
-		}
-	}
-	CHI_free_from_fengtian = {
-		allowed = {
-			has_country_flag = Chinese_warlord
-		}
-		activation = {
-			has_country_flag = Chinese_warlord
-			has_country_flag = color_changed
-			is_subject = no
-		}
-		available = {
-			hidden_trigger = {
-				NOT = { has_country_flag = Chinese_warlord }
-				NOT = { has_country_flag = color_changed }
-			}
-			is_subject_of = FNG
-		}
-		days_mission_timeout = 1
-		timeout_effect = {
-			clr_country_flag = color_changed
-			drop_cosmetic_tag = yes
-			custom_effect_tooltip = CHI_free_from_fengtian_tt
-		}
-	}
-	CHI_Declaration_of_the_Unification_of_China = {
-		icon = GFX_decision_eng_trade_unions_support
+	CHI_daxian_speaking_tour = {
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
 			original_tag = CHI
 		}
 		visible = {
-			has_completed_focus = CHI_third_northern_expedition
-			is_subject = no
+			has_completed_focus = CHI_southwest_speaking_tour
 		}
 		fire_only_once = yes
+		days_remove = 3
 		ai_will_do = {
 			base = 4000
 		}
-		available = {
-			has_capitulated = no
-			is_subject = no
-			has_war = no
-			XSM = { exists = no }
-			GSM = { exists = no }
-			NSM = { exists = no }
-			PRC = { exists = no }
-			SHX = { exists = no }
-			SIC = { exists = no }
-			XIK = { exists = no }
-			GZC = { exists = no }
-			YUN = { exists = no }
-			GXC = { exists = no }
-			GUD = { exists = no }
-			for_unify_china = yes
-		}
-		complete_effect = {
-			set_cosmetic_tag = CHI_REP
-			set_country_flag = complete_of_unification_cahina
-			remove_ideas = CHI_idea_warlord_neutrality
+		remove_effect = {
+			add_popularity = {
+				ideology = communism
+				popularity = 0.02
+			}
 		}
 	}
-	
-	#Fengtian decision
-	FNG_focus_on_western_warlords = {
-		icon = GFX_decision_FIN_stop_motti_tactics
+	CHI_chengdu_speaking_tour = {
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
-			original_tag = FNG
-		}
-		target_trigger = {
-			FROM = {
-				has_country_flag = Chinese_warlord
-				OR = {
-					original_tag = SHX
-					original_tag = PRC
-					original_tag = XSM
-					original_tag = GSM
-					original_tag = NSM
-					original_tag = SIK
-				}
-			}
+			original_tag = CHI
 		}
 		visible = {
-			has_completed_focus = FNG_western_warlords
-			is_subject = no
-			FROM = { exists = yes }
-			NOT = { FROM = { is_in_faction_with = ROOT } }
-			NOT = { FROM = { is_subject_of = ROOT } }
+			has_completed_focus = CHI_southwest_speaking_tour
 		}
-		cancel_if_not_visible = yes
-		cost = 50
-		days_remove = 90
-		complete_effect = {
-			FROM = {
-				add_ideas = FNG_pressure_of_fengtian
-			}
+		fire_only_once = yes
+		days_remove = 3
+		ai_will_do = {
+			base = 4000
 		}
 		remove_effect = {
-			FROM = {
-				remove_ideas = FNG_pressure_of_fengtian
-			}
-		}
-		ai_will_do = {
-			base = 0
-			modifier = {
-				add = 100
-				FROM = {
-					has_war_with = FNG
-				}
+			add_popularity = {
+				ideology = communism
+				popularity = 0.02
 			}
 		}
 	}
-	FNG_focus_on_southern_warlords = {
-		icon = GFX_decision_FIN_stop_motti_tactics
+	CHI_aba_speaking_tour = {
+		icon = GFX_decision_eng_propaganda_campaigns
 		allowed = {
-			original_tag = FNG
-		}
-		target_trigger = {
-			FROM = {
-				has_country_flag = Chinese_warlord
-				OR = {
-					original_tag = GUD
-					original_tag = GXC
-					original_tag = GZC
-					original_tag = YUN
-					original_tag = XIK
-					original_tag = SIC
-				}
-			}
+			original_tag = CHI
 		}
 		visible = {
-			has_completed_focus = FNG_southern_warlords
-			is_subject = no
-			FROM = { exists = yes }
-			NOT = { FROM = { is_in_faction_with = ROOT } }
-			NOT = { FROM = { is_subject_of = ROOT } }
-		}
-		cancel_if_not_visible = yes
-		cost = 50
-		days_remove = 90
-		complete_effect = {
-			FROM = {
-				add_ideas = FNG_pressure_of_fengtian
-			}
-		}
-		remove_effect = {
-			FROM = {
-				remove_ideas = FNG_pressure_of_fengtian
-			}
-		}
-		ai_will_do = {
-			base = 0
-			modifier = {
-				add = 100
-				FROM = {
-					has_war_with = FNG
-				}
-			}
-		}
-	}
-	FNG_warlord_government_amalgamation = {
-		icon = GFX_decision_SWI_no_elected_president
-		target_trigger = {
-			FROM = {
-				has_country_flag = Chinese_warlord
-				is_subject_of = FNG
-			}
-		}
-		visible = {
-			has_completed_focus = FNG_government_reform
-			is_subject = no
-			FROM = {
-				has_country_flag = Chinese_warlord
-				is_subject_of = FNG
-			}
-		}
-		cancel_if_not_visible = yes
-		cost = 60
-		days_remove = 180
-		remove_effect = {
-			FNG = { annex_country = { target = FROM transfer_troops = yes } }
-		}
-		ai_will_do = {
-			base = 1000
-		}
-	}
-}
-
-CHI_army_reform = {
-	CHI_army_reform = {
-		icon = generic_prepare_civil_war
-		available = {
-			has_army_experience > 99
-		}
-		cost = 0
-		ai_will_do = {
-			factor = 500
-		}
-		days_remove = 90
-		visible = {
-			OR = {
-				has_idea = CHI_army_corruption_1_wr
-				has_idea = CHI_army_corruption_2_wr
-				has_idea = CHI_army_corruption_3_wr
-			}
-		}
-		remove_effect = {
-			if = {
-				limit = { has_idea = CHI_army_corruption_1_wr }
-				swap_ideas = {
-					remove_idea = CHI_army_corruption_1_wr
-					add_idea = CHI_army_corruption_2_wr
-				}
-			}
-			else_if = {
-				limit = { has_idea = CHI_army_corruption_2_wr }
-				swap_ideas = {
-					remove_idea = CHI_army_corruption_2_wr
-					add_idea = CHI_army_corruption_3_wr
-				}
-			}
-			else_if = {
-				limit = { has_idea = CHI_army_corruption_3_wr }
-				remove_ideas = CHI_army_corruption_3_wr
-			}
-		}
-		complete_effect = {
-			army_experience = -100						
-		}		
-	}
-}
-
-CHI_Nanjing_Guangdong_Railway = {
-	CHI_anhui_province_railway = {
-		icon = GFX_decision_hol_draw_up_staff_plans
-		available = {
-			749 = {
-				controller = {
-					OR = {
-						original_tag = CHI
-						is_subject_of = ROOT
-					}
-				}
-			}
-			620 = {
-				controller = {
-					OR = {
-						original_tag = CHI
-						is_subject_of = ROOT
-					}
-				}
-			}
-			85 = {
-				controller = {
-					OR = {
-						original_tag = CHI
-						is_subject_of = ROOT
-					}
-				}
-			}
-			600 = {
-				controller = {
-					OR = {
-						original_tag = CHI
-						is_subject_of = ROOT
-					}
-				}
-			}
-		}
-		visible = {
-			has_completed_focus = CHI_liangguang_road_improvement
-		}
-		ai_will_do = {
-			factor = 500
+			has_completed_focus = CHI_southwest_speaking_tour
 		}
 		fire_only_once = yes
-		cost = 100
-		days_remove = 100
+		days_remove = 3
+		ai_will_do = {
+			base = 4000
+		}
 		remove_effect = {
-			build_railway = {
-				level = 2
-				path = { 11913 1099 1171 11937 10044 1153 7637 1036 4619 1628 }
+			add_popularity = {
+				ideology = communism
+				popularity = 0.02
 			}
 		}
 	}
-	CHI_jiangxi_province_railway = {
-		icon = GFX_decision_hol_draw_up_staff_plans
-		available = {
-			593 = {
-				controller = {
-					OR = {
-						original_tag = CHI
-						is_subject_of = ROOT
-					}
-				}
-			}
-			600 = {
-				controller = {
-					OR = {
-						original_tag = CHI
-						is_subject_of = ROOT
-					}
-				}
-			}
+	CHI_chongqing_speaking_tour = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		allowed = {
+			original_tag = CHI
 		}
 		visible = {
-			has_completed_focus = CHI_liangguang_road_improvement
-		}
-		ai_will_do = {
-			factor = 500
+			has_completed_focus = CHI_southwest_speaking_tour
 		}
 		fire_only_once = yes
-		cost = 40
-		days_remove = 40
-		remove_effect = {
-			build_railway = {
-				level = 2
-				path = { 7199 4183 7004 9970 }
-			}
-		}
-	}
-}
-
-CHI_fortification_of_major_cities = {
-	CHI_nanjing_fortification = {
-		icon = decision_generic_fortification
-		available = {
-			controls_state = 960
-		}
-		visible = {
-			has_completed_focus = CHI_fortification_of_major_cities
-		}
-		custom_cost_trigger = {
-			command_power > 9
-			num_of_civilian_factories_available_for_projects > 2
-		}
-		custom_cost_text = decision_cost_CP_10_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			add_command_power = -10
-		}
-		days_remove = 40
-        cancel_trigger = {
-			NOT = { controls_state = 960 }
-        }
+		days_remove = 3
 		ai_will_do = {
-			factor = 500
+			base = 4000
 		}
-		fire_only_once = yes
 		remove_effect = {
-			960 = {
-				add_building_construction = {
-					type = bunker
-					level = 4
-					province = 11913
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 11982
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 996
-					instant_build = yes
-				}
-			}
-		}
-	}
-	CHI_wuhan_fortification = {
-		icon = decision_generic_fortification
-		available = {
-			controls_state = 620
-		}
-		visible = {
-			has_completed_focus = CHI_fortification_of_major_cities
-		}
-		custom_cost_trigger = {
-			command_power > 9
-			num_of_civilian_factories_available_for_projects > 2
-		}
-		custom_cost_text = decision_cost_CP_10_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			add_command_power = -10
-		}
-		days_remove = 40
-        cancel_trigger = {
-			NOT = { controls_state = 85 }
-        }
-		ai_will_do = {
-			factor = 500
-		}
-		fire_only_once = yes
-		remove_effect = {
-			85 = {
-				add_building_construction = {
-					type = bunker
-					level = 4
-					province = 4619
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 1036
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 12467
-					instant_build = yes
-				}
-			}
-		}
-	}
-	CHI_nanchang_fortification = {
-		icon = decision_generic_fortification
-		available = {
-			controls_state = 600
-		}
-		visible = {
-			has_completed_focus = CHI_fortification_of_major_cities
-		}
-		custom_cost_trigger = {
-			command_power > 9
-			num_of_civilian_factories_available_for_projects > 2
-		}
-		custom_cost_text = decision_cost_CP_10_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			add_command_power = -10
-		}
-		days_remove = 40
-        cancel_trigger = {
-			NOT = { controls_state = 600 }
-        }
-		ai_will_do = {
-			factor = 500
-		}
-		fire_only_once = yes
-		remove_effect = {
-			600 = {
-				add_building_construction = {
-					type = bunker
-					level = 4
-					province = 3992
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 4038
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 9984
-					instant_build = yes
-				}
-			}
-		}
-	}
-	CHI_changde_fortification = {
-		icon = decision_generic_fortification
-		available = {
-			controls_state = 750
-		}
-		visible = {
-			has_completed_focus = CHI_fortification_of_major_cities
-		}
-		custom_cost_trigger = {
-			command_power > 9
-			num_of_civilian_factories_available_for_projects > 2
-		}
-		custom_cost_text = decision_cost_CP_10_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			add_command_power = -10
-		}
-		days_remove = 40
-        cancel_trigger = {
-			NOT = { controls_state = 750 }
-        }
-		ai_will_do = {
-			factor = 500
-		}
-		fire_only_once = yes
-		remove_effect = {
-			750 = {
-				add_building_construction = {
-					type = bunker
-					level = 4
-					province = 7101
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 7434
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 10517
-					instant_build = yes
-				}
-			}
-		}
-	}
-	CHI_changsha_fortification = {
-		icon = decision_generic_fortification
-		available = {
-			controls_state = 602
-		}
-		visible = {
-			has_completed_focus = CHI_fortification_of_major_cities
-		}
-		custom_cost_trigger = {
-			command_power > 9
-			num_of_civilian_factories_available_for_projects > 2
-		}
-		custom_cost_text = decision_cost_CP_10_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			add_command_power = -10
-		}
-		days_remove = 40
-        cancel_trigger = {
-			NOT = { controls_state = 602 }
-        }
-		ai_will_do = {
-			factor = 500
-		}
-		fire_only_once = yes
-		remove_effect = {
-			602 = {
-				add_building_construction = {
-					type = bunker
-					level = 4
-					province = 7097
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 9999
-					instant_build = yes
-				}
-				add_building_construction = {
-					type = bunker
-					level = 3
-					province = 1640
-					instant_build = yes
-				}
+			add_popularity = {
+				ideology = communism
+				popularity = 0.02
 			}
 		}
 	}
