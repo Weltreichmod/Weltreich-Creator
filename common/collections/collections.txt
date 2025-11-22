@@ -432,6 +432,44 @@ faction_states_in_the_nordics = {
 	name = COLLECTION_FACTION_CONTROLLED_STATES_IN_NORDICS
 }
 
+states_all = {
+	input = game:all_states
+	operators = {
+		limit = {
+			OR = {
+				is_on_continent = europe
+				is_on_continent = north_america
+				is_on_continent = south_america
+				is_on_continent = australia
+				is_on_continent = africa
+				is_on_continent = asia
+				is_on_continent = middle_east
+			}
+		}
+	}
+	name = COLLECTION_STATES_IN_EARTH
+}
+
+faction_states_all = {
+	input = game:scope
+	operators = {
+		faction_members
+		controlled_states
+		limit = {
+			OR = {
+				is_on_continent = europe
+				is_on_continent = north_america
+				is_on_continent = south_america
+				is_on_continent = australia
+				is_on_continent = africa
+				is_on_continent = asia
+				is_on_continent = middle_east
+			}
+		}
+	}
+	name = COLLECTION_FACTION_CONTROLLED_STATES_IN_EARTH
+}
+
 states_in_europe = {
 	input = game:all_states
 	operators = {
@@ -939,6 +977,21 @@ puppet_controlled_border_states = {
 			controller = {
 				is_subject_of = ROOT
 			}
+		}
+	}
+}
+
+###
+world_uncapitulated_commonwelth = {
+	input = game:all_countries
+	name = COLLECTION_UNCAPITULATED_COMMONWELTH
+	operators = {
+		limit = {
+			OR = {
+				original_tag = ENG
+				is_subject_of = ENG
+			}
+			has_capitulated = no
 		}
 	}
 }

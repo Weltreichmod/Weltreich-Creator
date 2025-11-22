@@ -1,4 +1,28 @@
 @manifest_fulfilled_value = 0.75
+# Defense of Commonwealth
+faction_manifest_defense_of_commonwealth = {
+	name = defense_of_commonwealth_goal_name
+	description = defense_of_commonwealth_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount = 40
+		completed_amount_collection = collection:world_uncapitulated_commonwelth
+			
+		scale = {
+			trade_opinion_factor = 0.20
+		}
+		
+		progress_sections = {
+			manifest_fulfilled = {
+				min = @manifest_fulfilled_value
+	
+				modifier = { 
+					can_guarantee_other_ideologies = 1
+				}
+			}
+		}
+	}
+}
 
 # Defense of Democracy
 faction_manifest_defense_of_democracy = {
@@ -348,6 +372,34 @@ faction_manifest_pan_americanism = {
 	}
 }
 
+#World Dominance
+faction_manifest_world_dominance = {
+	name = world_dominance_goal_name
+	description = world_dominance_goal_desc
+	is_manifest = yes
+	ratio_progress = {
+		total_amount_collection = collection:states_all
+		completed_amount_collection = collection:faction_states_all
+		range = { 
+			max = 0.67 # two thirds should be enough to secure a qualified majority 
+		}
+		
+		scale = {
+			stability_factor = 0.1
+		}
+		
+		progress_sections = {
+			manifest_fulfilled = {
+				min = @manifest_fulfilled_value
+	
+				modifier = {
+					war_support_factor = 0.05
+					army_core_defence_factor = 0.1
+				}			
+			}
+		}
+	}
+}
 
 # European Dominance
 faction_manifest_european_dominance = {
