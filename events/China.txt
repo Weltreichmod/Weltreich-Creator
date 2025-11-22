@@ -8,10 +8,40 @@ country_event = {
 	id = china_wr.1
 	title = china_wr.1.t
 	desc = china_wr.1.d
-	picture = GFX_report_event_generic_sign_treaty2
+	picture = GFX_report_event_china_politicians_captured
+	trigger = {
+		CHI = { has_war_with = JAP }
+	}
 	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			create_faction = United_Fronts
+			save_global_event_target_as = leader_of_United_Fronts
+			news_event = { id = news.159 }
+		}
+	}
+	mean_time_to_happen = { days = 1 }
+	fire_only_once = yes
 	option = {
 		name = china_wr.1.a
+		add_war_support = 0.1
+		add_stability = 0.1
+		every_country = {
+			limit = {
+				has_country_flag = Chinese_warlord
+				is_neighbor_of = CHI
+				NOT = {
+					original_tag = FNG
+					original_tag = SIK
+					original_tag = CHI
+					is_subject = yes
+					is_in_faction = yes
+					has_war_with = CHI
+				}
+			}
+			country_event = { id = china_wr.2 days = 3 }
+			news_event = china_wr.15
+		}
 		ai_chance = {
 			base = 50
 		}
@@ -22,14 +52,23 @@ country_event = {
 	id = china_wr.2
 	title = china_wr.2.t
 	desc = china_wr.2.d
-	picture = GFX_report_event_generic_sign_treaty2
+	picture = GFX_report_event_china_politicians_captured
 	is_triggered_only = yes
 	option = {
 		name = china_wr.2.a
-		add_political_power = 50
-		add_stability = -0.025
+		CHI = { country_event = china_wr.3 }
+		effect_tooltip = { CHI = { add_to_faction = ROOT } }
+		add_war_support = 0.1
+		add_stability = 0.1
 		ai_chance = {
 			base = 50
+		}
+	}
+	option = {
+		name = china_wr.2.b
+		CHI = { country_event = china_wr.4 }
+		ai_chance = {
+			base = 0
 		}
 	}
 }
@@ -38,12 +77,12 @@ country_event = {
 	id = china_wr.3
 	title = china_wr.3.t
 	desc = china_wr.3.d
-	picture = GFX_report_event_generic_sign_treaty2
+	picture = GFX_report_event_china_politicians_captured
 	is_triggered_only = yes
 	option = {
 		name = china_wr.3.a
-		add_political_power = -50
-		add_stability = 0.025
+		CHI = { add_to_faction = FROM }
+		JAP = { declare_war_on = { target = FROM  type = puppet_wargoal_focus } }
 		ai_chance = {
 			base = 50
 		}
@@ -58,7 +97,6 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = china_wr.4.a
-		JAP = { country_event = { id = china_wr.5 days = 2 } }
 		ai_chance = {
 			base = 50
 		}
@@ -69,38 +107,31 @@ country_event = {
 	id = china_wr.5
 	title = china_wr.5.t
 	desc = china_wr.5.d
-	picture = GFX_report_event_china_politicians_captured
-	is_triggered_only = yes
+	trigger = {
+		original_tag = CHI
+		date > 1936.5.10
+	}
+	fire_only_once = yes
 	option = {
 		name = china_wr.5.a
-		CHI = { country_event = { id = china_wr.6 days = 2 } }
-		effect_tooltip = {
-			add_ideas = CHI_southern_railway_concession
-		}
+		retire_character = CHI_hu_hanmin
 		ai_chance = {
 			base = 50
-		}
-	}
-	option = {
-		name = china_wr.5.b
-		CHI = { country_event = { id = china_wr.7 days = 2 } }
-		ai_chance = {
-			base = 0
 		}
 	}
 }
 
-country_event = {
+news_event = {
 	id = china_wr.6
 	title = china_wr.6.t
 	desc = china_wr.6.d
-	picture = GFX_report_event_china_politicians_captured
+	picture = wuhan_government_picture
 	is_triggered_only = yes
+	major = yes
 	option = {
 		name = china_wr.6.a
-		JAP = { add_ideas = CHI_southern_railway_concession }
 		ai_chance = {
-			base = 50
+			base = 5
 		}
 	}
 }
@@ -109,12 +140,23 @@ country_event = {
 	id = china_wr.7
 	title = china_wr.7.t
 	desc = china_wr.7.d
-	picture = GFX_report_event_china_politicians_captured
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
 		name = china_wr.7.a
+		effect_tooltip = {
+			CHI = { add_ideas = CHI_german_advisors }
+		}
+		CHI = { country_event = china_wr.8 }
 		ai_chance = {
-			base = 50
+			base = 100
+		}
+	}
+	option = {
+		name = china_wr.7.b
+		CHI = { country_event = china_wr.9 }
+		ai_chance = {
+			base = 1
 		}
 	}
 }
@@ -123,12 +165,13 @@ country_event = {
 	id = china_wr.8
 	title = china_wr.8.t
 	desc = china_wr.8.d
-	picture = GFX_report_event_china_politicians_captured
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
 		name = china_wr.8.a
+		add_ideas = CHI_german_advisors
 		ai_chance = {
-			base = 50
+			base = 1
 		}
 	}
 }
@@ -137,627 +180,688 @@ country_event = {
 	id = china_wr.9
 	title = china_wr.9.t
 	desc = china_wr.9.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
 		name = china_wr.9.a
 		ai_chance = {
-			base = 50
+			base = 1
 		}
 	}
 }
 
-country_event = { #사천 대기근 컨트리이벤트
+country_event = {
 	id = china_wr.10
 	title = china_wr.10.t
 	desc = china_wr.10.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
-	immediate = {
-		hidden_effect = {
-			set_country_flag = CHI_sichuan_famine_start_flag
+	picture = democratic_pre_cand
+	option = {
+		name = china_wr.10.a
+		effect_tooltip = {
+			send_equipment = {
+				target = CHI
+				type = infantry_equipment
+				amount = 1000
+			}
+		}
+		CHI = { country_event = china_wr.11 }
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 99
+				has_opinion = { target = CHI value > 0 }
+				has_war = no
+			}
+			modifier = {
+				add = 99
+				has_opinion = { target = JAP value < -20 }
+				has_opinion = { target = CHI value > -15 }
+				has_war = no
+			}
 		}
 	}
 	option = {
-		name = china_wr.10.a
-		every_state = {
-			limit = {
-				has_dynamic_modifier = {
-					modifier = CHI_the_threat_of_famine
-					scope = CHI
-				}
+		name = china_wr.10.b
+		effect_tooltip = {
+			send_equipment = {
+				target = CHI
+				type = artillery_equipment
+				amount = 100
 			}
-			remove_dynamic_modifier = { modifier = CHI_the_threat_of_famine }
 		}
-		country_event = { id = china_wr.13 days = 10 }
-		add_ideas = CHI_sichuan_famine
-		complete_national_focus = CHI_sichuan_famine_focus
-		mark_focus_tree_layout_dirty = yes
+		CHI = { country_event = china_wr.12 }
 		ai_chance = {
-			base = 50
+			base = 1
+			modifier = {
+				add = 99
+				has_opinion = { target = CHI value > 0 }
+				has_war = no
+			}
+			modifier = {
+				add = 99
+				has_opinion = { target = JAP value < -20 }
+				has_opinion = { target = CHI value > -15 }
+				has_war = no
+			}
+		}
+	}
+	option = {
+		name = china_wr.10.c
+		CHI = { country_event = china_wr.13 }
+		ai_chance = {
+			base = 10
 		}
 	}
 }
 
-news_event = { #사천 대기근 월드이벤트
+country_event = {
 	id = china_wr.11
 	title = china_wr.11.t
 	desc = china_wr.11.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
-	major = yes
+	picture = democratic_pre_cand
 	option = {
 		name = china_wr.11.a
+		FROM = {
+			send_equipment = {
+				target = CHI
+				type = infantry_equipment
+				amount = 1000
+			}
+		}
+		add_opinion_modifier = {
+			target = FROM
+			modifier = weapon_support
+		}
 		ai_chance = {
-			base = 50
+			base = 10
 		}
 	}
 }
 
-country_event = { #사천 대기근 구호물품 전달 이벤트
+country_event = {
 	id = china_wr.12
 	title = china_wr.12.t
 	desc = china_wr.12.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = democratic_pre_cand
 	option = {
-		name = china_wr.12.a
-		swap_ideas = {
-			remove_idea = CHI_sichuan_famine_1
-			add_idea = CHI_sichuan_famine_2
+		name = china_wr.11.a
+		FROM = {
+			send_equipment = {
+				target = CHI
+				type = artillery_equipment
+				amount = 100
+			}
+		}
+		add_opinion_modifier = {
+			target = FROM
+			modifier = weapon_support
 		}
 		ai_chance = {
-			base = 50
+			base = 10
 		}
 	}
 }
 
-country_event = { #취소된 조기 총선
+country_event = {
 	id = china_wr.13
 	title = china_wr.13.t
 	desc = china_wr.13.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = democratic_pre_cand
 	option = {
 		name = china_wr.13.a
-		add_stability = -0.025
 		ai_chance = {
-			base = 50
+			base = 10
 		}
 	}
 }
 
-country_event = { #중국 입장에서 8대 열강에게 도움 요청하는 이벤트
+country_event = {
 	id = china_wr.14
 	title = china_wr.14.t
-	desc = china_wr.14.d
-	picture = GFX_great_famine
+	desc = {
+		text = china_wr.14.d1
+		trigger = {
+			NOT = { FNG = { has_country_flag = FNG_hanjian } }
+		}
+	}
+	desc = {
+		text = china_wr.14.d2
+		trigger = {
+			FNG = { has_country_flag = FNG_hanjian }
+		}
+	}
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
 		name = china_wr.14.a
-		set_variable = { help_okay_var = 0 }
-		set_variable = { CHI_num_var = 0 }
-		every_country = {
-			limit = {
-				OR = {
-					original_tag = JAP
-					original_tag = USA
-					original_tag = GER
-					original_tag = AUH
-					original_tag = SOV
-					original_tag = ITA
-					original_tag = ENG
-				}
+		trigger = {
+			NOT = { FNG = { has_country_flag = FNG_hanjian } }
+		}
+		add_political_power = -50
+		FNG = {
+			FNG_zhang_zuolin = {
+				set_nationality = PREV.PREV
 			}
-			country_event = { id = china_wr.15 days = 2 }
+			FNG_zhang_xueliang = {
+				set_nationality = PREV.PREV
+			}
+			FNG_zhang_jinghui = {
+				set_nationality = PREV.PREV
+			}
+			FNG_pan_fu = {
+				set_nationality = PREV.PREV
+			}
+			FNG_wu_jinglian = {
+				set_nationality = PREV.PREV
+			}
+			FNG_zhang_zuoxiang = {
+				set_nationality = PREV.PREV
+			}
 		}
 		ai_chance = {
-			base = 50
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.14.b
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = china_wr.14.c
+		trigger = {
+			FNG = { has_country_flag = FNG_hanjian }
+		}
+		add_stability = -0.05
+		add_war_support = 0.05
+		effect_tooltip = {
+			retire_character = FNG_zhang_zuolin
+			retire_character = FNG_zhang_xueliang
+			retire_character = FNG_zhang_jinghui
+			retire_character = FNG_pan_fu
+			retire_character = FNG_wu_jinglian
+			retire_character = FNG_zhang_zuoxiang
+		}
+		hidden_effect = {
+			FNG = {
+				retire_character = FNG_zhang_zuolin
+				retire_character = FNG_zhang_xueliang
+				retire_character = FNG_zhang_jinghui
+				retire_character = FNG_pan_fu
+				retire_character = FNG_wu_jinglian
+				retire_character = FNG_zhang_zuoxiang
+			}
+		}
+		ai_chance = {
+			base = 10
 		}
 	}
 }
 
-country_event = { #열강 입장에서 중국에게 도움 줄지 말지 이벤트
+news_event = {
 	id = china_wr.15
 	title = china_wr.15.t
 	desc = china_wr.15.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
-	option = { #도움을 준다
+	picture = United_Front
+	option = {
 		name = china_wr.15.a
-		CHI = { country_event = { id = china_wr.16 days = 1 } }
 		ai_chance = {
-			base = 50
-		}
-	}
-	option = { #아시안 원숭이는 아사하는게 이득이다
-		name = china_wr.15.b
-		CHI = { country_event = { id = china_wr.17 days = 1 } }
-		ai_chance = {
-			base = 50
+			base = 10
 		}
 	}
 }
 
-country_event = { #[FROM.GetName]의 구호 승인
+country_event = {
 	id = china_wr.16
 	title = china_wr.16.t
 	desc = china_wr.16.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
 		name = china_wr.16.a
-		add_to_variable = { help_okay_var = 1 }
-		add_to_variable = { CHI_num_var = 1 }
-		if = {
-			limit = {
-				check_variable = { CHI_num_var = 7 }
+		CHI = { country_event = { id = china_wr.17 hours = 5 } }
+		effect_tooltip = {
+			add_ideas = Profits_from_China
+			if = {
+				limit = {
+					ROOT = { original_tag = GER }
+				}
+				CHI = {
+					add_ideas = reinforced_cooperation_with_Germany
+				}
 			}
-			country_event = china_wr.18
+			else_if = {
+				limit = {
+					ROOT = { original_tag = ENG }
+				}
+				CHI = {
+					add_ideas = CHI_research_innovation_idea
+				}
+			}
+			else_if = {
+				limit = {
+					ROOT = { original_tag = USA }
+				}
+				CHI = {
+					add_ideas = CHI_American_advisory_group_idea
+				}
+			}
 		}
 		ai_chance = {
-			base = 50
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.16.b
+		CHI = { country_event = { id = china_wr.18 hours = 5 } }
+		ai_chance = {
+			base = 0
 		}
 	}
 }
 
-country_event = { #[FROM.GetName]의 구호 거부
+country_event = {
 	id = china_wr.17
 	title = china_wr.17.t
 	desc = china_wr.17.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
 		name = china_wr.17.a
-		add_to_variable = { CHI_num_var = 1 }
 		if = {
 			limit = {
-				check_variable = { CHI_num_var = 7 }
+				FROM = { original_tag = GER }
 			}
-			country_event = china_wr.18
+			add_ideas = reinforced_cooperation_with_Germany
+		}
+		else_if = {
+			limit = {
+				FROM = { original_tag = ENG }
+			}
+			add_ideas = CHI_research_innovation_idea
+		}
+		else_if = {
+			limit = {
+				FROM = { original_tag = USA }
+			}
+			add_ideas = CHI_American_advisory_group_idea
+		}
+		FROM = {
+			add_ideas = Profits_from_China
 		}
 		ai_chance = {
-			base = 50
+			base = 10
 		}
 	}
 }
 
-country_event = { #구호 결과 도출.
+country_event = {
 	id = china_wr.18
 	title = china_wr.18.t
-	desc = {
-		text = china_wr.18.desc.a #모든 국가 거부
-		trigger = {
-			check_variable = { help_okay_var = 0 }
-		}
-	}
-	desc = {
-		text = china_wr.18.desc.b #일부 국가 승인
-		trigger = {
-			check_variable = { help_okay_var > 0 }
-			check_variable = { help_okay_var < 7 }
-		}
-	}
-	desc = {
-		text = china_wr.18.desc.c #모든 국가 승인
-		trigger = {
-			check_variable = { help_okay_var = 7 }
-		}
-	}
-	picture = GFX_great_famine
+	desc = china_wr.18.d
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
-		name = china_wr.18.a #모든 국가 거부
-		trigger = {
-			check_variable = { help_okay_var = 0 }
-		}
-		set_country_flag = done_help_flag
+		name = china_wr.18.a
 		ai_chance = {
-			base = 50
-		}
-	}
-	option = {
-		name = china_wr.18.b #4개 미만 국가 승인
-		trigger = {
-			check_variable = { help_okay_var > 1 }
-			check_variable = { help_okay_var < 4 }
-		}
-		swap_ideas = {
-			remove_idea = CHI_sichuan_famine_2
-			add_idea = CHI_sichuan_famine_3_a
-		}
-		set_country_flag = done_help_flag
-		ai_chance = {
-			base = 50
-		}
-	}
-	option = {
-		name = china_wr.18.c #4개 이상 국가 승인
-		trigger = {
-			OR = {
-				check_variable = { help_okay_var > 4 }
-				check_variable = { help_okay_var < 7 }
-			}
-		}
-		swap_ideas = {
-			remove_idea = CHI_sichuan_famine_2
-			add_idea = CHI_sichuan_famine_3_b
-		}
-		set_country_flag = done_help_flag
-		ai_chance = {
-			base = 50
-		}
-	}
-	option = {
-		name = china_wr.18.d #모든 국가 승인
-		trigger = {
-			OR = {
-				check_variable = { help_okay_var = 7 }
-			}
-		}
-		swap_ideas = {
-			remove_idea = CHI_sichuan_famine_2
-			add_idea = CHI_sichuan_famine_3_c
-		}
-		set_country_flag = done_help_flag
-		ai_chance = {
-			base = 50
+			base = 10
 		}
 	}
 }
 
-country_event = { #조기 총선 약속 이벤트
+country_event = {
 	id = china_wr.19
 	title = china_wr.19.t
 	desc = china_wr.19.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = GFX_report_event_japan_army_mountainside
 	option = {
 		name = china_wr.19.a
-		add_political_power = 25
-		custom_effect_tooltip = CHI_early_election_commitment_tt
+		FROM = { annex_country = { target = ROOT transfer_troops = yes } }
 		ai_chance = {
-			base = 50
+			base = 1
+			modifier = {
+				OR = {
+					original_tag = GXC
+					original_tag = GUD
+				}
+				add = 9
+			}
+		}
+	}
+	option = {
+		name = china_wr.19.b
+		effect_tooltip = {
+			FROM = { declare_war_on = { target = ROOT  type = annex_everything } }
+		}
+		hidden_effect = {
+			FROM = { country_event = { id = china_wr.29 days = 1 } }
+		}
+		if = {
+			limit = {
+				ROOT = { is_subject_of = FROM }
+			}
+			FROM = { end_puppet = ROOT }
+		}
+		ai_chance = {
+			base = 10
+			modifier = {
+				OR = {
+					original_tag = GXC
+					original_tag = GUD
+				}
+				add = -8
+			}
 		}
 	}
 }
 
-country_event = { #사천 대기근 해결됨 이벤트
+country_event = {
 	id = china_wr.20
 	title = china_wr.20.t
 	desc = china_wr.20.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = tibet_map
 	option = {
 		name = china_wr.20.a
-		if = {
-			limit = {
-				has_idea = CHI_sichuan_famine_3_c
-			}
-			remove_ideas = CHI_sichuan_famine_3_c
-		}
-		else_if = {
-			limit = {
-				has_idea = CHI_sichuan_famine_4_a
-			}
-			remove_ideas = CHI_sichuan_famine_4_a
-		}
-		else_if = {
-			limit = {
-				has_idea = CHI_sichuan_famine_4_b
-			}
-			remove_ideas = CHI_sichuan_famine_4_b
-		}
-		else_if = {
-			limit = {
-				has_idea = CHI_sichuan_famine_4_c
-			}
-			remove_ideas = CHI_sichuan_famine_4_c
-		}
-		set_country_flag = finally_solve_problem_in_sichan_flag
-		mark_focus_tree_layout_dirty = yes
-		complete_national_focus = CHI_prepare_insufficient_election
-		unlock_decision_category_tooltip = CHI_presidential_election_preparation_category
+		TIB = {	country_event = china_wr.21 }
+		set_global_flag = friend_with_tibet
 		ai_chance = {
-			base = 50
+			base = 1
+		}
+	}
+	option = {
+		name = china_wr.20.b
+		TIB = {	country_event = china_wr.21 }
+		set_global_flag = attack_with_tibet
+		ai_chance = {
+			base = 1
 		}
 	}
 }
 
-country_event = { #2기 중점 첫 이벤트, 옌후이칭이 대담할 후보를 고르는 이벤트
+country_event = {
 	id = china_wr.21
 	title = china_wr.21.t
-	desc = china_wr.21.d
-	picture = GFX_great_famine
+	desc = {
+		text = china_wr.21.d1
+		trigger = {
+			has_global_flag = friend_with_tibet
+		}
+	}
+	desc = {
+		text = china_wr.21.d2
+		trigger = {
+			has_global_flag = attack_with_tibet
+		}
+	}
 	is_triggered_only = yes
-	option = { #진보당
+	picture = tibet_map
+	option = {
 		name = china_wr.21.a
-		complete_national_focus = CHI_minsheng_junfu
+		if = {
+			limit = {
+				has_global_flag = friend_with_tibet
+			}
+			effect_tooltip = {
+				CHI = {
+					give_guarantee = TIB
+					add_opinion_modifier = {
+						target = TIB
+						modifier = medium_increase
+					}
+				}
+				TIB = {
+					add_opinion_modifier = {
+						target = CHI
+						modifier = medium_increase
+					}
+				}
+			}
+			CHI = { country_event = china_wr.22 }
+		}
+		if = {
+			limit = {
+				has_global_flag = attack_with_tibet
+			}
+			effect_tooltip = {
+				CHI = { annex_country = { target = TIB transfer_troops = yes } }
+			}
+			CHI = { country_event = china_wr.22 }
+		}
 		ai_chance = {
-			base = 5
+			base = 1
+			modifier = {
+				base = 10
+				has_global_flag = friend_with_tibet
+			}
 		}
 	}
-	option = { #중청당
+	option = {
 		name = china_wr.21.b
-		complete_national_focus = CHI_minquan_xianzheng
-		ai_chance = {
-			base = 5
+		if = {
+			limit = {
+				has_global_flag = friend_with_tibet
+			}
+			CHI = { country_event = china_wr.23 }
 		}
-	}
-	option = { #국민당
-		name = china_wr.21.c
-		complete_national_focus = CHI_beifang_tongyi
+		if = {
+			limit = {
+				has_global_flag = attack_with_tibet
+			}
+			effect_tooltip = {
+				CHI = { declare_war_on = { target = TIB  type = annex_everything } }
+			}
+			CHI = { country_event = china_wr.23 }
+		}
 		ai_chance = {
-			base = 5
+			base = 1
+			modifier = {
+				base = 10
+				has_global_flag = attack_with_tibet
+			}
 		}
 	}
 }
 
-country_event = { #진보당 후보와 대담하는 옌후이칭
+country_event = {
 	id = china_wr.22
 	title = china_wr.22.t
-	desc = china_wr.22.d
-	picture = GFX_great_famine
+	desc = {
+		text = china_wr.22.d1
+		trigger = {
+			has_global_flag = friend_with_tibet
+		}
+	}
+	desc = {
+		text = china_wr.22.d2
+		trigger = {
+			has_global_flag = attack_with_tibet
+		}
+	}
 	is_triggered_only = yes
+	picture = tibet_map
 	option = {
 		name = china_wr.22.a
-		CHI_inc_cai_e_var_1 = yes
+		if = {
+			limit = {
+				has_global_flag = friend_with_tibet
+			}
+			CHI = {
+				give_guarantee = TIB
+				add_opinion_modifier = {
+					target = TIB
+					modifier = medium_increase
+				}
+			}
+			TIB = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = medium_increase
+				}
+			}
+		}
+		if = {
+			limit = {
+				has_global_flag = attack_with_tibet
+			}
+			annex_country = { target = TIB transfer_troops = yes }
+		}
 		ai_chance = {
 			base = 5
 		}
 	}
 }
 
-country_event = { #중청당 후보와 대담하는 옌후이칭
+country_event = {
 	id = china_wr.23
 	title = china_wr.23.t
-	desc = china_wr.23.d
-	picture = GFX_great_famine
+	desc = {
+		text = china_wr.23.d1
+		trigger = {
+			has_global_flag = friend_with_tibet
+		}
+	}
+	desc = {
+		text = china_wr.23.d2
+		trigger = {
+			has_global_flag = attack_with_tibet
+		}
+	}
 	is_triggered_only = yes
+	picture = tibet_map
 	option = {
 		name = china_wr.23.a
-		CHI_inc_hu_shih_var_1 = yes
+		if = {
+			limit = {
+				has_global_flag = friend_with_tibet
+			}
+		}
+		if = {
+			limit = {
+				has_global_flag = attack_with_tibet
+			}
+			declare_war_on = { target = TIB  type = annex_everything }
+		}
 		ai_chance = {
 			base = 5
 		}
 	}
 }
 
-country_event = { #국민당 후보와 대담하는 옌후이칭
+country_event = {
 	id = china_wr.24
 	title = china_wr.24.t
 	desc = china_wr.24.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
 		name = china_wr.24.a
-		CHI_inc_wang_jingwei_var_1 = yes
+		add_ideas = MON_China_Mongolia_Trade_Agreement_idea
 		ai_chance = {
 			base = 5
 		}
 	}
 }
 
-country_event = { #노동자에게 호소 이벤트
+country_event = {
 	id = china_wr.25
 	title = china_wr.25.t
 	desc = china_wr.25.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
 		name = china_wr.25.a
-		CHI_inc_cai_e_var_2 = yes
+		dismantle_faction = yes
 		ai_chance = {
 			base = 5
 		}
 	}
 }
 
-country_event = { #중도파 결집 이벤트
+country_event = {
 	id = china_wr.26
 	title = china_wr.26.t
 	desc = china_wr.26.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
 		name = china_wr.26.a
-		CHI_inc_cai_e_var_3 = yes
-		CHI_inc_hu_shih_var_3 = yes
+		add_to_faction = FROM
+		FROM = { country_event = china_wr.27 }
 		ai_chance = {
 			base = 5
 		}
 	}
+	option = {
+		name = china_wr.26.b
+		FROM = { country_event = china_wr.28 }
+		ai_chance = {
+			base = 0
+		}
+	}
 }
 
-country_event = { #강남 단속 이벤트
+country_event = {
 	id = china_wr.27
 	title = china_wr.27.t
 	desc = china_wr.27.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
 		name = china_wr.27.a
-		CHI_inc_wang_jingwei_var_1 = yes
 		ai_chance = {
 			base = 5
 		}
 	}
 }
 
-country_event = { #청방 활용 단속 이벤트
+country_event = {
 	id = china_wr.28
 	title = china_wr.28.t
 	desc = china_wr.28.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = GFX_report_event_china_politicians_captured
 	option = {
 		name = china_wr.28.a
-		CHI_inc_wang_jingwei_var_1 = yes
 		ai_chance = {
 			base = 5
 		}
 	}
 }
 
-country_event = { #사천에서 투표 거부하는 국민당 이벤트
+country_event = {
 	id = china_wr.29
 	title = china_wr.29.t
 	desc = china_wr.29.d
-	picture = GFX_great_famine
 	is_triggered_only = yes
+	picture = GFX_report_event_japan_army_mountainside
 	option = {
 		name = china_wr.29.a
-		CHI_dec_wang_jingwei_var_10 = yes
+		declare_war_on = { target = FROM  type = annex_everything }
 		ai_chance = {
-			base = 5
+			base = 10
 		}
 	}
 }
 
-country_event = { #선거운동에 쓰인 라디오(중청당) 이벤트
+news_event = {
 	id = china_wr.30
 	title = china_wr.30.t
 	desc = china_wr.30.d
-	picture = GFX_great_famine
+	picture = GFX_end_the_peoples_tutelage
 	is_triggered_only = yes
+	major = yes
 	option = {
 		name = china_wr.30.a
-		unlock_decision_tooltip = CHI_voice_of_freedom_dei
-		set_country_flag = CHI_voice_of_freedom_dei_flag
 		ai_chance = {
-			base = 5
-		}
-	}
-}
-
-country_event = {
-	id = china_wr.31
-	title = china_wr.31.t
-	desc = china_wr.31.d
-	picture = GFX_great_famine
-	is_triggered_only = yes
-	option = {
-		name = china_wr.31.a
-		CHI_inc_cai_e_var_2 = yes
-		ai_chance = {
-			base = 5
-		}
-	}
-}
-
-country_event = {
-	id = china_wr.32
-	title = china_wr.32.t
-	desc = china_wr.32.d
-	picture = GFX_great_famine
-	is_triggered_only = yes
-	option = {
-		name = china_wr.32.a
-		CHI_inc_hu_shih_var_2 = yes
-		ai_chance = {
-			base = 5
-		}
-	}
-}
-
-country_event = { #진보당 선거 마지막 이벤트
-	id = china_wr.33
-	title = china_wr.33.t
-	desc = china_wr.33.d
-	picture = GFX_great_famine
-	is_triggered_only = yes
-	option = {
-		name = china_wr.33.a
-		CHI_inc_cai_e_var_5 = yes
-		ai_chance = {
-			base = 5
-		}
-	}
-}
-
-country_event = { #중청당 선거 마지막 이벤트
-	id = china_wr.34
-	title = china_wr.34.t
-	desc = china_wr.34.d
-	picture = GFX_great_famine
-	is_triggered_only = yes
-	option = {
-		name = china_wr.34.a
-		CHI_inc_hu_shih_var_5 = yes
-		ai_chance = {
-			base = 5
-		}
-	}
-}
-
-country_event = { #국민당 선거 마지막 이벤트
-	id = china_wr.35
-	title = china_wr.35.t
-	desc = china_wr.35.d
-	picture = GFX_great_famine
-	is_triggered_only = yes
-	option = {
-		name = china_wr.35.a
-		CHI_inc_wang_jingwei_var_5 = yes
-		ai_chance = {
-			base = 5
-		}
-	}
-}
-
-country_event = { #사천기근 이후 선거 재개
-	id = china_wr.36
-	title = china_wr.36.t
-	desc = china_wr.36.d
-	picture = GFX_great_famine
-	is_triggered_only = yes
-	option = {
-		name = china_wr.36.a
-		hidden_effect = {
-			country_event = { id = china_wr.37 days = 70 }
-		}
-		ai_chance = {
-			base = 5
-		}
-	}
-}
-
-country_event = { #5대 대총통 선거
-	id = china_wr.37
-	title = china_wr.37.t
-	desc = china_wr.37.d
-	picture = GFX_great_famine
-	is_triggered_only = yes
-	option = {
-		name = china_wr.37.a
-		trigger = {
-			OR = {
-				has_completed_focus = CHI_minsheng_junfu
-				AND = {
-					has_completed_focus = CHI_beifang_tongyi
-					has_country_flag = CHI_CAI_E_FLAG
-				}
-			}
-		}
-		clr_country_flag = finally_solve_problem_in_sichan_flag
-		ai_chance = {
-			base = 5
-		}
-	}
-	option = {
-		name = china_wr.37.b
-		trigger = {
-			OR = {
-				has_completed_focus = CHI_minquan_xianzheng
-				AND = {
-					has_completed_focus = CHI_beifang_tongyi
-					has_country_flag = CHI_HU_SHI_FLAG
-				}
-			}
-		}
-		clr_country_flag = finally_solve_problem_in_sichan_flag
-		ai_chance = {
-			base = 5
+			base = 100
 		}
 	}
 }
