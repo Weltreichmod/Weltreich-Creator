@@ -1,0 +1,63 @@
+Mongolian_war = {
+	time_left_for_us = {
+		icon = GFX_decision_generic_ignite_civil_war
+		days_mission_timeout = 200
+		activation = {
+			original_tag = SEF
+			MON = { has_war_with = SEF }
+		}
+		allowed = {
+			original_tag = SEF
+		}
+		available = {
+			NOT = { has_war_with = MON }
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			white_peace = {
+				tag = MAN
+				message = sef_man_bad_tt
+			}
+			every_state = {
+				limit = {
+					is_owned_by = SEF
+					is_core_of = SIK
+				}
+				transfer_state_to = SIK
+			}
+			every_state = {
+				limit = {
+					is_owned_by = SEF
+					is_core_of = MON
+				}
+				transfer_state_to = MON
+			}
+			every_state = {
+				limit = {
+					is_owned_by = SEF
+					is_core_of = TAN
+				}
+				transfer_state_to = TAN
+			}
+			SOV = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						TAN = { exists = yes }
+					}
+					set_autonomy = {
+						target = TAN
+						autonomous_state = autonomy_puppet
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = TAN
+					}
+				}
+			}
+			MON = {
+				remove_ideas = MON_soviet_influence
+			}
+		}
+	}
+}

@@ -2125,7 +2125,7 @@ country_event = {
 			}
 			DDR = {
 				inherit_technology = GER
-				add_timed_idea = { idea = war_reparations days = 1000 }
+				add_ideas = war_reparations
 				add_ideas = peace_treaty
 				hidden_effect = {
 					create_country_leader = {
@@ -2168,9 +2168,110 @@ country_event = {
 						long_name = SOV_military_government
 						name = SOV_military_government
 					}
+					load_oob = "DDR_focus_1"
+					set_popularities = {
+						democratic = 20
+						neutrality = 30
+						fascism = 10
+						communism = 40
+					}
 				}
 			}
 			DDR = { set_cosmetic_tag = DDR_under_military }
+		}
+		ai_chance = {
+			base = 100
+		}
+	}
+	option = {
+		name = wrwpe.13.a1
+		trigger = {
+			ROOT = { original_tag = SOV }
+		}
+		every_state = {
+			limit = {
+				is_owned_by = ROOT
+				is_core_of = GER
+			}
+			add_core_of = DDR
+			remove_core_of = GER
+			transfer_state_to = DDR
+		}
+		if = {
+			limit = {
+				DDR = { exists = yes }
+			}
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+				}
+				set_autonomy = {
+					target = DDR
+					autonomous_state = autonomy_occupation_zone
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = DDR
+				}
+			}
+			DDR = {
+				inherit_technology = GER
+				add_ideas = war_reparations
+				add_ideas = peace_treaty
+				hidden_effect = {
+					create_country_leader = {
+						name = "SOV_georgy_zhukov"
+						picture = "gfx/leaders/SOV/Portrait_Soviet_Gregory_Zhukov.dds"
+						ideology = conservatism
+					}
+					create_country_leader = {
+						name = "SOV_georgy_zhukov"
+						picture = "gfx/leaders/SOV/Portrait_Soviet_Gregory_Zhukov.dds"
+						ideology = leninism
+					}
+					create_country_leader = {
+						name = "SOV_georgy_zhukov"
+						picture = "gfx/leaders/SOV/Portrait_Soviet_Gregory_Zhukov.dds"
+						ideology = fascism_ideology
+					}
+					create_country_leader = {
+						name = "SOV_georgy_zhukov"
+						picture = "gfx/leaders/SOV/Portrait_Soviet_Gregory_Zhukov.dds"
+						ideology = despotism
+					}
+					set_party_name = {
+						ideology = democratic
+						long_name = SOV_military_government
+						name = SOV_military_government
+					}
+					set_party_name = {
+						ideology = communism
+						long_name = SOV_military_government
+						name = SOV_military_government
+					}
+					set_party_name = {
+						ideology = fascism
+						long_name = SOV_military_government
+						name = SOV_military_government
+					}
+					set_party_name = {
+						ideology = neutrality
+						long_name = SOV_military_government
+						name = SOV_military_government
+					}
+					load_oob = "DDR_focus_1"
+					set_popularities = {
+						democratic = 20
+						neutrality = 30
+						fascism = 10
+						communism = 40
+					}
+				}
+			}
+			DDR = { set_cosmetic_tag = DDR_under_military }
+		}
+		DDR = {
+			change_tag_from = ROOT
 		}
 		ai_chance = {
 			base = 100

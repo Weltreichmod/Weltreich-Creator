@@ -2335,6 +2335,188 @@ country_event = {
 }
 
 country_event = {
+	id = soviet_rework_troika.077
+	title = soviet_rework_troika.077.t
+	desc = soviet_rework_troika.077.d
+	picture = GFX_report_event_japan_army_mountainside
+	is_triggered_only = yes
+	option = {
+		name = soviet_rework_troika.077.a
+		SOV_vasily_blyukher = {
+			set_nationality = SEF
+			promote_character = yes				
+		}
+		SEF = {
+			annex_country = { target = TAN transfer_troops = no }
+			inherit_technology = SOV
+			set_province_controller = 4751
+			set_province_controller = 7843
+			set_province_controller = 10539
+			set_province_controller = 12695
+			set_province_controller = 12520
+			set_province_controller = 7773
+			set_province_controller = 10669
+			set_province_controller = 1774
+			declare_war_on = { target = MON type = puppet_wargoal_focus }
+			division_template = {
+				name = "Strelkovaya Diviziya"
+				division_names_group = SOV_INF_01
+
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					infantry = { x = 2 y = 0 }
+					infantry = { x = 2 y = 1 }
+					infantry = { x = 2 y = 2 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 } 	
+				}
+			}
+			division_template = {
+				name = "Gornostrelkovaya Diviziya"
+				division_names_group = SOV_MNT_01
+
+				regiments = {
+					mountaineers = { x = 0 y = 0 }	
+					mountaineers = { x = 0 y = 1 }
+					mountaineers = { x = 0 y = 2 }	
+					mountaineers = { x = 1 y = 0 }
+					mountaineers = { x = 1 y = 1 }
+					mountaineers = { x = 1 y = 2 }
+					mountaineers = { x = 2 y = 0 }	
+					mountaineers = { x = 2 y = 1 }	
+					mountaineers = { x = 2 y = 2 }	
+					mountaineers = { x = 3 y = 0 }	
+					mountaineers = { x = 3 y = 1 }	
+					mountaineers = { x = 3 y = 2 }	
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+					artillery = { x = 0 y = 1 }
+				}
+			}
+			division_template = {
+				name = "Motostrelkovaya Diviziya"
+				division_names_group = SOV_MOT_01
+				regiments = {
+					motorized = { x = 0 y = 0 }
+					motorized = { x = 0 y = 1 }
+					motorized = { x = 0 y = 2 }
+					motorized = { x = 1 y = 0 }
+					motorized = { x = 1 y = 1 }
+					motorized = { x = 1 y = 2 }
+				}
+			}
+			division_template = {
+				name = "Kavaleriyskaya Diviziya"
+				division_names_group = SOV_CAV_01
+
+				regiments = {
+					cavalry = { x = 0 y = 0 }
+					cavalry = { x = 0 y = 1 }
+					cavalry = { x = 1 y = 0 }
+					cavalry = { x = 1 y = 1 }
+				}
+			}
+			division_template = {
+				name = "Mekhanizirovaniy Korpus"
+				division_names_group = SOV_MEC_01
+				regiments = {
+					light_armor = { x = 0 y = 0 }
+					light_armor = { x = 0 y = 1 }
+					light_armor = { x = 1 y = 0 }		
+					light_armor = { x = 1 y = 1 }		
+					light_armor = { x = 1 y = 2 }		
+					motorized = { x = 2 y = 0 }		
+					motorized = { x = 2 y = 1 }	
+					motorized = { x = 2 y = 2 }		
+					motorized = { x = 2 y = 3 }		
+				}
+			}
+			division_template = {
+				name = "Vozdushno-Desantnaya Brigada"
+				division_names_group = SOV_PAR_01
+
+				regiments = {
+					paratrooper = { x = 0 y = 0 }
+					paratrooper = { x = 0 y = 1 }
+				}
+			}
+			division_template = {
+				name = "Extrany Diviziya"
+				division_names_group = SOV_INF_01
+
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+				}
+				priority = 0
+				is_locked = yes
+			}
+			329 = {
+				create_unit = {
+					division = "name = \"Mekhanizirovaniy Korpus\" division_template = \"Mekhanizirovaniy Korpus\" start_experience_factor = 0.1"
+					owner = SEF
+					count = 3
+				}
+			}
+			818 = {
+				create_unit = {
+					division = "name = \"Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = SEF
+					count = 4
+				}
+			}
+			618 = {
+				create_unit = {
+					division = "name = \"Extrany Diviziya\" division_template = \"Extrany Diviziya\" start_experience_factor = 0.1"
+					owner = SEF
+					count = 3
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				is_owned_by = SIK
+				state = 618
+			}
+			transfer_state_to = SEF
+		}
+		hidden_effect = {
+			MAN = { country_event = { id = manchukou.2 days = 3 } }
+			618 = { set_demilitarized_zone = no }
+			SIK = { country_event = { id = china_wr.65 days = 7 } }
+			CHI = { country_event = { id = china_wr.65 days = 7 } }
+		}
+		news_event = soviet_rework_troika.078
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+news_event = {
+	id = soviet_rework_troika.078
+	title = soviet_rework_troika.078.t
+	desc = soviet_rework_troika.078.d
+	picture = GFX_sef_attack_mon
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = soviet_rework_troika.078.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
 	picture = GFX_report_event_french_resistance_01
 	id = soviet_rework_revolution.1
 	title = soviet_rework_revolution.1.t

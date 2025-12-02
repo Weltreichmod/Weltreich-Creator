@@ -6,17 +6,17 @@ CHI_presidential_election_preparation_category = {
 		}
 		visible = {
 			has_country_flag = CHI_voice_of_freedom_dei_flag
-			check_variable = { CHI_voice_of_freedom_dei_var = 4 }
+			OR = {
+				check_variable = { CHI_voice_of_freedom_dei_var < 4 }
+				NOT = { has_variable = CHI_voice_of_freedom_dei_var }
+			}
 		}
 		days_remove = 3
 		ai_will_do = {
 			base = 4000
 		}
 		remove_effect = {
-			add_popularity = {
-				ideology = democratic
-				popularity = 0.02
-			}
+			CHI_inc_hu_shih_var_2 = yes
 			custom_effect_tooltip = CHI_voice_of_freedom_dei_tt
 			hidden_effect = {
 				if = {
@@ -48,10 +48,7 @@ CHI_presidential_election_preparation_category = {
 			base = 4000
 		}
 		remove_effect = {
-			add_popularity = {
-				ideology = communism
-				popularity = 0.02
-			}
+			CHI_inc_cai_e_var_2 = yes
 		}
 	}
 	CHI_chengdu_speaking_tour = {
@@ -68,10 +65,7 @@ CHI_presidential_election_preparation_category = {
 			base = 4000
 		}
 		remove_effect = {
-			add_popularity = {
-				ideology = communism
-				popularity = 0.02
-			}
+			CHI_inc_cai_e_var_2 = yes
 		}
 	}
 	CHI_aba_speaking_tour = {
@@ -88,10 +82,7 @@ CHI_presidential_election_preparation_category = {
 			base = 4000
 		}
 		remove_effect = {
-			add_popularity = {
-				ideology = communism
-				popularity = 0.02
-			}
+			CHI_inc_cai_e_var_2 = yes
 		}
 	}
 	CHI_chongqing_speaking_tour = {
@@ -108,10 +99,54 @@ CHI_presidential_election_preparation_category = {
 			base = 4000
 		}
 		remove_effect = {
-			add_popularity = {
-				ideology = communism
-				popularity = 0.02
+			CHI_inc_cai_e_var_2 = yes
+		}
+	}
+}
+
+political_situation = {
+	CHI_crisis_from_the_sichuan_civil_war = {
+		icon = GFX_decision_revolt
+		days_mission_timeout = 40
+		activation = {
+			original_tag = CHI
+			SCH = { has_war_with = SKM }
+		}
+		allowed = {
+			original_tag = CHI
+		}
+		available = {
+			always = no
+		}
+		fire_only_once = yes
+		timeout_effect = {
+			country_event = {
+				id = china_wr.51
 			}
+		}
+	}
+}
+
+Divide_the_Factions = {
+	Send_Delegation_to_the_KMT = {
+		icon = GFX_decision_generic_operation
+		allowed = {
+			original_tag = SHX
+		}
+		visible = {
+			OR = {
+				1014 = { is_controlled_by = KMT }
+				622 = { is_controlled_by = KMT }
+				1012 = { is_controlled_by = KMT }
+				614 = { is_controlled_by = KMT }
+			}
+		}
+		cost = 10
+		complete_effect = {
+			KMT = { country_event = china_wr.66 }
+		}
+		ai_will_do = {
+			base = 4000
 		}
 	}
 }

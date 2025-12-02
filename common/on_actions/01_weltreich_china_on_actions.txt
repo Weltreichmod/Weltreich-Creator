@@ -1,0 +1,251 @@
+on_actions = {
+	on_capitulation = {
+		effect = {
+			#몽골전쟁
+			if = {
+				limit = {
+					original_tag = MON
+					any_enemy_country = {
+						original_tag = SEF
+					}
+				}
+				if = {
+					limit = {
+						SEF = { has_war_with = MAN }
+					}
+					MAN = {
+						white_peace = {
+							tag = SEF
+							message = sef_man_bad_tt
+						}
+						set_country_flag = MAN_failed_in_mongolian_war
+					}
+				}
+				SIK = {
+					drop_cosmetic_tag = yes
+				}
+				every_state = {
+					limit = {
+						is_owned_by = SEF
+						is_core_of = TAN
+					}
+					transfer_state_to = TAN
+				}
+				every_state = {
+					limit = {
+						is_owned_by = SEF
+						is_core_of = SIK
+					}
+					transfer_state_to = SIK
+				}
+				every_state = {
+					limit = {
+						is_owned_by = SEF
+						is_core_of = MON
+					}
+					transfer_state_to = MON
+				}
+				SOV = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							TAN = { exists = yes }
+						}
+						set_autonomy = {
+							target = TAN
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = TAN
+						}
+					}
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							MON = { exists = yes }
+						}
+						set_autonomy = {
+							target = MON
+							autonomous_state = autonomy_satellite
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = MON
+						}
+					}
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							SIK = { exists = yes }
+						}
+						set_autonomy = {
+							target = SIK
+							autonomous_state = autonomy_satellite
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = SIK
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = SEF
+					any_enemy_country = {
+						original_tag = MON
+					}
+				}
+				SIK = {
+					drop_cosmetic_tag = yes
+				}
+				every_state = {
+					limit = {
+						is_owned_by = SEF
+						is_core_of = SIK
+					}
+					transfer_state_to = SIK
+				}
+				every_state = {
+					limit = {
+						is_owned_by = SEF
+						is_core_of = MON
+					}
+					transfer_state_to = MON
+				}
+				every_state = {
+					limit = {
+						is_owned_by = SEF
+						is_core_of = TAN
+					}
+					transfer_state_to = TAN
+				}
+				SOV = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							TAN = { exists = yes }
+						}
+						set_autonomy = {
+							target = TAN
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = TAN
+						}
+					}
+				}
+				MON = {
+					remove_ideas = MON_soviet_influence
+				}
+			}
+			
+			#중국내전
+			if = {
+				limit = {
+					original_tag = KMT
+					any_enemy_country = {
+						original_tag = CHI
+					}
+				}
+				CHI = {
+					annex_country = {
+						target = KMT
+						transfer_troops = yes
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = KMT
+					}
+					remove_core_of = KMT
+				}
+				clr_global_flag = chinese_civil_war
+			}
+			if = {
+				limit = {
+					original_tag = CHI
+					any_enemy_country = {
+						original_tag = KMT
+					}
+				}
+				KMT = {
+					annex_country = {
+						target = CHI
+						transfer_troops = yes
+					}
+					country_event = { id = china_wr.75 days = 5 }
+				}
+				every_state = {
+					limit = {
+						is_core_of = CHI
+					}
+					remove_core_of = CHI
+				}
+				clr_global_flag = chinese_civil_war
+			}
+			if = {
+				limit = {
+					original_tag = NPA
+					any_enemy_country = {
+						original_tag = KMT
+					}
+				}
+				KMT = {
+					annex_country = {
+						target = NPA
+						transfer_troops = yes
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = NPA
+					}
+					remove_core_of = NPA
+				}
+			}
+			if = {
+				limit = {
+					original_tag = PRC
+					any_enemy_country = {
+						original_tag = KMT
+					}
+				}
+				KMT = {
+					annex_country = {
+						target = PRC
+						transfer_troops = yes
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = PRC
+					}
+					remove_core_of = PRC
+				}
+			}
+			if = {
+				limit = {
+					original_tag = SHX
+					any_enemy_country = {
+						original_tag = KMT
+					}
+				}
+				KMT = {
+					annex_country = {
+						target = SHX
+						transfer_troops = yes
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = SHX
+					}
+					remove_core_of = SHX
+				}
+			}
+		}
+	}
+}

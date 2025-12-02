@@ -549,6 +549,8 @@
 		}
 		allow_branch = {
 			has_country_flag = finally_solve_problem_in_sichan_flag
+			NOT = { has_country_flag = north_china_path_flag }
+			NOT = { has_country_flag = south_china_path_flag }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -892,7 +894,7 @@
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			CHI_inc_wang_jingwei_var_3 = yes
+			CHI_inc_wang_jingwei_var_2 = yes
 		}
 	}
 	
@@ -912,6 +914,483 @@
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = china_wr.35
+		}
+	}
+	
+	#Second and a half
+	focus = {
+		id = CHI_hufa_democracy_victory
+		icon = GFX_CHI_hufa_democracy_victory
+		x = 10
+		y = 0
+		cost = 1
+		allow_branch = {
+			has_country_flag = north_china_path_flag
+			NOT = { has_country_flag = chinese_civil_war_flag }
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 25
+			hidden_effect = {
+				load_oob = "CHI_focus_1"
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_hufa_gangnam_declaration
+		icon = GFX_CHI_hufa_gangnam_declaration
+		relative_position_id = CHI_hufa_democracy_victory
+		x = -2
+		y = 1
+		cost = 1
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		prerequisite = {
+			focus = CHI_hufa_democracy_victory
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			country_event = china_wr.76
+		}
+	}
+	
+	focus = {
+		id = CHI_hufa_military_service_law
+		icon = GFX_CHI_hufa_military_service_law
+		relative_position_id = CHI_hufa_democracy_victory
+		x = 0
+		y = 1
+		cost = 1
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		prerequisite = {
+			focus = CHI_hufa_democracy_victory
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_hufa_kmt_appeasement
+		icon = GFX_CHI_hufa_kmt_appeasement
+		relative_position_id = CHI_hufa_democracy_victory
+		x = 2
+		y = 1
+		cost = 3
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		prerequisite = {
+			focus = CHI_hufa_democracy_victory
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_hufa_one_stroke_brigade
+		icon = GFX_CHI_hufa_one_stroke_brigade
+		relative_position_id = CHI_hufa_military_service_law
+		x = -1
+		y = 1
+		cost = 1
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		prerequisite = {
+			focus = CHI_hufa_military_service_law
+		}
+		mutually_exclusive = {
+			focus = CHI_hufa_keep_chanzheng
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_hufa_keep_chanzheng
+		icon = GFX_CHI_hufa_keep_chanzheng
+		relative_position_id = CHI_hufa_military_service_law
+		x = 1
+		y = 1
+		cost = 1
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		prerequisite = {
+			focus = CHI_hufa_military_service_law
+		}
+		mutually_exclusive = {
+			focus = CHI_hufa_one_stroke_brigade
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_MANPOWER }
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_hufa_reserve_force_training
+		icon = GFX_CHI_hufa_reserve_force_training
+		relative_position_id = CHI_hufa_gangnam_declaration
+		x = 0
+		y = 2
+		cost = 3
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		prerequisite = {
+			focus = CHI_hufa_gangnam_declaration
+		}
+		search_filters = {}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_hufa_militia_inspection
+		icon = GFX_CHI_hufa_militia_inspection
+		relative_position_id = CHI_hufa_one_stroke_brigade
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		prerequisite = {
+			focus = CHI_hufa_one_stroke_brigade
+			focus = CHI_hufa_keep_chanzheng
+		}
+		search_filters = {}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_hufa_expand_civilian_control
+		icon = GFX_CHI_hufa_expand_civilian_control
+		relative_position_id = CHI_hufa_kmt_appeasement
+		x = 0
+		y = 2
+		cost = 6
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		prerequisite = {
+			focus = CHI_hufa_kmt_appeasement
+		}
+		search_filters = {}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_hufa_establish_emergency_government
+		icon = GFX_CHI_hufa_establish_emergency_government
+		relative_position_id = CHI_hufa_militia_inspection
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		prerequisite = {
+			focus = CHI_hufa_reserve_force_training
+		}
+		prerequisite = {
+			focus = CHI_hufa_militia_inspection
+		}
+		prerequisite = {
+			focus = CHI_hufa_expand_civilian_control
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_kmt_entering_crisis
+		icon = GFX_CHI_kmt_entering_crisis
+		x = 10
+		y = 0
+		cost = 1
+		allow_branch = {
+			has_country_flag = south_china_path_flag
+			NOT = { has_country_flag = chinese_civil_war_flag }
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 25
+		}
+	}
+	
+	focus = {
+		id = CHI_kmt_secure_jinling
+		icon = GFX_CHI_kmt_secure_jinling
+		relative_position_id = CHI_kmt_entering_crisis
+		x = -2
+		y = 1
+		cost = 1
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_kmt_entering_crisis
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_offsite_building = { type = industrial_complex level = 2 }
+		}
+	}
+	
+	focus = {
+		id = CHI_kmt_refuse_election
+		icon = GFX_CHI_kmt_refuse_election
+		relative_position_id = CHI_kmt_entering_crisis
+		x = 0
+		y = 1
+		cost = 1
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_kmt_entering_crisis
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.77
+		}
+	}
+	
+	focus = {
+		id = CHI_kmt_arm_kmt_members
+		icon = GFX_CHI_kmt_arm_kmt_members
+		relative_position_id = CHI_kmt_entering_crisis
+		x = 2
+		y = 1
+		cost = 2
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_kmt_entering_crisis
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = CHI_kmt_arm_kmt_members_tt
+			set_country_flag = CHI_kmt_arm_kmt_members_flag
+		}
+	}
+	
+	focus = {
+		id = CHI_kmt_unprepared_revolution
+		ico = GFX_CHI_kmt_unprepared_revolution
+		relative_position_id = CHI_kmt_refuse_election
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_kmt_secure_jinling
+		}
+		prerequisite = {
+			focus = CHI_kmt_refuse_election
+		}
+		prerequisite = {
+			focus = CHI_kmt_arm_kmt_members
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_kmt_mobilize_pro_kmt_militias
+		icon = GFX_CHI_kmt_mobilize_pro_kmt_militias
+		relative_position_id = CHI_kmt_unprepared_revolution
+		x = -2
+		y = 1
+		cost = 2
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_kmt_unprepared_revolution
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = CHI_kmt_mobilize_pro_kmt_militias_tt
+			set_country_flag = CHI_kmt_mobilize_pro_kmt_militias_flag
+		}
+	}
+	
+	focus = {
+		id = CHI_kmt_convene_party_army
+		icon = GFX_CHI_kmt_convene_party_army
+		relative_position_id = CHI_kmt_unprepared_revolution
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_kmt_unprepared_revolution
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = CHI_kmt_arm_kmt_members_tt
+			set_country_flag = CHI_kmt_convene_party_army_flag
+		}
+	}
+	
+	focus = {
+		id = CHI_kmt_hongmen_qingbang
+		icon = GFX_CHI_kmt_hongmen_qingbang
+		relative_position_id = CHI_kmt_unprepared_revolution
+		x = 2
+		y = 1
+		cost = 1
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_kmt_unprepared_revolution
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_kmt_march_on_nanjing
+		icon = GFX_CHI_kmt_march_on_nanjing
+		relative_position_id = CHI_kmt_convene_party_army
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			hidden_trigger = {
+				NOT = { has_country_flag = chinese_civil_war_flag }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = CHI_kmt_mobilize_pro_kmt_militias
+		}
+		prerequisite = {
+			focus = CHI_kmt_hongmen_qingbang
+		}
+		prerequisite = {
+			focus = CHI_kmt_convene_party_army
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
 		}
 	}
 }
