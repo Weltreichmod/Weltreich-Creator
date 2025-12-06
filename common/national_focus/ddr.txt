@@ -22,7 +22,7 @@ focus_tree = {
 	default = no
 	continuous_focus_position = {
 		x = 100
-		y = 1300
+		y = 1600
 	}
 	
 	focus = {
@@ -806,6 +806,312 @@ focus_tree = {
 				add_idea = DDR_national_peoples_army_idea
 			}
 			country_event = east_ermany.24
+		}
+	}
+	
+	#Industry
+	focus = {
+		id = DDR_clear_the_ruins
+		icon = GFX_DDR_clear_the_ruins
+		relative_position_id = DDR_red_germany
+		x = -7
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = DDR_red_germany
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DDR_collapsed_industry
+				add_idea = DDR_collapsed_industry_1
+			}
+			unlock_decision_category_tooltip = DDR_repair_the_ruins_decision
+		}
+	}
+	
+	focus = {
+		id = DDR_keep_the_foreign_workers
+		icon = GFX_DDR_keep_the_foreign_workers
+		relative_position_id = DDR_clear_the_ruins
+		x = -1
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = DDR_clear_the_ruins
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = east_ermany.26
+		}
+	}
+	
+	focus = {
+		id = DDR_fill_the_granaries
+		icon = GFX_DDR_fill_the_granaries
+		relative_position_id = DDR_clear_the_ruins
+		x = 1
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = DDR_clear_the_ruins
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_ideas = DDR_fill_the_granaries
+		}
+	}
+	
+	focus = {
+		id = DDR_people_first
+		icon = GFX_DDR_people_first
+		relative_position_id = DDR_keep_the_foreign_workers
+		x = 0
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = DDR_keep_the_foreign_workers
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DDR_collapsed_industry_2
+				add_idea = DDR_collapsed_industry_3
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_industrial_immobility
+		icon = GFX_DDR_industrial_immobility
+		relative_position_id = DDR_fill_the_granaries
+		x = 0
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = DDR_fill_the_granaries
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DDR_fill_the_granaries
+				add_idea = DDR_reviving_economy
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_labor_rights_legislation
+		icon = GFX_DDR_labor_rights_legislation
+		relative_position_id = DDR_keep_the_foreign_workers
+		x = -2
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			has_completed_focus = DDR_people_first
+		}
+		prerequisite = {
+			focus = DDR_keep_the_foreign_workers
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DDR_collapsed_industry_3
+				add_idea = DDR_clear_the_ruins_spirit
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_labor_democracy
+		icon = GFX_DDR_labor_democracy
+		relative_position_id = DDR_fill_the_granaries
+		x = 2
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			has_completed_focus = DDR_industrial_immobility
+		}
+		prerequisite = {
+			focus = DDR_fill_the_granaries
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DDR_reviving_economy
+				add_idea = DDR_reviving_economy_1
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_revive_eastern_industry
+		icon = GFX_DDR_revive_eastern_industry
+		relative_position_id = DDR_labor_rights_legislation
+		x = 1
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = DDR_people_first
+		}
+		prerequisite = {
+			focus = DDR_labor_rights_legislation
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			DDR = {
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						is_core_of = ROOT
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_socialist_labor_commune
+		icon = GFX_DDR_socialist_labor_commune
+		relative_position_id = DDR_labor_rights_legislation
+		x = 3
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = DDR_labor_rights_legislation
+		}
+		prerequisite = {
+			focus = DDR_labor_democracy
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_timed_idea = { idea = DDR_socialist_labor_commune days = 365 }
+		}
+	}
+	
+	focus = {
+		id = DDR_proletarian_unity
+		icon = GFX_DDR_proletarian_unity
+		relative_position_id = DDR_labor_democracy
+		x = -1
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = DDR_industrial_immobility
+		}
+		prerequisite = {
+			focus = DDR_labor_democracy
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = east_ermany.27
+		}
+	}
+	
+	focus = {
+		id = DDR_labor_miracle
+		icon = GFX_DDR_labor_miracle
+		relative_position_id = DDR_socialist_labor_commune
+		X = -1
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = DDR_revive_eastern_industry
+		}
+		prerequisite = {
+			focus = DDR_socialist_labor_commune
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = DDR_clear_the_ruins_spirit
+				add_idea = DDR_labor_miracle_idea
+			}
+		}
+	}
+	
+	focus = {
+		id = DDR_overcome_old_world
+		icon = GFX_DDR_overcome_old_world
+		relative_position_id = DDR_socialist_labor_commune
+		X = 1
+		y = 1
+		cost = 3.4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = DDR_proletarian_unity
+		}
+		prerequisite = {
+			focus = DDR_socialist_labor_commune
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = east_ermany.28
 		}
 	}
 }
