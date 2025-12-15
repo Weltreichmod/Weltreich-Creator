@@ -2242,6 +2242,12 @@ on_actions = {
 					NOT = { GER = { is_in_faction_with = BUL } }
 					NOT = { SOV = { is_in_faction_with = BUL } }
 				}
+				every_country = {
+					limit = {
+						has_war_with = BUL
+					}
+					white_peace = BUL
+				}
 				every_state = {
 					limit = {
 						OR = {
@@ -2299,6 +2305,12 @@ on_actions = {
 					NOT = { GER = { is_in_faction_with = BUL } }
 					NOT = { SOV = { is_in_faction_with = BUL } }
 				}
+				every_country = {
+					limit = {
+						has_war_with = BUL
+					}
+					white_peace = BUL
+				}
 				every_state = {
 					limit = {
 						OR = {
@@ -2355,6 +2367,34 @@ on_actions = {
 				}
 				clr_global_flag = fourth_balkan_war
 				news_event = greece.22
+				every_country = {
+					limit = {
+						has_war_with = GRE
+					}
+					white_peace = GRE
+				}
+				if = {
+					limit = {
+						GRE = { is_faction_leader = yes }
+						ROM = { is_in_faction_with = GRE }
+						ROM = { has_war_with = BUL }
+					}
+					BUL = {
+						if = {
+							limit = {
+								has_dlc = "Together for Victory"
+							}
+							set_autonomy = {
+								target = ROM
+								autonomous_state = autonomy_satellite
+								freedom_level = 0.5
+							}
+							else = {
+								puppet = ROM
+							}
+						}
+					}
+				}
 				if = {
 					limit = {
 						GRE = { is_faction_leader = yes }
@@ -2391,6 +2431,12 @@ on_actions = {
 					NOT = { FRA = { is_in_faction_with = ROM } }
 					NOT = { GER = { is_in_faction_with = ROM } }
 					NOT = { SOV = { is_in_faction_with = ROM } }
+				}
+				every_country = {
+					limit = {
+						has_war_with = ROM
+					}
+					white_peace = ROM
 				}
 				BUL = {
 					if = {
