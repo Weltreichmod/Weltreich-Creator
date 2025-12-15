@@ -297,10 +297,57 @@ country_event = { #[FROM.GetName]의 구호 승인
 	option = {
 		name = china_wr.16.a
 		add_to_variable = { help_okay_var = 1 }
-		add_to_variable = { CHI_num_var = 1 }
 		if = {
 			limit = {
-				check_variable = { CHI_num_var = 7 }
+				FROM = { original_tag = JAP }
+			}
+			set_country_flag = done_for_JAP_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = GER }
+			}
+			set_country_flag = done_for_GER_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = AUH }
+			}
+			set_country_flag = done_for_AUH_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = USA }
+			}
+			set_country_flag = done_for_USA_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = ITA }
+			}
+			set_country_flag = done_for_ITA_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = ENG }
+			}
+			set_country_flag = done_for_ENG_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = SOV }
+			}
+			set_country_flag = done_for_SOV_flag
+		}
+		if = {
+			limit = {
+				has_country_flag = done_for_JAP_flag
+				has_country_flag = done_for_GER_flag
+				has_country_flag = done_for_AUH_flag
+				has_country_flag = done_for_USA_flag
+				has_country_flag = done_for_ITA_flag
+				has_country_flag = done_for_ENG_flag
+				has_country_flag = done_for_SOV_flag
 			}
 			country_event = china_wr.18
 		}
@@ -318,10 +365,57 @@ country_event = { #[FROM.GetName]의 구호 거부
 	is_triggered_only = yes
 	option = {
 		name = china_wr.17.a
-		add_to_variable = { CHI_num_var = 1 }
 		if = {
 			limit = {
-				check_variable = { CHI_num_var = 7 }
+				FROM = { original_tag = JAP }
+			}
+			set_country_flag = done_for_JAP_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = GER }
+			}
+			set_country_flag = done_for_GER_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = AUH }
+			}
+			set_country_flag = done_for_AUH_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = USA }
+			}
+			set_country_flag = done_for_USA_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = ITA }
+			}
+			set_country_flag = done_for_ITA_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = ENG }
+			}
+			set_country_flag = done_for_ENG_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = SOV }
+			}
+			set_country_flag = done_for_SOV_flag
+		}
+		if = {
+			limit = {
+				has_country_flag = done_for_JAP_flag
+				has_country_flag = done_for_GER_flag
+				has_country_flag = done_for_AUH_flag
+				has_country_flag = done_for_USA_flag
+				has_country_flag = done_for_ITA_flag
+				has_country_flag = done_for_ENG_flag
+				has_country_flag = done_for_SOV_flag
 			}
 			country_event = china_wr.18
 		}
@@ -845,9 +939,6 @@ country_event = { #5대 대총통 선거
 		}
 		else = {
 			set_country_flag = south_china_path_flag
-			hidden_effect = {
-				country_event = { id = china_wr.76 days = 7 }
-			}
 			complete_national_focus = CHI_kmt_entering_crisis
 		}
 		mark_focus_tree_layout_dirty = yes
@@ -1223,7 +1314,6 @@ country_event = { #중국내전
 	immediate = {
 		hidden_effect = {
 			news_event = china_wr.52
-			set_country_flag = chinese_civil_war_flag
 			set_global_flag = chinese_civil_war
 			every_state = {
 				limit = {
@@ -1309,6 +1399,10 @@ country_event = { #중국내전
 					set_nationality = KMT
 					promote_character = yes				
 				}
+				country_event = { id = china_wr.87 days = 90 }
+				set_country_flag = chinese_civil_war_flag
+				mark_focus_tree_layout_dirty = yes
+				complete_national_focus = CHI_hufa_establish_emergency_government
 			}
 			every_state = {
 				limit = {
@@ -1398,6 +1492,46 @@ country_event = { #중국내전
 						owner = CHI
 					}
 				}
+				if = {
+					limit = {
+						has_completed_focus = CHI_hufa_keep_chanzheng_flag
+					}
+					division_template = {
+					name = "mínbing"
+						is_locked = no
+						regiments = {
+							militia = {
+								x = 0
+								y = 0
+							}
+							militia = {
+								x = 0
+								y = 1
+							}
+							militia = {
+								x = 0
+								y = 2
+							}
+							militia = {
+								x = 1
+								y = 0
+							}
+							militia = {
+								x = 1
+								y = 1
+							}
+						}
+					}
+					608 = {
+						create_unit = {
+							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							prioritize_location = 9843
+							count = 5
+							owner = CHI
+						}
+					}
+				}
+				set_country_flag = CHI_congress_yes_flag
 			}
 			KMT = {
 				set_province_controller = 12467
@@ -1409,6 +1543,29 @@ country_event = { #중국내전
 				load_oob = "KMT_1936"
 				inherit_technology = CHI
 				declare_war_on = { target = CHI type = civil_war }
+				set_country_flag = chinese_civil_war_flag
+				hidden_effect = {
+					country_event = { id = china_wr.82 days = 3 }
+				}
+				if = {
+					limit = {
+						CHI = { has_country_flag = CHI_kmt_unprepared_revolution_flag }
+					}
+					add_ideas = KMT_national_revolution
+				}
+				if = {
+					limit = {
+						CHI = { has_country_flag = CHI_kmt_secure_jinling_flag }
+					}
+					add_offsite_building = { type = arms_factory level = 2 }
+				}
+				if = {
+					limit = {
+						NOT = { CHI = { has_country_flag = CHI_kmt_march_on_nanjing_flag } }
+						CHI = { has_country_flag = south_china_path_flag }
+					}
+					country_event = { id = china_wr.85 days = 5 }
+				}
 				division_template = {
 					name = "mínbing"
 					is_locked = no
@@ -2675,6 +2832,455 @@ country_event = { #국민당 선거 불복
 	is_triggered_only = yes
 	option = {
 		name = china_wr.77.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #병영법 재입안
+	id = china_wr.78
+	title = china_wr.78.t
+	desc = china_wr.78.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.78.a
+		set_country_flag = CHI_hufa_one_stroke_brigade_flag
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.78.b
+		set_country_flag = CHI_hufa_keep_chanzheng_flag
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #충정부대의 언론인 즉결 처형 사건
+	id = china_wr.79
+	title = china_wr.79.t
+	desc = china_wr.79.d
+	picture = GFX_journalist_death
+	is_triggered_only = yes
+	option = {
+		name = china_wr.79.a
+		add_manpower = -47
+		hidden_effect = {
+			country_event = { id = china_wr.80 days = 3 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #서주 학살 mk2
+	id = china_wr.80
+	title = china_wr.80.t
+	desc = china_wr.80.d
+	picture = GFX_journalist_death
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_global_falg = chinese_civil_war }
+	}
+	option = {
+		name = china_wr.80.a
+		add_manpower = -3000
+		hidden_effect = {
+			country_event = { id = china_wr.81 days = 4 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #우한 난민 빵야빵야
+	id = china_wr.81
+	title = china_wr.81.t
+	desc = china_wr.81.d
+	picture = GFX_journalist_death
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_global_falg = chinese_civil_war }
+	}
+	option = {
+		name = china_wr.81.a
+		add_manpower = -100
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #끌려다니는 국민당
+	id = china_wr.82
+	title = china_wr.82.t
+	desc = china_wr.82.d
+	picture = GFX_KMT_picture
+	is_triggered_only = yes
+	option = {
+		name = china_wr.82.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #거국일치정부 수립
+	id = china_wr.83
+	title = china_wr.83.t
+	desc = china_wr.83.d
+	picture = GFX_chinese_government
+	is_triggered_only = yes
+	option = {
+		name = china_wr.83.a
+		add_ideas = CHI_national_unity_government
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #국민당 더티 파티
+	id = china_wr.84
+	title = china_wr.84.t
+	desc = china_wr.84.d
+	picture = GFX_KMT_picture
+	is_triggered_only = yes
+	option = {
+		name = china_wr.84.a
+		add_stability = -0.025
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #국민당 구금
+	id = china_wr.85
+	title = china_wr.85.t
+	desc = china_wr.85.d
+	picture = GFX_kuomintag_nono
+	is_triggered_only = yes
+	option = {
+		name = china_wr.85.a
+		add_timed_idea = { idea = CHI_kmt_leadership_arrested days = 100 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #삼애주의
+	id = china_wr.86
+	title = china_wr.86.t
+	desc = china_wr.86.d
+	picture = GFX_husis
+	is_triggered_only = yes
+	option = {
+		name = china_wr.86.a
+		add_ideas = CHI_three_agape_spirit
+		set_country_flag = CHI_three_agape_spirit_flag
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #내전 이후 재보궐 선거
+	id = china_wr.87
+	title = china_wr.87.t
+	desc = china_wr.87.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	option = {
+		name = china_wr.87.a
+		add_to_variable = { progressive_party_support = 20 }
+		add_to_variable = { chinese_youth_party_support = 30 }
+		add_to_variable = { kuomintang_support = 5 }
+		add_to_variable = { others_independent_support = 3 }
+		add_to_variable = { progressive_party_total = 51 }
+		add_to_variable = { chinese_youth_party_total = 76 }
+		add_to_variable = { kuomintang_total = 88 }
+		add_to_variable = { others_independent_total = 10 }
+		set_variable = { vacancy_total = 32 } #32석 동북삼성(만몽)
+		CHI_recalc_congress_icon_frames = yes
+		custom_effect_tooltip = china_wr_87_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #내전 이후 호법으로 복귀
+	id = china_wr.88
+	title = china_wr.88.t
+	desc = china_wr.88.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.88.a
+		CHI = {
+			annex_country = {
+				target = SIK
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = XSM
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = GSM
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = NSM
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = ETS
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = SHX
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = PRC
+				transfer_troops = yes
+			}
+			annex_country = {
+				target = NPA
+				transfer_troops = yes
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					is_core_of = SIK
+					is_core_of = XSM
+					is_core_of = GSM
+					is_core_of = NSM
+					is_core_of = ETS
+					is_core_of = SHX
+					is_core_of = PRC
+					is_core_of = NPA
+				}
+			}
+			remove_core_of = SIK
+			remove_core_of = XSM
+			remove_core_of = GSM
+			remove_core_of = NSM
+			remove_core_of = ETS
+			remove_core_of = SHX
+			remove_core_of = PRC
+			remove_core_of = NPA
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = { #초인플레
+	id = china_wr.89
+	title = china_wr.89.t
+	desc = china_wr.89.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.89.a
+		swap_ideas = {
+			remove_idea = economic_low_inflation
+			add_idea = economic_hyperinflation
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.90
+	title = china_wr.90.t
+	desc = china_wr.90.d
+	picture = GFX_report_event_chinese_soldiers_fighting
+	is_triggered_only = yes
+	option = {
+		name = china_wr.90.a
+		remove_ideas = CHI_bloated_volunteer_corps
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.91
+	title = china_wr.91.t
+	desc = china_wr.91.d
+	picture = GFX_report_event_chinese_soldiers_fighting
+	is_triggered_only = yes
+	option = {
+		name = china_wr.91.a
+		swap_ideas = {
+			remove_idea = CHI_bloated_volunteer_corps
+			add_idea = CHI_bloated_volunteer_corps_lower
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.92
+	title = china_wr.92.t
+	desc = china_wr.92.d
+	picture = GFX_kill_kill_kill
+	is_triggered_only = yes
+	option = {
+		name = china_wr.92.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.93
+	title = china_wr.93.t
+	desc = china_wr.93.d
+	picture = GFX_kill_kill_kill
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_completed_focus = CHI_raise_civil_servant_wages }
+	}
+	option = {
+		name = china_wr.93.a
+		add_stability = -0.05
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.94
+	title = china_wr.94.t
+	desc = china_wr.94.d
+	picture = GFX_chinese_money
+	is_triggered_only = yes
+	option = {
+		name = china_wr.94.a
+		add_political_power = 50
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.95
+	title = china_wr.95.t
+	desc = china_wr.95.d
+	picture = GFX_chinese_money
+	is_triggered_only = yes
+	option = {
+		name = china_wr.95.a
+		swap_ideas = {
+			remove_idea = CHI_unstable_bimetallic_standard
+			add_idea = CHI_unstable_bimetallic_standard_1
+		}
+		add_political_power = -50
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.96
+	title = china_wr.96.t
+	desc = china_wr.96.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.96.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.97
+	title = china_wr.97.t
+	desc = china_wr.97.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.97.a
+		set_country_flag = CHI_manage_gold_reserves_flag
+		unlock_decision_category_tooltip = CHI_manage_gold_reserves
+		set_variable = { CHI_gold_total_var = 800 }
+		swap_ideas = {
+			remove_idea = CHI_unstable_bimetallic_standard_2
+			add_idea = CHI_gold_standard_modifier
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.98
+	title = china_wr.98.t
+	desc = china_wr.98.d
+	picture = GFX_report_event_generic_china
+	is_triggered_only = yes
+	option = {
+		name = china_wr.98.a
+		hidden_effect = {
+			country_event = { id = china_wr.99 days = 10 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.99
+	title = china_wr.99.t
+	desc = china_wr.99.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = china_wr.99.a
+		hidden_effect = {
+			country_event = { id = china_wr.100 days = 10 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.100
+	title = china_wr.100.t
+	desc = china_wr.100.d
+	picture = GFX_report_event_generic_conference
+	is_triggered_only = yes
+	option = {
+		name = china_wr.100.a
 		ai_chance = {
 			base = 10
 		}

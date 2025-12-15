@@ -2232,6 +2232,119 @@ on_actions = {
 			}
 			if = {
 				limit = {
+					original_tag = BUL
+					GRE = {
+						has_war_with = PREV
+						is_subject = no
+						has_capitulated = no
+					}
+					NOT = { FRA = { is_in_faction_with = BUL } }
+					NOT = { GER = { is_in_faction_with = BUL } }
+					NOT = { SOV = { is_in_faction_with = BUL } }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 731
+							state = 184
+						}
+						is_owned_by = BUL
+					}
+					add_core_of = GRE
+					transfer_state_to = GRE
+				}
+				every_state = {
+					limit = {
+						is_core_of = ROM
+						is_owned_by = BUL
+					}
+					transfer_state_to = ROM
+				}
+				every_state = {
+					limit = {
+						OR = {
+							is_core_of = SER
+							is_claimed_by = SER
+						}
+						is_owned_by = BUL
+					}
+					transfer_state_to = SER
+				}
+				GRE = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = BUL
+							autonomous_state = autonomy_satellite
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = BUL
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = BUL
+					ROM = {
+						has_war_with = PREV
+						is_subject = no
+						has_capitulated = no
+					}
+					NOT = { GRE = { has_war_with = BUL } }
+					NOT = { FRA = { is_in_faction_with = BUL } }
+					NOT = { GER = { is_in_faction_with = BUL } }
+					NOT = { SOV = { is_in_faction_with = BUL } }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 731
+							state = 184
+						}
+						is_owned_by = BUL
+					}
+					add_core_of = GRE
+					transfer_state_to = GRE
+				}
+				every_state = {
+					limit = {
+						is_core_of = ROM
+						is_owned_by = BUL
+					}
+					transfer_state_to = ROM
+				}
+				every_state = {
+					limit = {
+						OR = {
+							is_core_of = SER
+							is_claimed_by = SER
+						}
+						is_owned_by = BUL
+					}
+					transfer_state_to = SER
+				}
+				ROM = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = BUL
+							autonomous_state = autonomy_satellite
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = BUL
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
 					original_tag = GRE
 					has_global_flag = fourth_balkan_war
 					BUL = {
@@ -2242,6 +2355,58 @@ on_actions = {
 				}
 				clr_global_flag = fourth_balkan_war
 				news_event = greece.22
+				if = {
+					limit = {
+						GRE = { is_faction_leader = yes }
+						NOT = { FRA = { is_in_faction_with = GRE } }
+						NOT = { GER = { is_in_faction_with = GRE } }
+						NOT = { SOV = { is_in_faction_with = GRE } }
+					}
+					BUL = {
+						if = {
+							limit = {
+								has_dlc = "Together for Victory"
+							}
+							set_autonomy = {
+								target = GRE
+								autonomous_state = autonomy_satellite
+								freedom_level = 0.5
+							}
+							else = {
+								puppet = GRE
+							}
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = ROM
+					has_global_flag = fourth_balkan_war
+					BUL = {
+						has_war_with = PREV
+						is_subject = no
+						has_capitulated = no
+					}
+					NOT = { FRA = { is_in_faction_with = ROM } }
+					NOT = { GER = { is_in_faction_with = ROM } }
+					NOT = { SOV = { is_in_faction_with = ROM } }
+				}
+				BUL = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+						}
+						set_autonomy = {
+							target = ROM
+							autonomous_state = autonomy_satellite
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = ROM
+						}
+					}
+				}
 			}
 			if = {
 				limit = {

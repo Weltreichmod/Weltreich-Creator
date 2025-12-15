@@ -1,4 +1,13 @@
-﻿focus_tree = {
+﻿### search_filters = {FOCUS_FILTER_POLITICAL}
+### search_filters = {FOCUS_FILTER_RESEARCH}
+### search_filters = {FOCUS_FILTER_INDUSTRY}
+### search_filters = {FOCUS_FILTER_STABILITY}
+### search_filters = {FOCUS_FILTER_WAR_SUPPORT}
+### search_filters = {FOCUS_FILTER_MANPOWER}
+### search_filters = {FOCUS_FILTER_ANNEXATION}
+### search_filters = {FOCUS_FILTER_HISTORYCAL}
+
+focus_tree = {
 	id = chinese_focus
 	
 	country = {
@@ -942,6 +951,9 @@
 			hidden_effect = {
 				load_oob = "CHI_focus_1"
 			}
+			add_ideas = CHI_kmt_cliques_in_army
+			add_ideas = CHI_rampaging_local_forces
+			add_ideas = CHI_uncontrolled_military
 		}
 	}
 	
@@ -989,6 +1001,7 @@
 			factor = 6
 		}
 		completion_reward = {
+			country_event = china_wr.78
 		}
 	}
 	
@@ -1012,6 +1025,10 @@
 			factor = 6
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_kmt_cliques_in_army
+				add_idea = CHI_military_purge_kmt
+			}
 		}
 	}
 	
@@ -1026,6 +1043,7 @@
 			hidden_trigger = {
 				NOT = { has_country_flag = chinese_civil_war_flag }
 			}
+			has_country_flag = CHI_hufa_keep_chanzheng_flag
 		}
 		prerequisite = {
 			focus = CHI_hufa_military_service_law
@@ -1038,6 +1056,10 @@
 			factor = 6
 		}
 		completion_reward = {
+			hidden_effect = {
+				country_event = { id = china_wr.90 days = 150 }
+			}
+			custom_effect_tooltip = CHI_hufa_one_stroke_brigade_tt
 		}
 	}
 	
@@ -1052,6 +1074,7 @@
 			hidden_trigger = {
 				NOT = { has_country_flag = chinese_civil_war_flag }
 			}
+			has_country_flag = CHI_hufa_one_stroke_brigade_flag
 		}
 		prerequisite = {
 			focus = CHI_hufa_military_service_law
@@ -1064,6 +1087,10 @@
 			factor = 6
 		}
 		completion_reward = {
+			hidden_effect = {
+				country_event = china_wr.91
+			}
+			custom_effect_tooltip = CHI_hufa_keep_chanzheng_tt
 		}
 	}
 	
@@ -1087,6 +1114,7 @@
 			factor = 6
 		}
 		completion_reward = {
+			country_event = china_wr.79
 		}
 	}
 	
@@ -1111,6 +1139,10 @@
 			factor = 6
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_rampaging_local_forces
+				add_idea = CHI_reorganize_local_forces
+			}
 		}
 	}
 	
@@ -1134,16 +1166,20 @@
 			factor = 6
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_uncontrolled_military
+				add_idea = CHI_passive_military
+			}
 		}
 	}
 	
 	focus = {
-		id = CHI_hufa_establish_emergency_government
-		icon = GFX_CHI_hufa_establish_emergency_government
+		id = CHI_calm_the_unrest
+		icon = GFX_CHI_calm_the_unrest
 		relative_position_id = CHI_hufa_militia_inspection
 		x = 0
 		y = 1
-		cost = 2
+		cost = 5
 		available = {
 			hidden_trigger = {
 				NOT = { has_country_flag = chinese_civil_war_flag }
@@ -1163,6 +1199,7 @@
 			factor = 6
 		}
 		completion_reward = {
+			custom_effect_tooltip = CHI_calm_the_unrest_tt
 		}
 	}
 	
@@ -1187,6 +1224,9 @@
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			add_political_power = 25
+			add_ideas = CHI_kmt_cliques_in_army
+			add_ideas = CHI_rampaging_local_forces
+			add_ideas = CHI_uncontrolled_military
 		}
 	}
 	
@@ -1210,7 +1250,8 @@
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			add_offsite_building = { type = industrial_complex level = 2 }
+			set_country_flag = CHI_kmt_secure_jinling_flag
+			custom_effect_tooltip = CHI_kmt_secure_jinling_flag_tt
 		}
 	}
 	
@@ -1289,6 +1330,11 @@
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
+			set_country_flag = CHI_kmt_unprepared_revolution_flag
+			custom_effect_tooltip = CHI_kmt_unprepared_revolution_tt
+			effect_tooltip = {
+				add_ideas = KMT_national_revolution
+			}
 		}
 	}
 	
@@ -1360,8 +1406,9 @@
 		prerequisite = {
 			focus = CHI_kmt_unprepared_revolution
 		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
+			country_event = china_wr.84
 		}
 	}
 	
@@ -1391,6 +1438,1232 @@
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
+			set_country_flag = CHI_kmt_march_on_nanjing_flag
+			custom_effect_tooltip = CHI_kmt_march_on_nanjing_tt
+		}
+	}
+	
+	#Third
+	focus = {
+		id = CHI_hufa_establish_emergency_government
+		icon = GFX_CHI_hufa_establish_emergency_government
+		x = 10
+		y = 0
+		cost = 2
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		allow_branch = {
+			has_country_flag = chinese_civil_war_flag
+		}
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			country_event = { id = china_wr.83 days = 3 }
+			country_event = { id = china_wr.89 days = 7 }
+		}
+	}
+	
+	focus = {
+		id = CHI_review_threefold_harmony
+		icon = GFX_CHI_review_threefold_harmony
+		relative_position_id = CHI_hufa_establish_emergency_government
+		x = -8
+		y = 1
+		cost = 3
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CHI_hufa_establish_emergency_government
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			country_event = china_wr.86
+		}
+	}
+	
+	focus = {
+		id = CHI_review_love_people_get
+		icon = GFX_CHI_review_love_people_get
+		relative_position_id = CHI_review_threefold_harmony
+		x = -23
+		y = 1
+		cost = 4
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_review_threefold_harmony
+		}
+		ai_will_do = {
+			factor = 16
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 100
+			}
+		}
+		completion_reward = {
+			add_dynamic_modifier = { modifier = CHI_reviving_chinese_economy_modifier }
+			hidden_effect = {
+				set_variable = { CHI_reviving_chinese_economy_industrial_capacity_factory = 0 }
+				set_variable = { CHI_reviving_chinese_economy_industrial_capacity_dockyard = 0 }
+				set_variable = { CHI_reviving_chinese_economy_production_factory_efficiency_gain_factor = 0 }
+				set_variable = { CHI_reviving_chinese_economy_production_factory_max_efficiency_factor = 0 }
+				set_variable = { CHI_reviving_chinese_economy_production_factory_start_efficiency_factor = 0 }
+				set_variable = { CHI_reviving_chinese_economy_production_speed_industrial_complex_factor = 0 }
+				set_variable = { CHI_reviving_chinese_economy_production_speed_arms_factory_factor = 0 }
+				set_variable = { CHI_reviving_chinese_economy_trade_laws_cost_factor = 0 }
+				set_variable = { CHI_reviving_chinese_economy_economy_cost_factor = 0 }
+				set_variable = { CHI_reviving_chinese_economy_consumer_goods_factor = 0 }
+				set_variable = { CHI_reviving_chinese_economy_local_resources_factor = 0 }
+				set_variable = { CHI_reviving_chinese_economy_factory_energy_consumption = 0 }
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_trade_laws_cost_factor = -0.05
+				tooltip = trade_laws_cost_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_economy_cost_factor = -0.05
+				tooltip = economy_cost_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_consumer_goods_factor = -0.025
+				tooltip = consumer_goods_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_war_on_corruption
+		icon = GFX_CHI_war_on_corruption
+		relative_position_id = CHI_review_love_people_get
+		x = -13
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_review_threefold_harmony
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_expand_bureaucracy
+		icon = GFX_CHI_expand_bureaucracy
+		relative_position_id = CHI_war_on_corruption
+		x = -1
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_war_on_corruption
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_raise_civil_servant_wages
+		icon = GFX_CHI_raise_civil_servant_wages
+		relative_position_id = CHI_war_on_corruption
+		x = 1
+		y = 1
+		cost = 1
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_war_on_corruption
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_severe_punishment
+		icon = GFX_CHI_severe_punishment
+		relative_position_id = CHI_expand_bureaucracy
+		x = 1
+		y = 1
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_expand_bureaucracy
+			focus = CHI_raise_civil_servant_wages
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			country_event = china_wr.92
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { has_completed_focus = CHI_raise_civil_servant_wages }
+					}
+					country_event = { id = china_wr.93 days = 14 }
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_build_anti_corruption_culture
+		icon = GFX_CHI_build_anti_corruption_culture
+		relative_position_id = CHI_severe_punishment
+		x = 0
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_expand_bureaucracy
+		}
+		prerequisite = {
+			focus = CHI_severe_punishment
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = CHI_utilize_national_wealth
+		icon = GFX_CHI_utilize_national_wealth
+		relative_position_id = CHI_review_love_people_get
+		x = -7
+		y = 1
+		cost = 1
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_review_love_people_get
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_local_resources_factor = 0.05
+				tooltip = local_resources_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_consumer_goods_factor = -0.025
+				tooltip = consumer_goods_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_cooperative_economic_order
+		icon = GFX_CHI_cooperative_economic_order
+		relative_position_id = CHI_utilize_national_wealth
+		x = -2
+		y = 1
+		cost = 1
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_utilize_national_wealth
+		}
+		available = {
+			has_country_leader = {
+				character = CHI_cai_e
+				ruling_only = yes
+			}
+		}
+		mutually_exclusive = {
+			focus = CHI_chinese_style_liberal_economy
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_industrial_capacity_factory = 0.05
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_industrial_capacity_dockyard = 0.05
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_efficiency_gain_factor = -0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_max_efficiency_factor = -0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_start_efficiency_factor = -0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_consumer_goods_factor = -0.025
+				tooltip = consumer_goods_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_legalize_non_company_unions
+		icon = GFX_CHI_legalize_non_company_unions
+		relative_position_id = CHI_cooperative_economic_order
+		x = -1
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_cooperative_economic_order
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_arms_factory_factor = 0.075
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_industrial_complex_factor = 0.075
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_factory_law_revision
+		icon = GFX_CHI_factory_law_revision
+		relative_position_id = CHI_cooperative_economic_order
+		x = 1
+		y = 1
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_cooperative_economic_order
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_arms_factory_factor = -0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_industrial_complex_factor = -0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_efficiency_gain_factor = 0.15
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_max_efficiency_factor = 0.15
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_start_efficiency_factor = 0.15
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_recognize_strikes
+		icon = GFX_CHI_recognize_strikes
+		relative_position_id = CHI_legalize_non_company_unions
+		x = 1
+		y = 1
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_legalize_non_company_unions
+		}
+		prerequisite = {
+			focus = CHI_factory_law_revision
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_efficiency_gain_factor = -0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_max_efficiency_factor = -0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_start_efficiency_factor = -0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_consumer_goods_factor = -0.025
+				tooltip = consumer_goods_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_factory_energy_consumption = -0.05
+				tooltip = factory_energy_consumption_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_utilize_floating_capital
+		icon = GFX_CHI_utilize_floating_capital
+		relative_position_id = CHI_factory_law_revision
+		x = 1
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_factory_law_revision
+			focus = CHI_minimum_regulation
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_arms_factory_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_industrial_complex_factor = 0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_efficiency_gain_factor = 0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_max_efficiency_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_start_efficiency_factor = 0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_consumer_goods_factor = -0.025
+				tooltip = consumer_goods_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_chinese_style_liberal_economy
+		icon = GFX_CHI_chinese_style_liberal_economy
+		relative_position_id = CHI_utilize_national_wealth
+		x = 2
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_utilize_national_wealth
+		}
+		available = {
+			has_country_leader = {
+				character = CHI_hu_shih
+				ruling_only = yes
+			}
+		}
+		mutually_exclusive = {
+			focus = CHI_cooperative_economic_order
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_industrial_capacity_factory = -0.025
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_industrial_capacity_dockyard = -0.025
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_efficiency_gain_factor = 0.05
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_max_efficiency_factor = 0.05
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_start_efficiency_factor = 0.05
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_consumer_goods_factor = 0.025
+				tooltip = consumer_goods_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_minimum_regulation
+		icon = GFX_CHI_minimum_regulation
+		relative_position_id = CHI_chinese_style_liberal_economy
+		x = -1
+		y = 1
+		cost = 1
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_chinese_style_liberal_economy
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_arms_factory_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_industrial_complex_factor = 0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_consumer_goods_factor = 0.025
+				tooltip = consumer_goods_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_free_competition_market
+		icon = GFX_CHI_free_competition_market
+		relative_position_id = CHI_chinese_style_liberal_economy
+		x = 1
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_chinese_style_liberal_economy
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_industrial_capacity_factory = 0.05
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_industrial_capacity_dockyard = 0.05
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_local_resources_factor = -0.025
+				tooltip = local_resources_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_partial_keynesianism
+		icon = GFX_CHI_partial_keynesianism
+		relative_position_id = CHI_minimum_regulation
+		x = 1
+		y = 1
+		cost = 4
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_free_competition_market
+		}
+		prerequisite = {
+			focus = CHI_minimum_regulation
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_arms_factory_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_industrial_complex_factor = 0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_consumer_goods_factor = 0.025
+				tooltip = consumer_goods_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_factory_energy_consumption = -0.05
+				tooltip = factory_energy_consumption_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_labor_market_reorganization
+		icon = GFX_CHI_labor_market_reorganization
+		relative_position_id = CHI_utilize_floating_capital
+		x = 0
+		y = 1
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_recognize_strikes
+			focus = CHI_partial_keynesianism
+		}
+		prerequisite = {
+			focus = CHI_utilize_floating_capital
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_industrial_capacity_factory = 0.05
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_industrial_capacity_dockyard = 0.05
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_local_resources_factor = -0.025
+				tooltip = local_resources_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_arms_factory_factor = 0.05
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_industrial_complex_factor = 0.05
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_consumer_goods_factor = 0.05
+				tooltip = consumer_goods_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_factory_energy_consumption = -0.025
+				tooltip = factory_energy_consumption_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_freeze_essential_prices
+		icon = GFX_CHI_freeze_essential_prices
+		relative_position_id = CHI_review_love_people_get
+		x = -1
+		y = 1
+		cost = 3
+		mutually_exclusive = {
+			focus = CHI_abolish_price_controls
+		}
+		available = {
+			has_country_leader = {
+				character = CHI_cai_e
+				ruling_only = yes
+			}
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_review_love_people_get
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_unfinished_self_strengthening
+				add_idea = CHI_unfinished_self_strengthening_cai_e_1
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_luxury_goods_tax
+		icon = GFX_CHI_luxury_goods_tax
+		relative_position_id = CHI_freeze_essential_prices
+		x = -1
+		y = 1
+		cost = 1
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_freeze_essential_prices
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_unfinished_self_strengthening_cai_e_1
+				add_idea = CHI_unfinished_self_strengthening_cai_e_2
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_agricultural_subsidies
+		icon = GFX_CHI_agricultural_subsidies
+		relative_position_id = CHI_luxury_goods_tax
+		x = 0
+		y = 1
+		cost = 4
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_luxury_goods_tax
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_unfinished_self_strengthening_cai_e_2
+				add_idea = CHI_unfinished_self_strengthening_cai_e_3
+			}
+			add_timed_idea = { idea = CHI_agricultural_subsidies days = 150 }
+		}
+	}
+	
+	focus = {
+		id = CHI_protected_trade
+		icon = GFX_CHI_protected_trade
+		relative_position_id = CHI_agricultural_subsidies
+		x = 1
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_agricultural_subsidies
+		}
+		prerequisite = {
+			focus = CHI_stabilize_food_supply
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_unfinished_self_strengthening_cai_e_3
+				add_idea = CHI_unfinished_self_strengthening_cai_e_4
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_partial_rationing
+		icon = GFX_CHI_partial_rationing
+		relative_position_id = CHI_freeze_essential_prices
+		x = 1
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_freeze_essential_prices
+			focus = CHI_abolish_price_controls
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_industrial_capacity_factory = 0.05
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_industrial_capacity_dockyard = 0.05
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_arms_factory_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_speed_industrial_complex_factor = 0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_consumer_goods_factor = 0.025
+				tooltip = consumer_goods_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_stabilize_food_supply
+		icon = GFX_CHI_stabilize_food_supply
+		relative_position_id = CHI_partial_rationing
+		x = 0
+		y = 1
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_partial_rationing
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_reviving_chinese_economy_modifier_tt
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_efficiency_gain_factor = 0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_max_efficiency_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_production_factory_start_efficiency_factor = 0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_reviving_chinese_economy_local_resources_factor = 0.025
+				tooltip = local_resources_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_abolish_price_controls
+		icon = GFX_CHI_abolish_price_controls
+		relative_position_id = CHI_review_love_people_get
+		x = 1
+		y = 1
+		cost = 1
+		mutually_exclusive = {
+			focus = CHI_freeze_essential_prices
+		}
+		available = {
+			has_country_leader = {
+				character = CHI_hu_shih
+				ruling_only = yes
+			}
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_review_love_people_get
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_unfinished_self_strengthening
+				add_idea = CHI_unfinished_self_strengthening_hu_shih_1
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_tariff_reduction
+		icon = GFX_CHI_tariff_reduction
+		relative_position_id = CHI_abolish_price_controls
+		x = 1
+		y = 1
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_abolish_price_controls
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_unfinished_self_strengthening_hu_shih_1
+				add_idea = CHI_unfinished_self_strengthening_hu_shih_2
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_free_trade_trust
+		icon = GFX_CHI_free_trade_trust
+		relative_position_id = CHI_tariff_reduction
+		x = 0
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_tariff_reduction
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_unfinished_self_strengthening_hu_shih_2
+				add_idea = CHI_unfinished_self_strengthening_hu_shih_3
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_economic_shock_therapy
+		icon = GFX_CHI_economic_shock_therapy
+		relative_position_id = CHI_free_trade_trust
+		x = -1
+		y = 1
+		cost = 4
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_free_trade_trust
+		}
+		prerequisite = {
+			focus = CHI_stabilize_food_supply
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_unfinished_self_strengthening_hu_shih_3
+				add_idea = CHI_unfinished_self_strengthening_hu_shih_4
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_dream_of_self_strengthening
+		icon = GFX_CHI_dream_of_self_strengthening
+		relative_position_id = CHI_protected_trade
+		x = 1
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_protected_trade
+			focus = CHI_economic_shock_therapy
+		}
+		ai_will_do = {
+			factor = 5
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_country_leader = {
+						character = CHI_hu_shih
+						ruling_only = yes
+					}
+				}
+				remove_ideas = CHI_unfinished_self_strengthening_hu_shih_4
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = CHI_cai_e
+						ruling_only = yes
+					}
+				}
+				remove_ideas = CHI_unfinished_self_strengthening_cai_e_4
+			}
+		}
+	}
+	
+	#인플레이션 트리
+	focus = {
+		id = CHI_second_fabi_reform
+		icon = GFX_CHI_second_fabi_reform
+		relative_position_id = CHI_review_love_people_get
+		x = 8
+		y = 1
+		cost = 1
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_review_love_people_get
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 100
+			}
+		}
+		completion_reward = {
+			country_event = china_wr.94
+		}
+	}
+	
+	focus = {
+		id = CHI_abolish_gold_silver_bimetallism
+		icon = GFX_CHI_abolish_gold_silver_bimetallism
+		relative_position_id = CHI_second_fabi_reform
+		x = -3
+		y = 1
+		cost = 1
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_second_fabi_reform
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 100
+			}
+		}
+		completion_reward = {
+			country_event = china_wr.95
+		}
+	}
+	
+	focus = {
+		id = CHI_introduce_managed_currency_system
+		icon = GFX_CHI_introduce_managed_currency_system
+		relative_position_id = CHI_abolish_gold_silver_bimetallism
+		x = -1
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_abolish_gold_silver_bimetallism
+		}
+		mutually_exclusive = {
+			focus = CHI_transition_to_gold_standard
+		}
+		available = {
+			has_country_leader = {
+				character = CHI_cai_e
+				ruling_only = yes
+			}
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 100
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_unstable_bimetallic_standard_1
+				add_idea = CHI_unstable_bimetallic_standard_2
+			}
+			add_political_power = -20
+		}
+	}
+	
+	focus = {
+		id = CHI_learn_from_london
+		icon = GFX_CHI_learn_from_london
+		relative_position_id = CHI_introduce_managed_currency_system
+		x = 0
+		y = 1
+		cost = 1.4
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_introduce_managed_currency_system
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 100
+			}
+		}
+		completion_reward = {
+			country_event = china_wr.96
+		}
+	}
+	
+	focus = {
+		id = CHI_transition_to_gold_standard
+		icon = GFX_CHI_transition_to_gold_standard
+		relative_position_id = CHI_abolish_gold_silver_bimetallism
+		x = 1
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_abolish_gold_silver_bimetallism
+		}
+		mutually_exclusive = {
+			focus = CHI_introduce_managed_currency_system
+		}
+		available = {
+			has_country_leader = {
+				character = CHI_hu_shih
+				ruling_only = yes
+			}
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 100
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_unstable_bimetallic_standard_1
+				add_idea = CHI_unstable_bimetallic_standard_2
+			}
+			add_political_power = -20
+		}
+	}
+	
+	focus = {
+		id = CHI_link_with_washington
+		icon = GFX_CHI_link_with_washington
+		relative_position_id = CHI_transition_to_gold_standard
+		x = 0
+		y = 1
+		cost = 1.4
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_transition_to_gold_standard
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 100
+			}
+		}
+		completion_reward = {
+			country_event = china_wr.97
+		}
+	}
+	
+	focus = {
+		id = CHI_restore_central_bank_confidence
+		icon = GFX_CHI_restore_central_bank_confidence
+		relative_position_id = CHI_second_fabi_reform
+		x = 0
+		y = 1
+		cost = 5
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_transition_to_gold_standard
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 200
+			}
+		}
+		cancelable = no
+		select_effect = {
+			country_event = { id = china_wr.98 days = 5 }
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = economic_hyperinflation
+				add_idea = economic_high_inflation
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_issue_new_banknotes
+		icon = GFX_CHI_issue_new_banknotes
+		relative_position_id = CHI_restore_central_bank_confidence
+		x = 0
+		y = 2
+		cost = 3
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_restore_central_bank_confidence
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 200
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = economic_high_inflation
+				add_idea = economic_inflation
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_review_love_freedom_get
+		icon = GFX_CHI_review_love_freedom_get
+		relative_position_id = CHI_review_threefold_harmony
+		x = 0
+		y = 1
+		cost = 4
+		allow_branch = {
+			has_country_flag = chinese_civil_war_flag
+			has_country_leader = {
+				character = CHI_hu_shih
+				ruling_only = yes
+			}
+		}
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CHI_review_threefold_harmony
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = CHI_review_love_our_land_get
+		icon = GFX_CHI_review_love_our_land_get
+		relative_position_id = CHI_review_threefold_harmony
+		x = 17
+		y = 1
+		cost = 4
+		allow_branch = {
+			has_country_flag = chinese_civil_war_flag
+			has_country_leader = {
+				character = CHI_hu_shih
+				ruling_only = yes
+			}
+		}
+		available = {
+			is_subject = no
+			has_global_flag = chinese_civil_war
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CHI_review_threefold_harmony
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			add_ideas = CHI_look_to_the_world
 		}
 	}
 }
