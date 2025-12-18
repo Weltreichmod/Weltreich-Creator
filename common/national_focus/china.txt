@@ -1541,7 +1541,7 @@ focus_tree = {
 		id = CHI_war_on_corruption
 		icon = GFX_CHI_war_on_corruption
 		relative_position_id = CHI_review_love_people_get
-		x = -13
+		x = -12
 		y = 1
 		cost = 2
 		search_filters = { FOCUS_FILTER_INDUSTRY }
@@ -1552,6 +1552,10 @@ focus_tree = {
 			factor = 5
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_pervasive_corruption_modifier
+				add_idea = CHI_pervasive_corruption_modifier_1
+			}
 		}
 	}
 	
@@ -1570,6 +1574,10 @@ focus_tree = {
 			factor = 5
 		}
 		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_pervasive_corruption_modifier_1
+				add_idea = CHI_pervasive_corruption_modifier_2
+			}
 		}
 	}
 	
@@ -1580,7 +1588,7 @@ focus_tree = {
 		x = 1
 		y = 1
 		cost = 1
-		search_filters = { FOCUS_FILTER_INDUSTRY }
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_STABILITY }
 		prerequisite = {
 			focus = CHI_war_on_corruption
 		}
@@ -1588,6 +1596,8 @@ focus_tree = {
 			factor = 5
 		}
 		completion_reward = {
+			add_timed_idea = { idea = CHI_raise_civil_servant_wages days = 180 }
+			add_stability = 0.05
 		}
 	}
 	
@@ -1616,6 +1626,10 @@ focus_tree = {
 					country_event = { id = china_wr.93 days = 14 }
 				}
 			}
+			swap_ideas = {
+				remove_idea = CHI_pervasive_corruption_modifier_2
+				add_idea = CHI_pervasive_corruption_modifier_3
+			}
 		}
 	}
 	
@@ -1637,6 +1651,7 @@ focus_tree = {
 			factor = 5
 		}
 		completion_reward = {
+			remove_ideas = CHI_pervasive_corruption_modifier_3
 		}
 	}
 	
@@ -2408,6 +2423,10 @@ focus_tree = {
 		}
 		completion_reward = {
 			country_event = china_wr.94
+			swap_ideas = {
+				remove_idea = economic_hyperinflation
+				add_idea = economic_high_inflation
+			}
 		}
 	}
 	
@@ -2561,7 +2580,7 @@ focus_tree = {
 		cost = 5
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		prerequisite = {
-			focus = CHI_transition_to_gold_standard
+			focus = CHI_second_fabi_reform
 		}
 		ai_will_do = {
 			factor = 5
@@ -2576,8 +2595,8 @@ focus_tree = {
 		}
 		completion_reward = {
 			swap_ideas = {
-				remove_idea = economic_hyperinflation
-				add_idea = economic_high_inflation
+				remove_idea = economic_high_inflation
+				add_idea = economic_inflation
 			}
 		}
 	}
@@ -2602,9 +2621,146 @@ focus_tree = {
 		}
 		completion_reward = {
 			swap_ideas = {
-				remove_idea = economic_high_inflation
-				add_idea = economic_inflation
+				remove_idea = economic_inflation
+				add_idea = economic_low_inflation
 			}
+		}
+	}
+	
+	focus = {
+		id = CHI_tax_reform
+		icon = GFX_CHI_tax_reform
+		relative_position_id = CHI_second_fabi_reform
+		x = 2
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_second_fabi_reform
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 200
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_dysfunctional_tax_system_modifier
+				add_idea = CHI_dysfunctional_tax_system_modifier_1
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_abolish_poll_tax
+		icon = GFX_CHI_tax_reform
+		relative_position_id = CHI_tax_reform
+		x = 0
+		y = 1
+		cost = 1
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_tax_reform
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 200
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_dysfunctional_tax_system_modifier_1
+				add_idea = CHI_dysfunctional_tax_system_modifier_2
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_introduce_proportional_taxation
+		icon = GFX_CHI_introduce_proportional_taxation
+		relative_position_id = CHI_abolish_poll_tax
+		x = 0
+		y = 1
+		cost = 2
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_tax_reform
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 200
+			}
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = CHI_dysfunctional_tax_system_modifier_2
+				add_idea = CHI_proportional_taxation_modifier
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_overcome_inflation
+		icon = GFX_CHI_overcome_inflation
+		relative_position_id = CHI_issue_new_banknotes
+		x = 0
+		y = 1
+		cost = 1
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		prerequisite = {
+			focus = CHI_issue_new_banknotes
+		}
+		prerequisite = {
+			focus = CHI_introduce_proportional_taxation
+		}
+		prerequisite = {
+			focus = CHI_learn_from_london
+			focus = CHI_link_with_washington
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_idea = economic_hyperinflation
+				factor = 200
+			}
+		}
+		completion_reward = {
+			remove_ideas = economic_low_inflation
+		}
+	}
+	
+	focus = {
+		id = CHI_wartime_special_tax
+		icon = GFX_CHI_wartime_special_tax
+		relative_position_id = CHI_tax_reform
+		x = 1
+		y = 2
+		cost = 1
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = CHI_tax_reform
+		}
+		available = {
+			has_war = yes
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 5
+			modifier = {
+				has_war = yes
+				factor = 200
+			}
+		}
+		completion_reward = {
+			add_timed_idea = { idea = CHI_wartime_special_tax_modifier days = 600 }
+			add_political_power = -50
+			add_stability = -0.05
 		}
 	}
 	
