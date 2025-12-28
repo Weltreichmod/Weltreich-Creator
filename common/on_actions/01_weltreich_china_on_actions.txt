@@ -27,6 +27,7 @@ on_actions = {
 						original_tag = SEF
 					}
 				}
+				set_global_flag = SOV_won_win_MON_war_flag
 				if = {
 					limit = {
 						SEF = { has_war_with = MAN }
@@ -59,6 +60,13 @@ on_actions = {
 				every_state = {
 					limit = {
 						is_owned_by = SEF
+						is_core_of = MON
+					}
+					transfer_state_to = MON
+				}
+				every_state = {
+					limit = {
+						is_owned_by = MAN
 						is_core_of = MON
 					}
 					transfer_state_to = MON
@@ -115,6 +123,7 @@ on_actions = {
 						original_tag = MON
 					}
 				}
+				set_global_flag = MAN_won_win_MON_war_flag
 				SIK = {
 					drop_cosmetic_tag = yes
 				}
@@ -158,8 +167,103 @@ on_actions = {
 				MON = {
 					remove_ideas = MON_soviet_influence
 				}
+				every_state = {
+					limit = {
+						is_owned_by = MAN
+						is_core_of = MON
+					}
+					transfer_state_to = MON
+				}
+				MAN = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							MON = { exists = yes }
+						}
+						set_autonomy = {
+							target = MON
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = MON
+						}
+					}
+				}
 			}
-			
+			#북방수복전쟁
+			if = {
+				limit = {
+					original_tag = SIK
+					any_enemy_country = {
+						original_tag = CHI
+					}
+					has_global_flag = Attack_SIK_for_on_action_and_ai_flag
+				}
+				clr_global_flag = Attack_SIK_for_on_action_and_ai_flag
+				CHI = { clr_country_flag = CHI_northern_pacification_flag }
+				every_country = {
+					limit = {
+						OR = {
+							original_tag = CHI
+							is_subject_of = CHI
+							is_in_faction_with = CHI
+						}
+					}
+					white_peace = {
+						tag = SIK
+					}
+				}
+				CHI = {
+					annex_country = {
+						target = SIK
+						transfer_troops = no
+					}
+					country_event = china_wr.148
+				}
+				SOV = { country_event = china_wr.155 }
+			}
+			if = {
+				limit = {
+					original_tag = MON
+					any_enemy_country = {
+						original_tag = CHI
+					}
+					has_global_flag = Attack_MON_for_on_action_and_ai_flag
+				}
+				clr_global_flag = Attack_MON_for_on_action_and_ai_flag
+				CHI = { clr_country_flag = CHI_northern_pacification_flag }
+				every_country = {
+					limit = {
+						OR = {
+							original_tag = CHI
+							is_subject_of = CHI
+							is_in_faction_with = CHI
+						}
+					}
+					white_peace = {
+						tag = MON
+					}
+				}
+				CHI = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							MON = { exists = yes }
+						}
+						set_autonomy = {
+							target = MON
+							autonomous_state = autonomy_autonomous_provincial_government
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = MON
+						}
+					}
+					country_event = china_wr.150
+				}
+				SOV = { country_event = china_wr.157 }
+			}
 			#중국내전
 			if = {
 				limit = {

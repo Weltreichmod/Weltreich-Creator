@@ -127,6 +127,17 @@ CHI_recalc_congress_icon_frames = {
         set_temp_variable = { chi_house_temp = 1 }        
     }
     set_variable = { chi_current_house_icon_frame = chi_house_temp }
+	CHI_recalc_congress_for_trigger = yes
+}
+
+CHI_recalc_congress_for_trigger = {
+	set_variable = { CHI_over_65_var = 0 }
+	set_temp_variable = { representatives_total_for_65_temp = representatives_total }
+	multiply_temp_variable = { representatives_total_for_65_temp = 65 }
+	divide_temp_variable = { representatives_total_for_65_temp = 100 }
+	set_variable = { CHI_over_65_var = representatives_total_for_65_temp }
+	set_variable = { CHI_over_65_for_ai_var = CHI_over_65_var }
+	add_to_variable = { CHI_over_65_for_ai_var = 35 }
 }
 
 ### +1 Credit
@@ -247,4 +258,362 @@ CHI_dec_credit_5 = {
     else = {
         add_to_variable = { var = CHI_credit_total_var value = -5 }
     }
+}
+
+#정당 지지도 추가
+### =========================
+### Progressive Party: +5/+10/+15/+20 (cap = progressive_party_total)
+### =========================
+
+CHI_inc_progressive_party_support_5 = {
+    custom_effect_tooltip = CHI_inc_progressive_party_support_5_tt
+    set_temp_variable = { prog_cap_minus_add_temp = progressive_party_total }
+    subtract_from_temp_variable = { prog_cap_minus_add_temp = 5 }
+    if = {
+        limit = { check_variable = { progressive_party_support > prog_cap_minus_add_temp } }
+        set_variable = { var = progressive_party_support value = progressive_party_total }
+    }
+    else = { add_to_variable = { var = progressive_party_support value = 5 } }
+}
+
+CHI_inc_progressive_party_support_10 = {
+    custom_effect_tooltip = CHI_inc_progressive_party_support_10_tt
+    set_temp_variable = { prog_cap_minus_add_temp = progressive_party_total }
+    subtract_from_temp_variable = { prog_cap_minus_add_temp = 10 }
+    if = {
+        limit = { check_variable = { progressive_party_support > prog_cap_minus_add_temp } }
+        set_variable = { var = progressive_party_support value = progressive_party_total }
+    }
+    else = { add_to_variable = { var = progressive_party_support value = 10 } }
+}
+
+CHI_inc_progressive_party_support_15 = {
+    custom_effect_tooltip = CHI_inc_progressive_party_support_15_tt
+    set_temp_variable = { prog_cap_minus_add_temp = progressive_party_total }
+    subtract_from_temp_variable = { prog_cap_minus_add_temp = 15 }
+    if = {
+        limit = { check_variable = { progressive_party_support > prog_cap_minus_add_temp } }
+        set_variable = { var = progressive_party_support value = progressive_party_total }
+    }
+    else = { add_to_variable = { var = progressive_party_support value = 15 } }
+}
+
+CHI_inc_progressive_party_support_20 = {
+    custom_effect_tooltip = CHI_inc_progressive_party_support_20_tt
+    set_temp_variable = { prog_cap_minus_add_temp = progressive_party_total }
+    subtract_from_temp_variable = { prog_cap_minus_add_temp = 20 }
+    if = {
+        limit = { check_variable = { progressive_party_support > prog_cap_minus_add_temp } }
+        set_variable = { var = progressive_party_support value = progressive_party_total }
+    }
+    else = { add_to_variable = { var = progressive_party_support value = 20 } }
+}
+
+
+### =========================
+### Chinese Youth Party: +5/+10/+15/+20 (cap = chinese_youth_party_total)
+### =========================
+
+CHI_inc_chinese_youth_party_support_5 = {
+    custom_effect_tooltip = CHI_inc_chinese_youth_party_support_5_tt
+    set_temp_variable = { cyp_cap_minus_add_temp = chinese_youth_party_total }
+    subtract_from_temp_variable = { cyp_cap_minus_add_temp = 5 }
+    if = {
+        limit = { check_variable = { chinese_youth_party_support > cyp_cap_minus_add_temp } }
+        set_variable = { var = chinese_youth_party_support value = chinese_youth_party_total }
+    }
+    else = { add_to_variable = { var = chinese_youth_party_support value = 5 } }
+}
+
+CHI_inc_chinese_youth_party_support_10 = {
+    custom_effect_tooltip = CHI_inc_chinese_youth_party_support_10_tt
+    set_temp_variable = { cyp_cap_minus_add_temp = chinese_youth_party_total }
+    subtract_from_temp_variable = { cyp_cap_minus_add_temp = 10 }
+    if = {
+        limit = { check_variable = { chinese_youth_party_support > cyp_cap_minus_add_temp } }
+        set_variable = { var = chinese_youth_party_support value = chinese_youth_party_total }
+    }
+    else = { add_to_variable = { var = chinese_youth_party_support value = 10 } }
+}
+
+CHI_inc_chinese_youth_party_support_15 = {
+    custom_effect_tooltip = CHI_inc_chinese_youth_party_support_15_tt
+    set_temp_variable = { cyp_cap_minus_add_temp = chinese_youth_party_total }
+    subtract_from_temp_variable = { cyp_cap_minus_add_temp = 15 }
+    if = {
+        limit = { check_variable = { chinese_youth_party_support > cyp_cap_minus_add_temp } }
+        set_variable = { var = chinese_youth_party_support value = chinese_youth_party_total }
+    }
+    else = { add_to_variable = { var = chinese_youth_party_support value = 15 } }
+}
+
+CHI_inc_chinese_youth_party_support_20 = {
+    custom_effect_tooltip = CHI_inc_chinese_youth_party_support_20_tt
+    set_temp_variable = { cyp_cap_minus_add_temp = chinese_youth_party_total }
+    subtract_from_temp_variable = { cyp_cap_minus_add_temp = 20 }
+    if = {
+        limit = { check_variable = { chinese_youth_party_support > cyp_cap_minus_add_temp } }
+        set_variable = { var = chinese_youth_party_support value = chinese_youth_party_total }
+    }
+    else = { add_to_variable = { var = chinese_youth_party_support value = 20 } }
+}
+
+### =========================
+### Kuomintang: +5/+10/+15/+20 (cap = kuomintang_total)
+### =========================
+
+CHI_inc_kuomintang_support_5 = {
+    custom_effect_tooltip = CHI_inc_kuomintang_support_5_tt
+    set_temp_variable = { kmt_cap_minus_add_temp = kuomintang_total }
+    subtract_from_temp_variable = { kmt_cap_minus_add_temp = 5 }
+    if = {
+        limit = { check_variable = { kuomintang_support > kmt_cap_minus_add_temp } }
+        set_variable = { var = kuomintang_support value = kuomintang_total }
+    }
+    else = { add_to_variable = { var = kuomintang_support value = 5 } }
+}
+
+CHI_inc_kuomintang_support_10 = {
+    custom_effect_tooltip = CHI_inc_kuomintang_support_10_tt
+    set_temp_variable = { kmt_cap_minus_add_temp = kuomintang_total }
+    subtract_from_temp_variable = { kmt_cap_minus_add_temp = 10 }
+    if = {
+        limit = { check_variable = { kuomintang_support > kmt_cap_minus_add_temp } }
+        set_variable = { var = kuomintang_support value = kuomintang_total }
+    }
+    else = { add_to_variable = { var = kuomintang_support value = 10 } }
+}
+
+CHI_inc_kuomintang_support_15 = {
+    custom_effect_tooltip = CHI_inc_kuomintang_support_15_tt
+    set_temp_variable = { kmt_cap_minus_add_temp = kuomintang_total }
+    subtract_from_temp_variable = { kmt_cap_minus_add_temp = 15 }
+    if = {
+        limit = { check_variable = { kuomintang_support > kmt_cap_minus_add_temp } }
+        set_variable = { var = kuomintang_support value = kuomintang_total }
+    }
+    else = { add_to_variable = { var = kuomintang_support value = 15 } }
+}
+
+CHI_inc_kuomintang_support_20 = {
+    custom_effect_tooltip = CHI_inc_kuomintang_support_20_tt
+    set_temp_variable = { kmt_cap_minus_add_temp = kuomintang_total }
+    subtract_from_temp_variable = { kmt_cap_minus_add_temp = 20 }
+    if = {
+        limit = { check_variable = { kuomintang_support > kmt_cap_minus_add_temp } }
+        set_variable = { var = kuomintang_support value = kuomintang_total }
+    }
+    else = { add_to_variable = { var = kuomintang_support value = 20 } }
+}
+
+
+### =========================
+### Others / Independent: +5/+10/+15/+20 (cap = others_independent_total)
+### =========================
+
+CHI_inc_others_independent_support_5 = {
+    custom_effect_tooltip = CHI_inc_others_independent_support_5_tt
+    set_temp_variable = { oth_cap_minus_add_temp = others_independent_total }
+    subtract_from_temp_variable = { oth_cap_minus_add_temp = 5 }
+    if = {
+        limit = { check_variable = { others_independent_support > oth_cap_minus_add_temp } }
+        set_variable = { var = others_independent_support value = others_independent_total }
+    }
+    else = { add_to_variable = { var = others_independent_support value = 5 } }
+}
+
+CHI_inc_others_independent_support_10 = {
+    custom_effect_tooltip = CHI_inc_others_independent_support_10_tt
+    set_temp_variable = { oth_cap_minus_add_temp = others_independent_total }
+    subtract_from_temp_variable = { oth_cap_minus_add_temp = 10 }
+    if = {
+        limit = { check_variable = { others_independent_support > oth_cap_minus_add_temp } }
+        set_variable = { var = others_independent_support value = others_independent_total }
+    }
+    else = { add_to_variable = { var = others_independent_support value = 10 } }
+}
+
+CHI_inc_others_independent_support_15 = {
+    custom_effect_tooltip = CHI_inc_others_independent_support_15_tt
+    set_temp_variable = { oth_cap_minus_add_temp = others_independent_total }
+    subtract_from_temp_variable = { oth_cap_minus_add_temp = 15 }
+    if = {
+        limit = { check_variable = { others_independent_support > oth_cap_minus_add_temp } }
+        set_variable = { var = others_independent_support value = others_independent_total }
+    }
+    else = { add_to_variable = { var = others_independent_support value = 15 } }
+}
+
+CHI_inc_others_independent_support_20 = {
+    custom_effect_tooltip = CHI_inc_others_independent_support_20_tt
+    set_temp_variable = { oth_cap_minus_add_temp = others_independent_total }
+    subtract_from_temp_variable = { oth_cap_minus_add_temp = 20 }
+    if = {
+        limit = { check_variable = { others_independent_support > oth_cap_minus_add_temp } }
+        set_variable = { var = others_independent_support value = others_independent_total }
+    }
+   else = { add_to_variable = { var = others_independent_support value = 20 } }
+}
+
+### =========================
+### Progressive Party: -5/-10/-15/-20 (min = 0)
+### =========================
+
+CHI_dec_progressive_party_support_5 = {
+    custom_effect_tooltip = CHI_dec_progressive_party_support_5_tt
+    if = {
+        limit = { check_variable = { progressive_party_support < 5 } }
+        set_variable = { var = progressive_party_support value = 0 }
+    }
+    else = { add_to_variable = { var = progressive_party_support value = -5 } }
+}
+
+CHI_dec_progressive_party_support_10 = {
+    custom_effect_tooltip = CHI_dec_progressive_party_support_10_tt
+    if = {
+        limit = { check_variable = { progressive_party_support < 10 } }
+        set_variable = { var = progressive_party_support value = 0 }
+    }
+    else = { add_to_variable = { var = progressive_party_support value = -10 } }
+}
+
+CHI_dec_progressive_party_support_15 = {
+    custom_effect_tooltip = CHI_dec_progressive_party_support_15_tt
+    if = {
+        limit = { check_variable = { progressive_party_support < 15 } }
+        set_variable = { var = progressive_party_support value = 0 }
+    }
+    else = { add_to_variable = { var = progressive_party_support value = -15 } }
+}
+
+CHI_dec_progressive_party_support_20 = {
+    custom_effect_tooltip = CHI_dec_progressive_party_support_20_tt
+    if = {
+        limit = { check_variable = { progressive_party_support < 20 } }
+        set_variable = { var = progressive_party_support value = 0 }
+    }
+    else = { add_to_variable = { var = progressive_party_support value = -20 } }
+}
+
+
+### =========================
+### Chinese Youth Party: -5/-10/-15/-20 (min = 0)
+### =========================
+
+CHI_dec_chinese_youth_party_support_5 = {
+    custom_effect_tooltip = CHI_dec_chinese_youth_party_support_5_tt
+    if = {
+        limit = { check_variable = { chinese_youth_party_support < 5 } }
+        set_variable = { var = chinese_youth_party_support value = 0 }
+    }
+    else = { add_to_variable = { var = chinese_youth_party_support value = -5 } }
+}
+
+CHI_dec_chinese_youth_party_support_10 = {
+    custom_effect_tooltip = CHI_dec_chinese_youth_party_support_10_tt
+    if = {
+        limit = { check_variable = { chinese_youth_party_support < 10 } }
+        set_variable = { var = chinese_youth_party_support value = 0 }
+    }
+    else = { add_to_variable = { var = chinese_youth_party_support value = -10 } }
+}
+
+CHI_dec_chinese_youth_party_support_15 = {
+    custom_effect_tooltip = CHI_dec_chinese_youth_party_support_15_tt
+    if = {
+        limit = { check_variable = { chinese_youth_party_support < 15 } }
+        set_variable = { var = chinese_youth_party_support value = 0 }
+    }
+    else = { add_to_variable = { var = chinese_youth_party_support value = -15 } }
+}
+
+CHI_dec_chinese_youth_party_support_20 = {
+    custom_effect_tooltip = CHI_dec_chinese_youth_party_support_20_tt
+    if = {
+        limit = { check_variable = { chinese_youth_party_support < 20 } }
+        set_variable = { var = chinese_youth_party_support value = 0 }
+    }
+    else = { add_to_variable = { var = chinese_youth_party_support value = -20 } }
+}
+
+
+### =========================
+### Kuomintang: -5/-10/-15/-20 (min = 0)
+### =========================
+
+CHI_dec_kuomintang_support_5 = {
+    custom_effect_tooltip = CHI_dec_kuomintang_support_5_tt
+    if = {
+        limit = { check_variable = { kuomintang_support < 5 } }
+        set_variable = { var = kuomintang_support value = 0 }
+    }
+    else = { add_to_variable = { var = kuomintang_support value = -5 } }
+}
+
+CHI_dec_kuomintang_support_10 = {
+    custom_effect_tooltip = CHI_dec_kuomintang_support_10_tt
+    if = {
+        limit = { check_variable = { kuomintang_support < 10 } }
+        set_variable = { var = kuomintang_support value = 0 }
+    }
+    else = { add_to_variable = { var = kuomintang_support value = -10 } }
+}
+
+CHI_dec_kuomintang_support_15 = {
+    custom_effect_tooltip = CHI_dec_kuomintang_support_15_tt
+    if = {
+        limit = { check_variable = { kuomintang_support < 15 } }
+        set_variable = { var = kuomintang_support value = 0 }
+    }
+    else = { add_to_variable = { var = kuomintang_support value = -15 } }
+}
+
+CHI_dec_kuomintang_support_20 = {
+    custom_effect_tooltip = CHI_dec_kuomintang_support_20_tt
+    if = {
+        limit = { check_variable = { kuomintang_support < 20 } }
+        set_variable = { var = kuomintang_support value = 0 }
+    }
+    else = { add_to_variable = { var = kuomintang_support value = -20 } }
+}
+
+
+### =========================
+### Others / Independent: -5/-10/-15/-20 (min = 0)
+### =========================
+
+CHI_dec_others_independent_support_5 = {
+    custom_effect_tooltip = CHI_dec_others_independent_support_5_tt
+    if = {
+        limit = { check_variable = { others_independent_support < 5 } }
+        set_variable = { var = others_independent_support value = 0 }
+    }
+    else = { add_to_variable = { var = others_independent_support value = -5 } }
+}
+
+CHI_dec_others_independent_support_10 = {
+    custom_effect_tooltip = CHI_dec_others_independent_support_10_tt
+    if = {
+        limit = { check_variable = { others_independent_support < 10 } }
+        set_variable = { var = others_independent_support value = 0 }
+    }
+    else = { add_to_variable = { var = others_independent_support value = -10 } }
+}
+
+CHI_dec_others_independent_support_15 = {
+    custom_effect_tooltip = CHI_dec_others_independent_support_15_tt
+    if = {
+        limit = { check_variable = { others_independent_support < 15 } }
+        set_variable = { var = others_independent_support value = 0 }
+    }
+    else = { add_to_variable = { var = others_independent_support value = -15 } }
+}
+
+CHI_dec_others_independent_support_20 = {
+    custom_effect_tooltip = CHI_dec_others_independent_support_20_tt
+    if = {
+        limit = { check_variable = { others_independent_support < 20 } }
+        set_variable = { var = others_independent_support value = 0 }
+    }
+    else = { add_to_variable = { var = others_independent_support value = -20 } }
 }
