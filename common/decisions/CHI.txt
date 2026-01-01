@@ -712,10 +712,8 @@ CHI_government_policies_category = {
 			has_global_flag = chinese_civil_war
 		}
 		timeout_effect = {
-			swap_ideas = {
-				remove_idea = CHI_rampaging_local_forces
-				add_idea = CHI_reorganize_local_forces
-			}
+			remove_ideas = CHI_rampaging_local_forces
+			add_timed_idea = { idea = CHI_reorganize_local_forces days = 140 }
 			set_country_flag = CHI_hufa_militia_inspection_decision_flag
 		}
 	}
@@ -1680,7 +1678,7 @@ CHI_land_reform_category = {
 		remove_effect = {
 			add_days_mission_timeout = {
 				mission = CHI_land_reform_mission
-				days = -5
+				days = -15
 			}
 		}
 	}
@@ -1711,7 +1709,7 @@ CHI_land_reform_category = {
 		remove_effect = {
 			add_days_mission_timeout = {
 				mission = CHI_land_reform_mission
-				days = -10
+				days = -30
 			}
 		}
 	}
@@ -1742,7 +1740,7 @@ CHI_land_reform_category = {
 		remove_effect = {
 			add_days_mission_timeout = {
 				mission = CHI_land_reform_mission
-				days = -15
+				days = -50
 			}
 		}
 	}
@@ -1864,6 +1862,219 @@ CHI_land_reform_category = {
 		remove_effect = {
 			custom_effect_tooltip = CHI_land_reform_stage_tt
 			set_country_flag = CHI_land_reform_stage_4_flag
+		}
+	}
+}
+
+CHI_operational_plan_decision = {
+	CHI_operational_plan_southwest_decision = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 40
+		visible = {
+			OR = {
+				has_completed_focus = CHI_a_fighting_army_focus
+			}
+			OR = {
+				has_war_with = KMT
+				has_war_with = CHI
+			}
+			NOT = { has_country_flag = CHI_operational_plan_southwest_decision_flag }
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_idea = CHI_operational_plan_idea }
+			}
+		}
+		custom_cost_trigger = {
+			command_power > 9
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		complete_effect = {
+			add_command_power = -10
+		}
+		remove_effect = {
+			custom_effect_tooltip = CHI_operational_plan_decision_tt
+			hidden_effect = {
+				add_timed_idea = { idea = CHI_operational_plan_idea days = 80 }
+				set_country_flag = CHI_operational_plan_southwest_decision_flag
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 752
+						state = 751
+						state = 605
+						state = 748
+						state = 1004
+						state = 753
+					}
+				}
+				remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
+			}
+		}
+	}
+	CHI_operational_plan_north_china_decision = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 40
+		visible = {
+			OR = {
+				has_completed_focus = CHI_a_fighting_army_focus
+			}
+			OR = {
+				has_war_with = KMT
+				has_war_with = CHI
+			}
+			NOT = { has_country_flag = CHI_operational_plan_north_china_decision_flag }
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_idea = CHI_operational_plan_idea }
+			}
+		}
+		custom_cost_trigger = {
+			command_power > 9
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		complete_effect = {
+			add_command_power = -10
+		}
+		remove_effect = {
+			custom_effect_tooltip = CHI_operational_plan_decision_tt
+			hidden_effect = {
+				add_timed_idea = { idea = CHI_operational_plan_idea days = 80 }
+				set_country_flag = CHI_operational_plan_north_china_decision_flag
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 620
+						state = 85
+						state = 1013
+						state = 744
+						state = 1014
+						state = 607
+					}
+				}
+				remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
+			}
+		}
+	}
+	CHI_operational_plan_south_china_decision = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 40
+		visible = {
+			OR = {
+				has_completed_focus = CHI_a_fighting_army_focus
+			}
+			OR = {
+				has_war_with = KMT
+				has_war_with = CHI
+			}
+			NOT = { has_country_flag = CHI_operational_plan_south_china_decision_flag }
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_idea = CHI_operational_plan_idea }
+			}
+		}
+		custom_cost_trigger = {
+			command_power > 9
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		complete_effect = {
+			add_command_power = -10
+		}
+		remove_effect = {
+			custom_effect_tooltip = CHI_operational_plan_decision_tt
+			hidden_effect = {
+				add_timed_idea = { idea = CHI_operational_plan_idea days = 80 }
+				set_country_flag = CHI_operational_plan_south_china_decision_flag
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 325
+						state = 599
+						state = 603
+						state = 754
+						state = 591
+						state = 594
+						state = 592
+						state = 593
+						state = 1005
+						state = 602
+						state = 705
+						state = 1007
+					}
+				}
+				remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
+			}
+		}
+	}
+	CHI_operational_plan_east_china_decision = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 40
+		visible = {
+			OR = {
+				has_completed_focus = CHI_a_fighting_army_focus
+			}
+			OR = {
+				has_war_with = KMT
+				has_war_with = CHI
+			}
+			NOT = { has_country_flag = CHI_operational_plan_east_china_decision_flag }
+		}
+		available = {
+			hidden_trigger = {
+				NOT = { has_idea = CHI_operational_plan_idea }
+			}
+		}
+		custom_cost_trigger = {
+			command_power > 9
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		complete_effect = {
+			add_command_power = -10
+		}
+		remove_effect = {
+			custom_effect_tooltip = CHI_operational_plan_decision_tt
+			hidden_effect = {
+				add_timed_idea = { idea = CHI_operational_plan_idea days = 80 }
+				set_country_flag = CHI_operational_plan_east_china_decision_flag
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 600
+						state = 1006
+						state = 1009
+						state = 595
+						state = 1008
+						state = 1010
+						state = 749
+						state = 596
+						state = 613
+						state = 960
+						state = 1011
+						state = 606
+						state = 598
+						state = 1015
+					}
+				}
+				remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
+			}
 		}
 	}
 }
