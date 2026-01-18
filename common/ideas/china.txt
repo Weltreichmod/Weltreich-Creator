@@ -128,10 +128,66 @@ ideas = {
 			}
 			modifier = {
 				production_speed_dockyard_factor = -0.3
-				industrial_capacity_factory = -0.25
+				industrial_capacity_dockyard = -0.25
 			}
 			research_bonus = {
 				naval_equipment = -0.1
+			}
+		}
+		
+		CHI_fallen_dream_of_shipbuilding_modifier_1 = {
+			name = CHI_fallen_dream_of_shipbuilding_modifier
+			picture = CHI_fallen_dream_of_shipbuilding_modifier
+			allowed = {
+				original_tag = CHI
+			}
+			modifier = {
+				production_speed_dockyard_factor = -0.25
+				industrial_capacity_dockyard = -0.2
+			}
+			research_bonus = {
+				naval_equipment = -0.1
+			}
+		}
+		
+		CHI_fallen_dream_of_shipbuilding_modifier_2 = {
+			name = CHI_fallen_dream_of_shipbuilding_modifier
+			picture = CHI_fallen_dream_of_shipbuilding_modifier
+			allowed = {
+				original_tag = CHI
+			}
+			modifier = {
+				production_speed_dockyard_factor = -0.15
+				industrial_capacity_dockyard = -0.1
+			}
+			research_bonus = {
+				naval_equipment = -0.05
+			}
+		}
+		
+		CHI_world_shipyards = {
+			picture = generic_coastal_defense_ships
+			allowed = {
+				original_tag = CHI
+			}
+			modifier = {
+				production_speed_dockyard_factor = 0.1
+				industrial_capacity_dockyard = 0.1
+			}
+			research_bonus = {
+				naval_equipment = 0.05
+			}
+		}
+		
+		CHI_target_japan = {
+			picture = CHI_target_japan
+			allowed = {
+				original_tag = CHI
+			}
+			modifier = {
+				consumer_goods_factor = 0.1
+				production_speed_dockyard_factor = 0.1
+				industrial_capacity_dockyard = 0.1
 			}
 		}
 		
@@ -159,12 +215,6 @@ ideas = {
 		
 		CHI_national_unity_government = {
 			picture = CHI_national_unity_government
-			available = {
-				OR = {
-					has_war_with = KMT
-					has_war_with = JAP
-				}
-			}
 			modifier = {
 				stability_factor = 0.1
 				political_power_factor = 0.15
@@ -385,7 +435,6 @@ ideas = {
 				is_subject = no
 			}
 			modifier = {
-				political_power_factor = -0.05
 				monthly_population = -0.15
 				custom_modifier_tooltip = CHI_land_to_the_tiller_tt
 			}
@@ -1471,6 +1520,105 @@ ideas = {
 			}
 		}
 		
+		CHI_military_fiscal_support = {
+			picture = CHI_military_fiscal_support
+			allowed = {
+				original_tag = CHI
+			}
+			available = {
+				is_subject = no
+				has_war_with = KMT
+			}
+			modifier = {
+				consumer_goods_factor = 0.075
+				army_org_factor = 0.025
+				army_strength_factor = 0.05
+			}
+		}
+		
+		CHI_expanded_conscription = {
+			picture = MEX_politicised_army
+			allowed = {
+				original_tag = CHI
+			}
+			available = {
+				is_subject = no
+				has_war_with = KMT
+			}
+			modifier = {
+				research_speed_factor = -0.05
+				army_core_attack_factor = 0.025
+				army_core_defence_factor = 0.025
+			}
+		}
+		
+		CHI_new_weapons_development = {
+			picture = generic_research_bonus
+			allowed = {
+				original_tag = CHI
+			}
+			available = {
+				is_subject = no
+				has_war_with = KMT
+			}
+			modifier = {
+				consumer_goods_factor = 0.075
+			}
+			research_bonus = {
+				infantry_equipment = 0.1
+				artillery = 0.1
+				armor = 0.1
+			}
+		}
+		
+		CHI_expanded_military_autonomy = {
+			picture = CZE_planning_bonus
+			available = {
+				is_subject = no
+				has_war_with = KMT
+			}
+			modifier = {
+				planning_speed = 0.1
+				max_planning_factor = -0.1
+				max_command_power = -10
+			}
+		}
+		
+		CHI_expanded_military_justice = {
+			picture = CHI_expanded_military_justice
+			available = {
+				is_subject = no
+				has_war_with = KMT
+			}
+			modifier = {
+				political_power_factor = -0.05
+				stability_factor = 0.05
+				war_support_factor = 0.05
+			}
+		}
+		
+		CHI_naval_academy_spirit = {
+			picture = generic_the_london_naval_treaty
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				navy_leader_cost_factor = -0.3
+				navy_leader_start_maneuvering_level = 1
+			}
+		}
+		
+		CHI_centralization_spirit = {
+			picture = joining_rule_china_only
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				production_speed_buildings_factor = -0.05
+				political_power_factor = 0.1
+			}
+		}
+		
 		#For KMT
 		KMT_national_revolution = {
 			picture = CHI_endless_national_revolution
@@ -2296,6 +2444,179 @@ ideas = {
 				army_attack_speed_factor = -0.1
 				special_forces_cap = -0.25
 				planning_speed = -0.1
+			}
+		}
+		
+		CHI_charcoal_gas_vehicles = {
+			picture = generic_supply_lines
+			allowed = {
+				original_tag = CHI
+			}
+			modifier = {
+				army_fuel_consumption_factor = -0.1
+			}
+			equipment_bonus = {
+				motorized_equipment = {
+					instant = yes reliability = -0.15
+				}
+			}
+		}
+		
+		CHI_focus_on_domestic_tanks = {
+			picture = generic_acquire_tanks
+			allowed = {
+				original_tag = CHI
+			}
+			available = {
+				is_subject = no
+			}
+			equipment_bonus = {
+				mechanized_equipment = {
+					instant = yes
+					build_cost_ic = -0.1
+					armor_value = 0.3
+				}
+				light_tank_chassis = {
+					instant = yes build_cost_ic = -0.1 reliability = 0.05 armor_value = 0.2
+				}
+				medium_tank_chassis = {
+					instant = yes build_cost_ic = -0.1 reliability = 0.05 armor_value = 0.2
+				}
+				heavy_tank_chassis = {
+					instant = yes build_cost_ic = -0.1 reliability = 0.05 armor_value = 0.2
+				}
+			}
+			research_bonus = {
+				armor = 0.15
+			}
+		}
+		
+		CHI_focus_on_licenses = {
+			picture = generic_acquire_tanks
+			allowed = {
+				original_tag = CHI
+			}
+			available = {
+				is_subject = no
+			}
+			equipment_bonus = {
+				mechanized_equipment = {
+					instant = yes
+					build_cost_ic = -0.1
+					armor_value = 0.3
+				}
+				light_tank_chassis = {
+					instant = yes build_cost_ic = -0.1 reliability = 0.05 armor_value = 0.2
+				}
+				medium_tank_chassis = {
+					instant = yes build_cost_ic = -0.1 reliability = 0.05 armor_value = 0.2
+				}
+				heavy_tank_chassis = {
+					instant = yes build_cost_ic = -0.1 reliability = 0.05 armor_value = 0.2
+				}
+			}
+			modifier = {
+				license_armor_purchase_cost = -0.15
+			}
+		}
+		
+		CHI_mass_shell_production = {
+			picture = generic_artillery_regiments
+			allowed = {
+				original_tag = CHI
+			}
+			available = {
+				is_subject = no
+			}
+			equipment_bonus = {
+				artillery_equipment = {
+					instant = yes
+					build_cost_ic = -0.1
+				}
+			}
+		}
+		
+		CHI_artillery_backbone = {
+			picture = generic_artillery_regiments
+			allowed = {
+				original_tag = CHI
+			}
+			available = {
+				is_subject = no
+			}
+			equipment_bonus = {
+				artillery_equipment = {
+					instant = yes
+					build_cost_ic = -0.1
+					reliability = 0.05
+					breakthroug = 0.05
+				}
+			}
+		}
+		
+		CHI_material_substitution_policy = {
+			picture = generic_air_fighter
+			allowed = {
+				original_tag = CHI
+			}
+			available = {
+				is_subject = no
+			}
+			equipment_bonus = {
+				small_plane_airframe = {
+					eliability = -0.1
+					build_cost_ic = -0.1
+				}
+				cv_small_plane_airframe = {
+					reliability = -0.1
+					build_cost_ic = -0.1
+				}
+			}
+		}
+		
+		CHI_china_aviation_investment = {
+			picture = generic_air_fighter
+			allowed = {
+				original_tag = CHI
+			}
+			available = {
+				is_subject = no
+			}
+			equipment_bonus = {
+				small_plane_airframe = {
+					air_attack = 10
+					air_defence = 10
+					eliability = -0.05
+					build_cost_ic = -0.15
+				}
+				cv_small_plane_airframe = {
+					air_attack = 10
+					air_defence = 10
+					reliability = -0.05
+					build_cost_ic = -0.15
+				}
+			}
+		}
+		
+		CHI_mass_production_domestic_aircraft = {
+			picture = generic_air_fighter
+			allowed = {
+				original_tag = CHI
+			}
+			available = {
+				is_subject = no
+			}
+			equipment_bonus = {
+				small_plane_airframe = {
+					air_attack = 10
+					air_defence = 10
+					build_cost_ic = -0.2
+				}
+				cv_small_plane_airframe = {
+					air_attack = 10
+					air_defence = 10
+					build_cost_ic = -0.2
+				}
 			}
 		}
 	}
