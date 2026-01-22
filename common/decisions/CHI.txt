@@ -107,7 +107,7 @@ CHI_presidential_election_preparation_category = {
 political_situation = {
 	CHI_crisis_from_the_sichuan_civil_war = {
 		icon = GFX_decision_revolt
-		days_mission_timeout = 40
+		days_mission_timeout = 110
 		activation = {
 			original_tag = CHI
 			SCH = { has_war_with = SKM }
@@ -600,6 +600,7 @@ CHI_government_policies_category = {
 			has_completed_focus = CHI_kmt_entering_crisis
 			NOT = { has_country_flag = CHI_hufa_gangnam_declaration_decision_flag }
 			NOT = { has_global_flag = chinese_civil_war }
+			NOT = { has_country_flag = chinese_civil_war_flag }
 		}
 		allowed = {
 			original_tag = CHI
@@ -620,6 +621,7 @@ CHI_government_policies_category = {
 			has_country_flag = CHI_hufa_gangnam_declaration_decision_flag
 			NOT = { has_country_flag = CHI_hufa_military_service_law_decision_flag }
 			NOT = { has_global_flag = chinese_civil_war }
+			NOT = { has_country_flag = chinese_civil_war_flag }
 		}
 		allowed = {
 			original_tag = CHI
@@ -640,6 +642,7 @@ CHI_government_policies_category = {
 			has_country_flag = CHI_hufa_military_service_law_decision_flag
 			NOT = { has_country_flag = CHI_hufa_one_stroke_brigade_decision_flag }
 			NOT = { has_global_flag = chinese_civil_war }
+			NOT = { has_country_flag = chinese_civil_war_flag }
 		}
 		allowed = {
 			original_tag = CHI
@@ -661,6 +664,7 @@ CHI_government_policies_category = {
 			has_country_flag = CHI_hufa_one_stroke_brigade_decision_flag
 			NOT = { has_country_flag = CHI_hufa_kmt_appeasement_decision_flag }
 			NOT = { has_global_flag = chinese_civil_war }
+			NOT = { has_country_flag = chinese_civil_war_flag }
 		}
 		allowed = {
 			original_tag = CHI
@@ -684,6 +688,7 @@ CHI_government_policies_category = {
 			has_country_flag = CHI_hufa_kmt_appeasement_decision_flag
 			NOT = { has_country_flag = CHI_hufa_reserve_force_training_decision_flag }
 			NOT = { has_global_flag = chinese_civil_war }
+			NOT = { has_country_flag = chinese_civil_war_flag }
 		}
 		allowed = {
 			original_tag = CHI
@@ -704,6 +709,7 @@ CHI_government_policies_category = {
 			has_country_flag = CHI_hufa_reserve_force_training_decision_flag
 			NOT = { has_country_flag = CHI_hufa_militia_inspection_decision_flag }
 			NOT = { has_global_flag = chinese_civil_war }
+			NOT = { has_country_flag = chinese_civil_war_flag }
 		}
 		allowed = {
 			original_tag = CHI
@@ -725,6 +731,7 @@ CHI_government_policies_category = {
 			has_country_flag = CHI_hufa_militia_inspection_decision_flag
 			NOT = { has_country_flag = CHI_hufa_expand_civilian_control_decision_flag }
 			NOT = { has_global_flag = chinese_civil_war }
+			NOT = { has_country_flag = chinese_civil_war_flag }
 		}
 		allowed = {
 			original_tag = CHI
@@ -748,6 +755,7 @@ CHI_government_policies_category = {
 			has_country_flag = CHI_hufa_expand_civilian_control_decision_flag
 			NOT = { has_country_flag = CHI_hufa_establish_emergency_government_decision_flag }
 			NOT = { has_global_flag = chinese_civil_war }
+			NOT = { has_country_flag = chinese_civil_war_flag }
 		}
 		allowed = {
 			original_tag = CHI
@@ -777,6 +785,7 @@ Divide_the_Factions = {
 			}
 		}
 		cost = 10
+		fire_only_once = yes
 		complete_effect = {
 			KMT = { country_event = china_wr.66 }
 		}
@@ -801,6 +810,7 @@ CHI_sichuan_massive_operation = {
 		}
 		custom_cost_text = RUS_focus_on_oper_tt
 		days_remove = 7
+		fire_only_once = yes
 		remove_effect = {
 			declare_war_on = { target = SKM type = take_core_state }
 		}
@@ -826,8 +836,9 @@ CHI_sichuan_massive_operation = {
 		}
 		custom_cost_text = RUS_focus_on_oper_tt
 		days_remove = 7
+		fire_only_once = yes
 		remove_effect = {
-			declare_war_on = { target = CHI type = take_core_state }
+			declare_war_on = { target = SCH type = take_core_state }
 		}
 		ai_will_do = {
 			base = 0
@@ -1639,7 +1650,7 @@ CHI_land_reform_category = {
 		allowed = {
 			original_tag = CHI
 		}
-		days_mission_timeout = 365
+		days_mission_timeout = 480
 		activation = {
 			has_country_flag = CHI_land_reform_flag
 		}
@@ -1666,14 +1677,14 @@ CHI_land_reform_category = {
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 1
-			has_political_power > 19
+			has_political_power > 4
 		}
-		custom_cost_text = decision_cost_2_civ
+		custom_cost_text = decision_cost_2_civ_5
 		modifier = {
 			civilian_factory_use = 2
 		}
 		complete_effect = {
-			add_political_power = -20
+			add_political_power = -5
 		}
 		remove_effect = {
 			add_days_mission_timeout = {
@@ -1697,14 +1708,14 @@ CHI_land_reform_category = {
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 3
-			has_political_power > 29
+			has_political_power > 9
 		}
-		custom_cost_text = decision_cost_4_civ
+		custom_cost_text = decision_cost_4_civ_10
 		modifier = {
 			civilian_factory_use = 4
 		}
 		complete_effect = {
-			add_political_power = -30
+			add_political_power = -10
 		}
 		remove_effect = {
 			add_days_mission_timeout = {
@@ -1728,14 +1739,14 @@ CHI_land_reform_category = {
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
-			has_political_power > 34
+			has_political_power > 14
 		}
-		custom_cost_text = decision_cost_6_civ
+		custom_cost_text = decision_cost_6_civ_15
 		modifier = {
 			civilian_factory_use = 6
 		}
 		complete_effect = {
-			add_political_power = -35
+			add_political_power = -15
 		}
 		remove_effect = {
 			add_days_mission_timeout = {
@@ -1895,6 +1906,9 @@ CHI_operational_plan_decision = {
 		complete_effect = {
 			add_command_power = -10
 		}
+		ai_will_do = {
+			base = 4000
+		}
 		remove_effect = {
 			custom_effect_tooltip = CHI_operational_plan_decision_tt
 			hidden_effect = {
@@ -1913,6 +1927,7 @@ CHI_operational_plan_decision = {
 					}
 				}
 				remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
+				remove_dynamic_modifier = { modifier = Aftermath_of_the_Sichuan_Famine }
 			}
 		}
 	}
@@ -1943,6 +1958,9 @@ CHI_operational_plan_decision = {
 		custom_cost_text = RUS_focus_on_oper_tt
 		complete_effect = {
 			add_command_power = -10
+		}
+		ai_will_do = {
+			base = 4000
 		}
 		remove_effect = {
 			custom_effect_tooltip = CHI_operational_plan_decision_tt
@@ -1992,6 +2010,9 @@ CHI_operational_plan_decision = {
 		custom_cost_text = RUS_focus_on_oper_tt
 		complete_effect = {
 			add_command_power = -10
+		}
+		ai_will_do = {
+			base = 4000
 		}
 		remove_effect = {
 			custom_effect_tooltip = CHI_operational_plan_decision_tt
@@ -2048,6 +2069,9 @@ CHI_operational_plan_decision = {
 		complete_effect = {
 			add_command_power = -10
 		}
+		ai_will_do = {
+			base = 4000
+		}
 		remove_effect = {
 			custom_effect_tooltip = CHI_operational_plan_decision_tt
 			hidden_effect = {
@@ -2075,6 +2099,2057 @@ CHI_operational_plan_decision = {
 				}
 				remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
 			}
+		}
+	}
+}
+
+CHI_military_discontent_decision = {
+	CHI_military_coup_crisis_decision = {
+		icon = GFX_decision_revolt
+		allowed = {
+			original_tag = CHI
+		}
+		activation = {
+			check_variable = { CHI_military_discontent_var > 9 }
+			has_global_flag = chinese_civil_war
+		}
+		available = {
+			OR = {
+				check_variable = { CHI_military_discontent_var < 10 }
+				NOT = { has_global_flag = chinese_civil_war }
+			}
+		}
+		days_mission_timeout = 50
+		timeout_effect = {
+		}
+	}
+	CHI_support_weapon_production_decision = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 30
+		visible = {
+			has_global_flag = chinese_civil_war
+		}
+		available = {
+			check_variable = { CHI_military_discontent_var > 0 }
+		}
+		custom_cost_trigger = {
+			arms_factory > 1
+		}
+		custom_cost_text = ARMS_FACTORY_2_tt
+		modifier = {
+			military_factory_donations = 2
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				add = -4000
+				check_variable = { CHI_military_discontent_var < 5 }
+			}
+		}
+		remove_effect = {
+			CHI_dec_military_discontent_decrease = yes
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 100
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = 20
+			}
+		}
+	}
+	CHI_grant_limited_military_autonomy_decision = {
+		icon = GFX_decision_generic_police_action
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 30
+		visible = {
+			has_global_flag = chinese_civil_war
+		}
+		available = {
+			check_variable = { CHI_military_discontent_var > 0 }
+		}
+		custom_cost_trigger = {
+			command_power > 9
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		complete_effect = {
+			add_command_power = -10
+		}
+		modifier = {
+			experience_gain_army_factor = 0.03
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				add = -4000
+				check_variable = { CHI_military_discontent_var < 5 }
+			}
+		}
+		remove_effect = {
+			CHI_dec_military_discontent_decrease = yes
+		}
+	}
+}
+
+CHI_reform_inefficient_administration_decision = {
+	CHI_reform_north_china_administration = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 365
+		visible = {
+			has_completed_focus = CHI_economic_shock_therapy
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 20
+		available = {
+			controls_state = 608
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		remove_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 1018
+						state = 615
+						state = 746
+					}
+				}
+				remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+			}
+		}
+	}
+	CHI_reform_northwest_china_administration = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 365
+		visible = {
+			has_completed_focus = CHI_economic_shock_therapy
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 20
+		available = {
+			controls_state = 622
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		remove_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 622
+						state = 744
+						state = 283
+					}
+				}
+				remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+			}
+		}
+	}
+	CHI_reform_southwest_china_administration = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 365
+		visible = {
+			has_completed_focus = CHI_economic_shock_therapy
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 20
+		available = {
+			controls_state = 325
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		remove_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 325
+						state = 747
+						state = 603
+						state = 1007
+						state = 605
+						state = 753
+						state = 1004
+					}
+				}
+				remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+			}
+		}
+	}
+	CHI_reform_east_china_administration = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 365
+		visible = {
+			has_completed_focus = CHI_economic_shock_therapy
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 20
+		available = {
+			controls_state = 960
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		remove_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 1017
+						state = 606
+						state = 1011
+						state = 1006
+						state = 600
+						state = 1009
+						state = 595
+						state = 1008
+						state = 1010
+					}
+				}
+				remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+			}
+		}
+	}
+	CHI_reform_central_china_administration = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 365
+		visible = {
+			has_completed_focus = CHI_economic_shock_therapy
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 20
+		available = {
+			controls_state = 85
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		remove_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 1014
+						state = 607
+						state = 1013
+						state = 620
+						state = 750
+						state = 620
+					}
+				}
+				remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+			}
+		}
+	}
+	CHI_reform_south_china_administration = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 365
+		visible = {
+			has_completed_focus = CHI_economic_shock_therapy
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 20
+		available = {
+			controls_state = 592
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		remove_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 593
+						state = 1005
+						state = 754
+						state = 599
+						state = 594
+						state = 591
+					}
+				}
+				remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+			}
+		}
+	}
+}
+
+CHI_centralize_republic_of_china = {
+	CHI_ulyankhai_autonomy_upgrade = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 200
+		visible = {
+			OR = {
+				has_country_flag = CHI_329_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 15
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = auto_trigger_tt
+				controls_state = 329
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 329:CHI_central_var < 103 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 329:CHI_central_var = 101 }
+				}
+				every_state = {
+					limit = {
+						state = 329
+					}
+					add_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { 329:CHI_central_var = 102 }
+				}
+				every_state = {
+					limit = {
+						state = 329
+					}
+					remove_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+					add_dynamic_modifier = { modifier = CHI_autonomous_region }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 329 }
+						}
+						add_to_variable = { CHI_central_var = 1 }
+					}
+				}
+			}
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_outer_mongolia_autonomy_upgrade = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 200
+		visible = {
+			OR = {
+				has_country_flag = CHI_330_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 15
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = auto_trigger_tt
+				controls_state = 330
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 330:CHI_central_var < 103 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 330:CHI_central_var = 101 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 880
+							state = 330
+							state = 820
+							state = 817
+							state = 819
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { 330:CHI_central_var = 102 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 880
+							state = 330
+							state = 820
+							state = 817
+							state = 819
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+					add_dynamic_modifier = { modifier = CHI_autonomous_region }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 330 }
+						}
+						add_to_variable = { CHI_central_var = 1 }
+					}
+				}
+			}
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_uighur_autonomy_upgrade = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 200
+		visible = {
+			OR = {
+				has_country_flag = CHI_617_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 15
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = auto_trigger_tt
+				controls_state = 617
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 617:CHI_central_var < 103 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 617:CHI_central_var = 101 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 617
+							state = 618
+							state = 760
+							state = 619
+							state = 287
+							state = 759
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { 617:CHI_central_var = 102 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 617
+							state = 618
+							state = 760
+							state = 619
+							state = 287
+							state = 759
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+					add_dynamic_modifier = { modifier = CHI_autonomous_region }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 617 }
+						}
+						add_to_variable = { CHI_central_var = 1 }
+					}
+				}
+			}
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_tibet_autonomy_upgrade = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 200
+		visible = {
+			OR = {
+				has_country_flag = CHI_757_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 15
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = auto_trigger_tt
+				controls_state = 757
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 757:CHI_central_var < 103 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 757:CHI_central_var = 101 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 757
+							state = 758
+							state = 434
+							state = 322
+							state = 601
+							state = 752
+							state = 751
+							state = 604
+							state = 755
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { 757:CHI_central_var = 102 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 757
+							state = 758
+							state = 434
+							state = 322
+							state = 601
+							state = 752
+							state = 751
+							state = 604
+							state = 755
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+					add_dynamic_modifier = { modifier = CHI_autonomous_region }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 757 }
+						}
+						add_to_variable = { CHI_central_var = 1 }
+					}
+				}
+			}
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_inner_mongolia_autonomy_upgrade = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 200
+		visible = {
+			OR = {
+				has_country_flag = CHI_610_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 15
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = auto_trigger_tt
+				controls_state = 746
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 610:CHI_central_var < 103 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 610:CHI_central_var = 101 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 610
+							state = 746
+							state = 616
+							state = 621
+							state = 611
+							state = 612
+							state = 761
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { 610:CHI_central_var = 102 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 610
+							state = 746
+							state = 616
+							state = 621
+							state = 611
+							state = 612
+							state = 761
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+					add_dynamic_modifier = { modifier = CHI_autonomous_region }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 610 }
+						}
+						add_to_variable = { CHI_central_var = 1 }
+					}
+				}
+			}
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_guangxi_autonomy_upgrade = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 200
+		visible = {
+			OR = {
+				has_country_flag = CHI_599_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 15
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = auto_trigger_tt
+				controls_state = 599
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 599:CHI_central_var < 103 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 599:CHI_central_var = 101 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 599
+							state = 754
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+				}
+			}
+			else_if = {
+				limit = {
+					check_variable = { 599:CHI_central_var = 102 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 599
+							state = 754
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
+					add_dynamic_modifier = { modifier = CHI_autonomous_region }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 599 }
+						}
+						add_to_variable = { CHI_central_var = 1 }
+					}
+				}
+			}
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_northwest_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_622_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					744 = {
+						is_controlled_by = CHI
+					}
+					622 = {
+						is_controlled_by = CHI
+					}
+					283 = {
+						is_controlled_by = CHI
+					}
+					756 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 622:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 622:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 622
+							state = 744
+							state = 283
+							state = 756
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 622:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 622
+							state = 744
+							state = 283
+							state = 756
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 622 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_southwest_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_325_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					325 = {
+						is_controlled_by = CHI
+					}
+					747 = {
+						is_controlled_by = CHI
+					}
+					603 = {
+						is_controlled_by = CHI
+					}
+					1007 = {
+						is_controlled_by = CHI
+					}
+					748 = {
+						is_controlled_by = CHI
+					}
+					605 = {
+						is_controlled_by = CHI
+					}
+					1004 = {
+						is_controlled_by = CHI
+					}
+					753 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 325:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 325:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 325
+							state = 747
+							state = 603
+							state = 1007
+							state = 748
+							state = 605
+							state = 1004
+							state = 753
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 325:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 325
+							state = 747
+							state = 603
+							state = 1007
+							state = 748
+							state = 605
+							state = 1004
+							state = 753
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 325 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_zhongnan_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_750_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					85 = {
+						is_controlled_by = CHI
+					}
+					602 = {
+						is_controlled_by = CHI
+					}
+					750 = {
+						is_controlled_by = CHI
+					}
+					620 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 750:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 750:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 85
+							state = 602
+							state = 750
+							state = 620
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 750:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 85
+							state = 602
+							state = 750
+							state = 620
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 750 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_guangdong_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_592_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					592 = {
+						is_controlled_by = CHI
+					}
+					593 = {
+						is_controlled_by = CHI
+					}
+					1005 = {
+						is_controlled_by = CHI
+					}
+					594 = {
+						is_controlled_by = CHI
+					}
+					591 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 592:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 592:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 592
+							state = 593
+							state = 1005
+							state = 594
+							state = 591
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 592:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 592
+							state = 593
+							state = 1005
+							state = 594
+							state = 591
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 592 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_shanxi_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_615_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					615 = {
+						is_controlled_by = CHI
+					}
+					1018 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 615:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 615:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 615
+							state = 1018
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 615:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 615
+							state = 1018
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 615 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_northeast_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_716_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					716 = {
+						is_controlled_by = CHI
+					}
+					961 = {
+						is_controlled_by = CHI
+					}
+					328 = {
+						is_controlled_by = CHI
+					}
+					999 = {
+						is_controlled_by = CHI
+					}
+					717 = {
+						is_controlled_by = CHI
+					}
+					1000 = {
+						is_controlled_by = CHI
+					}
+					714 = {
+						is_controlled_by = CHI
+					}
+					715 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 716:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 716:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 716
+							state = 961
+							state = 328
+							state = 999
+							state = 717
+							state = 1000
+							state = 714
+							state = 715
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 716:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 716
+							state = 961
+							state = 328
+							state = 999
+							state = 717
+							state = 1000
+							state = 714
+							state = 715
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 716 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_taiwan_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_524_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				524 = {
+					is_controlled_by = CHI
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 524:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 524:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						state = 524
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 524:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						state = 524
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 524 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_cai_e_reform_north_china_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_608_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					609 = {
+						is_controlled_by = CHI
+					}
+					608 = {
+						is_controlled_by = CHI
+					}
+					614 = {
+						is_controlled_by = CHI
+					}
+					1012 = {
+						is_controlled_by = CHI
+					}
+					607 = {
+						is_controlled_by = CHI
+					}
+					1014 = {
+						is_controlled_by = CHI
+					}
+					1013 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 608:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 608:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 609
+							state = 608
+							state = 614
+							state = 1012
+							state = 607
+							state = 1014
+							state = 1013
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 608:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 609
+							state = 608
+							state = 614
+							state = 1012
+							state = 607
+							state = 1014
+							state = 1013
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 608 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_shandong_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_1016_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					1017 = {
+						is_controlled_by = CHI
+					}
+					1016 = {
+						is_controlled_by = CHI
+					}
+					597 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 1016:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 1016:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 1017
+							state = 1016
+							state = 597
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 1016:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 1017
+							state = 1016
+							state = 597
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 1016 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_anhui_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_1011_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					606 = {
+						is_controlled_by = CHI
+					}
+					1011 = {
+						is_controlled_by = CHI
+					}
+					749 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 1011:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 1011:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 606
+							state = 1011
+							state = 749
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 1011:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 606
+							state = 1011
+							state = 749
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 1011 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_jiangsu_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_960_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					613 = {
+						is_controlled_by = CHI
+					}
+					960 = {
+						is_controlled_by = CHI
+					}
+					598 = {
+						is_controlled_by = CHI
+					}
+					1015 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 960:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 960:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 613
+							state = 960
+							state = 598
+							state = 1015
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 960:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 613
+							state = 960
+							state = 598
+							state = 1015
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 960 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_zhejiang_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_596_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					596 = {
+						is_controlled_by = CHI
+					}
+					1010 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 596:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 596:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 596
+							state = 1010
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 596:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 596
+							state = 1010
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 596 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_jiangxi_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_1006_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					1006 = {
+						is_controlled_by = CHI
+					}
+					600 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 1006:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 1006:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 1006
+							state = 600
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 1006:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 1006
+							state = 600
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 1006 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
+		}
+	}
+	CHI_reform_fujian_administration = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		visible = {
+			OR = {
+				has_country_flag = CHI_1008_click_Visible
+				is_ai = yes
+			}
+		}
+		cost = 5
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = chi_control_trigger_tt
+				OR = {
+					1008 = {
+						is_controlled_by = CHI
+					}
+					1009 = {
+						is_controlled_by = CHI
+					}
+					595 = {
+						is_controlled_by = CHI
+					}
+				}
+			}
+			custom_trigger_tooltip = {
+				tooltip = auto_max_trigger_tt
+				check_variable = { 1008:CHI_central_var < 100 }
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				has_political_power > 15
+				add = 100
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					check_variable = { 1008:CHI_central_var = 65 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 1008
+							state = 1009
+							state = 595
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { 1008:CHI_central_var = 95 }
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 1008
+							state = 1009
+							state = 595
+						}
+					}
+					add_dynamic_modifier = { modifier = CHI_efficient_administration }
+				}
+			}
+			for_each_loop = {
+				array = CHI_map_array
+				var:v = {
+					if = {
+						limit = {
+							check_variable = { v = 1008 }
+						}
+						add_to_variable = { CHI_central_var = 5 }
+					}
+				}
+			}
+			custom_effect_tooltip = CHI_central_var_add_5_tt
+			CHI_map_calculate_frame = yes
 		}
 	}
 }

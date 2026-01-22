@@ -50,12 +50,26 @@ on_actions = {
 					}
 					transfer_state_to = TAN
 				}
-				every_state = {
+				if = {
 					limit = {
-						is_owned_by = SEF
-						is_core_of = SIK
+						SIK = { exists = yes }
 					}
-					transfer_state_to = SIK
+					every_state = {
+						limit = {
+							is_owned_by = SEF
+							is_core_of = SIK
+						}
+						transfer_state_to = SIK
+					}
+					else = {
+						every_state = {
+							limit = {
+								is_owned_by = SEF
+								state = 618
+							}
+							transfer_state_to = CHI
+						}
+					}
 				}
 				every_state = {
 					limit = {
@@ -127,12 +141,26 @@ on_actions = {
 				SIK = {
 					drop_cosmetic_tag = yes
 				}
-				every_state = {
+				if = {
 					limit = {
-						is_owned_by = SEF
-						is_core_of = SIK
+						SIK = { exists = yes }
 					}
-					transfer_state_to = SIK
+					every_state = {
+						limit = {
+							is_owned_by = SEF
+							is_core_of = SIK
+						}
+						transfer_state_to = SIK
+					}
+					else = {
+						every_state = {
+							limit = {
+								is_owned_by = SEF
+								state = 618
+							}
+							transfer_state_to = CHI
+						}
+					}
 				}
 				every_state = {
 					limit = {
@@ -279,12 +307,61 @@ on_actions = {
 					}
 					country_event = { id = china_wr.88 days = 7 }
 					country_event = { id = china_wr.87 days = 15 }
+					news_event = china_wr.180
+					clear_variable = CHI_military_discontent_var
+					drop_cosmetic_tag = yes
 				}
 				every_state = {
 					limit = {
 						is_core_of = KMT
 					}
 					remove_core_of = KMT
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 752
+							state = 751
+							state = 605
+							state = 748
+							state = 1004
+							state = 753
+							state = 620
+							state = 85
+							state = 1013
+							state = 744
+							state = 1014
+							state = 607
+							state = 325
+							state = 599
+							state = 603
+							state = 754
+							state = 591
+							state = 594
+							state = 592
+							state = 593
+							state = 1005
+							state = 602
+							state = 705
+							state = 1007
+							state = 600
+							state = 1006
+							state = 1009
+							state = 595
+							state = 1008
+							state = 1010
+							state = 749
+							state = 596
+							state = 613
+							state = 960
+							state = 1011
+							state = 606
+							state = 598
+							state = 1015
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
+					remove_dynamic_modifier = { modifier = Aftermath_of_the_Sichuan_Famine }
 				}
 				clr_global_flag = chinese_civil_war
 			}
@@ -301,12 +378,82 @@ on_actions = {
 						transfer_troops = yes
 					}
 					country_event = { id = china_wr.75 days = 5 }
+					news_event = china_wr.181
+					set_cosmetic_tag = KMT_CHI
+				}
+				if = {
+					limit = {
+						SHX = { is_subject_of = CHI }
+					}
+					KMT = {
+						annex_country = {
+							target = SHX
+							transfer_troops = yes
+						}
+					}
+				}
+				if = {
+					limit = {
+						PRC = { is_subject_of = CHI }
+					}
+					KMT = {
+						annex_country = {
+							target = PRC
+							transfer_troops = yes
+						}
+					}
 				}
 				every_state = {
 					limit = {
 						is_core_of = CHI
 					}
 					remove_core_of = CHI
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 752
+							state = 751
+							state = 605
+							state = 748
+							state = 1004
+							state = 753
+							state = 620
+							state = 85
+							state = 1013
+							state = 744
+							state = 1014
+							state = 607
+							state = 325
+							state = 599
+							state = 603
+							state = 754
+							state = 591
+							state = 594
+							state = 592
+							state = 593
+							state = 1005
+							state = 602
+							state = 705
+							state = 1007
+							state = 600
+							state = 1006
+							state = 1009
+							state = 595
+							state = 1008
+							state = 1010
+							state = 749
+							state = 596
+							state = 613
+							state = 960
+							state = 1011
+							state = 606
+							state = 598
+							state = 1015
+						}
+					}
+					remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
+					remove_dynamic_modifier = { modifier = Aftermath_of_the_Sichuan_Famine }
 				}
 				clr_global_flag = chinese_civil_war
 			}
@@ -428,6 +575,53 @@ on_actions = {
 						is_core_of = SCH
 					}
 					remove_core_of = SCH
+				}
+			}
+		}
+	}
+	on_state_control_changed = {
+		effect = {
+			if = {
+				limit = {
+					FROM.FROM = {
+						OR = {
+							state = 608
+							state = 614
+							state = 597
+							state = 1014
+							state = 607
+							state = 613
+							state = 960
+							state = 1011
+							state = 85
+							state = 750
+							state = 602
+							state = 1006
+							state = 1005
+							state = 593
+							state = 592
+						}
+					}
+				}
+				if = {
+					limit = {
+						ROOT = { original_tag = CHI }
+						has_global_flag = chinese_civil_war
+						CHI = { has_variable = CHI_military_discontent_var }
+					}
+					FROM.FROM = {
+						CHI = { country_event = china_wr.1000 }
+					}
+				}
+				if = {
+					limit = {
+						ROOT = { original_tag = KMT }
+						has_global_flag = chinese_civil_war
+						CHI = { has_variable = CHI_military_discontent_var }
+					}
+					FROM.FROM = {
+						CHI = { country_event = china_wr.1001 }
+					}
 				}
 			}
 		}
