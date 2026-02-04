@@ -2699,15 +2699,101 @@ country_event = { #내전 이후 재보궐 선거
 	is_triggered_only = yes
 	option = {
 		name = china_wr.87.a
-		add_to_variable = { progressive_party_support = 20 }
-		add_to_variable = { chinese_youth_party_support = 30 }
-		add_to_variable = { kuomintang_support = 5 }
-		add_to_variable = { others_independent_support = 3 }
-		add_to_variable = { progressive_party_total = 51 }
-		add_to_variable = { chinese_youth_party_total = 76 }
-		add_to_variable = { kuomintang_total = 88 }
-		add_to_variable = { others_independent_total = 10 }
-		set_variable = { vacancy_total = 32 } #32석 동북삼성(만몽)
+		set_variable = { var = Kuomintang_Party value = 50 } 
+		set_variable = { var = Young_China_Party value = 260 } 
+		set_variable = { var = Progressive_Party value = 224 }
+		set_variable = { var = New_Republican_Party value = 31 } 
+		set_variable = { var = Zhi_Gong_Party value = 24 } 
+		set_variable = { var = Daowu_Faction value = 45 } 
+		set_variable = { var = Autonomous_Seats value = 10 } 
+		set_variable = { var = Chinese_Social_Party value = 17 } 
+		set_variable = { var = Peasants_Party value = 15 } 
+		set_variable = { var = Chinese_Liberal_Party value = 10 }
+		set_variable = { var = Shanxi_Party value = 1 }
+		set_variable = { var = CHI_Independents value = 23 }
+		set_variable = { var = CHI_vacant value = 55 }
+		set_variable = { var = seatNumbers value = 765 }
+
+		set_variable = { var = Senate_Kuomintang_Party value = 9 } 
+		set_variable = { var = Senate_Young_China_Party value = 87 }
+		set_variable = { var = Senate_Progressive_Party value = 105 }
+		set_variable = { var = Senate_New_Republican_Party value = 24 } 
+		set_variable = { var = Senate_Zhi_Gong_Party value = 4 } 
+		set_variable = { var = Senate_Daowu_Faction value = 5 } 
+		set_variable = { var = Senate_Autonomous_Seats value = 10 } 
+		set_variable = { var = Senate_Chinese_Social_Party value = 1 } 
+		set_variable = { var = Senate_Peasants_Party value = 3 } 
+		set_variable = { var = Senate_Chinese_Liberal_Party value = 1 }
+		set_variable = { var = Senate_Shanxi_Party value = 1 }
+		set_variable = { var = Senate_CHI_Independents value = 1 }
+		set_variable = { var = Senate_CHI_vacant value = 24 }
+		set_variable = { var = Senate_seatNumbers value = 275 }
+		
+		# House of Representatives
+		set_variable = { CHI.parliament_seat_array^0 = Chinese_Social_Party }
+		set_variable = { CHI.parliament_seat_array^1 = Peasants_Party }
+		set_variable = { CHI.parliament_seat_array^2 = Zhi_Gong_Party }
+		set_variable = { CHI.parliament_seat_array^3 = Progressive_Party }
+		set_variable = { CHI.parliament_seat_array^4 = Kuomintang_Party }
+		set_variable = { CHI.parliament_seat_array^5 = Daowu_Faction }
+		set_variable = { CHI.parliament_seat_array^6 = Young_China_Party }
+		set_variable = { CHI.parliament_seat_array^7 = Chinese_Liberal_Party }
+		set_variable = { CHI.parliament_seat_array^8 = Shanxi_Party }
+		set_variable = { CHI.parliament_seat_array^9 = New_Republican_Party }
+		set_variable = { CHI.parliament_seat_array^10 = CHI_Independents }
+		set_variable = { CHI.parliament_seat_array^11 = Autonomous_Seats }
+		set_variable = { CHI.parliament_seat_array^12 = CHI_vacant }
+		
+		# Senate
+		set_variable = { CHI.senate_parliament_seat_array^0 = Senate_Chinese_Social_Party }
+		set_variable = { CHI.senate_parliament_seat_array^1 = Senate_Peasants_Party }
+		set_variable = { CHI.senate_parliament_seat_array^2 = Senate_Zhi_Gong_Party }
+		set_variable = { CHI.senate_parliament_seat_array^3 = Senate_Progressive_Party }
+		set_variable = { CHI.senate_parliament_seat_array^4 = Senate_Kuomintang_Party }
+		set_variable = { CHI.senate_parliament_seat_array^5 = Senate_Daowu_Faction }
+		set_variable = { CHI.senate_parliament_seat_array^6 = Senate_Young_China_Party }
+		set_variable = { CHI.senate_parliament_seat_array^7 = Senate_Chinese_Liberal_Party }
+		set_variable = { CHI.senate_parliament_seat_array^8 = Senate_Shanxi_Party }
+		set_variable = { CHI.senate_parliament_seat_array^9 = Senate_New_Republican_Party }
+		set_variable = { CHI.senate_parliament_seat_array^10 = Senate_CHI_Independents }
+		set_variable = { CHI.senate_parliament_seat_array^11 = Senate_Autonomous_Seats }
+		set_variable = { CHI.senate_parliament_seat_array^12 = Senate_CHI_vacant }
+		
+		reload_parliament_gui = yes
+		
+		if = {
+			limit = {
+				check_variable = { progressive_party_support < 210 }
+			}
+			add_to_variable = { progressive_party_support = 15 }
+			else = {
+				set_variable = { progressive_party_support = 224 }
+			}
+		}
+		if = {
+			limit = {
+				check_variable = { chinese_youth_party_support < 246 }
+			}
+			add_to_variable = { chinese_youth_party_support = 15 }
+			else = {
+				set_variable = { chinese_youth_party_support = 246 }
+			}
+		}
+		if = {
+			limit = {
+				check_variable = { others_independent_support < 167 }
+			}
+			add_to_variable = { others_independent_support = 10 }
+			else = {
+				set_variable = { others_independent_support = 167 }
+			}
+		}
+		
+		set_variable = { progressive_party_total = 224 }
+		set_variable = { chinese_youth_party_total = 260 }
+		set_variable = { kuomintang_total = 50 }
+		set_variable = { others_independent_total = 176 }
+		set_variable = { vacancy_total = 55 }
 		CHI_recalc_congress_icon_frames = yes
 		custom_effect_tooltip = china_wr_87_tt
 		ai_chance = {
@@ -5860,18 +5946,7 @@ country_event = {
 country_event = { #중국내전
 	id = china_wr.205
 	title = china_wr.205.t
-	desc = {
-		text = china_wr.205.d_1
-		trigger = {
-			original_tag = CHI
-		}
-	}
-	desc = {
-		text = china_wr.205.d_2
-		trigger = {
-			original_tag = KMT
-		}
-	}
+	desc = china_wr.205.d
 	picture = GFX_chinese_government
 	is_triggered_only = yes
 	immediate = {
@@ -5942,6 +6017,7 @@ country_event = { #중국내전
 						}
 					}
 					set_country_flag = CHI_congress_yes_flag
+					CHI_civil_war_congress_carlc = yes
 				}
 				KMT = {
 					declare_war_on = { target = CHI type = civil_war }
@@ -6649,6 +6725,7 @@ country_event = { #서남호국군 분리
 							owner = NPA
 						}
 					}
+					country_event = { id = china_wr.233 days = 24 }
 				}
 				747 = { set_demilitarized_zone = no }
 				325 = { set_demilitarized_zone = no }
@@ -6952,15 +7029,17 @@ country_event = { #개헌의 첫 삽
 	desc = china_wr.215.d
 	picture = GFX_report_event_generic_sign_treaty2
 	is_triggered_only = yes
-	immediate = {
-		hidden_effect = {
-			country_event = { id = china_wr.216 days = 5 }
-			set_variable = { CHI_cao_kun_var = 0 }
-			set_variable = { CHI_cai_e_var = 0 }
+	option = {
+		name = china_wr.215.a
+		country_event = { id = china_wr.216 days = 5 }
+		set_country_flag = CHI_cai_e_constitution_flag
+		ai_chance = {
+			base = 5
 		}
 	}
 	option = {
-		name = china_wr.215.a
+		name = china_wr.215.b
+		set_country_flag = CHI_cao_kun_constitution_flag
 		ai_chance = {
 			base = 5
 		}
@@ -6980,14 +7059,12 @@ country_event = { #개헌2
 	}
 	option = {
 		name = china_wr.216.a
-		add_to_variable = { CHI_cao_kun_var = 1 }
 		ai_chance = {
 			base = 5
 		}
 	}
 	option = {
 		name = china_wr.216.b
-		add_to_variable = { CHI_cai_e_var = 1 }
 		ai_chance = {
 			base = 5
 		}
@@ -7007,14 +7084,12 @@ country_event = { #개헌3
 	}
 	option = {
 		name = china_wr.217.a
-		add_to_variable = { CHI_cao_kun_var = 1 }
 		ai_chance = {
 			base = 5
 		}
 	}
 	option = {
 		name = china_wr.217.b
-		add_to_variable = { CHI_cai_e_var = 1 }
 		ai_chance = {
 			base = 5
 		}
@@ -7034,14 +7109,12 @@ country_event = { #개헌4
 	}
 	option = {
 		name = china_wr.218.a
-		add_to_variable = { CHI_cao_kun_var = 1 }
 		ai_chance = {
 			base = 5
 		}
 	}
 	option = {
 		name = china_wr.218.b
-		add_to_variable = { CHI_cai_e_var = 1 }
 		ai_chance = {
 			base = 5
 		}
@@ -7061,14 +7134,12 @@ country_event = { #개헌5
 	}
 	option = {
 		name = china_wr.219.a
-		add_to_variable = { CHI_cao_kun_var = 1 }
 		ai_chance = {
 			base = 5
 		}
 	}
 	option = {
 		name = china_wr.219.b
-		add_to_variable = { CHI_cai_e_var = 1 }
 		ai_chance = {
 			base = 5
 		}
@@ -7088,14 +7159,12 @@ country_event = { #개헌6
 	}
 	option = {
 		name = china_wr.220.a
-		add_to_variable = { CHI_cao_kun_var = 1 }
 		ai_chance = {
 			base = 5
 		}
 	}
 	option = {
 		name = china_wr.220.b
-		add_to_variable = { CHI_cai_e_var = 1 }
 		ai_chance = {
 			base = 5
 		}
@@ -7115,14 +7184,12 @@ country_event = { #개헌7
 	}
 	option = {
 		name = china_wr.221.a
-		add_to_variable = { CHI_cao_kun_var = 1 }
 		ai_chance = {
 			base = 5
 		}
 	}
 	option = {
 		name = china_wr.221.b
-		add_to_variable = { CHI_cai_e_var = 1 }
 		ai_chance = {
 			base = 5
 		}
@@ -7142,14 +7209,12 @@ country_event = { #개헌8
 	}
 	option = {
 		name = china_wr.222.a
-		add_to_variable = { CHI_cao_kun_var = 1 }
 		ai_chance = {
 			base = 5
 		}
 	}
 	option = {
 		name = china_wr.222.b
-		add_to_variable = { CHI_cai_e_var = 1 }
 		ai_chance = {
 			base = 5
 		}
@@ -7169,14 +7234,555 @@ country_event = { #개헌9
 	}
 	option = {
 		name = china_wr.223.a
-		add_to_variable = { CHI_cao_kun_var = 1 }
 		ai_chance = {
 			base = 5
 		}
 	}
 	option = {
 		name = china_wr.223.b
-		add_to_variable = { CHI_cai_e_var = 1 }
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #개헌10
+	id = china_wr.224
+	title = china_wr.224.t
+	desc = china_wr.224.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.224.a
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = china_wr.224.b
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = china_wr.224.c
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #개헌11
+	id = china_wr.225
+	title = china_wr.225.t
+	desc = china_wr.225.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.225.a
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #아편문제
+	id = china_wr.226
+	title = china_wr.226.t
+	desc = china_wr.226.d
+	picture = CHI_opium
+	is_triggered_only = yes
+	option = {
+		name = china_wr.226.a
+		swap_ideas = {
+			remove_idea = CHI_diffuse_million_opium
+			add_idea = CHI_diffuse_million_opium_1
+		}
+		hidden_effect = {
+			country_event = { id = china_wr.227 days = 180 }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #아편문제
+	id = china_wr.227
+	title = china_wr.227.t
+	desc = china_wr.227.d
+	picture = CHI_opium
+	is_triggered_only = yes
+	option = {
+		name = china_wr.227.a
+		swap_ideas = {
+			remove_idea = CHI_diffuse_million_opium_1
+			add_idea = CHI_diffuse_million_opium_2
+		}
+		hidden_effect = {
+			country_event = { id = china_wr.228 days = 180 }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #아편문제
+	id = china_wr.228
+	title = china_wr.228.t
+	desc = china_wr.228.d
+	picture = CHI_opium
+	is_triggered_only = yes
+	option = {
+		name = china_wr.228.a
+		remove_ideas = CHI_diffuse_million_opium_2
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #위기의 민국
+	id = china_wr.229
+	title = china_wr.229.t
+	desc = china_wr.229.d
+	picture = GFX_report_event_chinese_soldiers_city_ruin
+	is_triggered_only = yes
+	option = {
+		name = china_wr.229.a
+		swap_ideas = {
+			remove_idea = CHI_a_candle_in_the_wind
+			add_idea = CHI_republic_in_crisis
+		}
+		add_stability = -0.2
+		add_war_support = -0.15
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #오족공화
+	id = china_wr.230
+	title = china_wr.230.t
+	desc = china_wr.230.d
+	picture = CHI_five_good
+	is_triggered_only = yes
+	option = {
+		name = china_wr.230.a
+		add_stability = 0.025
+		add_political_power = 25
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #봉쇄조항 인하
+	id = china_wr.231
+	title = china_wr.231.t
+	desc = china_wr.231.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.231.a
+		CHI_inc_others_independent_support_10 = yes
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #비례대표도입
+	id = china_wr.232
+	title = china_wr.232.t
+	desc = china_wr.232.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.232.a
+		CHI_inc_others_independent_support_5 = yes
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #당계요 암살
+	id = china_wr.233
+	title = china_wr.233.t
+	desc = china_wr.233.d
+	picture = CHI_tangtang
+	is_triggered_only = yes
+	option = {
+		name = china_wr.233.a
+		retire_character = NPA_Tang_Jiyao
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #총선
+	id = china_wr.234
+	title = china_wr.234.t
+	desc = china_wr.234.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_war_with = KMT }
+		NOT = { has_country_flag = CHI_fifth_general_election_flag }
+		has_war_with_major = no
+	}
+	immediate = {
+		hidden_effect = {
+			country_event = { id = china_wr.234 days = 1460 }
+			country_event = { id = china_wr.2340 days = 1460 }
+		}
+	}
+	option = {
+		name = china_wr.234.a
+		if = {
+			limit = {
+				NOT = { has_country_flag = CHI_first_general_election_flag }
+			}
+			set_country_flag = CHI_first_general_election_flag
+			CHI_first_general_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_first_general_election_flag
+			}
+			set_country_flag = CHI_second_general_election_flag
+			CHI_second_general_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_third_general_election_flag
+			}
+			set_country_flag = CHI_third_general_election_flag
+			CHI_third_general_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_fourth_general_election_flag
+			}
+			set_country_flag = CHI_fourth_general_election_flag
+			CHI_fourth_general_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_fifth_general_election_flag
+			}
+			set_country_flag = CHI_fifth_general_election_flag
+			CHI_fifth_general_election = yes
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #참의원 총선
+	id = china_wr.235
+	title = china_wr.235.t
+	desc = china_wr.235.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	trigger = {
+		NOT = { has_war_with = KMT }
+		NOT = { has_country_flag = CHI_tenth_senate_election_flag }
+		has_war_with_major = no
+	}
+	immediate = {
+		hidden_effect = {
+			country_event = { id = china_wr.235 days = 730 }
+			country_event = { id = china_wr.2350 days = 730 }
+		}
+	}
+	option = {
+		name = china_wr.235.a
+		if = {
+			limit = {
+				NOT = { has_country_flag = CHI_first_senate_election_flag }
+			}
+			set_country_flag = CHI_first_senate_election_flag
+			CHI_first_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_first_senate_election_flag
+			}
+			set_country_flag = CHI_second_senate_election_flag
+			CHI_second_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_third_senate_election_flag
+			}
+			set_country_flag = CHI_third_senate_election_flag
+			CHI_third_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_fourth_senate_election_flag
+			}
+			set_country_flag = CHI_fourth_senate_election_flag
+			CHI_fourth_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_fifth_senate_election_flag
+			}
+			set_country_flag = CHI_fifth_senate_election_flag
+			CHI_fifth_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_sixth_senate_election_flag
+			}
+			set_country_flag = CHI_sixth_senate_election_flag
+			CHI_sixth_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_seventh_senate_election_flag
+			}
+			set_country_flag = CHI_seventh_senate_election_flag
+			CHI_seventh_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_eighth_senate_election_flag
+			}
+			set_country_flag = CHI_eighth_senate_election_flag
+			CHI_eighth_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_ninth_senate_election_flag
+			}
+			set_country_flag = CHI_ninth_senate_election_flag
+			CHI_ninth_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_tenth_senate_election_flag
+			}
+			set_country_flag = CHI_tenth_senate_election_flag
+			CHI_tenth_senate_election = yes
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #총선 전후
+	id = china_wr.236
+	title = china_wr.234.t
+	desc = china_wr.234.d
+	picture = GFX_report_event_election_vote
+	trigger = {
+		NOT = { has_war_with = KMT }
+		NOT = { has_country_flag = CHI_fifth_general_election_flag }
+		has_war_with_major = no
+		has_country_flag = CHI_dont_general_election_flag
+	}
+	immediate = {
+		hidden_effect = {
+			country_event = { id = china_wr.234 days = 1460 }
+			country_event = { id = china_wr.2340 days = 1460 }
+			clr_country_flag = CHI_dont_general_election_flag
+			if = {
+				limit = {
+					has_country_flag = CHI_dont_senate_election_flag
+				}
+				country_event = china_wr.235
+			}
+		}
+	}
+	mean_time_to_happen = { days = 30 }
+	option = {
+		name = china_wr.234.a
+		if = {
+			limit = {
+				NOT = { has_country_flag = CHI_first_general_election_flag }
+			}
+			set_country_flag = CHI_first_general_election_flag
+			CHI_first_general_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_first_general_election_flag
+			}
+			set_country_flag = CHI_second_general_election_flag
+			CHI_second_general_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_third_general_election_flag
+			}
+			set_country_flag = CHI_third_general_election_flag
+			CHI_third_general_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_fourth_general_election_flag
+			}
+			set_country_flag = CHI_fourth_general_election_flag
+			CHI_fourth_general_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_fifth_general_election_flag
+			}
+			set_country_flag = CHI_fifth_general_election_flag
+			CHI_fifth_general_election = yes
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #참의원 총선 전후
+	id = china_wr.237
+	title = china_wr.235.t
+	desc = china_wr.235.d
+	picture = GFX_report_event_election_vote
+	trigger = {
+		NOT = { has_war_with = KMT }
+		has_war_with_major = no
+		has_country_flag = CHI_dont_senate_election_flag
+		NOT = { has_country_flag = CHI_dont_general_election_flag }
+		NOT = { has_country_flag = CHI_tenth_senate_election_flag }
+	}
+	immediate = {
+		hidden_effect = {
+			country_event = { id = china_wr.235 days = 730 }
+			country_event = { id = china_wr.2350 days = 730 }
+			clr_country_flag = CHI_dont_senate_election_flag
+		}
+	}
+	mean_time_to_happen = { days = 30 }
+	option = {
+		name = china_wr.235.a
+		if = {
+			limit = {
+				NOT = { has_country_flag = CHI_first_senate_election_flag }
+			}
+			set_country_flag = CHI_first_senate_election_flag
+			CHI_first_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_first_senate_election_flag
+			}
+			set_country_flag = CHI_second_senate_election_flag
+			CHI_second_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_third_senate_election_flag
+			}
+			set_country_flag = CHI_third_senate_election_flag
+			CHI_third_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_fourth_senate_election_flag
+			}
+			set_country_flag = CHI_fourth_senate_election_flag
+			CHI_fourth_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_fifth_senate_election_flag
+			}
+			set_country_flag = CHI_fifth_senate_election_flag
+			CHI_fifth_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_sixth_senate_election_flag
+			}
+			set_country_flag = CHI_sixth_senate_election_flag
+			CHI_sixth_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_seventh_senate_election_flag
+			}
+			set_country_flag = CHI_seventh_senate_election_flag
+			CHI_seventh_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_eighth_senate_election_flag
+			}
+			set_country_flag = CHI_eighth_senate_election_flag
+			CHI_eighth_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_ninth_senate_election_flag
+			}
+			set_country_flag = CHI_ninth_senate_election_flag
+			CHI_ninth_senate_election = yes
+		}
+		else_if = {
+			limit = {
+				has_country_flag = CHI_tenth_senate_election_flag
+			}
+			set_country_flag = CHI_tenth_senate_election_flag
+			CHI_tenth_senate_election = yes
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #총선 불발
+	id = china_wr.2340
+	title = china_wr.2340.t
+	desc = china_wr.2340.d
+	picture = CHI_tangtang
+	is_triggered_only = yes
+	hidden = yes
+	trigger = {
+		OR = {
+			has_war_with = KMT
+			has_war_with_major = yes
+		}
+	}
+	option = {
+		name = china_wr.2340.a
+		set_country_flag = CHI_dont_general_election_flag
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #참의원 총선 불발
+	id = china_wr.2350
+	title = china_wr.2350.t
+	desc = china_wr.2350.d
+	picture = CHI_tangtang
+	is_triggered_only = yes
+	hidden = yes
+	trigger = {
+		OR = {
+			has_war_with = KMT
+			has_war_with_major = yes
+		}
+	}
+	option = {
+		name = china_wr.2350.a
+		set_country_flag = CHI_dont_senate_election_flag
 		ai_chance = {
 			base = 5
 		}
