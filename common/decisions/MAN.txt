@@ -61,3 +61,231 @@ Mongolian_war = {
 		}
 	}
 }
+
+MAN_modernization_program = {
+	MAN_rampant_banditry = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = MAN
+		}
+		days_mission_timeout = 85
+		activation = {
+			NOT = { has_country_flag = MAN_kill_all_banditry_flag }
+		}
+		priority = 100
+		available = {
+			has_country_flag = MAN_kill_all_banditry_flag
+		}
+		timeout_effect = {
+			country_event = manchukou_wr.6
+		}
+	}
+	MAN_bandit_suppression_operation = {
+		icon = GFX_decision_generic_prepare_civil_war
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_kill_all_banditry_flag }
+		}
+		available = {
+			has_completed_focus = MAN_bandit_suppression
+		}
+		custom_cost_trigger = {
+			command_power > 9
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		complete_effect = {
+			add_command_power = -10
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		complete_effect = {
+			if = {
+				limit = {
+					NOT = { has_variable = MAN_bandit_suppression_operation_var }
+				}
+				set_variable = { MAN_bandit_suppression_operation_var = 0 }
+			}
+			if = {
+				limit = {
+					NOT = { has_country_flag = MAN_first_start_kill_bandits_flag }
+				}
+				country_event = manchukou_wr.7
+			}
+			else_if = {
+				limit = {
+					has_country_flag = MAN_first_start_kill_bandits_flag
+				}
+				country_event = manchukou_wr.10
+			}
+			else_if = {
+				limit = {
+					has_country_flag = MAN_second_start_kill_bandits_flag
+				}
+				country_event = manchukou_wr.13
+			}
+		}
+	}
+	MAN_first_bandit_suppression = {
+		icon = GFX_decision_generic_scorched_earth
+		allowed = {
+			original_tag = MAN
+		}
+		days_mission_timeout = 15
+		activation = {
+			has_country_flag = MAN_first_start_kill_bandits_flag
+		}
+		fire_only_once = yes
+		priority = 90
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAN_first_bandit_suppression_tt
+				hidden_trigger = {
+					328 = {
+						any_state_division  = {
+							is_division_owner = ROOT
+							count > 2
+						}
+					}
+				}
+			}
+		}
+		complete_effect = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_to_variable = { MAN_bandit_suppression_operation_var = 1 }
+			}
+			else = {
+				country_event = manchukou_wr.8
+			}
+		}
+		timeout_effect = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_to_variable = { MAN_bandit_suppression_operation_var = 1 }
+			}
+			else = {
+				country_event = manchukou_wr.9
+			}
+		}
+	}
+	MAN_second_bandit_suppression = {
+		icon = GFX_decision_generic_scorched_earth
+		allowed = {
+			original_tag = MAN
+		}
+		days_mission_timeout = 15
+		activation = {
+			has_country_flag = MAN_second_start_kill_bandits_flag
+		}
+		fire_only_once = yes
+		priority = 90
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAN_second_bandit_suppression_tt
+				hidden_trigger = {
+					1000 = {
+						any_state_division  = {
+							is_division_owner = ROOT
+							count > 2
+						}
+					}
+				}
+			}
+		}
+		complete_effect = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_to_variable = { MAN_bandit_suppression_operation_var = 1 }
+			}
+			else = {
+				country_event = manchukou_wr.11
+			}
+		}
+		timeout_effect = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_to_variable = { MAN_bandit_suppression_operation_var = 1 }
+			}
+			else = {
+				country_event = manchukou_wr.12
+			}
+		}
+	}
+	MAN_third_bandit_suppression = {
+		icon = GFX_decision_generic_scorched_earth
+		allowed = {
+			original_tag = MAN
+		}
+		days_mission_timeout = 15
+		activation = {
+			has_country_flag = MAN_kill_all_banditry_flag
+		}
+		fire_only_once = yes
+		priority = 90
+		available = {
+			custom_trigger_tooltip = {
+				tooltip = MAN_third_bandit_suppression_tt
+				hidden_trigger = {
+					716 = {
+						any_state_division  = {
+							is_division_owner = ROOT
+							count > 2
+						}
+					}
+				}
+			}
+		}
+		complete_effect = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_to_variable = { MAN_bandit_suppression_operation_var = 1 }
+			}
+			else = {
+				country_event = manchukou_wr.14
+			}
+		}
+		timeout_effect = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				add_to_variable = { MAN_bandit_suppression_operation_var = 1 }
+			}
+			else = {
+				country_event = manchukou_wr.15
+			}
+		}
+	}
+	MAN_wait_for_banditry_to_subside = {
+		icon = GFX_decision_generic_prepare_civil_war
+		allowed = {
+			original_tag = MAN
+		}
+		days_mission_timeout = 365
+		activation = {
+			has_country_flag = MAN_couldnt_kill_all_bandit_flag
+		}
+		fire_only_once = yes
+		priority = 80
+		available = {
+			NOT = { has_country_flag = MAN_couldnt_kill_all_bandit_flag }
+		}
+		timeout_effect = {
+			clr_country_flag = MAN_couldnt_kill_all_bandit_flag
+			remove_ideas = MAN_widespread_banditry
+		}
+	}
+}
