@@ -1,0 +1,78 @@
+# The following scripted effect does the main job of generating the gui, by adding the seats for each party in a grid.
+# This should be called every time you need to update the gui, when you add/subtract seats for example.
+# Read the comments if you're interested in how it works
+reload_parliament_gui = {
+	# Clears what's currently on the gui, if there's anything there.
+	clear_array = parliament_main_array
+	clear_array = Senate_parliament_main_array
+
+	# The array temp_seat is duplicated from the array parliament_seat_array.
+	for_each_loop = {
+		array = parliament_seat_array
+
+		add_to_array = { temp_seat = parliament_seat_array^i }
+	}
+	for_each_loop = {
+		array = Senate_parliament_seat_array
+
+		add_to_array = { Senate_temp_seat = Senate_parliament_seat_array^i }
+	}
+
+	# It's a suprise tool for later
+	set_temp_variable = { temp_index_1 = 0 }
+	set_temp_variable = { temp_index_2 = 1 }
+
+	set_temp_variable = { Senate_temp_index_1 = 0 }
+	set_temp_variable = { Senate_temp_index_2 = 1 }
+
+	# Set temp_size as the highest index in the array, highest index is the highest value x in temp_array^x.
+	set_temp_variable = { temp_size = temp_seat^num }
+	subtract_from_temp_variable = { temp_size = 1 }
+	
+	set_temp_variable = { Senate_temp_size = Senate_temp_seat^num }
+	subtract_from_temp_variable = { Senate_temp_size = 1 }
+
+	# What this does is loop through the temp_seat array, adding the current value to the next value on the list.
+	# temp_seat^0 is the first value on the list, temp_seat^1 is the next and so forth.
+	# the loop ends when temp_index_1 is equal to the size of the array - 1 (basically the max index).
+	while_loop_effect = {
+		limit = {
+			check_variable = { temp_index_1 < temp_size }
+		}
+		# The suprise tool starts out as temp_seat^0 and temp_seat^1 and then is incremented every loop , adding the current value to the next value on the list.
+		add_to_variable = { temp_seat^temp_index_2 = temp_seat^temp_index_1 }
+		add_to_temp_variable = { temp_index_1 = 1 }
+		add_to_temp_variable = { temp_index_2 = 1 }
+	}
+	
+	while_loop_effect = {
+		limit = {
+			check_variable = { Senate_temp_index_1 < Senate_temp_size }
+		}
+		# The suprise tool starts out as temp_seat^0 and temp_seat^1 and then is incremented every loop , adding the current value to the next value on the list.
+		add_to_variable = { Senate_temp_seat^Senate_temp_index_2 = Senate_temp_seat^Senate_temp_index_1 }
+		add_to_temp_variable = { Senate_temp_index_1 = 1 }
+		add_to_temp_variable = { Senate_temp_index_2 = 1 }
+	}
+
+	# resize_array fills the parliament_member_array with the id of the parliament member x amount of times where x is the number of seats the member has.
+	# so the array will look like this basically:
+	# 1,1,1,1,1,1,1,...(repeated 90 times),2,2,2,2,2,2,2(repeated 35 times),3,3,3.. etc.
+	for_loop_effect = {
+		start = 0
+		end = temp_seat^num
+
+		resize_array = { array = parliament_main_array value = parliament_member_array^v size = temp_seat^v }
+	}
+	
+	for_loop_effect = {
+		start = 0
+		end = Senate_temp_seat^num
+
+		resize_array = { array = Senate_parliament_main_array value = Senate_parliament_member_array^v size = Senate_temp_seat^v }
+	}
+
+	# Clear the temp_seat array used previously since it's not needed anymore.
+	clear_array = temp_seat
+	clear_array = Senate_temp_seat
+}

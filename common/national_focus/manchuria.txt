@@ -1,0 +1,417 @@
+﻿### search_filters = {FOCUS_FILTER_POLITICAL}
+### search_filters = {FOCUS_FILTER_RESEARCH}
+### search_filters = {FOCUS_FILTER_INDUSTRY}
+### search_filters = {FOCUS_FILTER_STABILITY}
+### search_filters = {FOCUS_FILTER_WAR_SUPPORT}
+### search_filters = {FOCUS_FILTER_MANPOWER}
+### search_filters = {FOCUS_FILTER_ANNEXATION}
+### search_filters = {FOCUS_FILTER_HISTORYCAL}
+
+focus_tree = {
+	id = MAN_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			tag = MAN
+		}
+	}
+	
+	default = no
+	continuous_focus_position = {
+		x = 100
+		y = 1600
+	}
+	
+	focus = {
+		id = MAN_new_twenty_years_fengtian
+		icon = GFX_MAN_new_twenty_years_fengtian
+		x = 10
+		y = 0
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			country_event = manchukou_wr.3
+		}
+	}
+	
+	focus = {
+		id = MAN_new_heaven
+		icon = GFX_MAN_new_heaven
+		relative_position_id = MAN_new_twenty_years_fengtian
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = MAN_new_twenty_years_fengtian
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			country_event = manchukou_wr.4
+		}
+	}
+	
+	focus = {
+		id = MAN_focus_lunar_new_year_offensive
+		icon = GFX_MAN_focus_lunar_new_year_offensive
+		relative_position_id = MAN_new_heaven
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = MAN_new_heaven
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			country_event = manchukou_wr.1
+		}
+	}
+	
+	#Left
+	focus = {
+		id = MAN_victory_in_liaodong
+		icon = GFX_MAN_victory_in_liaodong
+		relative_position_id = MAN_focus_lunar_new_year_offensive
+		x = -2
+		y = 1
+		cost = 1
+		available = {
+			is_subject = no
+			NEA = { exists = no }
+		}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		prerequisite = {
+			focus = MAN_focus_lunar_new_year_offensive
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = MAN_bandit_suppression
+		icon = GFX_MAN_bandit_suppression
+		relative_position_id = MAN_victory_in_liaodong
+		x = -2
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = MAN_victory_in_liaodong
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			unlock_decision_tooltip = MAN_bandit_suppression_operation
+		}
+	}
+	
+	focus = {
+		id = MAN_diplomatic_efforts
+		icon = GFX_MAN_diplomatic_efforts
+		relative_position_id = MAN_bandit_suppression
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = MAN_bandit_suppression
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			SOV = {
+				add_opinion_modifier = {
+					target = SOV
+					modifier = medium_increase
+				}
+			}
+			JAP = {
+				add_opinion_modifier = {
+					target = CHI
+					modifier = medium_increase
+				}
+			}
+			swap_ideas = {
+				remove_idea = isolation
+				add_idea = civilian_economy
+			}
+			swap_ideas = {
+				remove_idea = MAN_dependency_trade
+				add_idea = export_focus
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_break_isolation
+		icon = GFX_MAN_break_isolation
+		relative_position_id = MAN_diplomatic_efforts
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = MAN_diplomatic_efforts
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			country_event = manchukou_wr.17
+		}
+	}
+	
+	focus = {
+		id = MAN_border_control
+		icon = GFX_MAN_border_control
+		relative_position_id = MAN_victory_in_liaodong
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_STABILITY }
+		prerequisite = {
+			focus = MAN_victory_in_liaodong
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_chuang_guandong
+				add_idea = MAN_chuang_guandong_1
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_establish_immigration_bureau
+		icon = GFX_MAN_establish_immigration_bureau
+		relative_position_id = MAN_border_control
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		prerequisite = {
+			focus = MAN_border_control
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			remove_ideas = MAN_chuang_guandong_1
+		}
+	}
+	
+	focus = {
+		id = MAN_expand_education_facilities
+		icon = GFX_MAN_expand_education_facilities
+		relative_position_id = MAN_establish_immigration_bureau
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+		prerequisite = {
+			focus = MAN_establish_immigration_bureau
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			add_research_slot = 1
+		}
+	}
+	
+	#Right
+	focus = {
+		id = MAN_twelve_edicts
+		icon = GFX_MAN_twelve_edicts
+		relative_position_id = MAN_focus_lunar_new_year_offensive
+		x = 12
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = MAN_focus_lunar_new_year_offensive
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			country_event = manchukou_wr.5
+		}
+	}
+	
+	focus = {
+		id = MAN_great_harmony_renovation
+		icon = GFX_MAN_great_harmony_renovation
+		relative_position_id = MAN_twelve_edicts
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH FOCUS_FILTER_WAR_SUPPORT }
+		prerequisite = {
+			focus = MAN_twelve_edicts
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			country_event = manchukou_wr.18
+		}
+	}
+	
+	focus = {
+		id = MAN_government_reform
+		icon = GFX_MAN_government_reform
+		relative_position_id = MAN_great_harmony_renovation
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+		prerequisite = {
+			focus = MAN_great_harmony_renovation
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_aristocratic_privileges_1
+				add_idea = MAN_aristocratic_privileges_2
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_expand_security_bureau
+		icon = GFX_MAN_expand_security_bureau
+		relative_position_id = MAN_twelve_edicts
+		x = 2
+		y = 1
+		cost = 6
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = MAN_twelve_edicts
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				if = {
+					limit = {
+						has_intelligence_agency = no
+					}	
+					create_intelligence_agency = {
+						name = "MMSB" 
+						icon = "GFX_intelligence_agency_logo_man" 
+					}	
+					else = {
+						upgrade_intelligence_agency = upgrade_passive_defense
+					}
+				}			
+			}
+			else = {
+				add_tech_bonus = {
+					name = MAN_expand_security_bureau
+					bonus = 1.0
+					uses = 2
+					category = encryption_tech
+				}
+				add_ideas = MAN_expand_security_bureau
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_special_intelligence_bureau
+		icon = GFX_MAN_special_intelligence_bureau
+		relative_position_id = MAN_expand_security_bureau
+		x = 0
+		y = 1
+		cost = 6
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = MAN_expand_security_bureau
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				add_ideas = MAN_special_intelligence_bureau		
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = MAN_expand_security_bureau
+					add_idea = MAN_expand_security_bureau_1
+				}
+			}
+		}
+	}
+}

@@ -66,7 +66,14 @@ ideas = {
 				OR = {
 					has_war_support > 0.75
 					has_war = yes
-					has_completed_focus = USA_Interventionism
+					AND = {
+						original_tag = USA
+						has_completed_focus = USA_Interventionism
+					}
+					AND = {
+						original_tag = MAN
+						has_completed_focus = MAN_break_isolation
+					}
 				}
 			}
 
@@ -131,6 +138,12 @@ ideas = {
 				}
 				if = {
 					limit = {
+						original_tag = MAN
+					}
+					has_completed_focus = MAN_break_isolation
+				}
+				if = {
+					limit = {
 						original_tag = SOV
 						NOT = {
 							has_country_leader = {
@@ -169,6 +182,12 @@ ideas = {
 						has_completed_focus = USA_Isolationism
 					}
 					has_completed_focus = USA_the_giant_wakes
+				}
+				if = {
+					limit = {
+						original_tag = MAN
+					}
+					has_completed_focus = MAN_break_isolation
 				}
 				if = {
 					limit = {
@@ -224,6 +243,12 @@ ideas = {
 					}
 					has_completed_focus = USA_the_giant_wakes
 				}
+				if = {
+					limit = {
+						original_tag = MAN
+					}
+					has_completed_focus = MAN_break_isolation
+				}
 			}
 			ai_will_do = {
    				factor = 2
@@ -254,6 +279,12 @@ ideas = {
 							}
 						}
 					}
+				}
+				if = {
+					limit = {
+						original_tag = MAN
+					}
+					has_completed_focus = MAN_break_isolation
 				}
 				if = {
 					limit = {
@@ -318,6 +349,12 @@ ideas = {
 						tag = ROOT
 						ratio > 0.5
 					}
+				}
+				if = {
+					limit = {
+						original_tag = MAN
+					}
+					has_completed_focus = MAN_break_isolation
 				}
 				if = {
 					limit = {
@@ -569,6 +606,12 @@ ideas = {
 		free_trade = {
 
 			available = {
+				if = {
+					limit = {
+						original_tag = MAN
+					}
+					has_completed_focus = MAN_break_isolation
+				}
 			}
 
 			cost = 150
@@ -623,6 +666,12 @@ ideas = {
 						original_tag = FRA
 					}
 					NOT = { has_completed_focus = FRA_world_free_trade }
+				}
+				if = {
+					limit = {
+						original_tag = MAN
+					}
+					has_completed_focus = MAN_break_isolation
 				}
 			}
 
@@ -702,7 +751,12 @@ ideas = {
 						}
 					}
 				}
-
+				if = {
+					limit = {
+						original_tag = MAN
+					}
+					has_completed_focus = MAN_break_isolation
+				}
 
 				if = {
 					limit = {
@@ -769,6 +823,12 @@ ideas = {
 					has_idea = war_economy
 					has_idea = tot_economic_mobilisation
 				}
+				if = {
+					limit = {
+						original_tag = MAN
+					}
+					has_completed_focus = MAN_break_isolation
+				}
 			}
 
 			cost = 150
@@ -810,6 +870,39 @@ ideas = {
 					# don't take if we have a reasonable sized ally
 					# since they will require our trades
 					has_large_ally_not_pick_closed_economy = yes
+				}
+   			}
+		}
+		
+		MAN_dependency_trade = {
+			picture = MAN_dependency_trade
+			available = {
+				original_tag = MAN
+			}
+
+			cost = 150
+			removal_cost = -1
+
+			modifier = {
+				min_export = 0
+				trade_opinion_factor = -1
+			}
+			targeted_modifier = {
+				tag = JAP
+				trade_opinion_factor = 1
+				trade_opinion_factor = 1
+			}
+			allowed_to_remove = {
+				always = no
+			}
+			cancel_if_invalid = no
+
+			ai_will_do = {
+				modifier = {
+					factor = 0
+
+					is_major = no
+					has_war = no
 				}
    			}
 		}

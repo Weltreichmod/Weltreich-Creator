@@ -754,14 +754,13 @@ CHI_government_policies_category = {
 			has_completed_focus = CHI_kmt_entering_crisis
 			has_country_flag = CHI_hufa_expand_civilian_control_decision_flag
 			NOT = { has_country_flag = CHI_hufa_establish_emergency_government_decision_flag }
-			NOT = { has_global_flag = chinese_civil_war }
-			NOT = { has_country_flag = chinese_civil_war_flag }
+			NOT = { has_country_flag = CHI_cant_go_back_again_flag }
 		}
 		allowed = {
 			original_tag = CHI
 		}
 		available = {
-			has_global_flag = chinese_civil_war
+			has_global_flag = CHI_cant_go_back_again_flag
 		}
 		timeout_effect = {
 			country_event = china_wr.83
@@ -851,6 +850,38 @@ CHI_sichuan_massive_operation = {
 }
 
 CHI_congress = {
+	CHI_dec_mobilize_political_opinion = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			OR = {
+				AND = {
+					has_variable = Autonomy_bar
+					check_variable = { Autonomy_bar = 100 }
+				}
+				has_completed_focus = CHI_chinese_peoples_front
+			}
+			has_country_flag = CHI_congress_yes_flag
+		}
+		cost = 15
+		days_remove = 20
+		remove_effect = {
+			CHI_inc_progressive_party_support_15 = yes
+			CHI_inc_chinese_youth_party_support_15 = yes
+			CHI_inc_kuomintang_support_15 = yes
+			CHI_inc_others_independent_support_15 = yes
+			CHI_recalc_congress_icon_frames = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				check_variable = { representatives_support < CHI_over_65_for_ai_var }
+			}
+		}
+	}
 	CHI_congress_political_pressure = {
 		icon = GFX_decision_generic_political_discourse
 		allowed = {
@@ -865,6 +896,7 @@ CHI_congress = {
 			CHI_inc_progressive_party_support_5 = yes
 			CHI_inc_chinese_youth_party_support_5 = yes
 			CHI_inc_kuomintang_support_5 = yes
+			CHI_inc_others_independent_support_5 = yes
 			CHI_recalc_congress_icon_frames = yes
 		}
 		ai_will_do = {
@@ -889,7 +921,7 @@ CHI_congress = {
 			CHI_inc_progressive_party_support_10 = yes
 			CHI_inc_chinese_youth_party_support_10 = yes
 			CHI_inc_kuomintang_support_10 = yes
-			CHI_inc_others_independent_support_5 = yes
+			CHI_inc_others_independent_support_10 = yes
 			CHI_recalc_congress_icon_frames = yes
 		}
 		ai_will_do = {
@@ -965,7 +997,7 @@ CHI_congress = {
 		cost = 35
 		days_remove = 35
 		remove_effect = {
-			CHI_inc_others_independent_support_10 = yes
+			CHI_inc_others_independent_support_15 = yes
 			CHI_recalc_congress_icon_frames = yes
 		}
 		ai_will_do = {
@@ -1104,6 +1136,9 @@ CHI_manage_gold_reserves = {
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 2
 		}
+		modifier = {
+			civilian_factory_use = 3
+		}
 		custom_cost_text = decision_cost_3_civ_only
 		days_remove = 80
 		ai_will_do = {
@@ -1126,6 +1161,9 @@ CHI_manage_gold_reserves = {
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
 		}
+		modifier = {
+			civilian_factory_use = 6
+		}
 		custom_cost_text = decision_cost_6_civ_only
 		days_remove = 140
 		ai_will_do = {
@@ -1147,6 +1185,9 @@ CHI_manage_gold_reserves = {
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 9
+		}
+		modifier = {
+			civilian_factory_use = 10
 		}
 		custom_cost_text = decision_cost_10_civ_only
 		days_remove = 200
@@ -1504,6 +1545,9 @@ CHI_manage_national_credit = {
 			num_of_civilian_factories_available_for_projects > 5
 		}
 		custom_cost_text = decision_cost_6_civ_only
+		modifier = {
+			civilian_factory_use = 6
+		}
 		days_remove = 60
 		ai_will_do = {
 			base = 100
@@ -1523,6 +1567,9 @@ CHI_manage_national_credit = {
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 9
+		}
+		modifier = {
+			civilian_factory_use = 10
 		}
 		custom_cost_text = decision_cost_10_civ_only
 		days_remove = 60
@@ -1607,6 +1654,7 @@ CHI_land_reform_category = {
 		}
 		priority = 10
 		timeout_effect = {
+			remove_ideas = CHI_land_to_the_tiller
 			if = {
 				limit = {
 					has_country_flag = CHI_land_reform_stage_4_flag
@@ -2121,6 +2169,7 @@ CHI_military_discontent_decision = {
 		}
 		days_mission_timeout = 50
 		timeout_effect = {
+			set_country_flag = CHI_wu_peifu_in_power
 		}
 	}
 	CHI_support_weapon_production_decision = {
@@ -4150,6 +4199,463 @@ CHI_centralize_republic_of_china = {
 			}
 			custom_effect_tooltip = CHI_central_var_add_5_tt
 			CHI_map_calculate_frame = yes
+		}
+	}
+}
+
+CHI_womens_rights_movement_category = {
+	CHI_womens_education_expansion = {
+		icon = GFX_decision_generic_operation
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		cost = 15
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = china_wr.201
+			set_country_flag = CHI_womens_education_expansion_flag
+		}
+	}
+	CHI_womens_legal_status_reform = {
+		icon = GFX_decision_generic_operation
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		cost = 15
+		ai_will_do = {
+			base = 4000
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = CHI_womens_education_expansion_flag
+			}
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = china_wr.202
+			set_country_flag = CHI_womens_legal_status_reform_flag
+		}
+	}
+	CHI_womens_employment_support = {
+		icon = GFX_decision_generic_operation
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		cost = 15
+		ai_will_do = {
+			base = 4000
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = CHI_womens_legal_status_reform_flag
+			}
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = china_wr.203
+			set_country_flag = CHI_womens_employment_support_flag
+		}
+	}
+	CHI_womens_political_participation = {
+		icon = GFX_decision_generic_operation
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		cost = 15
+		ai_will_do = {
+			base = 4000
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = CHI_womens_employment_support_flag
+			}
+		}
+		fire_only_once = yes
+		remove_effect = {
+			country_event = china_wr.204
+		}
+	}
+}
+
+CHI_three_liberalizations_decision = {
+	CHI_dec_autonomy_increase_5 = {
+		icon = GFX_decision_generic_political_discourse
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		cost = 15
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			CHI_dec_autonomy_increase_10 = yes
+		}
+	}
+	CHI_dec_autonomy_increase_10 = {
+		icon = GFX_decision_generic_political_discourse
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		cost = 15
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			CHI_dec_autonomy_increase_10 = yes
+		}
+	}
+	CHI_dec_freedom_increase_5 = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		cost = 15
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			CHI_dec_freedom_increase_10 = yes
+			add_stability = 0.01
+			add_war_support = 0.01
+		}
+	}
+	CHI_dec_freedom_increase_10 = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		cost = 15
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			CHI_dec_freedom_increase_10 = yes
+			add_stability = 0.01
+			add_war_support = 0.01
+		}
+	}
+	CHI_dec_self_reliance_increase_5 = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		cost = 15
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			CHI_dec_self_reliance_increase_10 = yes
+		}
+	}
+	CHI_dec_self_reliance_increase_10 = {
+		icon = GFX_decision_generic_civil_support
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		cost = 15
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			NOT = { has_country_flag = FRA_policy_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = FRA_policy_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = FRA_policy_is_on_flag
+			CHI_dec_self_reliance_increase_10 = yes
+		}
+	}
+}
+
+CHI_war_on_poverty_category = {
+	CHI_poverty_vocational_training = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+		}
+		custom_cost_text = decision_cost_3_civ_only
+		modifier = {
+			civilian_factory_use = 3
+		}
+		remove_effect = {
+			add_ideas = CHI_war_on_poverty_idea
+			set_country_flag = CHI_poverty_vocational_training_flag
+		}
+	}
+	CHI_poverty_public_housing = {
+		icon = GFX_decision_generic_construction
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = CHI_poverty_vocational_training_flag
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+		}
+		custom_cost_text = decision_cost_3_civ_only
+		modifier = {
+			civilian_factory_use = 3
+		}
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = CHI_war_on_poverty_idea
+				add_idea = CHI_war_on_poverty_idea_1
+			}
+			set_country_flag = CHI_poverty_public_housing_flag
+		}
+	}
+	CHI_poverty_rural_employment = {
+		icon = GFX_decision_generic_operation
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = CHI_poverty_public_housing_flag
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+		}
+		custom_cost_text = decision_cost_3_civ_only
+		modifier = {
+			civilian_factory_use = 3
+		}
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = CHI_war_on_poverty_idea_1
+				add_idea = CHI_war_on_poverty_idea_2
+			}
+			set_country_flag = CHI_poverty_rural_employment_flag
+		}
+	}
+	CHI_poverty_urban_relief = {
+		icon = GFX_decision_generic_motorized
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = CHI_poverty_rural_employment_flag
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+		}
+		custom_cost_text = decision_cost_3_civ_only
+		modifier = {
+			civilian_factory_use = 3
+		}
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = CHI_war_on_poverty_idea_2
+				add_idea = CHI_war_on_poverty_idea_3
+			}
+			set_country_flag = CHI_poverty_urban_relief_flag
+		}
+	}
+	CHI_poverty_social_mobility = {
+		icon = GFX_decision_generic_motorized
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			hidden_trigger = {
+				has_country_flag = CHI_poverty_urban_relief_flag
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+		}
+		custom_cost_text = decision_cost_3_civ_only
+		modifier = {
+			civilian_factory_use = 3
+		}
+		remove_effect = {
+			swap_ideas = {
+				remove_idea = CHI_war_on_poverty_idea_3
+				add_idea = CHI_war_on_poverty_idea_4
+			}
+		}
+	}
+}
+
+CHI_southern_stabilization_category = {
+	CHI_southern_stabilizing_mission = {
+		icon = GFX_decision_eng_trade_unions_demand
+		allowed = {
+			original_tag = CHI
+		}
+		days_mission_timeout = 500
+		activation = {
+			has_idea = CHI_republic_in_crisis
+		}
+		available = {
+			NOt = { has_idea = CHI_republic_in_crisis }
+		}
+		timeout_effect = {
+			remove_ideas = CHI_republic_in_crisis
+		}
+	}
+	CHI_southern_stabilization_security = {
+		icon = GFX_decision_eng_blackshirt_march
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 20
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+		modifier = {
+			civilian_factory_use = 2
+		}
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			NOT = { has_country_flag = political_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = political_is_on_flag
+			add_political_power = -20
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			add_days_mission_timeout = {
+				mission = CHI_southern_stabilizing_mission
+				days = 40
+			}
+		}
+	}
+	CHI_southern_stabilization_administration = {
+		icon = GFX_decision_generic_decision
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 15
+		cost = 20
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			NOT = { has_country_flag = political_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			add_days_mission_timeout = {
+				mission = CHI_southern_stabilizing_mission
+				days = 30
+			}
+		}
+	}
+	CHI_southern_stabilization_population = {
+		icon = GFX_decision_generic_decision
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 10
+		cost = 15
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			NOT = { has_country_flag = political_is_on_flag }
+		}
+		complete_effect = {
+			set_country_flag = political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = political_is_on_flag
+			add_days_mission_timeout = {
+				mission = CHI_southern_stabilizing_mission
+				days = 20
+			}
 		}
 	}
 }
