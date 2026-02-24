@@ -832,7 +832,7 @@ country_event = { #5대 대총통 선거
 				set_politics = {
 					ruling_party = democratic
 					last_election = "[CURRENT_DATE]"
-					election_frequency = 60
+					election_frequency = 48
 					elections_allowed = yes
 				}
 			}
@@ -894,7 +894,7 @@ country_event = { #5대 대총통 선거
 				set_politics = {
 					ruling_party = democratic
 					last_election = "[CURRENT_DATE]"
-					election_frequency = 60
+					election_frequency = 48
 					elections_allowed = yes
 				}
 			}
@@ -1319,19 +1319,17 @@ country_event = { #난징-우한 분리
 							}
 						}				
 					}
-					CHI_li_zongren = {
+					CHI_hsueh_yueh = {
 						set_nationality = KMT
 						promote_character = yes	
-						add_country_leader_role = {
-							promote_leader = yes
-							country_leader = {
-								ideology = nationalist_three_principles_of_the_people
-							}
-						}				
 					}
-					CHI_chiang_ching_kuo = {
+					CHI_jiang_dingwen = {
 						set_nationality = KMT
-						promote_character = yes				
+						promote_character = yes	
+					}
+					CHI_jiang_guangnai = {
+						set_nationality = KMT
+						promote_character = yes	
 					}
 					country_event = { id = china_wr.206 days = 10 }
 				}
@@ -2074,6 +2072,7 @@ country_event = { #산서 RUN OK
 				tag = KMT
 			}
 			set_cosmetic_tag = SHX_under_KMT
+			set_country_flag = SHX_run_away_flag
 		}
 		ai_chance = {
 			base = 50
@@ -5433,14 +5432,14 @@ country_event = {
 	option = {
 		name = china_wr.182.a
 		add_timed_idea = { idea = CHI_military_fiscal_support days = 150 }
-		CHI_dec_military_discontent_decrease = yes
+		CHI_dec_military_discontent_increase = yes
 		ai_chance = {
 			base = 1
 		}
 	}
 	option = {
 		name = china_wr.182.b
-		CHI_dec_military_discontent_increase = yes
+		CHI_dec_military_discontent_decrease = yes
 		ai_chance = {
 			base = 0
 		}
@@ -5463,7 +5462,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.183.a
-		CHI_dec_military_discontent_decrease = yes
+		CHI_dec_military_discontent_increase = yes
 		random_owned_controlled_state = {
 			limit = {
 				is_core_of = ROOT
@@ -5498,7 +5497,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.183.b
-		CHI_dec_military_discontent_increase = yes
+		CHI_dec_military_discontent_decrease = yes
 		ai_chance = {
 			base = 1
 		}
@@ -5521,7 +5520,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.184.a
-		CHI_dec_military_discontent_decrease = yes
+		CHI_dec_military_discontent_increase = yes
 		add_ideas = CHI_expanded_conscription
 		ai_chance = {
 			base = 0
@@ -5529,7 +5528,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.184.b
-		CHI_dec_military_discontent_increase = yes
+		CHI_dec_military_discontent_decrease = yes
 		ai_chance = {
 			base = 1
 		}
@@ -5552,7 +5551,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.185.a
-		CHI_dec_military_discontent_decrease = yes
+		CHI_dec_military_discontent_increase = yes
 		add_timed_idea = { idea = CHI_new_weapons_development days = 150 }
 		ai_chance = {
 			base = 0
@@ -5560,7 +5559,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.185.b
-		CHI_dec_military_discontent_increase = yes
+		CHI_dec_military_discontent_decrease = yes
 		ai_chance = {
 			base = 1
 		}
@@ -5583,7 +5582,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.186.a
-		CHI_dec_military_discontent_decrease = yes
+		CHI_dec_military_discontent_increase = yes
 		add_ideas = CHI_expanded_military_autonomy
 		ai_chance = {
 			base = 0
@@ -5591,7 +5590,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.186.b
-		CHI_dec_military_discontent_increase = yes
+		CHI_dec_military_discontent_decrease = yes
 		ai_chance = {
 			base = 1
 		}
@@ -5614,7 +5613,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.187.a
-		CHI_dec_military_discontent_decrease = yes
+		CHI_dec_military_discontent_increase = yes
 		add_ideas = CHI_wu_peifu_wartime_plan
 		ai_chance = {
 			base = 0
@@ -5622,7 +5621,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.187.b
-		CHI_dec_military_discontent_increase = yes
+		CHI_dec_military_discontent_decrease = yes
 		ai_chance = {
 			base = 1
 		}
@@ -5640,7 +5639,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.188.a
-		CHI_dec_military_discontent_decrease = yes
+		CHI_dec_military_discontent_increase = yes
 		add_ideas = CHI_expanded_military_justice
 		ai_chance = {
 			base = 0
@@ -5648,7 +5647,7 @@ country_event = {
 	}
 	option = {
 		name = china_wr.188.b
-		CHI_dec_military_discontent_increase = yes
+		CHI_dec_military_discontent_decrease = yes
 		ai_chance = {
 			base = 1
 		}
@@ -7351,12 +7350,21 @@ country_event = { #위기의 민국
 	is_triggered_only = yes
 	option = {
 		name = china_wr.229.a
-		swap_ideas = {
-			remove_idea = CHI_a_candle_in_the_wind
+		if = {
+			limit = {
+				has_idea = CHI_a_candle_in_the_wind
+			}
+			swap_ideas = {
+				remove_idea = CHI_a_candle_in_the_wind
+				add_idea = CHI_republic_in_crisis
+			}
+		}
+		else = {
 			add_idea = CHI_republic_in_crisis
 		}
 		add_stability = -0.2
 		add_war_support = -0.15
+		unlock_decision_category_tooltip = CHI_southern_stabilization_category
 		ai_chance = {
 			base = 5
 		}
@@ -7433,6 +7441,7 @@ country_event = { #총선
 	trigger = {
 		NOT = { has_war_with = KMT }
 		NOT = { has_country_flag = CHI_fifth_general_election_flag }
+		NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		has_war_with_major = no
 	}
 	immediate = {
@@ -7493,6 +7502,7 @@ country_event = { #참의원 총선
 	trigger = {
 		NOT = { has_war_with = KMT }
 		NOT = { has_country_flag = CHI_tenth_senate_election_flag }
+		NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		has_war_with_major = no
 	}
 	immediate = {
@@ -7587,6 +7597,7 @@ country_event = { #총선 전후
 	trigger = {
 		NOT = { has_war_with = KMT }
 		NOT = { has_country_flag = CHI_fifth_general_election_flag }
+		NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		has_war_with_major = no
 		has_country_flag = CHI_dont_general_election_flag
 	}
@@ -7658,6 +7669,7 @@ country_event = { #참의원 총선 전후
 		has_country_flag = CHI_dont_senate_election_flag
 		NOT = { has_country_flag = CHI_dont_general_election_flag }
 		NOT = { has_country_flag = CHI_tenth_senate_election_flag }
+		NOT = { has_country_flag = CHI_wu_peifu_in_power }
 	}
 	immediate = {
 		hidden_effect = {
@@ -7789,6 +7801,512 @@ country_event = { #참의원 총선 불발
 	}
 }
 
+country_event = { #만주 수복 보궐선거
+	id = china_wr.2370
+	title = china_wr.2370.t
+	desc = china_wr.2370.d
+	picture = GFX_report_event_election_vote
+	trigger = {
+		621 = { is_owned_by = CHI }
+		611 = { is_owned_by = CHI }
+		610 = { is_owned_by = CHI }
+		612 = { is_owned_by = CHI }
+		716 = { is_owned_by = CHI }
+		961 = { is_owned_by = CHI }
+		715 = { is_owned_by = CHI }
+		328 = { is_owned_by = CHI }
+		999 = { is_owned_by = CHI }
+		717 = { is_owned_by = CHI }
+		1000 = { is_owned_by = CHI }
+		714 = { is_owned_by = CHI }
+		761 = { is_owned_by = CHI }
+		has_country_flag = CHI_wu_peifu_in_power
+	}
+	mean_time_to_happen = {
+		days = 15
+	}
+	fire_only_once = yes
+	option = {
+		name = china_wr.2370.a
+		CHI_get_manchuria_election_effect = yes
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #군사쿠데타
+	id = china_wr.238
+	title = china_wr.238.t
+	desc = china_wr.238.d
+	picture = GFX_report_event_chinese_soldiers_02
+	is_triggered_only = yes
+	option = {
+		name = china_wr.238.a
+		set_country_flag = CHI_wu_peifu_in_power
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+		hidden_effect = {
+			remove_country_leader_role = {
+				character = CHI_yan_huiqing
+				ideology = interim_government
+			}
+		}
+		complete_national_focus = CHI_save_the_nation
+		add_ideas = CHI_unstable_society
+		add_stability = -0.5
+		add_popularity = {
+			ideology = neutrality
+			popularity = -0.2
+		}
+		set_party_name = {
+			ideology = neutrality
+			long_name = GER_military_government
+			name = GER_military_government
+		}
+		if = {
+			limit = {
+				has_country_flag = CHI_land_reform_flag
+				NOT = { has_idea = CHI_land_reform_backlash_modifier }
+			}
+			remove_idea = CHI_stalled_land_reform_modifier
+			add_timed_idea = { idea = CHI_stalled_land_reform_modifier days = 150 }
+		}
+		add_ideas = economic_high_inflation
+		mark_focus_tree_layout_dirty = yes
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #포고령 1호
+	id = china_wr.239
+	title = china_wr.239.t
+	desc = china_wr.239.d
+	picture = GFX_report_event_chinese_officers
+	is_triggered_only = yes
+	option = {
+		name = china_wr.239.a
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #통금령
+	id = china_wr.240
+	title = china_wr.240.t
+	desc = china_wr.240.d
+	picture = GFX_report_event_chinese_officers
+	is_triggered_only = yes
+	option = {
+		name = china_wr.240.a
+		add_ideas = CHI_peking_curfew_spirit
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #국회 해산
+	id = china_wr.241
+	title = china_wr.241.t
+	desc = china_wr.241.d
+	picture = GFX_report_event_chinese_officers
+	is_triggered_only = yes
+	option = {
+		name = china_wr.241.a
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #후스, 차이어 가택연금형
+	id = china_wr.242
+	title = china_wr.242.t
+	desc = china_wr.242.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.242.a
+		retire_character = CHI_hu_shih
+		retire_character = CHI_cai_e
+		retire_character = CHI_wu_jinglian
+		retire_character = CHI_Gu_Zhongxiu
+		retire_character = CHI_chen_guofu
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #혁명재판소 설치
+	id = china_wr.243
+	title = china_wr.243.t
+	desc = china_wr.243.d
+	picture = GFX_report_event_japanese_chinese_surrender
+	is_triggered_only = yes
+	option = {
+		name = china_wr.243.a
+		add_stability = 0.025
+		add_popularity = {
+			ideology = neutrality
+			popularity = 0.025
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #내란특별법
+	id = china_wr.244
+	title = china_wr.244.t
+	desc = china_wr.244.d
+	picture = GFX_report_event_japanese_chinese_surrender
+	is_triggered_only = yes
+	option = {
+		name = china_wr.244.a
+		add_stability = 0.025
+		add_popularity = {
+			ideology = neutrality
+			popularity = 0.025
+		}
+		add_ideas = CHI_crippled_executive
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #정당해산
+	id = china_wr.245
+	title = china_wr.245.t
+	desc = china_wr.245.d
+	picture = GFX_report_event_japanese_chinese_surrender
+	is_triggered_only = yes
+	option = {
+		name = china_wr.245.a
+		add_stability = 0.05
+		custom_effect_tooltip = CHI_no_other_parthies_tt
+		hidden_effect = {
+			set_party_name = {
+				ideology = democratic
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			set_party_name = {
+				ideology = communism
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+			set_party_name = {
+				ideology = fascim
+				long_name = WR_Banned
+				name = WR_Banned
+			}
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #최고재판
+	id = china_wr.246
+	title = china_wr.246.t
+	desc = china_wr.246.d
+	picture = GFX_report_event_japanese_chinese_surrender
+	is_triggered_only = yes
+	option = {
+		name = china_wr.246.a
+		add_stability = 0.025
+		add_popularity = {
+			ideology = neutrality
+			popularity = 0.025
+		}
+		swap_ideas = {
+			remove_idea = CHI_crippled_executive
+			add_idea = CHI_crippled_executive_1
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #준군사조직 금지
+	id = china_wr.247
+	title = china_wr.247.t
+	desc = china_wr.247.d
+	picture = GFX_report_event_japanese_chinese_surrender
+	is_triggered_only = yes
+	option = {
+		name = china_wr.247.a
+		add_stability = 0.05
+		if = {
+			limit = {
+				has_idea = CHI_bloated_volunteer_corps_lower
+			}
+			remove_ideas = CHI_bloated_volunteer_corps_lower
+		}
+		if = {
+			limit = {
+				has_idea = CHI_bloated_volunteer_corps
+			}
+			remove_ideas = CHI_bloated_volunteer_corps
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #오패부 정권 장악
+	id = china_wr.248
+	title = china_wr.248.t
+	desc = china_wr.248.d
+	picture = Wu_Peifu_picture
+	is_triggered_only = yes
+	option = {
+		name = china_wr.248.a
+		add_stability = 0.1
+		add_popularity = {
+			ideology = neutrality
+			popularity = 0.1
+		}
+		swap_ideas = {
+			remove_idea = CHI_crippled_executive_1
+			add_idea = CHI_crippled_executive_2
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #국회 개회
+	id = china_wr.249
+	title = china_wr.249.t
+	desc = china_wr.249.d
+	picture = CHI_parliemant
+	is_triggered_only = yes
+	option = {
+		name = china_wr.249.a
+		set_country_flag = CHI_national_assembly_under_wu_flag
+		if = {
+			limit = {
+				621 = { is_owned_by = CHI }
+				611 = { is_owned_by = CHI }
+				610 = { is_owned_by = CHI }
+				612 = { is_owned_by = CHI }
+				716 = { is_owned_by = CHI }
+				961 = { is_owned_by = CHI }
+				715 = { is_owned_by = CHI }
+				328 = { is_owned_by = CHI }
+				999 = { is_owned_by = CHI }
+				717 = { is_owned_by = CHI }
+				1000 = { is_owned_by = CHI }
+				714 = { is_owned_by = CHI }
+				761 = { is_owned_by = CHI }
+			}
+			set_variable = { military_support = 660 }
+			set_variable = { new_republican_party_support = 105 }
+			set_variable = { military_total = 660 }
+			set_variable = { new_republican_party_total = 105 }
+		}
+		else = {
+			set_variable = { military_support = 640 }
+			set_variable = { new_republican_party_support = 70 }
+			set_variable = { military_total = 640 }
+			set_variable = { new_republican_party_total = 70 }
+		}
+		CHI_recalc_congress_wu_icon_frames = yes
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #전견회의
+	id = china_wr.250
+	title = china_wr.250.t
+	desc = china_wr.250.d
+	picture = CHI_parliemant
+	is_triggered_only = yes
+	option = {
+		name = china_wr.250.a
+		add_political_power = 25
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #국가경장위원회
+	id = china_wr.251
+	title = china_wr.251.t
+	desc = china_wr.251.d
+	picture = CHI_parliemant
+	is_triggered_only = yes
+	option = {
+		name = china_wr.251.a
+		add_ideas = CHI_National_Reform_Commission
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #사회정화운동
+	id = china_wr.252
+	title = china_wr.252.t
+	desc = china_wr.252.d
+	picture = GFX_china_1930
+	is_triggered_only = yes
+	option = {
+		name = china_wr.252.a
+		add_ideas = CHI_social_purification_campaign
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #불온서적 지정
+	id = china_wr.254
+	title = china_wr.254.t
+	desc = china_wr.254.d
+	picture = CHI_books
+	is_triggered_only = yes
+	option = {
+		name = china_wr.254.a
+		add_popularity = {
+			ideology = neutrality
+			popularity = 0.05
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #대총통 재선
+	id = china_wr.255
+	title = china_wr.255.t
+	desc = china_wr.255.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	option = {
+		name = china_wr.255.a
+		add_political_power = 15
+		set_country_flag = 2nd_presidental_election_flag
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #대총통 선거 연기
+	id = china_wr.256
+	title = china_wr.256.t
+	desc = china_wr.256.d
+	picture = GFX_report_event_election_vote
+	is_triggered_only = yes
+	option = {
+		name = china_wr.256.a
+		set_country_flag = CHI_didnt_do_vote_flag
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #대총통 선거 재개
+	id = china_wr.257
+	title = china_wr.257.t
+	desc = china_wr.257.d
+	picture = GFX_report_event_election_vote
+	trigger = {
+		NOT = { has_country_flag = 2nd_presidental_election_flag }
+		has_country_flag = CHI_didnt_do_vote_flag
+		NOT = { has_country_flag = 2nd_presidental_election_flag }
+		NOT = { has_war_with = KMT }
+	}
+	option = {
+		name = china_wr.257.a
+		meta_effect = {
+			text = {
+				set_politics = {
+					ruling_party = democratic
+					last_election = "[CURRENT_DATE]"
+					election_frequency = 48
+					elections_allowed = yes
+				}
+			}
+			CURRENT_DATE = "[?global.date.GetDateStringNoHour]"
+		}
+		add_political_power = 15
+		set_country_flag = 2nd_presidental_election_flag
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #난세의 법도
+	id = china_wr.258
+	title = china_wr.258.t
+	desc = china_wr.258.d
+	picture = Wu_Peifu_picture
+	is_triggered_only = yes
+	option = {
+		name = china_wr.258.a
+		add_trait = {
+			character = CHI_wu_peifu
+			ideology = despotism
+			trait = thr_savior_of_the_country
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #오패부 펀치
+	id = china_wr.259
+	title = china_wr.259.t
+	desc = china_wr.259.d
+	picture = Wu_Peifu_picture
+	is_triggered_only = yes
+	option = {
+		name = china_wr.259.a
+		swap_ruler_traits = { remove = thr_savior_of_the_country add = CHI_President }
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #신공화당 연정
+	id = china_wr.260
+	title = china_wr.260.t
+	desc = china_wr.260.d
+	picture = CHI_parliemant
+	is_triggered_only = yes
+	option = {
+		name = china_wr.260.a
+		add_political_power = 15
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
 country_event = {
 	id = china_wr.1000
 	title = china_wr.1000.t
@@ -7797,7 +8315,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = china_wr.1000.a
-		CHI_dec_military_discontent_decrease = yes
+		CHI_dec_military_discontent_increase = yes
 		ai_chance = {
 			base = 10
 		}
@@ -7812,7 +8330,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = china_wr.1001.a
-		CHI_dec_military_discontent_increase = yes
+		CHI_dec_military_discontent_decrease = yes
 		ai_chance = {
 			base = 10
 		}

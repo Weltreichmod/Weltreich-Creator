@@ -1,4 +1,48 @@
 on_actions = {
+	on_new_term_election = {
+		effect = {
+			if = {
+				limit = {
+					OR = {
+						has_country_leader = {
+							character = CHI_hu_shih
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = CHI_cai_e
+							ruling_only = yes
+						}
+					}
+					NOT = { has_country_flag = 2nd_presidental_election_flag }
+					NOT = { has_country_flag = CHI_didnt_do_vote_flag }
+					NOT = { has_war_with = KMT }
+					has_war_with_major = no
+				}
+				country_event = china_wr.255
+			}
+			else_if = {
+				limit = {
+					OR = {
+						has_country_leader = {
+							character = CHI_hu_shih
+							ruling_only = yes
+						}
+						has_country_leader = {
+							character = CHI_cai_e
+							ruling_only = yes
+						}
+					}
+					NOT = { has_country_flag = 2nd_presidental_election_flag }
+					NOT = { has_country_flag = CHI_didnt_do_vote_flag }
+					OR = {
+						has_war_with = KMT
+						has_war_with_major = yes
+					}
+				}
+				country_event = china_wr.256
+			}
+		}
+	}
 	on_capitulation = {
 		effect = {
 			#동북군

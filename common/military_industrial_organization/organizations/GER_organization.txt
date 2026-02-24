@@ -33,7 +33,8 @@ GER_man_organization = {
 	
 	allowed = {
 		OR = {
-			tag = GER
+			original_tag = CHI
+			original_tag = KMT
 			original_tag = GRE
 		}
 	}
@@ -41,9 +42,13 @@ GER_man_organization = {
 	available = {
 		if = {
 			limit = {
-				FROM = { original_tag = GRE }
+				OR = {
+					owner = { original_tag = CHI }
+					owner = { original_tag = KMT }
+				}
 			}
-			FROM = { NOT = { has_war_with = GER } }
+			owner = { NOT = { has_war_with = GER } }
+			GER = { exists = yes }
 		}
 	}
 }
@@ -226,18 +231,11 @@ GER_rheinmetall_organization = {
 	allowed = {
 		OR = {
 			tag = GER 
-			original_tag = CHI
 			original_tag = GRE
 		}
 	}
 
 	available = {
-		if = {
-			limit = {
-				FROM = { original_tag = CHI }
-			}
-			FROM = { NOT = { has_war_with = GER } }
-		}
 		if = {
 			limit = {
 				FROM = { original_tag = GRE }
@@ -252,19 +250,10 @@ GER_mauser_organization = {
 	icon = GFX_idea_mauser
 	
 	allowed = {
-		OR = {
-			original_tag = GER 
-			original_tag = CHI
-		}
+		original_tag = GER 
 	}
 
 	available = {
-		if = {
-			limit = {
-				FROM = { original_tag = CHI }
-			}
-			FROM = { NOT = { has_war_with = GER } }
-		}
 	}
 }
 

@@ -1476,13 +1476,32 @@ ideas = {
 		Vauxhall_eng = {
 			picture = Vauxhall_eng
 			allowed = {
-				original_TAG = ENG
+				OR = {
+					original_TAG = ENG
+					original_tag = CHI
+					original_tag = KMT
+				}
 			}
 			research_bonus = {
 				armor = 0.15
 			}
 			available = {
-				has_country_flag = Vauxhall_eng
+				if = {
+					limit = {
+						original_tag = ENG
+					}
+					has_country_flag = Vauxhall_eng
+				}
+				if = {
+					limit = {
+						OR = {
+							original_tag = CHI
+							original_tag = KMT
+						}
+					}
+					NOT = { has_war_with = ENG }
+					ENG = { exists = yes }
+				}
 			}
 			traits = { heavy_tank_manufacturer }
 			equipment_bonus = {

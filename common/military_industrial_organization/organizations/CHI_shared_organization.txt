@@ -13,6 +13,7 @@ CHI_jiangnan_shipyard_group_organization = {
 	icon = GFX_idea_generic_naval_manufacturer_3
 	allowed = {	
 		is_chinese_country = yes
+		NOT = { OR = { tag = CHI tag = MAN tag = KMT } }
 	}
 	available = {
 		owner = { controls_state = 613 }
@@ -24,6 +25,7 @@ CHI_dagu_shipyard_organization = {
 	icon = GFX_idea_generic_naval_manufacturer_3
 	allowed = {	
 		is_chinese_country = yes
+		NOT = { OR = { tag = CHI tag = MAN tag = KMT } }
 	}
 	available = {
 		owner = { controls_state = 608 }
@@ -44,26 +46,25 @@ CHI_camco_1_organization = {
 	include = generic_medium_aircraft_organization
 	icon = GFX_idea_CHI_camco
 	allowed = {	
-		is_chinese_country = yes
+		is_literally_china = yes
 	}
 }
 
-CHI_camco_2_organization = {
+CHI_central_nanchang_aircraft_corporation = {
 	include = generic_light_aircraft_organization
 	icon = GFX_idea_CHI_camco
 	allowed = {	
-		is_chinese_country = yes
+		is_literally_china = yes
+	}
+	available = {
+		if = {
+			limit = {
+				owner = { original_tag = CHI }
+			}
+			owner = { has_completed_focus = CHI_expand_aviation_industry }
+		}
 	}
 }
-
-CHI_camco_3_organization = {
-	include = generic_heavy_aircraft_organization
-	icon = GFX_idea_CHI_camco
-	allowed = {	
-		is_chinese_country = yes
-	}
-}
-
 ################################### 
 
 #   #  ##  ### ### ###  ### ### #   
@@ -79,7 +80,7 @@ CHI_taiyuan_arsenal_organization = {
 	include = generic_artillery_organization
 	icon = GFX_idea_generic_artillery_manufacturer_1
 	allowed = {	
-		is_chinese_country = yes
+		is_literally_china = yes
 	}
 	available = {
 		FROM = { controls_state = 615 }
@@ -87,9 +88,9 @@ CHI_taiyuan_arsenal_organization = {
 }
 CHI_liaoning_arsenal_organization = {
 	include = generic_motorized_mechanized_organization
-	icon = GFX_idea_generic_motorized_equipment_manufacturer_1
+	icon = GFX_idea_CHI_liaoning
 	allowed = {	
-		is_chinese_country = yes
+		is_literally_china = yes
 	}
 	available = {
 		FROM = { controls_state = 715 }
@@ -97,38 +98,21 @@ CHI_liaoning_arsenal_organization = {
 }
 CHI_hanyan_arsenal_organization = {
 	include = generic_infantry_equipment_organization
-	icon = GFX_idea_generic_infantry_equipment_manufacturer_1
+	icon = GFX_idea_CHI_hanyang
 	allowed = {	
-		is_chinese_country = yes
+		is_literally_china = yes
 	}
 	available = {
-		OR = {
-			FROM = { controls_state = 85 }
-			FROM = { has_completed_focus = CHI_hanyang_arsenal }
-		}
+		FROM = { controls_state = 85 }
 	}
 }
-FNG_mukden_arsenal = {
+CHI_mukden_arsenal = {
 	include = generic_infantry_equipment_organization
-	icon = GFX_idea_generic_infantry_equipment_manufacturer_2
+	icon = GFX_idea_CHI_mukden
 	allowed = {	
-		original_tag = FNG
+		is_literally_china = yes
 	}
 	available = {
-		owner = {
-			has_completed_focus = FNG_our_own_military_equipment
-		}
-	}
-}
-FNG_fengtian_bureau_of_ordnance = {
-	include = generic_artillery_organization
-	icon = GFX_idea_generic_artillery_manufacturer_1
-	allowed = {	
-		original_tag = FNG
-	}
-	available = {
-		owner = {
-			has_completed_focus = FNG_our_own_military_equipment
-		}
+		FROM = { controls_state = 715 }
 	}
 }

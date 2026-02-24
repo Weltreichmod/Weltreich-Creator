@@ -86,11 +86,30 @@ ENG_vauxhall_organization = {
 	icon = GFX_idea_vauxhall
 
 	allowed = {
-		original_tag = ENG
+		OR = {
+			original_tag = ENG
+			original_tag = CHI
+			original_tag = KMT
+		}
 	}
 
 	available = {
-		FROM = { has_country_flag = Vauxhall_eng }
+		if = {
+			limit = {
+				owner = { original_tag = ENG }
+			}
+			FROM = { has_country_flag = Vauxhall_eng }
+		}
+		if = {
+			limit = {
+				OR = {
+					owner = { original_tag = CHI }
+					owner = { original_tag = KMT }
+				}
+			}
+			owner = { NOT = { has_war_with = SOV } }
+			SOV = { exists = yes }
+		}
 	}
 
 	initial_trait = {

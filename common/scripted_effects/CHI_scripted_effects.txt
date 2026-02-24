@@ -130,6 +130,34 @@ CHI_recalc_congress_icon_frames = {
 	CHI_recalc_congress_for_trigger = yes
 }
 
+CHI_recalc_congress_wu_icon_frames = {
+    clear_variable = representatives_support
+    set_temp_variable = { representatives_support_temp = military_support }
+    add_to_temp_variable = { representatives_support_temp = new_republican_party_support }
+    set_variable = { representatives_support = representatives_support_temp }
+
+    clear_variable = representatives_total    
+    set_temp_variable = { representatives_total_temp = military_total }
+    add_to_temp_variable = { representatives_total_temp = new_republican_party_total }
+    set_variable = { representatives_total = representatives_total_temp }
+    
+    set_temp_variable = { chi_house_temp = representatives_support }
+    divide_temp_variable = { chi_house_temp = representatives_total }
+    multiply_temp_variable = { chi_house_temp = 21 }
+    if = {
+        limit = { check_variable = { chi_house_temp > 0 } }
+        clamp_temp_variable = {
+            var = chi_house_temp
+            min = 1
+            max = 21
+        }
+    }
+    else = {
+        set_temp_variable = { chi_house_temp = 1 }        
+    }
+    set_variable = { chi_current_house_icon_frame = chi_house_temp }
+}
+
 CHI_recalc_congress_for_trigger = {
 	set_variable = { CHI_over_65_var = 0 }
 	set_temp_variable = { representatives_total_for_65_temp = representatives_total }

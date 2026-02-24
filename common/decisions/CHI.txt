@@ -864,6 +864,7 @@ CHI_congress = {
 				has_completed_focus = CHI_chinese_peoples_front
 			}
 			has_country_flag = CHI_congress_yes_flag
+			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 15
 		days_remove = 20
@@ -889,6 +890,7 @@ CHI_congress = {
 		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
+			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 15
 		days_remove = 20
@@ -914,6 +916,7 @@ CHI_congress = {
 		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
+			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 45
 		days_remove = 45
@@ -939,6 +942,7 @@ CHI_congress = {
 		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
+			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 45
 		days_remove = 45
@@ -957,6 +961,7 @@ CHI_congress = {
 		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
+			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 45
 		days_remove = 45
@@ -975,6 +980,7 @@ CHI_congress = {
 		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
+			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 45
 		days_remove = 45
@@ -993,6 +999,7 @@ CHI_congress = {
 		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
+			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 35
 		days_remove = 35
@@ -1635,6 +1642,13 @@ CHI_inflation_crisis_decision = {
 					add_idea = CHI_total_economic_collapse_modifier
 				}
 			}
+			if = {
+				limit = {
+					has_variable = CHI_military_discontent_var
+					has_global_flag = chinese_civil_war
+				}
+				CHI_dec_military_discontent_decrease = yes
+			}
 		}
 	}
 }
@@ -1660,27 +1674,62 @@ CHI_land_reform_category = {
 					has_country_flag = CHI_land_reform_stage_4_flag
 				}
 				add_ideas = CHI_completed_land_reform_modifier_4
+				if = {
+					limit = {
+						has_variable = CHI_military_discontent_var
+						has_global_flag = chinese_civil_war
+					}
+					CHI_dec_military_discontent_increase = yes
+				}
 			}
 			else_if = {
 				limit = {
 					has_country_flag = CHI_land_reform_stage_3_flag
 				}
 				add_ideas = CHI_completed_land_reform_modifier_3
+				if = {
+					limit = {
+						has_variable = CHI_military_discontent_var
+						has_global_flag = chinese_civil_war
+					}
+					CHI_dec_military_discontent_increase = yes
+				}
 			}
 			else_if = {
 				limit = {
 					has_country_flag = CHI_land_reform_stage_2_flag
 				}
 				add_ideas = CHI_completed_land_reform_modifier_2
+				if = {
+					limit = {
+						has_variable = CHI_military_discontent_var
+						has_global_flag = chinese_civil_war
+					}
+					CHI_dec_military_discontent_increase = yes
+				}
 			}
 			else_if = {
 				limit = {
 					has_country_flag = CHI_land_reform_stage_1_flag
 				}
 				add_ideas = CHI_completed_land_reform_modifier_1
+				if = {
+					limit = {
+						has_variable = CHI_military_discontent_var
+						has_global_flag = chinese_civil_war
+					}
+					CHI_dec_military_discontent_increase = yes
+				}
 			}
 			else = {
 				add_ideas = CHI_completed_land_reform_modifier
+				if = {
+					limit = {
+						has_variable = CHI_military_discontent_var
+						has_global_flag = chinese_civil_war
+					}
+					CHI_dec_military_discontent_increase = yes
+				}
 			}
 			if = {
 				limit = {
@@ -1688,6 +1737,13 @@ CHI_land_reform_category = {
 				}
 				remove_ideas = CHI_stalled_land_reform_modifier
 				add_timed_idea = { idea = CHI_land_reform_backlash_modifier days = 120 }
+				if = {
+					limit = {
+						has_variable = CHI_military_discontent_var
+						has_global_flag = chinese_civil_war
+					}
+					CHI_dec_military_discontent_decrease = yes
+				}
 			}
 			clr_country_flag = CHI_land_reform_flag
 			set_country_flag = CHI_land_reform_done_flag
@@ -2083,6 +2139,7 @@ CHI_operational_plan_decision = {
 						state = 602
 						state = 705
 						state = 1007
+						state = 750
 					}
 				}
 				remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
@@ -2158,18 +2215,36 @@ CHI_military_discontent_decision = {
 			original_tag = CHI
 		}
 		activation = {
-			check_variable = { CHI_military_discontent_var > 9 }
+			check_variable = { CHI_military_discontent_var < 1 }
 			has_global_flag = chinese_civil_war
 		}
 		available = {
 			OR = {
-				check_variable = { CHI_military_discontent_var < 10 }
+				check_variable = { CHI_military_discontent_var > 0 }
 				NOT = { has_global_flag = chinese_civil_war }
 			}
 		}
 		days_mission_timeout = 50
 		timeout_effect = {
-			set_country_flag = CHI_wu_peifu_in_power
+			country_event = china_wr.238
+		}
+	}
+	CHI_war_prolongs_patience_wanes = {
+		icon = GFX_decision_generic_guerilla_base
+		allowed = {
+			original_tag = CHI
+		}
+		activation = {
+			has_global_flag = chinese_civil_war
+			has_variable = CHI_military_discontent_var
+		}
+		available = {
+			NOT = { has_global_flag = chinese_civil_war }
+		}
+		days_mission_timeout = 100
+		priority = 5
+		timeout_effect = {
+			CHI_dec_military_discontent_decrease = yes
 		}
 	}
 	CHI_support_weapon_production_decision = {
@@ -2182,7 +2257,7 @@ CHI_military_discontent_decision = {
 			has_global_flag = chinese_civil_war
 		}
 		available = {
-			check_variable = { CHI_military_discontent_var > 0 }
+			check_variable = { CHI_military_discontent_var < 10 }
 		}
 		custom_cost_trigger = {
 			arms_factory > 1
@@ -2195,11 +2270,11 @@ CHI_military_discontent_decision = {
 			base = 4000
 			modifier = {
 				add = -4000
-				check_variable = { CHI_military_discontent_var < 5 }
+				check_variable = { CHI_military_discontent_var > 5 }
 			}
 		}
 		remove_effect = {
-			CHI_dec_military_discontent_decrease = yes
+			CHI_dec_military_discontent_increase = yes
 			add_equipment_to_stockpile = {
 				type = infantry_equipment
 				amount = 100
@@ -2220,7 +2295,7 @@ CHI_military_discontent_decision = {
 			has_global_flag = chinese_civil_war
 		}
 		available = {
-			check_variable = { CHI_military_discontent_var > 0 }
+			check_variable = { CHI_military_discontent_var < 10 }
 		}
 		custom_cost_trigger = {
 			command_power > 9
@@ -2236,11 +2311,11 @@ CHI_military_discontent_decision = {
 			base = 4000
 			modifier = {
 				add = -4000
-				check_variable = { CHI_military_discontent_var < 5 }
+				check_variable = { CHI_military_discontent_var > 5 }
 			}
 		}
 		remove_effect = {
-			CHI_dec_military_discontent_decrease = yes
+			CHI_dec_military_discontent_increase = yes
 		}
 	}
 }
