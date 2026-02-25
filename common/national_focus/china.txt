@@ -5792,11 +5792,9 @@ focus_tree = {
 		ai_will_do = {
 			factor = 10
 		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			add_dynamic_modifier = {
-				modifier = CHI_wu_peifu_plan
-			}
+			custom_effect_tooltip = CHI_wu_peifu_plan_tt
 			add_to_variable = {
 				CHI_wu_peifu_plan_industrial_capacity_factory = 0.025
 				tooltip = industrial_capacity_factory_tt
@@ -5805,7 +5803,6 @@ focus_tree = {
 				CHI_wu_peifu_plan_industrial_capacity_dockyard = 0.025
 				tooltip = industrial_capacity_dockyard_tt
 			}
-			custom_effect_tooltip = CHI_CHI_wu_peifu_plan_modifier_tt
 		}
 	}
 	
@@ -5822,21 +5819,394 @@ focus_tree = {
 		ai_will_do = {
 			factor = 4
 		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
+		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			custom_effect_tooltip = CHI_CHI_wu_peifu_plan_modifier_tt
+			country_event = china_wr.261
+		}
+	}
+	
+	focus = {
+		id = CHI_requisition_war_materials
+		icon = GFX_CHI_requisition_war_materials
+		relative_position_id = CHI_total_rationing
+		x = -1
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = CHI_total_rationing
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = china_wr.262
+		}
+	}
+	
+	focus = {
+		id = CHI_reduce_rations
+		icon = GFX_CHI_reduce_rations
+		relative_position_id = CHI_requisition_war_materials
+		x = 0
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = CHI_requisition_war_materials
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_wu_peifu_plan_modifier_tt
 			add_to_variable = {
-				CHI_wu_peifu_plan_political_power_factor = -0.025
-				tooltip = political_power_factor_tt
-			}
-			add_to_variable = {
-				CHI_wu_peifu_plan_stability_factor = -0.025
+				CHI_wu_peifu_plan_war_support_factor = -0.025
 				tooltip = stability_factor_tt
 			}
 			add_to_variable = {
-				CHI_wu_peifu_plan_consumer_goods_factor = -0.025
+				CHI_wu_peifu_plan_consumer_goods_factor = -0.05
 				tooltip = consumer_goods_factor_tt
 			}
+		}
+	}
+	
+	focus = {
+		id = CHI_suspend_luxury_goods
+		icon = GFX_CHI_suspend_luxury_goods
+		relative_position_id = CHI_total_rationing
+		x = 1
+		y = 1
+		cost = 3
+		prerequisite = {
+			focus = CHI_total_rationing
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_wu_peifu_plan_modifier_tt
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_factory_efficiency_gain_factor = 0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_factory_max_efficiency_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_industrial_capacity_factory = 0.025
+				tooltip = industrial_capacity_factory_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_strengthen_fuel_control
+		icon = GFX_CHI_strengthen_fuel_control
+		relative_position_id = CHI_suspend_luxury_goods
+		x = 0
+		y = 1
+		cost = 3
+		prerequisite = {
+			focus = CHI_suspend_luxury_goods
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_wu_peifu_plan_modifier_tt
+			add_to_variable = {
+				CHI_wu_peifu_plan_local_resources_factor = -0.025
+				tooltip = local_resources_factor_tt
+			}
+			add_ideas = CHI_strengthened_fuel_control_spirit
+		}
+	}
+	
+	focus = {
+		id = CHI_convert_civilian_facilities
+		icon = GFX_CHI_convert_civilian_facilities
+		relative_position_id = CHI_reduce_rations
+		x = 0
+		y = 1
+		cost = 3
+		prerequisite = {
+			focus = CHI_reduce_rations
+		}
+		prerequisite = {
+			focus = CHI_strengthen_fuel_control
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_wartime_mobilization_order
+		icon = GFX_CHI_wartime_mobilization_order
+		relative_position_id = CHI_wu_peifu_plan
+		x = 3
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = CHI_wu_peifu_plan
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_wu_peifu_plan_modifier_tt
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_factory_efficiency_gain_factor = 0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_factory_max_efficiency_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_wage_freeze
+		icon = GFX_CHI_wage_freeze
+		relative_position_id = CHI_wartime_mobilization_order
+		x = -1
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = CHI_wartime_mobilization_order
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = china_wr.263
+		}
+	}
+	
+	focus = {
+		id = CHI_exempt_skilled_workers
+		icon = GFX_CHI_exempt_skilled_workers
+		relative_position_id = CHI_wage_freeze
+		x = 0
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = CHI_wage_freeze
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_wu_peifu_plan_modifier_tt
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_factory_efficiency_gain_factor = 0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_factory_max_efficiency_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_industrial_capacity_factory = 0.025
+				tooltip = industrial_capacity_factory_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_extended_shift_work
+		icon = GFX_CHI_extended_shift_work
+		relative_position_id = CHI_wartime_mobilization_order
+		x = 1
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = CHI_wartime_mobilization_order
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_wu_peifu_plan_modifier_tt
+			add_to_variable = {
+				CHI_wu_peifu_plan_war_support_factor = -0.025
+				tooltip = war_support_factor_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_factory_efficiency_gain_factor = 0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_factory_max_efficiency_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_adjust_minimum_working_age
+		icon = GFX_CHI_adjust_minimum_working_age
+		relative_position_id = CHI_extended_shift_work
+		x = 0
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = CHI_extended_shift_work
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = china_wr.264
+		}
+	}
+	
+	focus = {
+		id = CHI_general_mobilization
+		icon = GFX_CHI_general_mobilization
+		relative_position_id = CHI_exempt_skilled_workers
+		x = 1
+		y = 1
+		cost = 3
+		prerequisite = {
+			focus = CHI_exempt_skilled_workers
+		}
+		prerequisite = {
+			focus = CHI_adjust_minimum_working_age
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = tot_economic_mobilisation
+		}
+	}
+	
+	focus = {
+		id = CHI_additional_war_bonds
+		icon = GFX_CHI_additional_war_bonds
+		relative_position_id = CHI_wu_peifu_plan
+		x = 0
+		y = 1
+		cost = 1
+		prerequisite = {
+			focus = CHI_wu_peifu_plan
+		}
+		ai_will_do = {
+			factor = 4
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_wu_peifu_plan_modifier_tt
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_factory_efficiency_gain_factor = 0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_factory_max_efficiency_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_industrial_capacity_factory = 0.025
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_industrial_capacity_dockyard = 0.025
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_consumer_goods_factor = 0.025
+				tooltip = consumer_goods_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_additional_war_bonds
+		icon = GFX_CHI_additional_war_bonds
+		relative_position_id = CHI_wu_peifu_plan
+		x = 0
+		y = 1
+		cost = 1
+		prerequisite = {
+			focus = CHI_wu_peifu_plan
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_wu_peifu_plan_modifier_tt
+			add_to_variable = {
+				CHI_wu_peifu_plan_industrial_capacity_factory = 0.025
+				tooltip = industrial_capacity_factory_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_industrial_capacity_dockyard = 0.025
+				tooltip = industrial_capacity_dockyard_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_speed_industrial_complex_factor = 0.05
+				tooltip = production_speed_industrial_complex_factor_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_production_speed_arms_factory_factor = 0.05
+				tooltip = production_speed_arms_factory_factor_tt
+			}
+			add_to_variable = {
+				CHI_wu_peifu_plan_consumer_goods_factor = 0.025
+				tooltip = consumer_goods_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_integrated_maintenance_plan
+		icon = GFX_CHI_integrated_maintenance_plan
+		relative_position_id = CHI_additional_war_bonds
+		x = 0
+		y = 2
+		cost = 2
+		prerequisite = {
+			focus = CHI_additional_war_bonds
+		}
+		ai_will_do = {
+			factor = 0
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
 		}
 	}
 	
