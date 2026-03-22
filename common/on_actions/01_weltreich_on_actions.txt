@@ -89,6 +89,66 @@ on_actions = {
 			}
 		}
 	}
+	on_weekly_MAN = {
+		effect = {
+			if = {
+				limit = {
+					has_completed_focus = MAN_gongjin_qu
+					NOT = {
+						has_power_balance_modifier = {
+							id = MAN_elder_concordia_balance
+							modifier = MAN_elder_concordia_balance_elder_modifier
+						}
+					}
+				}
+				add_power_balance_modifier = {
+					id = MAN_elder_concordia_balance
+					modifier = MAN_elder_concordia_balance_elder_modifier
+				}
+			}
+			if = {
+				limit = {
+					has_power_balance_modifier = {
+						id = MAN_elder_concordia_balance
+						modifier = MAN_elder_concordia_balance_elder_modifier
+					}
+					has_completed_focus = MAN_datong_restoration
+				}
+				remove_power_balance_modifier = {
+					id = MAN_elder_concordia_balance
+					modifier = MAN_elder_concordia_balance_elder_modifier
+				}
+			}
+			if = {
+				limit = {
+					has_completed_focus = MAN_toward_datong_society
+					NOT = {
+						has_power_balance_modifier = {
+							id = MAN_elder_concordia_balance
+							modifier = MAN_elder_concordia_balance_concordia_modifier
+						}
+					}
+				}
+				add_power_balance_modifier = {
+					id = MAN_elder_concordia_balance
+					modifier = MAN_elder_concordia_balance_concordia_modifier
+				}
+			}
+			if = {
+				limit = {
+					has_power_balance_modifier = {
+						id = MAN_elder_concordia_balance
+						modifier = MAN_elder_concordia_balance_concordia_modifier
+					}
+					has_completed_focus = MAN_east_asian_supremacy
+				}
+				remove_power_balance_modifier = {
+					id = MAN_elder_concordia_balance
+					modifier = MAN_elder_concordia_balance_concordia_modifier
+				}
+			}
+		}
+	}
 	on_monthly_FRA = {
 		effect = {
 			if = {
@@ -3275,7 +3335,24 @@ on_actions = {
 			}
 			if = {
 				limit = {
-					original_tag = CHI
+					OR = {
+						AND = {
+							has_global_flag = chinese_civil_war
+							is_faction_leader = yes
+							OR = {
+								original_tag = CHI
+								original_tag = KMT
+							}
+						}
+						AND = {
+							NOT = { has_global_flag = chinese_civil_war }
+							OR = {
+								original_tag = CHI
+								original_tag = KMT
+								original_tag = KMR
+							}
+						}
+					}
 					has_war_with = JAP
 					has_global_flag = second_Sino_Japanese_war_flag
 				}
@@ -3289,6 +3366,48 @@ on_actions = {
 				else_if = {
 					limit = {
 						CHI = {
+							is_faction_leader = no
+							is_in_faction = yes
+						}
+					}
+					every_country = {
+						limit = {
+							is_chinese_country = yes
+							has_war_with = jap
+						}
+						leave_faction = yes
+					}
+				}
+				else_if = {
+					limit = {
+						KMT = { is_faction_leader = yes }
+					}
+					KMT = { dismantle_faction = yes }
+				}
+				else_if = {
+					limit = {
+						KMT = {
+							is_faction_leader = no
+							is_in_faction = yes
+						}
+					}
+					every_country = {
+						limit = {
+							is_chinese_country = yes
+							has_war_with = jap
+						}
+						leave_faction = yes
+					}
+				}
+				else_if = {
+					limit = {
+						KMR = { is_faction_leader = yes }
+					}
+					KMR = { dismantle_faction = yes }
+				}
+				else_if = {
+					limit = {
+						KMR = {
 							is_faction_leader = no
 							is_in_faction = yes
 						}
@@ -3331,6 +3450,9 @@ on_actions = {
 				CHI_defeat_annex = yes
 				JAP = {
 					country_event = japan_wr.40
+					set_country_flag = victory_against_china
+				}
+				MAN = {
 					set_country_flag = victory_against_china
 				}
 				CHI = {

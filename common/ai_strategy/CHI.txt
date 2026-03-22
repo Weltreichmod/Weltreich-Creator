@@ -293,32 +293,60 @@ CHI_buffer_in_mainland = {
 	}
 }
 
-CHI_hunker_down_now  = {
+#CHI_defence_shanghai  = {
+#	allowed = {
+#		original_tag = CHI
+#	}
+
+#	enable = {
+#		613 = { is_controlled_by = CHI }
+#		country_exists = KMT
+#	}
+
+#	abort_when_not_enabled = yes
+
+#	ai_strategy = {
+#		type = front_unit_request
+
+#		state_trigger = {
+#			OR = {
+#				state = 613
+#				state = 960
+#				state = 596
+#			}
+#		}
+
+#		value = 50
+#	}
+
+#}
+
+KMT_attack_shanghai  = {
 	allowed = {
-		original_tag = CHI
+		original_tag = KMT
 	}
 
 	enable = {
-		date < 1945.1.1 #We accept our fate after this point
-		has_war_with = JAP
-		is_historical_focus_on = yes
-		surrender_progress > 0.5
+		613 = { is_controlled_by = CHI }
 	}
 
-	abort = {
-		date > 1945.1.1 #We accept our fate after this point
-	}
+	abort_when_not_enabled = yes
 
 	ai_strategy = {
 		type = front_control
 
-		tag = JAP
+		state_trigger = {
+			OR = {
+				state = 613
+				state = 960
+				state = 596
+			}
+		}
 
-		ratio = 0.6
-
-		priority = 100
+		priority = 500
 		ordertype = front
-		execution_type = careful
+		execute_order = yes
+		execution_type = rush
 	}
 
 }
@@ -340,41 +368,12 @@ CHI_dont_like_communism = {
 	}
 }
 
-CHI_cooperation_with_the_world = {
-	allowed = {
-		original_tag = CHI
-	}
-	enable = {
-		has_completed_focus = CHI_cooperation_with_the_world
-		political_power_daily > 0.1
-	}
-	abort_when_not_enabled = yes
-	ai_strategy = {
-		type = befriend
-		id = ENG
-		value = 75
-	}
-	ai_strategy = {
-		type = befriend
-		id = USA
-		value = 75
-	}
-	ai_strategy = {
-		type = befriend
-		id = GER
-		value = 75
-	}
-}
-
 CHI_dont_want_ally_with_JAP = {
 	allowed = {
 		original_tag = CHI
 	}
 	enable = {
-		OR = {
-			FNG = { exists = yes }
-			MAN = { exists = yes }
-		}
+		MAN = { exists = yes }
 	}
 	abort_when_not_enabled = yes
 

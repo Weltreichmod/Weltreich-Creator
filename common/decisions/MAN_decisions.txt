@@ -3,60 +3,127 @@ Mongolian_war = {
 		icon = GFX_decision_generic_ignite_civil_war
 		days_mission_timeout = 200
 		activation = {
-			original_tag = SEF
+			OR = {
+				original_tag = SEF
+				original_tag = MAN
+				original_tag = MON
+			}
 			MON = { has_war_with = SEF }
 		}
 		allowed = {
-			original_tag = SEF
+			OR = {
+				original_tag = SEF
+				original_tag = MAN
+				original_tag = MON
+			}
 		}
 		available = {
-			NOT = { has_war_with = MON }
+			NOT = { SEF = { has_war_with = MON } }
 		}
 		fire_only_once = yes
 		timeout_effect = {
-			white_peace = {
-				tag = MAN
-				message = sef_man_bad_tt
-			}
-			every_state = {
+			if = {
 				limit = {
-					is_owned_by = SEF
-					is_core_of = SIK
+					original_tag = SEF
 				}
-				transfer_state_to = SIK
-			}
-			every_state = {
-				limit = {
-					is_owned_by = SEF
-					is_core_of = MON
+				white_peace = {
+					tag = MAN
+					message = sef_man_bad_tt
 				}
-				transfer_state_to = MON
-			}
-			every_state = {
-				limit = {
-					is_owned_by = SEF
-					is_core_of = TAN
-				}
-				transfer_state_to = TAN
-			}
-			SOV = {
-				if = {
+				every_state = {
 					limit = {
-						has_dlc = "Together for Victory"
-						TAN = { exists = yes }
+						is_owned_by = SEF
+						is_core_of = SIK
 					}
-					set_autonomy = {
-						target = TAN
-						autonomous_state = autonomy_puppet
-						freedom_level = 0.5
+					transfer_state_to = SIK
+				}
+				every_state = {
+					limit = {
+						is_owned_by = SEF
+						is_core_of = MON
 					}
-					else = {
-						puppet = TAN
+					transfer_state_to = MON
+				}
+				every_state = {
+					limit = {
+						is_owned_by = SEF
+						is_core_of = TAN
+					}
+					transfer_state_to = TAN
+				}
+				SOV = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							TAN = { exists = yes }
+						}
+						set_autonomy = {
+							target = TAN
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = TAN
+						}
 					}
 				}
+				MON = {
+					remove_ideas = MON_soviet_influence
+				}
+				MAN = {
+					country_event = manchukou_wr.45
+				}
 			}
-			MON = {
-				remove_ideas = MON_soviet_influence
+			else = {
+				effect_tooltip = {
+					white_peace = {
+						tag = MAN
+						message = sef_man_bad_tt
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SEF
+							is_core_of = SIK
+						}
+						transfer_state_to = SIK
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SEF
+							is_core_of = MON
+						}
+						transfer_state_to = MON
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SEF
+							is_core_of = TAN
+						}
+						transfer_state_to = TAN
+					}
+					SOV = {
+						if = {
+							limit = {
+								has_dlc = "Together for Victory"
+								TAN = { exists = yes }
+							}
+							set_autonomy = {
+								target = TAN
+								autonomous_state = autonomy_puppet
+								freedom_level = 0.5
+							}
+							else = {
+								puppet = TAN
+							}
+						}
+					}
+					MON = {
+						remove_ideas = MON_soviet_influence
+					}
+					MAN = {
+						country_event = manchukou_wr.45
+					}
+				}
 			}
 		}
 	}
@@ -70,11 +137,11 @@ MAN_modernization_program = {
 		}
 		days_mission_timeout = 85
 		activation = {
-			NOT = { has_country_flag = MAN_kill_all_banditry_flag }
+			has_idea = MAN_widespread_banditry
 		}
 		priority = 100
 		available = {
-			has_country_flag = MAN_kill_all_banditry_flag
+			NOT = { has_idea = MAN_widespread_banditry }
 		}
 		timeout_effect = {
 			country_event = manchukou_wr.6
@@ -86,7 +153,8 @@ MAN_modernization_program = {
 			original_tag = MAN
 		}
 		visible = {
-			NOT = { has_country_flag = MAN_kill_all_banditry_flag }
+			NOT = { has_country_flag = MAZEOK_KILL_FALG }
+			NOT = { has_country_flag = no_more_bandits_flag }
 		}
 		available = {
 			has_completed_focus = MAN_bandit_suppression
@@ -102,12 +170,7 @@ MAN_modernization_program = {
 			base = 4000
 		}
 		complete_effect = {
-			if = {
-				limit = {
-					NOT = { has_variable = MAN_bandit_suppression_operation_var }
-				}
-				set_variable = { MAN_bandit_suppression_operation_var = 0 }
-			}
+			set_country_flag = MAZEOK_KILL_FALG
 			if = {
 				limit = {
 					NOT = { has_country_flag = MAN_first_start_kill_bandits_flag }
@@ -117,6 +180,7 @@ MAN_modernization_program = {
 			else_if = {
 				limit = {
 					has_country_flag = MAN_first_start_kill_bandits_flag
+					NOT = { has_country_flag = MAN_second_start_kill_bandits_flag }
 				}
 				country_event = manchukou_wr.10
 			}
@@ -125,6 +189,7 @@ MAN_modernization_program = {
 					has_country_flag = MAN_second_start_kill_bandits_flag
 				}
 				country_event = manchukou_wr.13
+				set_country_flag = no_more_bandits_flag
 			}
 		}
 	}
@@ -143,10 +208,13 @@ MAN_modernization_program = {
 			custom_trigger_tooltip = {
 				tooltip = MAN_first_bandit_suppression_tt
 				hidden_trigger = {
-					328 = {
-						any_state_division  = {
-							is_division_owner = ROOT
-							count > 2
+					OR = {
+						is_ai = yes
+						328 = {
+							any_state_division  = {
+								is_division_owner = ROOT
+								count > 2
+							}
 						}
 					}
 				}
@@ -162,6 +230,7 @@ MAN_modernization_program = {
 			else = {
 				country_event = manchukou_wr.8
 			}
+			clr_country_flag = MAZEOK_KILL_FALG
 		}
 		timeout_effect = {
 			if = {
@@ -173,6 +242,7 @@ MAN_modernization_program = {
 			else = {
 				country_event = manchukou_wr.9
 			}
+			clr_country_flag = MAZEOK_KILL_FALG
 		}
 	}
 	MAN_second_bandit_suppression = {
@@ -190,10 +260,13 @@ MAN_modernization_program = {
 			custom_trigger_tooltip = {
 				tooltip = MAN_second_bandit_suppression_tt
 				hidden_trigger = {
-					1000 = {
-						any_state_division  = {
-							is_division_owner = ROOT
-							count > 2
+					OR = {
+						is_ai = yes
+						1000 = {
+							any_state_division  = {
+								is_division_owner = ROOT
+								count > 2
+							}
 						}
 					}
 				}
@@ -209,6 +282,7 @@ MAN_modernization_program = {
 			else = {
 				country_event = manchukou_wr.11
 			}
+			clr_country_flag = MAZEOK_KILL_FALG
 		}
 		timeout_effect = {
 			if = {
@@ -220,6 +294,7 @@ MAN_modernization_program = {
 			else = {
 				country_event = manchukou_wr.12
 			}
+			clr_country_flag = MAZEOK_KILL_FALG
 		}
 	}
 	MAN_third_bandit_suppression = {
@@ -237,10 +312,13 @@ MAN_modernization_program = {
 			custom_trigger_tooltip = {
 				tooltip = MAN_third_bandit_suppression_tt
 				hidden_trigger = {
-					716 = {
-						any_state_division  = {
-							is_division_owner = ROOT
-							count > 2
+					OR = {
+						is_ai = yes
+						716 = {
+							any_state_division  = {
+								is_division_owner = ROOT
+								count > 2
+							}
 						}
 					}
 				}
@@ -256,6 +334,7 @@ MAN_modernization_program = {
 			else = {
 				country_event = manchukou_wr.14
 			}
+			clr_country_flag = MAZEOK_KILL_FALG
 		}
 		timeout_effect = {
 			if = {
@@ -267,6 +346,7 @@ MAN_modernization_program = {
 			else = {
 				country_event = manchukou_wr.15
 			}
+			clr_country_flag = MAZEOK_KILL_FALG
 		}
 	}
 	MAN_wait_for_banditry_to_subside = {
@@ -281,7 +361,7 @@ MAN_modernization_program = {
 		fire_only_once = yes
 		priority = 80
 		available = {
-			NOT = { has_country_flag = MAN_couldnt_kill_all_bandit_flag }
+			NOT = { has_idea = MAN_widespread_banditry }
 		}
 		timeout_effect = {
 			clr_country_flag = MAN_couldnt_kill_all_bandit_flag
@@ -297,61 +377,8 @@ MAN_modernization_program = {
 			is_subject = no
 		}
 		available = {
-			has_country_flag = MAN_construct_factory_now
-			any_state = {
-				is_controlled_by = ROOT
-				is_owned_by = ROOT
-				free_building_slots = {
-					building = industrial_complex
-					size > 0
-					include_locked = no
-				}
-			}
-		}
-		days_remove = 65
-		custom_cost_trigger = {
-			num_of_civilian_factories_available_for_projects > 2
-			has_political_power > 19
-		}
-		custom_cost_text = decision_cost_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			set_country_flag = MAN_construct_factory_now
-			add_political_power = -20
-		}
-		remove_effect = {
-			random_owned_controlled_state = {
-				limit = {
-					is_core_of = ROOT
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = no
-					}
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-				}
-			}
-			clr_country_flag = MAN_construct_factory_now
-		}
-		ai_will_do = {
-			base = 80
-		}
-	}
-	MAN_construct_military_factory = {
-		icon = GFX_decision_generic_merge_plant_tank
-		allowed = {
-			original_tag = MAN
-		}
-		visible = {
-			is_subject = no
-		}
-		available = {
-			has_country_flag = MAN_construct_factory_now
+			NOT = { has_country_flag = MAN_construct_factory_now }
+			num_of_factories < 51
 			any_state = {
 				is_controlled_by = ROOT
 				is_owned_by = ROOT
@@ -394,6 +421,71 @@ MAN_modernization_program = {
 		}
 		ai_will_do = {
 			base = 80
+			modifier = {
+				add = 4000
+				has_political_power > 49
+				num_of_civilian_factories_available_for_projects > 2
+			}
+		}
+	}
+	MAN_construct_military_factory = {
+		icon = GFX_decision_generic_merge_plant_tank
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			is_subject = no
+		}
+		available = {
+			NOT = { has_country_flag = MAN_construct_factory_now }
+			num_of_factories < 51
+			any_state = {
+				is_controlled_by = ROOT
+				is_owned_by = ROOT
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		days_remove = 65
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			set_country_flag = MAN_construct_factory_now
+			add_political_power = -20
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			clr_country_flag = MAN_construct_factory_now
+		}
+		ai_will_do = {
+			base = 80
+			modifier = {
+				add = 4000
+				has_political_power > 49
+				num_of_civilian_factories_available_for_projects > 5
+			}
 		}
 	}
 	MAN_construct_infrastructure = {
@@ -405,7 +497,7 @@ MAN_modernization_program = {
 			is_subject = no
 		}
 		available = {
-			has_country_flag = MAN_construct_factory_now
+			NOT = { has_country_flag = MAN_construct_factory_now }
 			any_state = {
 				is_controlled_by = ROOT
 				is_owned_by = ROOT
@@ -604,6 +696,786 @@ MAN_modernization_program = {
 
 		ai_will_do = {
 			factor = 1
+		}
+	}
+}
+
+MAN_xiangchi_fenshen = {
+	MAN_northeast_suppression_countdown = {
+		icon = GFX_decision_generic_political_address
+		allowed = {
+			original_tag = MAN
+		}
+		days_mission_timeout = 30
+		activation = {
+			has_country_flag = MAN_xiangchi_fenshen_flag
+		}
+		fire_only_once = yes
+		priority = 80
+		available = {
+			NOT = { has_country_flag = MAN_xiangchi_fenshen_flag }
+		}
+		timeout_effect = {
+			clr_country_flag = MAN_xiangchi_fenshen_flag
+			hidden_effect = {
+				country_event = manchukou_wr.1000
+			}
+		}
+	}
+	FOR_AI_11 = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			is_ai = yes
+		}
+		available = {
+			NOT = { has_country_flag = MAN_main_011_security_flag }
+		}
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -20
+			}
+			add_to_variable = { MAN_railway_security = 1 }
+			set_country_flag = MAN_main_011_security_flag
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+	FOR_AI_12 = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			is_ai = yes
+		}
+		available = {
+			command_power > 4
+			NOT = { has_country_flag = MAN_main_012_security_flag }
+		}
+		complete_effect = {
+			add_command_power = -5
+			add_to_variable = { MAN_railway_security = 1 }
+			set_country_flag = MAN_main_012_security_flag
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+	FOR_AI_13 = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			is_ai = yes
+		}
+		available = {
+			has_political_power > 4
+			NOT = { has_country_flag = MAN_main_013_security_flag }
+		}
+		complete_effect = {
+			add_political_power = -5
+			add_to_variable = { MAN_railway_security = 1 }
+			set_country_flag = MAN_main_013_security_flag
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+	FOR_AI_21 = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			is_ai = yes
+		}
+		available = {
+			has_political_power > 4
+			NOT = { has_country_flag = MAN_main_021_security_flag }
+		}
+		complete_effect = {
+			add_political_power = -5
+			add_to_variable = { MAN_road_security = 1 }
+			set_country_flag = MAN_main_021_security_flag
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+	FOR_AI_22 = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			is_ai = yes
+		}
+		available = {
+			command_power > 4
+			NOT = { has_country_flag = MAN_main_022_security_flag }
+		}
+		complete_effect = {
+			add_command_power = -5
+			add_to_variable = { MAN_road_security = 1 }
+			set_country_flag = MAN_main_022_security_flag
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+	FOR_AI_23 = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			is_ai = yes
+		}
+		available = {
+			has_political_power > 4
+			NOT = { has_country_flag = MAN_main_023_security_flag }
+		}
+		complete_effect = {
+			add_political_power = -5
+			add_to_variable = { MAN_road_security = 1 }
+			set_country_flag = MAN_main_023_security_flag
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+	FOR_AI_31 = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			is_ai = yes
+		}
+		available = {
+			NOT = { has_country_flag = MAN_main_031_security_flag }
+		}
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -20
+			}
+			add_to_variable = { MAN_building_security = 1 }
+			set_country_flag = MAN_main_031_security_flag
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+	FOR_AI_32 = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			is_ai = yes
+		}
+		available = {
+			command_power > 4
+			NOT = { has_country_flag = MAN_main_032_security_flag }
+		}
+		complete_effect = {
+			add_command_power = -5
+			add_to_variable = { MAN_building_security = 1 }
+			set_country_flag = MAN_main_032_security_flag
+		}
+		ai_will_do = {
+			base = 1
+		}
+	}
+	FOR_AI_33 = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			is_ai = yes
+		}
+		available = {
+			has_political_power > 4
+			NOT = { has_country_flag = MAN_main_033_security_flag }
+		}
+		complete_effect = {
+			add_political_power = -5
+			add_to_variable = { MAN_building_security = 1 }
+			set_country_flag = MAN_main_033_security_flag
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+}
+
+MAN_elder_concordia_balance_decisions = {
+	MAN_concordia_propagate_pan_asianism = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			has_completed_focus = MAN_toward_datong_society
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 15
+		days_remove = 30
+		remove_effect = {
+			add_power_balance_value = {
+				id = MAN_elder_concordia_balance
+				value = 0.025
+			}
+		}
+		ai_will_do = {
+			base = 10
+			modifier = {
+				power_balance_value = {
+					id = MAN_elder_concordia_balance
+					value > 0.65
+				}
+				factor = 0
+			}
+		}
+	}
+	MAN_concordia_emphasize_pan_asian_cooperation = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			has_completed_focus = MAN_toward_datong_society
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 15
+		days_remove = 30
+		remove_effect = {
+			add_power_balance_value = {
+				id = MAN_elder_concordia_balance
+				value = 0.025
+			}
+		}
+		ai_will_do = {
+			base = 10
+			modifier = {
+				power_balance_value = {
+					id = MAN_elder_concordia_balance
+					value > 0.65
+				}
+				factor = 0
+			}
+		}
+	}
+	MAN_concordia_administrative_infiltration = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			has_completed_focus = MAN_toward_datong_society
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 20
+		days_remove = 25
+		remove_effect = {
+			add_power_balance_value = {
+				id = MAN_elder_concordia_balance
+				value = 0.05
+			}
+		}
+		ai_will_do = {
+			base = 80
+			modifier = {
+				power_balance_value = {
+					id = MAN_elder_concordia_balance
+					value > 0.65
+				}
+				factor = 0
+			}
+		}
+	}
+	MAN_concordia_prepare_total_war = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			has_completed_focus = MAN_toward_datong_society
+		}
+		available = {
+			is_subject = no
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+		days_remove = 35
+		complete_effect = {
+			add_political_power = -20
+		}
+		modifier = {
+			civilian_factory_use = 2
+			industrial_capacity_factory = 0.05
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = MAN_elder_concordia_balance
+				value = 0.05
+			}
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				power_balance_value = {
+					id = MAN_elder_concordia_balance
+					value > 0.65
+				}
+				factor = 0
+			}
+		}
+	}
+	MAN_concordia_support_pro_concordia_groups = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			has_completed_focus = MAN_toward_datong_society
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 40
+		days_remove = 40
+		remove_effect = {
+			add_power_balance_value = {
+				id = MAN_elder_concordia_balance
+				value = 0.1
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				power_balance_value = {
+					id = MAN_elder_concordia_balance
+					value > 0.65
+				}
+				factor = 0
+			}
+		}
+	}
+	
+	
+	
+	
+	MAN_elder_strengthen_cabinet_authority = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			has_completed_focus = MAN_gongjin_qu
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 15
+		days_remove = 30
+		remove_effect = {
+			add_power_balance_value = {
+				id = MAN_elder_concordia_balance
+				value = -0.025
+			}
+		}
+		ai_will_do = {
+			base = 10
+			modifier = {
+				power_balance_value = {
+					id = MAN_elder_concordia_balance
+					value < -0.65
+				}
+				factor = 0
+			}
+		}
+	}
+	MAN_elder_monitor_concordia = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			has_completed_focus = MAN_gongjin_qu
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 15
+		days_remove = 30
+		remove_effect = {
+			add_power_balance_value = {
+				id = MAN_elder_concordia_balance
+				value = -0.025
+			}
+		}
+		ai_will_do = {
+			base = 10
+			modifier = {
+				power_balance_value = {
+					id = MAN_elder_concordia_balance
+					value < -0.65
+				}
+				factor = 0
+			}
+		}
+	}
+	MAN_elder_modernize_legislation = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			has_completed_focus = MAN_gongjin_qu
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 20
+		days_remove = 35
+		remove_effect = {
+			add_power_balance_value = {
+				id = MAN_elder_concordia_balance
+				value = -0.05
+			}
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				power_balance_value = {
+					id = MAN_elder_concordia_balance
+					value < -0.65
+				}
+				factor = 0
+			}
+		}
+	}
+	MAN_elder_control_state_institutions = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			has_completed_focus = MAN_gongjin_qu
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 30
+		days_remove = 40
+		remove_effect = {
+			add_power_balance_value = {
+				id = MAN_elder_concordia_balance
+				value = -0.075
+			}
+		}
+		ai_will_do = {
+			base = 4000
+			modifier = {
+				power_balance_value = {
+					id = MAN_elder_concordia_balance
+					value < -0.65
+				}
+				factor = 0
+			}
+		}
+	}
+	MAN_elder_reform_premodern_production = {
+		allowed = {
+			original_tag = MAN
+		}
+		visible = {
+			has_completed_focus = MAN_gongjin_qu
+		}
+		available = {
+			is_subject = no
+		}
+		cost = 30
+		days_remove = 50
+		modifier = {
+			consumer_goods_factor = 0.1
+			production_factory_efficiency_gain_factor = 0.1
+			industrial_capacity_factory = 0.05
+		}
+		remove_effect = {
+			add_power_balance_value = {
+				id = MAN_elder_concordia_balance
+				value = -0.05
+			}
+		}
+		ai_will_do = {
+			base = 10
+			modifier = {
+				power_balance_value = {
+					id = MAN_elder_concordia_balance
+					value < -0.65
+				}
+				factor = 0
+			}
+		}
+	}
+}
+
+MAN_march_to_modernity_decision = {
+	MAN_reform_stipends_decision = {
+		icon = GFX_decision_generic_welfare
+		allowed = {
+			original_tag = MAN
+		}
+		cost = 40
+		days_remove = 30
+		fire_only_once = yes
+		remove_effect = {
+			set_country_flag = MAN_march_to_modernity_decision_flag
+			country_event = manchukou_wr.50
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	MAN_reform_land_grants_decision = {
+		icon = GFX_decision_oppression
+		allowed = {
+			original_tag = MAN
+		}
+		cost = 40
+		days_remove = 30
+		fire_only_once = yes
+		available = {
+			hidden_trigger = {
+				has_country_flag = MAN_march_to_modernity_decision_flag
+			}
+			custom_trigger_tooltip = MAN_reform_land_grants_decision_tt
+		}
+		remove_effect = {
+			set_country_flag = MAN_reform_land_grants_decision_flag
+			country_event = manchukou_wr.51
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	MAN_abolish_grain_allocations_decision = {
+		icon = GFX_decision_RAJ_famine
+		allowed = {
+			original_tag = MAN
+		}
+		cost = 40
+		days_remove = 30
+		fire_only_once = yes
+		available = {
+			hidden_trigger = {
+				has_country_flag = MAN_reform_land_grants_decision_flag
+			}
+			custom_trigger_tooltip = MAN_abolish_grain_allocations_decision_tt
+		}
+		remove_effect = {
+			set_country_flag = MAN_abolish_grain_allocations_decision_flag
+			country_event = manchukou_wr.52
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	MAN_restrict_banner_lords_decision = {
+		icon = GFX_decision_recruit_operative
+		allowed = {
+			original_tag = MAN
+		}
+		cost = 40
+		days_remove = 30
+		fire_only_once = yes
+		available = {
+			hidden_trigger = {
+				has_country_flag = MAN_abolish_grain_allocations_decision_flag
+			}
+			custom_trigger_tooltip = MAN_restrict_banner_lords_decision_tt
+		}
+		remove_effect = {
+			set_country_flag = MAN_restrict_banner_lords_decision_flag
+			country_event = manchukou_wr.53
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	MAN_reform_official_appointments_decision = {
+		icon = GFX_decision_SWI_no_elected_president
+		allowed = {
+			original_tag = MAN
+		}
+		cost = 40
+		days_remove = 30
+		fire_only_once = yes
+		available = {
+			hidden_trigger = {
+				has_country_flag = MAN_restrict_banner_lords_decision_flag
+			}
+			custom_trigger_tooltip = MAN_reform_clan_court_decision_tt
+		}
+		remove_effect = {
+			set_country_flag = MAN_reform_clan_court_decision_flag
+			country_event = manchukou_wr.54
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	MAN_limit_aristocratic_assembly_decision = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		allowed = {
+			original_tag = MAN
+		}
+		cost = 40
+		days_remove = 30
+		fire_only_once = yes
+		available = {
+			hidden_trigger = {
+				has_country_flag = MAN_reform_clan_court_decision_flag
+			}
+			custom_trigger_tooltip = MAN_limit_aristocratic_assembly_decision_tt
+		}
+		remove_effect = {
+			set_country_flag = MAN_limit_aristocratic_assembly_decision_flag
+			country_event = manchukou_wr.55
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	MAN_reform_privy_institutions_decision = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			original_tag = MAN
+		}
+		cost = 40
+		days_remove = 30
+		fire_only_once = yes
+		available = {
+			hidden_trigger = {
+				has_country_flag = MAN_limit_aristocratic_assembly_decision_flag
+			}
+			custom_trigger_tooltip = MAN_reform_privy_institutions_decision_tt
+		}
+		remove_effect = {
+			set_country_flag = MAN_reform_privy_institutions_decision_flag
+			country_event = manchukou_wr.56
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	MAN_integrate_noble_militias_decision = {
+		icon = GFX_decision_generic_reorganize_irregulars
+		allowed = {
+			original_tag = MAN
+		}
+		cost = 40
+		days_remove = 30
+		fire_only_once = yes
+		available = {
+			hidden_trigger = {
+				has_country_flag = MAN_reform_privy_institutions_decision_flag
+			}
+			custom_trigger_tooltip = MAN_integrate_noble_militias_decision_tt
+		}
+		remove_effect = {
+			set_country_flag = MAN_integrate_noble_militias_decision_flag
+			country_event = manchukou_wr.57
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+MAN_southern_expedition_decision = {
+	MAN_attack_FROM_country = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = MAN
+		}
+		target_trigger = {
+			FROM = {
+				OR = {
+					original_tag = CHI
+					original_tag = KMT
+					original_tag = KMR
+				}
+				NOT = { has_war_with = ROOT }
+				NOT = { is_subject_of = ROOT }
+				NOT = { is_subject_of = JAP }
+			}
+		}
+		war_with_on_remove = FROM
+		available = {
+			any_neighbor_country = { tag = FROM }
+			has_war = no
+			NOT = { has_country_flag = MAN_war_plan_flag }
+		}
+		visible = {
+			has_completed_focus = MAN_southern_expedition
+			is_subject = no
+		}
+		cost = 15
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = MAN_war_plan_flag
+		}
+		remove_effect = {
+			declare_war_on = { target = FROM type = annex_everything }
+			clr_country_flag = MAN_war_plan_flag
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+}
+
+MAN_realize_pan_asianism = {
+	MAN_attack_FROM_country_kanzi = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = MAN
+		}
+		war_with_on_remove = FROM
+		target_trigger = {
+			FROM = {
+				OR = {
+					original_tag = CHI
+					original_tag = KMT
+					original_tag = KMR
+				}
+				NOT = { is_subject_of = ROOT }
+				NOT = { has_war_with = ROOT }
+				NOT = { is_subject_of = JAP }
+			}
+		}
+		available = {
+			any_neighbor_country = { tag = FROM }
+			has_war = no
+			NOT = { has_country_flag = MAN_war_plan_flag }
+		}
+		visible = {
+			has_country_flag = MAN_realize_pan_asianism_flag
+			is_subject = no
+		}
+		cost = 15
+		days_remove = 30
+		complete_effect = {
+			set_country_flag = MAN_war_plan_flag
+		}
+		remove_effect = {
+			declare_war_on = { target = FROM type = annex_everything }
+			clr_country_flag = MAN_war_plan_flag
+		}
+		ai_will_do = {
+			base = 100
 		}
 	}
 }
