@@ -34,6 +34,10 @@ focus_tree = {
 		available = {
 			is_subject = no
 		}
+		allow_branch = {
+			NOT = { has_completed_focus = MAN_full_blooming_peony }
+			NOT = { has_completed_focus = MAN_full_blooming_peony_kanzi }
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		ai_will_do = {
 			factor = 6
@@ -622,7 +626,6 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = MAN_founding_university
-			add_research_slot = 1
 		}
 	}
 	
@@ -2046,7 +2049,7 @@ focus_tree = {
 		id = MAN_southern_expedition
 		icon = GFX_MAN_southern_expedition
 		relative_position_id = MAN_mandate_of_heaven_focus
-		x = 0
+		x = -7
 		y = 1
 		cost = 5
 		available = {
@@ -2309,6 +2312,7 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = MAN_full_blooming_peony_tt
 			mark_focus_tree_layout_dirty = yes
+			load_oob = "MAN_focus_1"
 		}
 	}
 	
@@ -2316,7 +2320,7 @@ focus_tree = {
 		id = MAN_koa_ron
 		icon = GFX_MAN_koa_ron
 		relative_position_id = MAN_mandate_of_heaven_focus
-		x = 0
+		x = -7
 		y = 1
 		cost = 5
 		available = {
@@ -2647,6 +2651,7 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = MAN_full_blooming_peony_tt
 			mark_focus_tree_layout_dirty = yes
+			load_oob = "MAN_focus_1"
 		}
 	}
 	
@@ -2654,11 +2659,18 @@ focus_tree = {
 	focus = {
 		id = MAN_incomplete_capital_relocation
 		icon = GFX_MAN_incomplete_capital_relocation
-		x = 35
+		x = 10
 		y = 0
 		cost = 5
+		cancelable = no
 		allow_branch = {
-			has_completed_focus = MAN_full_blooming_peony
+			OR = {
+				has_completed_focus = MAN_full_blooming_peony
+				has_completed_focus = MAN_full_blooming_peony_kanzi
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
 		}
 	}
 }
