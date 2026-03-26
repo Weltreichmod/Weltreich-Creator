@@ -2,16 +2,45 @@
 
 oob = "MAN_1936"
 set_technology = {
+	### Infantry ###
 	infantry_weapons = 1
+	tech_irregulars = 1
+
+	### Support ###
+	tech_support = 1
+	tech_engineers = 1
+	tech_recon = 1
+
+	### Artillery ###
 	gw_artillery = 1
-	tech_trucks = 1
+	interwar_antiair = 1
+
+	### Trains ###
+	basic_train = 1
 }
 
-set_stability = 0.35
+### Planes ###
+if = {
+	limit = { has_dlc = "By Blood Alone" }
+		set_air_oob = "FNG_1936_air_bba"
+	else = {
+		set_air_oob = "FNG_1936_air_legacy"
+		set_technology = {
+			early_fighter = 1
+			early_bomber = 1
+		}
+	}
+}
+
+set_stability = 0.25
+set_war_support = 0.3
+recruit_character = MAN_Zheng_Xiaoxu
+recruit_character = MAN_Aisin_Gioro_Xi_Qia
+recruit_character = MAN_Yang_Jingyu
+recruit_character = MAN_ishiwara_ganzi
 recruit_character = MAN_aisin_gioro_pu_giye
 recruit_character = MAN_aisin_gioro_puyi
 recruit_character = MAN_zhang_haipeng
-recruit_character = MAN_ishiwara_ganzi
 recruit_character = MAN_Jodbajab
 recruit_character = MAN_Wang_xiu_chang
 recruit_character = MAN_urzin_garmayev
@@ -22,9 +51,6 @@ recruit_character = MAN_Darijaya
 recruit_character = MAN_wan_fulin
 recruit_character = MAN_grigory_semyonov
 recruit_character = MAN_deng_linge
-recruit_character = MAN_hung_zhehuang
-recruit_character = MAN_yin_zuoqian
-recruit_character = MAN_xian_yuan
 recruit_character = MAN_Manlaibaatar_Damdinsuren
 recruit_character = MAN_Aisin_Gioro_Zaitao
 recruit_character = MAN_Shen_Honglie
@@ -34,6 +60,20 @@ recruit_character = MAN_Kawashima_Naniwa
 recruit_character = MAN_Yu_Wonshik
 recruit_character = MAN_Xie_Gangzhe
 recruit_character = MAN_Meng_Tiechao
+
+#political advisors
+recruit_character = MAN_Zang_Shiyi
+recruit_character = MAN_Zaifeng
+recruit_character = MNA_Gungsangnorbu
+recruit_character = MAN_demchugdongrub
+recruit_character = MAN_Luo_Zhenyu
+recruit_character = MAN_Xie_Jieshi
+recruit_character = MAN_Feng_Hanqing
+recruit_character = MAN_Masahiko_Amakasu
+recruit_character = MAN_Li_Shaogeng
+recruit_character = MAN_Ruan_Zhenduo
+recruit_character = MAN_Ding_Jianxiu
+recruit_character = MAN_Masayoshi_Miyazaki
 
 add_ideas = {
 	MAN_chuang_guandong
@@ -45,6 +85,8 @@ add_ideas = {
 	MAN_aristocratic_privileges
 	isolation
 	MAN_dependency_trade
+	MAN_economy_japan
+	MAN_aisin_gioro_pu_giye_idea
 }
 
 set_convoys = 5
@@ -59,3 +101,10 @@ set_popularities = {
 	neutrality = 80
 	fascism = 20
 }
+
+set_variable = { MAN_railway_security = 0 }
+set_variable = { MAN_road_security = 0 }
+set_variable = { MAN_building_security = 0 }
+
+set_country_flag = COUNTRY_HAS_KING_FLAG
+set_variable = { MAN_bandit_suppression_operation_var = 0 }

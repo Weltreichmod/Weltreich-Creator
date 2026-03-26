@@ -1,0 +1,1262 @@
+﻿### search_filters = {FOCUS_FILTER_POLITICAL}
+### search_filters = {FOCUS_FILTER_RESEARCH}
+### search_filters = {FOCUS_FILTER_INDUSTRY}
+### search_filters = {FOCUS_FILTER_STABILITY}
+### search_filters = {FOCUS_FILTER_WAR_SUPPORT}
+### search_filters = {FOCUS_FILTER_MANPOWER}
+### search_filters = {FOCUS_FILTER_ANNEXATION}
+### search_filters = {FOCUS_FILTER_INTERNAL_AFFAIRS}
+### search_filters = {FOCUS_FILTER_ARMY_XP}
+### search_filters = {FOCUS_FILTER_NAVY_XP}
+### search_filters = {FOCUS_FILTER_AIR_XP}
+### search_filters = {FOCUS_FILTER_BALANCE_OF_POWER}
+### search_filters = {FOCUS_FILTER_POLITICAL_CHARACTER}
+### search_filters = {FOCUS_FILTER_MILITARY_CHARACTER}
+### search_filters = {FOCUS_FILTER_INTERNATIONAL_TRADE}
+### search_filters = {FOCUS_FILTER_HISTORICAL}
+
+focus_tree = {
+	id = kuomintang_focus
+	
+	country = {
+		factor = 0
+		
+		modifier = {
+			add = 10
+			original_tag = KMT
+		}
+	}
+
+	continuous_focus_position = {
+		x = 300
+		y = 1700
+	}
+
+	
+	default = no
+	
+	#국민당 영광의 제1기 중점 만세!
+	focus = {
+		id = KMT_nanjing_national_government
+		icon = GFX_KMT_nanjing_national_government
+		x = 10
+		y = 0
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			always = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 100
+			set_power_balance = {
+				id = KMT_factional_conflict
+				left_side = KMT_factional_conflict_left
+				right_side = KMT_factional_conflict_right
+				set_value = -0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_convene_national_assembly
+		icon = GFX_KMT_convene_national_assembly
+		relative_position_id = KMT_nanjing_national_government
+		x = -1
+		y = 1
+		cost = 6
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_nanjing_national_government
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		cancelable = no
+		select_effect = {
+			country_event = { id = kuomintag_wr.1 days = 12 }
+		}
+		completion_reward = {
+			country_event = kuomintag_wr.2
+		}
+	}
+	
+	focus = {
+		id = KMT_select_functional_representatives
+		icon = GFX_KMT_select_functional_representatives
+		relative_position_id = KMT_convene_national_assembly
+		x = -4
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = KMT_convene_national_assembly
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 15
+		}
+	}
+	
+	focus = {
+		id = KMT_peasant_worker_representatives
+		icon = GFX_KMT_peasant_worker_representatives
+		relative_position_id = KMT_select_functional_representatives
+		x = 0
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_select_functional_representatives
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			country_event = kuomintag_wr.5
+		}
+	}
+	
+	focus = {
+		id = KMT_elites_and_intellectuals
+		icon = GFX_KMT_elites_and_intellectuals
+		relative_position_id = KMT_peasant_worker_representatives
+		x = -1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_peasant_worker_representatives
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			country_event = kuomintag_wr.6
+		}
+	}
+	
+	focus = {
+		id = KMT_commercial_representatives
+		icon = GFX_KMT_commercial_representatives
+		relative_position_id = KMT_peasant_worker_representatives
+		x = 1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_peasant_worker_representatives
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.7
+		}
+	}
+	
+	focus = {
+		id = KMT_represent_the_majority
+		icon = GFX_KMT_represent_the_majority
+		relative_position_id = KMT_elites_and_intellectuals
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_elites_and_intellectuals
+		}
+		prerequisite = {
+			focus = KMT_commercial_representatives
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			country_event = kuomintag_wr.8
+		}
+	}
+	
+	focus = {
+		id = KMT_address_territorial_vacancies
+		icon = GFX_KMT_address_territorial_vacancies
+		relative_position_id = KMT_convene_national_assembly
+		x = -7
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = KMT_convene_national_assembly
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.9
+		}
+	}
+	
+	focus = {
+		id = KMT_temporary_by_elections
+		icon = GFX_KMT_temporary_by_elections
+		relative_position_id = KMT_address_territorial_vacancies
+		x = -1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = KMT_military_delegate_appointment
+		}
+		prerequisite = {
+			focus = KMT_address_territorial_vacancies
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = -0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_military_delegate_appointment
+		icon = GFX_KMT_military_delegate_appointment
+		relative_position_id = KMT_address_territorial_vacancies
+		x = 1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = KMT_address_territorial_vacancies
+		}
+		mutually_exclusive = {
+			focus = KMT_temporary_by_elections
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_meet_minimum_quorum
+		icon = GFX_KMT_meet_minimum_quorum
+		relative_position_id = KMT_temporary_by_elections
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_temporary_by_elections
+			focus = KMT_military_delegate_appointment
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = KMT_quorum_restored_spirit
+			if = {
+				limit = {
+					has_idea = KMT_national_assembly_legitimacy_low
+				}
+				swap_ideas = {
+					remove_idea = KMT_national_assembly_legitimacy_low
+					add_idea = KMT_national_assembly_legitimacy_medium
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_national_assembly_legitimacy_medium
+				}
+				swap_ideas = {
+					remove_idea = KMT_national_assembly_legitimacy_medium
+					add_idea = KMT_national_assembly_legitimacy_high
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_national_assembly_legitimacy_high
+				}
+				swap_ideas = {
+					remove_idea = KMT_national_assembly_legitimacy_high
+					add_idea = KMT_national_assembly_legitimacy_perfect
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_select_minority_representatives
+		icon = GFX_KMT_select_minority_representatives
+		relative_position_id = KMT_convene_national_assembly
+		x = -10
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = KMT_convene_national_assembly
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 15
+			hidden_effect = {
+				country_event = { id = kuomintag_wr.14 days = 17 }
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_mongolian_tibetan_affairs_commission
+		icon = GFX_KMT_mongolian_tibetan_affairs_commission
+		relative_position_id = KMT_select_minority_representatives
+		x = 0
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_select_minority_representatives
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			country_event = kuomintag_wr.12
+		}
+	}
+	
+	focus = {
+		id = KMT_frontier_minority_representatives
+		icon = GFX_KMT_frontier_minority_representatives
+		relative_position_id = KMT_select_minority_representatives
+		x = -1
+		y = 2
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_select_minority_representatives
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			country_event = kuomintag_wr.10
+		}
+	}
+	
+	focus = {
+		id = KMT_reserved_quota_system
+		icon = GFX_KMT_reserved_quota_system
+		relative_position_id = KMT_select_minority_representatives
+		x = 1
+		y = 2
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_select_minority_representatives
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			country_event = kuomintag_wr.11
+		}
+	}
+	
+	focus = {
+		id = KMT_minorities_and
+		icon = GFX_KMT_minorities_and
+		relative_position_id = KMT_mongolian_tibetan_affairs_commission
+		x = 0
+		y = 2
+		cost = 4
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_mongolian_tibetan_affairs_commission
+		}
+		prerequisite = {
+			focus = KMT_frontier_minority_representatives
+		}
+		prerequisite = {
+			focus = KMT_reserved_quota_system
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			country_event = kuomintag_wr.13
+		}
+	}
+	
+	focus = {
+		id = KMT_overseas_compatriots
+		icon = GFX_KMT_overseas_compatriots
+		relative_position_id = KMT_select_minority_representatives
+		x = -2
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = KMT_select_minority_representatives
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 15
+		}
+	}
+	
+	focus = {
+		id = KMT_resolution_of_five_hundred_million
+		icon = GFX_KMT_resolution_of_five_hundred_million
+		relative_position_id = KMT_meet_minimum_quorum
+		x = 0
+		y = 2
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_meet_minimum_quorum
+		}
+		prerequisite = {
+			focus = KMT_minorities_and
+		}
+		prerequisite = {
+			focus = KMT_represent_the_majority
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_quorum_restored_spirit
+				add_idea = KMT_five_hundred_million_spirit
+			}
+			if = {
+				limit = {
+					has_idea = KMT_national_assembly_legitimacy_low
+				}
+				swap_ideas = {
+					remove_idea = KMT_national_assembly_legitimacy_low
+					add_idea = KMT_national_assembly_legitimacy_medium
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_national_assembly_legitimacy_medium
+				}
+				swap_ideas = {
+					remove_idea = KMT_national_assembly_legitimacy_medium
+					add_idea = KMT_national_assembly_legitimacy_high
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_national_assembly_legitimacy_high
+				}
+				swap_ideas = {
+					remove_idea = KMT_national_assembly_legitimacy_high
+					add_idea = KMT_national_assembly_legitimacy_perfect
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_military_affairs
+		icon = GFX_KMT_military_affairs
+		relative_position_id = KMT_nanjing_national_government
+		x = 1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+			is_subject = no
+			has_completed_focus = KMT_convene_national_assembly
+		}
+		prerequisite = {
+			focus = KMT_nanjing_national_government
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = kuomintag_wr.15
+		}
+	}
+	
+	focus = {
+		id = KMT_shanghai_campaign
+		icon = GFX_KMT_shanghai_campaign
+		relative_position_id = KMT_military_affairs
+		x = -1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = KMT_military_affairs
+		}
+		bypass = {
+			OR = {
+				has_completed_focus = KMT_liberation_of_shanghai
+				has_completed_focus = KMT_final_offensive
+			}
+		}
+		search_filters = {  }
+		completion_reward = {
+			613 = {
+				add_dynamic_modifier = {
+					modifier = KMT_shanghai_offensive
+					days = 90
+					scope = ROOT
+				}
+			}
+			960 = {
+				add_dynamic_modifier = {
+					modifier = KMT_shanghai_offensive
+					days = 90
+					scope = ROOT
+				}
+			}
+			596 = {
+				add_dynamic_modifier = {
+					modifier = KMT_shanghai_offensive
+					days = 90
+					scope = ROOT
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_deploy_ninth_army_group
+		icon = GFX_KMT_deploy_ninth_army_group
+		relative_position_id = KMT_shanghai_campaign
+		x = -2
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+			is_subject = no
+		}
+		bypass = {
+			OR = {
+				has_completed_focus = KMT_liberation_of_shanghai
+				has_completed_focus = KMT_final_offensive
+				NOT = { 960 = { is_controlled_by = KMT } }
+			}
+		}
+		prerequisite = {
+			focus = KMT_shanghai_campaign
+		}
+		search_filters = {  }
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = { has_template = mínbing }
+				}
+				division_template = {
+					name = "mínbing"
+					is_locked = no
+					regiments = {
+						militia = {
+							x = 0
+							y = 0
+						}
+						militia = {
+							x = 0
+							y = 1
+						}
+						militia = {
+							x = 0
+							y = 2
+						}
+						militia = {
+							x = 1
+							y = 0
+						}
+						militia = {
+							x = 1
+							y = 1
+						}
+					}
+				}
+			}
+			960 = {
+				create_unit = {
+					division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					prioritize_location = 11913
+					count = 3
+					owner = KMT
+				}
+			}
+		}
+	}
+	focus = {
+		id = KMT_last_resort
+		icon = GFX_KMT_last_resort
+		relative_position_id = KMT_shanghai_campaign
+		x = 0
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+			is_subject = no
+		}
+		bypass = {
+			OR = {
+				has_completed_focus = KMT_liberation_of_shanghai
+				has_completed_focus = KMT_final_offensive
+			}
+		}
+		prerequisite = {
+			focus = KMT_shanghai_campaign
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_0
+				amount = 220
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment_1
+				amount = 100
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_indiscriminate_offensive
+		icon = GFX_KMT_indiscriminate_offensive
+		relative_position_id = KMT_shanghai_campaign
+		x = 2
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+			is_subject = no
+		}
+		bypass = {
+			OR = {
+				has_completed_focus = KMT_liberation_of_shanghai
+				has_completed_focus = KMT_final_offensive
+			}
+		}
+		prerequisite = {
+			focus = KMT_shanghai_campaign
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_timed_idea = { idea = KMT_indiscriminate_offensive days = 80 }
+		}
+	}
+	
+	focus = {
+		id = KMT_liberation_of_shanghai
+		icon = GFX_KMT_liberation_of_shanghai
+		relative_position_id = KMT_last_resort
+		x = -1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = KMT_deploy_ninth_army_group
+		}
+		prerequisite = {
+			focus = KMT_last_resort
+		}
+		prerequisite = {
+			focus = KMT_indiscriminate_offensive
+		}
+		mutually_exclusive = {
+			focus = KMT_final_offensive
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_stability = 0.05
+			add_war_support = 0.05
+			country_event = kuomintag_wr.16
+		}
+	}
+	
+	focus = {
+		id = KMT_final_offensive
+		icon = GFX_KMT_final_offensive
+		relative_position_id = KMT_last_resort
+		x = 1
+		y = 1
+		cost = 1
+		ai_will_do = {
+			factor = 1
+		}
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = KMT_deploy_ninth_army_group
+		}
+		prerequisite = {
+			focus = KMT_last_resort
+		}
+		prerequisite = {
+			focus = KMT_indiscriminate_offensive
+		}
+		mutually_exclusive = {
+			focus = KMT_liberation_of_shanghai
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = KMT_domestic_situation_will_change_tt
+		}
+	}
+	
+	focus = {
+		id = KMT_two_swords
+		icon = GFX_KMT_two_swords
+		relative_position_id = KMT_military_affairs
+		x = 4
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_military_affairs
+		}
+		search_filters = {  }
+		completion_reward = {
+			upgrade_intelligence_agency = upgrade_passive_defense
+		}
+	}
+	focus = {
+		id = KMT_trust_blue_shirts
+		icon = GFX_KMT_trust_blue_shirts
+		relative_position_id = KMT_two_swords
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_two_swords
+		}
+		mutually_exclusive = {
+			focus = KMT_strengthen_CC_clique
+		}
+		search_filters = { FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = -0.15
+			}
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				add_ideas = KMT_blue_shirts_society_dlc
+			}
+			else = {
+				add_ideas = KMT_blue_shirts_society_nodlc
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_strengthen_CC_clique
+		icon = GFX_KMT_strengthen_CC_clique
+		relative_position_id = KMT_two_swords
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_two_swords
+		}
+		mutually_exclusive = {
+			focus = KMT_trust_blue_shirts
+		}
+		search_filters = { FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.15
+			}
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				add_ideas = KMT_CC_clique_dlc
+			}
+			else = {
+				add_ideas = KMT_CC_clique_nodlc
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_address_immediate_crisis
+		icon = GFX_KMT_address_immediate_crisis
+		relative_position_id = KMT_military_affairs
+		x = 10
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_military_affairs
+		}
+		completion_reward = {
+			country_event = kuomintag_wr.32
+		}
+	}
+	
+	focus = {
+		id = KMT_promote_whampoa_officers
+		icon = GFX_KMT_promote_whampoa_officers
+		relative_position_id = KMT_address_immediate_crisis
+		x = -3
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_address_immediate_crisis
+		}
+		search_filters = { FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.05
+			}
+			show_unit_leaders_tooltip = KMT_chen_mingshu
+			add_ideas = CHI_whampoa_military_academy
+		}
+	}
+	
+	focus = {
+		id = KMT_expand_gendarmerie
+		icon = GFX_KMT_expand_gendarmerie
+		relative_position_id = KMT_promote_whampoa_officers
+		x = -1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_promote_whampoa_officers
+		}
+		search_filters = { FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.05
+			}
+			if = {
+				limit = {
+					NOT = { has_tech = tech_military_police }
+				}
+				set_technology = { tech_military_police = 1 }
+			}
+			division_template = {
+				name = "Gendarmerie"
+				is_locked = no
+				regiments = {
+					militia = {
+						x = 0
+						y = 0
+					}
+					militia = {
+						x = 0
+						y = 1
+					}
+					militia = {
+						x = 0
+						y = 2
+					}
+					militia = {
+						x = 1
+						y = 0
+					}
+					militia = {
+						x = 1
+						y = 1
+					}
+				}
+				support = {
+					military_police = { x = 0 y = 0 }
+				}
+			}
+			create_unit = {
+				division = "name = \"Gendarmerie\" division_template = \"Gendarmerie\" start_equipment_factor = 0.95 start_experience_factor = 0.3"
+				count = 5
+				owner = KMT
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_wartime_jurisdiction
+		icon = GFX_KMT_wartime_jurisdiction
+		relative_position_id = KMT_promote_whampoa_officers
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_promote_whampoa_officers
+		}
+		search_filters = { FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.05
+			}
+			country_event = kuomintag_wr.33
+		}
+	}
+	
+	focus = {
+		id = KMT_military_administration
+		icon = GFX_KMT_military_administration
+		relative_position_id = KMT_expand_gendarmerie
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_expand_gendarmerie
+		}
+		prerequisite = {
+			focus = KMT_wartime_jurisdiction
+		}
+		search_filters = { FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.05
+			}
+			swap_ideas = {
+				remove_idea = KMT_constitutional_guerrillas
+				add_idea = KMT_rear_area_stabilization
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_mass_conscription
+		icon = GFX_KMT_mass_conscription
+		relative_position_id = KMT_address_immediate_crisis
+		x = 2
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_address_immediate_crisis
+		}
+		search_filters = { FOCUS_FILTER_BALANCE_OF_POWER }
+		completion_reward = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.05
+			}
+			add_ideas = KMT_mass_conscription
+		}
+	}
+	
+	focus = {
+		id = KMT_use_veteran_soldiers
+		icon = GFX_KMT_use_veteran_soldiers
+		relative_position_id = KMT_mass_conscription
+		x = -2
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_mass_conscription
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+		completion_reward = {
+			add_ideas = KMT_use_veteran_soldiers
+		}
+	}
+	
+	focus = {
+		id = KMT_secure_small_arms
+		icon = GFX_KMT_secure_small_arms
+		relative_position_id = KMT_mass_conscription
+		x = 0
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_mass_conscription
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 100
+				producer = KMT
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_divert_civilian_supplies
+		icon = GFX_KMT_divert_civilian_supplies
+		relative_position_id = KMT_mass_conscription
+		x = 2
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_mass_conscription
+		}
+		search_filters = {FOCUS_FILTER_INDUSTRY}
+		completion_reward = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.05
+			}
+			add_offsite_building = { type = industrial_complex level = 1 }
+		}
+	}
+	
+	focus = {
+		id = KMT_guerrilla_warfare
+		icon = GFX_KMT_guerrilla_warfare
+		relative_position_id = KMT_use_veteran_soldiers
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_use_veteran_soldiers
+		}
+		prerequisite = {
+			focus = KMT_secure_small_arms
+		}
+		search_filters = {}
+		completion_reward = {
+			unlock_decision_category_tooltip = KMT_guerrilla_operations_category
+		}
+	}
+	
+	focus = {
+		id = KMT_scorched_earth
+		icon = GFX_KMT_scorched_earth
+		relative_position_id = KMT_secure_small_arms
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_divert_civilian_supplies
+		}
+		prerequisite = {
+			focus = KMT_secure_small_arms
+		}
+		search_filters = {}
+		completion_reward = {
+			unlock_decision_category_tooltip = KMT_scorched_earth_category
+			country_event = kuomintag_wr.38
+		}
+	}
+	
+	focus = {
+		id = KMT_form_the_ranks
+		icon = GFX_KMT_form_the_ranks
+		relative_position_id = KMT_guerrilla_warfare
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_military_administration
+		}
+		prerequisite = {
+			focus = KMT_guerrilla_warfare
+		}
+		prerequisite = {
+			focus = KMT_scorched_earth
+		}
+		search_filters = {}
+		completion_reward = {
+			unlock_decision_category_tooltip = KMT_northern_expedition_category
+		}
+	}
+	
+	focus = {
+		id = KMT_end_party_divisions
+		icon = GFX_KMT_end_party_divisions
+		relative_position_id = KMT_form_the_ranks
+		x = -11
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_resolution_of_five_hundred_million
+		}
+		prerequisite = {
+			focus = KMT_form_the_ranks
+		}
+		search_filters = {}
+		completion_reward = {
+			custom_effect_tooltip = KMT_end_party_divisions_tt
+		}
+	}
+}

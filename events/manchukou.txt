@@ -282,11 +282,12 @@ country_event = {
 		}
 	}
 	option = {
-		name = manchukou_wr.16.a
+		name = manchukou_wr.16.b
 		trigger = {
-			check_variable = { MAN_bandit_suppression_operation_var < 3 }
+			check_variable = { MAN_bandit_suppression_operation_var < 2 }
 		}
 		set_country_flag = MAN_couldnt_kill_all_bandit_flag
+		unlock_decision_tooltip = MAN_wait_for_banditry_to_subside
 		ai_chance = { 
 			base = 10 
 		}
@@ -320,11 +321,9 @@ country_event = {
 	
 	option = {
 		name = manchukou_wr.18.a
-		swap_ideas = {
-			remove_idea = MAN_aristocratic_privileges
-			add_idea = MAN_aristocratic_privileges_1
-		}
-		ai_chance = { 
+		unlock_decision_category_tooltip = MAN_xiangchi_fenshen
+		set_country_flag = MAN_xiangchi_fenshen_flag
+		ai_chance = {
 			base = 10 
 		}
 	}
@@ -357,10 +356,76 @@ country_event = {
 	
 	option = {
 		name = manchukou_wr.20.a
-		set_country_flag = MAN_construct_flag
-		unlock_decision_tooltip = MAN_construct_civilian_factory
-		unlock_decision_tooltip = MAN_construct_military_factory
-		unlock_decision_tooltip = MAN_construct_infrastructure
+		random_owned_controlled_state = {
+			limit = {
+				is_core_of = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_core_of = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_core_of = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+			add_building_construction = {
+				type = industrial_complex
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_core_of = ROOT
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = no
+				}
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+			}
+		}
+		random_owned_controlled_state = {
+			limit = {
+				is_core_of = ROOT
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = no
+				}
+			}
+			add_building_construction = {
+				type = arms_factory
+				level = 1
+			}
+		}
 		ai_chance = { 
 			base = 10 
 		}
@@ -420,6 +485,1615 @@ country_event = {
 		add_stability = 0.1
 		ai_chance = { 
 			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.24
+	title = manchukou_wr.24.t
+	desc = manchukou_wr.24.d
+	picture = GFX_report_event_generic_train
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.24.a
+		retire_character = MAN_Zheng_Xiaoxu
+		hidden_effect = {
+			country_event = { id = manchukou_wr.28 days = 5 }
+		}
+		mark_focus_tree_layout_dirty = yes
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.25
+	title = manchukou_wr.25.t
+	desc = manchukou_wr.25.d
+	picture = GFX_report_event_china_ledo_road
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.25.a
+		retire_character = MAN_Zheng_Xiaoxu
+		hidden_effect = {
+			country_event = { id = manchukou_wr.28 days = 5 }
+		}
+		mark_focus_tree_layout_dirty = yes
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.26
+	title = manchukou_wr.26.t
+	desc = manchukou_wr.26.d
+	picture = GFX_report_event_german_speech
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.26.a
+		retire_character = MAN_Zheng_Xiaoxu
+		hidden_effect = {
+			country_event = { id = manchukou_wr.28 days = 5 }
+		}
+		mark_focus_tree_layout_dirty = yes
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.27
+	title = manchukou_wr.27.t
+	desc = {
+		text = manchukou_wr.27.d1
+		trigger = {
+			NOT = {
+				check_variable = { MAN_railway_security = 0 }
+				check_variable = { MAN_road_security = 0 }
+				check_variable = { MAN_building_security = 0 }
+			}
+		}
+	}
+	desc = {
+		text = manchukou_wr.27.d2
+		trigger = {
+			check_variable = { MAN_railway_security = 0 }
+			check_variable = { MAN_road_security = 0 }
+			check_variable = { MAN_building_security = 0 }
+		}
+	}
+	picture = GFX_report_event_german_speech
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.27.a
+		trigger = {
+			NOT = {
+				check_variable = { MAN_railway_security = 0 }
+				check_variable = { MAN_road_security = 0 }
+				check_variable = { MAN_building_security = 0 }
+			}
+		}
+		hidden_effect = {
+			country_event = { id = manchukou_wr.28 days = 5 }
+		}
+		ai_chance = { 
+			base = 10 
+		}
+	}
+	option = {
+		name = manchukou_wr.27.b
+		trigger = {
+			check_variable = { MAN_railway_security = 0 }
+			check_variable = { MAN_road_security = 0 }
+			check_variable = { MAN_building_security = 0 }
+		}
+		hidden_effect = {
+			country_event = { id = manchukou_wr.28 days = 5 }
+		}
+		custom_effect_tooltip = manchukou_wr_27_tt
+		add_trait = {
+			 character = MAN_Zheng_Xiaoxu
+			 ideology = autocracy
+			 trait = heaven_beloved_man
+		}
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = { #내각 개편할거라는 이벤트
+	id = manchukou_wr.28
+	title = manchukou_wr.28.t
+	desc = {
+		text = manchukou_wr.28.d1
+		trigger = { #생존
+			has_country_leader = {
+				character = MAN_Zheng_Xiaoxu
+				ruling_only = yes
+			}
+		}
+	}
+	desc = {
+		text = manchukou_wr.28.d2
+		trigger = { #암살
+			has_country_leader = {
+				character = MAN_Aisin_Gioro_Xi_Qia
+				ruling_only = yes
+			}
+		}
+	}
+	picture = GFX_report_event_china_politicians_captured
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.28.a
+		complete_national_focus = MAN_government_reform
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.29
+	title = manchukou_wr.29.t
+	desc = manchukou_wr.29.d
+	picture = GFX_report_event_china_politicians_captured
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.29.a
+		hidden_effect = {
+			country_event = { id = manchukou_wr.30 days = 5 }
+		}
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.30
+	title = manchukou_wr.30.t
+	desc = manchukou_wr.30.d
+	picture = GFX_report_event_china_politicians_captured
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.30.a
+		hidden_effect = {
+			country_event = { id = manchukou_wr.31 days = 3 }
+		}
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.31
+	title = manchukou_wr.31.t
+	desc = manchukou_wr.31.d
+	picture = GFX_report_event_china_politicians_captured
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.31.a
+		complete_national_focus = MAN_cabinet_reorganization
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.32
+	title = manchukou_wr.32.t
+	desc = manchukou_wr.32.d
+	picture = GFX_report_event_china_politicians_captured
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.33.a
+		hidden_effect = {
+			country_event = { id = manchukou_wr.33 days = 10 }
+		}
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.33
+	title = manchukou_wr.33.t
+	desc = manchukou_wr.33.d
+	picture = GFX_report_event_japanese_officers
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.33.a
+		hidden_effect = {
+			country_event = { id = manchukou_wr.34 days = 15 }
+		}
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.34
+	title = manchukou_wr.34.t
+	desc = manchukou_wr.34.d
+	picture = GFX_JAP_kanzi
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.34.a
+		set_politics = {
+			ruling_party = fascism
+			elections_allowed = no
+		}
+		add_popularity = {
+			ideology = fascism
+			popularity = 0.3
+		}
+		complete_national_focus = MAN_cabinet_reorganization
+		mark_focus_tree_layout_dirty = yes
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.35
+	title = manchukou_wr.35.t
+	desc = manchukou_wr.35.d
+	picture = MAN_picture
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.35.a
+		swap_ideas = {
+			remove_idea = MAN_zheng_xiaoxu_cabinet_1
+			add_idea = MAN_zheng_xiaoxu_cabinet_2
+		}
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.36
+	title = manchukou_wr.36.t
+	desc = manchukou_wr.36.d
+	picture = MAN_picture2
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.36.a
+		swap_ideas = {
+			remove_idea = MAN_zheng_xiaoxu_cabinet_3
+			add_idea = MAN_zheng_xiaoxu_cabinet_4
+		}
+		ai_chance = { 
+			base = 10 
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.37
+	title = manchukou_wr.37.t
+	desc = manchukou_wr.37.d
+	picture = MAN_picture2
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.37.a
+		swap_ideas = {
+			remove_idea = MAN_zheng_xiaoxu_cabinet_4
+			add_idea = MAN_zheng_xiaoxu_cabinet_5
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = { #왕도낙토
+	id = manchukou_wr.38
+	title = manchukou_wr.38.t
+	desc = manchukou_wr.38.d
+	picture = MAN_politic_picture
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.38.a
+		swap_ideas = {
+			remove_idea = MAN_ishiwara_kanji_cabinet
+			add_idea = MAN_ishiwara_kanji_cabinet_1
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.39
+	title = manchukou_wr.39.t
+	desc = manchukou_wr.39.d
+	picture = MAN_politic_picture
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.39.a
+		swap_ideas = {
+			remove_idea = MAN_ishiwara_kanji_cabinet_1
+			add_idea = MAN_ishiwara_kanji_cabinet_2
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.40
+	title = manchukou_wr.40.t
+	desc = manchukou_wr.40.d
+	picture = MAN_politic_picture
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.40.a
+		swap_ideas = {
+			remove_idea = MAN_ishiwara_kanji_cabinet_2
+			add_idea = MAN_ishiwara_kanji_cabinet_3
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.41
+	title = manchukou_wr.41.t
+	desc = manchukou_wr.41.d
+	picture = MAN_politic_picture
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.41.a
+		swap_ideas = {
+			remove_idea = MAN_ishiwara_kanji_cabinet_4
+			add_idea = MAN_ishiwara_kanji_cabinet_5
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.42
+	title = manchukou_wr.42.t
+	desc = manchukou_wr.42.d
+	picture = MAN_politic_picture
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.42.a
+		swap_ideas = {
+			remove_idea = MAN_broken_mandate_of_heaven_3
+			add_idea = MAN_broken_mandate_of_heaven_4
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.43
+	title = manchukou_wr.43.t
+	desc = manchukou_wr.43.d
+	picture = MAN_five_races
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.43.a
+		swap_ideas = {
+			remove_idea = MAN_hollow_five_race_harmony
+			add_idea = MAN_five_races_harmony_law
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.44
+	title = manchukou_wr.44.t
+	desc = manchukou_wr.44.d
+	picture = MAN_five_races
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.44.a
+		add_ideas = MAN_jewish_settlement_harbin
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.45
+	title = manchukou_wr.45.t
+	desc = manchukou_wr.45.d
+	picture = GFX_report_event_manchukuo_army
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.45.a
+		set_country_flag = MAN_victory_in_mongolia_flag
+		country_event = manchukou_wr.73
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.46
+	title = manchukou_wr.46.t
+	desc = manchukou_wr.46.d
+	picture = MAN_politic_picture
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.46.a
+		add_political_power = 25
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.47
+	title = manchukou_wr.47.t
+	desc = manchukou_wr.47.d
+	picture = MAN_pu_giye
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.47.a
+		add_ideas = MAN_constitutional_framework
+		custom_effect_tooltip = MAN_datong_restoration_tt
+		hidden_effect = {
+			remove_ideas = MAN_iron_triangle
+			remove_ideas = MAN_zheng_xiaoxu_cabinet_5
+			remove_ideas = MAN_five_races_harmony_law
+			add_ideas = MAN_datong_restoration
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.48
+	title = manchukou_wr.48.t
+	desc = manchukou_wr.48.d
+	picture = MAN_pu_giye
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.48.a
+		add_stability = 0.05
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.49
+	title = manchukou_wr.49.t
+	desc = manchukou_wr.49.d
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.49.a
+		MAN = { country_event = { id = manchukou_wr.58 days = 1 } }
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.50
+	title = manchukou_wr.50.t
+	desc = manchukou_wr.50.d
+	picture = MAN_reform_1
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.50.a
+		swap_ideas = {
+			remove_idea = MAN_aristocratic_privileges
+			add_idea = MAN_aristocratic_privileges_1
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.51
+	title = manchukou_wr.51.t
+	desc = manchukou_wr.51.d
+	picture = MAN_reform_2
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.51.a
+		swap_ideas = {
+			remove_idea = MAN_aristocratic_privileges_1
+			add_idea = MAN_aristocratic_privileges_2
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.52
+	title = manchukou_wr.52.t
+	desc = manchukou_wr.52.d
+	picture = MAN_reform_3
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.52.a
+		swap_ideas = {
+			remove_idea = MAN_aristocratic_privileges_2
+			add_idea = MAN_aristocratic_privileges_3
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.53
+	title = manchukou_wr.53.t
+	desc = manchukou_wr.53.d
+	picture = MAN_reform_4
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.53.a
+		swap_ideas = {
+			remove_idea = MAN_aristocratic_privileges_3
+			add_idea = MAN_aristocratic_privileges_4
+		}
+		swap_ideas = {
+			remove_idea = MAN_wretched_army
+			add_idea = MAN_wretched_army_1
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.54
+	title = manchukou_wr.54.t
+	desc = manchukou_wr.54.d
+	picture = MAN_reform_5
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.54.a
+		swap_ideas = {
+			remove_idea = MAN_aristocratic_privileges_4
+			add_idea = MAN_aristocratic_privileges_5
+		}
+		swap_ideas = {
+			remove_idea = MAN_wretched_army_1
+			add_idea = MAN_wretched_army_2
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.55
+	title = manchukou_wr.55.t
+	desc = manchukou_wr.55.d
+	picture = MAN_reform_6
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.55.a
+		swap_ideas = {
+			remove_idea = MAN_aristocratic_privileges_5
+			add_idea = MAN_aristocratic_privileges_6
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.56
+	title = manchukou_wr.56.t
+	desc = manchukou_wr.56.d
+	picture = MAN_reform_7
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.56.a
+		swap_ideas = {
+			remove_idea = MAN_aristocratic_privileges_6
+			add_idea = MAN_aristocratic_privileges_7
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.57
+	title = manchukou_wr.57.t
+	desc = manchukou_wr.57.d
+	picture = MAN_reform_8
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.57.a
+		remove_ideas = MAN_aristocratic_privileges_7
+		remove_ideas = MAN_wretched_army_2
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.58
+	title = manchukou_wr.58.t
+	desc = manchukou_wr.58.d
+	picture = GFX_report_event_generic_sign_treaty2
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.58.a
+		set_country_flag = MAN_realize_pan_asianism_flag
+		unlock_decision_category_tooltip = MAN_realize_pan_asianism
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.59
+	title = manchukou_wr.59.t
+	desc = manchukou_wr.59.d
+	picture = GFX_report_event_generic_rifles
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.59.a
+		effect_tooltip = {
+			send_equipment = {
+				target = MAN
+				type = infantry_equipment
+				amount = 1000
+			}
+			send_equipment = {
+				target = MAN
+				type = artillery_equipment
+				amount = 300
+			}
+			send_equipment = {
+				target = MAN
+				type = support_equipment
+				amount = 200
+			}
+			MAN = {
+				add_opinion_modifier = {
+					target = JAP
+					modifier = medium_increase
+				}
+			}
+		}
+		MAN = { country_event = manchukou_wr.60 }
+		ai_chance = { 
+			base = 10
+		}
+	}
+	option = {
+		name = manchukou_wr.59.b
+		MAN = { country_event = manchukou_wr.61 }
+		effect_tooltip = {
+			MAN = {
+				add_opinion_modifier = {
+					target = JAP
+					modifier = small_decrease
+				}
+			}
+		}
+		ai_chance = { 
+			base = 4
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.60
+	title = manchukou_wr.60.t
+	desc = manchukou_wr.60.d
+	picture = GFX_report_event_generic_rifles
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.60.a
+		JAP = {
+			send_equipment = {
+				target = MAN
+				type = infantry_equipment
+				amount = 1000
+			}
+			send_equipment = {
+				target = MAN
+				type = artillery_equipment
+				amount = 300
+			}
+			send_equipment = {
+				target = MAN
+				type = support_equipment
+				amount = 200
+			}
+		}
+		MAN = {
+			add_opinion_modifier = {
+				target = JAP
+				modifier = medium_increase
+			}
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.61
+	title = manchukou_wr.61.t
+	desc = manchukou_wr.61.d
+	picture = GFX_report_event_generic_rifles
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.61.a
+		MAN = {
+			add_opinion_modifier = {
+				target = JAP
+				modifier = small_decrease
+			}
+		}
+		hidden_effect = {
+			MAN = { country_event = manchukou_wr.62 days = 15 }
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.62
+	title = manchukou_wr.62.t
+	desc = manchukou_wr.62.d
+	picture = GFX_report_event_generic_rifles
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.62.a
+		MAN = {
+			add_equipment_to_stockpile = {
+				producer = JAP
+				type = infantry_equipment
+				amount = 500
+			}
+			add_equipment_to_stockpile = {
+				producer = JAP
+				type = artillery_equipment
+				amount = 150
+			}
+			add_equipment_to_stockpile = {
+				producer = JAP
+				type = support_equipment
+				amount = 100
+			}
+		}
+		hidden_effect = {
+			JAP = { country_event = manchukou_wr.63 days = 5 }
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.63
+	title = manchukou_wr.63.t
+	desc = manchukou_wr.63.d
+	picture = GFX_report_event_generic_rifles
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.63.a
+		JAP = {
+			add_equipment_to_stockpile = {
+				producer = JAP
+				type = infantry_equipment
+				amount = -500
+			}
+			add_equipment_to_stockpile = {
+				producer = JAP
+				type = artillery_equipment
+				amount = -150
+			}
+			add_equipment_to_stockpile = {
+				producer = JAP
+				type = support_equipment
+				amount = -100
+			}
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.64
+	title = manchukou_wr.64.t
+	desc = manchukou_wr.64.d
+	picture = GFX_report_event_generic_sign_treaty2
+
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = manchukou_wr.64.a
+		hidden_effect = {
+			every_country = {
+				limit = {
+					is_chinese_country = yes
+					is_subjsct = no
+				}
+				#country_event = { id = manchukou_wr.65 days = 3 }
+			}
+		}
+		if = {
+			limit = {
+				CHI = { exists = yes }
+				original_tag = CHI
+			}
+			CHI = { create_faction_from_template = faction_template_CHI_alliance }
+			every_country = {
+				limit = {
+					is_chinese_country = yes
+				}
+
+				every_controlled_state = {
+					limit = {
+						owner = { is_chinese_country = yes }
+					}
+					transfer_state_to = PREV
+				}
+			}
+			every_country = {
+				limit = {
+					is_chinese_country = yes
+				}
+				every_country = {
+					limit = {
+						is_chinese_country = yes
+						has_war_with = PREV
+					}
+					white_peace = {
+						tag = PREV
+						message = unite_for_China
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					is_chinese_country = yes
+					NOT = { tag = CHI }
+					NOT = { is_in_faction_with = CHI }
+				}
+
+				CHI = {
+					add_to_faction = PREV
+				}
+			}
+			else = {
+				effect_tooltip = {
+					CHI = { create_faction_from_template = faction_template_CHI_alliance }
+					every_country = {
+						limit = {
+							is_chinese_country = yes
+						}
+
+						every_controlled_state = {
+							limit = {
+								owner = { is_chinese_country = yes }
+							}
+							transfer_state_to = PREV
+						}
+					}
+					every_country = {
+						limit = {
+							is_chinese_country = yes
+						}
+						every_country = {
+							limit = {
+								is_chinese_country = yes
+								has_war_with = PREV
+							}
+							white_peace = {
+								tag = PREV
+								message = unite_for_China
+							}
+						}
+					}
+					every_country = {
+						limit = {
+							is_chinese_country = yes
+							NOT = { tag = CHI }
+							NOT = { is_in_faction_with = CHI }
+						}
+
+						CHI = {
+							add_to_faction = PREV
+						}
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				KMT = { exists = yes }
+				original_tag = KMT
+			}
+			KMT = { create_faction_from_template = faction_template_CHI_alliance }
+			every_country = {
+				limit = {
+					is_chinese_country = yes
+				}
+
+				every_controlled_state = {
+					limit = {
+						owner = { is_chinese_country = yes }
+					}
+					transfer_state_to = PREV
+				}
+			}
+			every_country = {
+				limit = {
+					is_chinese_country = yes
+				}
+				every_country = {
+					limit = {
+						is_chinese_country = yes
+						has_war_with = PREV
+					}
+					white_peace = {
+						tag = PREV
+						message = unite_for_China
+					}
+				}
+			}
+			every_country = {
+				limit = {
+					is_chinese_country = yes
+					NOT = { tag = KMT }
+					NOT = { is_in_faction_with = KMT }
+				}
+
+				KMT = {
+					add_to_faction = PREV
+				}
+			}
+			else = {
+				effect_tooltip = {
+					CHI = { create_faction_from_template = faction_template_CHI_alliance }
+					every_country = {
+						limit = {
+							is_chinese_country = yes
+						}
+
+						every_controlled_state = {
+							limit = {
+								owner = { is_chinese_country = yes }
+							}
+							transfer_state_to = PREV
+						}
+					}
+					every_country = {
+						limit = {
+							is_chinese_country = yes
+						}
+						every_country = {
+							limit = {
+								is_chinese_country = yes
+								has_war_with = PREV
+							}
+							white_peace = {
+								tag = PREV
+								message = unite_for_China
+							}
+						}
+					}
+					every_country = {
+						limit = {
+							is_chinese_country = yes
+							NOT = { tag = KMT }
+							NOT = { is_in_faction_with = KMT }
+						}
+
+						KMT = {
+							add_to_faction = PREV
+						}
+					}
+				}
+			}
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.65
+	title = manchukou_wr.65.t
+	desc = manchukou_wr.65.d
+	picture = GFX_report_event_generic_sign_treaty2
+
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.65.a
+		effect_tooltip = {
+			FROM = { add_to_faction = ROOT }
+		}
+		CHI = { id = manchukou_wr.66 days = 3 }
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.66
+	title = manchukou_wr.66.t
+	desc = manchukou_wr.66.d
+	picture = GFX_report_event_generic_sign_treaty2
+
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.66.a
+		add_to_faction = FROM
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.67
+	title = manchukou_wr.67.t
+	desc = manchukou_wr.67.d
+	picture = GFX_report_event_manchukuo_army
+
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.67.a
+		hidden_effect = {
+			country_event = { id = manchukou_wr.68 days = 18 }
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.68
+	title = manchukou_wr.68.t
+	desc = manchukou_wr.68.d
+	picture = GFX_report_event_manchukuo_army
+
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.68.a
+		if = {
+			limit = {
+				CHI = { exists = yes }
+			}
+			declare_war_on = { target = CHI type = annex_everything }
+		}
+		if = {
+			limit = {
+				KMT = { exists = yes }
+			}
+			declare_war_on = { target = KMT type = annex_everything }
+		}
+		if = {
+			limit = {
+				KMR = { exists = yes }
+			}
+			declare_war_on = { target = KMR type = annex_everything }
+		}
+		if = {
+			limit = {
+				JAP = { is_faction_leader = no }
+			}
+			JAP = {
+				set_rule = {
+					can_create_factions = yes
+				}
+			}
+			create_faction_from_template = faction_template_geacps_wr_faction
+		}
+		MAN = { country_event = { id = manchukou_wr.70 days = 1 } }
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+news_event = {
+	id = manchukou_wr.69
+	title = manchukou_wr.69.t
+	desc = manchukou_wr.69.d
+	picture = GFX_news_event_japanese_army_parade
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = manchukou_wr.69.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.70
+	title = manchukou_wr.70.t
+	desc = manchukou_wr.70.d
+	picture = GFX_report_event_generic_sign_treaty2
+
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.70.a
+		JAP = { add_to_faction = MAN }
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.71
+	title = manchukou_wr.71.t
+	desc = manchukou_wr.71.d
+	picture = GFX_report_event_manchukuo_army
+
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.71.a
+		if = {
+			limit = {
+				JAP = { is_faction_leader = no }
+			}
+			JAP = {
+				set_rule = {
+					can_create_factions = yes
+				}
+			}
+			create_faction_from_template = faction_template_geacps_wr_faction
+		}
+		MAN = { country_event = { id = manchukou_wr.72 days = 1 } }
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.72
+	title = manchukou_wr.72.t
+	desc = manchukou_wr.72.d
+	picture = GFX_report_event_manchukuo_army
+
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.72.a
+		if = {
+			limit = {
+				CHI = { exists = yes }
+			}
+			declare_war_on = { target = CHI type = annex_everything }
+		}
+		if = {
+			limit = {
+				KMT = { exists = yes }
+			}
+			declare_war_on = { target = KMT type = annex_everything }
+		}
+		if = {
+			limit = {
+				KMR = { exists = yes }
+			}
+			declare_war_on = { target = KMR type = annex_everything }
+		}
+		JAP = { add_to_faction = MAN }
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.73
+	title = manchukou_wr.73.t
+	desc = manchukou_wr.73.d
+	picture = GFX_report_event_JAP_burma_independence_army
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.73.a
+		annex_country = {
+			target = MON
+			transfer_troops = yes
+		}
+		ai_chance = { 
+			base = 10
+		}
+	}
+	option = {
+		name = manchukou_wr.73.b
+		if = {
+			limit = {
+				OR = {
+					has_dlc = "Together for Victory"
+					has_dlc = "Waking the Tiger"
+				}
+			}
+			set_autonomy = {
+				target = MON
+				autonomous_state = autonomy_chinese_tartary
+			}
+		}
+		MON = {
+			set_cosmetic_tag = MAN_MON
+			retire_character = MON_togs_ochiryn_namnansuren
+			enable_country_integration_60_compliance = yes
+		}
+		ai_chance = { 
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.74
+	title = manchukou_wr.74.t
+	desc = manchukou_wr.74.d
+	picture = GFX_report_event_manchukuo_army
+
+	is_triggered_only = yes
+	
+	option = {
+		name = manchukou_wr.74.a
+		remove_ideas = MAN_rural_transformation
+		remove_ideas = MAN_era_of_grand_peace
+		remove_ideas = MAN_datong_restoration
+		remove_ideas = MAN_datong_society
+		remove_ideas = MAN_firm_constitutional_order
+		remove_ideas = MAN_jewish_settlement_harbin
+		add_ideas = MAN_national_protection_crisis3
+		add_ideas = MAN_economic_paralysis3
+		add_ideas = MAN_collapsed_countryside3
+		add_ideas = MAN_intellectual_resistance5
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.1000
+	title = manchukou_wr.1000.t
+	desc = manchukou_wr.1000.d
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = manchukou_wr.1000.a
+		if = {
+			limit = {
+				check_variable = { MAN_railway_security = 3 }
+			}
+			random_list = {
+				95 = {
+					country_event = manchukou_wr.1001
+				}
+				5 = {
+					country_event = manchukou_wr.24
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { MAN_railway_security = 2 }
+			}
+			random_list = {
+				75 = {
+					country_event = manchukou_wr.1001
+				}
+				25 = {
+					country_event = manchukou_wr.24
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { MAN_railway_security = 1 }
+			}
+			random_list = {
+				35 = {
+					country_event = manchukou_wr.1001
+				}
+				65 = {
+					country_event = manchukou_wr.24
+				}
+			}
+		}
+		else = {
+			random_list = {
+				10 = {
+					country_event = manchukou_wr.1001
+				}
+				90 = {
+					country_event = manchukou_wr.24
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.1001
+	title = manchukou_wr.1001.t
+	desc = manchukou_wr.1001.d
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = manchukou_wr.1001.a
+		if = {
+			limit = {
+				check_variable = { MAN_road_security = 3 }
+			}
+			random_list = {
+				95 = {
+					country_event = manchukou_wr.1002
+				}
+				5 = {
+					country_event = manchukou_wr.25
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { MAN_road_security = 2 }
+			}
+			random_list = {
+				75 = {
+					country_event = manchukou_wr.1002
+				}
+				25 = {
+					country_event = manchukou_wr.25
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { MAN_road_security = 1 }
+			}
+			random_list = {
+				35 = {
+					country_event = manchukou_wr.1002
+				}
+				65 = {
+					country_event = manchukou_wr.25
+				}
+			}
+		}
+		else = {
+			random_list = {
+				10 = {
+					country_event = manchukou_wr.1002
+				}
+				90 = {
+					country_event = manchukou_wr.25
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.1002
+	title = manchukou_wr.1002.t
+	desc = manchukou_wr.1002.d
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = manchukou_wr.1002.a
+		if = {
+			limit = {
+				check_variable = { MAN_building_security = 3 }
+			}
+			random_list = {
+				95 = {
+					country_event = manchukou_wr.27
+				}
+				5 = {
+					country_event = manchukou_wr.26
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { MAN_building_security = 2 }
+			}
+			random_list = {
+				75 = {
+					country_event = manchukou_wr.27
+				}
+				25 = {
+					country_event = manchukou_wr.26
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { MAN_building_security = 1 }
+			}
+			random_list = {
+				35 = {
+					country_event = manchukou_wr.27
+				}
+				65 = {
+					country_event = manchukou_wr.26
+				}
+			}
+		}
+		else = {
+			random_list = {
+				10 = {
+					country_event = manchukou_wr.27
+				}
+				90 = {
+					country_event = manchukou_wr.26
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.1003
+	title = manchukou_wr.1003.t
+	desc = manchukou_wr.1003.d
+	trigger = {
+		original_tag = MON
+		has_cosmetic_tag = MAN_MON
+		NOT = { MON = { is_subject_of = MAN } }
+	}
+	hidden = yes
+	mean_time_to_happen = { days = 1 }
+	option = {
+		name = manchukou_wr.1003.a
+		drop_cosmetic_tag = yes
+		ai_chance = {
+			base = 10
 		}
 	}
 }
