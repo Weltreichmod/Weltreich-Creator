@@ -1178,7 +1178,7 @@ country_event = {
 					state = 524
 				}
 				controller = {
-					has_country_flag = Chinese_warlord
+					is_chinese_country = yes
 				}
 			}
 			controller = {
@@ -1191,17 +1191,28 @@ country_event = {
 				}
 			}
 		}
-		if = {
-			limit = {
-				MAN = { is_subject_of = JAP }
+		ROOT = { annex_country = { target = MAN transfer_troops = no } }
+		ROOT = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					KOR = { exists = yes }
+				}
+				set_autonomy = {
+					target = KOR
+					autonomous_state = autonomy_supervised_state
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = KOR
+				}
 			}
-			ROOT = { annex_country = { target = MAN transfer_troops = no } }
 		}
 		if = {
 			limit = {
-				MEN = { is_subject_of = JAP }
+				MON = { is_subject_of = MAN }
 			}
-			ROOT = { annex_country = { target = MEN transfer_troops = no } }
+			ROOT = { annex_country = { target = MON transfer_troops = no } }
 		}
 		every_country = {
 			limit = {
@@ -1214,18 +1225,6 @@ country_event = {
 			}
 			white_peace = JAP
 		}
-		if = {
-			limit = {
-				UFN = { is_chinese_country = yes }
-			}
-			UNF = { dismantle_faction = yes }
-		}
-		else = {
-			every_country = {
-				limit = { is_chinese_country = yes }
-				leave_faction = yes
-			}
-		}
 		ai_chance = {
 			base = 10
 		}
@@ -1235,10 +1234,6 @@ country_event = {
 		FROM = { country_event = japan_wr.33 }
 		ai_chance = {
 			base = 0
-			modifier = {
-				JAP = { has_war_with = USA }
-				add = 4000
-			}
 		}
 	}
 }
@@ -1491,43 +1486,9 @@ country_event = {
 	trigger = {
 		original_tag = JAP
 		is_ai = yes
-		OR = {
-			surrender_progress > 0.3
-			AND = {
-				custom_trigger_tooltip = {
-					tooltip = JAP_all_owned_korean_states_occupied
-					NOT = { KOR = { any_core_state = { controller = { is_ally_with = PREV.PREV } } } }
-				}
-				if = {
-					limit = {
-						country_exists = MAN
-						is_ally_with = MAN
-					}
-					MAN = { has_capitulated = yes }
-				}
-				else_if = {
-					limit = { NOT = { has_war_with = FNG } }
-					OR = {
-						NOT = { country_exists = FNG }
-						FNG = { has_capitulated = yes }
-					}
-				}
-				NOT = {
-					any_allied_country = {
-						has_country_flag = Chinese_warlord
-						has_capitulated = no
-					}
-				}
-				NOT = {
-					any_owned_state = {
-						is_chinese_area = yes
-						is_controlled_by = ROOT
-					}
-				}
-			}
-		}
+
 	}
-	mean_time_to_happen = { days = 340 }
+	mean_time_to_happen = { days = 140 }
 	immediate = {
 		set_global_flag = JAP_will_surrender
 	}
@@ -1549,38 +1510,33 @@ country_event = {
 		name = japan_wr.40.a
 		if = {
 			limit = {
-				CHI = { exists = yes }
-			}
-			if = {
-				limit = {
-					OR = {
-						has_dlc = "Together for Victory"
-						has_dlc = "Waking the Tiger"
-					}
-				}
-				JAP = {
-					set_autonomy = {
-						target = CHI
-						autonomous_state = autonomy_wtt_imperial_protectorate
-						freedom_level = 0.5
-					}
+				OR = {
+					has_dlc = "Together for Victory"
+					has_dlc = "Waking the Tiger"
 				}
 			}
-			else = {
-				JAP = { puppet = CHI }
-			}
-			if = {
-				limit = {
-					613 = { is_owned_by = CHI }
+			JAP = {
+				set_autonomy = {
+					target = CHI
+					autonomous_state = autonomy_wtt_imperial_protectorate
+					freedom_level = 0.5
 				}
-				613 = { transfer_state_to = JAP }
 			}
-			if = {
-				limit = {
-					591 = { is_owned_by = CHI }
-				}
-				591 = { transfer_state_to = JAP }
+		}
+		else = {
+			JAP = { puppet = CHI }
+		}
+		if = {
+			limit = {
+				613 = { is_owned_by = CHI }
 			}
+			613 = { transfer_state_to = JAP }
+		}
+		if = {
+			limit = {
+				591 = { is_owned_by = CHI }
+			}
+			591 = { transfer_state_to = JAP }
 		}
 		every_state = {
 			limit = {
@@ -1615,6 +1571,21 @@ country_event = {
 				}
 			}
 			transfer_state_to = MAN
+			MAN = { 609 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 608 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 616 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 746 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 1018 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 622 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 615 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 614 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 1016 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 597 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 1017 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 1012 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 744 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 1014 = { enable_state_integration_60_compliance = yes } }
+			MAN = { 607 = { enable_state_integration_60_compliance = yes } }
 		}
 		every_state = {
 			limit = {
@@ -1702,22 +1673,6 @@ country_event = {
 				}
 			}
 			transfer_state_to = TIB
-		}
-		every_state = {
-			limit = {
-				OR = {
-					is_core_of = CHI
-					is_core_of = KMT
-					is_core_of = KMR
-					is_core_of = NPA
-					is_core_of = PRC
-				}
-			}
-			remove_core_of = CHI
-			remove_core_of = KMT
-			remove_core_of = KMR
-			remove_core_of = NPA
-			remove_core_of = PRC
 		}
 		every_state = {
 			limit = {

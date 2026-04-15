@@ -3479,6 +3479,51 @@ on_actions = {
 					}
 				}
 			}
+			if = {
+				limit = {
+					original_tag = MAN
+					JAP = { has_war_with = MAN }
+					has_global_flag = jap_man_war_flag
+				}
+				clr_global_flag = jap_man_war_flag
+				CHI = { annex_country = { target = MAN transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_owned_by = MAN
+					}
+					remove_core_of = MAN
+					add_core_of = CHI
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 820
+							state = 818
+							state = 330
+							state = 819
+							state = 817
+						}
+					}
+					transfer_state_to = MON
+					remove_core_of = MAN
+					add_core_of = MON
+				}
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Waking the Tiger"
+						}
+					}
+					JAP = {
+						set_autonomy = {
+							target = MON
+							autonomous_state = autonomy_wtt_imperial_protectorate
+							freedom_level = 0.5
+						}
+					}
+				}
+			}
 			#for achievements
 			if = {
 				limit = {
