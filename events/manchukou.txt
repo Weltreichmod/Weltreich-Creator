@@ -1,4 +1,5 @@
 ﻿add_namespace = manchukou_wr
+add_namespace = chi_border_conflict
 
 # Manchukou demands warlord be puppeted
 country_event = {
@@ -1754,6 +1755,8 @@ country_event = {
 	option = {
 		name = manchukou_wr.70.a
 		JAP = { add_to_faction = MAN }
+		add_ideas = MAN_treaty_of_harbin
+		JAP = { add_ideas = MAN_treaty_of_harbin }
 		ai_chance = { 
 			base = 10
 		}
@@ -1815,6 +1818,8 @@ country_event = {
 			declare_war_on = { target = KMR type = annex_everything }
 		}
 		JAP = { add_to_faction = MAN }
+		add_ideas = MAN_treaty_of_harbin
+		JAP = { add_ideas = MAN_treaty_of_harbin }
 		ai_chance = { 
 			base = 10
 		}
@@ -1936,6 +1941,9 @@ country_event = {
 		set_capital = {
 		  state = 608
 		  remember_old_capital = no
+		}
+		608 = {
+			remove_dynamic_modifier = { modifier = CHI_qing_little_court }
 		}
 		ai_chance = { 
 			base = 10
@@ -2235,6 +2243,9 @@ country_event = {
 		set_capital = {
 			state = 608
 			remember_old_capital = no
+		}
+		608 = {
+			remove_dynamic_modifier = { modifier = CHI_qing_little_court }
 		}
 		ai_chance = { 
 			base = 10
@@ -2576,6 +2587,9 @@ country_event = {
 					puppet = KOR
 				}
 			}
+			set_country_flag = anti_japanese_war_winner
+			complete_national_focus = MAN_anti_japanese_victory
+			mark_focus_tree_layout_dirty = yes
 		}
 		ROOT = { annex_country = { target = CHI transfer_troops = no } }
 		every_country = {
@@ -2610,6 +2624,319 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = manchukou_wr.104.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.105
+	title = manchukou_wr.105.t
+	desc = manchukou_wr.105.d
+	picture = GFX_report_event_generic_troops_in_iraq
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.105.a
+		MAN = {
+			if = {
+				imit = {
+					has_dlc = "Together for Victory"
+					GSM = { exists = yes }
+				}
+				set_autonomy = {
+					target = GSM
+					autonomous_state = autonomy_chinese_tartary
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = GSM
+				}
+			}
+		}
+		GSM = { set_cosmetic_tag = under_MAN }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.106
+	title = manchukou_wr.106.t
+	desc = manchukou_wr.106.d
+	picture = MAN_throun
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.106.a
+		add_political_power = 25
+		add_stability = 0.05
+		MAN = {
+			every_owned_state = {
+				limit = {
+					NOT = { is_core_of = MAN } # 이미 핵심 주인 곳은 제외
+				}
+				enable_state_integration_60_compliance = yes
+			}
+			CHI = { enable_country_integration_60_compliance = yes }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.107
+	title = manchukou_wr.107.t
+	desc = manchukou_wr.107.d
+	picture = MAN_new_year
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.107.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.108
+	title = manchukou_wr.108.t
+	desc = manchukou_wr.108.d
+	picture = MAN_zheng_xiaoxu_picture
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.108.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.109
+	title = manchukou_wr.109.t
+	desc = manchukou_wr.109.d
+	picture = MAN_109_picture
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.109.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.110
+	title = manchukou_wr.110.t
+	desc = manchukou_wr.110.d
+	picture = MAN_picture2
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.110.a
+		effect_tooltip = {
+			every_state = {
+				limit = {
+					is_chinese_area = yes
+					is_owned_by = ROOT
+				}
+				transfer_state_to = MAN
+			}
+		}
+		MAN = { country_event = manchukou_wr.111 }
+		ai_chance = {
+			base = 5
+		}
+	}
+	option = {
+		name = manchukou_wr.110.b
+		MAN = { country_event = manchukou_wr.112 }
+		set_country_flag = didnt_give_them_flag
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.111
+	title = manchukou_wr.111.t
+	desc = manchukou_wr.111.d
+	picture = MAN_picture2
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.111.a
+		every_state = {
+			limit = {
+				is_chinese_area = yes
+				is_owned_by = FROM
+			}
+			transfer_state_to = MAN
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.112
+	title = manchukou_wr.112.t
+	desc = manchukou_wr.112.d
+	picture = MAN_picture2
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.112.a
+		unlock_decision_category_tooltip = manchukuo_wr_concessions_category
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.113
+	title = manchukou_wr.113.t
+	desc = manchukou_wr.113.d
+	picture = GFX_hu_shih_speech
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.113.a
+		retire_character = CHI_hu_shih
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.114
+	title = manchukou_wr.114.t
+	desc = manchukou_wr.114.d
+	picture = MAN_109_picture
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.114.a
+		add_political_power = 10
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.115
+	title = manchukou_wr.115.t
+	desc = manchukou_wr.115.d
+	picture = MAN_109_picture
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.115.a
+		FROM = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+				}
+				set_autonomy = {
+					target = ROOT
+					autonomous_state = autonomy_chinese_tartary
+				freedom_level = 0.5
+				}
+				else = {
+					puppet = ROOT
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = manchukou_wr.115.b
+		effect_tooltip = {
+			FROM = { declare_war_on = { target = ROOT  type = annex_everything } }
+		}
+		hidden_effect = {
+			FROM = { country_event = { id = manchukou_wr.116 days = 1 } }
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.116
+	title = manchukou_wr.116.t
+	desc = manchukou_wr.116.d
+	is_triggered_only = yes
+	picture = GFX_report_event_japan_army_mountainside
+	option = {
+		name = manchukou_wr.116.a
+		declare_war_on = { target = FROM  type = annex_everything }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.117
+	title = manchukou_wr.117.t
+	desc = manchukou_wr.117.d
+	is_triggered_only = yes
+	picture = CHI_country
+	option = {
+		name = manchukou_wr.117.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.118
+	title = manchukou_wr.118.t
+	desc = manchukou_wr.118.d
+	is_triggered_only = yes
+	picture = MAN_reform_4
+	option = {
+		name = manchukou_wr.118.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.119
+	title = manchukou_wr.119.t
+	desc = manchukou_wr.119.d
+	is_triggered_only = yes
+	picture = GFX_report_event_JAP_kodoha_coup_attempt_occupation
+	option = {
+		name = manchukou_wr.119.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.120
+	title = manchukou_wr.120.t
+	desc = manchukou_wr.120.d
+	is_triggered_only = yes
+	picture = MAN_109_picture
+	option = {
+		name = manchukou_wr.120.a
+		custom_effect_tooltip = MAN_Zheng_Xiaoxu_ending_tt
+		hidden_effect = { scoped_play_song = "WR_ENDING_MAN_Zheng_Xiaoxu" }
 		ai_chance = {
 			base = 10
 		}
@@ -2819,6 +3146,236 @@ country_event = {
 	option = {
 		name = manchukou_wr.1003.a
 		drop_cosmetic_tag = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.1
+	title = chi_border_conflict.1.t
+	desc = chi_border_conflict.1.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					state = 743
+				}
+				transfer_state_to = MAN
+			}
+		}
+	}
+	option = {
+		name = chi_border_conflict.1.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.2
+	title = chi_border_conflict.2.t
+	desc = chi_border_conflict.2.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = chi_border_conflict.2.a
+		add_political_power = -50
+		add_stability = -0.025
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.3
+	title = chi_border_conflict.3.t
+	desc = chi_border_conflict.3.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = chi_border_conflict.3.a
+		add_political_power = -25
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.4
+	title = chi_border_conflict.4.t
+	desc = chi_border_conflict.4.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = chi_border_conflict.4.a
+		add_political_power = 25
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.5
+	title = chi_border_conflict.5.t
+	desc = chi_border_conflict.5.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					state = 745
+				}
+				transfer_state_to = MAN
+			}
+		}
+	}
+	option = {
+		name = chi_border_conflict.5.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.6
+	title = chi_border_conflict.6.t
+	desc = chi_border_conflict.6.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = chi_border_conflict.6.a
+		add_political_power = -50
+		add_stability = -0.025
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.7
+	title = chi_border_conflict.7.t
+	desc = chi_border_conflict.7.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					state = 326
+				}
+				transfer_state_to = MAN
+			}
+		}
+	}
+	option = {
+		name = chi_border_conflict.7.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.8
+	title = chi_border_conflict.8.t
+	desc = chi_border_conflict.8.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = chi_border_conflict.8.a
+		add_political_power = -50
+		add_stability = -0.025
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.9
+	title = chi_border_conflict.9.t
+	desc = chi_border_conflict.9.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					state = 729
+				}
+				transfer_state_to = MAN
+			}
+		}
+	}
+	option = {
+		name = chi_border_conflict.9.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.10
+	title = chi_border_conflict.10.t
+	desc = chi_border_conflict.10.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = chi_border_conflict.10.a
+		add_political_power = -50
+		add_stability = -0.025
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.11
+	title = chi_border_conflict.11.t
+	desc = chi_border_conflict.11.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					state = 728
+				}
+				transfer_state_to = MAN
+			}
+		}
+	}
+	option = {
+		name = chi_border_conflict.11.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = chi_border_conflict.12
+	title = chi_border_conflict.12.t
+	desc = chi_border_conflict.12.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = chi_border_conflict.12.a
+		add_political_power = -50
+		add_stability = -0.025
 		ai_chance = {
 			base = 10
 		}

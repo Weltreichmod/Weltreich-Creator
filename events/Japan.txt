@@ -1571,22 +1571,16 @@ country_event = {
 				}
 			}
 			transfer_state_to = MAN
-			MAN = { 609 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 608 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 616 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 746 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 1018 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 622 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 615 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 614 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 1016 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 597 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 1017 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 1012 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 744 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 1014 = { enable_state_integration_60_compliance = yes } }
-			MAN = { 607 = { enable_state_integration_60_compliance = yes } }
+			MAN = {
+				every_owned_state = {
+					limit = {
+						NOT = { is_core_of = MAN } # 이미 핵심 주인 곳은 제외
+					}
+					enable_state_integration_60_compliance = yes
+				}
+			}
 		}
+		MAN = { country_event = { id = manchukou_wr.105 days = 10 } }
 		every_state = {
 			limit = {
 				is_owned_by = CHI
