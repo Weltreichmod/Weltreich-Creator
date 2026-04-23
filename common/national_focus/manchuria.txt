@@ -1940,6 +1940,7 @@ focus_tree = {
 				add_ideas = MAN_datong_society
 			}
 			set_cosmetic_tag = DAT_great_unity_state
+			news_event = manchukou_wr.75
 		}
 	}
 	
@@ -2060,6 +2061,8 @@ focus_tree = {
 				character = MAN_Zheng_Xiaoxu
 				ruling_only = yes
 			}
+			NOT = { has_completed_focus = MAN_full_blooming_peony }
+			NOT = { has_completed_focus = MAN_full_blooming_peony_kanzi }
 		}
 		will_lead_to_war_with = CHI
 		will_lead_to_war_with = KMT
@@ -2079,6 +2082,7 @@ focus_tree = {
 					has_war_with = KMR
 					KMR = { exists = yes }
 				}
+				has_global_flag = second_Sino_Japanese_war_started_flag
 			}
 		}
 		prerequisite = {
@@ -2312,7 +2316,9 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = MAN_full_blooming_peony_tt
 			mark_focus_tree_layout_dirty = yes
-			load_oob = "MAN_focus_1"
+			hidden_effect = {
+				load_oob = "MAN_focus_1"
+			}
 		}
 	}
 	
@@ -2331,6 +2337,8 @@ focus_tree = {
 				character = MAN_ishiwara_ganzi
 				ruling_only = yes
 			}
+			NOT = { has_completed_focus = MAN_full_blooming_peony }
+			NOT = { has_completed_focus = MAN_full_blooming_peony_kanzi }
 		}
 		will_lead_to_war_with = CHI
 		will_lead_to_war_with = KMT
@@ -2651,7 +2659,9 @@ focus_tree = {
 		completion_reward = {
 			custom_effect_tooltip = MAN_full_blooming_peony_tt
 			mark_focus_tree_layout_dirty = yes
-			load_oob = "MAN_focus_1"
+			hidden_effect = {
+				load_oob = "MAN_focus_2"
+			}
 		}
 	}
 	
@@ -2663,14 +2673,1737 @@ focus_tree = {
 		y = 0
 		cost = 5
 		cancelable = no
+		available = {
+			is_subject = no
+		}
 		allow_branch = {
-			OR = {
-				has_completed_focus = MAN_full_blooming_peony
-				has_completed_focus = MAN_full_blooming_peony_kanzi
-			}
+			has_completed_focus = MAN_full_blooming_peony
+			NOT = { has_country_flag = anti_japanese_war_winner }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
+			country_event = manchukou_wr.76
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	focus = {
+		id = MAN_reaffirm_qing_mandate
+		icon = GFX_MAN_reaffirm_qing_mandate
+		relative_position_id = MAN_incomplete_capital_relocation
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_incomplete_capital_relocation
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			set_cosmetic_tag = Great_Qing
+			news_event = manchukou_wr.77
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	focus = {
+		id = MAN_faded_mandate
+		icon = GFX_MAN_faded_mandate
+		relative_position_id = MAN_reaffirm_qing_mandate
+		x = 0
+		y = 1
+		cost = 1
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_reaffirm_qing_mandate
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			unlock_decision_category_tooltip = MAN_suppress_national_protection
+			set_variable = { MAN_suppress_national_protection_var = 90 }
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	focus = {
+		id = MAN_hardline_policy
+		icon = GFX_MAN_hardline_policy
+		relative_position_id = MAN_faded_mandate
+		x = -3
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_faded_mandate
+		}
+		mutually_exclusive = {
+			focus = MAN_conciliatory_policy
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 25
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.2
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_outlaw_strikes
+		icon = GFX_MAN_outlaw_strikes
+		relative_position_id = MAN_hardline_policy
+		x = -2
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_hardline_policy
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_economic_paralysis3
+				add_idea = MAN_economic_paralysis2
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_use_military_police
+		icon = GFX_MAN_use_military_police
+		relative_position_id = MAN_outlaw_strikes
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_outlaw_strikes
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = MAN_military_police
+			swap_ideas = {
+				remove_idea = MAN_economic_paralysis2
+				add_idea = MAN_economic_paralysis1
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_collaboration_with_zaibatsu
+		icon = GFX_MAN_collaboration_with_zaibatsu
+		relative_position_id = MAN_use_military_police
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_use_military_police
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = manchukou_wr.81
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_corporate_governance
+		icon = GFX_MAN_corporate_governance
+		relative_position_id = MAN_collaboration_with_zaibatsu
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_collaboration_with_zaibatsu
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = MAN_zaibatsu_society
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_control_the_press
+		icon = GFX_MAN_control_the_press
+		relative_position_id = MAN_hardline_policy
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_hardline_policy
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_intellectual_resistance5
+				add_idea = MAN_intellectual_resistance4
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_repress_political_crimes
+		icon = GFX_MAN_repress_political_crimes
+		relative_position_id = MAN_control_the_press
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_control_the_press
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = manchukou_wr.82
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_meritocracy
+		icon = GFX_MAN_meritocracy
+		relative_position_id = MAN_repress_political_crimes
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_repress_political_crimes
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_intellectual_resistance2
+				add_idea = MAN_intellectual_resistance1
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_master_of_civilization
+		icon = GFX_MAN_master_of_civilization
+		relative_position_id = MAN_meritocracy
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_meritocracy
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_intellectual_resistance1
+				add_idea = MAN_intellectual_state_reformed
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_expand_administration
+		icon = GFX_MAN_expand_administration
+		relative_position_id = MAN_faded_mandate
+		x = 0
+		y = 2
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_faded_mandate
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_emergency_relief_measures
+		icon = GFX_MAN_emergency_relief_measures
+		relative_position_id = MAN_expand_administration
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_expand_administration
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			country_event = manchukou_wr.78
+			swap_ideas = {
+				remove_idea = MAN_collapsed_countryside3
+				add_idea = MAN_collapsed_countryside2
+			}
+		}
+		ai_will_do = {
+			factor = 15
+		}
+	}
+	
+	focus = {
+		id = MAN_rural_education_program
+		icon = GFX_MAN_rural_education_program
+		relative_position_id = MAN_emergency_relief_measures
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_emergency_relief_measures
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_timed_idea = { idea = MAN_new_learning_movement days = 100 }
+		}
+		ai_will_do = {
+			factor = 30
+		}
+	}
+	
+	focus = {
+		id = MAN_expand_education_network
+		icon = GFX_MAN_expand_education_network
+		relative_position_id = MAN_rural_education_program
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		available = {
+			NOT = { has_idea = MAN_new_learning_movement }
+		}
+		prerequisite = {
+			focus = MAN_rural_education_program
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = MAN_rising_educational_zeal
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_expand_statistical_survey
+		icon = GFX_MAN_expand_statistical_survey
+		relative_position_id = MAN_expand_administration
+		x = 1
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_expand_administration
+		}
+		prerequisite = {
+			focus = MAN_emergency_relief_measures
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			country_event = manchukou_wr.79
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_central_bank_reform
+		icon = GFX_MAN_central_bank_reform
+		relative_position_id = MAN_expand_statistical_survey
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_expand_statistical_survey
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_collapsed_countryside2
+				add_idea = MAN_collapsed_countryside1
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_agricultural_cooperative_bank
+		icon = GFX_MAN_agricultural_cooperative_bank
+		relative_position_id = MAN_central_bank_reform
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+			custom_trigger_tooltip = {
+				tooltip = MAN_agricultural_cooperative_bank_tt
+				hidden_trigger = {
+					has_country_flag = MAN_608_civilian_factory_flag
+					has_country_flag = MAN_597_civilian_factory_flag
+					has_country_flag = MAN_615_civilian_factory_flag
+					has_country_flag = MAN_622_civilian_factory_flag
+
+					has_country_flag = MAN_607_army_factory_flag
+					has_country_flag = MAN_614_army_factory_flag
+					has_country_flag = MAN_1017_army_factory_flag
+					has_country_flag = MAN_744_army_factory_flag
+
+					has_country_flag = MAN_609_infra_build_flag
+					has_country_flag = MAN_608_infra_build_flag
+					has_country_flag = MAN_MAN_614_infra_build_flag
+					has_country_flag = MAN_597_infra_build_flag
+					has_country_flag = MAN_1016_infra_build_flag
+					has_country_flag = MAN_1017_infra_build_flag
+				}
+			}
+		}
+		prerequisite = {
+			focus = MAN_central_bank_reform
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			remove_ideas = MAN_collapsed_countryside1
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_sustainable_rural_society
+		icon = GFX_MAN_sustainable_rural_society
+		relative_position_id = MAN_expand_education_network
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_expand_education_network
+		}
+		prerequisite = {
+			focus = MAN_agricultural_cooperative_bank
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = manchukou_wr.80
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_conciliatory_policy
+		icon = GFX_MAN_conciliatory_policy
+		relative_position_id = MAN_faded_mandate
+		x = 3
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_faded_mandate
+		}
+		mutually_exclusive = {
+			focus = MAN_hardline_policy
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_timed_idea = { idea = MAN_civil_governance_principle days = 200 }
+			swap_ideas = {
+				remove_idea = MAN_economic_paralysis3
+				add_idea = MAN_economic_paralysis2
+			}
+			swap_ideas = {
+				remove_idea = MAN_intellectual_resistance5
+				add_idea = MAN_intellectual_resistance4
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_active_cooptation_policy
+		icon = GFX_MAN_active_cooptation_policy
+		relative_position_id = MAN_conciliatory_policy
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_conciliatory_policy
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_intellectual_resistance4
+				add_idea = MAN_intellectual_resistance3
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_integrate_republican_bureaucrats
+		icon = GFX_MAN_integrate_republican_bureaucrats
+		relative_position_id = MAN_active_cooptation_policy
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_active_cooptation_policy
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_economic_paralysis2
+				add_idea = MAN_economic_paralysis1
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_absorb_state_enterprises
+		icon = GFX_MAN_absorb_state_enterprises
+		relative_position_id = MAN_integrate_republican_bureaucrats
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_integrate_republican_bureaucrats
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			remove_ideas = MAN_economic_paralysis1
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_return_to_order
+		icon = GFX_MAN_return_to_order
+		relative_position_id = MAN_absorb_state_enterprises
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_absorb_state_enterprises
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = manchukou_wr.83
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_recognize_party_politics
+		icon = GFX_MAN_recognize_party_politics
+		relative_position_id = MAN_active_cooptation_policy
+		x = 2
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_active_cooptation_policy
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = manchukou_wr.84
+			swap_ideas = {
+				remove_idea = MAN_intellectual_resistance4
+				add_idea = MAN_intellectual_resistance3
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_coalition_with_conservatives
+		icon = GFX_MAN_coalition_with_conservatives
+		relative_position_id = MAN_recognize_party_politics
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_recognize_party_politics
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_intellectual_resistance3
+				add_idea = MAN_intellectual_resistance2
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_unity_democracy
+		icon = GFX_MAN_unity_democracy
+		relative_position_id = MAN_coalition_with_conservatives
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_coalition_with_conservatives
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_intellectual_resistance2
+				add_idea = MAN_intellectual_resistance1
+			}
+			custom_effect_tooltip = MAN_unity_democracy_tt
+			hidden_effect = {
+				country_event = { id = manchukou_wr.85 days = 40 }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_resume_competition_with_japan
+		icon = GFX_MAN_resume_competition_with_japan
+		relative_position_id = MAN_sustainable_rural_society
+		x = -3
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_sustainable_rural_society
+		}
+		prerequisite = {
+			focus = MAN_master_of_civilization
+		}
+		prerequisite = {
+			focus = MAN_corporate_governance
+		}
+		will_lead_to_war_with = JAP
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_broken_mandate_of_heaven_5
+				add_idea = MAN_proven_mandate_of_heaven
+			}
+			remove_ideas = MAN_economy_japan
+			custom_effect_tooltip = MAN_resume_competition_with_japan_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { has_country_flag = third_sino_japanese_war_flag }
+					}
+					country_event = { id = manchukou_wr.87 days = 7 }
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_break_japanese_influence
+		icon = GFX_MAN_break_japanese_influence
+		relative_position_id = MAN_sustainable_rural_society
+		x = 3
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_sustainable_rural_society
+		}
+		prerequisite = {
+			focus = MAN_return_to_order
+		}
+		prerequisite = {
+			focus = MAN_unity_democracy
+		}
+		will_lead_to_war_with = JAP
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_broken_mandate_of_heaven_5
+				add_idea = MAN_proven_mandate_of_heaven
+			}
+			remove_ideas = MAN_economy_japan
+			custom_effect_tooltip = MAN_resume_competition_with_japan_tt
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { has_country_flag = third_sino_japanese_war_flag }
+					}
+					country_event = { id = manchukou_wr.87 days = 7 }
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_emergency_investigation
+		icon = GFX_MAN_emergency_investigation
+		relative_position_id = MAN_sustainable_rural_society
+		x = 0
+		y = 3
+		cost = 1
+		available = {
+			is_subject = no
+		}
+		allow_branch = {
+			has_country_flag = MAN_Zheng_Xiaoxu_almost_dead_flag
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = { id = manchukou_wr.88 days = 10 }
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_purge
+		icon = GFX_MAN_purge
+		relative_position_id = MAN_emergency_investigation
+		x = 0
+		y = 1
+		cost = 1
+		available = {
+			is_subject = no
+			hidden_trigger = {
+				has_country_flag = manchukou_wr_88_flag
+			}
+		}
+		prerequisite = {
+			focus = MAN_emergency_investigation
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = MAN_purge_tt
+			add_manpower = -100
+			hidden_effect = {
+				if = {
+					limit = {
+						NOT = { has_country_flag = third_sino_japanese_war_flag }
+					}
+					JAP = { country_event = { id = manchukou_wr.89 days = 3 } }
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_third_sino_japanese_war
+		icon = GFX_MAN_third_sino_japanese_war
+		relative_position_id = MAN_purge
+		x = 0
+		y = 1
+		cost = 1
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		prerequisite = {
+			focus = MAN_purge
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = MAN_chu_han_war
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_relocate_capital_beijing
+		icon = GFX_MAN_relocate_capital_beijing
+		x = 10
+		y = 0
+		cost = 5
+		cancelable = no
+		available = {
+			is_subject = no
+		}
+		allow_branch = {
+			has_completed_focus = MAN_full_blooming_peony_kanzi
+			NOT = { has_country_flag = anti_japanese_war_winner }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = manchukou_wr.92
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	focus = {
+		id = MAN_five_races_unity_dream
+		icon = GFX_MAN_five_races_unity_dream
+		relative_position_id = MAN_relocate_capital_beijing
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_relocate_capital_beijing
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_intellectual_resistance5
+				add_idea = MAN_intellectual_resistance4
+			}
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	focus = {
+		id = MAN_restore_order
+		icon = GFX_MAN_restore_order
+		relative_position_id = MAN_five_races_unity_dream
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_five_races_unity_dream
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			unlock_decision_category_tooltip = MAN_suppress_national_protection
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	focus = {
+		id = MAN_public_security_law_reform
+		icon = GFX_MAN_public_security_law_reform
+		relative_position_id = MAN_restore_order
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_restore_order
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = manchukou_wr.92
+			swap_ideas = {
+				remove_idea = MAN_economic_paralysis3
+				add_idea = MAN_economic_paralysis2
+			}
+			swap_ideas = {
+				remove_idea = MAN_intellectual_resistance4
+				add_idea = MAN_intellectual_resistance3
+			}
+		}
+		ai_will_do = {
+			factor = 100
+		}
+	}
+	
+	focus = {
+		id = MAN_enforce_hierarchy
+		icon = GFX_MAN_enforce_hierarchy
+		relative_position_id = MAN_public_security_law_reform
+		x = -3
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_public_security_law_reform
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_economic_paralysis2
+				add_idea = MAN_economic_paralysis1
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_systematize_tuntian
+		icon = GFX_MAN_systematize_tuntian
+		relative_position_id = MAN_enforce_hierarchy
+		x = -1
+		y = 2
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_enforce_hierarchy
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = manchukou_wr.95
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_conscription_principle
+		icon = GFX_MAN_conscription_principle
+		relative_position_id = MAN_systematize_tuntian
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_systematize_tuntian
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = MAN_collapsed_countryside3
+				}
+				swap_ideas = {
+					remove_idea = MAN_collapsed_countryside3
+					add_idea = MAN_collapsed_countryside2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = MAN_collapsed_countryside2
+				}
+				swap_ideas = {
+					remove_idea = MAN_collapsed_countryside2
+					add_idea = MAN_collapsed_countryside1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = MAN_collapsed_countryside1
+				}
+				remove_ideas = MAN_collapsed_countryside1
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_eliminate_bandits
+		icon = GFX_MAN_eliminate_bandits
+		relative_position_id = MAN_enforce_hierarchy
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_enforce_hierarchy
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = manchukou_wr.96
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_permanent_total_war
+		icon = GFX_MAN_permanent_total_war
+		relative_position_id = MAN_eliminate_bandits
+		x = 0
+		y = 2
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_eliminate_bandits
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = MAN_defense_state
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_ideological_police
+		icon = GFX_MAN_ideological_police
+		relative_position_id = MAN_public_security_law_reform
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_public_security_law_reform
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = MAN_unified_prosecution_police
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_party_army
+		icon = GFX_MAN_party_army
+		relative_position_id = MAN_ideological_police
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_ideological_police
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = manchukou_wr.94
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_military_priority
+		icon = GFX_MAN_military_priority
+		relative_position_id = MAN_party_army
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_party_army
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_state_foundation_army
+				add_idea = MAN_state_foundation_army1
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_ideological_police_military_role
+		icon = GFX_MAN_ideological_police_military_role
+		relative_position_id = MAN_military_priority
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_military_priority
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_unified_prosecution_police
+				add_idea = MAN_unified_prosecution_police1
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_state_media_law
+		icon = GFX_MAN_state_media_law
+		relative_position_id = MAN_public_security_law_reform
+		x = 3
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_public_security_law_reform
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = manchukou_wr.97
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_radicalize_academia
+		icon = GFX_MAN_radicalize_academia
+		relative_position_id = MAN_state_media_law
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_state_media_law
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_intellectual_resistance2
+				add_idea = MAN_intellectual_resistance1
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_technocratism
+		icon = GFX_MAN_technocratism
+		relative_position_id = MAN_radicalize_academia
+		x = 0
+		y = 2
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_radicalize_academia
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			remove_ideas = MAN_intellectual_resistance1
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_education_for_army
+		icon = GFX_MAN_education_for_army
+		relative_position_id = MAN_state_media_law
+		x = 1
+		y = 2
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_state_media_law
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = manchukou_wr.98
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_youth_movement
+		icon = GFX_MAN_youth_movement
+		relative_position_id = MAN_education_for_army
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+			NOT = { has_idea = MAN_new_learning_for_military }
+		}
+		prerequisite = {
+			focus = MAN_education_for_army
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = MAN_collapsed_countryside3
+				}
+				swap_ideas = {
+					remove_idea = MAN_collapsed_countryside3
+					add_idea = MAN_collapsed_countryside2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = MAN_collapsed_countryside2
+				}
+				swap_ideas = {
+					remove_idea = MAN_collapsed_countryside2
+					add_idea = MAN_collapsed_countryside1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = MAN_collapsed_countryside1
+				}
+				remove_ideas = MAN_collapsed_countryside1
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_unify_the_continent
+		icon = GFX_MAN_unify_the_continent
+		relative_position_id = MAN_ideological_police_military_role
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+			custom_trigger_tooltip = {
+				tooltip = MAN_agricultural_cooperative_bank_tt
+				hidden_trigger = {
+					has_country_flag = MAN_608_civilian_factory_flag
+					has_country_flag = MAN_597_civilian_factory_flag
+					has_country_flag = MAN_615_civilian_factory_flag
+					has_country_flag = MAN_622_civilian_factory_flag
+
+					has_country_flag = MAN_607_army_factory_flag
+					has_country_flag = MAN_614_army_factory_flag
+					has_country_flag = MAN_1017_army_factory_flag
+					has_country_flag = MAN_744_army_factory_flag
+
+					has_country_flag = MAN_609_infra_build_flag
+					has_country_flag = MAN_608_infra_build_flag
+					has_country_flag = MAN_614_infra_build_flag
+					has_country_flag = MAN_597_infra_build_flag
+					has_country_flag = MAN_1016_infra_build_flag
+					has_country_flag = MAN_1017_infra_build_flag
+				}
+			}
+		}
+		prerequisite = {
+			focus = MAN_ideological_police_military_role
+		}
+		prerequisite = {
+			focus = MAN_conscription_principle
+		}
+		prerequisite = {
+			focus = MAN_permanent_total_war
+		}
+		prerequisite = {
+			focus = MAN_technocratism
+		}
+		prerequisite = {
+			focus = MAN_youth_movement
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			unlock_decision_category_tooltip = MAN_operation_against_china
+			hidden_effect = {
+				country_event = { id = manchukou_wr.99 days = 20 }
+			}
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	focus = {
+		id = MAN_gurisan_incident
+		icon = GFX_MAN_gurisan_incident
+		relative_position_id = MAN_unify_the_continent
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			always = no
+		}
+		prerequisite = {
+			focus = MAN_unify_the_continent
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			declare_war_on = { target = CHI type = puppet_wargoal_focus }
+		}
+		ai_will_do = {
+			factor = 6
+		}
+	}
+	
+	#3기 대청국
+	focus = {
+		id = MAN_anti_japanese_victory
+		icon = GFX_MAN_anti_japanese_victory
+		x = 10
+		y = 0
+		cost = 1
+		available = {
+			is_subject = no
+		}
+		allow_branch = {
+			has_country_flag = anti_japanese_war_winner
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			country_event = manchukou_wr.106
+		}
+	}
+	
+	focus = {
+		id = MAN_in_the_forbidden_city
+		icon = GFX_MAN_in_the_forbidden_city
+		relative_position_id = MAN_anti_japanese_victory
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_anti_japanese_victory
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = manchukou_wr.107
+		}
+	}
+	
+	focus = {
+		id = MAN_strolling_summer_palace
+		icon = GFX_MAN_strolling_summer_palace
+		relative_position_id = MAN_in_the_forbidden_city
+		x = -2
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_in_the_forbidden_city
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = manchukou_wr.108
+		}
+	}
+	
+	focus = {
+		id = MAN_enthronement
+		icon = GFX_MAN_enthronement
+		relative_position_id = MAN_in_the_forbidden_city
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_in_the_forbidden_city
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = manchukou_wr.109
+		}
+	}
+	
+	focus = {
+		id = MAN_liquidation_of_past
+		icon = GFX_MAN_liquidation_of_past
+		relative_position_id = MAN_in_the_forbidden_city
+		x = 2
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_in_the_forbidden_city
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_timed_idea = { idea = MAN_liquidation_of_past = days = 365 }
+		}
+	}
+	
+	focus = {
+		id = MAN_end_national_humiliation
+		icon = GFX_MAN_end_national_humiliation
+		relative_position_id = MAN_enthronement
+		x = -1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_enthronement
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			every_country = {
+				limit = {
+					NOT = { original_tag = MAN }
+					OR = {
+						owns_state = 743
+						owns_state = 745
+						owns_state = 326
+						owns_state = 729
+						owns_state = 728
+					}
+				}
+				country_event = manchukou_wr.110
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_winning_intellectuals
+		icon = GFX_MAN_winning_intellectuals
+		relative_position_id = MAN_end_national_humiliation
+		x = -2
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_end_national_humiliation
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_ideas = manchukuo_wr_recruited_intellectuals
+			hidden_effect = {
+				country_event = { id = manchukou_wr.113 days = 7 }
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_chanting_world_stage
+		icon = GFX_MAN_chanting_world_stage
+		relative_position_id = MAN_end_national_humiliation
+		x = 0
+		y = 1
+		cost = 3.5
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_end_national_humiliation
+		}
+		search_filters = {  }
+		completion_reward = {
+			every_country = {
+				limit = {
+					is_major = yes
+				}
+				add_opinion_modifier = {
+					target = MAN
+					modifier = medium_increase
+				}
+				reverse_add_opinion_modifier = {
+					target = MAN
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_peonies_in_bloom
+		icon = GFX_MAN_peonies_in_bloom
+		relative_position_id = MAN_enthronement
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_enthronement
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = manchukou_wr.114
+		}
+	}
+	
+	focus = {
+		id = MAN_northwest_reconquest
+		icon = GFX_MAN_northwest_reconquest
+		relative_position_id = MAN_peonies_in_bloom
+		x = 0
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_peonies_in_bloom
+		}
+		search_filters = { FOCUS_FILTER_ANNEXATION }
+		completion_reward = {
+			unlock_decision_category_tooltip = MAN_territorial_restoration_category
+		}
+	}
+	
+	focus = {
+		id = MAN_veins_of_the_empire
+		icon = GFX_MAN_veins_of_the_empire
+		relative_position_id = MAN_peonies_in_bloom
+		x = 2
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_peonies_in_bloom
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			unlock_decision_category_tooltip = MAN_connecting_the_lifelines
+		}
+	}
+	
+	focus = {
+		id = MAN_covered_by_heaven
+		icon = GFX_MAN_covered_by_heaven
+		relative_position_id = MAN_chanting_world_stage
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_winning_intellectuals
+		}
+		prerequisite = {
+			focus = MAN_chanting_world_stage
+		}
+		prerequisite = {
+			focus = MAN_northwest_reconquest
+		}
+		prerequisite = {
+			focus = MAN_veins_of_the_empire
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = manchukou_wr.117
+		}
+	}
+	
+	focus = {
+		id = MAN_wearing_the_robe
+		icon = GFX_MAN_wearing_the_robe
+		relative_position_id = MAN_covered_by_heaven
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_covered_by_heaven
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = manchukou_wr.118
+		}
+	}
+	
+	focus = {
+		id = MAN_sky_grows_higher
+		icon = GFX_MAN_sky_grows_higher
+		relative_position_id = MAN_wearing_the_robe
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_wearing_the_robe
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = manchukou_wr.119
+		}
+	}
+	
+	focus = {
+		id = MAN_sea_surges_endlessly
+		icon = GFX_MAN_sea_surges_endlessly
+		relative_position_id = MAN_sky_grows_higher
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_sky_grows_higher
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = manchukou_wr.120
 		}
 	}
 }

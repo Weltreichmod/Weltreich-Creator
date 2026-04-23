@@ -45,6 +45,10 @@ focus_tree = {
 		ai_will_do = {
 			factor = 6
 		}
+		allow_branch = {
+			NOT = { has_country_flag = kuomintag_wr_46a }
+			NOT = { has_country_flag = kuomintag_wr_46b }
+		}
 		available = {
 			always = no
 		}
@@ -56,6 +60,16 @@ focus_tree = {
 				left_side = KMT_factional_conflict_left
 				right_side = KMT_factional_conflict_right
 				set_value = -0.1
+			}
+			hidden_effect = {
+				random_list = {
+					50 = {
+						set_country_flag = KMT_left_flag
+					}
+					50 = {
+						set_country_flag = KMT_right_flag
+					}
+				}
 			}
 		}
 	}
@@ -820,6 +834,10 @@ focus_tree = {
 		cost = 3
 		ai_will_do = {
 			factor = 6
+			modifier = {
+				factor = 0
+				has_country_flag = KMT_right_flag
+			}
 		}
 		available = {
 			is_subject = no
@@ -857,6 +875,10 @@ focus_tree = {
 		cost = 3
 		ai_will_do = {
 			factor = 6
+			modifier = {
+				factor = 0
+				has_country_flag = KMT_left_flag
+			}
 		}
 		available = {
 			is_subject = no
@@ -1247,6 +1269,9 @@ focus_tree = {
 		}
 		available = {
 			is_subject = no
+			hidden_trigger = {
+				NOT = { has_country_flag = Zhongshan_Incident_flag }
+			}
 		}
 		prerequisite = {
 			focus = KMT_resolution_of_five_hundred_million
@@ -1254,9 +1279,1190 @@ focus_tree = {
 		prerequisite = {
 			focus = KMT_form_the_ranks
 		}
+		cancelable = no
 		search_filters = {}
+		select_effect = {
+			country_event = { id = kuomintag_wr.39 days = 15 }
+		}
 		completion_reward = {
 			custom_effect_tooltip = KMT_end_party_divisions_tt
+		}
+	}
+	
+	#국국내전
+	focus = {
+		id = KMT_internal_collapse
+		icon = GFX_KMT_internal_collapse
+		x = 5
+		y = 0
+		cost = 0.1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		allow_branch = {
+			has_country_flag = kuomintag_wr_46a
+			NOT = { has_country_flag = KMT_left_focus_allow_flag }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			country_event = kuomintag_wr.48
+			swap_ideas = {
+				remove_idea = KMT_leadership_in_chaos
+				add_idea = KMT_leadership_in_chaos1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_long_night_ends
+		icon = GFX_KMT_long_night_ends
+		relative_position_id = KMT_internal_collapse
+		x = 0
+		y = 1
+		cost = 0.1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_internal_collapse
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			country_event = kuomintag_wr.49
+			swap_ideas = {
+				remove_idea = KMT_leadership_in_chaos1
+				add_idea = KMT_leadership_in_chaos2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_storm_reveals_grass
+		icon = GFX_KMT_storm_reveals_grass
+		relative_position_id = KMT_long_night_ends
+		x = -1
+		y = 1
+		cost = 0.3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_long_night_ends
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.50
+		}
+	}
+	
+	focus = {
+		id = KMT_restore_order_nanking
+		icon = GFX_KMT_restore_order_nanking
+		relative_position_id = KMT_long_night_ends
+		x = 1
+		y = 1
+		cost = 0.3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_long_night_ends
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_leadership_in_chaos2
+				add_idea = KMT_leadership_in_chaos3
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_continue_national_revolution
+		icon = GFX_KMT_continue_national_revolution
+		relative_position_id = KMT_storm_reveals_grass
+		x = 1
+		y = 1
+		cost = 0.5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_storm_reveals_grass
+		}
+		prerequisite = {
+			focus = KMT_restore_order_nanking
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.54
+			country_event = kuomintag_wr.56
+			remove_ideas = KMT_leadership_in_chaos3
+		}
+	}
+	
+	focus = {
+		id = KMT_unexpected_consequences
+		icon = GFX_KMT_unexpected_consequences
+		x = 5
+		y = 0
+		cost = 0.1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		allow_branch = {
+			has_country_flag = kuomintag_wr_46b
+			NOT = { has_country_flag = KMT_left_focus_allow_flag }
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_leadership_in_chaos
+				add_idea = KMT_leadership_in_chaos1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_cut_flesh_to_break_bone
+		icon = GFX_KMT_cut_flesh_to_break_bone
+		relative_position_id = KMT_unexpected_consequences
+		x = -1
+		y = 0
+		cost = 0.3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_unexpected_consequences
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			country_event = kuomintag_wr.51
+		}
+	}
+	
+	focus = {
+		id = KMT_contact_guangxi_army
+		icon = GFX_KMT_contact_guangxi_army
+		relative_position_id = KMT_unexpected_consequences
+		x = 1
+		y = 0
+		cost = 0.3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_unexpected_consequences
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			country_event = kuomintag_wr.52
+			swap_ideas = {
+				remove_idea = KMT_leadership_in_chaos1
+				add_idea = KMT_leadership_in_chaos2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_express_to_guangzhou
+		icon = GFX_KMT_express_to_guangzhou
+		relative_position_id = KMT_cut_flesh_to_break_bone
+		x = 1
+		y = 1
+		cost = 0.5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_cut_flesh_to_break_bone
+		}
+		prerequisite = {
+			focus = KMT_contact_guangxi_army
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			country_event = kuomintag_wr.53
+			swap_ideas = {
+				remove_idea = KMT_leadership_in_chaos2
+				add_idea = KMT_leadership_in_chaos3
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_proclaim_rival_government
+		icon = GFX_KMT_proclaim_rival_government
+		relative_position_id = KMT_express_to_guangzhou
+		x = 1
+		y = 1
+		cost = 0.1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMT_express_to_guangzhou
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL}
+		completion_reward = {
+			country_event = kuomintag_wr.54
+			remove_ideas = KMT_leadership_in_chaos3
+		}
+	}
+	
+	#국민당 좌파 경제 공통
+	focus = {
+		id = KMT_peoples_livelihood
+		icon = GFX_KMT_peoples_livelihood
+		x = -10
+		y = 0
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		allow_branch = {
+			has_country_flag = KMT_left_focus_allow_flag
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			remove_ideas = KMT_drifting_economic_policy
+			add_timed_idea = { idea = KMT_inflation days = 1300 }
+		}
+	}
+	
+	focus = {
+		id = KMT_financial_crisis
+		icon = GFX_KMT_financial_crisis
+		relative_position_id = KMT_peoples_livelihood
+		x = -1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_peoples_livelihood
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = KMT_put_out_the_fire
+		icon = GFX_KMT_put_out_the_fire
+		relative_position_id = KMT_peoples_livelihood
+		x = 1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_peoples_livelihood
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_timed_idea = { idea = KMT_scraping_the_bottom days = 150 }
+		}
+	}
+	
+	#중앙은행
+	focus = {
+		id = KMT_establish_cmc
+		icon = GFX_KMT_establish_cmc
+		relative_position_id = KMT_financial_crisis
+		x = -6
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_financial_crisis
+		}
+		bypass = {
+			NOT = { has_idea = KMT_inflation }
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			modify_timed_idea = {
+				idea = KMT_inflation
+				days = -90
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_issue_renminbi
+		icon = GFX_KMT_issue_renminbi
+		relative_position_id = KMT_establish_cmc
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_establish_cmc
+		}
+		bypass = {
+			NOT = { has_idea = KMT_inflation }
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			modify_timed_idea = {
+				idea = KMT_inflation
+				days = -120
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_printing_presses
+		icon = GFX_KMT_printing_presses
+		relative_position_id = KMT_issue_renminbi
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 0
+		}
+		prerequisite = {
+			focus = KMT_issue_renminbi
+		}
+		available = {
+			has_idea = KMT_inflation
+			NOT = { has_idea = KMT_monetary_stimulus }
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_timed_idea = { idea = KMT_monetary_stimulus days = 60 }
+			modify_timed_idea = {
+				idea = KMT_inflation
+				days = 180
+			}
+			uncomplete_national_focus = { focus = KMT_printing_presses }
+		}
+	}
+	
+	focus = {
+		id = KMT_new_central_bank
+		icon = GFX_KMT_new_central_bank
+		relative_position_id = KMT_financial_crisis
+		x = -3
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_financial_crisis
+		}
+		bypass = {
+			NOT = { has_idea = KMT_inflation }
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			modify_timed_idea = {
+				idea = KMT_inflation
+				days = -60
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_hsbc_cooperation
+		icon = GFX_KMT_hsbc_cooperation
+		relative_position_id = KMT_new_central_bank
+		x = -1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_new_central_bank
+		}
+		mutually_exclusive = {
+			focus = KMT_seize_boc_assets
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = kuomintag_wr.58
+			add_ideas = KMT_hsbc_cooperation_idea
+		}
+	}
+	
+	focus = {
+		id = KMT_black_cat_white_cat
+		icon = GFX_KMT_black_cat_white_cat
+		relative_position_id = KMT_hsbc_cooperation
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_hsbc_cooperation
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = KMT_black_cat_white_cat_idea
+			modify_timed_idea = {
+				idea = KMT_inflation
+				days = -120
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_attract_foreign_capital
+		icon = GFX_KMT_attract_foreign_capital
+		relative_position_id = KMT_black_cat_white_cat
+		x = 0
+		y = 2
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_black_cat_white_cat
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			remove_ideas = KMT_hsbc_cooperation_idea
+			remove_ideas = KMT_black_cat_white_cat_idea
+			add_ideas = KMT_foreign_capital
+			modify_timed_idea = {
+				idea = KMT_inflation
+				days = -120
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_seize_boc_assets
+		icon = GFX_KMT_seize_boc_assets
+		relative_position_id = KMT_new_central_bank
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_new_central_bank
+		}
+		mutually_exclusive = {
+			focus = KMT_hsbc_cooperation
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = KMT_self_sufficient_economy
+			country_event = kuomintag_wr.59
+		}
+	}
+	
+	focus = {
+		id = KMT_song_method
+		icon = GFX_KMT_song_method
+		relative_position_id = KMT_seize_boc_assets
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_seize_boc_assets
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_bank_nationalization
+				add_idea = KMT_bank_nationalization_1
+			}
+			modify_timed_idea = {
+				idea = KMT_inflation
+				days = -120
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_trust_national_capital
+		icon = GFX_KMT_trust_national_capital
+		relative_position_id = KMT_song_method
+		x = 0
+		y = 2
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_song_method
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_bank_nationalization_1
+				add_idea = KMT_bank_nationalization_2
+			}
+			modify_timed_idea = {
+				idea = KMT_inflation
+				days = -120
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_trusted_banking
+		icon = GFX_KMT_trusted_banking
+		relative_position_id = KMT_attract_foreign_capital
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			NOT = { has_idea = KMT_inflation }
+		}
+		prerequisite = {
+			focus = KMT_attract_foreign_capital
+			focus = KMT_trust_national_capital
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = kuomintag_wr.60
+		}
+	}
+	
+	focus = {
+		id = KMT_patriotic_bonds
+		icon = GFX_KMT_patriotic_bonds
+		relative_position_id = KMT_black_cat_white_cat
+		x = -1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_black_cat_white_cat
+			focus = KMT_song_method
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = kuomintag_wr.57
+		}
+	}
+	
+	focus = {
+		id = KMT_china_dev_finance
+		icon = GFX_KMT_china_dev_finance
+		relative_position_id = KMT_black_cat_white_cat
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_black_cat_white_cat
+			focus = KMT_song_method
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = KMT_china_development_finance
+			modify_timed_idea = {
+				idea = KMT_inflation
+				days = -90
+			}
+		}
+	}
+	
+	#토지개혁
+	focus = {
+		id = KMT_radical_land_reform
+		icon = GFX_KMT_radical_land_reform
+		relative_position_id = KMT_put_out_the_fire
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_put_out_the_fire
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_MANPOWER FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			add_timed_idea = { idea = KMT_radical_land_reform_idea days = 120 }
+		}
+	}
+	
+	focus = {
+		id = KMT_land_redistribution
+		icon = GFX_KMT_land_redistribution
+		relative_position_id = KMT_radical_land_reform
+		x = -1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_radical_land_reform
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_land_to_the_tiller
+				add_idea = KMT_land_to_the_tiller_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_grain_law
+		icon = GFX_KMT_grain_law
+		relative_position_id = KMT_radical_land_reform
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_radical_land_reform
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			country_event = kuomintag_wr.61
+		}
+	}
+	
+	focus = {
+		id = KMT_heavy_industry_for_agriculture
+		icon = GFX_KMT_heavy_industry_for_agriculture
+		relative_position_id = KMT_land_redistribution
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_land_redistribution
+		}
+		prerequisite = {
+			focus = KMT_grain_law
+		}
+		mutually_exclusive = {
+			focus = KMT_light_industry_recovery
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_guangdong_chemical_plant
+		icon = GFX_KMT_guangdong_chemical_plant
+		relative_position_id = KMT_land_redistribution
+		x = 0
+		y = 2
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			592 = { is_controlled_by = KMT }
+		}
+		prerequisite = {
+			focus = KMT_land_redistribution
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_land_to_the_tiller_1
+				add_idea = KMT_land_to_the_tiller_2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_secure_strategic_resources
+		icon = GFX_KMT_secure_strategic_resources
+		relative_position_id = KMT_heavy_industry_for_agriculture
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		available = {
+			600 = { is_controlled_by = KMT }
+			1009 = { is_controlled_by = KMT }
+		}
+		prerequisite = {
+			focus = KMT_heavy_industry_for_agriculture
+		}
+		search_filters = {  }
+		completion_reward = {
+			600 = {
+				add_resource = {
+					type = tungsten
+					amount = 12
+				}
+			}
+			1009 = {
+				add_resource = {
+					type = steel
+					amount = 9
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_self_reliance
+		icon = GFX_KMT_self_reliance
+		relative_position_id = KMT_guangdong_chemical_plant
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_guangdong_chemical_plant
+			focus = KMT_secure_strategic_resources
+		}
+		search_filters = {  }
+		completion_reward = {
+			remove_ideas = KMT_land_to_the_tiller_2
+			custom_effect_tooltip = KMT_self_reliance_tt
+			hidden_effect = {
+				country_event = { id = kuomintag_wr.62 days = 50 }
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_industrial_problem
+		icon = GFX_KMT_industrial_problem
+		relative_position_id = KMT_put_out_the_fire
+		x = 3
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_put_out_the_fire
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = KMT_industrial_development
+		}
+	}
+	
+	focus = {
+		id = KMT_civilian_priority
+		icon = GFX_KMT_civilian_priority
+		relative_position_id = KMT_industrial_problem
+		x = -1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_industrial_problem
+		}
+		mutually_exclusive = {
+			focus = KMT_expand_military_industry
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_light_industry_recovery
+		icon = GFX_KMT_light_industry_recovery
+		relative_position_id = KMT_civilian_priority
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_civilian_priority
+		}
+		mutually_exclusive = {
+			focus = KMT_heavy_industry_for_agriculture
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_industrial_development
+				add_idea = KMT_industrial_development_c
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_expand_military_industry
+		icon = GFX_KMT_expand_military_industry
+		relative_position_id = KMT_industrial_problem
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_industrial_problem
+		}
+		mutually_exclusive = {
+			focus = KMT_civilian_priority
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_industrial_development
+				add_idea = KMT_industrial_development_m
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_shanghai_arsenal
+		icon = GFX_KMT_shanghai_arsenal
+		relative_position_id = KMT_expand_military_industry
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_expand_military_industry
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_nationalize_industry
+		icon = GFX_KMT_nationalize_industry
+		relative_position_id = KMT_civilian_priority
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_civilian_priority
+			focus = KMT_expand_military_industry
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = KMT_nationalized_industries
+		}
+	}
+	
+	focus = {
+		id = KMT_war_economy
+		icon = GFX_KMT_war_economy
+		relative_position_id = KMT_nationalize_industry
+		x = 0
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_nationalize_industry
+			focus = KMT_light_industry_recovery
+			focus = KMT_shanghai_arsenal
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = KMT_industrial_development_m
+				}
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_m
+					add_idea = KMT_industrial_development_m1
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_c
+					add_idea = KMT_industrial_development_c1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_emergency_shifts
+		icon = GFX_KMT_emergency_shifts
+		relative_position_id = KMT_war_economy
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_war_economy
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = KMT_industrial_development_m1
+				}
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_m1
+					add_idea = KMT_industrial_development_m2
+				}
+			}
+			if = {
+				limit = {
+					has_idea = KMT_industrial_development_m2
+				}
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_m2
+					add_idea = KMT_industrial_development_m3
+				}
+			}
+			if = {
+				limit = {
+					has_idea = KMT_industrial_development_c1
+				}
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_c1
+					add_idea = KMT_industrial_development_c2
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_c2
+					add_idea = KMT_industrial_development_c3
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_increase_quotas
+		icon = GFX_KMT_increase_quotas
+		relative_position_id = KMT_war_economy
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_war_economy
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = KMT_industrial_development_m1
+				}
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_m1
+					add_idea = KMT_industrial_development_m2
+				}
+			}
+			if = {
+				limit = {
+					has_idea = KMT_industrial_development_m2
+				}
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_m2
+					add_idea = KMT_industrial_development_m3
+				}
+			}
+			if = {
+				limit = {
+					has_idea = KMT_industrial_development_c1
+				}
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_c1
+					add_idea = KMT_industrial_development_c2
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_c2
+					add_idea = KMT_industrial_development_c3
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_total_war
+		icon = GFX_KMT_total_war
+		relative_position_id = KMT_emergency_shifts
+		x = 1
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_emergency_shifts
+		}
+		prerequisite = {
+			focus = KMT_war_economy
+		}
+		prerequisite = {
+			focus = KMT_emergency_shifts
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = KMT_industrial_development_m1
+				}
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_m3
+					add_idea = KMT_industrial_development_m4
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = KMT_industrial_development_c3
+					add_idea = KMT_industrial_development_c4
+				}
+			}
 		}
 	}
 }

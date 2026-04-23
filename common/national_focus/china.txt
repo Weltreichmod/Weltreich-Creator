@@ -1068,6 +1068,7 @@ focus_tree = {
 				country_event = { id = china_wr.90 days = 150 }
 			}
 			custom_effect_tooltip = CHI_hufa_one_stroke_brigade_tt
+			country_lock_all_division_template = no
 		}
 	}
 	
@@ -1099,6 +1100,7 @@ focus_tree = {
 				country_event = china_wr.91
 			}
 			custom_effect_tooltip = CHI_hufa_keep_chanzheng_tt
+			country_lock_all_division_template = no
 		}
 	}
 	
@@ -3154,6 +3156,32 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = CHI_new_culture_movement
+		icon = GFX_CHI_new_culture_movement
+		relative_position_id = CHI_review_love_freedom_get
+		x = 6
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CHI_review_love_freedom_get
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			add_ideas = CHI_new_culture_movement
+			swap_ideas = {
+				remove_idea = CHI_diffuse_million_opium
+				add_idea = CHI_diffuse_million_opium_1
+			}
+		}
+	}
+	
+	focus = {
 		id = CHI_anti_authoritarian_discourse
 		icon = GFX_CHI_anti_authoritarian_discourse
 		relative_position_id = CHI_new_culture_movement
@@ -3299,6 +3327,69 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = CHI_modernize_education_system
+		icon = GFX_CHI_modernize_education_system
+		relative_position_id = CHI_liberalize_the_people
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			CHI_congress_over_65 = yes
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CHI_liberalize_the_people
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		cancelable = no
+		select_effect = {
+			set_country_flag = CHI_modernize_education_system_flag
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_modernize_education_system_tt
+			clr_country_flag = CHI_modernize_education_system_flag
+			if = {
+				limit = {
+					has_idea = CHI_low_literacy
+				}
+				swap_ideas = {
+					remove_idea = CHI_low_literacy
+					add_idea = CHI_low_literacy_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = CHI_low_literacy_1
+				}
+				swap_ideas = {
+					remove_idea = CHI_low_literacy_1
+					add_idea = CHI_low_literacy_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = CHI_low_literacy_2
+				}
+				swap_ideas = {
+					remove_idea = CHI_low_literacy_2
+					add_idea = CHI_low_literacy_3
+				}
+			}
+			else = {
+				remove_ideas = CHI_low_literacy_3
+			}
+			CHI_dec_progressive_party_support_5 = yes
+			CHI_dec_kuomintang_support_5 = yes
+			CHI_dec_others_independent_support_5 = yes
+			CHI_recalc_congress_icon_frames = yes
+			add_to_array = { CHI_parliament_law_history_array = 2 }
+		}
+	}
+	
+	focus = {
 		id = CHI_expand_basic_education
 		icon = GFX_CHI_expand_basic_education
 		relative_position_id = CHI_modernize_education_system
@@ -3359,69 +3450,6 @@ focus_tree = {
 			CHI_dec_others_independent_support_5 = yes
 			CHI_recalc_congress_icon_frames = yes
 			add_to_array = { CHI_parliament_law_history_array = 1 }
-		}
-	}
-	
-	focus = {
-		id = CHI_modernize_education_system
-		icon = GFX_CHI_modernize_education_system
-		relative_position_id = CHI_liberalize_the_people
-		x = 0
-		y = 1
-		cost = 3
-		available = {
-			is_subject = no
-			CHI_congress_over_65 = yes
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		prerequisite = {
-			focus = CHI_liberalize_the_people
-		}
-		ai_will_do = {
-			factor = 6
-		}
-		cancelable = no
-		select_effect = {
-			set_country_flag = CHI_modernize_education_system_flag
-		}
-		completion_reward = {
-			custom_effect_tooltip = CHI_modernize_education_system_tt
-			clr_country_flag = CHI_modernize_education_system_flag
-			if = {
-				limit = {
-					has_idea = CHI_low_literacy
-				}
-				swap_ideas = {
-					remove_idea = CHI_low_literacy
-					add_idea = CHI_low_literacy_1
-				}
-			}
-			else_if = {
-				limit = {
-					has_idea = CHI_low_literacy_1
-				}
-				swap_ideas = {
-					remove_idea = CHI_low_literacy_1
-					add_idea = CHI_low_literacy_2
-				}
-			}
-			else_if = {
-				limit = {
-					has_idea = CHI_low_literacy_2
-				}
-				swap_ideas = {
-					remove_idea = CHI_low_literacy_2
-					add_idea = CHI_low_literacy_3
-				}
-			}
-			else = {
-				remove_ideas = CHI_low_literacy_3
-			}
-			CHI_dec_progressive_party_support_5 = yes
-			CHI_dec_kuomintang_support_5 = yes
-			CHI_dec_others_independent_support_5 = yes
-			CHI_recalc_congress_icon_frames = yes
-			add_to_array = { CHI_parliament_law_history_array = 2 }
 		}
 	}
 	
@@ -3555,32 +3583,6 @@ focus_tree = {
 			CHI_dec_others_independent_support_10 = yes
 			CHI_recalc_congress_icon_frames = yes
 			add_to_array = { CHI_parliament_law_history_array = 4 }
-		}
-	}
-	
-	focus = {
-		id = CHI_new_culture_movement
-		icon = GFX_CHI_new_culture_movement
-		relative_position_id = CHI_review_love_freedom_get
-		x = 6
-		y = 1
-		cost = 5
-		available = {
-			is_subject = no
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		prerequisite = {
-			focus = CHI_review_love_freedom_get
-		}
-		ai_will_do = {
-			factor = 6
-		}
-		completion_reward = {
-			add_ideas = CHI_new_culture_movement
-			swap_ideas = {
-				remove_idea = CHI_diffuse_million_opium
-				add_idea = CHI_diffuse_million_opium_1
-			}
 		}
 	}
 	
@@ -4183,6 +4185,28 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = CHI_dagger_hidden_in_smile_focus
+		icon = GFX_CHI_dagger_hidden_in_smile_focus
+		relative_position_id = CHI_distant_diplomacy_focus
+		x = -2
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		prerequisite = {
+			focus = CHI_distant_diplomacy_focus
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		completion_reward = {
+			country_event = china_wr.132
+		}
+	}
+	
+	focus = {
 		id = CHI_northern_diplomacy_focus
 		icon = GFX_CHI_northern_diplomacy_focus
 		relative_position_id = CHI_dagger_hidden_in_smile_focus
@@ -4266,28 +4290,6 @@ focus_tree = {
 		}
 		completion_reward = {
 			unlock_decision_category_tooltip = CHI_europe_in_turmoil_category
-		}
-	}
-	
-	focus = {
-		id = CHI_dagger_hidden_in_smile_focus
-		icon = GFX_CHI_dagger_hidden_in_smile_focus
-		relative_position_id = CHI_distant_diplomacy_focus
-		x = -2
-		y = 1
-		cost = 2
-		available = {
-			is_subject = no
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		prerequisite = {
-			focus = CHI_distant_diplomacy_focus
-		}
-		ai_will_do = {
-			factor = 6
-		}
-		completion_reward = {
-			country_event = china_wr.132
 		}
 	}
 	
@@ -5783,6 +5785,28 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = CHI_yilun_gonghui
+		icon = GFX_CHI_yilun_gonghui
+		relative_position_id = CHI_national_salvation_government
+		x = -1
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = CHI_national_salvation_government
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			has_completed_focus = CHI_end_of_disorder
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.250
+		}
+	}
+	
+	focus = {
 		id = CHI_wu_peifu_plan
 		icon = GFX_CHI_wu_peifu_plan
 		relative_position_id = CHI_yilun_gonghui
@@ -6427,6 +6451,25 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = CHI_law_of_turbulent_times
+		icon = GFX_CHI_law_of_turbulent_times
+		relative_position_id = CHI_national_salvation_government
+		x = 1
+		y = 1
+		cost = 3
+		prerequisite = {
+			focus = CHI_national_salvation_government
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = china_wr.258
+		}
+	}
+	
+	focus = {
 		id = CHI_reorganize_the_executive
 		icon = GFX_CHI_reorganize_the_executive
 		relative_position_id = CHI_law_of_turbulent_times
@@ -6493,30 +6536,6 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CHI_order_to_resume_administration
-		icon = GFX_CHI_order_to_resume_administration
-		relative_position_id = CHI_ban_sale_of_offices
-		x = 1
-		y = 1
-		cost = 4
-		prerequisite = {
-			focus = CHI_ban_sale_of_offices
-		}
-		ai_will_do = {
-			factor = 6
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			remove_ideas = CHI_crippled_executive
-			remove_ideas = CHI_dysfunctional_tax_system_modifier
-			hidden_effect = {
-				remove_ideas = CHI_dysfunctional_tax_system_modifier_1
-				remove_ideas = CHI_dysfunctional_tax_system_modifier_2
-			}
-		}
-	}
-	
-	focus = {
 		id = CHI_ban_sale_of_offices
 		icon = GFX_CHI_ban_sale_of_offices
 		relative_position_id = CHI_reorganize_the_executive
@@ -6545,6 +6564,76 @@ focus_tree = {
 				remove_ideas = CHI_pervasive_corruption_modifier_1
 			}
 			remove_ideas = CHI_pervasive_corruption_modifier
+		}
+	}
+	
+	focus = {
+		id = CHI_order_to_resume_administration
+		icon = GFX_CHI_order_to_resume_administration
+		relative_position_id = CHI_ban_sale_of_offices
+		x = 1
+		y = 1
+		cost = 4
+		prerequisite = {
+			focus = CHI_ban_sale_of_offices
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			remove_ideas = CHI_crippled_executive
+			remove_ideas = CHI_dysfunctional_tax_system_modifier
+			hidden_effect = {
+				remove_ideas = CHI_dysfunctional_tax_system_modifier_1
+				remove_ideas = CHI_dysfunctional_tax_system_modifier_2
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_rule_by_authority
+		icon = GFX_CHI_rule_by_authority
+		relative_position_id = CHI_reorganize_the_executive
+		x = 0
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = CHI_reorganize_the_executive
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		bypass = {
+			NOT = { has_idea = CHI_bloated_bureaucracy_modifier }
+			hidden_trigger = {
+				NOT = { has_idea = CHI_bloated_bureaucracy_modifier_1 }
+				NOT = { has_idea = CHI_bloated_bureaucracy_modifier_2 }
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = CHI_bloated_bureaucracy_modifier
+				}
+				swap_ideas = {
+					remove_idea = CHI_bloated_bureaucracy_modifier
+					add_idea = CHI_bloated_bureaucracy_modifier_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = CHI_bloated_bureaucracy_modifier_1
+				}
+				swap_ideas = {
+					remove_idea = CHI_bloated_bureaucracy_modifier_1
+					add_idea = CHI_bloated_bureaucracy_modifier_2
+				}
+			}
+			else = {
+				remove_ideas = CHI_bloated_bureaucracy_modifier_2
+			}
 		}
 	}
 	
@@ -6662,71 +6751,6 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = CHI_law_of_turbulent_times
-		icon = GFX_CHI_law_of_turbulent_times
-		relative_position_id = CHI_national_salvation_government
-		x = 1
-		y = 1
-		cost = 3
-		prerequisite = {
-			focus = CHI_national_salvation_government
-		}
-		ai_will_do = {
-			factor = 6
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			country_event = china_wr.258
-		}
-	}
-	
-	focus = {
-		id = CHI_rule_by_authority
-		icon = GFX_CHI_rule_by_authority
-		relative_position_id = CHI_reorganize_the_executive
-		x = 0
-		y = 1
-		cost = 2
-		prerequisite = {
-			focus = CHI_reorganize_the_executive
-		}
-		ai_will_do = {
-			factor = 6
-		}
-		bypass = {
-			NOT = { has_idea = CHI_bloated_bureaucracy_modifier }
-			hidden_trigger = {
-				NOT = { has_idea = CHI_bloated_bureaucracy_modifier_1 }
-				NOT = { has_idea = CHI_bloated_bureaucracy_modifier_2 }
-			}
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			if = {
-				limit = {
-					has_idea = CHI_bloated_bureaucracy_modifier
-				}
-				swap_ideas = {
-					remove_idea = CHI_bloated_bureaucracy_modifier
-					add_idea = CHI_bloated_bureaucracy_modifier_2
-				}
-			}
-			else_if = {
-				limit = {
-					has_idea = CHI_bloated_bureaucracy_modifier_1
-				}
-				swap_ideas = {
-					remove_idea = CHI_bloated_bureaucracy_modifier_1
-					add_idea = CHI_bloated_bureaucracy_modifier_2
-				}
-			}
-			else = {
-				remove_ideas = CHI_bloated_bureaucracy_modifier_2
-			}
-		}
-	}
-	
-	focus = {
 		id = CHI_hoyin_government
 		icon = GFX_CHI_hoyin_government
 		relative_position_id = CHI_enact_provisional_fundamental_law
@@ -6771,6 +6795,35 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = CHI_rite_focus
+		icon = GFX_CHI_rite_focus
+		relative_position_id = CHI_non_rite_do_not_see
+		x = 3
+		y = 1
+		cost = 4
+		prerequisite = {
+			focus = CHI_non_rite_do_not_see
+		}
+		prerequisite = {
+			focus = CHI_non_rite_do_not_speak
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			custom_effect_tooltip = CHI_rite_focus_tt
+			hidden_effect = {
+				remove_ideas = CHI_night_curfew_spirit
+				remove_ideas = CHI_censorship_publications_spirit
+				remove_ideas = CHI_censorship_speeches_broadcasts_spirit
+				remove_ideas = CHI_ban_assemblies_associations_spirit
+				add_ideas = CHI_completed_social_order
+			}
+		}
+	}
+	
+	focus = {
 		id = CHI_caesar_of_china
 		icon = GFX_CHI_caesar_of_china
 		relative_position_id = CHI_rite_focus
@@ -6789,28 +6842,6 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = china_wr.267
-		}
-	}
-	
-	focus = {
-		id = CHI_yilun_gonghui
-		icon = GFX_CHI_yilun_gonghui
-		relative_position_id = CHI_national_salvation_government
-		x = -1
-		y = 1
-		cost = 2
-		prerequisite = {
-			focus = CHI_national_salvation_government
-		}
-		ai_will_do = {
-			factor = 6
-		}
-		available = {
-			has_completed_focus = CHI_end_of_disorder
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			country_event = china_wr.250
 		}
 	}
 	
@@ -7169,6 +7200,32 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = CHI_induce_loyalty_focus
+		icon = GFX_CHI_induce_loyalty_focus
+		relative_position_id = CHI_militarization_of_curriculum
+		x = 1
+		y = 1
+		cost = 3
+		prerequisite = {
+			focus = CHI_militarization_of_curriculum
+		}
+		prerequisite = {
+			focus = CHI_expand_basic_education_focus
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_stability = 0.05
+			add_popularity = {
+				ideology = neutrality
+				popularity = 0.05
+			}
+		}
+	}
+	
+	focus = {
 		id = CHI_non_rite_do_not_speak
 		icon = GFX_CHI_non_rite_do_not_speak
 		relative_position_id = CHI_induce_loyalty_focus
@@ -7190,35 +7247,6 @@ focus_tree = {
 			swap_ideas = {
 				remove_idea = CHI_social_purification_campaign_1
 				add_idea = CHI_social_purification_campaign_2
-			}
-		}
-	}
-	
-	focus = {
-		id = CHI_rite_focus
-		icon = GFX_CHI_rite_focus
-		relative_position_id = CHI_non_rite_do_not_see
-		x = 3
-		y = 1
-		cost = 4
-		prerequisite = {
-			focus = CHI_non_rite_do_not_see
-		}
-		prerequisite = {
-			focus = CHI_non_rite_do_not_speak
-		}
-		ai_will_do = {
-			factor = 6
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			custom_effect_tooltip = CHI_rite_focus_tt
-			hidden_effect = {
-				remove_ideas = CHI_night_curfew_spirit
-				remove_ideas = CHI_censorship_publications_spirit
-				remove_ideas = CHI_censorship_speeches_broadcasts_spirit
-				remove_ideas = CHI_ban_assemblies_associations_spirit
-				add_ideas = CHI_completed_social_order
 			}
 		}
 	}
@@ -7386,32 +7414,6 @@ focus_tree = {
 					has_idea = CHI_diffuse_million_opium_2
 				}
 				remove_ideas = CHI_diffuse_million_opium_2
-			}
-		}
-	}
-	
-	focus = {
-		id = CHI_induce_loyalty_focus
-		icon = GFX_CHI_induce_loyalty_focus
-		relative_position_id = CHI_militarization_of_curriculum
-		x = 1
-		y = 1
-		cost = 3
-		prerequisite = {
-			focus = CHI_militarization_of_curriculum
-		}
-		prerequisite = {
-			focus = CHI_expand_basic_education_focus
-		}
-		ai_will_do = {
-			factor = 6
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			add_stability = 0.05
-			add_popularity = {
-				ideology = neutrality
-				popularity = 0.05
 			}
 		}
 	}
@@ -8020,6 +8022,47 @@ focus_tree = {
 			add_to_variable = {
 				CHI_backward_military_modifier_army_defence_factor = 0.05
 				tooltip = army_attack_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_a_fighting_army_focus
+		icon = GFX_CHI_a_fighting_army_focus
+		relative_position_id = CHI_call_up_reserve_officers_focus
+		x = 1
+		y = 1
+		cost = 4
+		ai_will_do = {
+			factor = 4
+			modifier = {
+				add = 100
+				has_war_with = KMT
+			}
+		}
+		prerequisite = {
+			focus = CHI_call_up_reserve_officers_focus
+		}
+		prerequisite = {
+			focus = CHI_partial_mobilization_proclamation_focus
+		}
+		completion_reward = {
+			custom_effect_tooltip = CHI_backward_military_modifier_tt
+			add_to_variable = {
+				CHI_backward_military_modifier_max_dig_in_factor = 0.05
+				tooltip = max_dig_in_factor_tt
+			}
+			add_to_variable = {
+				CHI_backward_military_modifier_army_attack_factor = 0.05
+				tooltip = army_attack_factor_tt
+			}
+			add_to_variable = {
+				CHI_backward_military_modifier_army_defence_factor = 0.05
+				tooltip = army_attack_factor_tt
+			}
+			unlock_decision_category_tooltip = CHI_operational_plan_decision
+			hidden_effect = {
+				country_event = { id = china_wr.179 days = 3 }
 			}
 		}
 	}
@@ -8769,47 +8812,6 @@ focus_tree = {
 		}
 		completion_reward = {
 			add_ideas = CHI_partial_mobilization_modifier
-		}
-	}
-	
-	focus = {
-		id = CHI_a_fighting_army_focus
-		icon = GFX_CHI_a_fighting_army_focus
-		relative_position_id = CHI_call_up_reserve_officers_focus
-		x = 1
-		y = 1
-		cost = 4
-		ai_will_do = {
-			factor = 4
-			modifier = {
-				add = 100
-				has_war_with = KMT
-			}
-		}
-		prerequisite = {
-			focus = CHI_call_up_reserve_officers_focus
-		}
-		prerequisite = {
-			focus = CHI_partial_mobilization_proclamation_focus
-		}
-		completion_reward = {
-			custom_effect_tooltip = CHI_backward_military_modifier_tt
-			add_to_variable = {
-				CHI_backward_military_modifier_max_dig_in_factor = 0.05
-				tooltip = max_dig_in_factor_tt
-			}
-			add_to_variable = {
-				CHI_backward_military_modifier_army_attack_factor = 0.05
-				tooltip = army_attack_factor_tt
-			}
-			add_to_variable = {
-				CHI_backward_military_modifier_army_defence_factor = 0.05
-				tooltip = army_attack_factor_tt
-			}
-			unlock_decision_category_tooltip = CHI_operational_plan_decision
-			hidden_effect = {
-				country_event = { id = china_wr.179 days = 3 }
-			}
 		}
 	}
 	
