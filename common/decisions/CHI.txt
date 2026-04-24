@@ -616,7 +616,7 @@ CHI_government_policies_category = {
 			has_global_flag = chinese_civil_war
 		}
 		timeout_effect = {
-			country_event = china_wr.78
+			country_event = china_wr.76
 			set_country_flag = CHI_hufa_gangnam_declaration_decision_flag
 		}
 	}
@@ -768,7 +768,12 @@ CHI_government_policies_category = {
 			original_tag = CHI
 		}
 		available = {
-			has_global_flag = CHI_cant_go_back_again_flag
+			OR = {
+				hidden_trigger = {
+					has_country_flag = CHI_cant_go_back_again_flag
+				}
+				has_global_flag = chinese_civil_war
+			}
 		}
 		timeout_effect = {
 			country_event = china_wr.83
@@ -5373,7 +5378,7 @@ KMT_second_national_revolution_category = {
 				has_war_with = KMR
 			}
 		}
-		cost = 20
+		cost = 30
 		days_remove = 50
 		complete_effect = {
 			set_country_flag = CHI_political_is_on_flag
@@ -5383,9 +5388,9 @@ KMT_second_national_revolution_category = {
 			KMT_inc_revolution_2 = yes
 		}
 		ai_will_do = {
-			base = 4000
+			base = 100
 			modifier = {
-				add = -4000
+				add = -100
 				check_variable = { KMT_second_national_revolution_var > 75 }
 			}
 		}
@@ -5401,7 +5406,7 @@ KMT_second_national_revolution_category = {
 				has_war_with = KMR
 			}
 		}
-		cost = 20
+		cost = 30
 		days_remove = 50
 		complete_effect = {
 			set_country_flag = CHI_political_is_on_flag
@@ -5448,7 +5453,7 @@ CHI_chinese_civil_war_category = {
 				has_war_with = KMR
 			}
 		}
-		cost = 10
+		cost = 30
 		days_remove = 50
 		complete_effect = {
 			set_country_flag = CHI_political_is_on_flag
@@ -5458,9 +5463,9 @@ CHI_chinese_civil_war_category = {
 			CHI_dec_chinese_civil_war_2 = yes
 		}
 		ai_will_do = {
-			base = 4000
+			base = 100
 			modifier = {
-				add = -4000
+				add = -100
 				check_variable = { CHI_chinese_civil_war_var < 25 }
 			}
 		}
@@ -5476,7 +5481,7 @@ CHI_chinese_civil_war_category = {
 				has_war_with = KMR
 			}
 		}
-		cost = 10
+		cost = 30
 		days_remove = 50
 		complete_effect = {
 			set_country_flag = CHI_political_is_on_flag
@@ -5486,9 +5491,9 @@ CHI_chinese_civil_war_category = {
 			CHI_dec_chinese_civil_war_2 = yes
 		}
 		ai_will_do = {
-			base = 4000
+			base = 100
 			modifier = {
-				add = -4000
+				add = -100
 				check_variable = { CHI_chinese_civil_war_var < 25 }
 			}
 		}
@@ -5879,6 +5884,61 @@ KMR_military_discipline_category = {
 			add_to_variable = {
 				KMR_Disordered_Ranks_modifier_max_planning_factor = -0.15
 				tooltip = max_planning_factor_tt
+			}
+		}
+		ai_will_do = {
+			base = 1000
+		}
+	}
+}
+
+CHI_militia_mobilization_category = {
+	CHI_militia_mobilization_decision = {
+		icon = GFX_decision_generic_reorganize_irregulars
+		state_target = yes
+		highlight_states = {
+			highlight_states_trigger = {
+				NOT = { has_state_flag = CHI_militia_mobilization_flag }
+				is_chinese_area = yes
+				is_controlled_by = ROOT
+			}
+		}
+		target_trigger = {
+			FROM = {
+				is_chinese_area = yes
+				is_controlled_by = ROOT
+				NOT = { has_state_flag = CHI_militia_mobilization_flag }
+			}
+		}
+		cost = 10
+		remove_effect = {
+			if = {
+				limit = { NOT = { has_template = "Feicháng Mínbing" } }
+				division_template = {
+					name = "Feicháng Mínbing"
+					division_names_group = CHI_INF_01
+					is_locked = yes
+					regiments = {
+						irregular_infantry = { x = 0 y = 0 }
+						irregular_infantry = { x = 0 y = 1 }
+						irregular_infantry = { x = 0 y = 2 }
+						irregular_infantry = { x = 1 y = 0 }
+						irregular_infantry = { x = 1 y = 1 }
+						irregular_infantry = { x = 1 y = 2 }
+						irregular_infantry = { x = 2 y = 0 }
+						irregular_infantry = { x = 2 y = 1 }
+					}
+					support = {
+					}
+				}
+			}
+			FROM = {
+				create_unit = {
+					division = "name = \"Feicháng Mínbing\" division_template = \"Feicháng Mínbing\" start_equipment_factor = 0.9 start_experience_factor = 0.1"
+					count = 2
+					owner = ROOT
+				}
+				set_state_flag = CHI_militia_mobilization_flag
 			}
 		}
 		ai_will_do = {

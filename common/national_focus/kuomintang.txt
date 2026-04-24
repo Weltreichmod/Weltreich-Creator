@@ -80,7 +80,7 @@ focus_tree = {
 		relative_position_id = KMT_nanjing_national_government
 		x = -1
 		y = 1
-		cost = 6
+		cost = 5
 		ai_will_do = {
 			factor = 6
 		}
@@ -194,7 +194,7 @@ focus_tree = {
 		relative_position_id = KMT_elites_and_intellectuals
 		x = 1
 		y = 1
-		cost = 4
+		cost = 3
 		ai_will_do = {
 			factor = 6
 		}
@@ -297,7 +297,7 @@ focus_tree = {
 		relative_position_id = KMT_temporary_by_elections
 		x = 1
 		y = 1
-		cost = 3
+		cost = 2
 		ai_will_do = {
 			factor = 6
 		}
@@ -438,7 +438,7 @@ focus_tree = {
 		relative_position_id = KMT_mongolian_tibetan_affairs_commission
 		x = 0
 		y = 2
-		cost = 4
+		cost = 3
 		ai_will_do = {
 			factor = 6
 		}
@@ -488,7 +488,7 @@ focus_tree = {
 		relative_position_id = KMT_meet_minimum_quorum
 		x = 0
 		y = 2
-		cost = 5
+		cost = 4
 		ai_will_do = {
 			factor = 6
 		}
@@ -872,7 +872,7 @@ focus_tree = {
 		relative_position_id = KMT_two_swords
 		x = 1
 		y = 1
-		cost = 3
+		cost = 2
 		ai_will_do = {
 			factor = 6
 			modifier = {
@@ -1026,7 +1026,7 @@ focus_tree = {
 		relative_position_id = KMT_promote_whampoa_officers
 		x = 1
 		y = 1
-		cost = 3
+		cost = 2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1052,7 +1052,7 @@ focus_tree = {
 		relative_position_id = KMT_expand_gendarmerie
 		x = 1
 		y = 1
-		cost = 3
+		cost = 2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1084,7 +1084,7 @@ focus_tree = {
 		relative_position_id = KMT_address_immediate_crisis
 		x = 2
 		y = 1
-		cost = 3
+		cost = 2
 		ai_will_do = {
 			factor = 6
 		}
@@ -1282,10 +1282,17 @@ focus_tree = {
 		cancelable = no
 		search_filters = {}
 		select_effect = {
-			country_event = { id = kuomintag_wr.39 days = 15 }
+			if = {
+				limit = {
+					has_global_flag = chinese_civil_war
+				}
+				country_event = { id = kuomintag_wr.39 days = 15 }
+			}
 		}
 		completion_reward = {
 			custom_effect_tooltip = KMT_end_party_divisions_tt
+			set_country_flag = KMT_left_focus_allow_flag
+			mark_focus_tree_layout_dirty = yes
 		}
 	}
 	
@@ -1446,7 +1453,7 @@ focus_tree = {
 		icon = GFX_KMT_cut_flesh_to_break_bone
 		relative_position_id = KMT_unexpected_consequences
 		x = -1
-		y = 0
+		y = 1
 		cost = 0.3
 		ai_will_do = {
 			factor = 6
@@ -1468,7 +1475,7 @@ focus_tree = {
 		icon = GFX_KMT_contact_guangxi_army
 		relative_position_id = KMT_unexpected_consequences
 		x = 1
-		y = 0
+		y = 1
 		cost = 0.3
 		ai_will_do = {
 			factor = 6
@@ -1522,9 +1529,9 @@ focus_tree = {
 		id = KMT_proclaim_rival_government
 		icon = GFX_KMT_proclaim_rival_government
 		relative_position_id = KMT_express_to_guangzhou
-		x = 1
+		x = 0
 		y = 1
-		cost = 0.1
+		cost = 0.3
 		ai_will_do = {
 			factor = 6
 		}
@@ -2088,6 +2095,9 @@ focus_tree = {
 		ai_will_do = {
 			factor = 3
 		}
+		available = {
+			has_completed_focus = KMT_guangdong_chemical_plant
+		}
 		prerequisite = {
 			focus = KMT_guangdong_chemical_plant
 			focus = KMT_secure_strategic_resources
@@ -2305,6 +2315,13 @@ focus_tree = {
 			focus = KMT_light_industry_recovery
 			focus = KMT_shanghai_arsenal
 		}
+		available = {
+			OR = {
+				has_completed_focus = KMT_light_industry_recovery
+				has_completed_focus = KMT_heavy_industry_for_agriculture
+				has_completed_focus = KMT_shanghai_arsenal
+			}
+		}			
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			if = {
@@ -2313,6 +2330,15 @@ focus_tree = {
 				}
 				swap_ideas = {
 					remove_idea = KMT_industrial_development_m
+					add_idea = KMT_industrial_development_m1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_industrial_development
+				}
+				swap_ideas = {
+					remove_idea = KMT_industrial_development
 					add_idea = KMT_industrial_development_m1
 				}
 			}
@@ -2349,7 +2375,7 @@ focus_tree = {
 					add_idea = KMT_industrial_development_m2
 				}
 			}
-			if = {
+			else_if = {
 				limit = {
 					has_idea = KMT_industrial_development_m2
 				}
@@ -2358,7 +2384,7 @@ focus_tree = {
 					add_idea = KMT_industrial_development_m3
 				}
 			}
-			if = {
+			else_if = {
 				limit = {
 					has_idea = KMT_industrial_development_c1
 				}
@@ -2400,7 +2426,7 @@ focus_tree = {
 					add_idea = KMT_industrial_development_m2
 				}
 			}
-			if = {
+			else_if = {
 				limit = {
 					has_idea = KMT_industrial_development_m2
 				}
@@ -2409,7 +2435,7 @@ focus_tree = {
 					add_idea = KMT_industrial_development_m3
 				}
 			}
-			if = {
+			else_if = {
 				limit = {
 					has_idea = KMT_industrial_development_c1
 				}
@@ -2444,7 +2470,7 @@ focus_tree = {
 			focus = KMT_war_economy
 		}
 		prerequisite = {
-			focus = KMT_emergency_shifts
+			focus = KMT_increase_quotas
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {

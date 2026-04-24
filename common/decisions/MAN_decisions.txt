@@ -1388,7 +1388,6 @@ MAN_southern_expedition_decision = {
 		available = {
 			any_neighbor_country = { tag = FROM }
 			has_war = no
-			NOT = { has_country_flag = MAN_war_plan_flag }
 		}
 		visible = {
 			has_completed_focus = MAN_southern_expedition
@@ -1396,12 +1395,8 @@ MAN_southern_expedition_decision = {
 		}
 		cost = 15
 		days_remove = 30
-		complete_effect = {
-			set_country_flag = MAN_war_plan_flag
-		}
 		remove_effect = {
 			declare_war_on = { target = FROM type = annex_everything }
-			clr_country_flag = MAN_war_plan_flag
 		}
 		ai_will_do = {
 			base = 100
@@ -1431,7 +1426,6 @@ MAN_realize_pan_asianism = {
 		available = {
 			any_neighbor_country = { tag = FROM }
 			has_war = no
-			NOT = { has_country_flag = MAN_war_plan_flag }
 		}
 		visible = {
 			has_country_flag = MAN_realize_pan_asianism_flag
@@ -1439,12 +1433,8 @@ MAN_realize_pan_asianism = {
 		}
 		cost = 15
 		days_remove = 30
-		complete_effect = {
-			set_country_flag = MAN_war_plan_flag
-		}
 		remove_effect = {
 			declare_war_on = { target = FROM type = annex_everything }
-			clr_country_flag = MAN_war_plan_flag
 		}
 		ai_will_do = {
 			base = 100
@@ -2432,7 +2422,7 @@ MAN_operation_against_china = {
 }
 
 manchukuo_wr_concessions_category = {
-	743_is_ours = {
+	MAN_743_is_ours = {
 		icon = GFX_decision_generic_planted_spear
 		allowed = {
 			original_tag = MAN
@@ -2475,7 +2465,7 @@ manchukuo_wr_concessions_category = {
 			base = 10
 		}
 	}
-	745_is_ours = {
+	MAN_745_is_ours = {
 		icon = GFX_decision_generic_planted_spear
 		allowed = {
 			original_tag = MAN
@@ -2518,7 +2508,7 @@ manchukuo_wr_concessions_category = {
 			base = 10
 		}
 	}
-	326_is_ours = {
+	MAN_326_is_ours = {
 		icon = GFX_decision_generic_planted_spear
 		allowed = {
 			original_tag = MAN
@@ -2561,7 +2551,7 @@ manchukuo_wr_concessions_category = {
 			base = 10
 		}
 	}
-	729_is_ours = {
+	MAN_729_is_ours = {
 		icon = GFX_decision_generic_planted_spear
 		allowed = {
 			original_tag = MAN
@@ -2604,7 +2594,7 @@ manchukuo_wr_concessions_category = {
 			base = 10
 		}
 	}
-	728_is_ours = {
+	MAN_728_is_ours = {
 		icon = GFX_decision_generic_planted_spear
 		allowed = {
 			original_tag = MAN
@@ -2653,7 +2643,6 @@ MAN_territorial_restoration_category = {
 	MAN_annex_warloads = {
 		icon = GFX_decision_CHL_carabineros
 		available = {
-			has_completed_focus = MAN_northwest_reconquest
 			FROM = {
 				OR = {
 					is_neighbor_of = ROOT
@@ -2677,7 +2666,10 @@ MAN_territorial_restoration_category = {
 		fire_only_once = yes
 		cost = 20
 		visible = {
-			has_completed_focus = CHI_westsouthern_warlord
+			OR = {
+				has_completed_focus = MAN_hakkou_ichiu
+				has_completed_focus = MAN_northwest_reconquest
+			}
 			is_subject = no
 		}
 		ai_will_do = {
@@ -2707,7 +2699,10 @@ MAN_territorial_restoration_category = {
 			}
 		}
 		visible = {
-			has_completed_focus = CHI_westsouthern_warlord
+			OR = {
+				has_completed_focus = MAN_hakkou_ichiu
+				has_completed_focus = MAN_northwest_reconquest
+			}
 			is_subject = no
 			FROM = {
 				OR = {
@@ -2903,6 +2898,390 @@ MAN_connecting_the_lifelines = {
 				level = 2
 				path = { 7191 11991 1096 7058 9974 10058 1168 4013 1055 4099 10069 4169 4196 7027 11986 7071 10010 10093 9938 9978 7067 4050 7108 1047 }
 			}
+		}
+	}
+}
+
+MAN_railway_construction_category = {
+	Datong_peking_shandong_rail = {
+		allowed = {
+			original_tag = MAN
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 608
+				state = 614
+				state = 597
+			}
+		}
+		days_remove = 45
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		icon = generic_construction
+		available = {
+			controls_state = 608
+			controls_state = 614
+			controls_state = 597
+		}
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = MAN_national_railway_network
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 9843 11761 10068 4137 9969 11996 11980 7189 1069 }
+			}
+		}
+	}
+	Datong_shandong_nanking_rail = {
+		allowed = {
+			original_tag = MAN
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 597
+				state = 1017
+				state = 1015
+				state = 607
+				state = 606
+				state = 1011
+				state = 960
+			}
+		}
+		days_remove = 65
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		icon = generic_construction
+		available = {
+			controls_state = 597
+			controls_state = 1017
+			controls_state = 1015
+			controls_state = 607
+			controls_state = 606
+			controls_state = 1011
+			controls_state = 960
+		}
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = MAN_national_railway_network
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 1069 12045 4037 10043 7025 7085 9995 10040 11916 7094 10008 1146 11913 }
+			}
+		}
+	}
+	Datong_nanking_shianghai_hangzou_rail = {
+		allowed = {
+			original_tag = MAN
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 596
+				state = 613
+				state = 960
+			}
+		}
+		days_remove = 45
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		icon = generic_construction
+		available = {
+			controls_state = 596
+			controls_state = 613
+			controls_state = 960
+		}
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = MAN_national_railway_network
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 11913 996 7120 10076 12052 7014 12076 4042 7191 }
+			}
+		}
+	}
+	Datong_hangzou_guangzou_rail = {
+		allowed = {
+			original_tag = MAN
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 592
+				state = 593
+				state = 1009
+				state = 595
+				state = 1010
+				state = 960
+			}
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		icon = generic_construction
+		available = {
+			controls_state = 592
+			controls_state = 593
+			controls_state = 1009
+			controls_state = 595
+			controls_state = 1010
+			controls_state = 960
+		}
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = MAN_national_railway_network
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 7191 11991 1096 7058 9974 10058 1168 4013 1055 4099 10069 4169 4196 7027 11986 7071 10010 10093 9938 9978 7067 4050 7108 1047 }
+			}
+		}
+	}
+	Datong_shangyang_chungking_rail = {
+		allowed = {
+			original_tag = MAN
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 620
+				state = 1004
+				state = 605
+				state = 748
+			}
+		}
+		days_remove = 40
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		icon = generic_construction
+		available = {
+			controls_state = 620
+			controls_state = 1004
+			controls_state = 605
+			controls_state = 748
+		}
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = MAN_national_railway_network
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 9934 7609 7596 7948 11865 2030 7240 6999 }
+			}
+		}
+	}
+	Datong_chungking_yunnan_rail = {
+		allowed = {
+			original_tag = MAN
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 325
+				state = 605
+				state = 748
+			}
+		}
+		days_remove = 30
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		icon = generic_construction
+		available = {
+			controls_state = 325
+			controls_state = 605
+			controls_state = 748
+		}
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = MAN_national_railway_network
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 6999 12705 11972 5072 12841 1319 }
+			}
+		}
+	}
+}
+
+MAN_world_final_war_preparation_category = {
+	FROM_STATE_build_civilian = {
+		icon = GFX_decision_generic_consumer_goods
+		state_target = yes
+		highlight_states = {
+			highlight_states_trigger = {
+				NOT = { has_state_flag = FROM_STATE_build_civilian_flag }
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				OR = {
+					state = 1016
+					state = 607
+					state = 1018
+					state = 1066
+				}
+			}
+		}
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				NOT = { has_state_flag = FROM_STATE_build_civilian_flag }
+				OR = {
+					state = 1016
+					state = 607
+					state = 1018
+					state = 1066
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = MAN_sangto_jumu
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+			has_political_power > 49
+		}
+		custom_cost_text = decision_cost_5_civ
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			add_political_power = -50
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				prioritize = { FROM }
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			FROM = {
+				set_state_flag = FROM_STATE_build_civilian_flag
+			}
+		}
+		ai_will_do = {
+			base = 1000
+		}
+	}
+	FROM_STATE_build_army = {
+		icon = GFX_decision_generic_factory
+		state_target = yes
+		highlight_states = {
+			highlight_states_trigger = {
+				NOT = { has_state_flag = FROM_STATE_build_civilian_flag }
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				OR = {
+					state = 716
+					state = 328
+					state = 754
+					state = 748
+				}
+			}
+		}
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				NOT = { has_state_flag = FROM_STATE_build_civilian_flag }
+				OR = {
+					state = 716
+					state = 328
+					state = 754
+					state = 748
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = MAN_sangto_jumu
+		}
+		days_remove = 120
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+			has_political_power > 49
+		}
+		custom_cost_text = decision_cost_5_civ
+		modifier = {
+			civilian_factory_use = 5
+		}
+		complete_effect = {
+			add_political_power = -50
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				prioritize = { FROM }
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+				add_extra_state_shared_building_slots = 1
+			}
+			FROM = {
+				set_state_flag = FROM_STATE_build_civilian_flag
+			}
+		}
+		ai_will_do = {
+			base = 1000
 		}
 	}
 }
