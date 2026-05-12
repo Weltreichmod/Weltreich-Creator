@@ -89,6 +89,66 @@ on_actions = {
 			}
 		}
 	}
+	on_weekly_MAN = {
+		effect = {
+			if = {
+				limit = {
+					has_completed_focus = MAN_gongjin_qu
+					NOT = {
+						has_power_balance_modifier = {
+							id = MAN_elder_concordia_balance
+							modifier = MAN_elder_concordia_balance_elder_modifier
+						}
+					}
+				}
+				add_power_balance_modifier = {
+					id = MAN_elder_concordia_balance
+					modifier = MAN_elder_concordia_balance_elder_modifier
+				}
+			}
+			if = {
+				limit = {
+					has_power_balance_modifier = {
+						id = MAN_elder_concordia_balance
+						modifier = MAN_elder_concordia_balance_elder_modifier
+					}
+					has_completed_focus = MAN_datong_restoration
+				}
+				remove_power_balance_modifier = {
+					id = MAN_elder_concordia_balance
+					modifier = MAN_elder_concordia_balance_elder_modifier
+				}
+			}
+			if = {
+				limit = {
+					has_completed_focus = MAN_toward_datong_society
+					NOT = {
+						has_power_balance_modifier = {
+							id = MAN_elder_concordia_balance
+							modifier = MAN_elder_concordia_balance_concordia_modifier
+						}
+					}
+				}
+				add_power_balance_modifier = {
+					id = MAN_elder_concordia_balance
+					modifier = MAN_elder_concordia_balance_concordia_modifier
+				}
+			}
+			if = {
+				limit = {
+					has_power_balance_modifier = {
+						id = MAN_elder_concordia_balance
+						modifier = MAN_elder_concordia_balance_concordia_modifier
+					}
+					has_completed_focus = MAN_east_asian_supremacy
+				}
+				remove_power_balance_modifier = {
+					id = MAN_elder_concordia_balance
+					modifier = MAN_elder_concordia_balance_concordia_modifier
+				}
+			}
+		}
+	}
 	on_monthly_FRA = {
 		effect = {
 			if = {
@@ -1865,36 +1925,6 @@ on_actions = {
 			}
 			if = {
 				limit = {
-					original_tag = JAP
-				}
-				if = {
-					limit = {
-						OR = {
-							SOV = { has_country_flag = anti_russia_war_loser }
-							RUS = { has_country_flag = anti_russia_war_loser }
-						}
-					}
-					if = {
-						limit = {
-							FER = { exists = yes }
-						}
-						if = {
-							limit = {
-								SOV = { exists = yes }
-							}
-							SOV = { annex_country = { target = FER transfer_troops = no } }
-						}
-						else_if = {
-							limit = {
-								RUS = { exists = yes }
-							}
-							RUS = { annex_country = { target = FER transfer_troops = no } }
-						}
-					}
-				}
-			}
-			if = {
-				limit = {
 					original_tag = GER
 					any_enemy_country = {
 						original_tag = AUH
@@ -3075,11 +3105,13 @@ on_actions = {
 				limit = {
 					original_tag = JAP
 				}
+				set_global_flag = set_global_flag = japan_lost_the_war
 				if = {
 					limit = {
 						FROM = { is_subject = no }
 					}
 					FROM = { set_country_flag = defeat_japan_flag }
+					log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
 					else = {
 						every_country = {
 							limit = {
@@ -3087,27 +3119,48 @@ on_actions = {
 							}
 							set_country_flag = defeat_japan_flag
 						}
+						log = "[GetDate] - ([Root.GetTag]): [ROOT.GetName] has fallen by [FROM.GetName]"
 					}
 				}
-				JAP = { end_puppet = KAM }
-				KAM = {
-					retire_character = KAM_yasuyo_yamasaki
-					recruit_character = KAM_grigory_kireyev
-					set_politics = {
-						ruling_party = neutrality
-						last_election = "1936.1.1"
-						election_frequency = 48
-						elections_allowed = yes
+				# 1단계: 일본이 소유하고 있으나 다른 국가가 통제 중인 주(State)를 통제국에게 이양
+				every_state = {
+					limit = {
+						is_owned_by = JAP
+						NOT = { is_controlled_by = JAP }
 					}
-					set_popularities = {
-						democratic = 60
-						fascism = 0
-						communism = 20
-						neutrality = 20
+					# 현재 주를 통제하고 있는 국가(controller) 범위로 전환
+					controller = {
+						transfer_state = PREV # PREV는 직전 범위인 해당 주(State)를 지칭
 					}
 				}
-				clr_global_flag = second_Sino_Japanese_war_flag
-				set_global_flag = for_conference_about_japs
+				every_state = {
+					limit = {
+						is_owned_by = JAP
+						is_core_of = KOR
+					}
+					transfer_state_to = KOR
+				}
+				every_state = {
+					limit = {
+						is_owned_by = JAP
+						is_core_of = CAM
+					}
+					transfer_state_to = CAM
+				}
+				every_state = {
+					limit = {
+						is_owned_by = JAP
+						is_core_of = LAO
+					}
+					transfer_state_to = LAO
+				}
+				every_state = {
+					limit = {
+						is_owned_by = JAP
+						is_core_of = VIN
+					}
+					transfer_state_to = VIN
+				}
 				if = {
 					limit = {
 						SOV = {
@@ -3164,25 +3217,117 @@ on_actions = {
 				}
 				if = {
 					limit = {
-						CHI = {
-							has_war_with = JAP
-							is_subject = no
-							has_capitulated = no
+						KAM = { is_subject_of = JAP }
+					}
+					JAP = { end_puppet = KAM }
+					KAM = {
+						retire_character = KAM_yasuyo_yamasaki
+						recruit_character = KAM_grigory_kireyev
+						set_politics = {
+							ruling_party = neutrality
+							last_election = "1936.1.1"
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						set_popularities = {
+							democratic = 60
+							fascism = 0
+							communism = 20
+							neutrality = 20
 						}
 					}
-					every_state = {
+				}
+				every_country = {
+					limit = {
+						OR = {
+							original_tag = JAP
+							is_subject_of = JAP
+							is_in_faction_with = JAP
+						}
+					}
+					set_country_flag = anti_japanese_war_loser
+				}
+				every_country = {
+					limit = {
+						has_war_with = jap
+					}
+					set_country_flag = anti_japanese_war_winner
+					white_peace = {
+						tag = JAP
+						message = unconditional_surrender_of_JAP
+					}
+				}
+				#중일전이 진행중일경우
+				if = {
+					limit = {
+						has_global_flag = second_Sino_Japanese_war_flag
+					}
+					clr_global_flag = second_Sino_Japanese_war_flag
+					if = {
 						limit = {
-							is_owned_by = JAP
-							OR = {
-								is_chinese_area = yes
-								state = 524
+							CHI = {
+								has_country_flag = anti_japanese_war_winner
+								is_subject = no
+								has_capitulated = no
+								exists = yes
 							}
 						}
-						transfer_state_to = CHI
+						every_state = {
+							limit = {
+								is_owned_by = JAP
+								OR = {
+									is_chinese_area = yes
+									state = 524
+								}
+							}
+							transfer_state_to = CHI
+						}
+						CHI = { annex_country = { target = MAN transfer_troops = no } }
 					}
-					UNF = { dismantle_faction = yes }
-					#CHI = { country_event = { id = china_wr.25 days = 7 } }
+					else_if = {
+						limit = {
+							KMT = {
+								has_country_flag = anti_japanese_war_winner
+								is_subject = no
+								has_capitulated = no
+								exists = yes
+							}
+						}
+						every_state = {
+							limit = {
+								is_owned_by = JAP
+								OR = {
+									is_chinese_area = yes
+									state = 524
+								}
+							}
+							transfer_state_to = KMT
+						}
+						KMT = { annex_country = { target = MAN transfer_troops = no } }
+					}
+					else_if = {
+						limit = {
+							KMR = {
+								has_country_flag = anti_japanese_war_winner
+								is_subject = no
+								has_capitulated = no
+								exists = yes
+							}
+						}
+						every_state = {
+							limit = {
+								is_owned_by = JAP
+								OR = {
+									is_chinese_area = yes
+									state = 524
+								}
+							}
+							transfer_state_to = KMR
+						}
+						KMR = { annex_country = { target = MAN transfer_troops = no } }
+					}
 				}
+				#중일전에서 일본이 승전한 경우
 				if = {
 					limit = {
 						JAP = { has_country_flag = sino_japanese_war_winner }
@@ -3252,12 +3397,6 @@ on_actions = {
 							}
 						}
 					}
-					GSM = {
-						retire_ideology_leader = communism
-						retire_ideology_leader = fascism
-						retire_ideology_leader = democratic
-						retire_ideology_leader = neutrality
-					}
 					CHI = {
 						retire_ideology_leader = communism
 						retire_ideology_leader = fascism
@@ -3271,11 +3410,71 @@ on_actions = {
 							name = CHI_JAP_party
 						}
 					}
+					#만몽과 전쟁시
+					if = {
+						limit = {
+							MAN = { has_country_flag = anti_japanese_war_winner }
+						}
+						MAN = {
+							annex_country = { target = CHI transfer_troops = no }
+							CHI = { enable_country_integration_60_compliance = yes }
+							if = {
+								limit = {
+									has_country_leader = {
+										character = MAN_Zheng_Xiaoxu
+										ruling_only = yes
+									}
+								}
+								complete_national_focus = MAN_anti_japanese_victory
+							}
+							else = {
+								complete_national_focus = MAN_unification_of_all_under_heaven
+							}
+							mark_focus_tree_layout_dirty = yes
+						}
+						every_state = {
+							limit = {
+								is_owned_by = JAP
+								OR = {
+									is_chinese_area = yes
+									state = 524
+								}
+							}
+							transfer_state_to = MAN
+						}
+					}
+				}
+				# 2단계: defeat_japan_flag 플래그를 가진 국가가 남은 일본 영토를 합병
+				every_country = {
+					limit = {
+						has_country_flag = defeat_japan_flag
+					}
+					annex_country = {
+						target = JAP
+						transfer_troops = no # 일본의 남은 병력을 흡수하지 않음 (필요시 yes로 변경)
+					}
 				}
 			}
 			if = {
 				limit = {
-					original_tag = CHI
+					OR = {
+						AND = {
+							has_global_flag = chinese_civil_war
+							is_faction_leader = yes
+							OR = {
+								original_tag = CHI
+								original_tag = KMT
+							}
+						}
+						AND = {
+							NOT = { has_global_flag = chinese_civil_war }
+							OR = {
+								original_tag = CHI
+								original_tag = KMT
+								original_tag = KMR
+							}
+						}
+					}
 					has_war_with = JAP
 					has_global_flag = second_Sino_Japanese_war_flag
 				}
@@ -3289,6 +3488,48 @@ on_actions = {
 				else_if = {
 					limit = {
 						CHI = {
+							is_faction_leader = no
+							is_in_faction = yes
+						}
+					}
+					every_country = {
+						limit = {
+							is_chinese_country = yes
+							has_war_with = jap
+						}
+						leave_faction = yes
+					}
+				}
+				else_if = {
+					limit = {
+						KMT = { is_faction_leader = yes }
+					}
+					KMT = { dismantle_faction = yes }
+				}
+				else_if = {
+					limit = {
+						KMT = {
+							is_faction_leader = no
+							is_in_faction = yes
+						}
+					}
+					every_country = {
+						limit = {
+							is_chinese_country = yes
+							has_war_with = jap
+						}
+						leave_faction = yes
+					}
+				}
+				else_if = {
+					limit = {
+						KMR = { is_faction_leader = yes }
+					}
+					KMR = { dismantle_faction = yes }
+				}
+				else_if = {
+					limit = {
+						KMR = {
 							is_faction_leader = no
 							is_in_faction = yes
 						}
@@ -3333,6 +3574,11 @@ on_actions = {
 					country_event = japan_wr.40
 					set_country_flag = victory_against_china
 				}
+				MAN = {
+					country_event = { id = manchukou_wr.74 days = 5 }
+					set_country_flag = victory_against_china
+					leave_faction = yes
+				}
 				CHI = {
 					set_party_name = {
 						ideology = neutrality
@@ -3353,6 +3599,51 @@ on_actions = {
 						ideology = communism
 						long_name = CHI_JAP_party_long
 						name = CHI_JAP_party
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = MAN
+					JAP = { has_war_with = MAN }
+					has_global_flag = jap_man_war_flag
+				}
+				clr_global_flag = jap_man_war_flag
+				CHI = { annex_country = { target = MAN transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_owned_by = MAN
+					}
+					remove_core_of = MAN
+					add_core_of = CHI
+				}
+				every_state = {
+					limit = {
+						OR = {
+							state = 820
+							state = 818
+							state = 330
+							state = 819
+							state = 817
+						}
+					}
+					transfer_state_to = MON
+					remove_core_of = MAN
+					add_core_of = MON
+				}
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Waking the Tiger"
+						}
+					}
+					JAP = {
+						set_autonomy = {
+							target = MON
+							autonomous_state = autonomy_wtt_imperial_protectorate
+							freedom_level = 0.5
+						}
 					}
 				}
 			}
@@ -3394,24 +3685,6 @@ on_actions = {
 	}
 	on_peaceconference_ended = {
 		effect = {
-			if = {
-				limit = {
-					has_global_flag = for_conference_about_japs
-				}
-			}
-			clr_global_flag = for_conference_about_japs
-			every_country = {
-				limit = {
-					has_country_flag = defeat_japan_flag
-				}
-				clr_country_flag = defeat_japan_flag
-			}
-			if = {
-				limit = {
-					FROM = { original_tag = JAP }
-				}
-				set_global_flag = japan_lost_the_war
-			}
 		}
 	}
 	on_puppet = {

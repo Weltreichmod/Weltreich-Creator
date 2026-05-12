@@ -517,6 +517,9 @@ CHI_europe_in_turmoil_category = {
 				}
 			}
 		}
+		visible = {
+			NOT = { has_global_flag = the_end_of_second_great_war }
+		}
 		custom_cost_text = 500_infantry_equipment_50_artillery_equipment
 		custom_cost_trigger = {
 	    	has_equipment = { infantry_equipment > 499 }
@@ -524,14 +527,16 @@ CHI_europe_in_turmoil_category = {
 	    }
 		available = {
 			hidden_trigger = {
-				NOT = { has_country_flag = CHI_support_decision_flag }
-				NOT = { has_idea = CHI_support_CHI_idea }
+				NOT = { has_country_flag = CHI_support_decision_no_flag }
 			}
 		}
 		complete_effect = {
-			set_country_flag = CHI_support_decision_flag
 			custom_effect_tooltip = CHI_support_decision_tt
 			FROM = { country_event = china_wr.169 }
+			set_country_flag = {
+				flag = CHI_support_decision_no_flag
+				days = 150
+			}
 		}
 		ai_will_do = {
 			base = 80
@@ -549,6 +554,7 @@ CHI_europe_in_turmoil_category = {
 		}
 		visible = {
 			has_completed_focus = CHI_strengthen_former_entente_focus
+			NOT = { has_global_flag = the_end_of_second_great_war }
 			is_in_faction = no
 		}
 		cost = 50
@@ -573,6 +579,7 @@ CHI_europe_in_turmoil_category = {
 		}
 		visible = {
 			has_completed_focus = CHI_renew_sino_german_trade_focus
+			NOT = { has_global_flag = the_end_of_second_great_war }
 			is_in_faction = no
 		}
 		cost = 50
@@ -609,7 +616,7 @@ CHI_government_policies_category = {
 			has_global_flag = chinese_civil_war
 		}
 		timeout_effect = {
-			country_event = china_wr.78
+			country_event = china_wr.76
 			set_country_flag = CHI_hufa_gangnam_declaration_decision_flag
 		}
 	}
@@ -654,6 +661,7 @@ CHI_government_policies_category = {
 			set_country_flag = CHI_hufa_one_stroke_brigade_flag
 			custom_effect_tooltip = CHI_hufa_one_stroke_brigade_tt
 			set_country_flag = CHI_hufa_one_stroke_brigade_decision_flag
+			country_lock_all_division_template = no
 		}
 	}
 	CHI_hufa_kmt_appeasement_decision = {
@@ -760,7 +768,12 @@ CHI_government_policies_category = {
 			original_tag = CHI
 		}
 		available = {
-			has_global_flag = CHI_cant_go_back_again_flag
+			OR = {
+				hidden_trigger = {
+					has_country_flag = CHI_cant_go_back_again_flag
+				}
+				has_global_flag = chinese_civil_war
+			}
 		}
 		timeout_effect = {
 			country_event = china_wr.83
@@ -824,11 +837,20 @@ CHI_sichuan_massive_operation = {
 	KMT_send_troops_to_sichuan = {
 		icon = GFX_decision_CHL_carabineros
 		allowed = {
-			original_tag = KMT
+			OR = {
+				original_tag = KMT
+				original_tag = KMR
+			}
 		}
 		visible = {
 			SCH = { has_war_with = SKM }
 			has_country_flag = chinese_civil_war_flag
+			if = {
+				limit = {
+					original_tag = KMR
+				}
+				NOT = { has_global_flag = chinese_civil_war }
+			}
 		}
 		custom_cost_trigger = {
 			command_power > 9
@@ -1991,6 +2013,7 @@ CHI_operational_plan_decision = {
 		visible = {
 			OR = {
 				has_completed_focus = CHI_a_fighting_army_focus
+				has_completed_focus = KMT_form_the_ranks
 			}
 			OR = {
 				has_war_with = KMT
@@ -2044,6 +2067,7 @@ CHI_operational_plan_decision = {
 		visible = {
 			OR = {
 				has_completed_focus = CHI_a_fighting_army_focus
+				has_completed_focus = KMT_form_the_ranks
 			}
 			OR = {
 				has_war_with = KMT
@@ -2096,6 +2120,7 @@ CHI_operational_plan_decision = {
 		visible = {
 			OR = {
 				has_completed_focus = CHI_a_fighting_army_focus
+				has_completed_focus = KMT_form_the_ranks
 			}
 			OR = {
 				has_war_with = KMT
@@ -2155,6 +2180,7 @@ CHI_operational_plan_decision = {
 		visible = {
 			OR = {
 				has_completed_focus = CHI_a_fighting_army_focus
+				has_completed_focus = KMT_form_the_ranks
 			}
 			OR = {
 				has_war_with = KMT
@@ -2217,6 +2243,8 @@ CHI_military_discontent_decision = {
 		activation = {
 			check_variable = { CHI_military_discontent_var < 1 }
 			has_global_flag = chinese_civil_war
+			NOT = { has_country_flag = CHI_wu_peifu_in_power }
+			has_country_flag = CHI_military_discontent_decision_flag
 		}
 		available = {
 			OR = {
@@ -2237,6 +2265,7 @@ CHI_military_discontent_decision = {
 		activation = {
 			has_global_flag = chinese_civil_war
 			has_variable = CHI_military_discontent_var
+			has_country_flag = CHI_military_discontent_decision_flag
 		}
 		available = {
 			NOT = { has_global_flag = chinese_civil_war }
@@ -2895,6 +2924,7 @@ CHI_centralize_republic_of_china = {
 							state = 611
 							state = 612
 							state = 761
+							state = 1022
 						}
 					}
 					add_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
@@ -2914,6 +2944,7 @@ CHI_centralize_republic_of_china = {
 							state = 611
 							state = 612
 							state = 761
+							state = 1022
 						}
 					}
 					remove_dynamic_modifier = { modifier = CHI_semi_autonomous_region }
@@ -4647,7 +4678,7 @@ CHI_southern_stabilization_category = {
 			has_idea = CHI_republic_in_crisis
 		}
 		available = {
-			NOt = { has_idea = CHI_republic_in_crisis }
+			NOT = { has_idea = CHI_republic_in_crisis }
 		}
 		timeout_effect = {
 			remove_ideas = CHI_republic_in_crisis
@@ -4693,7 +4724,7 @@ CHI_southern_stabilization_category = {
 		days_remove = 15
 		cost = 20
 		ai_will_do = {
-			base = 100
+			base = 1000
 		}
 		available = {
 			NOT = { has_country_flag = political_is_on_flag }
@@ -4717,7 +4748,7 @@ CHI_southern_stabilization_category = {
 		days_remove = 10
 		cost = 15
 		ai_will_do = {
-			base = 100
+			base = 1000
 		}
 		available = {
 			NOT = { has_country_flag = political_is_on_flag }
@@ -4731,6 +4762,1187 @@ CHI_southern_stabilization_category = {
 				mission = CHI_southern_stabilizing_mission
 				days = 20
 			}
+		}
+	}
+}
+
+CHI_integrate_arsenals_category = {
+	#상하이
+	CHI_integrate_shanghai_arsenal = {
+		icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			613 = { is_controlled_by = CHI }
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+		modifier = {
+			civilian_factory_use = 2
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				prioritize = { 613 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	#북경
+	CHI_integrate_peking_arsenal = {
+		icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			608 = { is_controlled_by = CHI }
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+		modifier = {
+			civilian_factory_use = 2
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				prioritize = { 608 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	#남경
+	CHI_integrate_nanking_arsenal = {
+		icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			960 = { is_controlled_by = CHI }
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+		modifier = {
+			civilian_factory_use = 2
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				prioritize = { 960 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	#타이위안
+	CHI_integrate_taiyuan_arsenal = {
+		icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			615 = { is_controlled_by = CHI }
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+		modifier = {
+			civilian_factory_use = 2
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				prioritize = { 615 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	#시안
+	CHI_integrate_xian_arsenal = {
+		icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			744 = { is_controlled_by = CHI }
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+		modifier = {
+			civilian_factory_use = 2
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				prioritize = { 744 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	#충칭
+	CHI_integrate_chungking_arsenal = {
+		icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			748 = { is_controlled_by = CHI }
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+		modifier = {
+			civilian_factory_use = 2
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				prioritize = { 748 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	#광저우
+	CHI_integrate_canton_arsenal = {
+		icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			592 = { is_controlled_by = CHI }
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+		modifier = {
+			civilian_factory_use = 2
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				prioritize = { 592 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	#산둥
+	CHI_integrate_shandong_arsenal = {
+		icon = GFX_decision_generic_factory
+		allowed = {
+			original_tag = CHI
+		}
+		days_remove = 50
+		fire_only_once = yes
+		ai_will_do = {
+			base = 100
+		}
+		available = {
+			597 = { is_controlled_by = CHI }
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 1
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_2_civ
+		modifier = {
+			civilian_factory_use = 2
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				prioritize = { 597 }
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+}
+
+#KMT
+KMT_shanghai_campaign_category = {
+	KMT_seize_shanghai_mission = {
+		icon = GFX_decision_revolt
+		allowed = {
+			original_tag = KMT
+		}
+		activation = {
+			has_global_flag = chinese_civil_war
+			has_war_with = CHI
+			613 = { is_controlled_by = CHI }
+		}
+		available = {
+			OR = {
+				613 = { is_controlled_by = KMT }
+				NOT = { has_war_with = CHI }
+			}
+		}
+		fire_only_once = yes
+		days_mission_timeout = 160
+		complete_effect = {
+			complete_national_focus = KMT_liberation_of_shanghai
+		}
+		timeout_effect = {
+			complete_national_focus = KMT_final_offensive
+		}
+	}
+}
+
+KMT_international_support_category = {
+	KMT_seek_soviet_support = {
+		icon = GFX_decision_generic_protection
+		allowed = {
+			original_tag = KMT
+		}
+		cost = 25
+		fire_only_once = yes
+		complete_effect = {
+			SOV = { country_event = { id = kuomintag_wr.17 days = 5 } }
+		}
+	}
+	KMT_request_french_support = {
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			original_tag = KMT
+		}
+		cost = 25
+		fire_only_once = yes
+		complete_effect = {
+			FRA = { country_event = { id = kuomintag_wr.20 days = 5 } }
+		}
+	}
+	KMT_request_italian_support = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			original_tag = KMT
+		}
+		cost = 25
+		fire_only_once = yes
+		complete_effect = {
+			ITA = { country_event = { id = kuomintag_wr.23 days = 5 } }
+		}
+	}
+	KMT_purchase_american_arms = {
+		icon = GFX_decision_generic_welfare
+		allowed = {
+			original_tag = KMT
+		}
+		cost = 25
+		fire_only_once = yes
+		complete_effect = {
+			USA = { country_event = { id = kuomintag_wr.26 days = 5 } }
+		}
+	}
+	KMT_seek_japanese_contact = {
+		icon = GFX_decision_generic_political_discourse
+		allowed = {
+			original_tag = KMT
+		}
+		cost = 25
+		fire_only_once = yes
+		complete_effect = {
+			JAP = { country_event = { id = kuomintag_wr.29 days = 5 } }
+		}
+	}
+}
+
+KMT_guerrilla_operations_category = {
+	KMT_guerrilla_operations_decision = {
+		icon = GFX_decisions_generic_infiltration
+		state_target = yes
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = CHI
+				any_neighbor_state = {
+					is_controlled_by = ROOT 
+				}
+				NOT = { has_state_flag = KMT_guerrilla_operations_flag }
+			}
+		}
+		target_trigger = {
+			FROM = {
+				is_controlled_by = CHI
+				any_neighbor_state = {
+					is_controlled_by = ROOT 
+				}
+				NOT = { has_state_flag = KMT_guerrilla_operations_flag }
+			}
+		}
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			has_completed_focus = KMT_guerrilla_warfare
+		}
+		complete_effect = {
+			add_command_power = -10
+		}
+		days_remove = 20
+		custom_cost_trigger = {
+			command_power > 9
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		remove_effect = {
+			FROM = {
+				set_state_flag = KMT_guerrilla_operations_flag
+				set_state_flag = KMT_guerrilla_operations_dynamic_flag
+				add_dynamic_modifier = {
+					modifier = KMT_guerrilla_forces
+					scope = ROOT
+				}
+				#set_border_war = yes
+			}
+			hidden_effect = {
+				CHI = { country_event = kuomintag_wr.37 }
+			}
+		}
+		ai_will_do = {
+			base = 10
+			modifier = {
+				FROM = { state = 613 }
+				add = 4000
+			}
+			modifier = {
+				613 = { has_state_flag = KMT_guerrilla_operations_flag }
+				add = 140
+			}
+		}
+	}
+}
+
+KMT_scorched_earth_category = {
+	KMT_scorched_earth_decision = {
+		icon = GFX_decision_generic_ignite_civil_war
+		state_target = yes
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = ROOT
+				any_neighbor_state = {
+					is_controlled_by = CHI 
+				}
+				NOT = { has_state_flag = KMT_scorched_earth_flag }
+			}
+		}
+		target_trigger = {
+			FROM = {
+				is_controlled_by = ROOT
+				any_neighbor_state = {
+					is_controlled_by = CHI 
+				}
+				NOT = { has_state_flag = KMT_scorched_earth_flag }
+			}
+		}
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			has_completed_focus = KMT_scorched_earth
+		}
+		custom_cost_trigger = {
+			command_power > 9
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		complete_effect = {
+			add_command_power = -10
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		remove_effect = {
+			FROM = {
+				set_state_flag = KMT_scorched_earth_flag
+				add_dynamic_modifier = {
+					modifier = KMT_scorched_earth_modifier
+					days = 200
+				}
+			}
+		}
+	}
+}
+
+KMT_encirclement_campaigns_category = {
+	KMT_encirclement_campaigns_decision = {
+		icon = GFX_decisions_generic_infiltration
+		state_target = yes
+		highlight_states = {
+			highlight_states_trigger = {
+				is_controlled_by = CHI
+				has_state_flag = KMT_guerrilla_operations_dynamic_flag
+			}
+		}
+		target_trigger = {
+			FROM = {
+				is_controlled_by = CHI
+				has_state_flag = KMT_guerrilla_operations_dynamic_flag
+			}
+		}
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			any_state = { has_state_flag = KMT_guerrilla_operations_dynamic_flag }
+		}
+		complete_effect = {
+			add_command_power = -10
+		}
+		days_remove = 20
+		custom_cost_trigger = {
+			command_power > 9
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		remove_effect = {
+			FROM = {
+				remove_dynamic_modifier = {
+					modifier = KMT_guerrilla_forces
+					scope = KMT
+				}
+				clr_state_flag = KMT_guerrilla_operations_dynamic_flag
+				#set_border_war = no
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+KMT_northern_expedition_category = {
+	KMT_launch_northern_expedition = {
+		icon = GFX_decision_generic_prepare_civil_war
+		allowed = {
+			original_tag = KMT
+		}
+		custom_cost_trigger = {
+			command_power > 29
+		}
+		custom_cost_text = decision_cost_CP_30
+		fire_only_once = yes
+		visible = {
+			has_completed_focus = KMT_form_the_ranks
+			has_war_with = CHI
+		}
+		days_remove = 25
+		complete_effect = {
+			add_command_power = -30
+		}
+		remove_effect = {
+			add_timed_idea = { idea = KMT_northern_expedition days = 250 }
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+KMT_second_national_revolution_category = {
+	KMT_low_revolutionary_fervor = {
+		icon = GFX_decision_eng_blackshirt_march
+		allowed = {
+			original_tag = KMT
+		}
+		activation = {
+			OR = {
+				has_war_with = CHI
+				has_war_with = KMR
+			}
+		}
+		available = {
+			NOT = { has_war_with = CHI }
+			NOT = { has_war_with = KMR }
+		}
+		days_mission_timeout = 90
+		timeout_effect = {
+			KMT_dec_revolution_3 = yes
+		}
+	}
+	KMT_propaganda_campaign = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		available = {
+			NOT = { has_country_flag = CHI_political_is_on_flag }
+		}
+		visible = {
+			OR = {
+				has_war_with = CHI
+				has_war_with = KMR
+			}
+		}
+		cost = 30
+		days_remove = 50
+		complete_effect = {
+			set_country_flag = CHI_political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = CHI_political_is_on_flag
+			KMT_inc_revolution_2 = yes
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				add = -100
+				check_variable = { KMT_second_national_revolution_var > 75 }
+			}
+		}
+	}
+	KMT_mass_rallies = {
+		icon = GFX_decision_generic_political_rally
+		available = {
+			NOT = { has_country_flag = CHI_political_is_on_flag }
+		}
+		visible = {
+			OR = {
+				has_war_with = CHI
+				has_war_with = KMR
+			}
+		}
+		cost = 30
+		days_remove = 50
+		complete_effect = {
+			set_country_flag = CHI_political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = CHI_political_is_on_flag
+			KMT_inc_revolution_2 = yes
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+}
+
+CHI_chinese_civil_war_category = {
+	CHI_increasing_war_exhaustion = {
+		icon = GFX_decision_eng_blackshirt_march
+		allowed = {
+			original_tag = CHI
+		}
+		activation = {
+			OR = {
+				has_war_with = KMT
+				has_war_with = KMR
+			}
+		}
+		available = {
+			NOT = { has_war_with = KMT }
+			NOT = { has_war_with = KMR }
+		}
+		days_mission_timeout = 90
+		timeout_effect = {
+			CHI_inc_chinese_civil_war_3 = yes
+		}
+	}
+	CHI_stabilize_rear = {
+		icon = GFX_decision_generic_cavalry
+		available = {
+			NOT = { has_country_flag = CHI_political_is_on_flag }
+		}
+		visible = {
+			OR = {
+				has_war_with = KMT
+				has_war_with = KMR
+			}
+		}
+		cost = 30
+		days_remove = 50
+		complete_effect = {
+			set_country_flag = CHI_political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = CHI_political_is_on_flag
+			CHI_dec_chinese_civil_war_2 = yes
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				add = -100
+				check_variable = { CHI_chinese_civil_war_var < 25 }
+			}
+		}
+	}
+	CHI_improve_supply = {
+		icon = GFX_decision_generic_train
+		available = {
+			NOT = { has_country_flag = CHI_political_is_on_flag }
+		}
+		visible = {
+			OR = {
+				has_war_with = KMT
+				has_war_with = KMR
+			}
+		}
+		cost = 30
+		days_remove = 50
+		complete_effect = {
+			set_country_flag = CHI_political_is_on_flag
+		}
+		remove_effect = {
+			clr_country_flag = CHI_political_is_on_flag
+			CHI_dec_chinese_civil_war_2 = yes
+		}
+		ai_will_do = {
+			base = 100
+			modifier = {
+				add = -100
+				check_variable = { CHI_chinese_civil_war_var < 25 }
+			}
+		}
+	}
+}
+
+KMT_factional_conflict_decisions = {
+	KMT_strengthen_left_support = {
+		icon = GFX_decision_KMT_strengthen_left_support
+		cost = 10
+		days_remove = 15
+		remove_effect = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = -0.025
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = kuomintag_wr_46a }
+			NOT = { has_country_flag = kuomintag_wr_46b }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value < -0.5
+				}
+				has_country_flag = KMT_left_flag
+			}
+		}
+	}
+	KMT_strengthen_right_support = {
+		icon = GFX_decision_KMT_strengthen_right_support
+		cost = 10
+		days_remove = 15
+		remove_effect = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.025
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = kuomintag_wr_46a }
+			NOT = { has_country_flag = kuomintag_wr_46b }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value > 0.5
+				}
+				has_country_flag = KMT_right_flag
+			}
+		}
+	}
+	KMT_crackdown_right_militias = {
+		icon = GFX_decision_KMT_crackdown_right_militias
+		cost = 20
+		days_remove = 20
+		remove_effect = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = -0.05
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = kuomintag_wr_46a }
+			NOT = { has_country_flag = kuomintag_wr_46b }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value < -0.5
+				}
+				has_country_flag = KMT_left_flag
+			}
+		}
+	}
+	KMT_arrest_left_activists = {
+		icon = GFX_decision_KMT_strengthen_right_support
+		cost = 20
+		days_remove = 20
+		remove_effect = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.05
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = kuomintag_wr_46a }
+			NOT = { has_country_flag = kuomintag_wr_46b }
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value > 0.5
+				}
+				has_country_flag = KMT_right_flag
+			}
+		}
+	}
+	KMT_mobilize_masses_left = {
+		icon = GFX_decision_generic_political_rally
+		cost = 35
+		days_remove = 40
+		remove_effect = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = -0.1
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = kuomintag_wr_46a }
+			NOT = { has_country_flag = kuomintag_wr_46b }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value < -0.5
+				}
+				has_country_flag = KMT_left_flag
+			}
+		}
+	}
+	KMT_secure_military_support_right = {
+		icon = GFX_decision_generic_army_support
+		cost = 35
+		days_remove = 40
+		remove_effect = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.1
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = kuomintag_wr_46a }
+			NOT = { has_country_flag = kuomintag_wr_46b }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value > 0.5
+				}
+				has_country_flag = KMT_right_flag
+			}
+		}
+	}
+	KMT_align_moscow_left = {
+		icon = GFX_decision_SOV_socialism_in_one_country
+		cost = 35
+		days_remove = 40
+		remove_effect = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = -0.1
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = kuomintag_wr_46a }
+			NOT = { has_country_flag = kuomintag_wr_46b }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value < -0.5
+				}
+				has_country_flag = KMT_left_flag
+			}
+		}
+	}
+	KMT_denounce_bolshevism_right = {
+		icon = GFX_decision_SOV_the_workers_dictatorship
+		cost = 35
+		days_remove = 40
+		remove_effect = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.1
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = kuomintag_wr_46a }
+			NOT = { has_country_flag = kuomintag_wr_46b }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value > 0.5
+				}
+				has_country_flag = KMT_right_flag
+			}
+		}
+	}
+	KMT_wang_speech_left = {
+		icon = GFX_decision_hol_radio_oranje
+		cost = 40
+		days_remove = 45
+		remove_effect = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = -0.15
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = kuomintag_wr_46a }
+			NOT = { has_country_flag = kuomintag_wr_46b }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value < -0.5
+				}
+				has_country_flag = KMT_left_flag
+			}
+		}
+	}
+	KMT_anti_wang_rally_right = {
+		icon = GFX_decision_generic_speech
+		cost = 40
+		days_remove = 45
+		remove_effect = {
+			add_power_balance_value = {
+				id = KMT_factional_conflict
+				value = 0.15
+			}
+		}
+		visible = {
+			NOT = { has_country_flag = kuomintag_wr_46a }
+			NOT = { has_country_flag = kuomintag_wr_46b }
+		}
+		fire_only_once = yes
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value > 0.5
+				}
+				has_country_flag = KMT_right_flag
+			}
+		}
+	}
+}
+
+KMR_military_discipline_category = {
+	KMR_revolutionary_agitprop = {
+		icon = GFX_decision_eng_propaganda_campaigns
+		cost = 20
+		days_remove = 50
+		complete_effect = {
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_attack_factor = 0.1
+				tooltip = army_attack_factor_tt
+			}
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_defence_factor = 0.1
+				tooltip = army_defence_factor_tt
+			}
+		}
+		remove_effect = {
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_attack_factor = -0.1
+				tooltip = army_attack_factor_tt
+			}
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_defence_factor = -0.1
+				tooltip = army_defence_factor_tt
+			}
+		}
+		ai_will_do = {
+			base = 1000
+		}
+	}
+	KMR_stern_discipline_action = {
+		icon = GFX_decision_generic_civil_support
+		days_remove = 60
+		custom_cost_trigger = {
+			command_power > 9
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		complete_effect = {
+			add_command_power = -10
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_attack_factor = 0.1
+				tooltip = army_attack_factor_tt
+			}
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_defence_factor = 0.1
+				tooltip = army_defence_factor_tt
+			}
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_org_factor = 0.1
+				tooltip = army_org_factor_tt
+			}
+		}
+		remove_effect = {
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_attack_factor = -0.1
+				tooltip = army_attack_factor_tt
+			}
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_defence_factor = -0.1
+				tooltip = army_defence_factor_tt
+			}
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_org_factor = -0.1
+				tooltip = army_org_factor_tt
+			}
+		}
+		ai_will_do = {
+			base = 1000
+		}
+	}
+	KMR_distribute_self_reliance_harvest = {
+		icon = GFX_decision_RAJ_famine
+		days_remove = 50
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 1
+			has_political_power > 4
+		}
+		custom_cost_text = decision_cost_2_civ_5
+		modifier = {
+			civilian_factory_use = 2
+		}
+		complete_effect = {
+			add_political_power = -5
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_org_factor = 0.15
+				tooltip = army_org_factor_tt
+			}
+		}
+		remove_effect = {
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_org_factor = -0.15
+				tooltip = army_org_factor_tt
+			}
+		}
+		ai_will_do = {
+			base = 1000
+		}
+	}
+	KMR_systematic_operational_planning = {
+		icon = GFX_decision_eng_trade_unions_support
+		days_remove = 60
+		custom_cost_trigger = {
+			command_power > 9
+		}
+		custom_cost_text = RUS_focus_on_oper_tt
+		complete_effect = {
+			add_command_power = -10
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_max_planning_factor = 0.15
+				tooltip = max_planning_factor_tt
+			}
+		}
+		remove_effect = {
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_max_planning_factor = -0.15
+				tooltip = max_planning_factor_tt
+			}
+		}
+		ai_will_do = {
+			base = 1000
+		}
+	}
+}
+
+CHI_militia_mobilization_category = {
+	CHI_militia_mobilization_decision = {
+		icon = GFX_decision_generic_reorganize_irregulars
+		state_target = yes
+		highlight_states = {
+			highlight_states_trigger = {
+				NOT = { has_state_flag = CHI_militia_mobilization_flag }
+				is_chinese_area = yes
+				is_controlled_by = ROOT
+			}
+		}
+		target_trigger = {
+			FROM = {
+				is_chinese_area = yes
+				is_controlled_by = ROOT
+				NOT = { has_state_flag = CHI_militia_mobilization_flag }
+			}
+		}
+		cost = 10
+		remove_effect = {
+			if = {
+				limit = { NOT = { has_template = "Feicháng Mínbing" } }
+				division_template = {
+					name = "Feicháng Mínbing"
+					division_names_group = CHI_INF_01
+					is_locked = yes
+					regiments = {
+						irregular_infantry = { x = 0 y = 0 }
+						irregular_infantry = { x = 0 y = 1 }
+						irregular_infantry = { x = 0 y = 2 }
+						irregular_infantry = { x = 1 y = 0 }
+						irregular_infantry = { x = 1 y = 1 }
+						irregular_infantry = { x = 1 y = 2 }
+						irregular_infantry = { x = 2 y = 0 }
+						irregular_infantry = { x = 2 y = 1 }
+					}
+					support = {
+					}
+				}
+			}
+			FROM = {
+				create_unit = {
+					division = "name = \"Feicháng Mínbing\" division_template = \"Feicháng Mínbing\" start_equipment_factor = 0.9 start_experience_factor = 0.1"
+					count = 2
+					owner = ROOT
+				}
+				set_state_flag = CHI_militia_mobilization_flag
+			}
+		}
+		ai_will_do = {
+			base = 1000
 		}
 	}
 }

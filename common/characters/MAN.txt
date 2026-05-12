@@ -1,4 +1,44 @@
 characters={
+	MAN_Zheng_Xiaoxu = {
+		name = MAN_Zheng_Xiaoxu
+		portraits={
+			civilian={
+				large="gfx/leaders/MAN/MAN_Zheng_Xiaoxu.png"
+				small="gfx/interface/ideas/MAN/MAN_Zheng_Xiaoxu.png"
+			}
+		}	
+		country_leader={
+			ideology=autocracy
+			traits={ MAN_prime_minister }
+		}
+	}
+	
+	MAN_Aisin_Gioro_Xi_Qia = {
+		name = MAN_Aisin_Gioro_Xi_Qia
+		portraits={
+			civilian={
+				large="gfx/leaders/MAN/MAN_Aisin_Gioro_Xi_Qia.png"
+				small="gfx/interface/ideas/MAN/MAN_Aisin_Gioro_Xi_Qia.png"
+			}
+		}	
+		country_leader={
+			ideology=autocracy
+			traits={ provisional_prime_minister }
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Aisin_Gioro_Xi_Qia
+			allowed = {
+				original_tag = MAN
+			}
+			traits = { rearmament_proponent }
+			desc = "MAN_old_guard_constitutionalists"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
+	
 	MAN_aisin_gioro_pu_giye = {
 		name = MAN_aisin_gioro_pu_giye
 		portraits={
@@ -44,16 +84,20 @@ characters={
 			}
 		}
 		country_leader={
-			ideology=conservatism
-			traits={ puppet_leader }
-		}
-		country_leader={
 			ideology=despotism
-			traits={ puppet_leader }
+			traits={  }
+		}
+	}
+	MAN_Yang_Jingyu = {
+		name = MAN_Yang_Jingyu
+		portraits={
+			civilian={
+				large="gfx/leaders/MAN/MAN_Yang_Jingyu.png"
+			}
 		}
 		country_leader={
-			ideology=fascism_ideology
-			traits={ puppet_leader }
+			ideology=marxism
+			traits={  }
 		}
 	}
 	MAN_Jodbajab={
@@ -124,12 +168,19 @@ characters={
 				small="gfx/interface/ideas/MAN/MAN_ishiwara_ganzi.png"
 			}
 		}
+		country_leader={
+			ideology=pan_asianism
+			traits={ MAN_final_war_theorist }
+		}
 		advisor = {
 			slot = theorist
 			idea_token = MAN_ishiwara_ganzi
 			ledger = army
 			allowed = {
 				original_tag = MAN
+			}
+			available = {
+				has_completed_focus = MAN_expand_prime_minister_authority
 			}
 			traits = { total_war_advocate }
 			ai_will_do = {
@@ -265,6 +316,12 @@ characters={
 			allowed = {
 				original_tag = MAN
 			}
+			visible = {
+				FER = { exists = no }
+			}
+			available = {
+				has_completed_focus = MAN_blue_eyed_taiji
+			}
 			traits = { army_cavalry_2 }
 			ai_will_do = {
 				factor = 0.2
@@ -274,6 +331,7 @@ characters={
 			traits={ media_personality cavalry_officer }
 			visible = {
 				FER = { exists = no }
+				has_completed_focus = MAN_blue_eyed_taiji
 			}
 			skill=2
 			attack_skill=2
@@ -281,6 +339,29 @@ characters={
 			planning_skill=2
 			logistics_skill=2
 			legacy_id=-1
+		}
+	}
+	MAN_Leonid_Verigo = {
+		name = MAN_Leonid_Verigo
+		portraits={
+			army={
+				small="gfx/interface/ideas/MAN/MAN_Leonid_Verigo.png"
+			}
+		}
+		advisor = {
+			slot = high_command
+			idea_token = MAN_grigory_semyonov
+			ledger = army
+			allowed = {
+				original_tag = MAN
+			}
+			available = {
+				has_completed_focus = MAN_blue_eyed_taiji
+			}
+			traits = { army_infantry_3 }
+			ai_will_do = {
+				factor = 0.2
+			}
 		}
 	}
 	MAN_zhang_haipeng={
@@ -355,73 +436,6 @@ characters={
 
 	# Claire Lee Chennault is in shared file
 
-	MAN_hung_zhehuang={
-		name=MAN_hung_zhehuang
-		portraits={
-			army={
-				small="GFX_idea_generic_army_asia_1"
-			}
-		}
-		advisor={
-			cost = 100
-			slot = theorist
-			idea_token = MAN_hung_zhehuang
-			ledger = army
-			allowed = {
-				original_tag = MAN
-			}
-			
-			traits = {
-				military_theorist
-			}
-		}
-	}
-
-	MAN_xian_yuan={
-		name=MAN_xian_yuan
-		portraits={
-			army={
-				small="GFX_idea_generic_navy_asia_1"
-			}
-		}
-		advisor={
-			cost = 100	
-			slot = theorist
-			idea_token = MAN_xian_yuan
-			ledger = navy
-			allowed = {
-				original_tag = MAN
-			}
-			
-			traits = {
-				naval_theorist
-			}
-		}
-	}
-
-	MAN_deng_linge={
-		name=MAN_deng_linge
-		portraits={
-			army={
-				small="GFX_idea_generic_air_asia_2"
-			}
-		}
-		advisor={
-			cost = 100
-			slot = theorist
-			idea_token = MAN_deng_linge
-			ledger = air
-			allowed = {
-				original_tag = MAN
-			}
-			
-			traits = {
-				air_warfare_theorist
-			}
-		}
-	}
-
-
 	### ARMY CHIEFS ###
 
 	# Alexander von Falkenhausen in shared file
@@ -430,20 +444,41 @@ characters={
 		name=MAN_Manlaibaatar_Damdinsuren
 		portraits={
 			army={
-				small="gfx/interface/ideas/MAN_Manlaibaatar_Damdinsuren.png"
+				small="gfx/interface/ideas/MAN/MAN_Manlaibaatar_Damdinsuren.png"
+			}
+			civilian = {
+				small="gfx/interface/ideas/MAN/MAN_Manlaibaatar_Damdinsuren_civ.png"
 			}
 		}
 		advisor={	
 			slot = army_chief
-			idea_token = MAN_Manlaibaatar_Damdinsuren
+			idea_token = MAN_Manlaibaatar_Damdinsuren_army_chief
 			allowed = {
 				original_tag = MAN
+			}
+			available = {
+				not_already_hired_except_as = army_chief
 			}
 			traits = {
 				army_chief_morale_2
 			}
 			ai_will_do = {
 				factor = 1.000
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Manlaibaatar_Damdinsuren_political_advisor
+			allowed = {
+				original_tag = MAN
+			}
+			available = {
+				not_already_hired_except_as = political_advisor
+			}
+			traits = { MAN_old_general }
+			desc = "MAN_old_guard_imperial"
+			ai_will_do = {
+				factor = 1
 			}
 		}
 	}
@@ -454,18 +489,39 @@ characters={
 			army={
 				small="gfx/interface/ideas/MAN/MAN_Aisin_Gioro_Zaitao.png"
 			}
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_Aisin_Gioro_Zaitao_civ.png"
+			}
 		}
 		advisor={	
 			slot = army_chief
-			idea_token = MAN_Aisin_Gioro_Zaitao
+			idea_token = MAN_Aisin_Gioro_Zaitao_army_chief
 			allowed = {
 				original_tag = MAN
 			}
 			traits = {
 				army_chief_defensive_1
 			}
+			available = {
+				not_already_hired_except_as = army_chief
+			}
 			ai_will_do = {
 				factor = 1.000
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Aisin_Gioro_Zaitao_political_advisor
+			allowed = {
+				original_tag = MAN
+			}
+			available = {
+				not_already_hired_except_as = political_advisor
+			}
+			traits = { forsvarsminister }
+			desc = "MAN_old_guard_imperial"
+			ai_will_do = {
+				factor = 1
 			}
 		}
 	}
@@ -566,14 +622,14 @@ characters={
 	MAN_Kawashima_Naniwa = {
 		name=MAN_Kawashima_Naniwa
 		portraits={
-			civilian={
+			army = {
 				small="gfx/interface/ideas/MAN/MAN_Kawashima_Naniwa.png"
 			}
 		}	
 
 		advisor = {
 			slot = high_command
-			idea_token = MAN_Kawashima_Naniwa
+			idea_token = MAN_Kawashima_Naniwa_high_command
 			ledger = army
 			allowed = {
 				original_tag = MAN
@@ -654,6 +710,277 @@ characters={
 	# Generic Captain of Industry generated in generic_advisors file
 	# Generic Fortification Engineer generated in generic_advisors file
 	# Generic War Industrialist generated in generic_advisors file
+	
+	MAN_Zang_Shiyi = {
+		name = MAN_Zang_Shiyi
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_Zang_Shiyi.png"
+			}
+		}	
 
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Zang_Shiyi
+			allowed = {
+				original_tag = MAN
+			}
+			traits = { minister_of_civil_government }
+			desc = "MAN_old_guard_constitutionalists"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
+	
+	MAN_Zaifeng = {
+		name = MAN_Zaifeng
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_Zaifeng.png"
+			}
+		}	
 
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Zaifeng
+			allowed = {
+				original_tag = MAN
+			}
+			traits = { silent_workhorse }
+			desc = "MAN_old_guard_imperial"
+			ai_will_do = {
+				factor = 10
+			}
+		}
+	}
+	
+	MNA_Gungsangnorbu = {
+		name = MNA_Gungsangnorbu
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MNA_Gungsangnorbu.png"
+			}
+		}	
+
+		advisor = {
+			slot = political_advisor
+			idea_token = MNA_Gungsangnorbu
+			allowed = {
+				original_tag = MAN
+			}
+			traits = { udenrigsminister }
+			desc = "MAN_old_guard_constitutionalists"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
+	
+	MAN_demchugdongrub = {
+		name = MEN_demchugdongrub
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_demchugdongrub.png"
+			}
+		}	
+
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_demchugdongrub
+			allowed = {
+				original_tag = MAN
+			}
+			traits = { MAN_golden_lineage }
+			visible = {
+				NOT = {
+					MON = {
+						has_country_leader = {
+							character = MON_demchugdongrub
+							ruling_only = yes
+						}
+					}
+				}
+			}
+			desc = "MAN_old_guard_imperial"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
+	
+	MAN_Luo_Zhenyu = {
+		name = MAN_Luo_Zhenyu
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_Luo_Zhenyu.png"
+			}
+		}	
+
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Luo_Zhenyu
+			allowed = {
+				original_tag = MAN
+			}
+			available = {
+				has_completed_focus = MAN_self_strengthening_reform
+			}
+			traits = { seasoned_educator }
+			desc = "MAN_old_guard_imperial"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
+	
+	MAN_Xie_Jieshi = {
+		name = MAN_Xie_Jieshi
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_Xie_Jieshi.png"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Xie_Jieshi
+			allowed = {
+				original_tag = MAN
+			}
+			traits = { foreign_affairs_minister }
+			desc = "MAN_concordia_association"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
+	
+	MAN_Feng_Hanqing = {
+		name = MAN_Feng_Hanqing
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_Feng_Hanqing.png"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Feng_Hanqing
+			allowed = {
+				original_tag = MAN
+			}
+			traits = { respected_opportunist }
+			desc = "MAN_concordia_association"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
+	
+	MAN_Li_Shaogeng = {
+		name = MAN_Li_Shaogeng
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_Li_Shaogeng.png"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Li_Shaogeng
+			allowed = {
+				original_tag = MAN
+			}
+			traits = { industry_reformer }
+			desc = "MAN_concordia_association"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
+	
+	MAN_Ruan_Zhenduo = {
+		name = MAN_Ruan_Zhenduo
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_Ruan_Zhenduo.png"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Ruan_Zhenduo
+			allowed = {
+				original_tag = MAN
+			}
+			traits = { war_industrialist }
+			desc = "MAN_concordia_association"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
+	
+	MAN_Ding_Jianxiu = {
+		name = MAN_Ding_Jianxiu
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_Ding_Jianxiu.png"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Ding_Jianxiu
+			allowed = {
+				original_tag = MAN
+			}
+			traits = { cabinet_intellectual }
+			desc = "MAN_concordia_association"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
+	
+	MAN_Yoshiko_Kawashima = {
+		name = MAN_Yoshiko_Kawashima
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_Yoshiko_Kawashima.png"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Yoshiko_Kawashima
+			allowed = {
+				original_tag = MAN
+			}
+			traits = { oriental_mata_hari }
+			desc = "MAN_concordia_association"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
+	
+	MAN_Masayoshi_Miyazaki = {
+		name = MAN_Masayoshi_Miyazaki
+		portraits={
+			civilian={
+				small="gfx/interface/ideas/MAN/MAN_Masayoshi_Miyazaki.png"
+			}
+		}
+		advisor = {
+			slot = political_advisor
+			idea_token = MAN_Masayoshi_Miyazaki
+			allowed = {
+				original_tag = MAN
+			}
+			available = {
+				has_completed_focus = MAN_new_man_churia_new_heaven_and_earth
+			}
+			traits = { five_year_plan_planner }
+			desc = "MAN_concordia_association"
+			ai_will_do = {
+				factor = 0.2
+			}
+		}
+	}
 }

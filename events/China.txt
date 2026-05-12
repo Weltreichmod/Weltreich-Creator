@@ -3,6 +3,7 @@
 ###########################
 
 add_namespace = china_wr
+add_namespace = kuomintag_wr
 
 country_event = {
 	id = china_wr.1
@@ -1078,7 +1079,6 @@ country_event = { #국민당의 반발
 	}
 }
 
-
 country_event = { #사천내전
 	id = china_wr.47
 	title = china_wr.47.t
@@ -1099,6 +1099,7 @@ country_event = { #사천내전
 			}
 			add_core_of = SCH
 			transfer_state_to = SCH
+			remove_core_of = CHI
 			add_dynamic_modifier = {
 				modifier = Aftermath_of_the_Sichuan_Famine
 			}
@@ -1170,6 +1171,7 @@ country_event = { #사천내전
 				}
 			}
 			add_core_of = SKM
+			remove_core_of = CHI
 			transfer_state_to = SKM
 			add_dynamic_modifier = {
 				modifier = Aftermath_of_the_Sichuan_Famine
@@ -1335,12 +1337,6 @@ country_event = { #난징-우한 분리
 				}
 				every_state = {
 					limit = {
-						is_core_of = CHI
-					}
-					add_core_of = KMT
-				}
-				every_state = {
-					limit = {
 						is_owned_by = CHI
 						OR = {
 							state = 85
@@ -1350,64 +1346,70 @@ country_event = { #난징-우한 분리
 						}
 					}
 					transfer_state_to = KMT
+					add_core_of = KMT
+					remove_core_of = CHI
+					add_claim_by = CHI
 				}
 				KMT = {
 					inherit_technology = CHI
 					load_oob = "KMT_1936"
 					country_event = { id = china_wr.206 days = 10 }
+					hidden_effect = {
+						country_event = { id = china_wr.82 days = 3 }
+					}
 					960 = {
 						create_unit = {
-							division = "name = \"1 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"1 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.4 start_experience_factor = 0.2"
+							prioritize_location = 11913
+							count = 2
+							owner = KMT
+						}
+						create_unit = {
+							division = "name = \"2 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.3 start_experience_factor = 0.2"
 							prioritize_location = 11913
 							count = 1
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"2 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"3 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.3 start_experience_factor = 0.2"
 							prioritize_location = 11913
-							count = 1
+							count = 3
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"3 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
-							prioritize_location = 11913
-							count = 1
-							owner = KMT
-						}
-						create_unit = {
-							division = "name = \"4 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"4 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.4 start_experience_factor = 0.2"
 							prioritize_location = 10076
-							count = 1
+							count = 2
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"5 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"5 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.3 start_experience_factor = 0.2"
 							prioritize_location = 10076
-							count = 1
+							count = 2
 							owner = KMT
 						}
 					}
 					749 = {
 						create_unit = {
-							division = "name = \"6 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"6 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.4 start_experience_factor = 0.2"
 							prioritize_location = 1099
 							count = 1
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"7 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"7 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.4 start_experience_factor = 0.2"
 							prioritize_location = 1171
 							count = 1
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"8 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"8 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.3 start_experience_factor = 0.2"
 							prioritize_location = 11937
-							count = 1
+							count = 2
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"9 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"9 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.3 start_experience_factor = 0.2"
 							prioritize_location = 12019
 							count = 1
 							owner = KMT
@@ -1415,15 +1417,15 @@ country_event = { #난징-우한 분리
 					}
 					596 = {
 						create_unit = {
-							division = "name = \"10 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"10 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.35 start_experience_factor = 0.2"
 							prioritize_location = 7191
-							count = 1
+							count = 2
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"11 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"11 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.4 start_experience_factor = 0.2"
 							prioritize_location = 9974
-							count = 1
+							count = 2
 							owner = KMT
 						}
 					}
@@ -1558,6 +1560,7 @@ country_event = { #신강 분리
 				}
 			}
 			add_core_of = SIK
+			remove_core_of = CHI
 			transfer_state_to = SIK
 		}
 		CHI = {
@@ -1589,13 +1592,13 @@ country_event = { #신강 분리
 			}
 			617 = {
 				create_unit = {
-					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.8 start_experience_factor = 0.3"
 					prioritize_location = 4709
 					count = 2
 					owner = SIK
 				}
 				create_unit = {
-					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.3"
 					prioritize_location = 10614
 					count = 1
 					owner = SIK
@@ -1603,7 +1606,7 @@ country_event = { #신강 분리
 			}
 			760 = {
 				create_unit = {
-					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.9 start_experience_factor = 0.3"
 					prioritize_location = 4704
 					count = 1
 					owner = SIK
@@ -1640,6 +1643,7 @@ country_event = { #서북연군 분리
 				}
 			}
 			add_core_of = XSM
+			remove_core_of = CHI
 			transfer_state_to = XSM
 		}
 		CHI = {
@@ -1656,13 +1660,13 @@ country_event = { #서북연군 분리
 			}
 			755 = {
 				create_unit = {
-					division = "name = \"Sanjiao Jun\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Sanjiao Jun\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.4 start_experience_factor = 0.3"
 					prioritize_location = 12732
 					count = 2
 					owner = XSM
 				}
 				create_unit = {
-					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 					prioritize_location = 10834
 					count = 1
 					owner = XSM
@@ -1670,7 +1674,7 @@ country_event = { #서북연군 분리
 			}
 			756 = {
 				create_unit = {
-					division = "name = \"Sanjiao Jun\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Sanjiao Jun\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.8 start_experience_factor = 0.3"
 					prioritize_location = 5057
 					count = 1
 					owner = XSM
@@ -1682,7 +1686,7 @@ country_event = { #서북연군 분리
 					owner = XSM
 				}
 				create_unit = {
-					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.65 start_experience_factor = 0.3"
 					prioritize_location = 1778
 					count = 1
 					owner = XSM
@@ -1690,7 +1694,7 @@ country_event = { #서북연군 분리
 			}
 			616 = {
 				create_unit = {
-					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.3"
 					prioritize_location = 10724
 					count = 2
 					owner = XSM
@@ -1698,7 +1702,7 @@ country_event = { #서북연군 분리
 			}
 			287 = {
 				create_unit = {
-					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.9 start_experience_factor = 0.3"
 					prioritize_location = 8086
 					count = 1
 					owner = XSM
@@ -1738,6 +1742,7 @@ country_event = { #산서 분리
 				}
 			}
 			add_core_of = SHX
+			remove_core_of = CHI
 			transfer_state_to = SHX
 		}
 		CHI = {
@@ -1794,13 +1799,13 @@ country_event = { #산서 분리
 			}
 			615 = {
 				create_unit = {
-					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.8 start_experience_factor = 0.3"
 					prioritize_location = 1519
 					count = 2
 					owner = SHX
 				}
 				create_unit = {
-					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 					prioritize_location = 1034
 					count = 1
 					owner = SHX
@@ -1836,6 +1841,7 @@ country_event = { #서북초비사령부 수립
 				}
 			}
 			add_core_of = PRC
+			remove_core_of = CHI
 			transfer_state_to = PRC
 		}
 		CHI = {
@@ -1864,13 +1870,13 @@ country_event = { #서북초비사령부 수립
 			}
 			622 = {
 				create_unit = {
-					division = "name = \"Sanjiao Jun\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Sanjiao Jun\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.8 start_experience_factor = 0.3"
 					prioritize_location = 8049
 					count = 4
 					owner = PRC
 				}
 				create_unit = {
-					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.9 start_experience_factor = 0.3"
 					prioritize_location = 1458
 					count = 2
 					owner = PRC
@@ -1884,7 +1890,7 @@ country_event = { #서북초비사령부 수립
 					owner = PRC
 				}
 				create_unit = {
-					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.3"
 					prioritize_location = 2006
 					count = 2
 					owner = PRC
@@ -2193,7 +2199,7 @@ country_event = { #서북연군 붕괴
 				}
 				604 = {
 					create_unit = {
-						division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+						division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.8 start_experience_factor = 0.3"
 						prioritize_location = 4914
 						count = 2
 						owner = XSM
@@ -2205,7 +2211,7 @@ country_event = { #서북연군 붕괴
 				inherit_technology = XSM
 				756 = {
 					create_unit = {
-						division = "name = \"Qibing Jun\" division_template = \"Qibing Jun\" start_equipment_factor = 1 start_experience_factor = 0.3"
+						division = "name = \"Qibing Jun\" division_template = \"Qibing Jun\" start_equipment_factor = 0.9 start_experience_factor = 0.3"
 						prioritize_location = 5057
 						count = 1
 						owner = GSM
@@ -2223,7 +2229,7 @@ country_event = { #서북연군 붕괴
 				inherit_technology = XSM
 				616 = {
 					create_unit = {
-						division = "name = \"Qibing Jun\" division_template = \"Qibing Jun\" start_equipment_factor = 1 start_experience_factor = 0.3"
+						division = "name = \"Qibing Jun\" division_template = \"Qibing Jun\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 						prioritize_location = 8127
 						count = 1
 						owner = NSM
@@ -2240,7 +2246,7 @@ country_event = { #서북연군 붕괴
 				inherit_technology = XSM
 				619 = {
 					create_unit = {
-						division = "name = \"Revolutionary Brigade\" division_template = \"Revolutionary Brigade\" start_equipment_factor = 1 start_experience_factor = 0.3"
+						division = "name = \"Revolutionary Brigade\" division_template = \"Revolutionary Brigade\" start_equipment_factor = 0.8 start_experience_factor = 0.3"
 						prioritize_location = 7790
 						count = 1
 						owner = ETS
@@ -2248,7 +2254,7 @@ country_event = { #서북연군 붕괴
 				}
 				287 = {
 					create_unit = {
-						division = "name = \"Cavalry Unit\" division_template = \"Cavalry Unit\" start_equipment_factor = 1 start_experience_factor = 0.3"
+						division = "name = \"Cavalry Unit\" division_template = \"Cavalry Unit\" start_equipment_factor = 0.9 start_experience_factor = 0.3"
 						prioritize_location = 10911
 						count = 2
 						owner = ETS
@@ -2270,7 +2276,7 @@ country_event = { #서북연군 붕괴
 				}
 				604 = {
 					create_unit = {
-						division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+						division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.3"
 						prioritize_location = 4914
 						count = 2
 						owner = XSM
@@ -2312,13 +2318,13 @@ country_event = { #서북연군 붕괴
 				inherit_technology = XSM
 				756 = {
 					create_unit = {
-						division = "name = \"Qibing Jun\" division_template = \"Qibing Jun\" start_equipment_factor = 1 start_experience_factor = 0.3"
+						division = "name = \"Qibing Jun\" division_template = \"Qibing Jun\" start_equipment_factor = 0.8 start_experience_factor = 0.3"
 						prioritize_location = 5057
 						count = 1
 						owner = GSM
 					}
 					create_unit = {
-						division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+						division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.75 start_experience_factor = 0.3"
 						prioritize_location = 2028
 						count = 2
 						owner = GSM
@@ -2329,7 +2335,7 @@ country_event = { #서북연군 붕괴
 				inherit_technology = XSM
 				616 = {
 					create_unit = {
-						division = "name = \"Qibing Jun\" division_template = \"Qibing Jun\" start_equipment_factor = 1 start_experience_factor = 0.3"
+						division = "name = \"Qibing Jun\" division_template = \"Qibing Jun\" start_equipment_factor = 0.9 start_experience_factor = 0.3"
 						prioritize_location = 8127
 						count = 1
 						owner = NSM
@@ -2346,7 +2352,7 @@ country_event = { #서북연군 붕괴
 				inherit_technology = XSM
 				619 = {
 					create_unit = {
-						division = "name = \"Revolutionary Brigade\" division_template = \"Revolutionary Brigade\" start_equipment_factor = 1 start_experience_factor = 0.3"
+						division = "name = \"Revolutionary Brigade\" division_template = \"Revolutionary Brigade\" start_equipment_factor = 0.8 start_experience_factor = 0.3"
 						prioritize_location = 7790
 						count = 1
 						owner = ETS
@@ -2354,7 +2360,7 @@ country_event = { #서북연군 붕괴
 				}
 				287 = {
 					create_unit = {
-						division = "name = \"Cavalry Unit\" division_template = \"Cavalry Unit\" start_equipment_factor = 1 start_experience_factor = 0.3"
+						division = "name = \"Cavalry Unit\" division_template = \"Cavalry Unit\" start_equipment_factor = 0.7 start_experience_factor = 0.3"
 						prioritize_location = 10911
 						count = 2
 						owner = ETS
@@ -2864,6 +2870,7 @@ country_event = { #내전 이후 호법으로 복귀
 			remove_core_of = SHX
 			remove_core_of = PRC
 			remove_core_of = NPA
+			add_core_of = CHI
 		}
 		617 = { set_demilitarized_zone = no }
 		ai_chance = {
@@ -5378,7 +5385,7 @@ country_event = {
 	option = {
 		name = china_wr.179.a
 		unlock_decision_category_tooltip = CHI_military_discontent_decision
-		set_variable = { CHI_military_discontent_var = 0 }
+		set_country_flag = CHI_military_discontent_decision_flag
 		ai_chance = {
 			base = 10
 		}
@@ -5965,15 +5972,33 @@ country_event = { #중국내전
 					set_country_flag = chinese_civil_war_flag
 					mark_focus_tree_layout_dirty = yes
 					complete_national_focus = CHI_hufa_establish_emergency_government
-					transfer_units_fraction = {
-						target = KMT
-						size = 0.2
-						stockpile_ratio = 0.3
-						army_ratio = 0.1
-						navy_ratio = 0.05
-						air_ratio = 0.15
-						keep_unit_leaders_trigger = {
-							always = yes
+					if = {
+						limit = {
+							has_country_flag = south_china_path_flag
+						}
+						transfer_units_fraction = {
+							target = KMT
+							size = 0.4
+							stockpile_ratio = 0.4
+							army_ratio = 0.4
+							navy_ratio = 0
+							air_ratio = 0.3
+							keep_unit_leaders_trigger = {
+								always = yes
+							}
+						}
+					}
+					else = {
+						transfer_units_fraction = {
+							target = KMT
+							size = 0.1
+							stockpile_ratio = 0.15
+							army_ratio = 0.15
+							navy_ratio = 0
+							air_ratio = 0.15
+							keep_unit_leaders_trigger = {
+								always = yes
+							}
 						}
 					}
 					if = {
@@ -6008,7 +6033,7 @@ country_event = { #중국내전
 						}
 						608 = {
 							create_unit = {
-								division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+								division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.1 start_experience_factor = 0.3"
 								prioritize_location = 9843
 								count = 5
 								owner = CHI
@@ -6018,12 +6043,26 @@ country_event = { #중국내전
 					set_country_flag = CHI_congress_yes_flag
 					CHI_civil_war_congress_carlc = yes
 				}
+				every_state = {
+					limit = {
+						is_chinese_area = yes
+						OR = {
+							is_core_of = CHI
+							is_core_of = NPA
+						}
+						NOT = { is_claimed_by = KMT }
+						NOT = { is_core_of = KMT }
+					}
+					add_claim_by = KMT
+				}
 				KMT = {
 					declare_war_on = { target = CHI type = civil_war }
 					set_country_flag = chinese_civil_war_flag
+					complete_national_focus = KMT_nanjing_national_government
 					hidden_effect = {
-						country_event = { id = china_wr.82 days = 3 }
 						country_event = { id = china_wr.213 days = 7 }
+						country_event = { id = kuomintag_wr.34 days = 5 }
+						country_event = { id = kuomintag_wr.40 days = 40 }
 					}
 					if = {
 						limit = {
@@ -6075,7 +6114,7 @@ country_event = { #중국내전
 					}
 					598 = {
 						create_unit = {
-							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
 							prioritize_location = 7142
 							count = 2
 							owner = KMT
@@ -6083,13 +6122,13 @@ country_event = { #중국내전
 					}
 					1015 = {
 						create_unit = {
-							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.4 start_experience_factor = 0.3"
 							prioritize_location = 1029
 							count = 1
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.4 start_experience_factor = 0.3"
 							prioritize_location = 12055
 							count = 2
 							owner = KMT
@@ -6097,7 +6136,7 @@ country_event = { #중국내전
 					}
 					749 = {
 						create_unit = {
-							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.4 start_experience_factor = 0.3"
 							prioritize_location = 1099
 							count = 1
 							owner = KMT
@@ -6105,7 +6144,7 @@ country_event = { #중국내전
 					}
 					602 = {
 						create_unit = {
-							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
 							prioritize_location = 7097
 							count = 1
 							owner = KMT
@@ -6113,7 +6152,7 @@ country_event = { #중국내전
 					}
 					593 = {
 						create_unit = {
-							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
 							prioritize_location = 4050
 							count = 1
 							owner = KMT
@@ -6121,7 +6160,7 @@ country_event = { #중국내전
 					}
 					1010 = {
 						create_unit = {
-							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.35 start_experience_factor = 0.3"
 							prioritize_location = 11920
 							count = 1
 							owner = KMT
@@ -6129,7 +6168,7 @@ country_event = { #중국내전
 					}
 					592 = {
 						create_unit = {
-							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.35 start_experience_factor = 0.3"
 							prioritize_location = 1047
 							count = 1
 							owner = KMT
@@ -6141,7 +6180,7 @@ country_event = { #중국내전
 						}
 						592 = {
 							create_unit = {
-								division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+								division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.4 start_experience_factor = 0.3"
 								prioritize_location = 1047
 								count = 3
 								owner = KMT
@@ -6149,7 +6188,7 @@ country_event = { #중국내전
 						}
 						960 = {
 							create_unit = {
-								division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+								division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.4 start_experience_factor = 0.3"
 								prioritize_location = 11913
 								count = 2
 								owner = KMT
@@ -6162,7 +6201,7 @@ country_event = { #중국내전
 						}
 						85 = {
 							create_unit = {
-								division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+								division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
 								prioritize_location = 4619
 								count = 3
 								owner = KMT
@@ -6175,7 +6214,7 @@ country_event = { #중국내전
 						}
 						750 = {
 							create_unit = {
-								division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 1 start_experience_factor = 0.3"
+								division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
 								prioritize_location = 7101
 								count = 5
 								owner = KMT
@@ -6192,7 +6231,16 @@ country_event = { #중국내전
 	option = {
 		name = china_wr.205.a
 		trigger = {
-			has_country_flag = north_china_path_flag
+			original_tag = CHI
+		}
+		unlock_decision_category_tooltip = CHI_chinese_civil_war_category
+		hidden_effect = {
+			add_dynamic_modifier = { modifier = CHI_chinese_civil_war_modifier }
+			set_variable = { CHI_chinese_civil_war_modifier_army_attack_factor = 0 }
+			set_variable = { CHI_chinese_civil_war_modifier_army_defence_factor = 0 }
+			set_variable = { CHI_chinese_civil_war_modifier_army_org_factor = 0 }
+			set_variable = { CHI_chinese_civil_war_modifier_max_dig_in_factor = 0 }
+			set_variable = { CHI_chinese_civil_war_modifier_max_planning_factor = 0 }
 		}
 		ai_chance = {
 			base = 5
@@ -6201,7 +6249,16 @@ country_event = { #중국내전
 	option = {
 		name = china_wr.205.b
 		trigger = {
-			has_country_flag = south_china_path_flag
+			original_tag = KMT
+		}
+		unlock_decision_category_tooltip = KMT_second_national_revolution_category
+		hidden_effect = {
+			add_dynamic_modifier = { modifier = KMT_revolutionary_fervor_modifier }
+			set_variable = { KMT_revolutionary_fervor_modifier_army_attack_factor = 0 }
+			set_variable = { KMT_revolutionary_fervor_modifier_army_defence_factor = 0 }
+			set_variable = { KMT_revolutionary_fervor_modifier_army_org_factor = 0 }
+			set_variable = { KMT_revolutionary_fervor_modifier_max_dig_in_factor = 0 }
+			set_variable = { KMT_revolutionary_fervor_modifier_max_planning_factor = 0 }
 		}
 		ai_chance = {
 			base = 0
@@ -6233,6 +6290,9 @@ country_event = { #광동분리
 						}
 					}
 					transfer_state_to = KMT
+					add_core_of = KMT
+					remove_core_of = CHI
+					add_claim_by = CHI
 				}
 				CHI = { country_event = { id = china_wr.207 days = 12 } }
 				591 = { set_demilitarized_zone = no }
@@ -6244,25 +6304,25 @@ country_event = { #광동분리
 					country_event = { id = china_wr.207 days = 12 }
 					592 = {
 						create_unit = {
-							division = "name = \"12 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"12 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.35 start_experience_factor = 0.2"
+							prioritize_location = 1047
+							count = 2
+							owner = KMT
+						}
+						create_unit = {
+							division = "name = \"13 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.35 start_experience_factor = 0.2"
 							prioritize_location = 1047
 							count = 1
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"13 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
-							prioritize_location = 1047
-							count = 1
-							owner = KMT
-						}
-						create_unit = {
-							division = "name = \"1 Lujun Shi\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.1"
+							division = "name = \"1 Lujun Shi\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.5"
 							prioritize_location = 11941
-							count = 1
+							count = 2
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"2 Lujun Sh\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.1"
+							division = "name = \"2 Lujun Sh\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.4"
 							prioritize_location = 7108
 							count = 1
 							owner = KMT
@@ -6270,13 +6330,13 @@ country_event = { #광동분리
 					}
 					593 = {
 						create_unit = {
-							division = "name = \"3 Lujun Shi\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.1"
+							division = "name = \"3 Lujun Shi\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.4"
 							prioritize_location = 4050
 							count = 1
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"4 Lujun Sh\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.1"
+							division = "name = \"4 Lujun Sh\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.3"
 							prioritize_location = 9938
 							count = 1
 							owner = KMT
@@ -6284,9 +6344,9 @@ country_event = { #광동분리
 					}
 					1005 = {
 						create_unit = {
-							division = "name = \"5 Lujun Shi\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.1"
+							division = "name = \"5 Lujun Shi\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.3"
 							prioritize_location = 1120
-							count = 1
+							count = 2
 							owner = KMT
 						}
 					}
@@ -6336,6 +6396,9 @@ country_event = { #장시-저장 분리
 						}
 					}
 					transfer_state_to = KMT
+					add_core_of = KMT
+					remove_core_of = CHI
+					add_claim_by = CHI
 				}
 				CHI = {
 					country_event = { id = china_wr.208 days = 7 }
@@ -6349,15 +6412,15 @@ country_event = { #장시-저장 분리
 					country_event = { id = china_wr.208 days = 7 }
 					1006 = {
 						create_unit = {
-							division = "name = \"14 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"14 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.3 start_experience_factor = 0.2"
 							prioritize_location = 3992
 							count = 1
 							owner = KMT
 						}
 						create_unit = {
-							division = "name = \"15 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"15 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.3 start_experience_factor = 0.2"
 							prioritize_location = 1628
-							count = 1
+							count = 2
 							owner = KMT
 						}
 						create_unit = {
@@ -6377,7 +6440,7 @@ country_event = { #장시-저장 분리
 						create_unit = {
 							division = "name = \"8 Lujun Sh\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.1"
 							prioritize_location = 9942
-							count = 1
+							count = 2
 							owner = KMT
 						}
 					}
@@ -6436,6 +6499,9 @@ country_event = { #호남 분리
 						}
 					}
 					transfer_state_to = KMT
+					add_core_of = KMT
+					remove_core_of = CHI
+					add_claim_by = CHI
 				}
 				CHI = { country_event = { id = china_wr.209 days = 15 } }
 				602 = { set_demilitarized_zone = no }
@@ -6445,9 +6511,9 @@ country_event = { #호남 분리
 					country_event = { id = china_wr.209 days = 15 }
 					750 = {
 						create_unit = {
-							division = "name = \"16 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"16 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.4 start_experience_factor = 0.2"
 							prioritize_location = 7101
-							count = 1
+							count = 2
 							owner = KMT
 						}
 						create_unit = {
@@ -6459,9 +6525,9 @@ country_event = { #호남 분리
 					}
 					602 = {
 						create_unit = {
-							division = "name = \"17 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 1 start_experience_factor = 0.2"
+							division = "name = \"17 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.4 start_experience_factor = 0.2"
 							prioritize_location = 7097
-							count = 1
+							count = 2
 							owner = KMT
 						}
 						create_unit = {
@@ -6473,7 +6539,7 @@ country_event = { #호남 분리
 						create_unit = {
 							division = "name = \"12 Lujun Sh\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.1"
 							prioritize_location = 12350
-							count = 1
+							count = 2
 							owner = KMT
 						}
 					}
@@ -6558,6 +6624,7 @@ country_event = { #푸젠내륙 점거
 						}
 					}
 					transfer_state_to = KMT
+					add_claim_by = KMT
 				}
 				CHI = { country_event = { id = china_wr.211 days = 5 } }
 				1008 = { set_demilitarized_zone = no }
@@ -6575,7 +6642,7 @@ country_event = { #푸젠내륙 점거
 						create_unit = {
 							division = "name = \"14 Lujun Shi\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.1"
 							prioritize_location = 1193
-							count = 1
+							count = 2
 							owner = KMT
 						}
 						create_unit = {
@@ -6595,7 +6662,7 @@ country_event = { #푸젠내륙 점거
 						create_unit = {
 							division = "name = \"14 Lujun Shi\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.1"
 							prioritize_location = 7071
-							count = 1
+							count = 2
 							owner = KMT
 						}
 					}
@@ -6646,25 +6713,27 @@ country_event = { #서남호국군 분리
 							state = 754
 						}
 					}
+					add_core_of = NPA
+					remove_core_of = CHI
 					transfer_state_to = NPA
 				}
 				NPA = {
 					inherit_technology = CHI
 					599 = {
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.3"
 							prioritize_location = 7137
 							count = 2
 							owner = NPA
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.95 start_experience_factor = 0.3"
 							prioritize_location = 4121
 							count = 1
 							owner = NPA
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.8 start_experience_factor = 0.3"
 							prioritize_location = 10050
 							count = 1
 							owner = NPA
@@ -6678,7 +6747,7 @@ country_event = { #서남호국군 분리
 					}
 					754 = {
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.3"
 							prioritize_location = 1023
 							count = 1
 							owner = NPA
@@ -6690,7 +6759,7 @@ country_event = { #서남호국군 분리
 							owner = NPA
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.65 start_experience_factor = 0.3"
 							prioritize_location = 4152
 							count = 1
 							owner = NPA
@@ -6704,13 +6773,13 @@ country_event = { #서남호국군 분리
 							owner = NPA
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.9 start_experience_factor = 0.3"
 							prioritize_location = 4504
 							count = 3
 							owner = NPA
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.8 start_experience_factor = 0.3"
 							prioritize_location = 7549
 							count = 2
 							owner = NPA
@@ -6770,8 +6839,9 @@ country_event = { #호북 공세
 				}
 				85 = { set_demilitarized_zone = no }
 				620 = { set_demilitarized_zone = no }
-				country_event = china_wr.205
+				KMT = { country_event = china_wr.205 }
 				CHI = {
+					country_event = china_wr.205
 					set_province_controller = 10462
 					set_province_controller = 9959
 					set_province_controller = 7637
@@ -6785,31 +6855,31 @@ country_event = { #호북 공세
 					set_province_controller = 4130
 					85 = {
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 							prioritize_location = 10462
 							count = 1
 							owner = CHI
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 							prioritize_location = 9959
 							count = 1
 							owner = CHI
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 							prioritize_location = 7637
 							count = 1
 							owner = CHI
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 							prioritize_location = 1036
 							count = 1
 							owner = CHI
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 							prioritize_location = 4631
 							count = 1
 							owner = CHI
@@ -6817,25 +6887,25 @@ country_event = { #호북 공세
 					}
 					620 = {
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 							prioritize_location = 4130
 							count = 1
 							owner = CHI
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 							prioritize_location = 7625
 							count = 1
 							owner = CHI
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 							prioritize_location = 9934
 							count = 1
 							owner = CHI
 						}
 						create_unit = {
-							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+							division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.6 start_experience_factor = 0.3"
 							prioritize_location = 4009
 							count = 1
 							owner = CHI
@@ -7426,6 +7496,14 @@ country_event = { #당계요 암살
 	option = {
 		name = china_wr.233.a
 		retire_character = NPA_Tang_Jiyao
+		add_country_leader_role = {
+			character = NPA_Lu_Han
+			promote_leader = yes
+			country_leader = {
+				ideology = despotism
+				traits = {  }
+			}
+		}
 		ai_chance = {
 			base = 5
 		}
@@ -7898,6 +7976,14 @@ country_event = { #군사쿠데타
 			tooltip = consumer_goods_factor_tt
 		}
 		mark_focus_tree_layout_dirty = yes
+		if = {
+			limit = {
+				NOT = { has_war_with = JAP }
+				NOT = { has_war_with = MAN }
+			}
+			CHI = { country_event = { id = china_wr.268 days = 15 } }
+			PRC = { country_event = { id = china_wr.268 days = 15 } }
+		}
 		ai_chance = {
 			base = 5
 		}
@@ -8433,6 +8519,132 @@ country_event = { #노동연령
 	}
 }
 
+country_event = { #총력전
+	id = china_wr.265
+	title = china_wr.265.t
+	desc = china_wr.265.d
+	picture = GFX_report_event_chinese_soldiers
+	is_triggered_only = yes
+	option = {
+		name = china_wr.265.a
+		custom_effect_tooltip = CHI_wu_peifu_plan_modifier_tt
+		add_to_variable = {
+			CHI_wu_peifu_plan_industrial_capacity_factory = 0.025
+			tooltip = industrial_capacity_factory_tt
+		}
+		add_to_variable = {
+			CHI_wu_peifu_plan_industrial_capacity_dockyard = 0.025
+			tooltip = industrial_capacity_dockyard_tt
+		}
+		add_to_variable = {
+			CHI_wu_peifu_plan_production_factory_efficiency_gain_factor = 0.025
+			tooltip = production_factory_efficiency_gain_factor_tt
+		}
+		add_to_variable = {
+			CHI_wu_peifu_plan_production_factory_max_efficiency_factor = 0.025
+			tooltip = production_factory_max_efficiency_factor_tt
+		}
+		add_to_variable = {
+			CHI_wu_peifu_plan_production_speed_industrial_complex_factor = 0.025
+			tooltip = production_speed_industrial_complex_factor_tt
+		}
+		add_to_variable = {
+			CHI_wu_peifu_plan_production_speed_arms_factory_factor = 0.025
+			tooltip = production_speed_arms_factory_factor_tt
+		}
+		add_to_variable = {
+			CHI_wu_peifu_plan_consumer_goods_factor = 0.025
+			tooltip = consumer_goods_factor_tt
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #항일
+	id = china_wr.266
+	title = china_wr.266.t
+	desc = china_wr.266.d
+	picture = GFX_report_event_chinese_soldiers_mountain
+	is_triggered_only = yes
+	option = {
+		name = china_wr.266.a
+		add_war_support = 0.1
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = { #항일
+	id = china_wr.267
+	title = china_wr.267.t
+	desc = china_wr.267.d
+	picture = Wu_Peifu_picture
+	is_triggered_only = yes
+	option = {
+		name = china_wr.267.a
+		add_trait = {
+			character = CHI_wu_peifu
+			ideology = despotism
+			trait = CHI_caesar_of_china_trait
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.268
+	title = china_wr.268.t
+	desc = china_wr.268.d
+	picture = GFX_report_event_chinese_soldiers_mountain
+	is_triggered_only = yes
+	option = {
+		name = china_wr.268.a
+		if = {
+			limit = {
+				original_tag = PRC
+			}
+			CHI = { end_puppet = PRC }
+			PRC = {
+				declare_war_on = { target = CHI type = civil_war }
+				set_cosmetic_tag = Nationalist_Army
+			}
+			set_global_flag = Nationalist_Army_flag
+		}
+		else = {
+			effect_tooltip = {
+				CHI = { end_puppet = PRC }
+				PRC = {
+					declare_war_on = { target = CHI type = civil_war }
+					set_cosmetic_tag = Nationalist_Army
+				}
+			}
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+news_event = {
+	id = china_wr.269
+	title = china_wr.269.t
+	desc = china_wr.269.d
+	picture = GFX_news_event_chinese_soldiers_march
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = china_wr.269.a
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
 country_event = {
 	id = china_wr.1000
 	title = china_wr.1000.t
@@ -8584,6 +8796,1917 @@ country_event = {
 		else = {
 			country_event = { id = china_wr.2001 days = 240 }
 		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.1
+	title = kuomintag_wr.1.t
+	desc = kuomintag_wr.1.d
+	picture = GFX_KMT_picture
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.1.a
+		add_political_power = 25
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.2
+	title = kuomintag_wr.2.t
+	desc = kuomintag_wr.2.d
+	picture = GFX_report_event_generic_research_lab
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.2.a
+		complete_national_focus = KMT_select_functional_representatives
+		swap_ideas = {
+			remove_idea = KMT_illegal_regime
+			add_idea = KMT_national_assembly_legitimacy_low
+		}
+		country_event = {
+			id = kuomintag_wr.3 days = 7
+		}
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.3
+	title = kuomintag_wr.3.t
+	desc = kuomintag_wr.3.d
+	picture = GFX_report_event_china_politicians_captured
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.3.a
+		complete_national_focus = KMT_address_territorial_vacancies
+		country_event = {
+			id = kuomintag_wr.4 days = 7
+		}
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.4
+	title = kuomintag_wr.4.t
+	desc = kuomintag_wr.4.d
+	picture = GFX_report_event_chinese_japanese_handshake
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.4.a
+		complete_national_focus = KMT_select_minority_representatives
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.5
+	title = kuomintag_wr.5.t
+	desc = kuomintag_wr.5.d
+	picture = Farmer_Worker_event
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.5.a
+		add_power_balance_value = {
+			id = KMT_factional_conflict
+			value = -0.05
+		}
+		add_stability = 0.025
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.6
+	title = kuomintag_wr.6.t
+	desc = kuomintag_wr.6.d
+	picture = scientist_china
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.6.a
+		add_power_balance_value = {
+			id = KMT_factional_conflict
+			value = 0.05
+		}
+		add_stability = 0.025
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.7
+	title = kuomintag_wr.7.t
+	desc = kuomintag_wr.7.d
+	picture = scientist_china
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.7.a
+		add_stability = 0.025
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.8
+	title = kuomintag_wr.8.t
+	desc = kuomintag_wr.8.d
+	picture = scientist_china
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.8.a
+		add_power_balance_value = {
+			id = KMT_factional_conflict
+			value = -0.05
+		}
+		if = {
+			limit = {
+				has_idea = KMT_national_assembly_legitimacy_low
+			}
+			swap_ideas = {
+				remove_idea = KMT_national_assembly_legitimacy_low
+				add_idea = KMT_national_assembly_legitimacy_medium
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = KMT_national_assembly_legitimacy_medium
+			}
+			swap_ideas = {
+				remove_idea = KMT_national_assembly_legitimacy_medium
+				add_idea = KMT_national_assembly_legitimacy_high
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = KMT_national_assembly_legitimacy_high
+			}
+			swap_ideas = {
+				remove_idea = KMT_national_assembly_legitimacy_high
+				add_idea = KMT_national_assembly_legitimacy_perfect
+			}
+		}
+		ai_chance = {
+			base = 50
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.9
+	title = kuomintag_wr.9.t
+	desc = kuomintag_wr.9.d
+	picture = GFX_kuomintag_nono
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.9.a
+		complete_national_focus = KMT_temporary_by_elections
+		ai_chance = {
+			base = 5
+			modifier = {
+				add = -5
+				has_country_flag = KMT_right_flag
+			}
+		}
+	}
+	option = {
+		name = kuomintag_wr.9.b
+		complete_national_focus = KMT_military_delegate_appointment
+		ai_chance = {
+			base = 5
+			modifier = {
+				add = -5
+				has_country_flag = KMT_left_flag
+			}
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.10
+	title = kuomintag_wr.10.t
+	desc = kuomintag_wr.10.d
+	picture = GFX_china_1930
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.10.a
+		add_power_balance_value = {
+			id = KMT_factional_conflict
+			value = -0.05
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.11
+	title = kuomintag_wr.11.t
+	desc = kuomintag_wr.11.d
+	picture = CHI_woman_vote_event
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.11.a
+		add_power_balance_value = {
+			id = KMT_factional_conflict
+			value = -0.05
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.12
+	title = kuomintag_wr.12.t
+	desc = kuomintag_wr.12.d
+	picture = GFX_china_1920
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.12.a
+		add_power_balance_value = {
+			id = KMT_factional_conflict
+			value = -0.05
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.13
+	title = kuomintag_wr.13.t
+	desc = kuomintag_wr.13.d
+	picture = GFX_china_1920
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.13.a
+		add_power_balance_value = {
+			id = KMT_factional_conflict
+			value = -0.05
+		}
+		if = {
+			limit = {
+				has_idea = KMT_national_assembly_legitimacy_low
+			}
+			swap_ideas = {
+				remove_idea = KMT_national_assembly_legitimacy_low
+				add_idea = KMT_national_assembly_legitimacy_medium
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = KMT_national_assembly_legitimacy_medium
+			}
+			swap_ideas = {
+				remove_idea = KMT_national_assembly_legitimacy_medium
+				add_idea = KMT_national_assembly_legitimacy_high
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = KMT_national_assembly_legitimacy_high
+			}
+			swap_ideas = {
+				remove_idea = KMT_national_assembly_legitimacy_high
+				add_idea = KMT_national_assembly_legitimacy_perfect
+			}
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.14
+	title = kuomintag_wr.14.t
+	desc = kuomintag_wr.14.d
+	picture = GFX_china_1920
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.14.a
+		complete_national_focus = KMT_overseas_compatriots
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.15
+	title = kuomintag_wr.15.t
+	desc = kuomintag_wr.15.d
+	picture = GFX_report_event_chinese_soldiers
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.15.a
+		complete_national_focus = KMT_shanghai_campaign
+		add_command_power = 15
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.16
+	title = kuomintag_wr.16.t
+	desc = kuomintag_wr.16.d
+	picture = GFX_report_event_chinese_soldiers
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.16.a
+		unlock_decision_category_tooltip = KMT_international_support_category
+		set_country_flag = KMT_international_support_category_flag
+		remove_ideas = KMT_no_diplomatic_channels
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.17
+	title = kuomintag_wr.17.t
+	desc = kuomintag_wr.17.d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.17.a
+		KMT = { country_event = kuomintag_wr.18 }
+		army_experience = 25
+		air_experience = 25
+		add_command_power = 15
+		effect_tooltip = {
+			SOV = {
+				add_opinion_modifier = {
+					target = KMT
+					modifier = small_increase
+				}
+			}
+			KMT = {
+				add_opinion_modifier = {
+					target = SOV
+					modifier = small_increase
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.17.b
+		KMT = { country_event = kuomintag_wr.19 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.18
+	title = kuomintag_wr.18.t
+	desc = kuomintag_wr.18.d
+	picture = GFX_report_event_generic_army
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.18.a
+		army_experience = 50
+		air_experience = 50
+		add_command_power = 15
+		SOV = {
+			add_opinion_modifier = {
+				target = KMT
+				modifier = small_increase
+			}
+		}
+		KMT = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = small_increase
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.19
+	title = kuomintag_wr.19.t
+	desc = kuomintag_wr.19.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.19.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.20
+	title = kuomintag_wr.20.t
+	desc = kuomintag_wr.20.d
+	picture = GFX_report_event_german_advisors_remain
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.20.a
+		KMT = { country_event = kuomintag_wr.21 }
+		effect_tooltip = {
+			FRA = {
+				add_opinion_modifier = {
+					target = KMT
+					modifier = small_increase
+				}
+			}
+			KMT = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = small_increase
+				}
+				add_ideas = KMT_french_military_mission
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.20.b
+		KMT = { country_event = kuomintag_wr.22 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.21
+	title = kuomintag_wr.21.t
+	desc = kuomintag_wr.21.d
+	picture = GFX_report_event_german_advisors_remain
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.21.a
+		FRA = {
+			add_opinion_modifier = {
+				target = KMT
+				modifier = small_increase
+			}
+		}
+		KMT = {
+			add_opinion_modifier = {
+				target = FRA
+				modifier = small_increase
+			}
+			add_ideas = KMT_french_military_mission
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.22
+	title = kuomintag_wr.22.t
+	desc = kuomintag_wr.22.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.22.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.23
+	title = kuomintag_wr.23.t
+	desc = kuomintag_wr.23.d
+	picture = GFX_report_event_sweden_tank
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.23.a
+		KMT = { country_event = kuomintag_wr.24 }
+		effect_tooltip = {
+			ITA = {
+				add_opinion_modifier = {
+					target = KMT
+					modifier = small_increase
+				}
+			}
+			KMT = {
+				add_opinion_modifier = {
+					target = ITA
+					modifier = small_increase
+				}
+			}
+			if = {
+				limit = {
+					has_dlc = "No Step Back"
+				}
+				ITA = {
+					create_production_license = {
+						target = KMT
+						equipment = {
+							type = light_tank_chassis_1
+							version = 0
+							new_prioritised = no
+						}
+						cost_factor = 1
+					}
+				}
+			}
+			else = {
+				ITA = {
+					create_production_license = {
+						target = KMT
+						equipment = {
+							type = light_tank_equipment_1
+							version = 0
+							new_prioritised = no
+						}
+						cost_factor = 1
+					}
+				}
+			}
+			add_tech_bonus = {
+				name = KMT_light_tank
+				bonus = 0.5
+				uses = 1
+				category = cat_light_armor
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.23.b
+		KMT = { country_event = kuomintag_wr.25 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.24
+	title = kuomintag_wr.24.t
+	desc = kuomintag_wr.24.d
+	picture = GFX_report_event_sweden_tank
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.24.a
+		ITA = {
+			add_opinion_modifier = {
+				target = KMT
+				modifier = small_increase
+			}
+		}
+		KMT = {
+			add_opinion_modifier = {
+				target = ITA
+				modifier = small_increase
+			}
+		}
+		if = {
+			limit = {
+				has_dlc = "No Step Back"
+			}
+			ITA = {
+				create_production_license = {
+					target = KMT
+					equipment = {
+						type = light_tank_chassis_1
+						version = 0
+						new_prioritised = no
+					}
+					cost_factor = 1
+				}
+			}
+		}
+		else = {
+			ITA = {
+				create_production_license = {
+					target = KMT
+					equipment = {
+						type = light_tank_equipment_1
+						version = 0
+						new_prioritised = no
+					}
+					cost_factor = 1
+				}
+			}
+		}
+		add_tech_bonus = {
+			name = KMT_light_tank
+			bonus = 0.5
+			uses = 1
+			category = cat_light_armor
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.25
+	title = kuomintag_wr.25.t
+	desc = kuomintag_wr.25.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.25.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.26
+	title = kuomintag_wr.26.t
+	desc = kuomintag_wr.26.d
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.26.a
+		KMT = { country_event = kuomintag_wr.27 }
+		effect_tooltip = {
+			USA = {
+				add_opinion_modifier = {
+					target = KMT
+					modifier = small_increase
+				}
+				add_timed_idea = { idea = USA_chinese_payment_received days = 100 }
+				send_equipment = {
+					target = KMT
+					type = infantry_equipment
+					amount = 500
+				}
+				send_equipment = {
+					target = KMT
+					type = artillery_equipment
+					amount = 100
+				}
+			}
+			KMT = {
+				add_opinion_modifier = {
+					target = USA
+					modifier = small_increase
+				}
+				add_timed_idea = { idea = KMT_payment_for_american_arms days = 100 }
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.26.b
+		KMT = { country_event = kuomintag_wr.28 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.27
+	title = kuomintag_wr.27.t
+	desc = kuomintag_wr.27.d
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.27.a
+		USA = {
+			add_opinion_modifier = {
+				target = KMT
+				modifier = small_increase
+			}
+			add_timed_idea = { idea = USA_chinese_payment_received days = 100 }
+			send_equipment = {
+				target = KMT
+				type = infantry_equipment
+				amount = 500
+			}
+			send_equipment = {
+				target = KMT
+				type = artillery_equipment
+				amount = 100
+			}
+		}
+		KMT = {
+			add_opinion_modifier = {
+				target = USA
+				modifier = small_increase
+			}
+			add_timed_idea = { idea = KMT_payment_for_american_arms days = 100 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.28
+	title = kuomintag_wr.28.t
+	desc = kuomintag_wr.28.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.28.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.29
+	title = kuomintag_wr.29.t
+	desc = kuomintag_wr.29.d
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.29.a
+		KMT = { country_event = kuomintag_wr.30 }
+		effect_tooltip = {
+			JAP = {
+				add_opinion_modifier = {
+					target = KMT
+					modifier = small_increase
+				}
+				send_equipment = {
+					target = KMT
+					type = infantry_equipment
+					amount = 300
+				}
+				send_equipment = {
+					target = KMT
+					type = artillery_equipment
+					amount = 50
+				}
+			}
+			KMT = {
+				add_opinion_modifier = {
+					target = JAP
+					modifier = small_increase
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.29.b
+		KMT = { country_event = kuomintag_wr.31 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.30
+	title = kuomintag_wr.30.t
+	desc = kuomintag_wr.30.d
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.30.a
+		JAP = {
+			add_opinion_modifier = {
+				target = KMT
+				modifier = small_increase
+			}
+			send_equipment = {
+				target = KMT
+				type = infantry_equipment
+				amount = 300
+			}
+			send_equipment = {
+				target = KMT
+				type = artillery_equipment
+				amount = 50
+			}
+		}
+		KMT = {
+			add_opinion_modifier = {
+				target = JAP
+				modifier = small_increase
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.31
+	title = kuomintag_wr.31.t
+	desc = kuomintag_wr.31.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.31.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.32
+	title = kuomintag_wr.32.t
+	desc = kuomintag_wr.32.d
+	picture = GFX_kuomintag_nono
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.32.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.33
+	title = kuomintag_wr.33.t
+	desc = kuomintag_wr.33.d
+	picture = GFX_report_event_chinese_soldiers_02
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.33.a
+		swap_ideas = {
+			remove_idea = KMT_collapsed_public_order
+			add_idea = KMT_wartime_jurisdiction
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.34
+	title = kuomintag_wr.34.t
+	desc = kuomintag_wr.34.d
+	picture = kuomintang2
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.34.a
+		hidden_effect = {
+			country_event = { id = kuomintag_wr.35 days = 3 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.35
+	title = kuomintag_wr.35.t
+	desc = kuomintag_wr.35.d
+	picture = kuomintang2
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.35.a
+		hidden_effect = {
+			country_event = { id = kuomintag_wr.36 days = 3 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.36
+	title = kuomintag_wr.36.t
+	desc = kuomintag_wr.36.d
+	picture = CHI_wang_jingwei
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.36.a
+		set_politics = {
+			ruling_party = democratic
+			elections_allowed = no
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.37
+	title = kuomintag_wr.37.t
+	desc = kuomintag_wr.37.d
+	picture = GFX_report_event_chinese_soldiers
+	is_triggered_only = yes
+	fire_only_once = yes
+	option = {
+		name = kuomintag_wr.37.a
+		unlock_decision_category_tooltip = KMT_encirclement_campaigns_category
+		set_country_flag = KMT_encirclement_campaigns_flag
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.38
+	title = kuomintag_wr.38.t
+	desc = kuomintag_wr.38.d
+	picture = GFX_report_event_chinese_soldiers
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.38.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.39
+	title = kuomintag_wr.39.t
+	desc = kuomintag_wr.39.d
+	picture = canton_coup
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			set_country_flag = Zhongshan_Incident_flag
+		}
+	}
+	option = {
+		name = kuomintag_wr.39.a
+		hidden_effect = {
+			country_event = { id = kuomintag_wr.43 days = 2 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.40
+	title = kuomintag_wr.40.t
+	desc = kuomintag_wr.40.d
+	picture = Li_Tsung_jen
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.40.a
+		country_event = { id = kuomintag_wr.41 days = 15 }
+		custom_effect_tooltip = kuomintag_wr_40_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.41
+	title = kuomintag_wr.41.t
+	desc = kuomintag_wr.41.d
+	picture = Li_Tsung_jen
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.41.a
+		country_event = { id = kuomintag_wr.42 days = 25 }
+		custom_effect_tooltip = kuomintag_wr_41_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.42
+	title = kuomintag_wr.42.t
+	desc = kuomintag_wr.42.d
+	picture = Li_Tsung_jen
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.42.a
+		custom_effect_tooltip = kuomintag_wr_42_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.43
+	title = kuomintag_wr.43.t
+	desc = kuomintag_wr.43.d
+	picture = Li_Tsung_jen
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.43.a
+		trigger = {
+			power_balance_value = {
+				id = KMT_factional_conflict
+				value > -0.4
+			}
+		}
+		hidden_effect = {
+			country_event = { id = kuomintag_wr.44 days = 3 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.43.b
+		trigger = {
+			power_balance_value = {
+				id = KMT_factional_conflict
+				value > -0.4
+			}
+		}
+		hidden_effect = {
+			country_event = { id = kuomintag_wr.45 days = 3 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.43.c
+		trigger = {
+			power_balance_value = {
+				id = KMT_factional_conflict
+				value < -0.4
+			}
+		}
+		hidden_effect = {
+			country_event = { id = kuomintag_wr.46 days = 3 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.44
+	title = kuomintag_wr.44.t
+	desc = kuomintag_wr.44.d
+	picture = canton_coup
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.44.a
+		retire_character = CHI_chiang_kaishek
+		set_country_flag = died_chiang_flag
+		country_event = kuomintag_wr.46
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.45
+	title = kuomintag_wr.45.t
+	desc = kuomintag_wr.45.d
+	picture = canton_coup
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.45.a
+		retire_character = CHI_wang_jingwei
+		set_country_flag = died_wang_flag
+		country_event = kuomintag_wr.46
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.46
+	title = kuomintag_wr.46.t
+	desc = {
+		trigger = {
+			has_country_flag = died_chiang_flag
+		}
+		text = kuomintag_wr.46a.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = died_wang_flag
+		}
+		text = kuomintag_wr.46b.desc
+	}
+	desc = {
+		trigger = {
+			NOT = { has_country_flag = died_chiang_flag }
+			NOT = { has_country_flag = died_wang_flag }
+		}
+		text = kuomintag_wr.46c.desc
+	}
+	picture = Li_Tsung_jen
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.46.a
+		news_event = kuomintag_wr.47
+		complete_national_focus = KMT_internal_collapse
+		set_country_flag = kuomintag_wr_46a
+		mark_focus_tree_layout_dirty = yes
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = -10
+				has_country_flag = KMT_right_flag
+			}
+		}
+	}
+	option = {
+		name = kuomintag_wr.46.b
+		news_event = kuomintag_wr.47
+		complete_national_focus = KMT_unexpected_consequences
+		set_country_flag = kuomintag_wr_46b
+		mark_focus_tree_layout_dirty = yes
+		ai_chance = {
+			base = 10
+			modifier = {
+				add = -10
+				has_country_flag = KMT_left_flag
+			}
+		}
+	}
+}
+
+news_event = {
+	id = kuomintag_wr.47
+	title = kuomintag_wr.47.t
+	desc = {
+		trigger = {
+			has_country_flag = died_chiang_flag
+		}
+		text = kuomintag_wr.47a.desc
+	}
+	desc = {
+		trigger = {
+			has_country_flag = died_wang_flag
+		}
+		text = kuomintag_wr.47b.desc
+	}
+	desc = {
+		trigger = {
+			NOT = { has_country_flag = died_chiang_flag }
+			NOT = { has_country_flag = died_wang_flag }
+		}
+		text = kuomintag_wr.47c.desc
+	}
+	major = yes
+	picture = GFX_news_event_chinese_soldiers_city_ruin
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.47.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.48
+	title = kuomintag_wr.48.t
+	desc = kuomintag_wr.48.d
+	picture = GFX_report_event_ARG_coup_detat
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.48.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.49
+	title = kuomintag_wr.49.t
+	desc = kuomintag_wr.49.d
+	picture = GFX_report_event_generic_ruins
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.49.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.50
+	title = kuomintag_wr.50.t
+	desc = kuomintag_wr.50.d
+	picture = GFX_report_event_ger_civil_war
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.50.a
+		custom_effect_tooltip = kuomintag_wr_50_tt
+		set_country_flag = kill_all_rights
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.51
+	title = kuomintag_wr.51.t
+	desc = kuomintag_wr.51.d
+	picture = Li_Tsung_jen
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.51.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.52
+	title = kuomintag_wr.52.t
+	desc = kuomintag_wr.52.d
+	picture = Li_Tsung_jen
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.52.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.53
+	title = kuomintag_wr.53.t
+	desc = kuomintag_wr.53.d
+	picture = Li_Tsung_jen
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.53.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.54
+	title = kuomintag_wr.54.t
+	desc = kuomintag_wr.54.d
+	picture = Li_Tsung_jen
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.54.a
+		if = {
+			limit = {
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value > 0.8
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 594
+						state = 591
+						state = 592
+						state = 593
+						state = 1005
+						state = 1009
+						state = 600
+						state = 602
+						state = 1006
+					}
+				}
+				add_core_of = KMR
+				transfer_state_to = KMR
+			}
+			KMT = {
+				transfer_units_fraction = {
+					target = KMR
+					size = 0.4
+					stockpile_ratio = 0.4
+					army_ratio = 0.4
+					navy_ratio = 0.4
+					air_ratio = 0.4
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_CHI_controlled_states_calculate = yes
+			}
+		}
+		else_if = {
+			limit = {
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value > 0.55
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 594
+						state = 591
+						state = 592
+						state = 593
+						state = 1005
+						state = 1009
+						state = 600
+						state = 602
+					}
+				}
+				add_core_of = KMR
+				transfer_state_to = KMR
+			}
+			KMT = {
+				transfer_units_fraction = {
+					target = KMR
+					size = 0.3
+					stockpile_ratio = 0.3
+					army_ratio = 0.3
+					navy_ratio = 0.3
+					air_ratio = 0.3
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_CHI_controlled_states_calculate = yes
+			}
+		}
+		else_if = {
+			limit = {
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value > -0.55
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 594
+						state = 591
+						state = 592
+						state = 593
+						state = 1005
+						state = 1009
+						state = 600
+					}
+				}
+				add_core_of = KMR
+				transfer_state_to = KMR
+			}
+			KMT = {
+				transfer_units_fraction = {
+					target = KMR
+					size = 0.2
+					stockpile_ratio = 0.2
+					army_ratio = 0.2
+					navy_ratio = 0.2
+					air_ratio = 0.2
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_CHI_controlled_states_calculate = yes
+			}
+		}
+		if = {
+			limit = {
+				power_balance_value = {
+					id = KMT_factional_conflict
+					value > -0.8
+				}
+			}
+			every_state = {
+				limit = {
+					OR = {
+						state = 594
+						state = 591
+						state = 592
+						state = 593
+						state = 1005
+						state = 1009
+					}
+				}
+				add_core_of = KMR
+				transfer_state_to = KMR
+			}
+			KMT = {
+				transfer_units_fraction = {
+					target = KMR
+					size = 0.1
+					stockpile_ratio = 0.1
+					army_ratio = 0.1
+					navy_ratio = 0.1
+					air_ratio = 0.1
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+			}
+		}
+		else = {
+			every_state = {
+				limit = {
+					OR = {
+						state = 594
+						state = 591
+						state = 592
+						state = 593
+						state = 1005
+					}
+				}
+				add_core_of = KMR
+				transfer_state_to = KMR
+			}
+			KMT = {
+				transfer_units_fraction = {
+					target = KMR
+					size = 0.05
+					stockpile_ratio = 0.05
+					army_ratio = 0.1
+					navy_ratio = 0.05
+					air_ratio = 0.05
+					keep_unit_leaders_trigger = {
+						always = yes
+					}
+				}
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_inc_revolution_5 = yes
+				KMT_CHI_controlled_states_calculate = yes
+			}
+		}
+		KMT = {
+			KMT_li_zongren = {
+				set_nationality = KMR
+				promote_character = yes
+				add_country_leader_role = {
+					promote_leader = yes
+					country_leader = {
+						ideology = nationalist_three_principles_of_the_people
+					}
+				}
+				add_country_leader_role = {
+					promote_leader = yes
+						country_leader = {
+						ideology = nationalist_three_principles_of_the_people
+					}
+				}				
+			}
+			KMT_Chen_Cheng = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_chen_mingshu = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_gu_zhutong = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_zhang_fakui = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			CHI_jiang_dingwen = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_hu_hanmin = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_lin_sen = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_kung_hsiang_si = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_Li_Wenfan = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_Yu_Youren = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_Gu_Yingfen = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_Ju_Zheng = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_Wu_Chaoshu = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_chen_jitang = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_Bai_Chongxi = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			KMT_Wang_Shuming = {
+				set_nationality = KMR
+				promote_character = yes	
+			}
+			if = {
+				limit = {
+					has_completed_focus = KMT_proclaim_rival_government
+				}
+				KMT_chen_ce = {
+					set_nationality = KMR
+					promote_character = yes	
+				}
+				KMT_Zhou_Zhirou = {
+					set_nationality = KMR
+					promote_character = yes	
+				}
+				KMT_Huang_Guangrui = {
+					set_nationality = KMR
+					promote_character = yes	
+				}
+				KMT_Ye_Ting = {
+					set_nationality = KMR
+					promote_character = yes	
+				}
+				KMT_Chen_Jiliang = {
+					set_nationality = KMR
+					promote_character = yes	
+				}
+				KMT_Liu_Zhi = {
+					set_nationality = KMR
+					promote_character = yes	
+				}
+			}
+		}
+		KMR = {
+			inherit_technology = KMT
+			load_oob = "KMR_1936"
+			if = {
+				limit = {
+					CHI = { exists = yes }
+				}
+				declare_war_on = { target = CHI type = civil_war }
+			}
+			if = {
+				limit = {
+					KMT = { exists = yes }
+				}
+				declare_war_on = { target = KMT type = civil_war }
+			}
+			if = {
+				limit = {
+					NPA = { exists = yes }
+				}
+				declare_war_on = { target = NPA type = civil_war }
+			}
+			if = {
+				limit = {
+					PRC = { exists = yes }
+				}
+				declare_war_on = { target = PRC type = civil_war }
+			}
+			if = {
+				limit = {
+					SHX = { exists = yes }
+				}
+				declare_war_on = { target = SHX type = civil_war }
+			}
+			set_province_controller = 12407
+			set_province_controller = 1023
+			set_province_controller = 7128
+			set_province_controller = 7210
+			set_province_controller = 10404
+			set_province_controller = 7168
+			set_province_controller = 4152
+			set_province_controller = 11926
+			set_province_controller = 7137
+			set_province_controller = 10050
+			division_template = {
+				name = "mínbing"
+				is_locked = no
+				regiments = {
+					militia = {
+						x = 0
+						y = 0
+					}
+					militia = {
+						x = 0
+						y = 1
+					}
+					militia = {
+						x = 0
+						y = 2
+					}
+					militia = {
+						x = 1
+						y = 0
+					}
+					militia = {
+						x = 1
+						y = 1
+					}
+				}
+			}
+			754 = {
+				create_unit = {
+					division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
+					prioritize_location = 10404
+					count = 2
+					owner = KMR
+				}
+				create_unit = {
+					division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
+					prioritize_location = 7168
+					count = 2
+					owner = KMR
+				}
+				create_unit = {
+					division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
+					prioritize_location = 4152
+					count = 1
+					owner = KMR
+				}
+			}
+			599 = {
+				create_unit = {
+					division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
+					prioritize_location = 7137
+					count = 2
+					owner = KMR
+				}
+				create_unit = {
+					division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
+					prioritize_location = 11926
+					count = 2
+					owner = KMR
+				}
+			}
+			add_dynamic_modifier = {
+				modifier = KMR_Disordered_Ranks_modifier
+			}
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_attack_factor = -0.2
+				tooltip = army_attack_factor_tt
+			}
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_defence_factor = -0.2
+				tooltip = army_defence_factor_tt
+			}
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_army_org_factor = -0.15
+				tooltip = army_org_factor_tt
+			}
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_max_dig_in_factor = -0.25
+				tooltip = max_dig_in_factor_tt
+			}
+			add_to_variable = {
+				KMR_Disordered_Ranks_modifier_max_planning_factor = -0.2
+				tooltip = max_planning_factor_tt
+			}
+			unlock_decision_category_tooltip = KMR_military_discipline_category
+		}
+		if = {
+			limit = {
+				has_completed_focus = KMT_proclaim_rival_government
+			}
+			KMR = {
+				change_tag_from = ROOT
+			}
+		}
+		remove_power_balance = {
+			id = KMT_factional_conflict
+		}
+		news_event = kuomintag_wr.55
+		set_country_flag = KMT_left_focus_allow_flag
+		mark_focus_tree_layout_dirty = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+news_event = {
+	id = kuomintag_wr.55
+	title = kuomintag_wr.55.t
+	desc = kuomintag_wr.55.d
+	picture = KMT_civilwar_news
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = kuomintag_wr.55.a
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.56
+	title = kuomintag_wr.56.t
+	desc = kuomintag_wr.56.d
+	picture = KMT_flag
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.56.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.57
+	title = kuomintag_wr.57.t
+	desc = kuomintag_wr.57.d
+	picture = GFX_china_1920
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.57.a
+		modify_timed_idea = {
+			idea = KMT_inflation
+			days = -90
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.58
+	title = kuomintag_wr.58.t
+	desc = kuomintag_wr.58.d
+	picture = GFX_china_1920
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.58.a
+		modify_timed_idea = {
+			idea = KMT_inflation
+			days = -90
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.59
+	title = kuomintag_wr.59.t
+	desc = kuomintag_wr.59.d
+	picture = GFX_china_1920
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.59.a
+		add_ideas = KMT_bank_nationalization
+		modify_timed_idea = {
+			idea = KMT_inflation
+			days = -90
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.60
+	title = kuomintag_wr.60.t
+	desc = kuomintag_wr.60.d
+	picture = GFX_china_1920
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.60.a
+		if = {
+			limit = {
+				has_idea = KMT_foreign_capital
+			}
+			swap_ideas = {
+				remove_idea = KMT_foreign_capital
+				add_idea = KMT_foreign_capital_a
+			}
+		}
+		if = {
+			limit = {
+				has_idea = KMT_bank_nationalization_2
+			}
+			swap_ideas = {
+				remove_idea = KMT_bank_nationalization_2
+				add_idea = KMT_foreign_capital_b
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.61
+	title = kuomintag_wr.61.t
+	desc = kuomintag_wr.61.d
+	picture = plain_of_manchuria
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.61.a
+		add_ideas = KMT_grain_law
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.62
+	title = kuomintag_wr.62.t
+	desc = kuomintag_wr.62.d
+	picture = plain_of_manchuria
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.62.a
+		add_ideas = KMT_legacy_of_land_reform
 		ai_chance = {
 			base = 10
 		}

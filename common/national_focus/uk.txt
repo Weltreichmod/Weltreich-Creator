@@ -811,7 +811,8 @@ focus_tree = {
 			focus = ENG_enact_the_mosley_manifesto
 		}
 		available = {
-			has_war_with = GER
+			NOT = { has_country_flag = second_great_war_loser }
+			NOT = { has_global_flag = honorable_peace_flag }
 		}
 		ai_will_do = {
 			factor = 1
@@ -1356,6 +1357,10 @@ focus_tree = {
 		cost = 10
 		prerequisite = {
 			focus = British_Reprisalism
+		}
+		available = {
+			NOT = { has_country_flag = second_great_war_loser }
+			NOT = { has_global_flag = honorable_peace_flag }
 		}
 		ai_will_do = {
 			factor = 2
@@ -2548,6 +2553,8 @@ focus_tree = {
 			NOT = {
 				is_in_faction_with = GER
 			}
+			NOT = { has_country_flag = second_great_war_loser }
+			NOT = { has_global_flag = honorable_peace_flag }
 		}
 		prerequisite = {
 			focus = Joining_the_Comintern
@@ -3730,7 +3737,7 @@ focus_tree = {
 		id = Supporting_France
 		icon = GFX_focus_chi_reach_out_to_france
 		relative_position_id = Eternal_British_autonomy
-		x = 0
+		x = 2
 		y = 1
 		ai_will_do = {
 			factor = 6
@@ -3748,9 +3755,6 @@ focus_tree = {
 			NOT = {
 				is_in_faction_with = GER
 			}
-		}
-		mutually_exclusive = {
-			focus = negotiations_with_the_German_Empire
 		}
 		bypass = {
 			OR = {
@@ -3886,6 +3890,10 @@ focus_tree = {
 			}
 		}
 		cost = 10
+		available = {
+			NOT = { has_country_flag = second_great_war_loser }
+			NOT = { has_global_flag = honorable_peace_flag }
+		}
 		prerequisite = {
 			focus = Lost_African_Territory
 		}
@@ -3906,268 +3914,6 @@ focus_tree = {
 				custom_effect_tooltip = SB_will_be_british
 				add_threat = 20
 				create_wargoal = { type = annex_everything target = GER }
-			}
-		}
-	}
-	
-	focus = {
-		id = negotiations_with_the_German_Empire
-		icon = focus_deal_with_german_empire
-		relative_position_id = the_empire
-		x = 1
-		y = 1
-		ai_will_do = {
-			factor = 6
-		}
-		cost = 10
-		prerequisite = {
-			focus = Eternal_British_autonomy
-			focus = the_empire
-		}
-		mutually_exclusive = {
-			focus = Supporting_France
-		}
-		available = {
-			NOT = {
-				is_in_faction_with = FRA
-			}
-		}
-		bypass = {
-			OR = {
-				GER = { is_in_faction_with = ENG }
-				GER = { exists = no }
-				GER = { is_subject = yes }
-				GER = { has_country_flag = second_great_war_loser }
-			}
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		completion_reward = {
-			ENG = {
-				add_opinion_modifier = {
-					target = GER
-					modifier = large_increase
-				}
-				add_opinion_modifier = {
-					target = FRA
-					modifier = medium_decrease
-				}
-			}
-			if = {
-				limit = {
-					GER = {
-						is_faction_leader = yes
-					}
-				}
-				GER = { country_event = { days = 5 id = britain.48 } }
-			}
-			if = {
-				limit = {
-					GER = {
-						is_faction_leader = no
-					}
-				}
-				ENG = {
-					set_rule = {
-						can_create_factions = yes
-					}
-				}
-				create_faction_from_template = faction_template_wr_allies
-				GER = { country_event = { days = 5 id = britain.49 } }
-			}
-		}
-	}
-	
-	focus = {
-		id = Demand_French_territorial
-		icon = GFX_focus_attack_france
-		relative_position_id = negotiations_with_the_German_Empire
-		x = -1
-		y = 1
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 10
-				has_war_with_major = yes
-			}
-			modifier = {
-				factor = 10
-				date > 1941.1.1
-			}
-		}
-		cost = 10
-		prerequisite = {
-			focus = negotiations_with_the_German_Empire
-		}
-		available = {
-			FRA = { exists = yes }
-			NOT = { FRA = { is_subject_of = ROOT } }
-		}
-		search_filters = { FOCUS_FILTER_ANNEXATION }
-		completion_reward = {
-			if = {
-				limit = {
-					has_war_with = FRA
-				}
-				every_state = {
-					limit = {
-						OR = {
-							state = 14
-							state = 15
-							state = 30
-							state = 23
-							state = 19
-							state = 806
-						}
-					}
-					add_claim_by = ENG
-				}
-			}
-			if = {
-				limit = {
-					NOT = { has_war_with = FRA }
-				}
-				every_state = {
-					limit = {
-						OR = {
-							state = 14
-							state = 15
-							state = 30
-							state = 23
-							state = 19
-							state = 806
-						}
-					}
-					add_claim_by = ENG
-					add_threat = 20
-					create_wargoal = { type = annex_everything target = FRA }
-				}
-			}
-		}
-	}
-	
-	focus = {
-		id = Attack_on_South_Africa
-		icon = GFX_goal_tfv_saf_secure_interests_in_africa
-		relative_position_id = negotiations_with_the_German_Empire
-		x = 1
-		y = 1
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 10
-				has_war_with_major = yes
-			}
-			modifier = {
-				factor = 10
-				date > 1941.1.1
-			}
-		}
-		cost = 10
-		prerequisite = {
-			focus = negotiations_with_the_German_Empire
-		}
-		available = {
-			SAF = { exists = yes }
-			NOT = { SAF = { is_subject_of = ROOT } }
-		}
-		search_filters = { FOCUS_FILTER_ANNEXATION }
-		completion_reward = {
-			if = {
-				limit = {
-					has_war_with = SAF
-				}
-				every_state = {
-					limit = {
-						OR = {
-							state = 681
-							state = 719
-							state = 275
-							state = 542
-							state = 545
-							state = 974
-							state = 972
-							state = 971
-							state = 969
-							state = 970
-							state = 973
-						}
-					}
-					add_claim_by = ENG
-				}
-			}
-			if = {
-				limit = {
-					NOT = { has_war_with = SAF }
-				}
-				every_state = {
-					limit = {
-						OR = {
-							state = 681
-							state = 719
-							state = 275
-							state = 542
-							state = 545
-							state = 974
-							state = 972
-							state = 971
-							state = 969
-							state = 970
-							state = 973
-						}
-					}
-					add_claim_by = ENG
-					add_threat = 10
-					create_wargoal = { type = annex_everything target = SAF }
-				}
-			}
-		}
-	}
-	
-	focus = {
-		id = subjugating_east
-		icon = GFX_focus_eng_expose_the_belly_of_the_bear
-		relative_position_id = Demand_French_territorial
-		x = 1
-		y = 1
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 10
-				date > 1941.9.1
-			}
-		}
-		available = {
-			if = {
-				limit = {
-					SOV = { exists = yes }
-				}
-				NOT = { SOV = { is_subject_of = ROOT } }
-			}
-			if = {
-				limit = {
-					RUS = { exists = yes }
-				}
-				NOT = { RUS = { is_subject_of = ROOT } }
-			}
-		}
-		cost = 10
-		prerequisite = {
-			focus = negotiations_with_the_German_Empire
-		}
-		search_filters = { FOCUS_FILTER_ANNEXATION }
-		completion_reward = {
-			add_threat = 15
-			if = {
-				limit = {
-					SOV = { exists = yes }
-				}
-				create_wargoal = { type = annex_everything target = SOV }
-			}
-			if = {
-				limit = {
-					RUS = { exists = yes }
-				}
-				create_wargoal = { type = annex_everything target = RUS }
 			}
 		}
 	}
