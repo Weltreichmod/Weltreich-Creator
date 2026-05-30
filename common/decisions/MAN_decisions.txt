@@ -122,6 +122,7 @@ Mongolian_war = {
 					}
 					MAN = {
 						country_event = manchukou_wr.45
+						set_country_flag = MAN_victory_in_mongolia_flag
 					}
 				}
 			}
@@ -198,12 +199,17 @@ MAN_modernization_program = {
 		allowed = {
 			original_tag = MAN
 		}
-		days_mission_timeout = 15
+		days_mission_timeout = 25
 		activation = {
 			has_country_flag = MAN_first_start_kill_bandits_flag
 		}
 		fire_only_once = yes
 		priority = 90
+		highlight_states = {
+			highlight_states_trigger = {
+				state = 328
+			}
+		}
 		available = {
 			custom_trigger_tooltip = {
 				tooltip = MAN_first_bandit_suppression_tt
@@ -234,9 +240,14 @@ MAN_modernization_program = {
 		allowed = {
 			original_tag = MAN
 		}
-		days_mission_timeout = 15
+		days_mission_timeout = 25
 		activation = {
 			has_country_flag = MAN_second_start_kill_bandits_flag
+		}
+		highlight_states = {
+			highlight_states_trigger = {
+				state = 1000
+			}
 		}
 		fire_only_once = yes
 		priority = 90
@@ -270,9 +281,14 @@ MAN_modernization_program = {
 		allowed = {
 			original_tag = MAN
 		}
-		days_mission_timeout = 15
+		days_mission_timeout = 25
 		activation = {
 			has_country_flag = MAN_kill_all_banditry_flag
+		}
+		highlight_states = {
+			highlight_states_trigger = {
+				state = 716
+			}
 		}
 		fire_only_once = yes
 		priority = 90
@@ -380,124 +396,6 @@ MAN_modernization_program = {
 				has_political_power > 49
 				num_of_civilian_factories_available_for_projects > 2
 			}
-		}
-	}
-	MAN_construct_military_factory = {
-		icon = GFX_decision_generic_merge_plant_tank
-		allowed = {
-			original_tag = MAN
-		}
-		visible = {
-			is_subject = no
-			NOT = { has_completed_focus = MAN_full_blooming_peony }
-			NOT = { has_completed_focus = MAN_full_blooming_peony_kanzi }
-		}
-		available = {
-			NOT = { has_country_flag = MAN_construct_factory_now }
-			num_of_factories < 51
-			any_state = {
-				is_controlled_by = ROOT
-				is_owned_by = ROOT
-				free_building_slots = {
-					building = arms_factory
-					size > 0
-					include_locked = no
-				}
-			}
-		}
-		days_remove = 65
-		custom_cost_trigger = {
-			num_of_civilian_factories_available_for_projects > 2
-			has_political_power > 19
-		}
-		custom_cost_text = decision_cost_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			set_country_flag = MAN_construct_factory_now
-			add_political_power = -20
-		}
-		remove_effect = {
-			random_owned_controlled_state = {
-				limit = {
-					is_core_of = ROOT
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = no
-					}
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-				}
-			}
-			clr_country_flag = MAN_construct_factory_now
-		}
-		ai_will_do = {
-			base = 80
-			modifier = {
-				add = 4000
-				has_political_power > 49
-				num_of_civilian_factories_available_for_projects > 5
-			}
-		}
-	}
-	MAN_construct_infrastructure = {
-		icon = GFX_decision_generic_electricity
-		allowed = {
-			original_tag = MAN
-		}
-		visible = {
-			is_subject = no
-			NOT = { has_completed_focus = MAN_full_blooming_peony }
-			NOT = { has_completed_focus = MAN_full_blooming_peony_kanzi }
-		}
-		available = {
-			NOT = { has_country_flag = MAN_construct_factory_now }
-			any_state = {
-				is_controlled_by = ROOT
-				is_owned_by = ROOT
-				free_building_slots = {
-					building = infrastructure
-					size > 0
-					include_locked = no
-				}
-			}
-		}
-		days_remove = 45
-		custom_cost_trigger = {
-			num_of_civilian_factories_available_for_projects > 2
-			has_political_power > 19
-		}
-		custom_cost_text = decision_cost_3_civ
-		modifier = {
-			civilian_factory_use = 3
-		}
-		complete_effect = {
-			set_country_flag = MAN_construct_factory_now
-			add_political_power = -20
-		}
-		remove_effect = {
-			random_owned_controlled_state = {
-				limit = {
-					is_core_of = ROOT
-					free_building_slots = {
-						building = infrastructure
-						size > 0
-						include_locked = no
-					}
-				}
-				add_building_construction = {
-					type = infrastructure
-					level = 1
-				}
-			}
-			clr_country_flag = MAN_construct_factory_now
-		}
-		ai_will_do = {
-			base = 0
 		}
 	}
 	MAN_develop_kirin_aluminium_deposits = { #328
@@ -654,6 +552,35 @@ MAN_modernization_program = {
 
 		ai_will_do = {
 			factor = 1
+		}
+	}
+	MAN_purchase_weapons = {
+		icon = GFX_decision_generic_prepare_civil_war
+		allowed = {
+			original_tag = MAN
+		}
+		target_trigger = {
+			FROM = {
+				NOT = { has_war_with = ROOT }
+				is_major = yes
+			}
+		}
+		war_with_on_remove = FROM
+		available = {
+			is_subject = no
+			num_of_civilian_factories_available_for_projects > 1
+		}
+		visible = {
+			has_completed_focus = MAN_purchasing_overseas_weapons
+			is_subject = no
+		}
+		cost = 15
+		days_remove = 30
+		fire_only_once = yes
+		remove_effect = {
+		}
+		ai_will_do = {
+			base = 100
 		}
 	}
 }
@@ -1477,9 +1404,13 @@ MAN_suppress_national_protection = {
 			}
 		}
 		priority = 100
-		days_mission_timeout = 30
+		days_mission_timeout = 70
 		timeout_effect = {
-			MAN_inc_national_protection_2_5 = yes
+			random_list = {
+				33 = { country_event = manchukou_wr.147 }
+				33 = { country_event = manchukou_wr.148 }
+				34 = { country_event = manchukou_wr.149 }
+			}
 		}
 	}
 	MAN_reduce_dissatisfaction_crackdown = {
@@ -1505,7 +1436,7 @@ MAN_suppress_national_protection = {
 			}
 		}
 		cost = 15
-		days_remove = 30
+		days_remove = 15
 		complete_effect = {
 			set_country_flag = political_is_on_flag
 		}
@@ -1556,7 +1487,7 @@ MAN_suppress_national_protection = {
 			}
 		}
 		cost = 20
-		days_remove = 30
+		days_remove = 15
 		complete_effect = {
 			set_country_flag = political_is_on_flag
 		}
@@ -1596,7 +1527,7 @@ MAN_suppress_national_protection = {
 			}
 		}
 		cost = 15
-		days_remove = 30
+		days_remove = 15
 		complete_effect = {
 			set_country_flag = political_is_on_flag
 		}
@@ -1624,7 +1555,7 @@ MAN_suppress_national_protection = {
 				check_variable = { MAN_suppress_national_protection_var < 71 }
 			}
 		}
-		days_remove = 30
+		days_remove = 15
 		priority = 96
 		fire_only_once = yes
 		visible = {
@@ -1667,7 +1598,7 @@ MAN_suppress_national_protection = {
 				has_country_flag = MAN_reduce_npc_6_flag
 			}
 		}
-		days_remove = 30
+		days_remove = 15
 		priority = 95
 		fire_only_once = yes
 		visible = {
@@ -1710,7 +1641,7 @@ MAN_suppress_national_protection = {
 				has_country_flag = MAN_reduce_npc_5_flag
 			}
 		}
-		days_remove = 30
+		days_remove = 15
 		priority = 94
 		fire_only_once = yes
 		visible = {
@@ -1753,7 +1684,7 @@ MAN_suppress_national_protection = {
 				has_country_flag = MAN_reduce_npc_4_flag
 			}
 		}
-		days_remove = 30
+		days_remove = 15
 		priority = 93
 		fire_only_once = yes
 		visible = {
@@ -1796,7 +1727,7 @@ MAN_suppress_national_protection = {
 				has_country_flag = MAN_reduce_npc_3_flag
 			}
 		}
-		days_remove = 30
+		days_remove = 15
 		priority = 92
 		fire_only_once = yes
 		visible = {
@@ -1839,7 +1770,7 @@ MAN_suppress_national_protection = {
 				has_country_flag = MAN_reduce_npc_2_flag
 			}
 		}
-		days_remove = 30
+		days_remove = 15
 		priority = 91
 		fire_only_once = yes
 		visible = {
@@ -1869,8 +1800,10 @@ MAN_royal_way_development_category = {
 	MAN_608_civilian_factory = {
 		icon = GFX_decision_generic_merge_plant_materiel
 		available = {
-			NOT = { has_country_flag = MAN_608_civilian_factory_flag }
 			608 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_608_civilian_factory_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -1905,8 +1838,10 @@ MAN_royal_way_development_category = {
 	MAN_597_civilian_factory = {
 		icon = GFX_decision_generic_merge_plant_materiel
 		available = {
-			NOT = { has_country_flag = MAN_597_civilian_factory_flag }
 			597 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_597_civilian_factory_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -1941,8 +1876,10 @@ MAN_royal_way_development_category = {
 	MAN_615_civilian_factory = {
 		icon = GFX_decision_generic_merge_plant_materiel
 		available = {
-			NOT = { has_country_flag = MAN_615_civilian_factory_flag }
 			615 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_615_civilian_factory_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -1977,8 +1914,10 @@ MAN_royal_way_development_category = {
 	MAN_622_civilian_factory = {
 		icon = GFX_decision_generic_merge_plant_materiel
 		available = {
-			NOT = { has_country_flag = MAN_622_civilian_factory_flag }
 			622 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_622_civilian_factory_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -2013,8 +1952,10 @@ MAN_royal_way_development_category = {
 	MAN_607_army_factory = {
 		icon = GFX_decision_generic_merge_plant_tank
 		available = {
-			NOT = { has_country_flag = MAN_607_army_factory_flag }
 			607 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_607_army_factory_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -2049,8 +1990,10 @@ MAN_royal_way_development_category = {
 	MAN_614_army_factory = {
 		icon = GFX_decision_generic_merge_plant_tank
 		available = {
-			NOT = { has_country_flag = MAN_614_army_factory_flag }
 			614 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_614_army_factory_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -2085,8 +2028,10 @@ MAN_royal_way_development_category = {
 	MAN_1017_army_factory = {
 		icon = GFX_decision_generic_merge_plant_tank
 		available = {
-			NOT = { has_country_flag = MAN_1017_army_factory_flag }
 			1017 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_1017_army_factory_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -2121,8 +2066,10 @@ MAN_royal_way_development_category = {
 	MAN_744_army_factory = {
 		icon = GFX_decision_generic_merge_plant_tank
 		available = {
-			NOT = { has_country_flag = MAN_744_army_factory_flag }
 			744 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_744_army_factory_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -2157,8 +2104,10 @@ MAN_royal_way_development_category = {
 	MAN_609_infra_build = {
 		icon = GFX_decision_generic_motorized
 		available = {
-			NOT = { has_country_flag = MAN_609_infra_build_flag }
 			609 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_609_infra_build_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -2192,8 +2141,10 @@ MAN_royal_way_development_category = {
 	MAN_608_infra_build = {
 		icon = GFX_decision_generic_motorized
 		available = {
-			NOT = { has_country_flag = MAN_608_infra_build_flag }
 			608 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_608_infra_build_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -2227,8 +2178,10 @@ MAN_royal_way_development_category = {
 	MAN_614_infra_build = {
 		icon = GFX_decision_generic_motorized
 		available = {
-			NOT = { has_country_flag = MAN_614_infra_build_flag }
 			614 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_614_infra_build_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -2262,8 +2215,10 @@ MAN_royal_way_development_category = {
 	MAN_597_infra_build = {
 		icon = GFX_decision_generic_motorized
 		available = {
-			NOT = { has_country_flag = MAN_597_infra_build_flag }
 			597 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_597_infra_build_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -2297,8 +2252,10 @@ MAN_royal_way_development_category = {
 	MAN_1016_infra_build = {
 		icon = GFX_decision_generic_motorized
 		available = {
-			NOT = { has_country_flag = MAN_1016_infra_build_flag }
 			1016 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_1016_infra_build_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -2332,8 +2289,10 @@ MAN_royal_way_development_category = {
 	MAN_1017_infra_build = {
 		icon = GFX_decision_generic_motorized
 		available = {
-			NOT = { has_country_flag = MAN_1017_infra_build_flag }
 			1017 = { is_controlled_by = MAN }
+		}
+		visible = {
+			NOT = { has_country_flag = MAN_1017_infra_build_flag }
 		}
 		custom_cost_trigger = {
 			num_of_civilian_factories_available_for_projects > 5
@@ -3282,6 +3241,702 @@ MAN_world_final_war_preparation_category = {
 		}
 		ai_will_do = {
 			base = 1000
+		}
+	}
+}
+
+MAN_world_final_war_category = {
+	MAN_declear_war_to_FROM = {
+		icon = GFX_decision_generic_ignite_civil_war
+		target_trigger = {
+			FROM = {
+				OR = {
+					original_tag = USA
+					original_tag = GER
+					original_tag = SOV
+					original_tag = ENG
+					original_tag = FRA
+				}
+				is_subject = no
+			}
+		}
+		fire_only_once = yes
+		visible = {
+			is_subject = no
+		}
+		war_with_on_remove = FROM
+		days_remove = 30
+		cost = 50
+		remove_effect = {
+			declare_war_on = { target = FROM type = annex_everything }
+		}
+	}
+}
+
+CHI_pacification_of_manchuria = {
+	MAN_attack_FROM = {
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			OR = {
+				original_tag = MFS
+				original_tag = SUI
+				original_tag = CHR
+				original_tag = JEH
+				original_tag = BAR
+				original_tag = DIG
+				original_tag = JIL
+				original_tag = MMG
+				original_tag = NAJ
+				original_tag = HHZ
+				original_tag = NEA
+			}
+		}
+		target_trigger = {
+			FROM = {
+				OR = {
+					original_tag = MFS
+					original_tag = SUI
+					original_tag = CHR
+					original_tag = JEH
+					original_tag = BAR
+					original_tag = DIG
+					original_tag = JIL
+					original_tag = MMG
+					original_tag = NAJ
+					original_tag = HHZ
+					original_tag = NEA
+				}
+			}
+		}
+		visible = {
+			NOT = { has_war_with = FROM }
+		}
+		available = {
+			has_war = no
+			any_neighbor_country = { tag = FROM }
+			NOT = { has_country_flag = on_the_war_flag }
+		}
+		war_with_on_remove = FROM
+		days_remove = 30
+		cost = 10
+		complete_effect = {
+			set_country_flag = on_the_war_flag
+		}
+		remove_effect = {
+			declare_war_on = { target = FROM type = annex_everything }
+			clr_country_flag = on_the_war_flag
+		}
+		ai_will_do = {
+			base = 50
+			modifier = {
+				add = -50
+				original_tag = JEH
+			}
+		}
+	}
+	CHI_warlord_coring = {
+		icon = GFX_decision_generic_operation
+		allowed = {
+			MAN_warlords = yes
+		}
+		state_target = yes
+		target_trigger = {
+			FROM = {
+				OR = {
+					is_chinese_area = yes
+					state = 524
+				}
+			}
+		}
+		on_map_mode = map_and_decisions_view
+		days_remove = 30
+		visible = {
+			MAN_warlords = yes
+			is_subject = no
+			controls_state = FROM
+			NOT = {
+				FROM = {
+					is_core_of = PREV
+				}
+			}
+		}
+		cancel_if_not_visible = yes
+		cost = 10
+		remove_effect = {
+			FROM = {
+				every_country = {
+					limit = {
+						MAN_warlords = yes
+						NOT = {
+							tag = ROOT
+						}
+					}
+					remove_state_core = PREV
+				}
+				add_core_of = PREV
+			}
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 100
+				FROM = {
+					is_owned_by = PREV
+				}
+			}
+		}
+	}
+}
+
+CHI_advance_into_manchuria = {
+	CHI_attack_FROM = {
+		name = MAN_attack_FROM
+		icon = GFX_decision_generic_nationalism
+		allowed = {
+			OR = {
+				original_tag = JAP
+				original_tag = KMT
+				original_tag = KMR
+				original_tag = CHI
+			}
+		}
+		visible = {
+			OR = {
+				JAP = { has_war_with = CHI }
+				JAP = { has_war_with = KMT }
+				JAP = { has_war_with = KMR }
+			}
+			NOT = {
+				AND = {
+					original_tag = JAP
+					FROM = { original_tag = MMG }
+				}
+			}
+			NOT = {
+				AND = {
+					OR = { original_tag = KMT original_tag = KMR }
+					FROM = { original_tag = NAJ }
+					has_global_flag = chinese_civil_war
+				}
+			}
+			NOT = {
+				AND = {
+					original_tag = CHI
+					FROM = { original_tag = NEA }
+				}
+			}
+		}
+		available = {
+			is_subject = no
+		}
+		fire_only_once = yes
+		war_with_on_remove = FROM
+		days_remove = 15
+		cost = 5
+		remove_effect = {
+			if = {
+				limit = {
+					original_tag = CHI
+				}
+				if = {
+					limit = {
+						MFS = { exists = yes }
+					}
+					declare_war_on = { target = MFS type = annex_everything }
+				}
+				if = {
+					limit = {
+						CHR = { exists = yes }
+					}
+					declare_war_on = { target = CHR type = annex_everything }
+				}
+				if = {
+					limit = {
+						JEH = { exists = yes }
+					}
+					declare_war_on = { target = JEH type = annex_everything }
+				}
+				if = {
+					limit = {
+						BAR = { exists = yes }
+					}
+					declare_war_on = { target = BAR type = annex_everything }
+				}
+				if = {
+					limit = {
+						DIG = { exists = yes }
+					}
+					declare_war_on = { target = DIG type = annex_everything }
+				}
+				if = {
+					limit = {
+						JIL = { exists = yes }
+					}
+					declare_war_on = { target = JIL type = annex_everything }
+				}
+				if = {
+					limit = {
+						MMG = { exists = yes }
+					}
+					declare_war_on = { target = MMG type = annex_everything }
+				}
+				if = {
+					limit = {
+						NAJ = { exists = yes }
+					}
+					declare_war_on = { target = NAJ type = annex_everything }
+				}
+				if = {
+					limit = {
+						HHZ = { exists = yes }
+					}
+					declare_war_on = { target = HHZ type = annex_everything }
+				}
+				CHI = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							NEA = { exists = yes }
+						}
+						set_autonomy = {
+							target = NEA
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = NEA
+						}
+					}
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							SUI = { exists = yes }
+						}
+						set_autonomy = {
+							target = SUI
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = SUI
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KMT
+				}
+				if = {
+					limit = {
+						MFS = { exists = yes }
+					}
+					declare_war_on = { target = MFS type = annex_everything }
+				}
+				if = {
+					limit = {
+						CHR = { exists = yes }
+					}
+					declare_war_on = { target = CHR type = annex_everything }
+				}
+				if = {
+					limit = {
+						JEH = { exists = yes }
+					}
+					declare_war_on = { target = JEH type = annex_everything }
+				}
+				if = {
+					limit = {
+						BAR = { exists = yes }
+					}
+					declare_war_on = { target = BAR type = annex_everything }
+				}
+				if = {
+					limit = {
+						DIG = { exists = yes }
+					}
+					declare_war_on = { target = DIG type = annex_everything }
+				}
+				if = {
+					limit = {
+						JIL = { exists = yes }
+					}
+					declare_war_on = { target = JIL type = annex_everything }
+				}
+				if = {
+					limit = {
+						MMG = { exists = yes }
+					}
+					declare_war_on = { target = MMG type = annex_everything }
+				}
+				if = {
+					limit = {
+						NEA = { exists = yes }
+					}
+					declare_war_on = { target = NEA type = annex_everything }
+				}
+				if = {
+					limit = {
+						HHZ = { exists = yes }
+					}
+					declare_war_on = { target = HHZ type = annex_everything }
+				}
+				KMT = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							NAJ = { exists = yes }
+						}
+						set_autonomy = {
+							target = NAJ
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = NAJ
+						}
+					}
+				}
+				if = {
+					limit = {
+						CHI = { exists = no }
+					}
+					KMT = {
+						if = {
+							limit = {
+								has_dlc = "Together for Victory"
+								SUI = { exists = yes }
+							}
+							set_autonomy = {
+								target = SUI
+								autonomous_state = autonomy_puppet
+								freedom_level = 0.5
+							}
+							else = {
+								puppet = SUI
+							}
+						}
+					}
+					else = {
+						if = {
+							limit = {
+								SUI = { exists = yes }
+							}
+							declare_war_on = { target = SUI type = annex_everything }
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KMR
+				}
+				if = {
+					limit = {
+						MFS = { exists = yes }
+					}
+					declare_war_on = { target = MFS type = annex_everything }
+				}
+				if = {
+					limit = {
+						CHR = { exists = yes }
+					}
+					declare_war_on = { target = CHR type = annex_everything }
+				}
+				if = {
+					limit = {
+						JEH = { exists = yes }
+					}
+					declare_war_on = { target = JEH type = annex_everything }
+				}
+				if = {
+					limit = {
+						BAR = { exists = yes }
+					}
+					declare_war_on = { target = BAR type = annex_everything }
+				}
+				if = {
+					limit = {
+						DIG = { exists = yes }
+					}
+					declare_war_on = { target = DIG type = annex_everything }
+				}
+				if = {
+					limit = {
+						JIL = { exists = yes }
+					}
+					declare_war_on = { target = JIL type = annex_everything }
+				}
+				if = {
+					limit = {
+						MMG = { exists = yes }
+					}
+					declare_war_on = { target = MMG type = annex_everything }
+				}
+				if = {
+					limit = {
+						NEA = { exists = yes }
+					}
+					declare_war_on = { target = NEA type = annex_everything }
+				}
+				if = {
+					limit = {
+						HHZ = { exists = yes }
+					}
+					declare_war_on = { target = HHZ type = annex_everything }
+				}
+				if = {
+					limit = {
+						CHI = { exists = no }
+						KMT = { exists = no }
+					}
+					KMT = {
+						if = {
+							limit = {
+								has_dlc = "Together for Victory"
+								NAJ = { exists = yes }
+							}
+							set_autonomy = {
+								target = NAJ
+								autonomous_state = autonomy_puppet
+								freedom_level = 0.5
+							}
+							else = {
+								puppet = NAJ
+							}
+						}
+						if = {
+							limit = {
+								has_dlc = "Together for Victory"
+								SUI = { exists = yes }
+							}
+							set_autonomy = {
+								target = SUI
+								autonomous_state = autonomy_puppet
+								freedom_level = 0.5
+							}
+							else = {
+								puppet = SUI
+							}
+						}
+					}
+					else = {	
+						if = {
+							limit = {
+								NAJ = { exists = yes }
+							}
+							declare_war_on = { target = NAJ type = annex_everything }
+						}
+						if = {
+							limit = {
+								SUI = { exists = yes }
+							}
+							declare_war_on = { target = SUI type = annex_everything }
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					original_tag = JAP
+				}
+				declare_war_on = { target = MFS type = annex_everything }
+				declare_war_on = { target = CHR type = annex_everything }
+				declare_war_on = { target = JEH type = annex_everything }
+				declare_war_on = { target = BAR type = annex_everything }
+				declare_war_on = { target = DIG type = annex_everything }
+				declare_war_on = { target = JIL type = annex_everything }
+				declare_war_on = { target = NAJ type = annex_everything }
+				declare_war_on = { target = NEA type = annex_everything }
+				declare_war_on = { target = HHZ type = annex_everything }
+				declare_war_on = { target = SUI type = annex_everything }
+				JAP = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							MMG = { exists = yes }
+						}
+						set_autonomy = {
+							target = MMG
+							autonomous_state = autonomy_puppet
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = MMG
+						}
+					}
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+	CHI_warlord_coring1 = {
+		icon = GFX_decision_generic_operation
+		allowed = {
+			OR = {
+				original_tag = CHI
+				original_tag = KMT
+				original_tag = KMR
+			}
+		}
+		state_target = yes
+		target_trigger = {
+			FROM = {
+				is_manchurian_area = yes
+				NOT = { is_core_of = ROOT }
+			}
+		}
+		highlight_states = {
+			highlight_states_trigger = {
+				is_manchurian_area = yes
+			}
+		}
+		on_map_mode = map_and_decisions_view
+		days_remove = 30
+		visible = {
+			is_subject = no
+		}
+		available = {
+			all_state = {
+				limit = {
+					is_manchurian_area = yes
+				}
+				# 2. 해당 주들의 소유자가 누구인지 확인합니다.
+				owner = {
+					OR = {
+						THIS = ROOT
+						is_subject_of = ROOT
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+		cost = 10
+		remove_effect = {
+			if = {
+				limit = {
+					original_tag = CHI
+					NEA = {
+						exists = yes
+						is_subject_of = CHI
+					}
+				}
+				annex_country = { target = NEA transfer_troops = no }
+			}
+			if = {
+				limit = {
+					original_tag = CHI
+					SUI = {
+						exists = yes
+						is_subject_of = CHI
+					}
+				}
+				annex_country = { target = SUI transfer_troops = no }
+			}
+			if = {
+				limit = {
+					original_tag = KMT
+					SUI = {
+						exists = yes
+						is_subject_of = KMT
+					}
+				}
+				annex_country = { target = SUI transfer_troops = no }
+			}
+			else_if = {
+				limit = {
+					original_tag = KMR
+					SUI = {
+						exists = yes
+						is_subject_of = KMR
+					}
+				}
+				annex_country = { target = SUI transfer_troops = no }
+			}
+			if = {
+				limit = {
+					original_tag = KMT
+					NAJ = {
+						exists = yes
+						is_subject_of = KMT
+					}
+				}
+				annex_country = { target = NAJ transfer_troops = no }
+			}
+			else_if = {
+				limit = {
+					original_tag = KMR
+					NAJ = {
+						exists = yes
+						is_subject_of = KMR
+					}
+				}
+				annex_country = { target = NAJ transfer_troops = no }
+			}
+			ROOT = {
+				every_owned_state = {
+					limit = {
+						is_manchurian_area = yes
+						NOT = { is_core_of = ROOT } # 이미 핵심 주인 곳은 제외
+					}
+					enable_state_integration_60_compliance = yes
+				}
+			}
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
+}
+
+MAN_occupied_territory_integration = {
+	MAN_core_FROM = {
+		icon = GFX_decision_generic_operation
+		allowed = {
+			original_tag = MAN
+		}
+		state_target = yes
+		target_trigger = {
+			FROM = {
+				is_owned_by = MAN
+				is_controlled_by = MAN
+				OR = {
+					is_chinese_area = yes
+					is_core_of = TIB
+				}
+				NOT = { is_core_of = MAN }
+				NOT = { is_core_of = CHI }
+				NOT = { is_core_of = KMT }
+				NOT = { is_core_of = KMR }
+				NOT = { is_core_of = SHX }
+				NOT = { is_core_of = PRC }
+				NOT = { is_core_of = XSM }
+			}
+		}
+		highlight_states = {
+			highlight_states_trigger = {
+				is_chinese_area = yes
+			}
+		}
+		fire_only_once = yes
+		on_map_mode = map_and_decisions_view
+		days_remove = 30
+		visible = {
+			is_subject = no
+		}
+		fire_only_once = yes
+		cancel_if_not_visible = yes
+		cost = 10
+		remove_effect = {
+			MAN = {
+				FROM = { enable_state_integration_60_compliance = yes }
+			}
+		}
+		ai_will_do = {
+			base = 4000
 		}
 	}
 }

@@ -4694,6 +4694,105 @@ SOV_collapsing_economy = {
 	}
 }
 
+SOV_great_steppe_war_category = {
+	SOV_time_remaining_decision_SIK = {
+		name = SOV_time_remaining_decision
+		icon = GFX_decision_revolt
+		allowed = {
+			original_tag = SOV
+		}
+		activation = {
+			has_global_flag = Attack_SIK_for_on_action_and_ai_flag
+		}
+		available = {
+			NOT = { CHI = { has_war_with = SIK } }
+		}
+		days_mission_timeout = 100
+		timeout_effect = {
+			effect_tooltip = {
+				every_country = {
+					limit = {
+						OR = {
+							original_tag = CHI
+							is_subject_of = CHI
+							is_in_faction_with = CHI
+						}
+					}
+					white_peace = {
+						tag = SIK
+					}
+				}
+				SOV = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							SIK = { exists = yes }
+						}
+						set_autonomy = {
+							target = SIK
+							autonomous_state = autonomy_satellite
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = SIK
+						}
+					}
+					country_event = china_wr.154
+				}
+				CHI = { country_event = china_wr.149 }
+			}
+		}
+	}
+	SOV_time_remaining_decision_MON = {
+		name = SOV_time_remaining_decision
+		icon = GFX_decision_revolt
+		allowed = {
+			original_tag = SOV
+		}
+		activation = {
+			has_global_flag = Attack_MON_for_on_action_and_ai_flag
+		}
+		available = {
+			NOT = { CHI = { has_war_with = MON } }
+		}
+		days_mission_timeout = 100
+		timeout_effect = {
+			effect_tooltip = {
+				every_country = {
+					limit = {
+						OR = {
+							original_tag = CHI
+							is_subject_of = CHI
+							is_in_faction_with = CHI
+						}
+					}
+					white_peace = {
+						tag = MON
+					}
+				}
+				SOV = {
+					if = {
+						limit = {
+							has_dlc = "Together for Victory"
+							MON = { exists = yes }
+						}
+						set_autonomy = {
+							target = MON
+							autonomous_state = autonomy_satellite
+							freedom_level = 0.5
+						}
+						else = {
+							puppet = MON
+						}
+					}
+					country_event = china_wr.156
+				}
+				CHI = { country_event = china_wr.151 }
+			}
+		}
+	}
+}
+
 ###Russia
 RUS_regional_stabilization = {
 	RUS_complete_of_stabilization = {
@@ -6185,6 +6284,29 @@ SOV_spread_european_revolution = {
 		}
 		remove_effect = {
 			create_wargoal = { type = puppet_wargoal_focus target = FROM }
+		}
+	}
+}
+
+SOV_Establishment_of_East_Germany = {
+	GER_Establishment_of_German_Government = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = SOV
+		}
+		visible = {
+			DDR = { is_subject_of = SOV }
+		}
+		available = {
+			is_subject = no
+		}
+		fire_only_once = yes
+		days_remove = 100
+		ai_will_do = {
+			base = 100
+		}
+		remove_effect = {
+			country_event = soviet_rework_troika.076
 		}
 	}
 }

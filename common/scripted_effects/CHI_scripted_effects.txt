@@ -1024,6 +1024,9 @@ CHI_map_calculate_frame = {
 									715 = {
 										is_controlled_by = CHI
 									}
+									1023 = {
+										is_controlled_by = CHI
+									}
 								}
 							}
 							AND = {
@@ -1464,6 +1467,7 @@ CHI_all_central_var_add_5 = {
 						state = 1000
 						state = 714
 						state = 715
+						state = 1023
 					}
 				}
 				remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
@@ -1484,6 +1488,7 @@ CHI_all_central_var_add_5 = {
 						state = 1000
 						state = 714
 						state = 715
+						state = 1023
 					}
 				}
 				add_dynamic_modifier = { modifier = CHI_efficient_administration }
@@ -1874,33 +1879,33 @@ CHI_all_central_var_add_5 = {
 CHI_dec_autonomy_increase_10 = {
     custom_effect_tooltip = CHI_dec_autonomy_increase_10_tt
     if = {
-        limit = { check_variable = { Autonomy_bar < 90 } }
-        add_to_variable = { var = Autonomy_bar value = 10 }
+        limit = { check_variable = { Autonomy_bar > 89 } }
+        set_variable = { var = Autonomy_bar value = 100 }
     }
     else = {
-        set_variable = { var = Autonomy_bar value = 100 }
+        add_to_variable = { var = Autonomy_bar value = 10 }
     }
 }
 
 CHI_dec_freedom_increase_10 = {
     custom_effect_tooltip = CHI_dec_freedom_increase_10_tt
     if = {
-        limit = { check_variable = { Freedom_bar_var < 90 } }
-        add_to_variable = { var = Freedom_bar_var value = 10 }
+        limit = { check_variable = { Freedom_bar_var > 89 } }
+        set_variable = { var = Freedom_bar_var value = 100 }
     }
     else = {
-        set_variable = { var = Freedom_bar_var value = 100 }
+        add_to_variable = { var = Freedom_bar_var value = 10 }
     }
 }
 
 CHI_dec_self_reliance_increase_10 = {
     custom_effect_tooltip = CHI_dec_self_reliance_increase_10_tt
     if = {
-        limit = { check_variable = { Self_Reliance_bar_var < 90 } }
-        add_to_variable = { var = Self_Reliance_bar_var value = 10 }
+        limit = { check_variable = { Self_Reliance_bar_var > 89 } }
+        set_variable = { var = Self_Reliance_bar_var value = 100 }
     }
     else = {
-        set_variable = { var = Self_Reliance_bar_var value = 100 }
+        add_to_variable = { var = Self_Reliance_bar_var value = 10 }
     }
 }
 
@@ -1911,15 +1916,15 @@ KMT_inc_revolution_2 = {
         limit = { check_variable = { KMT_second_national_revolution_var > 98 } }
         set_variable = { var = KMT_second_national_revolution_var value = 100 }
 
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.25 }
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.25 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.5 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.25 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.01 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.01 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.02 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.02 tooltip = army_defence_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.02 tooltip = army_org_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.01 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.02 tooltip = max_planning_factor_tt }
@@ -1928,8 +1933,8 @@ KMT_inc_revolution_2 = {
     else = {
         add_to_variable = { var = KMT_second_national_revolution_var value = 2 }
 
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.01 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.01 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.02 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.02 tooltip = army_defence_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.02 tooltip = army_org_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.01 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.02 tooltip = max_planning_factor_tt }
@@ -1943,15 +1948,15 @@ KMT_inc_revolution_3 = {
         limit = { check_variable = { KMT_second_national_revolution_var > 97 } }
         set_variable = { var = KMT_second_national_revolution_var value = 100 }
 
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.25 }
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.25 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.5 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.25 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.015 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.015 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.03 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.03 tooltip = army_defence_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.03 tooltip = army_org_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.015 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.03 tooltip = max_planning_factor_tt }
@@ -1960,8 +1965,8 @@ KMT_inc_revolution_3 = {
     else = {
         add_to_variable = { var = KMT_second_national_revolution_var value = 3 }
 
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.015 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.015 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.03 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.03 tooltip = army_defence_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.03 tooltip = army_org_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.015 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.03 tooltip = max_planning_factor_tt }
@@ -1975,15 +1980,15 @@ KMT_inc_revolution_5 = {
         limit = { check_variable = { KMT_second_national_revolution_var > 95 } }
         set_variable = { var = KMT_second_national_revolution_var value = 100 }
 
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.25 }
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.25 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.5 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.25 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.025 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.025 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.05 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.05 tooltip = army_defence_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.05 tooltip = army_org_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.025 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.05 tooltip = max_planning_factor_tt }
@@ -1992,8 +1997,8 @@ KMT_inc_revolution_5 = {
     else = {
         add_to_variable = { var = KMT_second_national_revolution_var value = 5 }
 
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.025 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.025 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.05 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.05 tooltip = army_defence_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.05 tooltip = army_org_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.025 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.05 tooltip = max_planning_factor_tt }
@@ -2007,15 +2012,15 @@ KMT_inc_revolution_10 = {
         limit = { check_variable = { KMT_second_national_revolution_var > 90 } }
         set_variable = { var = KMT_second_national_revolution_var value = 100 }
 
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.25 }
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.25 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.5 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.25 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.05 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.05 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.1 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.1 tooltip = army_defence_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.1 tooltip = army_org_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.05 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.1 tooltip = max_planning_factor_tt }
@@ -2024,8 +2029,8 @@ KMT_inc_revolution_10 = {
     else = {
         add_to_variable = { var = KMT_second_national_revolution_var value = 10 }
 
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.05 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.05 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = 0.1 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = 0.1 tooltip = army_defence_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = 0.1 tooltip = army_org_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = 0.05 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = 0.1 tooltip = max_planning_factor_tt }
@@ -2039,15 +2044,15 @@ KMT_dec_revolution_2 = {
         limit = { check_variable = { KMT_second_national_revolution_var < 2 } }
         set_variable = { var = KMT_second_national_revolution_var value = 0 }
 
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.25 }
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.25 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.5 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.25 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.01 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.01 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.02 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.02 tooltip = army_defence_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.02 tooltip = army_org_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.01 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.02 tooltip = max_planning_factor_tt }
@@ -2056,8 +2061,8 @@ KMT_dec_revolution_2 = {
     else = {
         add_to_variable = { var = KMT_second_national_revolution_var value = -2 }
 
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.01 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.01 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.02 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.02 tooltip = army_defence_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.02 tooltip = army_org_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.01 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.02 tooltip = max_planning_factor_tt }
@@ -2071,15 +2076,15 @@ KMT_dec_revolution_3 = {
         limit = { check_variable = { KMT_second_national_revolution_var < 3 } }
         set_variable = { var = KMT_second_national_revolution_var value = 0 }
 
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.25 }
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.25 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.5 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.25 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.015 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.015 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.03 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.03 tooltip = army_defence_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.03 tooltip = army_org_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.015 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.03 tooltip = max_planning_factor_tt }
@@ -2088,8 +2093,8 @@ KMT_dec_revolution_3 = {
     else = {
         add_to_variable = { var = KMT_second_national_revolution_var value = -3 }
 
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.015 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.015 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.03 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.03 tooltip = army_defence_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.03 tooltip = army_org_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.015 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.03 tooltip = max_planning_factor_tt }
@@ -2103,15 +2108,15 @@ KMT_dec_revolution_5 = {
         limit = { check_variable = { KMT_second_national_revolution_var < 5 } }
         set_variable = { var = KMT_second_national_revolution_var value = 0 }
 
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.25 }
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.25 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.5 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.25 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.025 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.025 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.05 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.05 tooltip = army_defence_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.05 tooltip = army_org_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.025 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.05 tooltip = max_planning_factor_tt }
@@ -2120,8 +2125,8 @@ KMT_dec_revolution_5 = {
     else = {
         add_to_variable = { var = KMT_second_national_revolution_var value = -5 }
 
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.025 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.025 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.05 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.05 tooltip = army_defence_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.05 tooltip = army_org_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.025 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.05 tooltip = max_planning_factor_tt }
@@ -2135,15 +2140,15 @@ KMT_dec_revolution_10 = {
         limit = { check_variable = { KMT_second_national_revolution_var < 10 } }
         set_variable = { var = KMT_second_national_revolution_var value = 0 }
 
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.25 }
-        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.25 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.5 }
+        set_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.5 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.25 }
         set_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.05 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.05 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.1 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.1 tooltip = army_defence_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.1 tooltip = army_org_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.05 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.1 tooltip = max_planning_factor_tt }
@@ -2152,8 +2157,8 @@ KMT_dec_revolution_10 = {
     else = {
         add_to_variable = { var = KMT_second_national_revolution_var value = -10 }
 
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.05 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.05 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_attack_factor value = -0.1 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_defence_factor value = -0.1 tooltip = army_defence_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_army_org_factor value = -0.1 tooltip = army_org_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_dig_in_factor value = -0.05 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = KMT_revolutionary_fervor_modifier_max_planning_factor value = -0.1 tooltip = max_planning_factor_tt }
@@ -2167,15 +2172,15 @@ CHI_inc_chinese_civil_war_2 = {
         limit = { check_variable = { CHI_chinese_civil_war_var > 98 } }
         set_variable = { var = CHI_chinese_civil_war_var value = 100 }
 
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.25 }
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.25 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.5 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.25 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.01 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.01 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.02 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.02 tooltip = army_defence_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.02 tooltip = army_org_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.01 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.02 tooltip = max_planning_factor_tt }
@@ -2184,8 +2189,8 @@ CHI_inc_chinese_civil_war_2 = {
     else = {
         add_to_variable = { var = CHI_chinese_civil_war_var value = 2 }
 
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.01 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.01 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.02 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.02 tooltip = army_defence_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.02 tooltip = army_org_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.01 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.02 tooltip = max_planning_factor_tt }
@@ -2199,15 +2204,15 @@ CHI_inc_chinese_civil_war_3 = {
         limit = { check_variable = { CHI_chinese_civil_war_var > 97 } }
         set_variable = { var = CHI_chinese_civil_war_var value = 100 }
 
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.25 }
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.25 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.5 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.25 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.015 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.015 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.03 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.03 tooltip = army_defence_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.03 tooltip = army_org_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.015 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.03 tooltip = max_planning_factor_tt }
@@ -2216,8 +2221,8 @@ CHI_inc_chinese_civil_war_3 = {
     else = {
         add_to_variable = { var = CHI_chinese_civil_war_var value = 3 }
 
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.015 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.015 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.03 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.03 tooltip = army_defence_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.03 tooltip = army_org_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.015 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.03 tooltip = max_planning_factor_tt }
@@ -2231,15 +2236,15 @@ CHI_inc_chinese_civil_war_5 = {
         limit = { check_variable = { CHI_chinese_civil_war_var > 95 } }
         set_variable = { var = CHI_chinese_civil_war_var value = 100 }
 
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.25 }
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.25 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.5 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.25 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.025 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.025 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.05 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.05 tooltip = army_defence_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.05 tooltip = army_org_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.025 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.05 tooltip = max_planning_factor_tt }
@@ -2248,8 +2253,8 @@ CHI_inc_chinese_civil_war_5 = {
     else = {
         add_to_variable = { var = CHI_chinese_civil_war_var value = 5 }
 
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.025 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.025 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.05 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.05 tooltip = army_defence_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.05 tooltip = army_org_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.025 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.05 tooltip = max_planning_factor_tt }
@@ -2263,15 +2268,15 @@ CHI_inc_chinese_civil_war_10 = {
         limit = { check_variable = { CHI_chinese_civil_war_var > 90 } }
         set_variable = { var = CHI_chinese_civil_war_var value = 100 }
 
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.25 }
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.25 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.5 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.25 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.05 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.05 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.1 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.1 tooltip = army_defence_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.1 tooltip = army_org_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.05 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.1 tooltip = max_planning_factor_tt }
@@ -2280,8 +2285,8 @@ CHI_inc_chinese_civil_war_10 = {
     else = {
         add_to_variable = { var = CHI_chinese_civil_war_var value = 10 }
 
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.05 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.05 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = -0.1 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = -0.1 tooltip = army_defence_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = -0.1 tooltip = army_org_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = -0.05 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = -0.1 tooltip = max_planning_factor_tt }
@@ -2295,15 +2300,15 @@ CHI_dec_chinese_civil_war_2 = {
         limit = { check_variable = { CHI_chinese_civil_war_var < 2 } }
         set_variable = { var = CHI_chinese_civil_war_var value = 0 }
 
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.25 }
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.25 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.5 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.25 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.01 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.01 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.02 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.02 tooltip = army_defence_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.02 tooltip = army_org_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.01 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.02 tooltip = max_planning_factor_tt }
@@ -2312,8 +2317,8 @@ CHI_dec_chinese_civil_war_2 = {
     else = {
         add_to_variable = { var = CHI_chinese_civil_war_var value = -2 }
 
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.01 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.01 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.02 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.02 tooltip = army_defence_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.02 tooltip = army_org_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.01 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.02 tooltip = max_planning_factor_tt }
@@ -2327,15 +2332,15 @@ CHI_dec_chinese_civil_war_3 = {
         limit = { check_variable = { CHI_chinese_civil_war_var < 3 } }
         set_variable = { var = CHI_chinese_civil_war_var value = 0 }
 
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.25 }
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.25 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.5 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.25 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.015 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.015 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.03 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.03 tooltip = army_defence_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.03 tooltip = army_org_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.015 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.03 tooltip = max_planning_factor_tt }
@@ -2344,8 +2349,8 @@ CHI_dec_chinese_civil_war_3 = {
     else = {
         add_to_variable = { var = CHI_chinese_civil_war_var value = -3 }
 
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.015 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.015 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.03 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.03 tooltip = army_defence_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.03 tooltip = army_org_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.015 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.03 tooltip = max_planning_factor_tt }
@@ -2359,15 +2364,15 @@ CHI_dec_chinese_civil_war_5 = {
         limit = { check_variable = { CHI_chinese_civil_war_var < 5 } }
         set_variable = { var = CHI_chinese_civil_war_var value = 0 }
 
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.25 }
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.25 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.5 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.25 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.025 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.025 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.05 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.05 tooltip = army_defence_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.05 tooltip = army_org_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.025 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.05 tooltip = max_planning_factor_tt }
@@ -2376,8 +2381,8 @@ CHI_dec_chinese_civil_war_5 = {
     else = {
         add_to_variable = { var = CHI_chinese_civil_war_var value = -5 }
 
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.025 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.025 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.05 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.05 tooltip = army_defence_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.05 tooltip = army_org_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.025 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.05 tooltip = max_planning_factor_tt }
@@ -2391,15 +2396,15 @@ CHI_dec_chinese_civil_war_10 = {
         limit = { check_variable = { CHI_chinese_civil_war_var < 10 } }
         set_variable = { var = CHI_chinese_civil_war_var value = 0 }
 
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.25 }
-        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.25 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.5 }
+        set_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.5 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.25 }
         set_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.5 }
 
         effect_tooltip = {
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.05 tooltip = army_attack_factor_tt }
-            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.05 tooltip = army_defence_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.1 tooltip = army_attack_factor_tt }
+            add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.1 tooltip = army_defence_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.1 tooltip = army_org_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.05 tooltip = max_dig_in_factor_tt }
             add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.1 tooltip = max_planning_factor_tt }
@@ -2408,35 +2413,12 @@ CHI_dec_chinese_civil_war_10 = {
     else = {
         add_to_variable = { var = CHI_chinese_civil_war_var value = -10 }
 
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.05 tooltip = army_attack_factor_tt }
-        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.05 tooltip = army_defence_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_attack_factor value = 0.1 tooltip = army_attack_factor_tt }
+        add_to_variable = { var = CHI_chinese_civil_war_modifier_army_defence_factor value = 0.1 tooltip = army_defence_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_army_org_factor value = 0.1 tooltip = army_org_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_dig_in_factor value = 0.05 tooltip = max_dig_in_factor_tt }
         add_to_variable = { var = CHI_chinese_civil_war_modifier_max_planning_factor value = 0.1 tooltip = max_planning_factor_tt }
     }
-}
-
-KMT_CHI_controlled_states_calculate = {
-
-    # 중간 계산용 임시 변수
-    set_temp_variable = { kmt_controlled_states = 0 }
-    set_temp_variable = { chi_controlled_states = 0 }
-    set_temp_variable = { controlled_states_difference = 0 }
-
-    # 각 국가의 현재 통제 주 수 읽기
-    KMT = {
-        set_temp_variable = { kmt_controlled_states = num_of_controlled_states }
-    }
-    CHI = {
-        set_temp_variable = { chi_controlled_states = num_of_controlled_states }
-    }
-
-    # KMT - CHI 계산
-    set_temp_variable = { controlled_states_difference = kmt_controlled_states }
-    subtract_from_temp_variable = { controlled_states_difference = chi_controlled_states }
-
-    # 결과 저장
-    set_variable = { KMT_CHI_controlled_states_difference = controlled_states_difference }
 }
 
 ### +2.5%
@@ -2484,5 +2466,967 @@ MAN_dec_national_protection_5 = {
     }
     else = {
         add_to_variable = { var = MAN_suppress_national_protection_var value = -5 }
+    }
+}
+
+CHI_mission_shared_timer_effect = {
+# 1. 변수 가져오기
+    set_temp_variable = { chi_states = CHI.num_of_controlled_states }
+    set_temp_variable = { kmt_states = KMT.num_of_controlled_states }
+    set_temp_variable = { kmr_states = KMR.num_of_controlled_states }
+
+    # 2. CHI (1순위): KMT, KMR과 같거나(OR =) 크면(OR >) 승리
+    if = {
+        limit = {
+            OR = {
+                check_variable = { chi_states > kmt_states }
+                check_variable = { chi_states = kmt_states }
+            }
+            OR = {
+                check_variable = { chi_states > kmr_states }
+                check_variable = { chi_states = kmr_states }
+            }
+        }
+		if = {
+			limit = {
+				CHI = { is_ai = yes }
+				KMT = { is_ai = yes }
+				KMR = { is_ai = yes }
+			}
+			CHI = { add_ideas = CHI_victory_idea }
+			KMT = { add_ideas = KMT_broken_victory_tide }
+			KMR = { add_ideas = KMR_broken_victory_tide }
+			else = {
+				CHI = { add_ideas = CHI_victory_idea_non_ai }
+				KMT = { add_ideas = KMT_broken_victory_tide_non_ai }
+				KMR = { add_ideas = KMR_broken_victory_tide_non_ai }
+			}
+		}
+    }
+    # 3. KMT (2순위): CHI보단 무조건 커야(>) 하고, KMR과는 같거나(OR =) 크면(OR >) 승리
+    else_if = {
+        limit = {
+            check_variable = { kmt_states > chi_states }
+            OR = {
+                check_variable = { kmt_states > kmr_states }
+                check_variable = { kmt_states = kmr_states }
+            }
+        }
+		if = {
+			limit = {
+				CHI = { is_ai = yes }
+				KMT = { is_ai = yes }
+				KMR = { is_ai = yes }
+			}
+			KMT = { add_ideas = KMT_victory_idea }
+			CHI = { add_ideas = CHI_broken_victory_tide }
+			KMR = { add_ideas = KMR_broken_victory_tide }
+			else = {
+				KMT = { add_ideas = KMT_victory_idea_non_ai }
+				CHI = { add_ideas = CHI_broken_victory_tide_non_ai }
+				KMR = { add_ideas = KMR_broken_victory_tide_non_ai }
+			}
+		}
+    }
+    # 4. KMR (3순위): 동점 승리 불가. 나머지 둘보다 무조건 커야(>) 승리
+    else_if = {
+        limit = {
+            check_variable = { kmr_states > chi_states }
+            check_variable = { kmr_states > kmt_states }
+        }
+		if = {
+			limit = {
+				CHI = { is_ai = yes }
+				KMT = { is_ai = yes }
+				KMR = { is_ai = yes }
+			}
+			KMR = { add_ideas = KMR_victory_idea }
+			CHI = { add_ideas = CHI_broken_victory_tide }
+			KMT = { add_ideas = KMT_broken_victory_tide }
+			else = {
+				KMR = { add_ideas = KMR_victory_idea_non_ai }
+				CHI = { add_ideas = CHI_broken_victory_tide_non_ai }
+				KMT = { add_ideas = KMT_broken_victory_tide_non_ai }
+			}
+		}
+    }
+}
+
+### 국민대회 정통성 +5%
+KMT_inc_national_assembly_5 = {
+    custom_effect_tooltip = KMT_inc_national_assembly_5_tt
+	#국민정신 부분
+	if = {
+		limit = {
+			OR = {
+				check_variable = { KMT_national_assembly_var = 75 }
+			}
+			has_idea = KMT_national_assembly_legitimacy_high
+		}
+		swap_ideas = {
+			remove_idea = KMT_national_assembly_legitimacy_high
+			add_idea = KMT_national_assembly_legitimacy_perfect
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { KMT_national_assembly_var = 55 }
+			}
+			has_idea = KMT_national_assembly_legitimacy_medium
+		}
+		swap_ideas = {
+			remove_idea = KMT_national_assembly_legitimacy_medium
+			add_idea = KMT_national_assembly_legitimacy_high
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { KMT_national_assembly_var = 35 }
+			}
+			has_idea = KMT_national_assembly_legitimacy_low
+		}
+		swap_ideas = {
+			remove_idea = KMT_national_assembly_legitimacy_low
+			add_idea = KMT_national_assembly_legitimacy_medium
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { KMT_national_assembly_var = 15 }
+			}
+			has_idea = KMT_national_assembly_legitimacy_verylow
+		}
+		swap_ideas = {
+			remove_idea = KMT_national_assembly_legitimacy_verylow
+			add_idea = KMT_national_assembly_legitimacy_low
+		}
+	}
+    if = {
+        limit = { check_variable = { KMT_national_assembly_var > 95 } }
+        set_variable = { var = KMT_national_assembly_var value = 100 }
+    }
+    else = {
+        add_to_variable = { var = KMT_national_assembly_var value = 5 }
+    }
+}
+
+### 국민대회 정통성 -5%
+KMT_dec_national_assembly_5 = {
+    custom_effect_tooltip = KMT_dec_national_assembly_5_tt
+	#국민정신 부분
+	if = {
+		limit = {
+			OR = {
+				check_variable = { KMT_national_assembly_var = 80 }
+			}
+			has_idea = KMT_national_assembly_legitimacy_perfect
+		}
+		swap_ideas = {
+			remove_idea = KMT_national_assembly_legitimacy_perfect
+			add_idea = KMT_national_assembly_legitimacy_high
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { KMT_national_assembly_var = 60 }
+			}
+			has_idea = KMT_national_assembly_legitimacy_high
+		}
+		swap_ideas = {
+			remove_idea = KMT_national_assembly_legitimacy_high
+			add_idea = KMT_national_assembly_legitimacy_medium
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { KMT_national_assembly_var = 40 }
+			}
+			has_idea = KMT_national_assembly_legitimacy_medium
+		}
+		swap_ideas = {
+			remove_idea = KMT_national_assembly_legitimacy_medium
+			add_idea = KMT_national_assembly_legitimacy_low
+		}
+	}
+	else_if = {
+		limit = {
+			OR = {
+				check_variable = { KMT_national_assembly_var = 20 }
+			}
+			has_idea = KMT_national_assembly_legitimacy_low
+		}
+		swap_ideas = {
+			remove_idea = KMT_national_assembly_legitimacy_low
+			add_idea = KMT_national_assembly_legitimacy_verylow
+		}
+	}
+    if = {
+        limit = { check_variable = { KMT_national_assembly_var < 5 } }
+        set_variable = { var = KMT_national_assembly_var value = 0 }
+    }
+    else = {
+        add_to_variable = { var = KMT_national_assembly_var value = -5 }
+    }
+}
+
+SUM_KMT_literacy_rate = {
+	set_temp_variable = { KMT_literacy_rate_total_temp = 0 }
+	set_temp_variable = { KMT_literacy_intellectual_rate_var_temp = KMT_literacy_intellectual_rate_var }
+	set_temp_variable = { KMT_literacy_worker_rate_var_temp = KMT_literacy_worker_rate_var }
+	set_temp_variable = { KMT_literacy_farmer_rate_var_temp = KMT_literacy_farmer_rate_var }
+	add_to_temp_variable = { KMT_literacy_rate_total_temp = KMT_literacy_intellectual_rate_var_temp }
+	add_to_temp_variable = { KMT_literacy_rate_total_temp = KMT_literacy_worker_rate_var_temp }
+	add_to_temp_variable = { KMT_literacy_rate_total_temp = KMT_literacy_farmer_rate_var_temp }
+	set_variable = { KMT_literacy_rate_total_var = KMT_literacy_rate_total_temp }
+}
+SUM_KMT_political_participation_rate = {
+	set_temp_variable = { KMT_political_participation_rate_total_temp = 0 }
+	set_temp_variable = { KMT_political_participation_intellectual_rate_var_temp = KMT_political_participation_intellectual_rate_var }
+	set_temp_variable = { KMT_political_participation_worker_rate_var_temp = KMT_political_participation_worker_rate_var }
+	set_temp_variable = { KMT_political_participation_farmer_rate_var_temp = KMT_political_participation_farmer_rate_var }
+	add_to_temp_variable = { KMT_political_participation_rate_total_temp = KMT_political_participation_intellectual_rate_var_temp }
+	add_to_temp_variable = { KMT_political_participation_rate_total_temp = KMT_political_participation_worker_rate_var_temp }
+	add_to_temp_variable = { KMT_political_participation_rate_total_temp = KMT_political_participation_farmer_rate_var_temp }
+	set_variable = { KMT_political_participation_rate_total_var = KMT_political_participation_rate_total_temp }
+}
+
+#급진화율
+KMT_dec_rate_of_radicalization_2_5 = {
+	custom_effect_tooltip = KMT_dec_rate_of_radicalization_2_5_tt
+	if = {
+		limit = {
+			OR = {
+				check_variable = { KMT_rate_of_radicalization_var < 2.5 }
+				check_variable = { KMT_rate_of_radicalization_var = 2.5 }
+			}
+		}
+		set_variable = { var = KMT_rate_of_radicalization_var value = 0 }
+	}
+	else = {
+		subtract_from_variable = { var = KMT_rate_of_radicalization_var value = 2.5 }
+	}
+}
+KMT_dec_rate_of_radicalization_5 = {
+	custom_effect_tooltip = KMT_dec_rate_of_radicalization_5_tt
+	if = {
+		limit = {
+			OR = {
+				check_variable = { KMT_rate_of_radicalization_var < 5 }
+				check_variable = { KMT_rate_of_radicalization_var = 5 }
+			}
+		}
+		set_variable = { var = KMT_rate_of_radicalization_var value = 0 }
+	}
+	else = {
+		subtract_from_variable = { var = KMT_rate_of_radicalization_var value = 5 }
+	}
+}
+KMT_dec_rate_of_radicalization_10 = {
+	custom_effect_tooltip = KMT_dec_rate_of_radicalization_10_tt
+	if = {
+		limit = {
+			OR = {
+				check_variable = { KMT_rate_of_radicalization_var < 10 }
+				check_variable = { KMT_rate_of_radicalization_var = 10 }
+			}
+		}
+		set_variable = { var = KMT_rate_of_radicalization_var value = 0 }
+	}
+	else = {
+		subtract_from_variable = { var = KMT_rate_of_radicalization_var value = 10 }
+	}
+}
+KMT_inc_rate_of_radicalization_2_5 = {
+	custom_effect_tooltip = KMT_inc_rate_of_radicalization_2_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_rate_of_radicalization_var > 97.5 }
+				check_variable = { KMT_rate_of_radicalization_var = 97.5 }
+			}
+		}
+        set_variable = { var = KMT_rate_of_radicalization_var value = 100 }
+    }
+    else = {
+        add_to_variable = { var = KMT_rate_of_radicalization_var value = 2.5 }
+    }
+}
+KMT_inc_rate_of_radicalization_5 = {
+	custom_effect_tooltip = KMT_inc_rate_of_radicalization_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_rate_of_radicalization_var > 95 }
+				check_variable = { KMT_rate_of_radicalization_var = 95 }
+			}
+		}
+        set_variable = { var = KMT_rate_of_radicalization_var value = 100 }
+    }
+    else = {
+        add_to_variable = { var = KMT_rate_of_radicalization_var value = 5 }
+    }
+}
+KMT_inc_rate_of_radicalization_10 = {
+	custom_effect_tooltip = KMT_inc_rate_of_radicalization_10_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_rate_of_radicalization_var > 90 }
+				check_variable = { KMT_rate_of_radicalization_var = 90 }
+			}
+		}
+        set_variable = { var = KMT_rate_of_radicalization_var value = 100 }
+    }
+    else = {
+        add_to_variable = { var = KMT_rate_of_radicalization_var value = 10 }
+    }
+}
+
+#식자율
+KMT_inc_literacy_intellectual_rate_2_5 = {
+	custom_effect_tooltip = KMT_inc_literacy_intellectual_rate_2_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_literacy_intellectual_rate_var > 17.5 }
+				check_variable = { KMT_literacy_intellectual_rate_var = 17.5 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_literacy_intellectual_rate_20_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_trade_laws_cost_factor = -0.05
+				tooltip = trade_laws_cost_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_economy_cost_factor = -0.05
+				tooltip = economy_cost_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_mobilization_laws_cost_factor = -0.05
+				tooltip = mobilization_laws_cost_factor_tt
+			}
+			set_country_flag = KMT_literacy_intellectual_rate_20_flag
+		}
+        set_variable = { var = KMT_literacy_intellectual_rate_var value = 20 }
+		SUM_KMT_literacy_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_literacy_intellectual_rate_var > 7.5 }
+					check_variable = { KMT_literacy_intellectual_rate_var = 7.5 }
+				}
+				NOT = { has_country_flag = KMT_literacy_intellectual_rate_10_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_trade_laws_cost_factor = -0.05
+				tooltip = trade_laws_cost_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_economy_cost_factor = -0.05
+				tooltip = economy_cost_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_mobilization_laws_cost_factor = -0.05
+				tooltip = mobilization_laws_cost_factor_tt
+			}
+			set_country_flag = KMT_literacy_intellectual_rate_10_flag
+		}
+        add_to_variable = { var = KMT_literacy_intellectual_rate_var value = 2.5 }
+		SUM_KMT_literacy_rate = yes
+    }
+}
+KMT_inc_literacy_intellectual_rate_5 = {
+	custom_effect_tooltip = KMT_inc_literacy_intellectual_rate_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_literacy_intellectual_rate_var > 15 }
+				check_variable = { KMT_literacy_intellectual_rate_var = 15 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_literacy_intellectual_rate_20_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_trade_laws_cost_factor = -0.05
+				tooltip = trade_laws_cost_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_economy_cost_factor = -0.05
+				tooltip = economy_cost_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_mobilization_laws_cost_factor = -0.05
+				tooltip = mobilization_laws_cost_factor_tt
+			}
+			set_country_flag = KMT_literacy_intellectual_rate_20_flag
+		}
+        set_variable = { var = KMT_literacy_intellectual_rate_var value = 20 }
+		KMT_inc_rate_of_radicalization_2_5 = yes
+		SUM_KMT_literacy_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_literacy_intellectual_rate_var > 5 }
+					check_variable = { KMT_literacy_intellectual_rate_var = 5 }
+				}
+				NOT = { has_country_flag = KMT_literacy_intellectual_rate_10_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_trade_laws_cost_factor = -0.05
+				tooltip = trade_laws_cost_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_economy_cost_factor = -0.05
+				tooltip = economy_cost_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_mobilization_laws_cost_factor = -0.05
+				tooltip = mobilization_laws_cost_factor_tt
+			}
+			set_country_flag = KMT_literacy_intellectual_rate_10_flag
+		}
+        add_to_variable = { var = KMT_literacy_intellectual_rate_var value = 5 }
+		KMT_inc_rate_of_radicalization_2_5 = yes
+		SUM_KMT_literacy_rate = yes
+    }
+}
+KMT_inc_literacy_worker_rate_2_5 = {
+	custom_effect_tooltip = KMT_inc_literacy_worker_rate_2_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_literacy_worker_rate_var > 27.5 }
+				check_variable = { KMT_literacy_worker_rate_var = 27.5 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_literacy_worker_rate_30_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_efficiency_gain_factor = 0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_max_efficiency_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_start_efficiency_factor = 0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			set_country_flag = KMT_literacy_worker_rate_30_flag
+		}
+        set_variable = { var = KMT_literacy_worker_rate_var value = 30 }
+		KMT_inc_rate_of_radicalization_5 = yes
+		SUM_KMT_literacy_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_literacy_worker_rate_var > 12.5 }
+					check_variable = { KMT_literacy_worker_rate_var = 12.5 }
+				}
+				NOT = { has_country_flag = KMT_literacy_worker_rate_15_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_efficiency_gain_factor = 0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_max_efficiency_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_start_efficiency_factor = 0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			set_country_flag = KMT_literacy_worker_rate_15_flag
+		}
+        add_to_variable = { var = KMT_literacy_worker_rate_var value = 2.5 }
+		KMT_inc_rate_of_radicalization_5 = yes
+		SUM_KMT_literacy_rate = yes
+    }
+}
+KMT_inc_literacy_worker_rate_5 = {
+	custom_effect_tooltip = KMT_inc_literacy_worker_rate_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_literacy_worker_rate_var > 25 }
+				check_variable = { KMT_literacy_worker_rate_var = 25 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_literacy_worker_rate_30_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_efficiency_gain_factor = 0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_max_efficiency_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_start_efficiency_factor = 0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			set_country_flag = KMT_literacy_worker_rate_30_flag
+		}
+        set_variable = { var = KMT_literacy_worker_rate_var value = 30 }
+		KMT_inc_rate_of_radicalization_10 = yes
+		SUM_KMT_literacy_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_literacy_worker_rate_var > 10 }
+					check_variable = { KMT_literacy_worker_rate_var = 10 }
+				}
+				NOT = { has_country_flag = KMT_literacy_worker_rate_15_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_efficiency_gain_factor = 0.025
+				tooltip = production_factory_efficiency_gain_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_max_efficiency_factor = 0.025
+				tooltip = production_factory_max_efficiency_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_production_factory_start_efficiency_factor = 0.025
+				tooltip = production_factory_start_efficiency_factor_tt
+			}
+			set_country_flag = KMT_literacy_worker_rate_15_flag
+		}
+        add_to_variable = { var = KMT_literacy_worker_rate_var value = 5 }
+		KMT_inc_rate_of_radicalization_10 = yes
+		SUM_KMT_literacy_rate = yes
+    }
+}
+KMT_inc_literacy_farmer_rate_2_5 = {
+	custom_effect_tooltip = KMT_inc_literacy_farmer_rate_2_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_literacy_farmer_rate_var > 47.5 }
+				check_variable = { KMT_literacy_farmer_rate_var = 47.5 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_literacy_farmer_rate_50_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_monthly_population = 0.025
+				tooltip = monthly_population_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_mobilization_speed = 0.025
+				tooltip = mobilization_speed_tt
+			}
+			set_country_flag = KMT_literacy_farmer_rate_50_flag
+		}
+        set_variable = { var = KMT_literacy_farmer_rate_var value = 50 }
+		KMT_inc_rate_of_radicalization_5 = yes
+		SUM_KMT_literacy_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_literacy_farmer_rate_var > 22.5 }
+					check_variable = { KMT_literacy_farmer_rate_var = 22.5 }
+				}
+				NOT = { has_country_flag = KMT_literacy_farmer_rate_25_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_monthly_population = 0.025
+				tooltip = monthly_population_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_mobilization_speed = 0.025
+				tooltip = mobilization_speed_tt
+			}
+			set_country_flag = KMT_literacy_farmer_rate_25_flag
+		}
+        add_to_variable = { var = KMT_literacy_farmer_rate_var value = 2.5 }
+		KMT_inc_rate_of_radicalization_5 = yes
+		SUM_KMT_literacy_rate = yes
+    }
+}
+KMT_inc_literacy_farmer_rate_5 = {
+	custom_effect_tooltip = KMT_inc_literacy_farmer_rate_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_literacy_farmer_rate_var > 45 }
+				check_variable = { KMT_literacy_farmer_rate_var = 45 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_literacy_farmer_rate_50_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_monthly_population = 0.025
+				tooltip = monthly_population_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_mobilization_speed = 0.025
+				tooltip = mobilization_speed_tt
+			}
+			set_country_flag = KMT_literacy_farmer_rate_50_flag
+		}
+        set_variable = { var = KMT_literacy_farmer_rate_var value = 50 }
+		KMT_inc_rate_of_radicalization_10 = yes
+		SUM_KMT_literacy_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_literacy_farmer_rate_var > 20 }
+					check_variable = { KMT_literacy_farmer_rate_var = 20 }
+				}
+				NOT = { has_country_flag = KMT_literacy_farmer_rate_25_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_monthly_population = 0.025
+				tooltip = monthly_population_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_mobilization_speed = 0.025
+				tooltip = mobilization_speed_tt
+			}
+			set_country_flag = KMT_literacy_farmer_rate_25_flag
+		}
+        add_to_variable = { var = KMT_literacy_farmer_rate_var value = 5 }
+		KMT_inc_rate_of_radicalization_10 = yes
+		SUM_KMT_literacy_rate = yes
+    }
+}
+
+#정치참여도
+KMT_political_participation_intellectual_rate_2_5 = {
+	custom_effect_tooltip = KMT_political_participation_intellectual_rate_2_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_political_participation_intellectual_rate_var > 17.5 }
+				check_variable = { KMT_political_participation_intellectual_rate_var = 17.5 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_political_participation_intellectual_20_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_political_power_factor = 0.05
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_stability_factor = 0.05
+				tooltip = stability_factor_tt
+			}
+			set_country_flag = KMT_political_participation_intellectual_20_flag
+		}
+        set_variable = { var = KMT_political_participation_intellectual_rate_var value = 20 }
+		SUM_KMT_political_participation_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_political_participation_intellectual_rate_var > 7.5 }
+					check_variable = { KMT_political_participation_intellectual_rate_var = 7.5 }
+				}
+				NOT = { has_country_flag = KMT_political_participation_intellectual_10_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_political_power_factor = 0.05
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_stability_factor = 0.05
+				tooltip = stability_factor_tt
+			}
+			set_country_flag = KMT_political_participation_intellectual_10_flag
+		}
+        add_to_variable = { var = KMT_political_participation_intellectual_rate_var value = 2.5 }
+		SUM_KMT_political_participation_rate = yes
+    }
+}
+KMT_political_participation_intellectual_rate_5 = {
+	custom_effect_tooltip = KMT_political_participation_intellectual_rate_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_political_participation_intellectual_rate_var > 15 }
+				check_variable = { KMT_political_participation_intellectual_rate_var = 15 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_political_participation_intellectual_20_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_political_power_factor = 0.05
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_stability_factor = 0.05
+				tooltip = stability_factor_tt
+			}
+			set_country_flag = KMT_political_participation_intellectual_20_flag
+		}
+        set_variable = { var = KMT_political_participation_intellectual_rate_var value = 20 }
+		KMT_inc_rate_of_radicalization_2_5 = yes
+		SUM_KMT_political_participation_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_political_participation_intellectual_rate_var > 5 }
+					check_variable = { KMT_political_participation_intellectual_rate_var = 5 }
+				}
+				NOT = { has_country_flag = KMT_political_participation_intellectual_10_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_political_power_factor = 0.05
+				tooltip = political_power_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_stability_factor = 0.05
+				tooltip = stability_factor_tt
+			}
+			set_country_flag = KMT_political_participation_intellectual_10_flag
+		}
+        add_to_variable = { var = KMT_political_participation_intellectual_rate_var value = 5 }
+		KMT_inc_rate_of_radicalization_2_5 = yes
+		SUM_KMT_political_participation_rate = yes
+    }
+}
+KMT_political_participation_worker_rate_2_5 = {
+	custom_effect_tooltip = KMT_political_participation_worker_rate_2_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_political_participation_worker_rate_var > 27.5 }
+				check_variable = { KMT_political_participation_worker_rate_var = 27.5 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_political_participation_worker_30_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_war_support_factor = 0.05
+				tooltip = war_support_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_consumer_goods_factor = -0.05
+				tooltip = consumer_goods_factor_tt
+			}
+			set_country_flag = KMT_political_participation_worker_30_flag
+		}
+        set_variable = { var = KMT_political_participation_worker_rate_var value = 30 }
+		KMT_inc_rate_of_radicalization_5 = yes
+		SUM_KMT_political_participation_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_political_participation_worker_rate_var > 12.5 }
+					check_variable = { KMT_political_participation_worker_rate_var = 12.5 }
+				}
+				NOT = { has_country_flag = KMT_political_participation_worker_15_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_war_support_factor = 0.05
+				tooltip = war_support_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_consumer_goods_factor = -0.05
+				tooltip = consumer_goods_factor_tt
+			}
+			set_country_flag = KMT_political_participation_worker_15_flag
+		}
+        add_to_variable = { var = KMT_political_participation_worker_rate_var value = 2.5 }
+		KMT_inc_rate_of_radicalization_5 = yes
+		SUM_KMT_political_participation_rate = yes
+    }
+}
+KMT_political_participation_worker_rate_5 = {
+	custom_effect_tooltip = KMT_political_participation_worker_rate_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_political_participation_worker_rate_var > 25 }
+				check_variable = { KMT_political_participation_worker_rate_var = 25 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_political_participation_worker_30_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_war_support_factor = 0.05
+				tooltip = war_support_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_consumer_goods_factor = -0.05
+				tooltip = consumer_goods_factor_tt
+			}
+			set_country_flag = KMT_political_participation_worker_30_flag
+		}
+        set_variable = { var = KMT_political_participation_worker_rate_var value = 30 }
+		KMT_inc_rate_of_radicalization_10 = yes
+		SUM_KMT_political_participation_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_political_participation_worker_rate_var > 10 }
+					check_variable = { KMT_political_participation_worker_rate_var = 10 }
+				}
+				NOT = { has_country_flag = KMT_political_participation_worker_15_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_war_support_factor = 0.05
+				tooltip = war_support_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_consumer_goods_factor = -0.05
+				tooltip = consumer_goods_factor_tt
+			}
+			set_country_flag = KMT_political_participation_worker_15_flag
+		}
+        add_to_variable = { var = KMT_political_participation_worker_rate_var value = 5 }
+		KMT_inc_rate_of_radicalization_10 = yes
+		SUM_KMT_political_participation_rate = yes
+    }
+}
+KMT_political_participation_farmer_rate_2_5 = {
+	custom_effect_tooltip = KMT_political_participation_farmer_rate_2_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_political_participation_farmer_rate_var > 47.5 }
+				check_variable = { KMT_political_participation_farmer_rate_var = 47.5 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_political_participation_farmer_50_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_research_speed_factor = 0.025
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_drift_defence_factor = 0.05
+				tooltip = drift_defence_factor_tt
+			}
+			set_country_flag = KMT_political_participation_farmer_50_flag
+		}
+        set_variable = { var = KMT_political_participation_farmer_rate_var value = 50 }
+		KMT_inc_rate_of_radicalization_5 = yes
+		SUM_KMT_political_participation_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_political_participation_farmer_rate_var > 22.5 }
+					check_variable = { KMT_political_participation_farmer_rate_var = 22.5 }
+				}
+				NOT = { has_country_flag = KMT_political_participation_farmer_25_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_research_speed_factor = 0.025
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_drift_defence_factor = 0.05
+				tooltip = drift_defence_factor_tt
+			}
+			set_country_flag = KMT_political_participation_farmer_25_flag
+		}
+        add_to_variable = { var = KMT_political_participation_farmer_rate_var value = 2.5 }
+		KMT_inc_rate_of_radicalization_5 = yes
+		SUM_KMT_political_participation_rate = yes
+    }
+}
+KMT_political_participation_farmer_rate_5 = {
+	custom_effect_tooltip = KMT_political_participation_farmer_rate_5_tt
+	if = {
+        limit = {
+			OR = {
+				check_variable = { KMT_political_participation_farmer_rate_var > 45 }
+				check_variable = { KMT_political_participation_farmer_rate_var = 45 }
+			}
+		}
+		if = {
+			limit = {
+				NOT = { has_country_flag = KMT_political_participation_farmer_50_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_research_speed_factor = 0.025
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_drift_defence_factor = 0.05
+				tooltip = drift_defence_factor_tt
+			}
+			set_country_flag = KMT_political_participation_farmer_50_flag
+		}
+        set_variable = { var = KMT_political_participation_farmer_rate_var value = 50 }
+		KMT_inc_rate_of_radicalization_10 = yes
+		SUM_KMT_political_participation_rate = yes
+    }
+    else = {
+		if = {
+			limit = {
+				OR = {
+					check_variable = { KMT_political_participation_farmer_rate_var > 20 }
+					check_variable = { KMT_political_participation_farmer_rate_var = 20 }
+				}
+				NOT = { has_country_flag = KMT_political_participation_farmer_25_flag }
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_research_speed_factor = 0.025
+				tooltip = research_speed_factor_tt
+			}
+			add_to_variable = {
+				KMT_awakening_the_masses_idea_drift_defence_factor = 0.05
+				tooltip = drift_defence_factor_tt
+			}
+			set_country_flag = KMT_political_participation_farmer_25_flag
+		}
+        add_to_variable = { var = KMT_political_participation_farmer_rate_var value = 5 }
+		KMT_inc_rate_of_radicalization_10 = yes
+		SUM_KMT_political_participation_rate = yes
     }
 }

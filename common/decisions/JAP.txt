@@ -834,24 +834,36 @@ peace_deal = {
 				is_chinese_country = yes
 			}
 			has_global_flag = second_Sino_Japanese_war_flag
+			JAP = { NOT = { has_country_flag = no_more_again_flag } }
 			OR = {
-				surrender_progress > 0.3
+				JAP = { surrender_progress > 0.3 }
 				AND = {
-					custom_trigger_tooltip = {
-						tooltip = JAP_all_owned_korean_states_occupied
-						NOT = { KOR = { any_core_state = { controller = { is_ally_with = PREV.PREV } } } }
+					OR = {
+						MAN = { has_capitulated = yes }
+						MAN = { exists = no }
 					}
-					MAN = { has_capitulated = yes }
-					#NOT = {
-					#	any_allied_country = {
-					#		has_country_flag = Chinese_warlord
-					#		has_capitulated = no
-					#	}
-					#}
 					NOT = {
-						any_owned_state = {
-							is_chinese_area = yes
-							is_controlled_by = ROOT
+						any_allied_country = {
+							is_chinese_country = yes
+							has_capitulated = no
+						}
+					}
+					NOT = {
+						any_state = {
+							# 1. 대상 지역 필터링: 한국 또는 중국 권역
+							OR = {
+								is_korean_area = yes
+								is_chinese_area = yes
+							}
+							
+							# 2. 통제국 조건: 일본 또는 그 동맹국
+							CONTROLLER = {
+								OR = {
+									tag = JAP
+									is_in_faction_with = JAP
+									is_subject_of = JAP
+								}
+							}
 						}
 					}
 				}
@@ -860,31 +872,41 @@ peace_deal = {
 		available = {
 			NOT = {
 				OR = {
-					surrender_progress > 0.3
+					JAP = { surrender_progress > 0.3 }
 					AND = {
-						custom_trigger_tooltip = {
-							tooltip = JAP_all_owned_korean_states_occupied
-							NOT = { KOR = { any_core_state = { controller = { is_ally_with = PREV.PREV } } } }
+						OR = {
+							MAN = { has_capitulated = yes }
+							MAN = { exists = no }
 						}
-						MAN = { has_capitulated = yes }
-						#NOT = {
-						#	any_allied_country = {
-						#		has_country_flag = Chinese_warlord
-						#		has_capitulated = no
-						#	}
-						#}
 						NOT = {
-							any_owned_state = {
-								is_chinese_area = yes
-								is_controlled_by = ROOT
+							any_allied_country = {
+								is_chinese_country = yes
+								has_capitulated = no
+							}
+						}
+						NOT = {
+							any_state = {
+								# 1. 대상 지역 필터링: 한국 또는 중국 권역
+								OR = {
+									is_korean_area = yes
+									is_chinese_area = yes
+								}
+								
+								# 2. 통제국 조건: 일본 또는 그 동맹국
+								CONTROLLER = {
+									OR = {
+										tag = JAP
+										is_in_faction_with = JAP
+										is_subject_of = JAP
+									}
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-		fire_only_once = yes
-		days_mission_timeout = 240
+		days_mission_timeout = 200
 		timeout_effect = {
 			if = {
 				limit = {
@@ -908,35 +930,36 @@ peace_deal = {
 	}
 	JAP_offer_peace_to_china = {
 		available = {
+			original_tag = JAP
+			has_global_flag = second_Sino_Japanese_war_flag
 			OR = {
-				surrender_progress > 0.3
+				JAP = { surrender_progress > 0.3 }
 				AND = {
-					custom_trigger_tooltip = {
-						tooltip = JAP_all_owned_korean_states_occupied
-						NOT = { KOR = { any_core_state = { controller = { OR = { is_ally_with = JAP original_tag = JAP } } } } }
-					}
-					if = {
-						limit = {
-							country_exists = MAN
-							is_ally_with = MAN
-						}
+					OR = {
 						MAN = { has_capitulated = yes }
+						MAN = { exists = no }
 					}
-					#custom_trigger_tooltip = {
-					#	tooltip = JAP_all_chinese_allies_capitulated
-					#	NOT = {
-					#		any_allied_country = {
-					#			NOT = { has_country_flag = Chinese_warlord }
-					#			has_capitulated = no
-					#		}
-					#	}
-					#}
-					custom_trigger_tooltip = {
-						tooltip = JAP_all_owned_chinese_states_occupied
-						NOT = {
-							any_owned_state = {
+					NOT = {
+						any_allied_country = {
+							is_chinese_country = yes
+							has_capitulated = no
+						}
+					}
+					NOT = {
+						any_state = {
+							# 1. 대상 지역 필터링: 한국 또는 중국 권역
+							OR = {
+								is_korean_area = yes
 								is_chinese_area = yes
-								is_controlled_by = ROOT
+							}
+							
+							# 2. 통제국 조건: 일본 또는 그 동맹국
+							CONTROLLER = {
+								OR = {
+									tag = JAP
+									is_in_faction_with = JAP
+									is_subject_of = JAP
+								}
 							}
 						}
 					}
@@ -948,10 +971,6 @@ peace_deal = {
 			is_subject = no
 			any_enemy_country = {
 				is_chinese_country = yes
-				OR = {
-					is_in_faction = no
-					is_faction_leader = yes
-				}
 			}
 			original_tag = JAP
 			has_capitulated = no
@@ -960,13 +979,12 @@ peace_deal = {
 		fire_only_once = yes
 
 		ai_will_do = {
-			factor = 0
+			base = 0
 			modifier = {
 				add = 1000
-				#NOT = { has_government = fascism }
 				OR = {
 					has_global_flag = JAP_will_surrender
-					surrender_progress > 0.15 #Japan was directly invaded
+					surrender_progress > 0.3 #Japan was directly invaded
 				}
 			}
 		}
@@ -989,6 +1007,7 @@ peace_deal = {
 				}
 				clr_global_flag = JAP_will_surrender
 			}
+			set_country_flag = no_more_again_flag
 		}
 	}
 	
@@ -1000,18 +1019,32 @@ peace_deal = {
 				original_tag = MAN
 			}
 			has_global_flag = jap_man_war_flag
+			JAP = { NOT = { has_country_flag = no_more_again_flag_man } }
 			OR = {
-				surrender_progress > 0.3
+				JAP = { surrender_progress > 0.3 }
 				AND = {
-					custom_trigger_tooltip = {
-						tooltip = JAP_all_owned_korean_states_occupied
-						NOT = { KOR = { any_core_state = { controller = { is_ally_with = PREV.PREV } } } }
-					}
-					CHI = { has_capitulated = yes }
 					NOT = {
-						any_owned_state = {
-							is_chinese_area = yes
-							is_controlled_by = ROOT
+						any_allied_country = {
+							is_chinese_country = yes
+							has_capitulated = no
+						}
+					}
+					NOT = {
+						any_state = {
+							# 1. 대상 지역 필터링: 한국 또는 중국 권역
+							OR = {
+								is_korean_area = yes
+								is_chinese_area = yes
+							}
+							
+							# 2. 통제국 조건: 일본 또는 그 동맹국
+							CONTROLLER = {
+								OR = {
+									tag = JAP
+									is_in_faction_with = JAP
+									is_subject_of = JAP
+								}
+							}
 						}
 					}
 				}
@@ -1020,25 +1053,37 @@ peace_deal = {
 		available = {
 			NOT = {
 				OR = {
-					surrender_progress > 0.3
+					JAP = { surrender_progress > 0.3 }
 					AND = {
-						custom_trigger_tooltip = {
-							tooltip = JAP_all_owned_korean_states_occupied
-							NOT = { KOR = { any_core_state = { controller = { is_ally_with = PREV.PREV } } } }
-						}
-						CHI = { has_capitulated = yes }
 						NOT = {
-							any_owned_state = {
-								is_chinese_area = yes
-								is_controlled_by = ROOT
+							any_allied_country = {
+								is_chinese_country = yes
+								has_capitulated = no
+							}
+						}
+						NOT = {
+							any_state = {
+								# 1. 대상 지역 필터링: 한국 또는 중국 권역
+								OR = {
+									is_korean_area = yes
+									is_chinese_area = yes
+								}
+								
+								# 2. 통제국 조건: 일본 또는 그 동맹국
+								CONTROLLER = {
+									OR = {
+										tag = JAP
+										is_in_faction_with = JAP
+										is_subject_of = JAP
+									}
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-		fire_only_once = yes
-		days_mission_timeout = 240
+		days_mission_timeout = 200
 		timeout_effect = {
 			if = {
 				limit = {
@@ -1062,26 +1107,32 @@ peace_deal = {
 	}
 	JAP_offer_peace_to_man = {
 		available = {
+			original_tag = JAP
+			has_global_flag = jap_man_war_flag
 			OR = {
-				surrender_progress > 0.3
+				JAP = { surrender_progress > 0.3 }
 				AND = {
-					custom_trigger_tooltip = {
-						tooltip = JAP_all_owned_korean_states_occupied
-						NOT = { KOR = { any_core_state = { controller = { OR = { is_ally_with = JAP original_tag = JAP } } } } }
-					}
-					if = {
-						limit = {
-							country_exists = CHI
-							is_ally_with = CHI
+					NOT = {
+						any_allied_country = {
+							is_chinese_country = yes
+							has_capitulated = no
 						}
-						CHI = { has_capitulated = yes }
 					}
-					custom_trigger_tooltip = {
-						tooltip = JAP_all_owned_chinese_states_occupied
-						NOT = {
-							any_owned_state = {
+					NOT = {
+						any_state = {
+							# 1. 대상 지역 필터링: 한국 또는 중국 권역
+							OR = {
+								is_korean_area = yes
 								is_chinese_area = yes
-								is_controlled_by = ROOT
+							}
+							
+							# 2. 통제국 조건: 일본 또는 그 동맹국
+							CONTROLLER = {
+								OR = {
+									tag = JAP
+									is_in_faction_with = JAP
+									is_subject_of = JAP
+								}
 							}
 						}
 					}
@@ -1091,11 +1142,7 @@ peace_deal = {
 		visible = {
 			is_subject = no
 			any_enemy_country = {
-				is_chinese_country = yes
-				OR = {
-					is_in_faction = no
-					is_faction_leader = yes
-				}
+				original_tag = MAN
 			}
 			original_tag = JAP
 			has_capitulated = no
@@ -1104,12 +1151,12 @@ peace_deal = {
 		fire_only_once = yes
 
 		ai_will_do = {
-			factor = 0
+			base = 0
 			modifier = {
 				add = 1000
 				OR = {
 					has_global_flag = JAP_will_surrender_man
-					surrender_progress > 0.15 #Japan was directly invaded
+					surrender_progress > 0.3 #Japan was directly invaded
 				}
 			}
 		}
@@ -1123,73 +1170,12 @@ peace_deal = {
 				}
 				clr_global_flag = JAP_will_surrender_man
 			}
+			set_country_flag = no_more_again_flag_man
 		}
 	}
 }
 
 JAP_sino_japanese_war = {
-	JAP_Planning_to_Attack_China = {
-		icon = GFX_decision_generic_tank
-		allowed = {
-			original_tag = JAP
-		}
-		visible = {
-			OR = {
-				has_idea = JAP_intervene_in_china_5
-				has_idea = JAP_intervene_in_china_4
-				has_idea = JAP_intervene_in_china_3
-				has_idea = JAP_intervene_in_china_2
-				has_idea = JAP_intervene_in_china_1
-			}
-		}
-		available = {
-			has_army_experience > 29
-		}
-		cost = 30
-		days_remove = 40
-		ai_will_do = {
-			base = 4000
-		}
-		remove_effect = {
-			USA = { add_war_support = 0.02 }
-			GER = { add_war_support = 0.02 }
-			if = {
-				limit = { has_idea = JAP_intervene_in_china_5 }
-				swap_ideas = {
-					remove_idea = JAP_intervene_in_china_5
-					add_idea = JAP_intervene_in_china_4
-				}
-			}
-			else_if = {
-				limit = { has_idea = JAP_intervene_in_china_4 }
-				swap_ideas = {
-					remove_idea = JAP_intervene_in_china_4
-					add_idea = JAP_intervene_in_china_3
-				}
-			}
-			else_if = {
-				limit = { has_idea = JAP_intervene_in_china_3 }
-				swap_ideas = {
-					remove_idea = JAP_intervene_in_china_3
-					add_idea = JAP_intervene_in_china_2
-				}
-			}
-			else_if = {
-				limit = { has_idea = JAP_intervene_in_china_2 }
-				swap_ideas = {
-					remove_idea = JAP_intervene_in_china_2
-					add_idea = JAP_intervene_in_china_1
-				}
-			}
-			else_if = {
-				limit = { has_idea = JAP_intervene_in_china_1 }
-				remove_ideas = JAP_intervene_in_china_1
-			}
-		}
-		complete_effect = {
-			army_experience = -30						
-		}	
-	}
 	JAP_shanghai_landing_operation = {
 		icon = GFX_decision_generic_operation
 		allowed = {

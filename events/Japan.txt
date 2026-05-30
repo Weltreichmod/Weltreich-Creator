@@ -1191,7 +1191,19 @@ country_event = {
 				}
 			}
 		}
-		ROOT = { annex_country = { target = MAN transfer_troops = no } }
+		if = {
+			limit = {
+				ROOT = { has_war_with = MAN }
+				MAN = { has_capitulated = yes }
+			}
+			ROOT = {
+				annex_country = { target = MAN transfer_troops = no }
+				MAN = { enable_country_integration_60_compliance = yes }
+			}
+		}
+		else = {
+			MAN = { leave_faction = yes }
+		}
 		ROOT = {
 			if = {
 				limit = {
@@ -1224,6 +1236,7 @@ country_event = {
 				}
 			}
 			white_peace = JAP
+			set_country_flag = anti_japanese_war_winner
 		}
 		ai_chance = {
 			base = 10
@@ -1592,6 +1605,7 @@ country_event = {
 			add_core_of = XIK
 			transfer_state_to = XIK
 		}
+		XIK = { country_event = { id = manchukou_wr.142 days = 7 } }
 		every_state = {
 			limit = {
 				is_owned_by = CHI

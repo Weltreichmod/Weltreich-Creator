@@ -22,6 +22,59 @@ on_actions = {
 				}
 				modify_timed_idea = { idea = CHI_collapsed_economy_high days = 1 }
 			}
+			
+			if = {
+				limit = {
+					if = {
+						limit = {
+							CHI = { exists = yes }
+						}
+						original_tag = CHI
+					}
+					else_if = {
+						limit = {
+							KMT = { exists = yes }
+						}
+						original_tag = KMT
+					}
+					else_if = {
+						limit = {
+							KMR = { exists = yes }
+						}
+						original_tag = KMR
+					}
+					check_variable = { global.mission_shared_timer > 0 }
+					has_global_flag = chinese_civil_war
+				}
+				subtract_from_variable = { global.mission_shared_timer = 1 }
+			}
+			else_if = {
+				limit = {
+					if = {
+						limit = {
+							CHI = { exists = yes }
+						}
+						original_tag = CHI
+					}
+					else_if = {
+						limit = {
+							KMT = { exists = yes }
+						}
+						original_tag = KMT
+					}
+					else_if = {
+						limit = {
+							KMR = { exists = yes }
+						}
+						original_tag = KMR
+					}
+					check_variable = { global.mission_shared_timer < 1 }
+					has_global_flag = chinese_civil_war
+					NOT = { has_global_flag = mission_shared_timer_flag }
+				}
+				set_global_flag = mission_shared_timer_flag
+				CHI_mission_shared_timer_effect = yes
+			}
 		}
 	}
 	on_war_relation_added = {
@@ -196,6 +249,18 @@ on_actions = {
 					  remember_old_capital = no
 					}
 				}
+				every_state = {
+					limit = {
+						is_core_of = NEA
+					}
+					remove_core_of = NEA
+				}
+				NEA = { retire_character = NEA_zhang_xueliang }
+				remove_ideas = NEA_logistical_collapse
+				remove_ideas = NEA_mass_desertion
+				remove_ideas = NEA_ineffectual_high_command
+				remove_ideas = NEA_loss_of_public_support
+				remove_ideas = Unauthorized_Military_Intervention
 				add_victory_points = {
 					province = 11771
 					value = 21
@@ -234,6 +299,7 @@ on_actions = {
 						set_country_flag = MAN_failed_in_mongolian_war
 					}
 				}
+				MAN = { country_event = manchukou_wr.137 }
 				SIK = {
 					drop_cosmetic_tag = yes
 				}
@@ -332,6 +398,10 @@ on_actions = {
 					}
 				}
 				set_global_flag = MAN_won_win_MON_war_flag
+				MAN = {
+					set_country_flag = MAN_victory_in_mongolia_flag
+					country_event = manchukou_wr.73
+				}
 				SIK = {
 					drop_cosmetic_tag = yes
 				}
@@ -395,22 +465,6 @@ on_actions = {
 						is_core_of = MON
 					}
 					transfer_state_to = MON
-				}
-				MAN = {
-					if = {
-						limit = {
-							has_dlc = "Together for Victory"
-							MON = { exists = yes }
-						}
-						set_autonomy = {
-							target = MON
-							autonomous_state = autonomy_puppet
-							freedom_level = 0.5
-						}
-						else = {
-							puppet = MON
-						}
-					}
 				}
 			}
 			#북방수복전쟁
@@ -497,6 +551,12 @@ on_actions = {
 				}
 				if = {
 					limit = {
+						KMR = { exists = no }
+					}
+					SKM = { add_ideas = KMT_collapsed_national_government }
+				}
+				if = {
+					limit = {
 						CHI = { exists = yes }
 						KMR = { exists = yes }
 					}
@@ -512,7 +572,7 @@ on_actions = {
 							transfer_state_to = PREV
 						}
 					}
-					CHI = {
+					KMR = {
 						annex_country = {
 							target = KMT
 							transfer_troops = yes
@@ -611,6 +671,30 @@ on_actions = {
 						remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
 						remove_dynamic_modifier = { modifier = Aftermath_of_the_Sichuan_Famine }
 					}
+					every_state = {
+						limit = {
+							is_claimed_by = KMT
+						}
+						remove_claim_by = KMT
+					}
+					every_state = {
+						limit = {
+							is_claimed_by = KMR
+						}
+						remove_claim_by = KMR
+					}
+					every_state = {
+						limit = {
+							is_core_of = KMT
+						}
+						remove_core_of = KMT
+					}
+					every_state = {
+						limit = {
+							is_core_of = KMR
+						}
+						remove_core_of = KMR
+					}
 					clr_global_flag = chinese_civil_war
 					every_country = {
 						limit = { has_template = "Feicháng Mínbing" }
@@ -628,17 +712,18 @@ on_actions = {
 					KMR = {
 						KMT = { enable_country_integration_60_compliance = yes }
 						CHI = { enable_country_integration_60_compliance = yes }
-						country_event = { id = china_wr.75 days = 5 }
+						if = {
+							limit = {
+								XSM = { has_cosmetic_tag = XSM_under_CHI }
+							}
+							country_event = { id = china_wr.75 days = 5 }
+						}
+						else = {
+							country_event = { id = kuomintag_wr.89 days = 5 }
+						}
 						set_cosmetic_tag = KMT_CHI
-						annex_country = {
-							target = SHX
-							transfer_troops = no
-						}
-						annex_country = {
-							target = PRC
-							transfer_troops = no
-						}
 						remove_dynamic_modifier = { modifier = KMR_Disordered_Ranks_modifier }
+						country_event = { id = kuomintag_wr.63 days = 4 }
 					}
 					every_state = {
 						limit = {
@@ -686,6 +771,30 @@ on_actions = {
 						remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
 						remove_dynamic_modifier = { modifier = Aftermath_of_the_Sichuan_Famine }
 					}
+					every_state = {
+						limit = {
+							is_claimed_by = KMT
+						}
+						remove_claim_by = KMT
+					}
+					every_state = {
+						limit = {
+							is_claimed_by = CHI
+						}
+						remove_claim_by = CHI
+					}
+					every_state = {
+						limit = {
+							is_core_of = KMT
+						}
+						remove_core_of = KMT
+					}
+					every_state = {
+						limit = {
+							is_core_of = CHI
+						}
+						remove_core_of = CHI
+					}
 					clr_global_flag = chinese_civil_war
 					every_country = {
 						limit = { has_template = "Feicháng Mínbing" }
@@ -705,6 +814,9 @@ on_actions = {
 						any_enemy_country = { original_tag = KMR }
 					}
 				}
+				PRC = { add_ideas = CHI_collapsed_constitutional_protection_government }
+				NPA = { add_ideas = CHI_collapsed_constitutional_protection_government }
+				SCH = { add_ideas = CHI_collapsed_constitutional_protection_government }
 				if = {
 					limit = {
 						KMT = { exists = yes }
@@ -720,28 +832,6 @@ on_actions = {
 								owner = { original_tag = CHI }
 							}
 							transfer_state_to = PREV
-						}
-					}
-					if = {
-						limit = {
-							SHX = { is_subject_of = CHI }
-						}
-						KMT = {
-							annex_country = {
-								target = SHX
-								transfer_troops = no
-							}
-						}
-					}
-					if = {
-						limit = {
-							PRC = { is_subject_of = CHI }
-						}
-						KMT = {
-							annex_country = {
-								target = PRC
-								transfer_troops = no
-							}
 						}
 					}
 					KMT = {
@@ -763,32 +853,19 @@ on_actions = {
 						}
 						CHI = { enable_country_integration_60_compliance = yes }
 						KMR = { enable_country_integration_60_compliance = yes }
-						country_event = { id = china_wr.75 days = 5 }
+						if = {
+							limit = {
+								XSM = { has_cosmetic_tag = XSM_under_CHI }
+							}
+							country_event = { id = china_wr.75 days = 5 }
+						}
+						else = {
+							country_event = { id = kuomintag_wr.89 days = 5 }
+						}
 						news_event = china_wr.181
 						set_cosmetic_tag = KMT_CHI
 						remove_dynamic_modifier = { modifier = KMT_revolutionary_fervor_modifier }
-					}
-					if = {
-						limit = {
-							SHX = { is_subject_of = CHI }
-						}
-						KMT = {
-							annex_country = {
-								target = SHX
-								transfer_troops = no
-							}
-						}
-					}
-					if = {
-						limit = {
-							PRC = { is_subject_of = CHI }
-						}
-						KMT = {
-							annex_country = {
-								target = PRC
-								transfer_troops = no
-							}
-						}
+						country_event = { id = kuomintag_wr.63 days = 4 }
 					}
 					every_state = {
 						limit = {
@@ -835,6 +912,30 @@ on_actions = {
 						}
 						remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
 						remove_dynamic_modifier = { modifier = Aftermath_of_the_Sichuan_Famine }
+					}
+					every_state = {
+						limit = {
+							is_claimed_by = KMR
+						}
+						remove_claim_by = KMR
+					}
+					every_state = {
+						limit = {
+							is_claimed_by = CHI
+						}
+						remove_claim_by = CHI
+					}
+					every_state = {
+						limit = {
+							is_core_of = KMR
+						}
+						remove_core_of = KMR
+					}
+					every_state = {
+						limit = {
+							is_core_of = CHI
+						}
+						remove_core_of = CHI
 					}
 					clr_global_flag = chinese_civil_war
 					every_country = {
@@ -861,16 +962,7 @@ on_actions = {
 						news_event = china_wr.181
 						set_cosmetic_tag = KMT_CHI
 						remove_dynamic_modifier = { modifier = KMR_Disordered_Ranks_modifier }
-					}
-					KMR = {
-						annex_country = {
-							target = SHX
-							transfer_troops = no
-						}
-						annex_country = {
-							target = PRC
-							transfer_troops = no
-						}
+						country_event = { id = kuomintag_wr.63 days = 4 }
 					}
 					every_state = {
 						limit = {
@@ -918,6 +1010,30 @@ on_actions = {
 						remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
 						remove_dynamic_modifier = { modifier = Aftermath_of_the_Sichuan_Famine }
 					}
+					every_state = {
+						limit = {
+							is_claimed_by = KMT
+						}
+						remove_claim_by = KMT
+					}
+					every_state = {
+						limit = {
+							is_claimed_by = CHI
+						}
+						remove_claim_by = CHI
+					}
+					every_state = {
+						limit = {
+							is_core_of = KMT
+						}
+						remove_core_of = KMT
+					}
+					every_state = {
+						limit = {
+							is_core_of = CHI
+						}
+						remove_core_of = CHI
+					}
 					clr_global_flag = chinese_civil_war
 					every_country = {
 						limit = { has_template = "Feicháng Mínbing" }
@@ -935,6 +1051,12 @@ on_actions = {
 						any_enemy_country = { original_tag = KMT }
 						any_enemy_country = { original_tag = CHI }
 					}
+				}
+				if = {
+					limit = {
+						KMT = { exists = no }
+					}
+					SKM = { add_ideas = KMT_collapsed_national_government }
 				}
 				if = {
 					limit = {
@@ -976,6 +1098,7 @@ on_actions = {
 						news_event = china_wr.181
 						set_cosmetic_tag = KMT_CHI
 						remove_dynamic_modifier = { modifier = KMT_revolutionary_fervor_modifier }
+						country_event = { id = kuomintag_wr.63 days = 4 }
 					}
 					every_state = {
 						limit = {
@@ -1022,6 +1145,30 @@ on_actions = {
 						}
 						remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
 						remove_dynamic_modifier = { modifier = Aftermath_of_the_Sichuan_Famine }
+					}
+					every_state = {
+						limit = {
+							is_claimed_by = KMR
+						}
+						remove_claim_by = KMR
+					}
+					every_state = {
+						limit = {
+							is_claimed_by = CHI
+						}
+						remove_claim_by = CHI
+					}
+					every_state = {
+						limit = {
+							is_core_of = KMR
+						}
+						remove_core_of = KMR
+					}
+					every_state = {
+						limit = {
+							is_core_of = CHI
+						}
+						remove_core_of = CHI
 					}
 					clr_global_flag = chinese_civil_war
 					every_country = {
@@ -1123,6 +1270,30 @@ on_actions = {
 						}
 						remove_dynamic_modifier = { modifier = CHI_unplanned_offensive }
 						remove_dynamic_modifier = { modifier = Aftermath_of_the_Sichuan_Famine }
+					}
+					every_state = {
+						limit = {
+							is_claimed_by = KMR
+						}
+						remove_claim_by = KMR
+					}
+					every_state = {
+						limit = {
+							is_claimed_by = KMT
+						}
+						remove_claim_by = KMT
+					}
+					every_state = {
+						limit = {
+							is_core_of = KMR
+						}
+						remove_core_of = KMR
+					}
+					every_state = {
+						limit = {
+							is_core_of = KMT
+						}
+						remove_core_of = KMT
 					}
 					clr_global_flag = chinese_civil_war
 					every_country = {
@@ -1166,6 +1337,25 @@ on_actions = {
 			}
 			if = {
 				limit = {
+					original_tag = TIB
+					FROM = {
+						OR = {
+							original_tag = CHI
+							original_tag = KMT
+							original_tag = KMR
+						}
+					}
+				}
+				FROM = {
+					annex_country = {
+						target = TIB
+						transfer_troops = no
+					}
+					TIB = { enable_country_integration_80_compliance = yes }
+				}
+			}
+			if = {
+				limit = {
 					original_tag = PRC
 					has_global_flag = Nationalist_Army_flag
 				}
@@ -1174,17 +1364,29 @@ on_actions = {
 						KMT = { exists = yes }
 						FROM = { original_tag = KMT }
 					}
-					KMT = { annex_country = { target = PRC transfer_troops = yes }
+					KMT = {
+						annex_country = { target = PRC transfer_troops = yes }
+						PRC = { enable_country_integration_60_compliance = yes }
+					}
 				}
 				else_if = {
 					limit = {
 						KMR = { exists = yes }
 						FROM = { original_tag = KMR }
 					}
-					KMR = { annex_country = { target = PRC transfer_troops = yes }
+					KMR = {
+						annex_country = { target = PRC transfer_troops = yes }
+						PRC = { enable_country_integration_60_compliance = yes }
+					}
 				}
-				else = {
-					CHI = { annex_country = { target = PRC transfer_troops = yes }
+				else_if = {
+					limit = {
+						FROM = { original_tag = CHI }
+					}
+					CHI = {
+						annex_country = { target = PRC transfer_troops = yes }
+						PRC = { enable_country_integration_60_compliance = yes }
+					}
 				}
 			}
 			if = {
@@ -1199,12 +1401,22 @@ on_actions = {
 						target = PRC
 						transfer_troops = yes
 					}
+					PRC = { enable_country_integration_60_compliance = yes }
 				}
-				every_state = {
-					limit = {
-						is_core_of = PRC
+			}
+			else_if = {
+				limit = {
+					original_tag = PRC
+					any_enemy_country = {
+						original_tag = KMR
 					}
-					remove_core_of = PRC
+				}
+				KMR = {
+					annex_country = {
+						target = PRC
+						transfer_troops = yes
+					}
+					PRC = { enable_country_integration_60_compliance = yes }
 				}
 			}
 			if = {
@@ -1219,12 +1431,22 @@ on_actions = {
 						target = SHX
 						transfer_troops = yes
 					}
+					SHX = { enable_country_integration_60_compliance = yes }
 				}
-				every_state = {
-					limit = {
-						is_core_of = SHX
+			}
+			else_if = {
+				limit = {
+					original_tag = SHX
+					any_enemy_country = {
+						original_tag = KMR
 					}
-					remove_core_of = SHX
+				}
+				KMR = {
+					annex_country = {
+						target = SHX
+						transfer_troops = yes
+					}
+					SHX = { enable_country_integration_60_compliance = yes }
 				}
 			}
 			if = {
@@ -1322,6 +1544,190 @@ on_actions = {
 					add_core_of =  CHI
 				}
 			}
+			#국민당 서북평정
+			if = {
+				limit = {
+					original_tag = SIK
+					SIK = { has_country_flag = FROM_will_die_by_Kuomintang_flag }
+					any_enemy_country = {
+						OR = {
+							original_tag = KMT
+							original_tag = KMR
+						}
+					}
+				}
+				if = {
+					limit = {
+						KMT = { exists = yes }
+					}
+					KMT = {
+						annex_country = { target = SIK transfer_troops = no }
+						SIK = { enable_country_integration_60_compliance = yes }
+					}
+				}
+				else = {
+					KMR = {
+						annex_country = { target = SIK transfer_troops = no }
+						SIK = { enable_country_integration_60_compliance = yes }
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = SIK
+					}
+					remove_core_of = SIK
+				}
+			}
+			if = {
+				limit = {
+					original_tag = XSM
+					XSM = { has_country_flag = FROM_will_die_by_Kuomintang_flag }
+					any_enemy_country = {
+						OR = {
+							original_tag = KMT
+							original_tag = KMR
+						}
+					}
+				}
+				if = {
+					limit = {
+						KMT = { exists = yes }
+					}
+					KMT = {
+						annex_country = { target = XSM transfer_troops = no }
+						XSM = { enable_country_integration_60_compliance = yes }
+					}
+				}
+				else = {
+					KMR = {
+						annex_country = { target = XSM transfer_troops = no }
+						XSM = { enable_country_integration_60_compliance = yes }
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = XSM
+					}
+					remove_core_of = XSM
+				}
+			}
+			if = {
+				limit = {
+					original_tag = GSM
+					GSM = { has_country_flag = FROM_will_die_by_Kuomintang_flag }
+					any_enemy_country = {
+						OR = {
+							original_tag = KMT
+							original_tag = KMR
+						}
+					}
+				}
+				if = {
+					limit = {
+						KMT = { exists = yes }
+					}
+					KMT = {
+						annex_country = { target = GSM transfer_troops = no }
+						GSM = { enable_country_integration_60_compliance = yes }
+					}
+				}
+				else = {
+					KMR = {
+						annex_country = { target = GSM transfer_troops = no }
+						GSM = { enable_country_integration_60_compliance = yes }
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = GSM
+					}
+					remove_core_of = GSM
+				}
+			}
+			if = {
+				limit = {
+					original_tag = NSM
+					NSM = { has_country_flag = FROM_will_die_by_Kuomintang_flag }
+					any_enemy_country = {
+						OR = {
+							original_tag = KMT
+							original_tag = KMR
+						}
+					}
+				}
+				if = {
+					limit = {
+						KMT = { exists = yes }
+					}
+					KMT = {
+						annex_country = { target = NSM transfer_troops = no }
+						NSM = { enable_country_integration_60_compliance = yes }
+					}
+				}
+				else = {
+					KMR = {
+						annex_country = { target = NSM transfer_troops = no }
+						NSM = { enable_country_integration_60_compliance = yes }
+					}
+				}
+				every_state = {
+					limit = {
+						is_core_of = NSM
+					}
+					remove_core_of = NSM
+				}
+			}
+			
+			#만몽평정
+			if = {
+				limit = {
+					original_tag = MAN
+					NOT = { MAN = { is_in_faction_with = JAP } }
+					any_enemy_country = {
+						OR = {
+							original_tag = CHI
+							original_tag = KMT
+							original_tag = KMR
+						}
+					}
+				}
+				if = {
+					limit = {
+						CHI = { exists = yes }
+					}
+					CHI = {
+						annex_country = {
+							target = MAN
+							transfer_troops = no
+						}
+						MAN = { enable_country_integration_60_compliance = yes }
+					}
+				}
+				else_if = {
+					limit = {
+						KMT = { exists = yes }
+					}
+					KMT = {
+						annex_country = {
+							target = MAN
+							transfer_troops = no
+						}
+						MAN = { enable_country_integration_60_compliance = yes }
+					}
+				}
+				else_if = {
+					limit = {
+						KMR = { exists = yes }
+					}
+					KMR = {
+						annex_country = {
+							target = MAN
+							transfer_troops = no
+						}
+						MAN = { enable_country_integration_60_compliance = yes }
+					}
+				}
+			}
 		}
 	}
 	on_state_control_changed = {
@@ -1351,40 +1757,91 @@ on_actions = {
 				if = {
 					limit = {
 						ROOT = { original_tag = CHI }
+						FROM = {
+							OR = {
+								original_tag = KMT
+								original_tag = KMR
+							}
+						}
 						has_global_flag = chinese_civil_war
 						CHI = { has_variable = CHI_military_discontent_var }
 					}
-					FROM.FROM = {
-						CHI = { country_event = china_wr.1000 }
-					}
+					ROOT = { country_event = china_wr.1000 }
 				}
 				if = {
 					limit = {
-						ROOT = { original_tag = KMT }
+						ROOT = {
+							OR = {
+								original_tag = KMT
+								original_tag = KMR
+							}
+						}
+						FROM = { original_tag = CHI }
 						has_global_flag = chinese_civil_war
 						CHI = { has_variable = CHI_military_discontent_var }
 					}
-					FROM.FROM = {
-						CHI = { country_event = china_wr.1001 }
-					}
+					FROM = { country_event = china_wr.1001 }
 				}
 			}
 			if = {
 				limit = {
 					ROOT = { original_tag = KMT }
+					FROM = {
+						OR = {
+							original_tag = CHI
+							original_tag = PRC
+							original_tag = NPA
+							original_tag = KMR
+						}
+					}
+					has_global_flag = chinese_civil_war
 					FROM.FROM = { is_chinese_area = yes }
 				}
-				KMT = { KMT_inc_revolution_5 = yes }
-				KMT_CHI_controlled_states_calculate = yes
+				ROOT = { KMT_inc_revolution_5 = yes }
 			}
 			if = {
 				limit = {
 					FROM = { original_tag = KMT }
+					ROOT = {
+						OR = {
+							original_tag = CHI
+							original_tag = PRC
+							original_tag = NPA
+							original_tag = KMR
+						}
+					}
+					has_global_flag = chinese_civil_war
 					FROM.FROM = { is_chinese_area = yes }
 				}
-				subtract_from_variable = { KMT_second_national_revolution_var = 5 }
-				KMT = { KMT_dec_revolution_5 = yes }
-				KMT_CHI_controlled_states_calculate = yes
+				FROM = { KMT_dec_revolution_5 = yes }
+			}
+			if = {
+				limit = {
+					ROOT = { original_tag = CHI }
+					FROM = {
+						OR = {
+							original_tag = KMT
+							original_tag = KMR
+						}
+					}
+					has_global_flag = chinese_civil_war
+					FROM.FROM = { is_chinese_area = yes }
+				}
+				ROOT = { CHI_dec_chinese_civil_war_5 = yes }
+			}
+			if = {
+				limit = {
+					ROOT = {
+						OR = {
+							original_tag = KMT
+							original_tag = KMR
+						}
+					}
+					FROM = { original_tag = CHI }
+					has_global_flag = chinese_civil_war
+					FROM.FROM = { is_chinese_area = yes }
+				}
+				FROM = { CHI_inc_chinese_civil_war_5 = yes }
 			}
 		}
 	}

@@ -805,6 +805,30 @@ Divide_the_Factions = {
 			base = 4000
 		}
 	}
+	Send_Delegation_to_the_KMR = {
+		name = Send_Delegation_to_the_KMT
+		icon = GFX_decision_generic_operation
+		allowed = {
+			original_tag = SHX
+		}
+		visible = {
+			OR = {
+				1014 = { is_controlled_by = KMR }
+				622 = { is_controlled_by = KMR }
+				1012 = { is_controlled_by = KMR }
+				614 = { is_controlled_by = KMR }
+			}
+			KMT = { exists = no }
+		}
+		cost = 10
+		fire_only_once = yes
+		complete_effect = {
+			KMR = { country_event = china_wr.66 }
+		}
+		ai_will_do = {
+			base = 4000
+		}
+	}
 }
 
 CHI_sichuan_massive_operation = {
@@ -831,6 +855,7 @@ CHI_sichuan_massive_operation = {
 			modifier = {
 				add = 4000
 				NOT = { has_war_with = KMT }
+				NOT = { has_war_with = KMR }
 			}
 		}
 	}
@@ -1777,6 +1802,7 @@ CHI_land_reform_category = {
 			original_tag = CHI
 		}
 		days_mission_timeout = 480
+		fire_only_once = yes
 		activation = {
 			has_country_flag = CHI_land_reform_flag
 		}
@@ -2036,6 +2062,18 @@ CHI_operational_plan_decision = {
 		ai_will_do = {
 			base = 4000
 		}
+		highlight_states = {
+			highlight_states_trigger = {
+				OR = {
+					state = 752
+					state = 751
+					state = 605
+					state = 748
+					state = 1004
+					state = 753
+				}
+			}
+		}
 		remove_effect = {
 			custom_effect_tooltip = CHI_operational_plan_decision_tt
 			hidden_effect = {
@@ -2074,6 +2112,18 @@ CHI_operational_plan_decision = {
 				has_war_with = CHI
 			}
 			NOT = { has_country_flag = CHI_operational_plan_north_china_decision_flag }
+		}
+		highlight_states = {
+			highlight_states_trigger = {
+				OR = {
+					state = 620
+					state = 85
+					state = 1013
+					state = 744
+					state = 1014
+					state = 607
+				}
+			}
 		}
 		available = {
 			hidden_trigger = {
@@ -2131,6 +2181,25 @@ CHI_operational_plan_decision = {
 		available = {
 			hidden_trigger = {
 				NOT = { has_idea = CHI_operational_plan_idea }
+			}
+		}
+		highlight_states = {
+			highlight_states_trigger = {
+				OR = {
+					state = 325
+					state = 599
+					state = 603
+					state = 754
+					state = 591
+					state = 594
+					state = 592
+					state = 593
+					state = 1005
+					state = 602
+					state = 705
+					state = 1007
+					state = 750
+				}
 			}
 		}
 		custom_cost_trigger = {
@@ -2191,6 +2260,26 @@ CHI_operational_plan_decision = {
 		available = {
 			hidden_trigger = {
 				NOT = { has_idea = CHI_operational_plan_idea }
+			}
+		}
+		highlight_states = {
+			highlight_states_trigger = {
+				OR = {
+					state = 600
+					state = 1006
+					state = 1009
+					state = 595
+					state = 1008
+					state = 1010
+					state = 749
+					state = 596
+					state = 613
+					state = 960
+					state = 1011
+					state = 606
+					state = 598
+					state = 1015
+				}
 			}
 		}
 		custom_cost_trigger = {
@@ -2369,6 +2458,7 @@ CHI_reform_inefficient_administration_decision = {
 		ai_will_do = {
 			base = 4000
 		}
+		fire_only_once = yes
 		remove_effect = {
 			every_state = {
 				limit = {
@@ -2401,6 +2491,7 @@ CHI_reform_inefficient_administration_decision = {
 		ai_will_do = {
 			base = 4000
 		}
+		fire_only_once = yes
 		remove_effect = {
 			every_state = {
 				limit = {
@@ -2433,6 +2524,7 @@ CHI_reform_inefficient_administration_decision = {
 		ai_will_do = {
 			base = 4000
 		}
+		fire_only_once = yes
 		remove_effect = {
 			every_state = {
 				limit = {
@@ -2469,6 +2561,7 @@ CHI_reform_inefficient_administration_decision = {
 		ai_will_do = {
 			base = 4000
 		}
+		fire_only_once = yes
 		remove_effect = {
 			every_state = {
 				limit = {
@@ -2507,6 +2600,7 @@ CHI_reform_inefficient_administration_decision = {
 		ai_will_do = {
 			base = 4000
 		}
+		fire_only_once = yes
 		remove_effect = {
 			every_state = {
 				limit = {
@@ -2542,6 +2636,7 @@ CHI_reform_inefficient_administration_decision = {
 		ai_will_do = {
 			base = 4000
 		}
+		fire_only_once = yes
 		remove_effect = {
 			every_state = {
 				limit = {
@@ -2583,6 +2678,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 329:CHI_central_var < 103 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -2651,6 +2747,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 330:CHI_central_var < 103 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -2731,6 +2828,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 617:CHI_central_var < 103 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -2813,6 +2911,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 757:CHI_central_var < 103 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -2901,6 +3000,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 610:CHI_central_var < 103 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -2987,6 +3087,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 599:CHI_central_var < 103 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -3074,6 +3175,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 622:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -3177,6 +3279,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 325:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -3276,6 +3379,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 750:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -3370,6 +3474,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 592:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -3457,6 +3562,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 615:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -3556,6 +3662,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 716:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -3580,6 +3687,7 @@ CHI_centralize_republic_of_china = {
 							state = 1000
 							state = 714
 							state = 715
+							state = 1023
 						}
 					}
 					remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
@@ -3600,6 +3708,7 @@ CHI_centralize_republic_of_china = {
 							state = 1000
 							state = 714
 							state = 715
+							state = 1023
 						}
 					}
 					add_dynamic_modifier = { modifier = CHI_efficient_administration }
@@ -3644,6 +3753,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 524:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -3734,6 +3844,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 608:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -3828,6 +3939,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 1016:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -3914,6 +4026,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 1011:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -4003,6 +4116,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 960:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -4088,6 +4202,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 596:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -4169,6 +4284,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 1006:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -4253,6 +4369,7 @@ CHI_centralize_republic_of_china = {
 				tooltip = auto_max_trigger_tt
 				check_variable = { 1008:CHI_central_var < 100 }
 			}
+			NOT = { has_global_flag = chinese_civil_war }
 		}
 		ai_will_do = {
 			base = 4000
@@ -4391,7 +4508,7 @@ CHI_womens_rights_movement_category = {
 }
 
 CHI_three_liberalizations_decision = {
-	CHI_dec_autonomy_increase_5 = {
+	CHI_decision_autonomy_increase_5 = {
 		icon = GFX_decision_generic_political_discourse
 		allowed = {
 			original_tag = CHI
@@ -4412,7 +4529,7 @@ CHI_three_liberalizations_decision = {
 			CHI_dec_autonomy_increase_10 = yes
 		}
 	}
-	CHI_dec_autonomy_increase_10 = {
+	CHI_decision_autonomy_increase_10 = {
 		icon = GFX_decision_generic_political_discourse
 		allowed = {
 			original_tag = CHI
@@ -4433,7 +4550,7 @@ CHI_three_liberalizations_decision = {
 			CHI_dec_autonomy_increase_10 = yes
 		}
 	}
-	CHI_dec_freedom_increase_5 = {
+	CHI_decision_freedom_increase_5 = {
 		icon = GFX_decision_generic_political_rally
 		allowed = {
 			original_tag = CHI
@@ -4456,7 +4573,7 @@ CHI_three_liberalizations_decision = {
 			add_war_support = 0.01
 		}
 	}
-	CHI_dec_freedom_increase_10 = {
+	CHI_decision_freedom_increase_10 = {
 		icon = GFX_decision_generic_political_rally
 		allowed = {
 			original_tag = CHI
@@ -4479,7 +4596,7 @@ CHI_three_liberalizations_decision = {
 			add_war_support = 0.01
 		}
 	}
-	CHI_dec_self_reliance_increase_5 = {
+	CHI_decision_self_reliance_increase_5 = {
 		icon = GFX_decision_generic_civil_support
 		allowed = {
 			original_tag = CHI
@@ -4500,7 +4617,7 @@ CHI_three_liberalizations_decision = {
 			CHI_dec_self_reliance_increase_10 = yes
 		}
 	}
-	CHI_dec_self_reliance_increase_10 = {
+	CHI_decision_self_reliance_increase_10 = {
 		icon = GFX_decision_generic_civil_support
 		allowed = {
 			original_tag = CHI
@@ -4712,7 +4829,7 @@ CHI_southern_stabilization_category = {
 			clr_country_flag = political_is_on_flag
 			add_days_mission_timeout = {
 				mission = CHI_southern_stabilizing_mission
-				days = 40
+				days = -40
 			}
 		}
 	}
@@ -4736,7 +4853,7 @@ CHI_southern_stabilization_category = {
 			clr_country_flag = political_is_on_flag
 			add_days_mission_timeout = {
 				mission = CHI_southern_stabilizing_mission
-				days = 30
+				days = -30
 			}
 		}
 	}
@@ -4760,7 +4877,7 @@ CHI_southern_stabilization_category = {
 			clr_country_flag = political_is_on_flag
 			add_days_mission_timeout = {
 				mission = CHI_southern_stabilizing_mission
-				days = 20
+				days = -20
 			}
 		}
 	}
@@ -5362,7 +5479,7 @@ KMT_second_national_revolution_category = {
 			NOT = { has_war_with = CHI }
 			NOT = { has_war_with = KMR }
 		}
-		days_mission_timeout = 90
+		days_mission_timeout = 180
 		timeout_effect = {
 			KMT_dec_revolution_3 = yes
 		}
@@ -5437,7 +5554,7 @@ CHI_chinese_civil_war_category = {
 			NOT = { has_war_with = KMT }
 			NOT = { has_war_with = KMR }
 		}
-		days_mission_timeout = 90
+		days_mission_timeout = 180
 		timeout_effect = {
 			CHI_inc_chinese_civil_war_3 = yes
 		}
@@ -5514,16 +5631,22 @@ KMT_factional_conflict_decisions = {
 		visible = {
 			NOT = { has_country_flag = kuomintag_wr_46a }
 			NOT = { has_country_flag = kuomintag_wr_46b }
+			OR = {
+				is_ai = no
+				AND = {
+					is_ai = yes
+					has_country_flag = KMT_left_flag
+				}
+			}
 		}
 		ai_will_do = {
-			base = 0
+			base = 4000
 			modifier = {
-				add = 4000
+				factor = 0
 				power_balance_value = {
 					id = KMT_factional_conflict
-					value < -0.5
+					value < -0.9
 				}
-				has_country_flag = KMT_left_flag
 			}
 		}
 	}
@@ -5540,16 +5663,22 @@ KMT_factional_conflict_decisions = {
 		visible = {
 			NOT = { has_country_flag = kuomintag_wr_46a }
 			NOT = { has_country_flag = kuomintag_wr_46b }
+			OR = {
+				is_ai = no
+				AND = {
+					is_ai = yes
+					has_country_flag = KMT_right_flag
+				}
+			}
 		}
 		ai_will_do = {
-			base = 0
+			base = 4000
 			modifier = {
-				add = 4000
+				factor = 0
 				power_balance_value = {
 					id = KMT_factional_conflict
-					value > 0.5
+					value > 0.9
 				}
-				has_country_flag = KMT_right_flag
 			}
 		}
 	}
@@ -5566,16 +5695,22 @@ KMT_factional_conflict_decisions = {
 		visible = {
 			NOT = { has_country_flag = kuomintag_wr_46a }
 			NOT = { has_country_flag = kuomintag_wr_46b }
+			OR = {
+				is_ai = no
+				AND = {
+					is_ai = yes
+					has_country_flag = KMT_left_flag
+				}
+			}
 		}
 		ai_will_do = {
-			base = 0
+			base = 500
 			modifier = {
-				add = 4000
+				factor = 0
 				power_balance_value = {
 					id = KMT_factional_conflict
-					value < -0.5
+					value < -0.9
 				}
-				has_country_flag = KMT_left_flag
 			}
 		}
 	}
@@ -5592,16 +5727,22 @@ KMT_factional_conflict_decisions = {
 		visible = {
 			NOT = { has_country_flag = kuomintag_wr_46a }
 			NOT = { has_country_flag = kuomintag_wr_46b }
+			OR = {
+				is_ai = no
+				AND = {
+					is_ai = yes
+					has_country_flag = KMT_right_flag
+				}
+			}
 		}
 		ai_will_do = {
-			base = 0
+			base = 500
 			modifier = {
-				add = 4000
+				factor = 0
 				power_balance_value = {
 					id = KMT_factional_conflict
-					value > 0.5
+					value > 0.9
 				}
-				has_country_flag = KMT_right_flag
 			}
 		}
 	}
@@ -5618,17 +5759,23 @@ KMT_factional_conflict_decisions = {
 		visible = {
 			NOT = { has_country_flag = kuomintag_wr_46a }
 			NOT = { has_country_flag = kuomintag_wr_46b }
+			OR = {
+				is_ai = no
+				AND = {
+					is_ai = yes
+					has_country_flag = KMT_left_flag
+				}
+			}
 		}
 		fire_only_once = yes
 		ai_will_do = {
-			base = 0
+			base = 500
 			modifier = {
-				add = 4000
+				factor = 0
 				power_balance_value = {
 					id = KMT_factional_conflict
-					value < -0.5
+					value < -0.9
 				}
-				has_country_flag = KMT_left_flag
 			}
 		}
 	}
@@ -5645,17 +5792,23 @@ KMT_factional_conflict_decisions = {
 		visible = {
 			NOT = { has_country_flag = kuomintag_wr_46a }
 			NOT = { has_country_flag = kuomintag_wr_46b }
+			OR = {
+				is_ai = no
+				AND = {
+					is_ai = yes
+					has_country_flag = KMT_right_flag
+				}
+			}
 		}
 		fire_only_once = yes
 		ai_will_do = {
-			base = 0
+			base = 500
 			modifier = {
-				add = 4000
+				factor = 0
 				power_balance_value = {
 					id = KMT_factional_conflict
-					value > 0.5
+					value > 0.9
 				}
-				has_country_flag = KMT_right_flag
 			}
 		}
 	}
@@ -5672,17 +5825,23 @@ KMT_factional_conflict_decisions = {
 		visible = {
 			NOT = { has_country_flag = kuomintag_wr_46a }
 			NOT = { has_country_flag = kuomintag_wr_46b }
+			OR = {
+				is_ai = no
+				AND = {
+					is_ai = yes
+					has_country_flag = KMT_left_flag
+				}
+			}
 		}
 		fire_only_once = yes
 		ai_will_do = {
-			base = 0
+			base = 500
 			modifier = {
-				add = 4000
+				factor = 0
 				power_balance_value = {
 					id = KMT_factional_conflict
-					value < -0.5
+					value < -0.9
 				}
-				has_country_flag = KMT_left_flag
 			}
 		}
 	}
@@ -5699,17 +5858,23 @@ KMT_factional_conflict_decisions = {
 		visible = {
 			NOT = { has_country_flag = kuomintag_wr_46a }
 			NOT = { has_country_flag = kuomintag_wr_46b }
+			OR = {
+				is_ai = no
+				AND = {
+					is_ai = yes
+					has_country_flag = KMT_right_flag
+				}
+			}
 		}
 		fire_only_once = yes
 		ai_will_do = {
-			base = 0
+			base = 500
 			modifier = {
-				add = 4000
+				factor = 0
 				power_balance_value = {
 					id = KMT_factional_conflict
-					value > 0.5
+					value > 0.9
 				}
-				has_country_flag = KMT_right_flag
 			}
 		}
 	}
@@ -5726,17 +5891,23 @@ KMT_factional_conflict_decisions = {
 		visible = {
 			NOT = { has_country_flag = kuomintag_wr_46a }
 			NOT = { has_country_flag = kuomintag_wr_46b }
+			OR = {
+				is_ai = no
+				AND = {
+					is_ai = yes
+					has_country_flag = KMT_left_flag
+				}
+			}
 		}
 		fire_only_once = yes
 		ai_will_do = {
-			base = 0
+			base = 500
 			modifier = {
-				add = 4000
+				factor = 0
 				power_balance_value = {
 					id = KMT_factional_conflict
-					value < -0.5
+					value < -0.9
 				}
-				has_country_flag = KMT_left_flag
 			}
 		}
 	}
@@ -5753,17 +5924,23 @@ KMT_factional_conflict_decisions = {
 		visible = {
 			NOT = { has_country_flag = kuomintag_wr_46a }
 			NOT = { has_country_flag = kuomintag_wr_46b }
+			OR = {
+				is_ai = no
+				AND = {
+					is_ai = yes
+					has_country_flag = KMT_right_flag
+				}
+			}
 		}
 		fire_only_once = yes
 		ai_will_do = {
-			base = 0
+			base = 500
 			modifier = {
-				add = 4000
+				factor = 0
 				power_balance_value = {
 					id = KMT_factional_conflict
-					value > 0.5
+					value > 0.9
 				}
-				has_country_flag = KMT_right_flag
 			}
 		}
 	}
@@ -5939,6 +6116,4011 @@ CHI_militia_mobilization_category = {
 					owner = ROOT
 				}
 				set_state_flag = CHI_militia_mobilization_flag
+			}
+		}
+		ai_will_do = {
+			base = 1000
+		}
+	}
+}
+
+CHI_emergency_factory_construction = {
+	build_cf_decision = {
+		icon = GFX_decision_generic_factory
+		visible = {
+			is_subject = no
+			NOT = { has_country_flag = build_cf_decision_3 }
+		}
+		available = {
+			any_state = {
+				is_controlled_by = ROOT
+				free_building_slots = {
+					building = industrial_complex
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		days_remove = 65
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 0
+		}
+		custom_cost_text = decision_cost_1_civ
+		modifier = {
+			civilian_factory_use = 1
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = build_cf_decision_2
+				}
+				set_country_flag = build_cf_decision_3
+			}
+			else_if = {
+				limit = {
+					has_country_flag = build_cf_decision_1
+				}
+				set_country_flag = build_cf_decision_2
+			}
+			else = {
+				set_country_flag = build_cf_decision_1
+			}
+		}
+		ai_will_do = {
+			base = 10000
+		}
+	}
+	build_af_decision = {
+		icon = GFX_decision_generic_merge_plant_tank
+		visible = {
+			is_subject = no
+			NOT = { has_country_flag = build_af_decision_3 }
+		}
+		available = {
+			any_state = {
+				is_controlled_by = ROOT
+				free_building_slots = {
+					building = arms_factory
+					size > 0
+					include_locked = no
+				}
+			}
+		}
+		days_remove = 65
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 0
+		}
+		custom_cost_text = decision_cost_1_civ
+		modifier = {
+			civilian_factory_use = 1
+		}
+		remove_effect = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			if = {
+				limit = {
+					has_country_flag = build_af_decision_2
+				}
+				set_country_flag = build_af_decision_3
+			}
+			else_if = {
+				limit = {
+					has_country_flag = build_af_decision_1
+				}
+				set_country_flag = build_af_decision_2
+			}
+			else = {
+				set_country_flag = build_af_decision_1
+			}
+		}
+		ai_will_do = {
+			base = 10000
+		}
+	}
+}
+
+KMT_restore_provincial_government_title = {
+	KMT_reform_FROM_state = {
+		icon = GFX_decision_eng_trade_unions_support
+		state_target = yes
+		highlight_states = {
+			highlight_states_trigger = {
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				has_dynamic_modifier = {
+					modifier = KMT_military_civilian_administration
+				}
+			}
+		}
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				has_dynamic_modifier = {
+					modifier = KMT_military_civilian_administration
+				}
+			}
+		}
+		days_remove = 80
+		cost = 20
+		remove_effect = {
+			FROM = {
+				remove_dynamic_modifier = { modifier = KMT_military_civilian_administration }
+			}
+		}
+		ai_will_do = {
+			base = 500
+			modifier = {
+				add = -470
+				has_political_power < 100
+			}
+		}
+	}
+}
+
+KMT_National_Assembly = {
+	KMT_reqire_of_national_assembly = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = KMT
+		}
+		activation = {
+			has_completed_focus = KMT_resolution_of_five_hundred_million
+		}
+		available = {
+			always = no
+		}
+		days_mission_timeout = 120
+		timeout_effect = {
+			random_list = {
+				15 = {
+					country_event = kuomintag_wr.64 #소비재 생산
+				}
+				15 = {
+					country_event = kuomintag_wr.65 #사천지원
+					modifier = {
+						factor = 0
+						OR = {
+							has_country_flag = you_already_did_three_times_flag
+							SKM = { exists = yes }
+							748 = { is_owned_by = KMT }
+						}
+					}
+				}
+				15 = {
+					country_event = kuomintag_wr.66 #토지개혁 요구
+				}
+				15 = {
+					country_event = kuomintag_wr.67 #민공 건설 요구
+				}
+				10 = {
+					country_event = kuomintag_wr.68 #소수민족 인프라
+					modifier = {
+						factor = 0
+						NOT = { 747 = { is_owned_by = ROOT } }
+						NOT = { 325 = { is_owned_by = ROOT } }
+						NOT = { 599 = { is_owned_by = ROOT } }
+						NOT = { 754 = { is_owned_by = ROOT } }
+						NOT = { 618 = { is_owned_by = ROOT } }
+						NOT = { 617 = { is_owned_by = ROOT } }
+						NOT = { 619 = { is_owned_by = ROOT } }
+						NOT = { 287 = { is_owned_by = ROOT } }
+						NOT = { 759 = { is_owned_by = ROOT } }
+						NOT = { 760 = { is_owned_by = ROOT } }
+						NOT = { 616 = { is_owned_by = ROOT } }
+						NOT = { 746 = { is_owned_by = ROOT } }
+						NOT = { 1022 = { is_owned_by = ROOT } }
+						NOT = { 621 = { is_owned_by = ROOT } }
+						NOT = { 611 = { is_owned_by = ROOT } }
+						NOT = { 612 = { is_owned_by = ROOT } }
+					}
+				}
+				15 = {
+					country_event = kuomintag_wr.69 #여성 복지
+				}
+				15 = {
+					country_event = kuomintag_wr.70 #군공 건설
+				}
+			}
+		}
+	}
+}
+
+KMT_awakening_the_masses = {
+	KMT_excessively_high_level_of_radicalization = {
+		activation = {
+			check_variable = { KMT_rate_of_radicalization_var > 60 }
+		}
+		available = {
+			OR = {
+				check_variable = { KMT_rate_of_radicalization_var < 60 }
+				check_variable = { KMT_rate_of_radicalization_var = 60 }
+			}
+		}
+		days_mission_timeout = 60
+		timeout_effect = {
+			random_list = {
+				10 = { country_event = kuomintag_wr.71 }
+				10 = { country_event = kuomintag_wr.72 }
+				10 = { country_event = kuomintag_wr.73 }
+			}
+		}
+	}
+	KMT_elevated_radicalization_management = {
+		activation = {
+			OR = {
+				AND = {
+					check_variable = { KMT_rate_of_radicalization_var > 30 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_1 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_2 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+				}
+				AND = {
+					check_variable = { KMT_rate_of_radicalization_var > 50 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_1 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_2 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+				}
+				AND = {
+					check_variable = { KMT_rate_of_radicalization_var > 70 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_2 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+				}
+				AND = {
+					check_variable = { KMT_rate_of_radicalization_var > 90 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+				}
+			}
+		}
+		available = {
+			NOT = {
+				OR = {
+					AND = {
+						check_variable = { KMT_rate_of_radicalization_var > 30 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_1 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_2 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+					}
+					AND = {
+						check_variable = { KMT_rate_of_radicalization_var > 50 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_1 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_2 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+					}
+					AND = {
+						check_variable = { KMT_rate_of_radicalization_var > 70 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_2 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+					}
+					AND = {
+						check_variable = { KMT_rate_of_radicalization_var > 90 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+					}
+				}
+			}
+		}
+		days_mission_timeout = 7
+		timeout_effect = {
+			if = {
+				limit = {
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_1 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_2 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+				}
+				add_ideas = KMT_elevated_radicalization_management_idea
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_elevated_radicalization_management_idea
+				}
+				swap_ideas = {
+					remove_idea = KMT_elevated_radicalization_management_idea
+					add_idea = KMT_elevated_radicalization_management_idea_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_elevated_radicalization_management_idea_1
+				}
+				swap_ideas = {
+					remove_idea = KMT_elevated_radicalization_management_idea_1
+					add_idea = KMT_elevated_radicalization_management_idea_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_elevated_radicalization_management_idea_2
+				}
+				swap_ideas = {
+					remove_idea = KMT_elevated_radicalization_management_idea_2
+					add_idea = KMT_elevated_radicalization_management_idea_3
+				}
+			}
+		}
+	}
+	KMT_lowered_radicalization_management = {
+		activation = {
+			OR = {
+				AND = {
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_2 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_1 }
+					has_idea = KMT_elevated_radicalization_management_idea
+					OR = {
+						check_variable = { KMT_rate_of_radicalization_var < 30 }
+						check_variable = { KMT_rate_of_radicalization_var = 30 }
+					}
+				}
+				AND = {
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_2 }
+					has_idea = KMT_elevated_radicalization_management_idea_1
+					OR = {
+						check_variable = { KMT_rate_of_radicalization_var < 50 }
+						check_variable = { KMT_rate_of_radicalization_var = 50 }
+					}
+				}
+				AND = {
+					NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+					has_idea = KMT_elevated_radicalization_management_idea_2
+					OR = {
+						check_variable = { KMT_rate_of_radicalization_var < 70 }
+						check_variable = { KMT_rate_of_radicalization_var = 70 }
+					}
+				}
+				AND = {
+					has_idea = KMT_elevated_radicalization_management_idea_3
+					OR = {
+						check_variable = { KMT_rate_of_radicalization_var < 90 }
+						check_variable = { KMT_rate_of_radicalization_var = 90 }
+					}
+				}
+			}
+		}
+		available = {
+			NOT = {
+				OR = {
+					AND = {
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_2 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_1 }
+						has_idea = KMT_elevated_radicalization_management_idea
+						OR = {
+							check_variable = { KMT_rate_of_radicalization_var < 30 }
+							check_variable = { KMT_rate_of_radicalization_var = 30 }
+						}
+					}
+					AND = {
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_2 }
+						has_idea = KMT_elevated_radicalization_management_idea_1
+						OR = {
+							check_variable = { KMT_rate_of_radicalization_var < 50 }
+							check_variable = { KMT_rate_of_radicalization_var = 50 }
+						}
+					}
+					AND = {
+						NOT = { has_idea = KMT_elevated_radicalization_management_idea_3 }
+						has_idea = KMT_elevated_radicalization_management_idea_2
+						OR = {
+							check_variable = { KMT_rate_of_radicalization_var < 70 }
+							check_variable = { KMT_rate_of_radicalization_var = 70 }
+						}
+					}
+					AND = {
+						has_idea = KMT_elevated_radicalization_management_idea_3
+						OR = {
+							check_variable = { KMT_rate_of_radicalization_var < 90 }
+							check_variable = { KMT_rate_of_radicalization_var = 90 }
+						}
+					}
+				}
+			}
+		}
+		days_mission_timeout = 7
+		timeout_effect = {
+			if = {
+				limit = {
+					has_idea = KMT_elevated_radicalization_management_idea_3
+				}
+				swap_ideas = {
+					remove_idea = KMT_elevated_radicalization_management_idea_3
+					add_idea = KMT_elevated_radicalization_management_idea_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_elevated_radicalization_management_idea_2
+				}
+				swap_ideas = {
+					remove_idea = KMT_elevated_radicalization_management_idea_2
+					add_idea = KMT_elevated_radicalization_management_idea_1
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_elevated_radicalization_management_idea_1
+				}
+				swap_ideas = {
+					remove_idea = KMT_elevated_radicalization_management_idea_1
+					add_idea = KMT_elevated_radicalization_management_idea
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KMT_elevated_radicalization_management_idea
+				}
+				remove_ideas = KMT_elevated_radicalization_management_idea
+			}
+		}
+	}
+	KMT_slight_reduction_radicalization = {
+		icon = GFX_decision_hol_radio_oranje
+		allowed = {
+			original_tag = KMT
+		}
+		available = {
+			OR = {
+				check_variable = { KMT_rate_of_radicalization_var = 2.5 }
+				check_variable = { KMT_rate_of_radicalization_var > 2.5 }
+			}
+		}
+		cost = 15
+		days_remove = 14
+		remove_effect = {
+			KMT_dec_rate_of_radicalization_2_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				check_variable = { KMT_rate_of_radicalization_var > 10 }
+			}
+		}
+	}
+	KMT_large_reduction_radicalization = {
+		icon = GFX_decision_hol_radio_oranje
+		allowed = {
+			original_tag = KMT
+		}
+		available = {
+			OR = {
+				check_variable = { KMT_rate_of_radicalization_var = 5 }
+				check_variable = { KMT_rate_of_radicalization_var > 5 }
+			}
+		}
+		cost = 25
+		days_remove = 20
+		remove_effect = {
+			KMT_dec_rate_of_radicalization_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 4000
+				check_variable = { KMT_rate_of_radicalization_var > 10 }
+			}
+		}
+	}
+	KMT_intel_lit_1 = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_literacy_intellectual_rate_var = 20 } }
+			NOT = { check_variable = { KMT_literacy_intellectual_rate_var > 20 } }
+		}
+		cost = 15
+		days_remove = 14
+		remove_effect = {
+			KMT_inc_literacy_intellectual_rate_2_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_literacy_intellectual_rate_var < 20 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+	KMT_intel_lit_2 = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_literacy_intellectual_rate_var = 20 } }
+			NOT = { check_variable = { KMT_literacy_intellectual_rate_var > 20 } }
+		}
+		cost = 25
+		days_remove = 20
+		remove_effect = {
+			KMT_inc_literacy_intellectual_rate_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_literacy_intellectual_rate_var < 20 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+	KMT_worker_lit_1 = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_literacy_worker_rate_var = 30 } }
+			NOT = { check_variable = { KMT_literacy_worker_rate_var > 30 } }
+		}
+		cost = 15
+		days_remove = 14
+		remove_effect = {
+			KMT_inc_literacy_worker_rate_2_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_literacy_worker_rate_var < 30 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+	KMT_worker_lit_2 = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_literacy_worker_rate_var = 30 } }
+			NOT = { check_variable = { KMT_literacy_worker_rate_var > 30 } }
+		}
+		cost = 25
+		days_remove = 20
+		remove_effect = {
+			KMT_inc_literacy_worker_rate_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_literacy_worker_rate_var < 30 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+	KMT_farmer_lit_1 = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_literacy_farmer_rate_var = 50 } }
+			NOT = { check_variable = { KMT_literacy_farmer_rate_var > 50 } }
+		}
+		cost = 15
+		days_remove = 14
+		remove_effect = {
+			KMT_inc_literacy_farmer_rate_2_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_literacy_farmer_rate_var < 50 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+	KMT_farmer_lit_2 = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_literacy_farmer_rate_var = 50 } }
+			NOT = { check_variable = { KMT_literacy_farmer_rate_var > 50 } }
+		}
+		cost = 25
+		days_remove = 20
+		remove_effect = {
+			KMT_inc_literacy_farmer_rate_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_literacy_farmer_rate_var < 50 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+	KMT_intel_pol_1 = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_political_participation_intellectual_rate_var = 20 } }
+			NOT = { check_variable = { KMT_political_participation_intellectual_rate_var > 20 } }
+		}
+		cost = 15
+		days_remove = 14
+		remove_effect = {
+			KMT_political_participation_intellectual_rate_2_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_political_participation_intellectual_rate_var < 20 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+	KMT_intel_pol_2 = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_political_participation_intellectual_rate_var = 20 } }
+			NOT = { check_variable = { KMT_political_participation_intellectual_rate_var > 20 } }
+		}
+		cost = 25
+		days_remove = 20
+		remove_effect = {
+			KMT_political_participation_intellectual_rate_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_political_participation_intellectual_rate_var < 20 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+	KMT_worker_pol_1 = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_political_participation_worker_rate_var = 30 } }
+			NOT = { check_variable = { KMT_political_participation_worker_rate_var > 30 } }
+		}
+		cost = 15
+		days_remove = 14
+		remove_effect = {
+			KMT_political_participation_worker_rate_2_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_political_participation_worker_rate_var < 30 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+	KMT_worker_pol_2 = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_political_participation_worker_rate_var = 30 } }
+			NOT = { check_variable = { KMT_political_participation_worker_rate_var > 30 } }
+		}
+		cost = 25
+		days_remove = 20
+		remove_effect = {
+			KMT_political_participation_worker_rate_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_political_participation_worker_rate_var < 30 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+	KMT_farmer_pol_1 = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_political_participation_farmer_rate_var = 50 } }
+			NOT = { check_variable = { KMT_political_participation_farmer_rate_var > 50 } }
+		}
+		cost = 15
+		days_remove = 14
+		remove_effect = {
+			KMT_political_participation_farmer_rate_2_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_political_participation_farmer_rate_var < 50 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+	KMT_farmer_pol_2 = {
+		icon = GFX_decision_generic_political_rally
+		allowed = {
+			original_tag = KMT
+		}
+		visible = {
+			NOT = { check_variable = { KMT_political_participation_farmer_rate_var = 50 } }
+			NOT = { check_variable = { KMT_political_participation_farmer_rate_var > 50 } }
+		}
+		cost = 25
+		days_remove = 20
+		remove_effect = {
+			KMT_political_participation_farmer_rate_5 = yes
+		}
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 150
+				check_variable = { KMT_political_participation_farmer_rate_var < 50 }
+				check_variable = { KMT_rate_of_radicalization_var < 20 }
+			}
+		}
+	}
+}
+
+KMT_integrate_submitted_warlord = {
+	SIK_is_annexing = {
+		icon = GFX_decision_generic_operation
+		activation = {
+			OR = {
+				SIK = { is_subject_of = KMT }
+				SIK = { is_subject_of = KMR }
+			}
+		}
+		available = {
+			NOT = {
+				OR = {
+					SIK = { is_subject_of = KMT }
+					SIK = { is_subject_of = KMR }
+				}
+			}
+		}
+		fire_only_once = yes
+		days_mission_timeout = 200
+		timeout_effect = {
+			if = {
+				limit = {
+					KMT = { exists = yes }
+				}
+				KMT = { annex_country = { target = SIK transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_core_of = SIK
+					}
+					add_core_of = KMT
+					remove_core_of = SIK
+				}
+			}
+			eles = {
+				KMR = { annex_country = { target = SIK transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_core_of = SIK
+					}
+					add_core_of = KMR
+					remove_core_of = SIK
+				}
+			}
+		}
+	}
+	XSM_is_annexing = {
+		icon = GFX_decision_generic_operation
+		activation = {
+			OR = {
+				XSM = { is_subject_of = KMT }
+				XSM = { is_subject_of = KMR }
+			}
+		}
+		available = {
+			NOT = {
+				OR = {
+					XSM = { is_subject_of = KMT }
+					XSM = { is_subject_of = KMR }
+				}
+			}
+		}
+		fire_only_once = yes
+		days_mission_timeout = 200
+		timeout_effect = {
+			if = {
+				limit = {
+					KMT = { exists = yes }
+				}
+				KMT = { annex_country = { target = XSM transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_core_of = XSM
+					}
+					add_core_of = KMT
+					remove_core_of = XSM
+				}
+			}
+			eles = {
+				KMR = { annex_country = { target = XSM transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_core_of = XSM
+					}
+					add_core_of = KMR
+					remove_core_of = XSM
+				}
+			}
+		}
+	}
+	GSM_is_annexing = {
+		icon = GFX_decision_generic_operation
+		activation = {
+			OR = {
+				GSM = { is_subject_of = KMT }
+				GSM = { is_subject_of = KMR }
+			}
+		}
+		available = {
+			NOT = {
+				OR = {
+					GSM = { is_subject_of = KMT }
+					GSM = { is_subject_of = KMR }
+				}
+			}
+		}
+		fire_only_once = yes
+		days_mission_timeout = 200
+		timeout_effect = {
+			if = {
+				limit = {
+					KMT = { exists = yes }
+				}
+				KMT = { annex_country = { target = GSM transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_core_of = GSM
+					}
+					add_core_of = KMT
+					remove_core_of = GSM
+				}
+			}
+			eles = {
+				KMR = { annex_country = { target = GSM transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_core_of = GSM
+					}
+					add_core_of = KMR
+					remove_core_of = GSM
+				}
+			}
+		}
+	}
+	NSM_is_annexing = {
+		icon = GFX_decision_generic_operation
+		activation = {
+			OR = {
+				NSM = { is_subject_of = KMT }
+				NSM = { is_subject_of = KMR }
+			}
+		}
+		available = {
+			NOT = {
+				OR = {
+					NSM = { is_subject_of = KMT }
+					NSM = { is_subject_of = KMR }
+				}
+			}
+		}
+		fire_only_once = yes
+		days_mission_timeout = 200
+		timeout_effect = {
+			if = {
+				limit = {
+					KMT = { exists = yes }
+				}
+				KMT = { annex_country = { target = NSM transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_core_of = NSM
+					}
+					add_core_of = KMT
+					remove_core_of = NSM
+				}
+			}
+			eles = {
+				KMR = { annex_country = { target = NSM transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_core_of = NSM
+					}
+					add_core_of = KMR
+					remove_core_of = NSM
+				}
+			}
+		}
+	}
+	SHX_is_annexing = {
+		icon = GFX_decision_generic_operation
+		activation = {
+			SHX = { has_country_flag = SHX_run_away_flag }
+			OR = {
+				AND = {
+					KMT = { exists = yes }
+					KMR = { exists = no }
+					CHI = { exists = no }
+				}AND = {
+					KMR = { exists = yes }
+					KMT = { exists = no }
+					CHI = { exists = no }
+				}
+			}
+		}
+		available = {
+			NOT = {
+				SHX = { has_country_flag = SHX_run_away_flag }
+				OR = {
+					AND = {
+						KMT = { exists = yes }
+						KMR = { exists = no }
+						CHI = { exists = no }
+					}AND = {
+						KMR = { exists = yes }
+						KMT = { exists = no }
+						CHI = { exists = no }
+					}
+				}
+			}
+		}
+		fire_only_once = yes
+		days_mission_timeout = 200
+		timeout_effect = {
+			if = {
+				limit = {
+					KMT = { exists = yes }
+				}
+				KMT = { annex_country = { target = SHX transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_core_of = SHX
+					}
+					add_core_of = KMT
+					remove_core_of = SHX
+				}
+			}
+			eles = {
+				KMR = { annex_country = { target = SHX transfer_troops = no } }
+				every_state = {
+					limit = {
+						is_core_of = SHX
+					}
+					add_core_of = KMR
+					remove_core_of = SHX
+				}
+			}
+		}
+	}
+}
+
+CHI_emergency_measures_category = {
+	CHI_improvised_rifles = {
+		icon = generic_prepare_civil_war
+		available = {
+			has_equipment = {
+				infantry_equipment < 1000
+			}
+		}
+		custom_cost_trigger = {
+			arms_factory > 0
+		}
+		custom_cost_text = ARMS_FACTORY_1_tt
+		modifier = {
+			military_factory_donations = 1
+		}
+		days_remove = 30
+		ai_will_do = {
+			base = 100
+		}
+		complete_effect = {
+			if = {
+				limit = { NOT = { has_tech = improv_weapons } }
+				set_technology = {
+					improv_weapons = 1
+				}
+			}
+		}
+		remove_effect = {
+			random_list = {
+				50 = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment_worst
+						amount = 500
+					}
+				}
+				50 = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment_worst
+						amount = 700
+					}
+				}
+			}
+   		}
+	}
+	CHI_production_flying_thunder_cannons = {
+		icon = generic_prepare_civil_war
+		available = {
+			has_equipment = {
+				artillery_equipment < 300
+			}
+		}
+		custom_cost_trigger = {
+			arms_factory > 0
+		}
+		custom_cost_text = ARMS_FACTORY_1_tt
+		modifier = {
+			military_factory_donations = 1
+		}
+		days_remove = 30
+		ai_will_do = {
+			base = 100
+		}
+		complete_effect = {
+			if = {
+				limit = { NOT = { has_tech = improv_weapons_art } }
+				set_technology = {
+					improv_weapons_art = 1
+				}
+			}
+		}
+		remove_effect = {
+			random_list = {
+				50 = {
+					add_equipment_to_stockpile = {
+						type = artiliary_equipment_worst
+						amount = 50
+					}
+				}
+				50 = {
+					add_equipment_to_stockpile = {
+						type = artiliary_equipment_worst
+						amount = 80
+					}
+				}
+			}
+   		}
+	}
+	CHI_major_arms_support_decisions = {
+		icon = GFX_decision_generic_industry
+		allowed = {
+			OR = {
+				original_tag = KMT
+				original_tag = KMR
+				original_tag = CHI
+			}
+		}
+		available = {
+			OR = {
+				has_equipment = {
+					infantry_equipment < 1000
+				}
+				has_equipment = {
+					artillery_equipment < 300
+				}
+			}
+			if = {
+				limit = {
+					original_tag = KMT
+				}
+				controls_state = 613
+			}
+			if = {
+				limit = {
+					original_tag = KMR
+				}
+				controls_state = 592
+			}
+			if = {
+				limit = {
+					original_tag = CHI
+				}
+				controls_state = 608
+			}
+		}
+		target_trigger = {
+			FROM = {
+				is_major = yes
+				NOT = { original_tag = ROOT }
+				NOT = { has_war_with = ROOT }
+			}
+		}
+		cost = 10
+		complete_effect = {
+			FROM = { country_event = kuomintag_wr.97 }
+			custom_effect_tooltip = decision_count_100_tt
+		}
+		days_remove = 100
+		remove_effect = {
+			add_political_power = 5
+		}
+		ai_will_do = {
+			base = 50
+		}
+	}
+}
+
+CHI_one_belt_one_road_category = {
+	#사천-운남 일대
+	CHI_construct_sichuan_kweichow_railway = {
+		allowed = {
+			original_tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 748
+				state = 1007
+				state = 603
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 30
+		ai_will_do = {
+			base = 100
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		icon = generic_construction
+		available = {
+			controls_state = 748
+			controls_state = 1007
+			controls_state = 603
+		}
+		visible = {
+			has_completed_focus = CHI_sichuan_yunnan_railway
+			hidden_trigger = {
+				NOT = { has_country_flag = CHI_construct_sichuan_kweichow_railway_flag }
+			}
+		}
+		remove_effect = {
+			build_railway = {
+				level = 3
+				path = { 6999 4431 1010 4325 10616 4504 }
+			}
+			set_country_flag = CHI_construct_sichuan_kweichow_railway_flag
+			if = {
+				limit = {
+					has_country_flag = CHI_construct_guizhou_yunnan_infra_flag
+					has_country_flag = CHI_construct_guizhou_yunnan_railway_flag
+					has_country_flag = CHI_construct_sichuan_kweichow_infra_flag
+				}
+				set_global_flag = sichan_yunnan_line_flag
+				CHI = {
+					add_to_variable = { CHI_one_one_way_var = 1 }
+					country_event = china_wr.323
+				}
+			}
+		}
+	}
+	CHI_construct_sichuan_kweichow_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			original_tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 748
+				state = 1007
+				state = 603
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			controls_state = 748
+			controls_state = 1007
+			controls_state = 603
+		}
+		visible = {
+			has_completed_focus = CHI_sichuan_yunnan_railway
+			hidden_trigger = {
+				NOT = { has_country_flag = CHI_construct_sichuan_kweichow_infra_flag }
+			}
+		}
+		days_remove = 30
+		ai_will_do = {
+			base = 100
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					748 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 748 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			if = {
+				limit = {
+					1007 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 1007 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			if = {
+				limit = {
+					603 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 603 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_country_flag = CHI_construct_sichuan_kweichow_infra_flag
+			if = {
+				limit = {
+					has_country_flag = CHI_construct_guizhou_yunnan_infra_flag
+					has_country_flag = CHI_construct_guizhou_yunnan_railway_flag
+					has_country_flag = CHI_construct_sichuan_kweichow_railway_flag
+				}
+				set_global_flag = sichan_yunnan_line_flag
+				CHI = {
+					add_to_variable = { CHI_one_one_way_var = 1 }
+					country_event = china_wr.323
+				}
+			}
+		}
+	}
+	CHI_construct_guizhou_yunnan_railway = {
+		allowed = {
+			original_tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 603
+				state = 325
+				state = 747
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 25
+		ai_will_do = {
+			base = 100
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		icon = generic_construction
+		available = {
+			controls_state = 603
+			controls_state = 325
+			controls_state = 747
+		}
+		visible = {
+			has_completed_focus = CHI_sichuan_yunnan_railway
+			hidden_trigger = {
+				NOT = { has_country_flag = CHI_construct_guizhou_yunnan_railway_flag }
+			}
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 4504 4192 1319 4559 7965 }
+			}
+			set_country_flag = CHI_construct_guizhou_yunnan_railway_flag
+			if = {
+				limit = {
+					has_country_flag = CHI_construct_guizhou_yunnan_infra_flag
+					has_country_flag = CHI_construct_sichuan_kweichow_infra_flag
+					has_country_flag = CHI_construct_sichuan_kweichow_railway_flag
+				}
+				set_global_flag = sichan_yunnan_line_flag
+				CHI = {
+					add_to_variable = { CHI_one_one_way_var = 1 }
+					country_event = china_wr.324
+				}
+			}
+		}
+	}
+	CHI_construct_guizhou_yunnan_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			original_tag = CHI
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 325
+				state = 747
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			controls_state = 325
+			controls_state = 747
+		}
+		visible = {
+			has_completed_focus = CHI_sichuan_yunnan_railway
+			hidden_trigger = {
+				NOT = { has_country_flag = CHI_construct_guizhou_yunnan_infra_flag }
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+		}
+		days_remove = 20
+		ai_will_do = {
+			base = 100
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					325 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 325 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			if = {
+				limit = {
+					747 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 747 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_country_flag = CHI_construct_guizhou_yunnan_infra_flag
+			if = {
+				limit = {
+					has_country_flag = CHI_construct_guizhou_yunnan_railway_flag
+					has_country_flag = CHI_construct_sichuan_kweichow_infra_flag
+					has_country_flag = CHI_construct_sichuan_kweichow_railway_flag
+				}
+				set_global_flag = sichan_yunnan_line_flag
+				CHI = {
+					add_to_variable = { CHI_one_one_way_var = 1 }
+					country_event = china_wr.324
+				}
+			}
+		}
+	}
+	
+	#버마로드 일대
+	CHI_propose_join_one_belt_one_road_yunnan_burma = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		target_trigger = {
+			FROM = {
+				OR = {
+					owns_state = 747
+					owns_state = 640
+				}
+				NOT = {
+					has_country_flag = CHI_construct_burma_road_flag
+				}
+			}
+		}
+		visible = {
+			has_country_flag = CHI_construct_burma_road_answer_flag
+		}
+		available = {
+			NOT = { has_war_with = FROM }
+			NOT = { FROM = { has_country_flag = CHI_construct_burma_road_flag } }
+		}
+		cost = 5
+		complete_effect = {
+			FROM = { country_event = china_wr.281 }
+		}
+	}
+	CHI_construct_yunnan_burma_railway = {
+		allowed = {
+			has_country_flag = CHI_construct_burma_road_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 747
+				state = 640
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 40
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_construct_yunnan_burma_railway_start_flag
+		}
+		icon = generic_construction
+		available = {
+			747 = {
+				owner = {
+					has_country_flag = CHI_construct_burma_road_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			640 = {
+				owner = {
+					has_country_flag = CHI_construct_burma_road_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_construct_yunnan_burma_railway_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_construct_burma_road_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_construct_yunnan_burma_railway_flag }
+			}
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 7965 12898 10863 4425 1082 12464 7469 1492 }
+			}
+			set_global_flag = CHI_construct_yunnan_burma_railway_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_construct_yunnan_burma_infra_flag
+				}
+				set_global_flag = yunnan_bumma_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_construct_burma_road_flag
+					}
+					country_event = china_wr.325
+				}
+			}
+		}
+	}
+	CHI_construct_yunnan_burma_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			has_country_flag = CHI_construct_burma_road_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 640
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			640 = {
+				owner = {
+					has_country_flag = CHI_construct_burma_road_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_construct_yunnan_burma_infra_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_construct_burma_road_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_construct_yunnan_burma_infra_flag }
+			}
+		}
+		days_remove = 10
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_construct_yunnan_burma_infra_start_flag
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					640 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 640 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_global_flag = CHI_construct_yunnan_burma_infra_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_construct_yunnan_burma_railway_flag
+				}
+				set_global_flag = yunnan_bumma_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_construct_burma_road_flag
+					}
+					country_event = china_wr.325
+				}
+			}
+		}
+	}
+	
+	#인도
+	CHI_propose_join_one_belt_one_road_india = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		target_trigger = {
+			FROM = {
+				OR = {
+					owns_state = 747
+					owns_state = 288
+					owns_state = 430
+					owns_state = 996
+					owns_state = 426
+					owns_state = 436
+					owns_state = 429
+				}
+				NOT = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+				}
+			}
+		}
+		visible = {
+			has_country_flag = CHI_india_one_one_way_answer_flag
+		}
+		available = {
+			NOT = { has_war_with = FROM }
+			NOT = { FROM = { has_country_flag = CHI_trans_indian_subcontinent_flag } }
+		}
+		cost = 5
+		complete_effect = {
+			FROM = { country_event = china_wr.289 }
+		}
+	}
+	CHI_india_one_one_way = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		available = {
+			NOT = {
+				any_country = {
+					has_country_flag = will_you_join_us_india_flag
+					NOT = { has_country_flag = i_will_join_with_you_india_flag }
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = CHI_trans_indian_subcontinent
+			NOT = { any_country = { has_country_flag = i_will_not_join_with_you_india_flag } }
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = CHI_india_one_one_way_answer_flag
+			every_country = {
+				limit = {
+					OR = {
+						has_country_flag = i_will_join_with_you_india_flag
+						has_country_flag = we_are_in_one_one_way_flag
+						original_tag = CHI
+					}
+				}
+				country_event = china_wr.288
+			}
+		}
+	}
+	CHI_construct_mandalay_calcutta_railway = {
+		allowed = {
+			has_country_flag = CHI_trans_indian_subcontinent_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 640
+				state = 288
+				state = 430
+				state = 996
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 75
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_construct_mandalay_calcutta_railway_start_flag
+		}
+		icon = generic_construction
+		available = {
+			640 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			288 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			430 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			996 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_construct_mandalay_calcutta_railway_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_trans_indian_subcontinent_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_construct_mandalay_calcutta_railway_flag }
+			}
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 1492 12404 4202 4019 1014 12090 11142 9991 12010 11968 11929 4162 2843 12050 4245 }
+			}
+			set_global_flag = CHI_construct_mandalay_calcutta_railway_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_construct_mandalay_calcutta_infra_flag
+				}
+				set_global_flag = bumma_calcutta_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_trans_indian_subcontinent_flag
+					}
+					country_event = china_wr.326
+				}
+			}
+		}
+	}
+	CHI_construct_mandalay_calcutta_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			has_country_flag = CHI_trans_indian_subcontinent_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 288
+				state = 430
+				state = 996
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			288 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			430 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			996 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_construct_mandalay_calcutta_infra_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_trans_indian_subcontinent_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_construct_mandalay_calcutta_infra_flag }
+			}
+		}
+		days_remove = 30
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_construct_mandalay_calcutta_infra_start_flag
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					288 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 288 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			if = {
+				limit = {
+					430 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 430 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			if = {
+				limit = {
+					996 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 996 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_global_flag = CHI_construct_mandalay_calcutta_infra_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_construct_mandalay_calcutta_railway_flag
+				}
+				set_global_flag = bumma_calcutta_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_trans_indian_subcontinent_flag
+					}
+					country_event = china_wr.326
+				}
+			}
+		}
+	}
+	CHI_construct_calcutta_bombay_railway = {
+		allowed = {
+			has_country_flag = CHI_trans_indian_subcontinent_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 996
+				state = 426
+				state = 436
+				state = 429
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 90
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_construct_calcutta_bombay_railway_start_flag
+		}
+		icon = generic_construction
+		available = {
+			996 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			426 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			436 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			429 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_construct_calcutta_bombay_railway_start_flag }
+			has_global_flag = bumma_calcutta_line_flag
+		}
+		visible = {
+			has_country_flag = CHI_trans_indian_subcontinent_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_construct_calcutta_bombay_railway_flag }
+			}
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 4245 4062 7220 1059 1538 10428 9946 7574 10401 12420 4557 4883 10030 7430 7060 4072 7013 1349 }
+			}
+			set_global_flag = CHI_construct_calcutta_bombay_railway_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_construct_calcutta_bombay_infra_flag
+				}
+				set_global_flag = calcutta_mumbai_land_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_trans_indian_subcontinent_flag
+					}
+					country_event = china_wr.327
+				}
+			}
+		}
+	}
+	CHI_construct_calcutta_bombay_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			has_country_flag = CHI_trans_indian_subcontinent_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 426
+				state = 436
+				state = 429
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			426 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			436 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			429 = {
+				owner = {
+					has_country_flag = CHI_trans_indian_subcontinent_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_construct_calcutta_bombay_infra_start_flag }
+			has_global_flag = bumma_calcutta_line_flag
+		}
+		visible = {
+			has_country_flag = CHI_trans_indian_subcontinent_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_construct_calcutta_bombay_infra_flag }
+			}
+		}
+		days_remove = 30
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_construct_calcutta_bombay_infra_start_flag
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					426 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 426 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			if = {
+				limit = {
+					436 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 436 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			if = {
+				limit = {
+					429 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 429 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_global_flag = CHI_construct_calcutta_bombay_infra_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_construct_calcutta_bombay_railway_flag
+				}
+				set_global_flag = calcutta_mumbai_land_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_trans_indian_subcontinent_flag
+					}
+					country_event = china_wr.327
+				}
+			}
+		}
+	}
+	
+	#중앙아시아 일대
+	CHI_propose_join_one_belt_one_road_sinkiang_alma_ata = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		target_trigger = {
+			FROM = {
+				OR = {
+					owns_state = 617
+					owns_state = 586
+				}
+				NOT = {
+					has_country_flag = CHI_trans_central_asia_flag
+				}
+			}
+		}
+		visible = {
+			has_country_flag = CHI_trans_central_asia_flag
+			has_country_flag = CHI_central_one_one_way_answer_flag
+		}
+		available = {
+			NOT = { has_war_with = FROM }
+			NOT = { FROM = { has_country_flag = CHI_trans_central_asia_flag } }
+		}
+		cost = 5
+		complete_effect = {
+			FROM = { country_event = china_wr.304 }
+		}
+	}
+	CHI_sinkiang_alma_ata_one_one_way = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		available = {
+			NOT = {
+				any_country = {
+					has_country_flag = will_you_join_us_central_flag
+					NOT = { has_country_flag = i_will_join_with_you_central_flag }
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = CHI_trans_central_asia
+			NOT = { any_country = { has_country_flag = i_will_not_join_with_you_central_flag } }
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = CHI_central_one_one_way_answer_flag
+			every_country = {
+				limit = {
+					OR = {
+						has_country_flag = i_will_join_with_you_central_flag
+						has_country_flag = we_are_in_one_one_way_flag
+						original_tag = CHI
+					}
+				}
+				country_event = china_wr.303
+			}
+		}
+	}
+	CHI_construct_sinkiang_alma_ata_railway = {
+		allowed = {
+			has_country_flag = CHI_trans_central_asia_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 617
+				state = 586
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 25
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_construct_sinkiang_alma_ata_railway_start_flag
+		}
+		icon = generic_construction
+		available = {
+			617 = {
+				owner = {
+					has_country_flag = CHI_trans_central_asia_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			586 = {
+				owner = {
+					has_country_flag = CHI_trans_central_asia_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_construct_sinkiang_alma_ata_railway_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_trans_central_asia_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_construct_sinkiang_alma_ata_railway_flag }
+			}
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 4709 4770 617 1840 1591 }
+			}
+			set_global_flag = CHI_construct_sinkiang_alma_ata_railway_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_construct_sinkiang_alma_ata_infra_flag
+				}
+				set_global_flag = sikang_central_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_trans_central_asia_flag
+					}
+					country_event = china_wr.328
+				}
+			}
+		}
+	}
+	CHI_construct_sinkiang_alma_ata_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			has_country_flag = CHI_trans_central_asia_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 617
+				state = 586
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			617 = {
+				owner = {
+					has_country_flag = CHI_trans_central_asia_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			586 = {
+				owner = {
+					has_country_flag = CHI_trans_central_asia_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_construct_sinkiang_alma_ata_infra_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_trans_central_asia_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_construct_sinkiang_alma_ata_infra_flag }
+			}
+		}
+		days_remove = 20
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_construct_sinkiang_alma_ata_infra_start_flag
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					617 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 617 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			if = {
+				limit = {
+					586 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 586 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_global_flag = CHI_construct_sinkiang_alma_ata_infra_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_construct_sinkiang_alma_ata_railway_flag
+				}
+				set_global_flag = sikang_central_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_trans_central_asia_flag
+					}
+					country_event = china_wr.328
+				}
+			}
+		}
+	}
+	
+	#모스크바 일대
+	CHI_propose_join_one_belt_one_road_alma_ata_tashkent = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		target_trigger = {
+			FROM = {
+				OR = {
+					owns_state = 617
+					owns_state = 586
+				}
+				NOT = {
+					has_country_flag = CHI_connect_moscow_flag
+				}
+			}
+		}
+		visible = {
+			has_country_flag = CHI_connect_moscow_flag
+			has_country_flag = CHI_moscow_one_one_way_answer_flag
+		}
+		available = {
+			NOT = { has_war_with = FROM }
+			NOT = { FROM = { has_country_flag = CHI_connect_moscow_flag } }
+		}
+		cost = 5
+		complete_effect = {
+			FROM = { country_event = china_wr.310 }
+		}
+	}
+	CHI_alma_ata_tashkent_one_one_way = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = {
+			original_tag = CHI
+		}
+		available = {
+			NOT = {
+				any_country = {
+					has_country_flag = will_you_join_us_moscow_flag
+					NOT = { has_country_flag = i_will_join_with_you_moscow_flag }
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = CHI_connect_moscow
+			NOT = { any_country = { has_country_flag = i_will_not_join_with_you_moscow_flag } }
+		}
+		ai_will_do = {
+			base = 4000
+		}
+		fire_only_once = yes
+		complete_effect = {
+			set_country_flag = CHI_moscow_one_one_way_answer_flag
+			every_country = {
+				limit = {
+					OR = {
+						has_country_flag = i_will_join_with_you_moscow_flag
+						has_country_flag = we_are_in_one_one_way_flag
+						original_tag = CHI
+					}
+				}
+				country_event = china_wr.309
+			}
+		}
+	}
+	CHI_construct_alma_ata_tashkent_railway = {
+		allowed = {
+			has_country_flag = CHI_connect_moscow_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 617
+				state = 586
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 30
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_construct_alma_ata_tashkent_railway_start_flag
+		}
+		icon = generic_construction
+		available = {
+			586 = {
+				owner = {
+					has_country_flag = CHI_connect_moscow_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			732 = {
+				owner = {
+					has_country_flag = CHI_connect_moscow_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			405 = {
+				owner = {
+					has_country_flag = CHI_connect_moscow_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_construct_alma_ata_tashkent_railway_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_connect_moscow_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_construct_alma_ata_tashkent_railway_flag }
+			}
+		}
+		remove_effect = {
+			build_railway = {
+				level = 2
+				path = { 1591 4224 12583 7706 10660 1459 }
+			}
+			set_global_flag = CHI_construct_alma_ata_tashkent_railway_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_construct_alma_ata_tashkent_infra_flag
+				}
+				set_global_flag = central_moscow_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_trans_central_asia_flag
+					}
+					country_event = china_wr.329
+				}
+			}
+		}
+	}
+	CHI_construct_alma_ata_tashkent_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			has_country_flag = CHI_connect_moscow_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 732
+				state = 405
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			732 = {
+				owner = {
+					has_country_flag = CHI_connect_moscow_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			405 = {
+				owner = {
+					has_country_flag = CHI_connect_moscow_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_construct_alma_ata_tashkent_infra_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_connect_moscow_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_construct_alma_ata_tashkent_infra_flag }
+			}
+		}
+		days_remove = 20
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_construct_alma_ata_tashkent_infra_start_flag
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					732 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 732 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			if = {
+				limit = {
+					405 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 405 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_global_flag = CHI_construct_alma_ata_tashkent_infra_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_construct_alma_ata_tashkent_railway_flag
+				}
+				set_global_flag = central_moscow_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_trans_central_asia_flag
+					}
+					country_event = china_wr.329
+				}
+			}
+		}
+	}
+	
+	#사이공 항만 확장
+	CHI_expand_saigon_port_done = {
+		allowed = {
+			has_country_flag = CHI_hanoi_and_saigon_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 992
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 15
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_expand_saigon_port_start_flag
+		}
+		icon = generic_construction
+		available = {
+			992 = {
+				owner = {
+					has_country_flag = CHI_hanoi_and_saigon_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_expand_saigon_port_start_flag }
+		}
+		visible = {
+			992 = {
+				any_province_building_level = {
+					province = {
+						id = 4401
+					}
+					building = naval_base
+					level > 7
+				}
+			}
+			has_country_flag = CHI_hanoi_and_saigon_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_expand_saigon_port_flag }
+			}
+		}
+		remove_effect = {
+			set_global_flag = CHI_expand_saigon_port_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_improve_saigon_infra_flag
+				}
+				set_global_flag = guangdong_saigong_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_hanoi_and_saigon_flag
+					}
+					country_event = china_wr.330
+				}
+			}
+		}
+	}
+	CHI_expand_saigon_port = {
+		allowed = {
+			has_country_flag = CHI_hanoi_and_saigon_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 992
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 30
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_expand_saigon_port_start_flag
+		}
+		icon = generic_construction
+		available = {
+			992 = {
+				owner = {
+					has_country_flag = CHI_hanoi_and_saigon_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_expand_saigon_port_start_flag }
+		}
+		visible = {
+			992 = {
+				any_province_building_level = {
+					province = {
+						id = 4401
+					}
+					building = naval_base
+					level < 8
+				}
+			}
+			has_country_flag = CHI_hanoi_and_saigon_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_expand_saigon_port_flag }
+			}
+		}
+		remove_effect = {
+			add_building_construction = { type = naval_base province = 4401 level = 3 instant_build = yes }
+			set_global_flag = CHI_expand_saigon_port_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_improve_saigon_infra_flag
+				}
+				set_global_flag = guangdong_saigong_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_hanoi_and_saigon_flag
+					}
+					country_event = china_wr.330
+				}
+			}
+		}
+	}
+	CHI_improve_saigon_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			has_country_flag = CHI_hanoi_and_saigon_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 992
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			992 = {
+				owner = {
+					has_country_flag = CHI_hanoi_and_saigon_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_improve_saigon_infra_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_hanoi_and_saigon_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_improve_saigon_infra_flag }
+			}
+		}
+		days_remove = 10
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_improve_saigon_infra_start_flag
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					992 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 992 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_global_flag = CHI_improve_saigon_infra_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_expand_saigon_port_flag
+				}
+				set_global_flag = guangdong_saigong_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_hanoi_and_saigon_flag
+					}
+					country_event = china_wr.330
+				}
+			}
+		}
+	}
+	
+	#싱가포르 항만 확장
+	CHI_expand_singapore_port_done = {
+		allowed = {
+			has_country_flag = CHI_ports_of_singapore_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 980
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 15
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_expand_singapore_port_start_flag
+		}
+		icon = generic_construction
+		available = {
+			980 = {
+				owner = {
+					has_country_flag = CHI_ports_of_singapore_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_expand_singapore_port_start_flag }
+		}
+		visible = {
+			980 = {
+				any_province_building_level = {
+					province = {
+						id = 12299
+					}
+					building = naval_base
+					level > 7
+				}
+			}
+			has_country_flag = CHI_ports_of_singapore_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_expand_singapore_port_flag }
+			}
+		}
+		remove_effect = {
+			set_global_flag = CHI_expand_singapore_port_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_improve_singapore_infra_flag
+				}
+				set_global_flag = saigong_singapor_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_singapore_flag
+					}
+					country_event = china_wr.331
+				}
+			}
+		}
+	}
+	CHI_expand_singapore_port = {
+		allowed = {
+			has_country_flag = CHI_ports_of_singapore_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 980
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 30
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_expand_singapore_port_start_flag
+		}
+		icon = generic_construction
+		available = {
+			980 = {
+				owner = {
+					has_country_flag = CHI_ports_of_singapore_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_expand_singapore_port_start_flag }
+		}
+		visible = {
+			980 = {
+				any_province_building_level = {
+					province = {
+						id = 12299
+					}
+					building = naval_base
+					level < 8
+				}
+			}
+			has_country_flag = CHI_ports_of_singapore_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_expand_singapore_port_flag }
+			}
+		}
+		remove_effect = {
+			add_building_construction = { type = naval_base province = 12299 level = 3 instant_build = yes }
+			set_global_flag = CHI_expand_singapore_port_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_improve_singapore_infra_flag
+				}
+				set_global_flag = saigong_singapor_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_singapore_flag
+					}
+					country_event = china_wr.331
+				}
+			}
+		}
+	}
+	CHI_improve_singapore_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			has_country_flag = CHI_ports_of_singapore_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 980
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			980 = {
+				owner = {
+					has_country_flag = CHI_ports_of_singapore_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_improve_singapore_infra_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_ports_of_singapore_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_improve_singapore_infra_flag }
+			}
+		}
+		days_remove = 10
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_improve_singapore_infra_start_flag
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					980 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 980 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_global_flag = CHI_improve_singapore_infra_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_expand_singapore_port_flag
+				}
+				set_global_flag = saigong_singapor_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_singapore_flag
+					}
+					country_event = china_wr.331
+				}
+			}
+		}
+	}
+	
+	#캘커타 항만 확장
+	CHI_expand_calcutta_port_done = {
+		allowed = {
+			has_country_flag = CHI_ports_of_calcutta_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 996
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 15
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_expand_calcutta_port_start_flag
+		}
+		icon = generic_construction
+		available = {
+			996 = {
+				owner = {
+					has_country_flag = CHI_ports_of_calcutta_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_expand_calcutta_port_start_flag }
+		}
+		visible = {
+			996 = {
+				any_province_building_level = {
+					province = {
+						id = 4245
+					}
+					building = naval_base
+					level > 7
+				}
+			}
+			has_country_flag = CHI_ports_of_calcutta_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_expand_calcutta_port_flag }
+			}
+		}
+		remove_effect = {
+			set_global_flag = CHI_expand_calcutta_port_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_improve_calcutta_infra_flag
+				}
+				set_global_flag = singapor_calcutta_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_calcutta_flag
+					}
+					country_event = china_wr.332
+				}
+			}
+		}
+	}
+	CHI_expand_calcutta_port = {
+		allowed = {
+			has_country_flag = CHI_ports_of_calcutta_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 996
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 30
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_expand_calcutta_port_start_flag
+		}
+		icon = generic_construction
+		available = {
+			996 = {
+				owner = {
+					has_country_flag = CHI_ports_of_calcutta_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_expand_calcutta_port_start_flag }
+		}
+		visible = {
+			996 = {
+				any_province_building_level = {
+					province = {
+						id = 4245
+					}
+					building = naval_base
+					level < 8
+				}
+			}
+			has_country_flag = CHI_ports_of_calcutta_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_expand_calcutta_port_flag }
+			}
+		}
+		remove_effect = {
+			add_building_construction = { type = naval_base province = 4245 level = 3 instant_build = yes }
+			set_global_flag = CHI_expand_calcutta_port_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_improve_calcutta_infra_flag
+				}
+				set_global_flag = singapor_calcutta_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_calcutta_flag
+					}
+					country_event = china_wr.332
+				}
+			}
+		}
+	}
+	CHI_improve_calcutta_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			has_country_flag = CHI_ports_of_calcutta_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 996
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			996 = {
+				owner = {
+					has_country_flag = CHI_ports_of_calcutta_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_improve_calcutta_infra_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_ports_of_calcutta_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_improve_calcutta_infra_flag }
+			}
+		}
+		days_remove = 10
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_improve_calcutta_infra_start_flag
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					996 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 996 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_global_flag = CHI_improve_calcutta_infra_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_expand_calcutta_port_flag
+				}
+				set_global_flag = singapor_calcutta_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_calcutta_flag
+					}
+					country_event = china_wr.332
+				}
+			}
+		}
+	}
+	
+	#봄베이 항만 확장
+	CHI_expand_bombay_port_done = {
+		allowed = {
+			has_country_flag = CHI_ports_of_bombay_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 429
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 15
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_expand_bombay_port_start_flag
+		}
+		icon = generic_construction
+		available = {
+			429 = {
+				owner = {
+					has_country_flag = CHI_ports_of_bombay_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_expand_bombay_port_start_flag }
+		}
+		visible = {
+			429 = {
+				any_province_building_level = {
+					province = {
+						id = 1349
+					}
+					building = naval_base
+					level > 7
+				}
+			}
+			has_country_flag = CHI_ports_of_bombay_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_expand_bombay_port_flag }
+			}
+		}
+		remove_effect = {
+			set_global_flag = CHI_expand_bombay_port_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_improve_bombay_infra_flag
+				}
+				set_global_flag = calcutta_mumbai_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_bombay_flag
+					}
+					country_event = china_wr.333
+				}
+			}
+		}
+	}
+	CHI_expand_bombay_port = {
+		allowed = {
+			has_country_flag = CHI_ports_of_bombay_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 429
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 30
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_expand_bombay_port_start_flag
+		}
+		icon = generic_construction
+		available = {
+			429 = {
+				owner = {
+					has_country_flag = CHI_ports_of_bombay_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_expand_bombay_port_start_flag }
+		}
+		visible = {
+			429 = {
+				any_province_building_level = {
+					province = {
+						id = 1349
+					}
+					building = naval_base
+					level < 8
+				}
+			}
+			has_country_flag = CHI_ports_of_bombay_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_expand_bombay_port_flag }
+			}
+		}
+		remove_effect = {
+			add_building_construction = { type = naval_base province = 1349 level = 3 instant_build = yes }
+			set_global_flag = CHI_expand_bombay_port_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_improve_bombay_infra_flag
+				}
+				set_global_flag = calcutta_mumbai_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_bombay_flag
+					}
+					country_event = china_wr.333
+				}
+			}
+		}
+	}
+	CHI_improve_bombay_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			has_country_flag = CHI_ports_of_bombay_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 429
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			429 = {
+				owner = {
+					has_country_flag = CHI_ports_of_bombay_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_improve_bombay_infra_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_ports_of_bombay_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_improve_bombay_infra_flag }
+			}
+		}
+		days_remove = 10
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_improve_bombay_infra_start_flag
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					429 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 429 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_global_flag = CHI_improve_bombay_infra_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_expand_bombay_port_flag
+				}
+				set_global_flag = calcutta_mumbai_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_bombay_flag
+					}
+					country_event = china_wr.333
+				}
+			}
+		}
+	}
+	
+	#베네치아 항만 확장
+	CHI_expand_rome_port_done = {
+		allowed = {
+			has_country_flag = CHI_ports_of_rome_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 945
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 15
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_expand_rome_port_start_flag
+		}
+		icon = generic_construction
+		available = {
+			945 = {
+				owner = {
+					has_country_flag = CHI_ports_of_rome_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_expand_rome_port_start_flag }
+		}
+		visible = {
+			945 = {
+				any_province_building_level = {
+					province = {
+						id = 1349
+					}
+					building = naval_base
+					level > 7
+				}
+			}
+			has_country_flag = CHI_ports_of_rome_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_expand_rome_port_flag }
+			}
+		}
+		remove_effect = {
+			set_global_flag = CHI_expand_rome_port_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_improve_rome_infra_flag
+				}
+				set_global_flag = mumbai_rome_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_rome_flag
+					}
+					country_event = china_wr.334
+				}
+			}
+		}
+	}
+	CHI_expand_rome_port = {
+		allowed = {
+			has_country_flag = CHI_ports_of_rome_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 945
+			}
+		}
+		cancel_if_not_visible = yes
+		days_remove = 30
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_expand_rome_port_start_flag
+		}
+		icon = generic_construction
+		available = {
+			945 = {
+				owner = {
+					has_country_flag = CHI_ports_of_rome_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_expand_rome_port_start_flag }
+		}
+		visible = {
+			945 = {
+				any_province_building_level = {
+					province = {
+						id = 11584
+					}
+					building = naval_base
+					level < 8
+				}
+			}
+			has_country_flag = CHI_ports_of_rome_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_expand_rome_port_flag }
+			}
+		}
+		remove_effect = {
+			add_building_construction = { type = naval_base province = 11584 level = 3 instant_build = yes }
+			set_global_flag = CHI_expand_rome_port_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_improve_rome_infra_flag
+				}
+				set_global_flag = mumbai_rome_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_rome_flag
+					}
+					country_event = china_wr.334
+				}
+			}
+		}
+	}
+	CHI_improve_rome_infra = {
+		icon = GFX_decision_hol_drain_water_lines
+		allowed = {
+			has_country_flag = CHI_ports_of_rome_flag
+		}
+		highlight_states = {
+			highlight_state_targets = {
+				state = 945
+			}
+		}
+		cancel_if_not_visible = yes
+		available = {
+			945 = {
+				owner = {
+					has_country_flag = CHI_ports_of_rome_flag
+					NOT = { has_war_with = ROOT }
+				}
+			}
+			NOT = { has_global_flag = CHI_improve_rome_infra_start_flag }
+		}
+		visible = {
+			has_country_flag = CHI_ports_of_rome_flag
+			hidden_trigger = {
+				NOT = { has_global_flag = CHI_improve_rome_infra_flag }
+			}
+		}
+		days_remove = 10
+		ai_will_do = {
+			base = 0
+			modifier = {
+				add = 10
+				original_tag = CHI
+			}
+		}
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 2
+			has_political_power > 19
+		}
+		custom_cost_text = decision_cost_3_civ
+		modifier = {
+			civilian_factory_use = 3
+		}
+		complete_effect = {
+			add_political_power = -20
+			set_global_flag = CHI_improve_rome_infra_start_flag
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					945 = {
+						free_building_slots = {
+							building = infrastructure
+							size > 0
+							include_locked = no
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 945 }
+					add_building_construction = {
+						type = infrastructure
+						level = 1
+					}
+				}
+			}
+			else = {
+				add_political_power = 5
+			}
+			set_global_flag = CHI_improve_rome_infra_flag
+			if = {
+				limit = {
+					has_global_flag = CHI_expand_rome_port_flag
+				}
+				set_global_flag = mumbai_rome_line_flag
+				CHI = { add_to_variable = { CHI_one_one_way_var = 1 } }
+				every_country = {
+					limit = {
+						has_country_flag = CHI_ports_of_rome_flag
+					}
+					country_event = china_wr.334
+				}
+			}
+		}
+	}
+}
+
+CHI_recruit_anti_japanese_militia = {
+	CHI_recruit_anti_japanese_militia_decision = {
+		icon = GFX_decision_generic_military
+		state_target = yes
+		highlight_states = {
+			highlight_states_trigger = {
+				NOT = { has_state_flag = CHI_recruit_anti_japanese_militia_flag }
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				OR = {
+					state = 608
+					state = 615
+					state = 1014
+					state = 744
+					state = 748
+					state = 602
+					state = 592
+					state = 960
+					state = 617
+					state = 756
+				}
+			}
+		}
+		target_trigger = {
+			FROM = {
+				is_owned_by = ROOT
+				is_controlled_by = ROOT
+				NOT = { has_state_flag = CHI_recruit_anti_japanese_militia_flag }
+				OR = {
+					state = 608
+					state = 615
+					state = 1014
+					state = 744
+					state = 748
+					state = 602
+					state = 592
+					state = 960
+					state = 617
+					state = 756
+				}
+			}
+		}
+		visible = {
+			has_completed_focus = CHI_hundred_thousand_troops
+		}
+		cost = 15
+		days_remove = 30
+		remove_effect = {
+			if = {
+				limit = {
+					NOT = { has_template = "mínbing" }
+				}
+				division_template = {
+					name = "mínbing"
+					is_locked = no
+					regiments = {
+						militia = {
+							x = 0
+							y = 0
+						}
+						militia = {
+							x = 0
+							y = 1
+						}
+						militia = {
+							x = 0
+							y = 2
+						}
+						militia = {
+							x = 1
+							y = 0
+						}
+						militia = {
+							x = 1
+							y = 1
+						}
+						militia = {
+							x = 1
+							y = 2
+						}
+					}
+					support = {
+						artillery = { x = 0 y = 0 }
+					}
+				}
+			}
+			if = {
+				limit = { NOT = { has_tech = improv_weapons } }
+				set_technology = {
+					improv_weapons = 1
+				}
+			}
+			if = {
+				limit = { NOT = { has_tech = improv_weapons_art } }
+				set_technology = {
+					improv_weapons_art = 1
+				}
+			}
+			FROM = {
+				set_state_flag = CHI_recruit_anti_japanese_militia_flag
+				create_unit = {
+					division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.05 start_experience_factor = 0.1"
+					count = 2
+					owner = CHI
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_worst
+				amount = 300
+			}
+			add_equipment_to_stockpile = {
+				type = artiliary_equipment_worst
+				amount = 25
 			}
 		}
 		ai_will_do = {

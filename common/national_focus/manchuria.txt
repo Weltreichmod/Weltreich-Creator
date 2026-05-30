@@ -301,6 +301,7 @@ focus_tree = {
 			NOT = { 611 = { is_fully_controlled_by = MAN } }
 			NOT = { 610 = { is_fully_controlled_by = MAN } }
 			NOT = { 715 = { is_fully_controlled_by = MAN } }
+			NOT = { 1023 = { is_fully_controlled_by = MAN } }
 			NOT = { 328 = { is_fully_controlled_by = MAN } }
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
@@ -587,7 +588,7 @@ focus_tree = {
 		cost = 4
 		available = {
 			is_subject = no
-			num_of_factories > 39
+			num_of_factories > 24
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		prerequisite = {
@@ -1077,7 +1078,7 @@ focus_tree = {
 		completion_reward = {
 			swap_ideas = {
 				remove_idea = MAN_broken_mandate_of_heaven
-				add_idea = MAN_broken_mandate_of_heaven_2
+				add_idea = MAN_broken_mandate_of_heaven_1
 			}
 		}
 	}
@@ -1195,7 +1196,7 @@ focus_tree = {
 		}
 		completion_reward = {
 			swap_ideas = {
-				remove_idea = MAN_broken_mandate_of_heaven
+				remove_idea = MAN_broken_mandate_of_heaven_1
 				add_idea = MAN_broken_mandate_of_heaven_2
 			}
 		}
@@ -2102,7 +2103,7 @@ focus_tree = {
 				has_army_manpower = {
 					size > 500000
 				}
-				num_of_factories > 34
+				num_of_factories > 24
 			}
 		}
 		completion_reward = {
@@ -2282,9 +2283,6 @@ focus_tree = {
 				uses = 1
 				category = support_tech
 			}
-			every_unit_leader = {
-				add_logistics = 1
-			}
 		}
 	}
 	
@@ -2377,7 +2375,7 @@ focus_tree = {
 				has_army_manpower = {
 					size > 500000
 				}
-				num_of_factories > 34
+				num_of_factories > 24
 			}
 		}
 		completion_reward = {
@@ -2499,36 +2497,6 @@ focus_tree = {
 				}
 				add_building_construction = {
 					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-			}
-			random_owned_controlled_state = {
-				limit = {
-					is_core_of = ROOT
-					free_building_slots = {
-						building = arms_factory
-						size > 0
-						include_locked = no
-					}
-				}
-				add_building_construction = {
-					type = arms_factory
-					level = 1
-					instant_build = yes
-				}
-			}
-			random_owned_controlled_state = {
-				limit = {
-					is_core_of = ROOT
-					free_building_slots = {
-						building = industrial_complex
-						size > 0
-						include_locked = no
-					}
-				}
-				add_building_construction = {
-					type = industrial_complex
 					level = 1
 					instant_build = yes
 				}
@@ -2669,8 +2637,8 @@ focus_tree = {
 	focus = {
 		id = MAN_incomplete_capital_relocation
 		icon = GFX_MAN_incomplete_capital_relocation
-		x = 10
-		y = 0
+		x = 20
+		y = 1
 		cost = 5
 		cancelable = no
 		available = {
@@ -2683,6 +2651,14 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = manchukou_wr.76
+			hidden_effect = {
+				if = {
+					limit = {
+						MON = { is_subject_of = MAN }
+					}
+					country_event = { id = manchukou_wr.143 days = 14 }
+				}
+			}
 		}
 		ai_will_do = {
 			factor = 100
@@ -2728,7 +2704,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			unlock_decision_category_tooltip = MAN_suppress_national_protection
-			set_variable = { MAN_suppress_national_protection_var = 90 }
+			set_variable = { MAN_suppress_national_protection_var = 70 }
 		}
 		ai_will_do = {
 			factor = 100
@@ -3020,6 +2996,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_RESEARCH }
 		completion_reward = {
 			add_timed_idea = { idea = MAN_new_learning_movement days = 100 }
+			add_research_slot = 1
 		}
 		ai_will_do = {
 			factor = 30
@@ -3063,9 +3040,6 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_expand_administration
-		}
-		prerequisite = {
-			focus = MAN_emergency_relief_measures
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
@@ -3125,7 +3099,7 @@ focus_tree = {
 
 					has_country_flag = MAN_609_infra_build_flag
 					has_country_flag = MAN_608_infra_build_flag
-					has_country_flag = MAN_MAN_614_infra_build_flag
+					has_country_flag = MAN_614_infra_build_flag
 					has_country_flag = MAN_597_infra_build_flag
 					has_country_flag = MAN_1016_infra_build_flag
 					has_country_flag = MAN_1017_infra_build_flag
@@ -3385,6 +3359,16 @@ focus_tree = {
 		cost = 5
 		available = {
 			is_subject = no
+			OR = {
+				CHI = { is_subject_of = JAP }
+				AND = {
+					960 = { is_owned_by = ROOT }
+					596 = { is_owned_by = ROOT }
+					592 = { is_owned_by = ROOT }
+					602 = { is_owned_by = ROOT }
+					595 = { is_owned_by = ROOT }
+				}
+			}
 		}
 		prerequisite = {
 			focus = MAN_sustainable_rural_society
@@ -3403,14 +3387,24 @@ focus_tree = {
 				add_idea = MAN_proven_mandate_of_heaven
 			}
 			remove_ideas = MAN_economy_japan
-			custom_effect_tooltip = MAN_resume_competition_with_japan_tt
-			hidden_effect = {
-				if = {
-					limit = {
-						NOT = { has_country_flag = third_sino_japanese_war_flag }
-					}
-					country_event = { id = manchukou_wr.87 days = 7 }
+			if = {
+				limit = {
+					CHI = { is_subject_of = JAP }
 				}
+				custom_effect_tooltip = MAN_resume_competition_with_japan_tt
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = { has_country_flag = third_sino_japanese_war_flag }
+						}
+						country_event = { id = manchukou_wr.87 days = 7 }
+					}
+				}
+			}
+			else = {
+				custom_effect_tooltip = MAN_gurisan_incident_tt
+				set_country_flag = anti_japanese_war_winner
+				mark_focus_tree_layout_dirty = yes
 			}
 		}
 		ai_will_do = {
@@ -3427,6 +3421,16 @@ focus_tree = {
 		cost = 5
 		available = {
 			is_subject = no
+			OR = {
+				CHI = { is_subject_of = JAP }
+				AND = {
+					960 = { is_owned_by = ROOT }
+					596 = { is_owned_by = ROOT }
+					592 = { is_owned_by = ROOT }
+					602 = { is_owned_by = ROOT }
+					595 = { is_owned_by = ROOT }
+				}
+			}
 		}
 		prerequisite = {
 			focus = MAN_sustainable_rural_society
@@ -3445,14 +3449,24 @@ focus_tree = {
 				add_idea = MAN_proven_mandate_of_heaven
 			}
 			remove_ideas = MAN_economy_japan
-			custom_effect_tooltip = MAN_resume_competition_with_japan_tt
-			hidden_effect = {
-				if = {
-					limit = {
-						NOT = { has_country_flag = third_sino_japanese_war_flag }
-					}
-					country_event = { id = manchukou_wr.87 days = 7 }
+			if = {
+				limit = {
+					CHI = { is_subject_of = JAP }
 				}
+				custom_effect_tooltip = MAN_resume_competition_with_japan_tt
+				hidden_effect = {
+					if = {
+						limit = {
+							NOT = { has_country_flag = third_sino_japanese_war_flag }
+						}
+						country_event = { id = manchukou_wr.87 days = 7 }
+					}
+				}
+			}
+			else = {
+				custom_effect_tooltip = MAN_gurisan_incident_tt
+				set_country_flag = anti_japanese_war_winner
+				mark_focus_tree_layout_dirty = yes
 			}
 		}
 		ai_will_do = {
@@ -3472,6 +3486,7 @@ focus_tree = {
 		}
 		allow_branch = {
 			has_country_flag = MAN_Zheng_Xiaoxu_almost_dead_flag
+			NOT = { has_country_flag = anti_japanese_war_winner }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -3543,7 +3558,7 @@ focus_tree = {
 		id = MAN_relocate_capital_beijing
 		icon = GFX_MAN_relocate_capital_beijing
 		x = 10
-		y = 0
+		y = 1
 		cost = 5
 		cancelable = no
 		available = {
@@ -3556,6 +3571,14 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = manchukou_wr.92
+			hidden_effect = {
+				if = {
+					limit = {
+						MON = { is_subject_of = MAN }
+					}
+					country_event = { id = manchukou_wr.143 days = 14 }
+				}
+			}
 		}
 		ai_will_do = {
 			factor = 100
@@ -3603,6 +3626,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			unlock_decision_category_tooltip = MAN_suppress_national_protection
+			set_variable = { MAN_suppress_national_protection_var = 70 }
 		}
 		ai_will_do = {
 			factor = 100
@@ -3624,7 +3648,6 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			country_event = manchukou_wr.92
 			swap_ideas = {
 				remove_idea = MAN_economic_paralysis3
 				add_idea = MAN_economic_paralysis2
@@ -3633,6 +3656,7 @@ focus_tree = {
 				remove_idea = MAN_intellectual_resistance4
 				add_idea = MAN_intellectual_resistance3
 			}
+			country_event = manchukou_wr.93
 		}
 		ai_will_do = {
 			factor = 100
@@ -3954,6 +3978,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = manchukou_wr.98
+			add_research_slot = 1
 		}
 		ai_will_do = {
 			factor = 6
@@ -4073,13 +4098,33 @@ focus_tree = {
 		cost = 5
 		available = {
 			always = no
+			OR = {
+				CHI = { is_subject_of = JAP }
+				AND = {
+					960 = { is_owned_by = ROOT }
+					596 = { is_owned_by = ROOT }
+					592 = { is_owned_by = ROOT }
+					602 = { is_owned_by = ROOT }
+					595 = { is_owned_by = ROOT }
+				}
+			}
 		}
 		prerequisite = {
 			focus = MAN_unify_the_continent
 		}
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
-			declare_war_on = { target = CHI type = puppet_wargoal_focus }
+			if = {
+				limit = {
+					CHI = { is_subject_of = JAP }
+				}
+				declare_war_on = { target = CHI type = puppet_wargoal_focus }
+			}
+			else = {
+				custom_effect_tooltip = MAN_gurisan_incident_tt
+				set_country_flag = anti_japanese_war_winner
+				mark_focus_tree_layout_dirty = yes
+			}
 		}
 		ai_will_do = {
 			factor = 6
@@ -4090,8 +4135,8 @@ focus_tree = {
 	focus = {
 		id = MAN_anti_japanese_victory
 		icon = GFX_MAN_anti_japanese_victory
-		x = 10
-		y = 0
+		x = 20
+		y = 2
 		cost = 1
 		available = {
 			is_subject = no
@@ -4104,8 +4149,17 @@ focus_tree = {
 			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		ai_will_do = {
+			factor = 6
+		}
 		completion_reward = {
 			country_event = manchukou_wr.106
+			every_state = {
+				limit = {
+					has_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+				remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+			}
 		}
 	}
 	
@@ -4123,6 +4177,9 @@ focus_tree = {
 			focus = MAN_anti_japanese_victory
 		}
 		search_filters = {  }
+		ai_will_do = {
+			factor = 6
+		}
 		completion_reward = {
 			country_event = manchukou_wr.107
 		}
@@ -4142,6 +4199,9 @@ focus_tree = {
 			focus = MAN_in_the_forbidden_city
 		}
 		search_filters = {  }
+		ai_will_do = {
+			factor = 6
+		}
 		completion_reward = {
 			country_event = manchukou_wr.108
 		}
@@ -4161,6 +4221,9 @@ focus_tree = {
 			focus = MAN_in_the_forbidden_city
 		}
 		search_filters = {  }
+		ai_will_do = {
+			factor = 6
+		}
 		completion_reward = {
 			country_event = manchukou_wr.109
 		}
@@ -4180,6 +4243,9 @@ focus_tree = {
 			focus = MAN_in_the_forbidden_city
 		}
 		search_filters = {  }
+		ai_will_do = {
+			factor = 6
+		}
 		completion_reward = {
 			add_timed_idea = { idea = MAN_liquidation_of_past = days = 365 }
 		}
@@ -4197,6 +4263,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_enthronement
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
@@ -4229,6 +4298,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_end_national_humiliation
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
 			add_ideas = manchukuo_wr_recruited_intellectuals
@@ -4250,6 +4322,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_end_national_humiliation
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = {  }
 		completion_reward = {
@@ -4282,6 +4357,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_enthronement
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = {  }
 		completion_reward = {
 			country_event = manchukou_wr.114
@@ -4301,6 +4379,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_peonies_in_bloom
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
 			unlock_decision_category_tooltip = MAN_territorial_restoration_category
@@ -4319,6 +4400,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_peonies_in_bloom
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
@@ -4348,6 +4432,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_veins_of_the_empire
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = manchukou_wr.117
@@ -4366,6 +4453,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_covered_by_heaven
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -4386,6 +4476,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_wearing_the_robe
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = manchukou_wr.119
@@ -4405,6 +4498,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_sky_grows_higher
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = manchukou_wr.120
@@ -4415,8 +4511,8 @@ focus_tree = {
 	focus = {
 		id = MAN_unification_of_all_under_heaven
 		icon = GFX_MAN_unification_of_all_under_heaven
-		x = 10
-		y = 0
+		x = 20
+		y = 2
 		cost = 1
 		available = {
 			is_subject = no
@@ -4428,9 +4524,18 @@ focus_tree = {
 				ruling_only = yes
 			}
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
 		completion_reward = {
 			country_event = manchukou_wr.121
+			every_state = {
+				limit = {
+					has_dynamic_modifier = { modifier = CHI_inefficient_administration }
+				}
+				remove_dynamic_modifier = { modifier = CHI_inefficient_administration }
+			}
 		}
 	}
 	
@@ -4446,6 +4551,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_unification_of_all_under_heaven
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_MANPOWER }
 		completion_reward = {
@@ -4466,6 +4574,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_unification_of_all_under_heaven
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = {  }
 		completion_reward = {
 			country_event = manchukou_wr.123
@@ -4485,6 +4596,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_unification_of_all_under_heaven
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = {  }
 		completion_reward = {
 			country_event = manchukou_wr.124
@@ -4503,6 +4617,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_beheading_the_pretender
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
@@ -4535,6 +4652,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_advancing_asia
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = manchukou_wr.125
@@ -4553,6 +4673,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_eradicating_old_evils
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
@@ -4573,6 +4696,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_beheading_the_pretender
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			custom_effect_tooltip = MAN_sangto_jumu_tt
@@ -4592,6 +4718,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_sangto_jumu
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
 			country_event = manchukou_wr.127
@@ -4601,7 +4730,7 @@ focus_tree = {
 	focus = {
 		id = MAN_bunseo_gaengyu
 		icon = GFX_MAN_bunseo_gaengyu
-		relative_position_id = MAN_sangto_jumu
+		relative_position_id = MAN_jirok_wima
 		x = 0
 		y = 1
 		cost = 2
@@ -4609,7 +4738,10 @@ focus_tree = {
 			is_subject = no
 		}
 		prerequisite = {
-			focus = MAN_sangto_jumu
+			focus = MAN_jirok_wima
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -4632,6 +4764,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_enthroning_the_living_god
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
@@ -4657,9 +4792,9 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = MAN_national_defense_state
-		icon = GFX_MAN_national_defense_state
-		relative_position_id = MAN_enthroning_the_living_god
+		id = MAN_great_asian_oneness
+		icon = GFX_MAN_great_asian_oneness
+		relative_position_id = MAN_national_defense_state
 		x = 0
 		y = 1
 		cost = 5
@@ -4667,11 +4802,14 @@ focus_tree = {
 			is_subject = no
 		}
 		prerequisite = {
-			focus = MAN_enthroning_the_living_god
+			focus = MAN_national_defense_state
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_MANPOWER }
 		completion_reward = {
-			add_ideas = MAN_national_defense_state
+			add_ideas = MAN_great_asian_oneness
 		}
 	}
 	
@@ -4687,6 +4825,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_enthroning_the_living_god
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -4706,6 +4847,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_opening_session
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -4729,6 +4873,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_eradicating_old_evils
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
 			unlock_decision_category_tooltip = MAN_railway_construction_category
@@ -4747,6 +4894,9 @@ focus_tree = {
 		}
 		prerequisite = {
 			focus = MAN_national_railway_network
+		}
+		ai_will_do = {
+			factor = 6
 		}
 		search_filters = { FOCUS_FILTER_STABILITY }
 		completion_reward = {
@@ -4767,6 +4917,9 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_greater_east_asia_pursuing_future
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = {  }
 		completion_reward = {
 			add_ideas = MAN_civilizational_superiority
@@ -4777,7 +4930,7 @@ focus_tree = {
 		id = MAN_world_final_war
 		icon = GFX_MAN_world_final_war
 		relative_position_id = MAN_great_asian_oneness
-		x = 0
+		x = 1
 		y = 1
 		cost = 6
 		available = {
@@ -4795,9 +4948,1682 @@ focus_tree = {
 		prerequisite = {
 			focus = MAN_veneration_of_greater_asian_civilization
 		}
+		ai_will_do = {
+			factor = 6
+		}
 		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
 		completion_reward = {
 			country_event = manchukou_wr.131
+		}
+	}
+	
+	focus = {
+		id = MAN_large_scale_navy
+		icon = GFX_MAN_large_scale_navy
+		relative_position_id = MAN_world_final_war
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_world_final_war
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = MAN_large_scale_navy
+		}
+	}
+	
+	focus = {
+		id = MAN_strike_air_force
+		icon = GFX_MAN_strike_air_force
+		relative_position_id = MAN_large_scale_navy
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_large_scale_navy
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_large_scale_navy
+				add_idea = MAN_large_scale_navy1
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_army_expansion
+		icon = GFX_MAN_army_expansion
+		relative_position_id = MAN_world_final_war
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_world_final_war
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = MAN_ishiwara_plan
+		}
+	}
+	
+	focus = {
+		id = MAN_flight_of_the_stars
+		icon = GFX_MAN_flight_of_the_stars
+		relative_position_id = MAN_army_expansion
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_army_expansion
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_ishiwara_plan
+				add_idea = MAN_ishiwara_plan1
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_world_final_war_two
+		icon = GFX_MAN_world_final_war_two
+		relative_position_id = MAN_strike_air_force
+		x = 1
+		y = 1
+		cost = 10
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = MAN_strike_air_force
+		}
+		prerequisite = {
+			focus = MAN_flight_of_the_stars
+		}
+		ai_will_do = {
+			factor = 0
+			modifier = {
+				factor = 100
+				date > 1970.1.1
+			}
+		}
+		search_filters = {  }
+		completion_reward = {
+			unlock_decision_category_tooltip = MAN_world_final_war_category
+		}
+	}
+	
+	#군사중점
+	focus = {
+		id = MAN_lessons_carved_in_bone
+		icon = GFX_MAN_lessons_carved_in_bone
+		x = 39
+		y = 3
+		cost = 2
+		available = {
+			is_subject = no
+			NEA = { exists = no }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = manchukou_wr.133
+		}
+	}
+	
+	focus = {
+		id = MAN_british_mission
+		icon = GFX_MAN_british_mission
+		relative_position_id = MAN_lessons_carved_in_bone
+		x = -9
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+			ENG = {
+				is_subject = no
+				exists = yes
+			}
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_lessons_carved_in_bone
+		}
+		mutually_exclusive = {
+			focus = MAN_french_mission
+		}
+		search_filters = {  }
+		completion_reward = {
+			MAN = {
+				add_opinion_modifier = {
+					target = ENG
+					modifier = medium_increase
+				}
+			}
+			ENG = {
+				add_opinion_modifier = {
+					target = MAN
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_british_advisors
+		icon = GFX_MAN_british_advisors
+		relative_position_id = MAN_british_mission
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			ENG = {
+				is_subject = no
+				exists = yes
+			}
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_british_mission
+		}
+		search_filters = {  }
+		completion_reward = {
+			show_ideas_tooltip = MAN_christopher_maltby
+		}
+	}
+	
+	focus = {
+		id = MAN_empires_way
+		icon = GFX_MAN_empires_way
+		relative_position_id = MAN_british_advisors
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_british_advisors
+		}
+		search_filters = {  }
+		completion_reward = {
+			every_unit_leader = {
+				add_planning = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_learning_overseas_tank_design
+		icon = GFX_MAN_learning_overseas_tank_design
+		relative_position_id = MAN_empires_way
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_empires_way
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_destruction_through_maneuver = yes
+			add_tech_bonus = {
+				name = MAN_learning_overseas_tank_design
+				bonus = 1
+				uses = 1
+				category = armor
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_expanding_war_research_department
+		icon = GFX_MAN_expanding_war_research_department
+		relative_position_id = MAN_learning_overseas_tank_design
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_learning_overseas_tank_design
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_infantry_reinforcement = yes
+			add_tech_bonus = {
+				name = MAN_learning_overseas_tank_design
+				bonus = 1
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_french_mission
+		icon = GFX_MAN_french_mission
+		relative_position_id = MAN_lessons_carved_in_bone
+		x = -7
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+			FRA = {
+				is_subject = no
+				exists = yes
+			}
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_lessons_carved_in_bone
+		}
+		mutually_exclusive = {
+			focus = MAN_british_mission
+		}
+		search_filters = {  }
+		completion_reward = {
+			MAN = {
+				add_opinion_modifier = {
+					target = FRA
+					modifier = medium_increase
+				}
+			}
+			FRA = {
+				add_opinion_modifier = {
+					target = MAN
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_french_advisors
+		icon = GFX_MAN_french_advisors
+		relative_position_id = MAN_french_mission
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			FRA = {
+				is_subject = no
+				exists = yes
+			}
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_french_mission
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = MAN_french_military_advisors
+		}
+	}
+	
+	focus = {
+		id = MAN_offensive_cult_education
+		icon = GFX_MAN_offensive_cult_education
+		relative_position_id = MAN_french_advisors
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_french_advisors
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_french_military_advisors
+				add_idea = MAN_french_military_advisors1
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_iron_horse
+		icon = GFX_MAN_iron_horse
+		relative_position_id = MAN_offensive_cult_education
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_offensive_cult_education
+		}
+		prerequisite = {
+			focus = MAN_old_doctrine_new_equipment
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = MAN_iron_horse
+				bonus = 1.5
+				uses = 2
+				category = armor
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_future_of_cavalry_rifles
+		icon = GFX_MAN_future_of_cavalry_rifles
+		relative_position_id = MAN_iron_horse
+		x = 0
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_iron_horse
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_french_military_advisors1
+				add_idea = MAN_french_military_advisors2
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_purchasing_overseas_weapons
+		icon = GFX_MAN_purchasing_overseas_weapons
+		relative_position_id = MAN_british_advisors
+		x = 1
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_british_advisors
+			focus = MAN_french_advisors
+		}
+		search_filters = {  }
+		completion_reward = {
+			custom_effect_tooltip = MAN_purchasing_overseas_weapons_tt
+		}
+	}
+	
+	focus = {
+		id = MAN_long_term_munitions_contract
+		icon = GFX_MAN_long_term_munitions_contract
+		relative_position_id = MAN_purchasing_overseas_weapons
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_purchasing_overseas_weapons
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_timed_idea = { idea = MAN_long_term_munitions_contract days = 180 }
+		}
+	}
+	
+	focus = {
+		id = MAN_arsenal_investment
+		icon = GFX_MAN_arsenal_investment
+		relative_position_id = MAN_long_term_munitions_contract
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_long_term_munitions_contract
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_arsenal_modernization
+		icon = GFX_MAN_arsenal_modernization
+		relative_position_id = MAN_arsenal_investment
+		x = 0
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_arsenal_investment
+		}
+		prerequisite = {
+			focus = MAN_expanding_war_research_department
+			focus = MAN_future_of_cavalry_rifles
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "Arms Against Tyranny"
+				}
+				#MATERIEL
+				every_military_industrial_organization = {
+					limit = {
+						has_mio_trait = MAN_production_line_modernization
+					}
+					unlock_mio_trait_tooltip = MAN_production_line_modernization
+					unlock_mio_trait_tooltip = MAN_rifle_reliability_improvement
+					unlock_mio_trait_tooltip = MAN_rifle_lethality_enhancement
+				}
+			}
+			else = {
+				show_ideas_tooltip = MAN_fengtian_arsenal_high
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_influence_of_zongshadang
+		icon = GFX_MAN_influence_of_zongshadang
+		relative_position_id = MAN_lessons_carved_in_bone
+		x = -1
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+			has_completed_focus = MAN_gongjin_qu
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_lessons_carved_in_bone
+		}
+		mutually_exclusive = {
+			focus = MAN_influence_of_kyohwakai
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ARMY_XP }
+		completion_reward = {
+			army_experience = 10
+			add_political_power = 50
+		}
+	}
+	
+	focus = {
+		id = MAN_reinforce_noble_duty
+		icon = GFX_MAN_reinforce_noble_duty
+		relative_position_id = MAN_influence_of_zongshadang
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_influence_of_zongshadang
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_way_of_steppe
+		icon = GFX_MAN_way_of_steppe
+		relative_position_id = MAN_reinforce_noble_duty
+		x = 0
+		y = 3
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_reinforce_noble_duty
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = MAN_mangudai_spirit
+		}
+	}
+	
+	focus = {
+		id = MAN_influence_of_kyohwakai
+		icon = GFX_MAN_influence_of_kyohwakai
+		relative_position_id = MAN_lessons_carved_in_bone
+		x = 1
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+			has_completed_focus = MAN_toward_datong_society
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_lessons_carved_in_bone
+		}
+		mutually_exclusive = {
+			focus = MAN_influence_of_zongshadang
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_ARMY_XP }
+		completion_reward = {
+			army_experience = 25
+			add_political_power = 10
+		}
+	}
+	
+	focus = {
+		id = MAN_leverage_human_networks
+		icon = GFX_MAN_leverage_human_networks
+		relative_position_id = MAN_influence_of_kyohwakai
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_influence_of_kyohwakai
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_japanese_advisors
+		icon = GFX_MAN_japanese_advisors
+		relative_position_id = MAN_leverage_human_networks
+		x = 0
+		y = 2
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_leverage_human_networks
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			add_ideas = MAN_heavy_weapon_optimization
+		}
+	}
+	
+	focus = {
+		id = MAN_heavy_gun_role
+		icon = GFX_MAN_heavy_gun_role
+		relative_position_id = MAN_japanese_advisors
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_japanese_advisors
+		}
+		prerequisite = {
+			focus = MAN_heavy_weapon_modernization
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_heavy_weapon_optimization
+				add_idea = MAN_heavy_weapon_optimization1
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_modernize_logistics_system
+		icon = GFX_MAN_modernize_logistics_system
+		relative_position_id = MAN_way_of_steppe
+		x = 1
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_way_of_steppe
+			focus = MAN_heavy_gun_role
+		}
+		search_filters = {  }
+		completion_reward = {
+			every_unit_leader = {
+				add_logistics = 1
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_cavalry_optimization
+		icon = GFX_MAN_cavalry_optimization
+		relative_position_id = MAN_influence_of_zongshadang
+		x = -3
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_influence_of_zongshadang
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = MAN_modern_guerrilla_warfare
+		}
+	}
+	
+	focus = {
+		id = MAN_old_doctrine_new_equipment
+		icon = GFX_MAN_old_doctrine_new_equipment
+		relative_position_id = MAN_cavalry_optimization
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_cavalry_optimization
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_modern_guerrilla_warfare
+				add_idea = MAN_modern_guerrilla_warfare1
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_swarm_tactics
+		icon = GFX_MAN_swarm_tactics
+		relative_position_id = MAN_old_doctrine_new_equipment
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_old_doctrine_new_equipment
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_modern_guerrilla_warfare1
+				add_idea = MAN_modern_guerrilla_warfare2
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_firearm_diversification
+		icon = GFX_MAN_firearm_diversification
+		relative_position_id = MAN_influence_of_zongshadang
+		x = -1
+		y = 2
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_influence_of_zongshadang
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = MAN_firearm_diversification
+				bonus = 1
+				uses = 2
+				category = infantry_weapons
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_guerrilla_specialization
+		icon = GFX_MAN_guerrilla_specialization
+		relative_position_id = MAN_firearm_diversification
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_firearm_diversification
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = MAN_guerrilla_specialization
+				bonus = 1
+				uses = 1
+				category = rangers_tech_cat
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_infantry_weapon_specialization
+		icon = GFX_MAN_infantry_weapon_specialization
+		relative_position_id = MAN_influence_of_kyohwakai
+		x = 2
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_influence_of_kyohwakai
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = MAN_infantry_weapon_specialization
+				bonus = 1
+				uses = 2
+				category = infantry_weapons
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_independent_special_units
+		icon = GFX_MAN_independent_special_units
+		relative_position_id = MAN_infantry_weapon_specialization
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_infantry_weapon_specialization
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = MAN_independent_special_units
+				bonus = 1
+				uses = 1
+				category = mountaineers_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_heavy_weapon_modernization
+		icon = GFX_MAN_heavy_weapon_modernization
+		relative_position_id = MAN_independent_special_units
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_independent_special_units
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = MAN_heavy_weapon_modernization
+				bonus = 2
+				uses = 1
+				category = artillery
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_new_national_defense_policy
+		icon = GFX_MAN_new_national_defense_policy
+		relative_position_id = MAN_influence_of_kyohwakai
+		x = 4
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_influence_of_kyohwakai
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+					instant_build = yes
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_future_combat_aspects
+		icon = GFX_MAN_future_combat_aspects
+		relative_position_id = MAN_new_national_defense_policy
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_new_national_defense_policy
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = MAN_future_combat_aspects
+				bonus = 2
+				uses = 1
+				category = cat_strategic_bomber
+			}
+			complete_special_project = sp:sp_air_intercontinental_bomber
+		}
+	}
+	
+	focus = {
+		id = MAN_toward_66
+		icon = GFX_MAN_toward_66
+		relative_position_id = MAN_future_combat_aspects
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_future_combat_aspects
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = MAN_toward_66
+				bonus = 1
+				uses = 1
+				category = nuclear
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_decisive_weapon_project
+		icon = GFX_MAN_decisive_weapon_project
+		relative_position_id = MAN_toward_66
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+			has_tech = atomic_research
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_toward_66
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_breakthrough_progress = {
+				specialization = specialization_nuclear
+				value = 0.3
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_cooperation_with_japan
+		icon = GFX_MAN_cooperation_with_japan
+		relative_position_id = MAN_lessons_carved_in_bone
+		x = 7
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+			JAP = {
+				is_subject = no
+				exists = yes
+			}
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_lessons_carved_in_bone
+		}
+		mutually_exclusive = {
+			focus = MAN_german_mission
+		}
+		search_filters = {  }
+		completion_reward = {
+			JAP = {
+				add_opinion_modifier = {
+					target = MAN
+					modifier = medium_increase
+				}
+			}
+			MAN = {
+				add_opinion_modifier = {
+					target = JAP
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_aviation_science_investment
+		icon = GFX_MAN_aviation_science_investment
+		relative_position_id = MAN_cooperation_with_japan
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_cooperation_with_japan
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_dlc = "By Blood Alone" } }
+				if = {
+					limit = { NOT = { has_tech = fighter1 } }
+					set_technology = { fighter1 = 1 }
+				}
+				else = {
+					add_tech_bonus = {
+						name = MAN_aviation_science_investment
+						bonus = 0.75
+						uses = 2
+						category = light_air
+					}
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						NOT = { has_tech = iw_small_airframe }
+						NOT = { has_tech = basic_small_airframe }
+					}
+					set_technology = { iw_small_airframe = 1 }
+					set_technology = { basic_small_airframe = 1 }
+				}
+				else_if = {
+					limit = {
+						NOT = { has_tech = basic_small_airframe }
+					}
+					set_technology = { basic_small_airframe = 1 }
+				}
+				else = {
+					add_tech_bonus = {
+						name = MAN_aviation_science_investment
+						bonus = 1
+						uses = 1
+						category = light_fighter
+					}
+				}
+				set_technology = { engines_1 = 1 }
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_tactical_bombing_focus
+		icon = GFX_MAN_tactical_bombing_focus
+		relative_position_id = MAN_aviation_science_investment
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_aviation_science_investment
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_dlc = "By Blood Alone" } }
+				if = {
+					limit = { NOT = { has_tech = tactical_bomber1 } }
+					if = {
+						limit = { NOT = { has_tech = early_bomber } }
+						set_technology = { early_bomber = 1 }
+					}
+					set_technology = { tactical_bomber1 = 1 }
+				}
+				else = {
+					add_tech_bonus = {
+						name = MAN_tactical_bombing_focus
+						bonus = 1
+						uses = 1
+						category = medium_air
+						category = heavy_air
+					}
+				}
+			}
+			else = {
+				if = {
+					limit = { NOT = { has_tech = basic_medium_airframe } }
+					if = {
+						limit = { NOT = { has_tech = iw_medium_airframe } }
+						set_technology = { iw_medium_airframe = 1 }
+					}
+					set_technology = { basic_medium_airframe = 1 }
+				}
+				else = {
+					add_tech_bonus = {
+						name = MAN_tactical_bombing_focus
+						bonus = 1
+						uses = 1
+						category = medium_air
+					}
+				}
+				set_temp_variable = { tech_bonus_count = 3 }
+				if = {
+					limit = { NOT = { has_tech = early_bombs } }
+					set_technology = { early_bombs = 1 }
+					add_to_temp_variable = { tech_bonus_count = -1 }
+				}
+				if = {
+					limit = { NOT = { has_tech = aa_lmg } }
+					set_technology = { aa_lmg = 1 }
+					add_to_temp_variable = { tech_bonus_count = -1 }
+				}
+				if = {
+					limit = { NOT = { has_tech = engines_1 } }
+					set_technology = { engines_1 = 1 }
+					add_to_temp_variable = { tech_bonus_count = -1 }
+				}
+				if = {
+					limit = { NOT = { has_tech = engines_2 } }
+					set_technology = { engines_2 = 1 }
+					add_to_temp_variable = { tech_bonus_count = -1 }
+				}
+				if = {
+					limit = { check_variable = { tech_bonus_count = 3 } }
+					add_tech_bonus = {
+						name = MAN_tactical_bombing_focus
+						bonus = 0.5
+						uses = 3 #doesn't accept variables
+						category = plane_modules_tech
+					}
+				}
+				else_if = {
+					limit = { check_variable = { tech_bonus_count = 2 } }
+					add_tech_bonus = {
+						name = MAN_tactical_bombing_focus
+						bonus = 0.75
+						uses = 2 #doesn't accept variables
+						category = plane_modules_tech
+					}
+				}
+				else_if = {
+					limit = { check_variable = { tech_bonus_count = 1 } }
+					add_tech_bonus = {
+						name = MAN_tactical_bombing_focus
+						bonus = 1
+						uses = 1 #doesn't accept variables
+						category = plane_modules_tech
+					}
+				}
+				create_equipment_variant = {
+					name = "M-10"
+					type = medium_plane_airframe_1
+					allow_without_tech = yes
+					parent_version = 0
+					modules = {
+						fixed_main_weapon_slot = medium_bomb_bay
+						fixed_auxiliary_weapon_slot_1 = medium_bomb_bay
+						engine_type_slot = engine_2_2x
+						special_type_slot_1 = lmg_defense_turret_2x
+					}
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = medium_plane_airframe
+				amount = 50
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_german_mission
+		icon = GFX_MAN_german_mission
+		relative_position_id = MAN_lessons_carved_in_bone
+		x = 9
+		y = 1
+		cost = 2
+		available = {
+			is_subject = no
+			GER = {
+				is_subject = no
+				exists = yes
+			}
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_lessons_carved_in_bone
+		}
+		mutually_exclusive = {
+			focus = MAN_cooperation_with_japan
+		}
+		search_filters = {  }
+		completion_reward = {
+			GER = {
+				add_opinion_modifier = {
+					target = MAN
+					modifier = medium_increase
+				}
+			}
+			MAN = {
+				add_opinion_modifier = {
+					target = GER
+					modifier = medium_increase
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_bavarian_aircraft_company_tour
+		icon = GFX_MAN_bavarian_aircraft_company_tour
+		relative_position_id = MAN_german_mission
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_german_mission
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_dlc = "By Blood Alone" } }
+				if = {
+					limit = { NOT = { has_tech = fighter1 } }
+					set_technology = { fighter1 = 1 }
+				}
+				else = {
+					add_tech_bonus = {
+						name = MAN_bavarian_aircraft_company_tour
+						bonus = 0.75
+						uses = 2
+						category = light_air
+					}
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						NOT = { has_tech = iw_small_airframe }
+						NOT = { has_tech = basic_small_airframe }
+					}
+					set_technology = { iw_small_airframe = 1 }
+					set_technology = { basic_small_airframe = 1 }
+				}
+				else_if = {
+					limit = {
+						NOT = { has_tech = basic_small_airframe }
+					}
+					set_technology = { basic_small_airframe = 1 }
+				}
+				else = {
+					add_tech_bonus = {
+						name = MAN_bavarian_aircraft_company_tour
+						bonus = 1
+						uses = 1
+						category = light_fighter
+					}
+				}
+				set_technology = { engines_1 = 1 }
+				set_technology = { aa_lmg = 1 }
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_cas_focus
+		icon = GFX_MAN_cas_focus
+		relative_position_id = MAN_bavarian_aircraft_company_tour
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_bavarian_aircraft_company_tour
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_dlc = "By Blood Alone" } }
+				if = {
+					limit = { NOT = { has_tech = iw_small_airframe } }
+					set_technology = { iw_small_airframe = 1 }
+				}
+				else = {
+					add_tech_bonus = {
+						name = MAN_cas_focus
+						bonus = 1
+						uses = 1
+						category = air_equipment
+					}
+				}
+				if = {
+					limit = { NOT = { has_tech = early_bombs } }
+					set_technology = { early_bombs = 1 }
+				}
+				else = {
+					add_tech_bonus = {
+						name = MAN_cas_focus
+						bonus = 1
+						uses = 1
+						category = plane_modules_tech
+					}
+				}
+				custom_effect_tooltip = tooltip_white_line
+				create_equipment_variant = {
+					name = "A-3"
+					type = small_plane_cas_airframe_0
+					modules = {
+						fixed_main_weapon_slot = bomb_locks
+						fixed_auxiliary_weapon_slot_1 = light_mg_2x
+						engine_type_slot = engine_1_1x
+					}
+				}
+			}
+			else = {
+				if = {
+					limit = { NOT = { has_tech = CAS1 } }
+					set_technology = { CAS1 = 1 }
+				}
+				else = {
+					add_tech_bonus = {
+						name = MAN_cas_focus
+						bonus = 1
+						uses = 1
+						category = cas_bomber
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_establishment_of_independent_air_force
+		icon = GFX_MAN_establishment_of_independent_air_force
+		relative_position_id = MAN_tactical_bombing_focus
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_tactical_bombing_focus
+			focus = MAN_cas_focus
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = MAN_manchu_mongol_air_force
+		}
+	}
+	
+	focus = {
+		id = MAN_localization_of_raw_materials
+		icon = GFX_MAN_localization_of_raw_materials
+		relative_position_id = MAN_establishment_of_independent_air_force
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_establishment_of_independent_air_force
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = MAN_manchu_mongol_air_force
+				add_idea = MAN_manchu_mongol_air_force1
+			}
+		}
+	}
+	
+	focus = {
+		id = MAN_synthetic_rubber
+		icon = GFX_MAN_synthetic_rubber
+		relative_position_id = MAN_localization_of_raw_materials
+		x = 0
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = MAN_localization_of_raw_materials
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_tech = synth_oil_experiments } }
+				set_technology = { synth_oil_experiments = 1 }
+			}
+			else = {
+				add_tech_bonus = {
+					name = MAN_synthetic_rubber
+					bonus = 1
+					uses = 1
+					category = synth_resources
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_extra_state_shared_building_slots = 1
+				add_building_construction = {
+					type = synthetic_refinery
+					level = 1
+					instant_build = yes
+				}
+			}
 		}
 	}
 }

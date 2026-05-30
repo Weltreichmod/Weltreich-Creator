@@ -16,11 +16,12 @@ focus_tree = {
 		modifier = {
 			add = 10
 			original_tag = CHI
+			NOT = { is_subject_of = JAP }
 		}
 	}
 
 	continuous_focus_position = {
-		x = 300
+		x = 100
 		y = 1700
 	}
 
@@ -431,14 +432,18 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_MANPOWER }
 		completion_reward = {
-			country_event = china_wr.14
-			hidden_effect = {
-				if = {
-					limit = {
-						CHI = { is_ai = yes }
-					}
-					country_event = { id = china_wr.2000 days = 10 }
-				}
+			#country_event = china_wr.14
+			#hidden_effect = {
+			#	if = {
+			#		limit = {
+			#			CHI = { is_ai = yes }
+			#		}
+			#		country_event = { id = china_wr.2000 days = 10 }
+			#	}
+			#}
+			swap_ideas = {
+				remove_idea = CHI_sichuan_famine_2
+				add_idea = CHI_sichuan_famine_3_b
 			}
 		}
 	}
@@ -454,10 +459,11 @@ focus_tree = {
 			factor = 6
 		}
 		available = {
-			custom_trigger_tooltip = {
-				tooltip = CHI_utilize_yangtze_network_focus_trigger_tt
-				has_country_flag = done_help_flag
-			}
+			is_subject = no
+			#custom_trigger_tooltip = {
+			#	tooltip = CHI_utilize_yangtze_network_focus_trigger_tt
+			#	has_country_flag = done_help_flag
+			#}
 		}
 		prerequisite = {
 			focus = CHI_emergency_relief_transport_focus
@@ -573,6 +579,10 @@ focus_tree = {
 		completion_reward = {
 			country_event = { id = china_wr.21 days = 3 }
 			country_event = china_wr.36
+			hidden_effect = {
+				country_event = { id = china_wr.272 days = 29 }
+				country_event = { id = china_wr.339 days = 15 }
+			}
 		}
 	}
 	
@@ -3003,6 +3013,7 @@ focus_tree = {
 			factor = 6
 		}
 		completion_reward = {
+			country_event = china_wr.216
 		}
 	}
 	
@@ -3027,6 +3038,7 @@ focus_tree = {
 			factor = 6
 		}
 		completion_reward = {
+			country_event = china_wr.274
 		}
 	}
 	
@@ -4448,6 +4460,7 @@ focus_tree = {
 			716 = { add_claim_by = CHI }
 			961 = { add_claim_by = CHI }
 			715 = { add_claim_by = CHI }
+			1023 = { add_claim_by = CHI }
 			328 = { add_claim_by = CHI }
 			999 = { add_claim_by = CHI }
 			717 = { add_claim_by = CHI }
@@ -4472,7 +4485,11 @@ focus_tree = {
 			focus = CHI_northeast_sphere_focus
 		}
 		ai_will_do = {
-			factor = 6
+			factor = 0
+			modifier = {
+				add = 10
+				date > 1940.12.1
+			}
 		}
 		will_lead_to_war_with = MAN
 		completion_reward = {
@@ -4668,8 +4685,12 @@ focus_tree = {
 				limit = {
 					has_country_flag = CHI_cao_kun_constitution_flag
 				}
+				complete_national_focus = CHI_amend_cao_kun_constitution
 			}
-			else = {
+			if = {
+				limit = {
+					has_country_flag = CHI_cai_e_constitution_flag
+				}
 				complete_national_focus = CHI_cai_e_constitution_focus
 			}
 		}
@@ -4696,6 +4717,7 @@ focus_tree = {
 			factor = 6
 		}
 		completion_reward = {
+			country_event = china_wr.279
 		}
 	}
 	
@@ -10365,6 +10387,1073 @@ focus_tree = {
 				CHI_backward_military_modifier_naval_invasion_capacity = 3
 				tooltip = naval_invasion_capacity_tt
 			}
+		}
+	}
+	
+	#중일전쟁 중점
+	focus = {
+		id = CHI_unsparing_sacrifice
+		icon = GFX_CHI_unsparing_sacrifice
+		relative_position_id = CHI_chinas_just_voice_focus
+		x = 4
+		y = 2
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 4
+		allow_branch = {
+			has_country_flag = chinese_civil_war_flag
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			country_event = china_wr.335
+		}
+	}
+	
+	focus = {
+		id = CHI_mighty_river_flows_east
+		icon = GFX_CHI_mighty_river_flows_east
+		relative_position_id = CHI_unsparing_sacrifice
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 5
+		prerequisite = {
+			focus = CHI_unsparing_sacrifice
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			add_to_variable = {
+				CHI_anti_japanese_national_salvation_production_speed_arms_factory_factor = 0.15
+				tooltip = production_speed_arms_factory_factor_tt
+			}
+			add_to_variable = {
+				CHI_anti_japanese_national_salvation_production_speed_industrial_complex_factor = 0.05
+				tooltip = production_speed_industrial_complex_factor_tt
+			}
+			if = {
+				limit = {
+					744 = { is_controlled_by = CHI }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 744 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					748 = { is_controlled_by = CHI }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 748 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					755 = { is_controlled_by = CHI }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 755 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					752 = { is_controlled_by = CHI }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 752 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					605 = { is_controlled_by = CHI }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 605 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_hundred_thousand_troops
+		icon = GFX_CHI_hundred_thousand_troops
+		relative_position_id = CHI_mighty_river_flows_east
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 2
+		prerequisite = {
+			focus = CHI_mighty_river_flows_east
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			unlock_decision_category_tooltip = CHI_recruit_anti_japanese_militia
+		}
+	}
+	
+	focus = {
+		id = CHI_dwarf_pirates_knowledge
+		icon = GFX_CHI_dwarf_pirates_knowledge
+		relative_position_id = CHI_mighty_river_flows_east
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 3
+		prerequisite = {
+			focus = CHI_mighty_river_flows_east
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			add_to_variable = {
+				CHI_anti_japanese_national_salvation_army_strength_factor = 0.1
+				tooltip = army_strength_factor_tt
+			}
+			add_to_variable = {
+				CHI_anti_japanese_national_salvation_army_org_factor = 0.1
+				tooltip = army_org_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_who_secures_the_border
+		icon = GFX_CHI_who_secures_the_border
+		relative_position_id = CHI_hundred_thousand_troops
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 4
+		prerequisite = {
+			focus = CHI_hundred_thousand_troops
+		}
+		prerequisite = {
+			focus = CHI_dwarf_pirates_knowledge
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = CHI_railway_guns
+			add_equipment_to_stockpile = {
+				type = train_equipment
+				amount = 30
+				producer = CHI
+			}
+			add_tech_bonus = {
+				name = motorized_bonus
+				ahead_reduction = 2
+				uses = 1
+				category = motorized_equipment
+			}
+			IF = {
+				limit = {
+					has_tech = motorised_infantry
+				}
+				add_equipment_to_stockpile = { 
+					type = motorized_equipment
+					amount = 150
+				}
+			}
+			if = {
+				limit = { has_dlc = "No Step Back" }
+				if = {
+					limit = { NOT = { has_tech = armored_train } }
+					set_technology = { armored_train = 1 }
+				}
+				if = {
+					limit = { NOT = { has_tech = railway_gun } }
+					set_technology = { railway_gun = 1 }
+				}
+				create_railway_gun = {
+					equipment = railway_gun_equipment_1
+					name = "Fuxing"
+				}
+				create_railway_gun = {
+					equipment = railway_gun_equipment_1
+					name = "Hexie"
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_ten_thousand_li_expedition
+		icon = GFX_CHI_ten_thousand_li_expedition
+		relative_position_id = CHI_unsparing_sacrifice
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 4
+		prerequisite = {
+			focus = CHI_unsparing_sacrifice
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			enable_tech_the_myriad_torrent = yes
+		}
+	}
+	
+	focus = {
+		id = CHI_expelling_invaders
+		icon = GFX_CHI_expelling_invaders
+		relative_position_id = CHI_ten_thousand_li_expedition
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 4
+		prerequisite = {
+			focus = CHI_ten_thousand_li_expedition
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			enable_tech_storming_the_azure_sky = yes
+		}
+	}
+	
+	focus = {
+		id = CHI_transcending_life_and_death
+		icon = GFX_CHI_transcending_life_and_death
+		relative_position_id = CHI_ten_thousand_li_expedition
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 3
+		prerequisite = {
+			focus = CHI_ten_thousand_li_expedition
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			add_timed_idea = { idea = CHI_transcending_life_and_death days = 150 }
+		}
+	}
+	
+	focus = {
+		id = CHI_vow_of_the_patriot
+		icon = GFX_CHI_vow_of_the_patriot
+		relative_position_id = CHI_expelling_invaders
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 3
+		prerequisite = {
+			focus = CHI_expelling_invaders
+		}
+		prerequisite = {
+			focus = CHI_transcending_life_and_death
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			add_ideas = CHI_vow_of_the_patriot
+		}
+	}
+	
+	#전후중점
+	focus = {
+		id = CHI_yu_guo_tian_qing
+		icon = GFX_CHI_yu_guo_tian_qing
+		relative_position_id = CHI_chinas_just_voice_focus
+		x = -7
+		y = 6
+		ai_will_do = {
+			factor = 15
+		}
+		cost = 2
+		allow_branch = {
+			has_country_flag = chinese_civil_war_flag
+		}
+		available = {
+			NOT = { has_global_flag = chinese_civil_war }
+			has_country_flag = sino_japanese_war_winner
+			is_subject = no
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
+		completion_reward = {
+			country_event = china_wr.280
+		}
+	}
+	
+	focus = {
+		id = CHI_one_belt
+		icon = GFX_CHI_one_belt
+		relative_position_id = CHI_yu_guo_tian_qing
+		x = -5
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CHI_yu_guo_tian_qing
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = { has_completed_focus = CHI_one_road }
+				}
+				unlock_decision_category_tooltip = CHI_one_belt_one_road_category
+			}
+			custom_effect_tooltip = CHI_one_belt_tt
+		}
+	}
+	
+	focus = {
+		id = CHI_sichuan_yunnan_railway
+		icon = GFX_CHI_sichuan_yunnan_railway
+		relative_position_id = CHI_one_belt
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+			controls_state = 748
+			controls_state = 1007
+			controls_state = 603
+			controls_state = 325
+			controls_state = 747
+		}
+		prerequisite = {
+			focus = CHI_one_belt
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_sichuan_yunnan_railway_tt
+		}
+	}
+	
+	focus = {
+		id = CHI_construct_burma_road
+		icon = GFX_CHI_construct_burma_road
+		relative_position_id = CHI_one_belt
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+			has_global_flag = sichan_yunnan_line_flag
+			747 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			640 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+		}
+		prerequisite = {
+			focus = CHI_one_belt
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					747 = { is_owned_by = CHI }
+					640 = { is_owned_by = CHI }
+				}
+				set_country_flag = CHI_construct_burma_road_flag
+				custom_effect_tooltip = CHI_construct_burma_road_tt
+			}
+			else = {
+				every_country = {
+					limit = {
+						OR = {
+							owns_state = 747
+							owns_state = 640
+						}
+						NOT = { original_tag = CHI }
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = we_are_in_one_one_way_flag }
+						}
+						country_event = china_wr.281
+					}
+					else = {
+						country_event = china_wr.290
+						CHI = { country_event = china_wr.290 }
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_trans_indian_subcontinent
+		icon = GFX_CHI_trans_indian_subcontinent
+		relative_position_id = CHI_sichuan_yunnan_railway
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+			has_global_flag = yunnan_bumma_line_flag
+			747 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			288 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			430 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			996 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			426 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			436 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			429 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+		}
+		prerequisite = {
+			focus = CHI_sichuan_yunnan_railway
+		}
+		prerequisite = {
+			focus = CHI_construct_burma_road
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_trans_indian_subcontinent_decision_tt
+			if = {
+				limit = {
+					747 = { is_owned_by = CHI }
+					288 = { is_owned_by = CHI }
+					430 = { is_owned_by = CHI }
+					996 = { is_owned_by = CHI }
+					426 = { is_owned_by = CHI }
+					436 = { is_owned_by = CHI }
+					429 = { is_owned_by = CHI }
+				}
+				set_country_flag = CHI_trans_indian_subcontinent_flag
+				custom_effect_tooltip = CHI_trans_indian_subcontinent_tt
+			}
+			else = {
+				every_country = {
+					limit = {
+						OR = {
+							owns_state = 747
+							owns_state = 288
+							owns_state = 430
+							owns_state = 996
+							owns_state = 426
+							owns_state = 436
+							owns_state = 429
+						}
+						NOT = { original_tag = CHI }
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = we_are_in_one_one_way_flag }
+						}
+						set_country_flag = will_you_join_us_india_flag
+						country_event = china_wr.284
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_trans_central_asia
+		icon = GFX_CHI_trans_central_asia
+		relative_position_id = CHI_trans_indian_subcontinent
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+			617 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			586 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+		}
+		prerequisite = {
+			focus = CHI_trans_indian_subcontinent
+			focus = CHI_ports_of_singapore
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_trans_central_asia_decision_tt
+			if = {
+				limit = {
+					617 = { is_owned_by = CHI }
+					586 = { is_owned_by = CHI }
+				}
+				set_country_flag = CHI_trans_central_asia_flag
+				custom_effect_tooltip = CHI_trans_central_asia_tt
+			}
+			else = {
+				every_country = {
+					limit = {
+						OR = {
+							owns_state = 617
+							owns_state = 586
+						}
+						NOT = { original_tag = CHI }
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = we_are_in_one_one_way_flag }
+						}
+						set_country_flag = will_you_join_us_central_flag
+						country_event = china_wr.299
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_connect_moscow
+		icon = GFX_CHI_connect_moscow
+		relative_position_id = CHI_trans_central_asia
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+			has_global_flag = sikang_central_line_flag
+			586 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			732 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			405 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+		}
+		prerequisite = {
+			focus = CHI_trans_central_asia
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			custom_effect_tooltip = CHI_connect_moscow_decision_tt
+			if = {
+				limit = {
+					586 = { is_owned_by = CHI }
+					732 = { is_owned_by = CHI }
+					405 = { is_owned_by = CHI }
+				}
+				set_country_flag = CHI_connect_moscow_flag
+				custom_effect_tooltip = CHI_connect_moscow_tt
+			}
+			else = {
+				every_country = {
+					limit = {
+						OR = {
+							owns_state = 586
+							owns_state = 732
+							owns_state = 405
+						}
+						NOT = { original_tag = CHI }
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = we_are_in_one_one_way_flag }
+						}
+						set_country_flag = will_you_join_us_moscow_flag
+						country_event = china_wr.305
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_one_road
+		icon = GFX_CHI_one_road
+		relative_position_id = CHI_yu_guo_tian_qing
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CHI_yu_guo_tian_qing
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					NOT = { has_completed_focus = CHI_one_belt }
+				}
+				unlock_decision_category_tooltip = CHI_one_belt_one_road_category
+			}
+			custom_effect_tooltip = CHI_one_road_tt
+		}
+	}
+	
+	focus = {
+		id = CHI_hanoi_and_saigon
+		icon = GFX_CHI_hanoi_and_saigon
+		relative_position_id = CHI_one_road
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+			992 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+		}
+		prerequisite = {
+			focus = CHI_one_road
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					992 = { is_owned_by = CHI }
+				}
+				set_country_flag = CHI_hanoi_and_saigon_flag
+				custom_effect_tooltip = CHI_hanoi_and_saigon_tt
+			}
+			else = {
+				every_country = {
+					limit = {
+						owns_state = 992
+						NOT = { original_tag = CHI }
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = we_are_in_one_one_way_flag }
+						}
+						country_event = china_wr.291
+					}
+					else = {
+						country_event = china_wr.294
+						CHI = { country_event = china_wr.294 }
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_ports_of_singapore
+		icon = GFX_CHI_ports_of_singapore
+		relative_position_id = CHI_hanoi_and_saigon
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+			980 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			OR = {
+				has_country_flag = cant_allow_saigong_flag
+				has_global_flag = guangdong_saigong_line_flag
+			}
+		}
+		prerequisite = {
+			focus = CHI_hanoi_and_saigon
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					980 = { is_owned_by = CHI }
+				}
+				set_country_flag = CHI_ports_of_singapore_flag
+				custom_effect_tooltip = CHI_ports_of_singapore_tt
+			}
+			else = {
+				every_country = {
+					limit = {
+						owns_state = 980
+						NOT = { original_tag = CHI }
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = we_are_in_one_one_way_flag }
+						}
+						country_event = china_wr.295
+					}
+					else = {
+						country_event = china_wr.298
+						CHI = { country_event = china_wr.298 }
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_bridgehead_of_indian_ocean
+		icon = GFX_CHI_bridgehead_of_indian_ocean
+		relative_position_id = CHI_ports_of_singapore
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+			996 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			429 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			OR = {
+				has_country_flag = cant_allow_singapore_flag
+				has_global_flag = saigong_singapor_line_flag
+			}
+		}
+		prerequisite = {
+			focus = CHI_ports_of_singapore
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					996 = { is_owned_by = CHI }
+					429 = { is_owned_by = CHI }
+				}
+				set_country_flag = CHI_ports_of_singapore_flag
+				custom_effect_tooltip = CHI_ports_of_singapore_tt
+			}
+			else = {
+				every_country = {
+					limit = {
+						owns_state = 996
+						NOT = { original_tag = CHI }
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = we_are_in_one_one_way_flag }
+						}
+						country_event = china_wr.311
+					}
+					else = {
+						country_event = china_wr.314
+						CHI = { country_event = china_wr.314 }
+					}
+				}
+				every_country = {
+					limit = {
+						owns_state = 429
+						NOT = { original_tag = CHI }
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = we_are_in_one_one_way_flag }
+						}
+						country_event = china_wr.315
+					}
+					else = {
+						country_event = china_wr.318
+						CHI = { country_event = china_wr.318 }
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_all_roads_lead_to_rome
+		icon = GFX_CHI_all_roads_lead_to_rome
+		relative_position_id = CHI_bridgehead_of_indian_ocean
+		x = 0
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+			945 = {
+				owner = {
+					NOT = {
+						has_war_with = ROOT
+					}
+				}
+			}
+			AND = {
+				OR = {
+					has_country_flag = cant_allow_calcutta_flag
+					has_global_flag = singapor_calcutta_line_flag
+				}
+				OR = {
+					has_country_flag = cant_allow_bombay_flag
+					has_global_flag = calcutta_mumbai_line_flag
+				}
+			}
+		}
+		prerequisite = {
+			focus = CHI_bridgehead_of_indian_ocean
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					945 = { is_owned_by = CHI }
+				}
+				set_country_flag = CHI_ports_of_rome_flag
+				custom_effect_tooltip = CHI_ports_of_rome_tt
+			}
+			else = {
+				every_country = {
+					limit = {
+						owns_state = 945
+						NOT = { original_tag = CHI }
+					}
+					if = {
+						limit = {
+							NOT = { has_country_flag = we_are_in_one_one_way_flag }
+						}
+						country_event = china_wr.319
+					}
+					else = {
+						country_event = china_wr.322
+						CHI = { country_event = china_wr.322 }
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_20th_century_silk_road
+		icon = GFX_CHI_20th_century_silk_road
+		relative_position_id = CHI_connect_moscow
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+			AND = {
+				OR = {
+					has_country_flag = cant_allow_rome_flag
+					has_global_flag = CHI_ports_of_rome_flag
+				}
+				OR = {
+					has_global_flag = central_moscow_line_flag
+					has_country_flag = CHI_connect_moscow_refuse_flag
+					has_country_flag = CHI_trans_central_asia_refuse_flag
+				}
+			}
+		}
+		prerequisite = {
+			focus = CHI_connect_moscow
+			focus = CHI_all_roads_lead_to_rome
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = china_wr.336
+			custom_effect_tooltip = CHI_20th_century_silk_road_tt
+		}
+	}
+	
+	focus = {
+		id = CHI_world
+		icon = GFX_CHI_world
+		relative_position_id = CHI_yu_guo_tian_qing
+		x = 5
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CHI_yu_guo_tian_qing
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = china_wr.340
 		}
 	}
 }

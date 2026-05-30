@@ -1,4 +1,5 @@
 ﻿add_namespace = manchukou_wr
+add_namespace = collapsed_manchuria
 add_namespace = chi_border_conflict
 
 # Manchukou demands warlord be puppeted
@@ -1770,7 +1771,7 @@ country_event = {
 		JAP = { add_to_faction = MAN }
 		add_ideas = MAN_treaty_of_harbin
 		JAP = { add_ideas = MAN_treaty_of_harbin }
-		ai_chance = { 
+		ai_chance = {
 			base = 10
 		}
 	}
@@ -1866,6 +1867,10 @@ country_event = {
 			target = MON
 			transfer_troops = yes
 		}
+		MON = {
+			retire_character = MON_togs_ochiryn_namnansuren
+			enable_country_integration_60_compliance = yes
+		}
 		ai_chance = { 
 			base = 10
 		}
@@ -1888,6 +1893,13 @@ country_event = {
 			set_cosmetic_tag = MAN_MON
 			retire_character = MON_togs_ochiryn_namnansuren
 			enable_country_integration_60_compliance = yes
+		}
+		every_state = {
+			limit = {
+				is_core_of = MON
+				is_owned_by = MAN
+			}
+			transfer_state_to = MON
 		}
 		ai_chance = { 
 			base = 1
@@ -2039,7 +2051,6 @@ country_event = {
 	option = {
 		name = manchukou_wr.80.a
 		add_ideas = MAN_stable_agricultural_base
-		clr_country_flag = MAN_royal_way_development_category_flag
 		ai_chance = { 
 			base = 10
 		}
@@ -2584,19 +2595,8 @@ country_event = {
 					is_chinese_area = yes
 					state = 524
 				}
-				controller = {
-					is_chinese_country = yes
-				}
 			}
-			controller = {
-				if = {
-					limit = { is_subject = yes }
-					overlord = { transfer_state = PREV.PREV }
-				}
-				else = {
-					transfer_state = PREV
-				}
-			}
+			transfer_state_to = MAN
 		}
 		ROOT = {
 			if = {
@@ -2629,6 +2629,29 @@ country_event = {
 			}
 			white_peace = JAP
 		}
+		MAN = {
+			every_owned_state = {
+				limit = {
+					NOT = { is_core_of = MAN } # 이미 핵심 주인 곳은 제외
+				}
+				enable_state_integration_60_compliance = yes
+			}
+			CHI = { enable_country_integration_60_compliance = yes }
+			set_country_flag = anti_japanese_war_winner
+			if = {
+				limit = {
+					has_country_leader = {
+						character = MAN_Zheng_Xiaoxu
+						ruling_only = yes
+					}
+				}
+				complete_national_focus = MAN_anti_japanese_victory
+			}
+			else = {
+				complete_national_focus = MAN_unification_of_all_under_heaven
+			}
+			mark_focus_tree_layout_dirty = yes
+		}
 		ai_chance = {
 			base = 10
 		}
@@ -2656,36 +2679,36 @@ country_event = {
 	}
 }
 
-country_event = {
-	id = manchukou_wr.105
-	title = manchukou_wr.105.t
-	desc = manchukou_wr.105.d
-	picture = GFX_report_event_generic_troops_in_iraq
-	is_triggered_only = yes
-	option = {
-		name = manchukou_wr.105.a
-		MAN = {
-			if = {
-				imit = {
-					has_dlc = "Together for Victory"
-					GSM = { exists = yes }
-				}
-				set_autonomy = {
-					target = GSM
-					autonomous_state = autonomy_chinese_tartary
-					freedom_level = 0.5
-				}
-				else = {
-					puppet = GSM
-				}
-			}
-		}
-		GSM = { set_cosmetic_tag = under_MAN }
-		ai_chance = {
-			base = 10
-		}
-	}
-}
+#country_event = {
+#	id = manchukou_wr.105
+#	title = manchukou_wr.105.t
+#	desc = manchukou_wr.105.d
+#	picture = GFX_report_event_generic_troops_in_iraq
+#	is_triggered_only = yes
+#	option = {
+#		name = manchukou_wr.105.a
+#		MAN = {
+#			if = {
+#				imit = {
+#					has_dlc = "Together for Victory"
+#					GSM = { exists = yes }
+#				}
+#				set_autonomy = {
+#					target = GSM
+#					autonomous_state = autonomy_chinese_tartary
+#					freedom_level = 0.5
+#				}
+#				else = {
+#					puppet = GSM
+#				}
+#			}
+#		}
+#		GSM = { set_cosmetic_tag = under_MAN }
+#		ai_chance = {
+#			base = 10
+#		}
+#	}
+#}
 
 country_event = {
 	id = manchukou_wr.106
@@ -3150,6 +3173,675 @@ country_event = {
 }
 
 country_event = {
+	id = manchukou_wr.132
+	title = manchukou_wr.132.t
+	desc = manchukou_wr.132.d
+	is_triggered_only = yes
+	picture = GFX_JAP_kanzi
+	option = {
+		name = manchukou_wr.132.a
+		custom_effect_tooltip = MAN_kanzi_ending_tt
+		hidden_effect = { scoped_play_song = "WR_ENDING_MAN_Kanzi" }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.133
+	title = manchukou_wr.133.t
+	desc = manchukou_wr.133.d
+	is_triggered_only = yes
+	picture = GFX_report_event_japan_army_mountainside
+	option = {
+		name = manchukou_wr.133.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.134
+	title = manchukou_wr.134.t
+	desc = manchukou_wr.134.d
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.134.a
+		effect_tooltip = {
+			MAN = {
+				send_equipment = {
+					target = ROOT
+					type = infantry_equipment
+					amount = 500
+				}
+				send_equipment = {
+					target = ROOT
+					type = artillery_equipment
+					amount = 50
+				}
+			}
+		}
+		MAN = { country_event = china_wr.170 }
+		custom_effect_tooltip = CHI_support_decision_event_2_tt
+		ai_chance = {
+			base = 0
+			modifier = {
+				add = 100
+				OR = {
+					stockpile_ratio = {
+						archetype = infantry_equipment
+						ratio < 0.5
+					}
+					stockpile_ratio = {
+						archetype = artillery_equipment
+						ratio < 0.5
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = manchukou_wr.134.b
+		MAN = { country_event = china_wr.171 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.135
+	title = manchukou_wr.135.t
+	desc = manchukou_wr.135.d
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.135.a
+		MAN = {
+			send_equipment = {
+				target = FROM
+				type = infantry_equipment
+				amount = 500
+			}
+			send_equipment = {
+				target = FROM
+				type = artillery_equipment
+				amount = 50
+			}
+		}
+		custom_effect_tooltip = MAN_support_decision_event_tt
+		hidden_effect = {
+			FROM = { add_timed_idea = { idea = CHI_support_CHI_idea days = 150 } }
+			MAN = { add_timed_idea = { idea = CHI_support_FROM_idea days = 150 } }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.136
+	title = manchukou_wr.136
+	desc = manchukou_wr.136
+	picture = GFX_report_event_generic_rifles
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.136.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.137
+	title = manchukou_wr.137.t
+	desc = manchukou_wr.137.d
+	picture = GFX_report_event_japan_army_mountainside
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.137.a
+		hidden_effect = {
+			country_event = { id = manchukou_wr.138 days = 9 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.138
+	title = manchukou_wr.138.t
+	desc = manchukou_wr.138.d
+	picture = GFX_report_event_generic_shanghai_clash
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.138.a
+		add_political_power = -200
+		add_stability = -0.15
+		hidden_effect = {
+			country_event = { id = manchukou_wr.139 days = 15 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.139
+	title = manchukou_wr.139.t
+	desc = manchukou_wr.139.d
+	picture = GFX_report_event_generic_shanghai_clash
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.139.a
+		every_state = {
+			limit = {
+				is_owned_by = MAN
+			}
+			set_demilitarized_zone = yes
+		}
+		delete_unit = {}
+		news_event = manchukou_wr.140
+		hidden_effect = {
+			country_event = { id = manchukou_wr.141 days = 14 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+news_event = {
+	id = manchukou_wr.140
+	title = manchukou_wr.140.t
+	desc = manchukou_wr.140.d
+	picture = GFX_manchuria_end
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = manchukou_wr.140.a
+		ai_chance = { 
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.141
+	title = manchukou_wr.141.t
+	desc = manchukou_wr.141.d
+	picture = GFX_report_event_generic_shanghai_clash
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.141.a
+		every_state = {
+			limit = {
+				is_owned_by = MAN
+			}
+			set_demilitarized_zone = no
+		}
+		every_state = {
+			limit = {
+				is_core_of = MAN
+			}
+			remove_core_of = MAN
+		}
+		every_state = {
+			limit = {
+				OR = {
+					state = 621
+					state = 612
+				}
+			}
+			add_core_of = MFS
+			transfer_state_to = MFS
+		}
+		MFS = {
+			inherit_technology = MAN
+			621 = {
+				create_unit = {
+					division = "name = \"Qu Jun\" division_template = \"Qu Jun\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 3
+					owner = MFS
+				}
+			}
+			612 = {
+				create_unit = {
+					division = "name = \"Qibing Shi\" division_template = \"Qibing Shi\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 3
+					owner = MFS
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				state = 1022
+			}
+			add_core_of = SUI
+			transfer_state_to = SUI
+		}
+		SUI = {
+			inherit_technology = MAN
+			1022 = {
+				create_unit = {
+					division = "name = \"Qu Jun\" division_template = \"Qu Jun\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 4
+					owner = SUI
+				}
+				create_unit = {
+					division = "name = \"Qibing Shi\" division_template = \"Qibing Shi\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 2
+					owner = SUI
+				}
+			}
+			country_event = { id = collapsed_manchuria.1 days = 20 }
+		}
+		every_state = {
+			limit = {
+				state = 611
+			}
+			add_core_of = CHR
+			transfer_state_to = CHR
+		}
+		CHR = {
+			inherit_technology = MAN
+			611 = {
+				create_unit = {
+					division = "name = \"Qu Jun\" division_template = \"Qu Jun\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 2
+					owner = CHR
+				}
+				create_unit = {
+					division = "name = \"Qibing Shi\" division_template = \"Qibing Shi\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 2
+					owner = CHR
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				state = 610
+			}
+			add_core_of = JEH
+			transfer_state_to = JEH
+		}
+		JEH = {
+			inherit_technology = MAN
+			610 = {
+				create_unit = {
+					division = "name = \"Qu Jun\" division_template = \"Qu Jun\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 2
+					owner = JEH
+				}
+				create_unit = {
+					division = "name = \"Qibing Shi\" division_template = \"Qibing Shi\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 2
+					owner = JEH
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				state = 761
+			}
+			add_core_of = BAR
+			transfer_state_to = BAR
+		}
+		BAR = {
+			inherit_technology = MAN
+			761 = {
+				create_unit = {
+					division = "name = \"Qu Jun\" division_template = \"Qu Jun\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 1
+					owner = BAR
+				}
+				create_unit = {
+					division = "name = \"Qibing Shi\" division_template = \"Qibing Shi\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 4
+					owner = BAR
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					state = 714
+					state = 1000
+				}
+			}
+			add_core_of = DIG
+			transfer_state_to = DIG
+		}
+		DIG = {
+			inherit_technology = MAN
+			714 = {
+				create_unit = {
+					division = "name = \"Qu Jun\" division_template = \"Qu Jun\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 2
+					owner = DIG
+				}
+			}
+			1000 = {
+				create_unit = {
+					division = "name = \"Qibing Shi\" division_template = \"Qibing Shi\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 5
+					owner = DIG
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				state = 328
+			}
+			add_core_of = JIL
+			transfer_state_to = JIL
+		}
+		JIL = {
+			inherit_technology = MAN
+			328 = {
+				create_unit = {
+					division = "name = \"Qu Jun\" division_template = \"Qu Jun\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 3
+					owner = JIL
+				}
+				create_unit = {
+					division = "name = \"Qibing Shi\" division_template = \"Qibing Shi\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 2
+					owner = JIL
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					state = 961
+					state = 715
+				}
+			}
+			add_core_of = MMG
+			transfer_state_to = MMG
+		}
+		MMG = {
+			inherit_technology = MAN
+			961 = {
+				create_unit = {
+					division = "name = \"Qu Jun\" division_template = \"Qu Jun\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 4
+					owner = MMG
+				}
+			}
+			715 = {
+				create_unit = {
+					division = "name = \"Qibing Shi\" division_template = \"Qibing Shi\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 3
+					owner = MMG
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					state = 999
+					state = 717
+				}
+			}
+			add_core_of = HHZ
+			transfer_state_to = HHZ
+		}
+		HHZ = {
+			inherit_technology = MAN
+			999 = {
+				create_unit = {
+					division = "name = \"Qu Jun\" division_template = \"Qu Jun\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 1
+					owner = HHZ
+				}
+			}
+			717 = {
+				create_unit = {
+					division = "name = \"Qibing Shi\" division_template = \"Qibing Shi\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 4
+					owner = HHZ
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				state = 1023
+			}
+			add_core_of = NAJ
+			transfer_state_to = NAJ
+		}
+		NAJ = {
+			inherit_technology = MAN
+			1023 = {
+				create_unit = {
+					division = "name = \"Qibing Shi\" division_template = \"Qibing Shi\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 4
+					owner = NAJ
+				}
+			}
+		}
+		every_state = {
+			limit = {
+				state = 716
+			}
+			add_core_of = NEA
+			transfer_state_to = NEA
+		}
+		NEA = {
+			inherit_technology = MAN
+			716 = {
+				create_unit = {
+					division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 2
+					owner = NEA
+				}
+				create_unit = {
+					division = "name = \"Qibing Jun\" division_template = \"Qibing Jun\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+					count = 2
+					owner = NEA
+				}
+			}
+		}
+		MMG = {
+			change_tag_from = ROOT
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.142
+	title = manchukou_wr.142.t
+	desc = manchukou_wr.142.d
+	picture = GFX_report_event_generic_shanghai_clash
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.142.a
+		every_state = {
+			limit = {
+				is_owned_by = TIB
+				OR = {
+					state = 601
+					state = 434
+				}
+			}
+			transfer_state_to = XIK
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.143
+	title = manchukou_wr.143.t
+	desc = manchukou_wr.143.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.143.a
+		annex_country = {
+			target = MON
+			transfer_troops = yes
+		}
+		MON = {
+			retire_character = MON_togs_ochiryn_namnansuren
+			enable_country_integration_60_compliance = yes
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = manchukou_wr.143.b
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.144
+	title = manchukou_wr.144.t
+	desc = manchukou_wr.144.d
+	picture = MAN_pu_yi
+	trigger = {
+		608 = { controller = { original_tag = MAN } }
+		NOT = { has_global_flag = fall_of_peking_144 }
+		original_tag = MAN
+	}
+	immediate = {
+		set_global_flag = fall_of_peking_144
+	}	
+	mean_time_to_happen = { days = 2 }
+	fire_only_once = yes
+	option = {
+		name = manchukou_wr.144.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.145
+	title = manchukou_wr.145.t
+	desc = manchukou_wr.145.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.145.a
+		every_country = {
+			limit = {
+				is_chinese_country = yes
+				NOT = { original_tag = CHI }
+			}
+			every_country = {
+				limit = {
+					has_country_flag = sino_japanese_war_winner
+				}
+				give_military_access = PREV
+			}
+			set_country_flag = 30_access_days_flag
+		}
+		custom_effect_tooltip = give_military_access_to_JAP_tt
+		hidden_effect = {
+			country_event = { id = manchukou_wr.146 days = 30 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.146
+	title = manchukou_wr.146.t
+	desc = manchukou_wr.146.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = manchukou_wr.146.a
+		every_country = {
+			limit = {
+				has_country_flag = 30_access_days_flag
+			}
+			every_other_country = {
+				limit = {
+					has_country_flag = 30_access_days_flag
+				}
+				diplomatic_relation = {
+					country = PREV
+					relation = military_access
+					active = no
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.147
+	title = manchukou_wr.147.t
+	desc = manchukou_wr.147.d
+	picture = GFX_report_event_generic_strike
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.147.a
+		MAN_inc_national_protection_2_5 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.148
+	title = manchukou_wr.148.t
+	desc = manchukou_wr.148.d
+	picture = GFX_report_event_generic_strike
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.148.a
+		MAN_inc_national_protection_2_5 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = manchukou_wr.149
+	title = manchukou_wr.149.t
+	desc = manchukou_wr.149.d
+	picture = GFX_report_event_generic_strike
+	is_triggered_only = yes
+	option = {
+		name = manchukou_wr.149.a
+		MAN_inc_national_protection_5 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
 	id = manchukou_wr.1000
 	title = manchukou_wr.1000.t
 	desc = manchukou_wr.1000.d
@@ -3582,6 +4274,102 @@ country_event = {
 		name = chi_border_conflict.12.a
 		add_political_power = -50
 		add_stability = -0.025
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = collapsed_manchuria.1
+	title = collapsed_manchuria.1.t
+	desc = collapsed_manchuria.1.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = collapsed_manchuria.1.a
+		declare_war_on = { target = MFS type = annex_everything }
+		declare_war_on = { target = CHR type = annex_everything }
+		hidden_effect = {
+			CHR = { country_event = { id = collapsed_manchuria.2 days = 9 } }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = collapsed_manchuria.2
+	title = collapsed_manchuria.2.t
+	desc = collapsed_manchuria.2.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = collapsed_manchuria.2.a
+		declare_war_on = { target = MFS type = annex_everything }
+		hidden_effect = {
+			NAJ = { country_event = { id = collapsed_manchuria.3 days = 3 } }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = collapsed_manchuria.3
+	title = collapsed_manchuria.3.t
+	desc = collapsed_manchuria.3.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = collapsed_manchuria.3.a
+		declare_war_on = { target = BAR type = annex_everything }
+		declare_war_on = { target = DIG type = annex_everything }
+		DIG = { declare_war_on = { target = BAR type = annex_everything } }
+		hidden_effect = {
+			HHZ = { country_event = { id = collapsed_manchuria.4 days = 8 } }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = collapsed_manchuria.4
+	title = collapsed_manchuria.4.t
+	desc = collapsed_manchuria.4.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = collapsed_manchuria.4.a
+		declare_war_on = { target = JIL type = annex_everything }
+		hidden_effect = {
+			NEA = { country_event = { id = collapsed_manchuria.5 days = 5 } }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = collapsed_manchuria.5
+	title = collapsed_manchuria.5.t
+	desc = collapsed_manchuria.5.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = collapsed_manchuria.5.a
+		declare_war_on = { target = MMG type = annex_everything }
+		every_country = {
+			limit = {
+				MAN_warlords = yes
+			}
+			set_country_flag = MAN_warlords_flag
+		}
 		ai_chance = {
 			base = 10
 		}

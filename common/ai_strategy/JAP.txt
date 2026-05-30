@@ -880,66 +880,6 @@ JAP_unit_buffer_for_home_islands_invasion_force = {
 	}
 }
 
-JAP_hold_up_in_china = { #We got this far but there are bigger targets to worry about for a while
-	allowed = {
-		original_tag = JAP
-	}
-
-	enable = {
-		date > 1941.1.1
-		date < 1945.1.1
-		is_historical_focus_on = yes
-		CHI = { has_capitulated = no }
-
-		613 = { # Nanjing
-			is_controlled_by = JAP
-		}
-
-		OR = {
-			INS = { has_capitulated = no }
-			PHI = { has_capitulated = no }
-		}
-
-	}
-
-	ai_strategy = {
-		type = front_control
-
-		tag = CHI
-
-		ratio = 0.25
-
-		priority = 100
-		ordertype = front
-		execution_type = careful
-	}
-
-	ai_strategy = {
-		type = front_control
-
-		tag = GXC
-
-		ratio = 0.25
-
-		priority = 100
-		ordertype = front
-		execution_type = careful
-	}
-
-	ai_strategy = {
-		type = front_control
-
-		tag = YUN
-
-		ratio = 0.25
-
-		priority = 100
-		ordertype = front
-		execution_type = careful
-	}
-
-}
-
 CHI_dont_want_ally_with_JAP = {
 	allowed = {
 		original_tag = JAP
@@ -965,7 +905,8 @@ JAP_want_landing = {
 	}
 	enable = {
 		OR = {
-			has_war_with = FNG
+			has_war_with = KMT
+			has_war_with = KMR
 			has_war_with = CHI
 		}
 	}
@@ -985,5 +926,27 @@ JAP_want_landing = {
 		type = invasion_unit_request
 		state = 592
 		value = 2000
+	}
+}
+
+manchuria_in_flaim = {
+	allowed = {
+		original_tag = JAP
+	}
+	enable = {
+		MMG = { has_war = yes }
+	}
+
+	abort_when_not_enabled = yes
+
+	ai_strategy = {
+		type = support
+		id = "MMG"
+		value = 100
+	}
+	ai_strategy = {
+		type = send_volunteers_desire
+		id = "MMG"
+		value = 100
 	}
 }

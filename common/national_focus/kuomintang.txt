@@ -62,12 +62,41 @@ focus_tree = {
 				set_value = -0.1
 			}
 			hidden_effect = {
-				random_list = {
-					50 = {
-						set_country_flag = KMT_left_flag
+				if = {
+					limit = {
+						OR = {
+							AND = {
+								is_historical_focus_on = yes
+								has_game_rule = {
+									rule = KMT_ai_behavior_kmt_civil_war
+									option = DEFAULT
+								}
+							}
+							has_game_rule = {
+								rule = KMT_ai_behavior_kmt_civil_war
+								option = LEFT_KUOMINTANG
+							}
+						}
 					}
-					50 = {
-						set_country_flag = KMT_right_flag
+					KMT = { set_country_flag = KMT_left_flag }
+				}
+				else_if = {
+					limit = {
+						has_game_rule = {
+							rule = KMT_ai_behavior_kmt_civil_war
+							option = RIGHT_KUOMINTANG
+						}
+					}
+					KMT = { set_country_flag = KMT_right_flag }
+				}
+				else = {
+					random_list = {
+						50 = {
+							KMT = { set_country_flag = KMT_left_flag }
+						}
+						50 = {
+							KMT = { set_country_flag = KMT_right_flag }
+						}
 					}
 				}
 			}
@@ -313,6 +342,15 @@ focus_tree = {
 			add_ideas = KMT_quorum_restored_spirit
 			if = {
 				limit = {
+					has_idea = KMT_national_assembly_legitimacy_verylow
+				}
+				swap_ideas = {
+					remove_idea = KMT_national_assembly_legitimacy_verylow
+					add_idea = KMT_national_assembly_legitimacy_low
+				}
+			}
+			else_if = {
+				limit = {
 					has_idea = KMT_national_assembly_legitimacy_low
 				}
 				swap_ideas = {
@@ -506,11 +544,21 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
+			unlock_decision_category_tooltip = KMT_National_Assembly
 			swap_ideas = {
 				remove_idea = KMT_quorum_restored_spirit
 				add_idea = KMT_five_hundred_million_spirit
 			}
 			if = {
+				limit = {
+					has_idea = KMT_national_assembly_legitimacy_verylow
+				}
+				swap_ideas = {
+					remove_idea = KMT_national_assembly_legitimacy_verylow
+					add_idea = KMT_national_assembly_legitimacy_low
+				}
+			}
+			else_if = {
 				limit = {
 					has_idea = KMT_national_assembly_legitimacy_low
 				}
@@ -606,6 +654,27 @@ focus_tree = {
 					modifier = KMT_shanghai_offensive
 					days = 90
 					scope = ROOT
+				}
+			}
+			613 = {
+				add_dynamic_modifier = {
+					modifier = KMT_guerrilla_zone
+					days = 90
+					scope = CHI
+				}
+			}
+			960 = {
+				add_dynamic_modifier = {
+					modifier = KMT_guerrilla_zone
+					days = 90
+					scope = CHI
+				}
+			}
+			596 = {
+				add_dynamic_modifier = {
+					modifier = KMT_guerrilla_zone
+					days = 90
+					scope = CHI
 				}
 			}
 		}
@@ -1556,7 +1625,7 @@ focus_tree = {
 		y = 0
 		cost = 3
 		ai_will_do = {
-			factor = 3
+			factor = 6
 		}
 		allow_branch = {
 			has_country_flag = KMT_left_focus_allow_flag
@@ -1595,7 +1664,7 @@ focus_tree = {
 		y = 1
 		cost = 2
 		ai_will_do = {
-			factor = 3
+			factor = 6
 		}
 		prerequisite = {
 			focus = KMT_peoples_livelihood
@@ -1932,7 +2001,7 @@ focus_tree = {
 		y = 1
 		cost = 3
 		ai_will_do = {
-			factor = 3
+			factor = 6
 		}
 		prerequisite = {
 			focus = KMT_put_out_the_fire
@@ -1951,7 +2020,7 @@ focus_tree = {
 		y = 1
 		cost = 5
 		ai_will_do = {
-			factor = 3
+			factor = 6
 		}
 		prerequisite = {
 			focus = KMT_radical_land_reform
@@ -2488,6 +2557,626 @@ focus_tree = {
 					remove_idea = KMT_industrial_development_c3
 					add_idea = KMT_industrial_development_c4
 				}
+			}
+		}
+	}
+	
+	#왕징웨이 2기
+	focus = {
+		id = KMT_wang_successor_of_sun
+		icon = GFX_KMT_wang_successor_of_sun
+		x = 10
+		y = 0
+		cost = 1
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		allow_branch = {
+			has_country_flag = KMT_left_focus_allow_flag
+			has_country_leader = {
+				character = CHI_wang_jingwei
+				ruling_only = yes
+			}
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.74
+		}
+	}
+	
+	focus = {
+		id = KMT_all_power_to_party
+		icon = GFX_KMT_all_power_to_party
+		relative_position_id = KMT_wang_successor_of_sun
+		x = 0
+		y = 2
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_wang_successor_of_sun
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.75
+		}
+	}
+	
+	focus = {
+		id = KMT_political_commissar_system
+		icon = GFX_KMT_political_commissar_system
+		relative_position_id = KMT_all_power_to_party
+		x = -1
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_all_power_to_party
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = KMT_political_commissar_system_spirit
+		}
+	}
+	
+	focus = {
+		id = KMT_collective_leadership
+		icon = GFX_KMT_collective_leadership
+		relative_position_id = KMT_all_power_to_party
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_all_power_to_party
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			KMT_inc_national_assembly_5 = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_political_training_classes
+		icon = GFX_KMT_political_training_classes
+		relative_position_id = KMT_political_commissar_system
+		x = 1
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_political_commissar_system
+		}
+		prerequisite = {
+			focus = KMT_collective_leadership
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_political_commissar_system_spirit
+				add_idea = KMT_political_indoctrination_program
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_party_commands_the_gun
+		icon = GFX_KMT_party_commands_the_gun
+		relative_position_id = KMT_political_training_classes
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_political_training_classes
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_political_indoctrination_program
+				add_idea = KMT_party_commands_the_gun_idea
+			}
+		}
+	}
+	
+	#환기민중
+	focus = {
+		id = KMT_huanqi_minzhong
+		icon = GFX_KMT_huanqi_minzhong
+		relative_position_id = KMT_wang_successor_of_sun
+		x = 5
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_wang_successor_of_sun
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			unlock_decision_category_tooltip = KMT_awakening_the_masses
+			add_dynamic_modifier = { modifier = KMT_awakening_the_masses_idea }
+		}
+	}
+	
+	focus = {
+		id = KMT_seize_central_propaganda
+		icon = GFX_KMT_seize_central_propaganda
+		relative_position_id = KMT_huanqi_minzhong
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_huanqi_minzhong
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.76
+		}
+	}
+	
+	focus = {
+		id = KMT_vanguard_party_theory
+		icon = GFX_KMT_vanguard_party_theory
+		relative_position_id = KMT_seize_central_propaganda
+		x = -2
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_seize_central_propaganda
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			KMT_inc_literacy_worker_rate_2_5 = yes
+			add_ideas = KMT_vanguard_party_spirit
+		}
+	}
+	
+	focus = {
+		id = KMT_armed_workers_picket_lines
+		icon = GFX_KMT_armed_workers_picket_lines
+		relative_position_id = KMT_vanguard_party_theory
+		x = 1
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_vanguard_party_theory
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_vanguard_party_spirit
+				add_idea = KMT_advancing_workers_spirit
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_utilize_reorganization_associates
+		icon = GFX_KMT_utilize_reorganization_associates
+		relative_position_id = KMT_seize_central_propaganda
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_seize_central_propaganda
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_collapsed_party_unity
+				add_idea = KMT_collapsed_party_unity_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_expand_mass_rallies
+		icon = GFX_KMT_expand_mass_rallies
+		relative_position_id = KMT_seize_central_propaganda
+		x = 2
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_seize_central_propaganda
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.77
+		}
+	}
+	
+	focus = {
+		id = KMT_yidang_zhiguo
+		icon = GFX_KMT_yidang_zhiguo
+		relative_position_id = KMT_expand_mass_rallies
+		x = -1
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_expand_mass_rallies
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			remove_ideas = KMT_fracturing_military
+		}
+	}
+	
+	focus = {
+		id = KMT_materialist_thinking
+		icon = GFX_KMT_materialist_thinking
+		relative_position_id = KMT_utilize_reorganization_associates
+		x = 0
+		y = 2
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_utilize_reorganization_associates
+		}
+		prerequisite = {
+			focus = KMT_armed_workers_picket_lines
+		}
+		prerequisite = {
+			focus = KMT_yidang_zhiguo
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_collapsed_party_unity_1
+				add_idea = KMT_collapsed_party_unity_2
+			}
+			KMT_inc_literacy_intellectual_rate_2_5 = yes
+			KMT_inc_literacy_worker_rate_2_5 = yes
+			KMT_inc_literacy_farmer_rate_5 = yes
+			KMT_dec_rate_of_radicalization_5 = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_pan_people_revolution
+		icon = GFX_KMT_pan_people_revolution
+		relative_position_id = KMT_materialist_thinking
+		x = 0
+		y = 1
+		cost = 5
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_materialist_thinking
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.78
+		}
+	}
+	
+	#삼대정책
+	focus = {
+		id = KMT_reinterpretation_three_policies
+		icon = GFX_KMT_reinterpretation_three_policies
+		relative_position_id = KMT_wang_successor_of_sun
+		x = -6
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_wang_successor_of_sun
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.79
+		}
+	}
+	
+	#연소용공
+	focus = {
+		id = KMT_alliance_soviet_communists
+		icon = GFX_KMT_alliance_soviet_communists
+		relative_position_id = KMT_reinterpretation_three_policies
+		x = -2
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_reinterpretation_three_policies
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.80
+		}
+	}
+	
+	focus = {
+		id = KMT_link_with_comintern
+		icon = GFX_KMT_link_with_comintern
+		relative_position_id = KMT_alliance_soviet_communists
+		x = -1
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_alliance_soviet_communists
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			SOV = { country_event = kuomintag_wr.86 }
+		}
+	}
+	
+	focus = {
+		id = KMT_adopt_nep
+		icon = GFX_KMT_adopt_nep
+		relative_position_id = KMT_alliance_soviet_communists
+		x = 1
+		y = 1
+		cost = 4
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_alliance_soviet_communists
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = new_economic_policy
+		}
+	}
+	
+	focus = {
+		id = KMT_nationalize_foreign_concessions
+		icon = GFX_KMT_nationalize_foreign_concessions
+		relative_position_id = KMT_adopt_nep
+		x = -2
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_adopt_nep
+		}
+		mutually_exclusive = {
+			focus = KMT_forced_sale_foreign_capital
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.95
+		}
+	}
+	
+	focus = {
+		id = KMT_forced_sale_foreign_capital
+		icon = GFX_KMT_forced_sale_foreign_capital
+		relative_position_id = KMT_adopt_nep
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_adopt_nep
+		}
+		mutually_exclusive = {
+			focus = KMT_nationalize_foreign_concessions
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.96
+		}
+	}
+	
+	#부조농공
+	focus = {
+		id = KMT_assistance_peasants_workers
+		icon = GFX_KMT_assistance_peasants_workers
+		relative_position_id = KMT_reinterpretation_three_policies
+		x = 2
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_reinterpretation_three_policies
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = KMT_assistance_peasants_workers
+		}
+	}
+	
+	focus = {
+		id = KMT_equalization_land_rights
+		icon = GFX_KMT_equalization_land_rights
+		relative_position_id = KMT_assistance_peasants_workers
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+			has_completed_focus = KMT_land_redistribution
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_assistance_peasants_workers
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.93
+		}
+	}
+	
+	focus = {
+		id = KMT_peasant_movement_training_institute
+		icon = GFX_KMT_peasant_movement_training_institute
+		relative_position_id = KMT_equalization_land_rights
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_equalization_land_rights
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			add_ideas = KMT_peasant_training_institute
+		}
+	}
+	
+	focus = {
+		id = KMT_labor_union_law
+		icon = GFX_KMT_labor_union_law
+		relative_position_id = KMT_assistance_peasants_workers
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_assistance_peasants_workers
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_wr.94
+		}
+	}
+	
+	focus = {
+		id = KMT_labor_capital_dispute_regulation
+		icon = GFX_KMT_labor_capital_dispute_regulation
+		relative_position_id = KMT_labor_union_law
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		prerequisite = {
+			focus = KMT_labor_union_law
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_trade_union_act
+				add_idea = KMT_trade_union_act_1
 			}
 		}
 	}

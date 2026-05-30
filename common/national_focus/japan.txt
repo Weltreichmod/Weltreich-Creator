@@ -151,11 +151,9 @@
 				limit = {
 					NOT = { has_dlc = "By Blood Alone" }
 				}
-				custom_effect_tooltip = JAP_strengthen_the_divine_wind_effect
 				hidden_effect = { set_technology = { suicide_craft = 1 } }
 			}
 			else = {
-				custom_effect_tooltip = JAP_strengthen_the_divine_wind_effect_bba
 				hidden_effect = { set_technology = { suicide_charge = 1 popup = no} }
 			}
 		}
@@ -481,8 +479,8 @@
 	focus = {
 		id = JAP_contact_with_Europe
 		icon = GFX_goal_generic_intelligence_exchange
-		relative_position_id = JAP_the_emperor_of_the_people
-		x = 1
+		relative_position_id = JAP_the_people_of_the_emperor
+		x = 0
 		y = 1
 		cost = 10
 		ai_will_do = {
@@ -524,8 +522,8 @@
 	focus = {
 		id = JAP_reinforce_army
 		icon = GFX_goal_generic_military_sphere
-		relative_position_id = JAP_the_people_of_the_emperor
-		x = 1
+		relative_position_id = JAP_dissolution_of_Ministry_of_the_Imperial_Household
+		x = 0
 		y = 1
 		cost = 10
 		ai_will_do = {
@@ -546,41 +544,6 @@
 		}
 	}
 	
-	focus = {
-		id = JAP_kita_convention
-		icon = GFX_goal_anti_comintern_pact
-		relative_position_id = JAP_dissolution_of_Ministry_of_the_Imperial_Household
-		x = 1
-		y = 1
-		cost = 10
-		ai_will_do = {
-			factor = 6
-		}
-		prerequisite = {
-			focus = JAP_the_emperor_of_the_people
-			focus = JAP_the_people_of_the_emperor
-			focus = JAP_dissolution_of_Ministry_of_the_Imperial_Household
-			focus = JAP_maintenance_of_Ministry_of_the_Imperial_Household
-		}
-		search_filters = { FOCUS_FILTER_POLITICAL }
-		available = {
-			is_subject = no
-		}
-		bypass = {
-			OR = {
-				has_war_with = FNG
-				FNG = { exists = no }
-			}
-		}
-		completion_reward = {
-			FNG = { country_event = { id = japan_wr.7 days = 3 } }
-			add_power_balance_value = {
-				id = JAP_Ikki_Kita_Kodoha_struggle
-				value = -0.07
-			}
-		}
-	}
-
 	focus = {
 		id = JAP_purge_the_kodoha_faction
 		icon = GFX_goal_generic_major_war
@@ -1513,7 +1476,6 @@
 				AND = {
 					has_completed_focus = JAP_contact_with_Europe
 					has_completed_focus = JAP_reinforce_army
-					has_completed_focus = JAP_kita_convention
 				}
 				AND = {
 					has_completed_focus = JAP_conservative_reform
@@ -1552,19 +1514,6 @@
 		}
 		available = {
 			has_completed_focus = JAP_Showa_Restoration
-			NOT = { has_war_with = FNG }
-			OR = {
-				has_country_flag = can_attack_russia
-				FNG = { is_subject_of = JAP }
-				MAN = { is_subject_of = JAP }
-				AND = {
-					JAP = {
-						controls_state = 761
-						controls_state = 714
-						controls_state = 717
-					}
-				}
-			}
 			is_subject = no
 		}
 		mutually_exclusive = {
@@ -1646,46 +1595,13 @@
 			factor = 4
 		}
 		available = {
-			NOT = { has_war_with = FNG }
 			is_subject = no
-		}
-		bypass = {
-			FNG = { exists = no }
-			MAN = { exists = no }
 		}
 		prerequisite = {
 			focus = JAP_Prepare_to_conquest_Primorsky_Krai
 		}
 		completion_reward = {
-			if = {
-				limit = {
-					MAN = { exists = yes }
-				}
-				MAN = { add_ideas = JAP_military_advisers }
-			}
-			else_if = {
-				limit = {
-					FNG = {
-						exists = yes
-						has_idea = FNG_kwantung_millitary_advisor
-					}
-				}
-				FNG = {
-					swap_ideas = {
-						remove_idea = FNG_kwantung_millitary_advisor
-						add_idea = JAP_military_advisers
-					}
-				}
-			}
-			else_if = {
-				limit = {
-					FNG = {
-						exists = yes
-						NOT = { has_idea = FNG_kwantung_millitary_advisor }
-					}
-				}
-				FNG = { add_ideas = JAP_military_advisers }
-			}
+			custom_effect_tooltip = JAP_dispatch_military_advisers_to_fengtian_tt
 		}
 	}
 	
@@ -1744,12 +1660,6 @@
 		}
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
-			if = {
-				limit = {
-					FNG = { has_country_flag = access_to_japan }
-				}
-				FNG = { country_event = { id = japan_wr.17 days = 3 } }
-			}
 			declare_war_on = { target = SOV  type = puppet_wargoal_focus }
 		}
 	}
@@ -1778,22 +1688,12 @@
 			}
 			is_subject = no
 		}
-		bypass = {
-			OR = {
-				has_war_with = FNG
-				FNG = { exists = no }
-			}
-			OR = {
-				has_completed_focus = JAP_prime_minister_Keisuke_Okada
-				has_completed_focus = JAP_prime_minister_Fumimaro_Konoe
-			}
-		}
 		mutually_exclusive = {
 			focus = JAP_Prepare_to_conquest_Primorsky_Krai
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			unlock_decision_category_tooltip = JAP_fengtian_problem
+			add_ideas = JAP_with_fengtian
 		}
 	}
 	
@@ -2089,11 +1989,7 @@
 		y = 1
 		cost = 10
 		ai_will_do = {
-			factor = 15
-			modifier = {
-				factor = 50
-				date > 1938.2.8.
-			}
+			factor = 50
 		}
 		prerequisite = {
 			focus = JAP_continental_warfare
@@ -2102,9 +1998,6 @@
 		}
 		available = {
 			is_subject = no
-			NOT = {
-				has_war_with = FNG
-			}
 			OR = {
 				AND = {
 					has_completed_focus = JAP_continental_warfare
@@ -2115,157 +2008,49 @@
 					has_completed_focus = JAP_appeasement_policy_on_the_korea
 				}
 			}
-			if = {
-				limit = {
-					has_completed_focus = JAP_prime_minister_Keisuke_Okada
-				}
-				FNG = { has_war_with = CHI }
-			}
-			if = {
-				limit = {
-					has_completed_focus = JAP_prime_minister_Fumimaro_Konoe
-				}
-				609 = {
-					controller = {
-						OR = {
-							is_ally_with = JAP
-							original_tag = JAP
-						}
-					}
-				}
-				745 = {
-					controller = {
-						OR = {
-							is_ally_with = JAP
-							original_tag = JAP
-						}
-					}
-				}
-			}
+			date > 1940.6.1
 		}
 		bypass = {
 			OR = {
 				has_war_with = CHI
-				CHI = { exists = no }
+				has_war_with = KMT
+				has_war_with = KMR
+				AND = {
+					CHI = { exists = no }
+					KMT = { exists = no }
+					KMR = { exists = no }
+				}
 			}
 		}
 		will_lead_to_war_with = CHI
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
-			declare_war_on = { target = CHI type = puppet_wargoal_focus }
 			if = {
 				limit = {
-					GXC = { is_subject_of = CHI }
+					CHI = { exists = yes }
 				}
-				declare_war_on = { target = GXC type = puppet_wargoal_focus }
+				declare_war_on = { target = CHI type = puppet_wargoal_focus }
 			}
 			if = {
 				limit = {
-					GUD = { is_subject_of = CHI }
+					KMT = { exists = yes }
 				}
-				declare_war_on = { target = GUD type = puppet_wargoal_focus }
+				declare_war_on = { target = KMT type = puppet_wargoal_focus }
+			}
+			if = {
+				limit = {
+					KMR = { exists = yes }
+				}
+				declare_war_on = { target = KMR type = puppet_wargoal_focus }
 			}
 			add_named_threat = {
 				threat = 7
 				name = Sino_Japanese_war
 			}
-			add_ideas = JAP_intervene_in_china_5
-			remove_country_leader_trait = imperial_sanction
+			add_timed_idea = { idea = JAP_intervene_in_china_5 days = 600 }
 		}
 	}
-	
-	focus = {
-		id = JAP_remove_warlords
-		icon = GFX_goal_generic_occupy_states_ongoing_war
-		relative_position_id = JAP_attack_kuomintang
-		x = 0
-		y = 1
-		cost = 5
-		ai_will_do = {
-			factor = 20
-		}
-		prerequisite = {
-			focus = JAP_attack_kuomintang
-		}
-		available = {
-			has_war_with = CHI
-			is_subject = no
-		}
-		search_filters = { FOCUS_FILTER_ANNEXATION }
-		completion_reward = {
-			if = {
-				limit = {
-					GUD = { exists = yes }
-					NOT = { has_war_with = GUD }
-				}
-				declare_war_on = { target = GUD  type = puppet_wargoal_focus }
-			}
-			if = {
-				limit = {
-					GXC = { exists = yes }
-					NOT = { has_war_with = GXC }
-				}
-				declare_war_on = { target = GXC  type = puppet_wargoal_focus }
-			}
-			if = {
-				limit = {
-					GZC = { exists = yes }
-					NOT = { has_war_with = GZC }
-				}
-				declare_war_on = { target = GZC  type = puppet_wargoal_focus }
-			}
-			if = {
-				limit = {
-					SHX = { exists = yes }
-					NOT = { has_war_with = SHX }
-				}
-				declare_war_on = { target = SHX  type = puppet_wargoal_focus }
-			}
-			if = {
-				limit = {
-					SIC = { exists = yes }
-					NOT = { has_war_with = SIC }
-				}
-				declare_war_on = { target = SIC  type = puppet_wargoal_focus }
-			}
-			if = {
-				limit = {
-					XIK = { exists = yes }
-					NOT = { has_war_with = XIK }
-				}
-				declare_war_on = { target = XIK  type = puppet_wargoal_focus }
-			}
-			if = {
-				limit = {
-					PRC = { exists = yes }
-					NOT = { has_war_with = PRC }
-				}
-				declare_war_on = { target = PRC  type = puppet_wargoal_focus }
-			}
-			if = {
-				limit = {
-					XSM = { exists = yes }
-					NOT = { has_war_with = XSM }
-				}
-				declare_war_on = { target = XSM  type = puppet_wargoal_focus }
-			}
-			if = {
-				limit = {
-					GSM = { exists = yes }
-					NOT = { has_war_with = GSM }
-				}
-				declare_war_on = { target = GSM  type = puppet_wargoal_focus }
-			}
-			if = {
-				limit = {
-					NSM = { exists = yes }
-					NOT = { has_war_with = NSM }
-				}
-				declare_war_on = { target = NSM  type = puppet_wargoal_focus }
-			}
-		}
-	}
-	
+		
 	focus = {
 		id = JAP_Imperial_Army
 		icon = GFX_goal_generic_army_doctrines
