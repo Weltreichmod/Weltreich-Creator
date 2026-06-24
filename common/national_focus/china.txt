@@ -1510,7 +1510,25 @@ focus_tree = {
 			factor = 150
 		}
 		completion_reward = {
-			country_event = china_wr.86
+			if = {
+				limit = {
+					has_country_leader = {
+						character = CHI_hu_shih
+						ruling_only = yes
+					}
+				}
+				country_event = china_wr.86
+				add_political_power = 20
+			}
+			if = {
+				limit = {
+					has_country_leader = {
+						character = CHI_cai_e
+						ruling_only = yes
+					}
+				}
+				add_political_power = 50
+			}
 		}
 	}
 	
@@ -4229,6 +4247,12 @@ focus_tree = {
 			is_subject = no
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
+		bypass = {
+			OR = {
+				SOV = { is_subject = yes }
+				SOV = { exists = no }
+			}
+		}
 		prerequisite = {
 			focus = CHI_dagger_hidden_in_smile_focus
 		}
@@ -4236,15 +4260,7 @@ focus_tree = {
 			factor = 6
 		}
 		completion_reward = {
-			if = {
-				limit = {
-					has_global_flag = SOV_won_win_MON_war_flag
-				}
-				country_event = china_wr.134
-			}
-			else = {
-				country_event = china_wr.144
-			}
+			SOV = { country_event = china_wr.360 }
 		}
 	}
 	
@@ -4681,6 +4697,7 @@ focus_tree = {
 			country_event = { id = china_wr.215 days = 1 }
 		}
 		completion_reward = {
+			custom_effect_tooltip = CHI_constitutional_revision_debate_tt
 			if = {
 				limit = {
 					has_country_flag = CHI_cao_kun_constitution_flag
@@ -10743,7 +10760,13 @@ focus_tree = {
 		}
 		available = {
 			NOT = { has_global_flag = chinese_civil_war }
-			has_country_flag = sino_japanese_war_winner
+			custom_trigger_tooltip = {
+				tooltip = { has_country_flag = sino_japanese_war_winner }
+				OR = {
+					has_country_flag = anti_japanese_war_winner
+					has_country_flag = sino_japanese_war_winner
+				}
+			}
 			is_subject = no
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_STABILITY }
@@ -11415,7 +11438,7 @@ focus_tree = {
 			AND = {
 				OR = {
 					has_country_flag = cant_allow_rome_flag
-					has_global_flag = CHI_ports_of_rome_flag
+					has_global_flag = mumbai_rome_line_flag
 				}
 				OR = {
 					has_global_flag = central_moscow_line_flag
@@ -11454,6 +11477,438 @@ focus_tree = {
 		search_filters = {  }
 		completion_reward = {
 			country_event = china_wr.340
+		}
+	}
+	
+	focus = {
+		id = CHI_focus_haedong
+		icon = GFX_CHI_focus_haedong
+		relative_position_id = CHI_world
+		x = -4
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CHI_world
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = china_wr.341
+		}
+	}
+	
+	focus = {
+		id = CHI_focus_after_sunset
+		icon = GFX_CHI_focus_after_sunset
+		relative_position_id = CHI_focus_haedong
+		x = 0
+		y = 2
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 4
+		available = {
+			is_subject = no
+			TSC = { is_subject = yes }
+		}
+		prerequisite = {
+			focus = CHI_focus_haedong
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			if = {
+				limit = {
+					TSC = { is_subject_of = CHI }
+				}
+				unlock_decision_category_tooltip = CHI_reduce_japan_to_agricultural_state_decision
+				set_country_flag = CHI_focus_after_sunset_flag
+			}
+			else = {
+				every_country = {
+					limit = {
+						has_subject = TSC
+					}
+					country_event = china_wr.345
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_focus_qingqiu
+		icon = GFX_CHI_focus_qingqiu
+		relative_position_id = CHI_focus_after_sunset
+		x = 0
+		y = 2
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 4
+		available = {
+			is_subject = no
+			KOR = { exists = yes }
+		}
+		bypass = {
+			KOR = { exists = no }
+		}
+		prerequisite = {
+			focus = CHI_focus_after_sunset
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			country_event = china_wr.347
+		}
+	}
+	
+	focus = {
+		id = CHI_focus_seocheon
+		icon = GFX_CHI_focus_seocheon
+		relative_position_id = CHI_world
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CHI_world
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = china_wr.342
+		}
+	}
+	
+	focus = {
+		id = CHI_focus_water_tower_of_the_central_plains
+		icon = GFX_CHI_focus_water_tower_of_the_central_plains
+		relative_position_id = CHI_focus_seocheon
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CHI_focus_seocheon
+		}
+		bypass = {
+			TIB = { exists = no }
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = china_wr.350
+		}
+	}
+	
+	focus = {
+		id = CHI_focus_crossroads_of_eurasia
+		icon = GFX_CHI_focus_crossroads_of_eurasia
+		relative_position_id = CHI_focus_seocheon
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CHI_focus_seocheon
+		}
+		bypass = {
+			NOT = { 617 = { is_owned_by = ROOT } }
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_resource = {
+				type = coal
+				amount = 15
+				state = 760
+			}
+			add_resource = {
+				type = coal
+				amount = 3
+				state = 617
+			}
+			add_resource = {
+				type = coal
+				amount = 8
+				state = 287
+			}
+			add_resource = {
+				type = coal
+				amount = 8
+				state = 619
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_focus_hermit_kingdom_of_the_himalayas
+		icon = GFX_CHI_focus_hermit_kingdom_of_the_himalayas
+		relative_position_id = CHI_focus_water_tower_of_the_central_plains
+		x = 1
+		y = 3
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 3
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CHI_focus_water_tower_of_the_central_plains
+		}
+		prerequisite = {
+			focus = CHI_focus_crossroads_of_eurasia
+		}
+		bypass = {
+			OR = {
+				NEP = { is_subject = yes }
+				NEP = { exists = yes }
+			}
+			OR = {
+				BHU = { is_subject = yes }
+				BHU = { exists = yes }
+			}
+		}
+		search_filters = {  }
+		completion_reward = {
+			if = {
+				limit = {
+					NEP = { is_subject = no }
+					NEP = { exists = yes }
+				}
+				NEP = { country_event = china_wr.357 }
+			}
+			if = {
+				limit = {
+					BHU = { is_subject = no }
+					BHU = { exists = yes }
+				}
+				BHU = { country_event = china_wr.357 }
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_focus_haenam
+		icon = GFX_CHI_focus_haenam
+		relative_position_id = CHI_world
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CHI_world
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = china_wr.343
+		}
+	}
+	
+	focus = {
+		id = CHI_focus_sakbang
+		icon = GFX_CHI_focus_sakbang
+		relative_position_id = CHI_world
+		x = 4
+		y = 1
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 2
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = CHI_world
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = china_wr.344
+		}
+	}
+	
+	focus = {
+		id = CHI_focus_sleeping_with_the_enemy
+		icon = GFX_CHI_focus_sleeping_with_the_enemy
+		relative_position_id = CHI_focus_sakbang
+		x = 0
+		y = 2
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 3
+		available = {
+			is_subject = no
+			OR = {
+				NOT = { SOV = { has_country_flag = anti_russia_war_loser } }
+				SOV = { exists = no }
+			}
+		}
+		prerequisite = {
+			focus = CHI_focus_sakbang
+		}
+		search_filters = {  }
+		completion_reward = {
+			if = {
+				limit = {
+					SOV = { has_country_flag = anti_russia_war_loser }
+				}
+				if = {
+					limit = {
+						has_global_flag = SOV_won_win_MON_war_flag
+					}
+					CHI = {
+						declare_war_on = {
+							target = SIK
+							type = annex_everything
+						}
+					}
+					every_state = {
+						limit = {
+							is_core_of = SIK
+						}
+						add_core_of = CHI
+					}
+					CHI = {
+						declare_war_on = {
+							target = MON
+							type = annex_everything
+						}
+					}
+					CHI = {
+						declare_war_on = {
+							target = TAN
+							type = annex_everything
+						}
+					}
+					set_global_flag = CHI_focus_sleeping_with_the_enemy_flag 
+				}
+				else = {
+					CHI = {
+						declare_war_on = {
+							target = TAN
+							type = annex_everything
+						}
+					}
+					set_global_flag = CHI_focus_sleeping_with_the_enemy_flag 
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						has_global_flag = SOV_won_win_MON_war_flag
+					}
+					country_event = china_wr.134
+				}
+				else = {
+					country_event = china_wr.144
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = CHI_focus_stabilization_of_mongolia
+		icon = GFX_CHI_focus_stabilization_of_mongolia
+		relative_position_id = CHI_focus_sleeping_with_the_enemy
+		x = 0
+		y = 2
+		ai_will_do = {
+			factor = 6
+		}
+		cost = 3
+		available = {
+			is_subject = no
+			OR = {
+				AND = {
+					818 = { is_owned_by = CHI }
+					820 = { is_owned_by = CHI }
+					330 = { is_owned_by = CHI }
+					817 = { is_owned_by = CHI }
+					819 = { is_owned_by = CHI }
+				}
+				MON = { is_subject_of = CHI }
+			}
+		}
+		bypass = {
+			has_country_flag = fail_to_get_back_mon_flag
+		}
+		prerequisite = {
+			focus = CHI_focus_sleeping_with_the_enemy
+		}
+		search_filters = {  }
+		completion_reward = {
+			if = {
+				limit = {
+					MON = { is_subject_of = CHI }
+				}
+				CHI = {
+					annex_country = {
+						target = MON
+						transfer_troops = no
+					}
+					MON = { enable_country_integration_80_compliance = yes }
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						330 = {
+							free_building_slots = {
+								building = infrastructure
+								size > 0
+								include_locked = no
+							}
+						}
+					}
+					random_owned_controlled_state = {
+						prioritize = { 330 }
+						add_building_construction = {
+							type = infrastructure
+							level = 1
+						}
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 330 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+				random_owned_controlled_state = {
+					prioritize = { 817 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
 		}
 	}
 }

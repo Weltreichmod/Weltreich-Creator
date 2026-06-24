@@ -42,7 +42,7 @@
 			17 = { set_demilitarized_zone = no }
 			18 = { set_demilitarized_zone = no }
 			785 = { set_demilitarized_zone = no }
-			993 = { is_demilitarized_zone = yes }
+			1024 = { set_demilitarized_zone = no }
 			add_named_threat = {
 				threat = 5
 				name = FRA_champagne
@@ -7156,6 +7156,7 @@
 		completion_reward = {
 			declare_war_on = { target = GER type = take_core_state }
 			declare_war_on = { target = BEL type = take_core_state }
+			declare_war_on = { target = WAL type = take_core_state }
 			add_named_threat = {
 				threat = 20
 				name = german_franco_war
@@ -7283,7 +7284,7 @@
 			focus = charge_tactic
 		}
 		prerequisite = {
-			focus = domination_indochina
+			focus = FRA_domination_indochina
 		}
 		completion_reward = {
 			add_timed_idea = { idea = FRA_to_berlin days = 365 }
@@ -7294,7 +7295,7 @@
 	focus = {
 		id = FRA_take_up_arms
 		icon = GFX_focus_focus_fra_third_empire
-		relative_position_id = domination_indochina
+		relative_position_id = FRA_domination_indochina
 		x = 1
 		y = 1
 		cost = 5.8
@@ -7306,7 +7307,7 @@
 			is_subject = no
 		}
 		prerequisite = {
-			focus = domination_indochina
+			focus = FRA_domination_indochina
 		}
 		prerequisite = {
 			focus = fully_mobilization_of_the_people
@@ -7379,8 +7380,8 @@
 	}
 	
 	focus = {
-		id = domination_indochina
-		icon = domination_indochina
+		id = FRA_domination_indochina
+		icon = FRA_domination_indochina
 		relative_position_id = look_africa
 		x = -1
 		y = 1
@@ -7400,14 +7401,7 @@
 		}
 		search_filters = { FOCUS_FILTER_ANNEXATION }
 		completion_reward = {
-			671 = { add_claim_by = FRA }
-			670 = { add_claim_by = FRA }
-			286 = { add_claim_by = FRA }
-			741 = { add_claim_by = FRA }
-			992 = { add_claim_by = FRA }
-			635 = { add_claim_by = FRA }
-			734 = { add_claim_by = FRA }
-			641 = { add_claim_by = FRA }
+			add_ideas = FRA_domination_indochina
 		}
 	}
 	
@@ -12764,44 +12758,16 @@
 		cost = 5
 		available = {
 			is_subject = no
-			OR = {
-				671 = { is_owned_by = FRA }
-				670 = { is_owned_by = FRA }
-				286 = { is_owned_by = FRA }
-				741 = { is_owned_by = FRA }
-				992 = { is_owned_by = FRA }
-			}
 		}
 		ai_will_do = {
 			factor = 6
-		}
-		bypass = {
-			NOT = { 671 = { is_owned_by = FRA } }
-			NOT = { 670 = { is_owned_by = FRA } }
-			NOT = { 286 = { is_owned_by = FRA } }
-			NOT = { 741 = { is_owned_by = FRA } }
-			NOT = { 992 = { is_owned_by = FRA } }
 		}
 		prerequisite = {
 			focus = FRA_return_to_africa
 		}
 		search_filters = { }
 		completion_reward = {
-			every_state = {
-				limit = {
-					is_owned_by = FRA
-					OR = {
-						state = 671
-						state = 670
-						state = 286
-						state = 741
-						state = 992
-					}
-				}
-				add_dynamic_modifier = {
-					modifier = domination_of_indochina
-				}
-			}
+			add_ideas = FRA_return_to_indochina
 		}
 	}
 	

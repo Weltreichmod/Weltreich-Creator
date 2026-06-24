@@ -92,8 +92,18 @@ on_actions = {
 						}
 					}
 				}
-				MAN = { set_country_flag = third_sino_japanese_war_flag }
-				JAP = { set_country_flag = third_sino_japanese_war_flag }
+				if = {
+					limit = {
+						MAN = { exists = yes }
+					}
+					MAN = { set_country_flag = third_sino_japanese_war_flag }
+				}
+				if = {
+					limit = {
+						JAP = { exists = yes }
+					}
+					JAP = { set_country_flag = third_sino_japanese_war_flag }
+				}
 			}
 			if = {
 				limit = {
@@ -186,7 +196,13 @@ on_actions = {
 					NOT = { has_global_flag = DONE_BOI_YOU_CANT_AGAIN_FLAG }
 				}
 				set_global_flag = DONE_BOI_YOU_CANT_AGAIN_FLAG
-				JAP = { country_event = { id = manchukou_wr.71 days = 7 } }
+				if = {
+					limit = {
+						MAN = { exists = yes }
+						NOT = { MAN = { is_in_faction_with = JAP } }
+					}
+					JAP = { country_event = { id = manchukou_wr.71 days = 7 } }
+				}
 			}
 		}
 	}
@@ -474,10 +490,22 @@ on_actions = {
 					any_enemy_country = {
 						original_tag = CHI
 					}
-					has_global_flag = Attack_SIK_for_on_action_and_ai_flag
+					OR = {
+						has_global_flag = Attack_SIK_for_on_action_and_ai_flag
+						has_global_flag = CHI_focus_sleeping_with_the_enemy_flag
+					}
 				}
-				clr_global_flag = Attack_SIK_for_on_action_and_ai_flag
-				CHI = { clr_country_flag = CHI_northern_pacification_flag }
+				if = {
+					limit = {
+						has_global_flag = Attack_SIK_for_on_action_and_ai_flag
+					}
+					clr_global_flag = Attack_SIK_for_on_action_and_ai_flag
+					CHI = {
+						clr_country_flag = CHI_northern_pacification_flag
+						country_event = china_wr.148
+					}
+					SOV = { country_event = china_wr.155 }
+				}
 				every_country = {
 					limit = {
 						OR = {
@@ -495,9 +523,13 @@ on_actions = {
 						target = SIK
 						transfer_troops = no
 					}
-					country_event = china_wr.148
 				}
-				SOV = { country_event = china_wr.155 }
+				every_state = {
+					limit = {
+						is_core_of = SIK
+					}
+					remove_core_of = SIK
+				}
 			}
 			if = {
 				limit = {
@@ -539,6 +571,62 @@ on_actions = {
 					country_event = china_wr.150
 				}
 				SOV = { country_event = china_wr.157 }
+			}
+			if = {
+				limit = {
+					original_tag = MON
+					any_enemy_country = {
+						original_tag = CHI
+					}
+					has_global_flag = CHI_focus_sleeping_with_the_enemy_flag
+				}
+				every_country = {
+					limit = {
+						OR = {
+							original_tag = CHI
+							is_subject_of = CHI
+							is_in_faction_with = CHI
+						}
+					}
+					white_peace = {
+						tag = MON
+					}
+				}
+				CHI = {
+					annex_country = {
+						target = MON
+						transfer_troops = no
+					}
+					MON = { enable_country_integration_80_compliance = yes }
+				}
+			}
+			if = {
+				limit = {
+					original_tag = TAN
+					any_enemy_country = {
+						original_tag = CHI
+					}
+					has_global_flag = CHI_focus_sleeping_with_the_enemy_flag
+				}
+				every_country = {
+					limit = {
+						OR = {
+							original_tag = CHI
+							is_subject_of = CHI
+							is_in_faction_with = CHI
+						}
+					}
+					white_peace = {
+						tag = TAN
+					}
+				}
+				CHI = {
+					annex_country = {
+						target = TAN
+						transfer_troops = no
+					}
+					TAN = { enable_country_integration_80_compliance = yes }
+				}
 			}
 			#중국내전
 			if = {

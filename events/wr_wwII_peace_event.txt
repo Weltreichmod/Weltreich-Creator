@@ -99,6 +99,16 @@ country_event = {
 		}
 		every_country = {
 			limit = {
+				is_in_faction_with = ENT
+				has_capitulated = no
+				NOT = {
+					has_country_flag = second_great_war_winner
+				}
+			}
+			set_country_flag = second_great_war_half_loser
+		}
+		every_country = {
+			limit = {
 				OR = {
 					tag = REI
 					is_in_faction_with = REI
@@ -2221,7 +2231,8 @@ country_event = {
 	option = {
 		name = wrwpe.13.a1
 		trigger = {
-			ROOT = { original_tag = SOV }
+			#ROOT = { original_tag = SOV }
+			always = no
 		}
 		every_state = {
 			limit = {
@@ -3786,6 +3797,33 @@ country_event = {
 				set_autonomy = {
 					target = GER
 					autonomous_state = autonomy_cooperating_country
+					freedom_level = 0.5
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = wrwpe.37
+	title = wrwpe.37.t
+	desc = wrwpe.37.d
+	picture = japan_men_in_suit
+	is_triggered_only = yes
+	option = {
+		name = wrwpe.37.a
+		ROOT = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					TSC = { exists = yes }
+				}
+				set_autonomy = {
+					target = TSC
+					autonomous_state = autonomy_occupation_zone
 					freedom_level = 0.5
 				}
 			}

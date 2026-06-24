@@ -4,6 +4,7 @@
 
 add_namespace = china_wr
 add_namespace = kuomintag_wr
+add_namespace = kuomintag_right_wr
 
 country_event = {
 	id = china_wr.1
@@ -168,6 +169,7 @@ country_event = { #사천 대기근 컨트리이벤트
 				}
 			}
 			remove_dynamic_modifier = { modifier = CHI_the_threat_of_famine }
+			add_dynamic_modifier = { modifier = CHI_Sichuan_Famine_modifier }
 		}
 		752 = { set_demilitarized_zone = yes }
 		751 = { set_demilitarized_zone = yes }
@@ -541,6 +543,19 @@ country_event = { #사천 대기근 해결됨 이벤트
 		hidden_effect = {
 			country_event = { id = china_wr.73 days = 2 }
 		}
+		every_state = {
+			limit = {
+				OR = {
+					state = 753
+					state = 605
+					state = 1004
+					state = 748
+					state = 752
+					state = 751
+				}
+			}
+			remove_dynamic_modifier = { modifier = CHI_Sichuan_Famine_modifier }
+		}
 		ai_chance = {
 			base = 50
 		}
@@ -851,6 +866,8 @@ country_event = { #사천기근 이후 선거 재개
 		name = china_wr.36.a
 		hidden_effect = {
 			country_event = { id = china_wr.37 days = 70 }
+			country_event = { id = china_wr.367 days = 65 }
+			country_event = { id = china_wr.363 days = 68 }
 		}
 		ai_chance = {
 			base = 5
@@ -868,6 +885,7 @@ country_event = { #5대 대총통 선거
 		hidden_effect = {
 			country_event = { id = china_wr.38 days = 5 }
 			country_event = china_wr.270
+			country_event = china_wr.366
 		}
 	}
 	option = {
@@ -4011,6 +4029,13 @@ country_event = {
 		SOV = { end_puppet = SIK }
 		SIK = { leave_faction = yes }
 		CHI = { annex_country = { target = SIK transfer_troops = no } }
+		every_state = {
+			limit = {
+				is_core_of = SIK
+			}
+			add_core_of = CHI
+			remove_core_of = SIK
+		}
 		CHI = {
 			add_opinion_modifier = {
 				target = SOV
@@ -4540,6 +4565,7 @@ country_event = {
 	option = {
 		name = china_wr.151.a
 		add_stability = -0.025
+		set_country_flag = fail_to_get_back_mon_flag
 		ai_chance = {
 			base = 10
 		}
@@ -8942,6 +8968,7 @@ country_event = { #대총통 선거 재개
 		has_country_flag = CHI_didnt_do_vote_flag
 		NOT = { has_country_flag = 2nd_presidental_election_flag }
 		NOT = { has_war_with = KMT }
+		has_war = no
 	}
 	option = {
 		name = china_wr.257.a
@@ -10680,11 +10707,11 @@ country_event = {
 		name = china_wr.335.a
 		add_dynamic_modifier = { modifier = CHI_anti_japanese_national_salvation }
 		add_to_variable = {
-			CHI_anti_japanese_national_salvation_army_core_attack_factor = 0.1
+			CHI_anti_japanese_national_salvation_army_core_attack_factor = 0.2
 			tooltip = army_core_attack_factor_tt
 		}
 		add_to_variable = {
-			CHI_anti_japanese_national_salvation_army_core_defence_factor = 0.1
+			CHI_anti_japanese_national_salvation_army_core_defence_factor = 0.2
 			tooltip = army_core_defence_factor_tt
 		}
 		ai_chance = {
@@ -10808,6 +10835,957 @@ country_event = {
 }
 
 country_event = {
+	id = china_wr.341
+	title = china_wr.341.t
+	desc = china_wr.341.d
+	picture = GFX_Haidong
+	is_triggered_only = yes
+	option = {
+		name = china_wr.341.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.342
+	title = china_wr.342.t
+	desc = china_wr.342.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.342.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.343
+	title = china_wr.343.t
+	desc = china_wr.343.d
+	picture = indochina_map
+	is_triggered_only = yes
+	option = {
+		name = china_wr.343.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.344
+	title = china_wr.344.t
+	desc = china_wr.344.d
+	picture = mongolia_map
+	is_triggered_only = yes
+	option = {
+		name = china_wr.344.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.345
+	title = china_wr.345.t
+	desc = china_wr.345.d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	option = {
+		name = china_wr.345.a
+		CHI = { country_event = china_wr.346 }
+		effect_tooltip = {
+			TSC = {
+				random_owned_controlled_state = {
+					limit = {
+						industrial_complex > 0
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						arms_factory > 0
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						industrial_complex > 0
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						arms_factory > 0
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						industrial_complex > 0
+					}
+					remove_building = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						arms_factory > 0
+					}
+					remove_building = {
+						type = arms_factory
+						level = 1
+					}
+				}
+			}
+			CHI = {
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = industrial_complex
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = arms_factory
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = arms_factory
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+					}
+				}
+				random_owned_controlled_state = {
+					limit = {
+						free_building_slots = {
+							building = arms_factory
+							size > 0
+							include_locked = no
+						}
+					}
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.346
+	title = china_wr.346.t
+	desc = china_wr.346.d
+	picture = GFX_report_event_generic_factory
+	is_triggered_only = yes
+	option = {
+		name = china_wr.346.a
+		TSC = {
+			random_owned_controlled_state = {
+				limit = {
+					industrial_complex > 0
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					industrial_complex > 0
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					industrial_complex > 0
+				}
+				remove_building = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					arms_factory > 0
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					arms_factory > 0
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					arms_factory > 0
+				}
+				remove_building = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+		CHI = {
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = industrial_complex
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = industrial_complex
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					free_building_slots = {
+						building = arms_factory
+						size > 0
+						include_locked = no
+					}
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.347
+	title = china_wr.347.t
+	desc = china_wr.347.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.347.a
+		effect_tooltip = {
+			add_ideas = KOR_sino_korean_economic_cooperation
+			CHI = { add_ideas = CHI_sino_korean_economic_cooperation }
+		}
+		CHI = { country_event = china_wr.348 }
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.347.b
+		CHI = { country_event = china_wr.349 }
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.348
+	title = china_wr.348.t
+	desc = china_wr.348.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.348.a
+		KOR = { add_ideas = KOR_sino_korean_economic_cooperation }
+		CHI = { add_ideas = CHI_sino_korean_economic_cooperation }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.349
+	title = china_wr.349.t
+	desc = china_wr.349.d
+	picture = GFX_report_event_generic_sign_treaty2
+	is_triggered_only = yes
+	option = {
+		name = china_wr.349.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.350
+	title = china_wr.350.t
+	desc = china_wr.350.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.350.a
+		TIB = { country_event = china_wr.351 }
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.350.b
+		TIB = { country_event = china_wr.352 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.351
+	title = china_wr.351.t
+	desc = china_wr.351.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.351.a
+		CHI = { country_event = china_wr.353 }
+		effect_tooltip = {
+			CHI = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Waking the Tiger"
+						}
+					}
+					set_autonomy = {
+						target = TIB
+						autonomous_state = autonomy_autonomous_provincial_government
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = TIB
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.351.b
+		CHI = { country_event = china_wr.354 }
+		effect_tooltip = {
+			CHI = {
+				create_wargoal = { type = annex_everything target = TIB }
+				every_state = {
+					limit = {
+						is_owned_by = TIB
+					}
+					add_claim_by = CHI
+				}
+			}
+		}
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.352
+	title = china_wr.352.t
+	desc = china_wr.352.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.352.a
+		CHI = { country_event = china_wr.355 }
+		effect_tooltip = {
+			CHI = {
+				annex_country = { target = TIB transfer_troops = no }
+				TIB = { enable_country_integration_60_compliance = yes }
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.352.b
+		CHI = { country_event = china_wr.356 }
+		effect_tooltip = {
+			CHI = {
+				create_wargoal = { type = annex_everything target = TIB }
+				every_state = {
+					limit = {
+						is_owned_by = TIB
+					}
+					add_claim_by = CHI
+				}
+			}
+		}
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.353
+	title = china_wr.353.t
+	desc = china_wr.353.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.353.a
+		CHI = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+				}
+				set_autonomy = {
+					target = TIB
+					autonomous_state = autonomy_autonomous_provincial_government
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = TIB
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.354
+	title = china_wr.354.t
+	desc = china_wr.354.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.354.a
+		CHI = {
+			create_wargoal = { type = annex_everything target = TIB }
+			every_state = {
+				limit = {
+					is_owned_by = TIB
+				}
+				add_claim_by = CHI
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.355
+	title = china_wr.355.t
+	desc = china_wr.355.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.355.a
+		CHI = {
+			annex_country = { target = TIB transfer_troops = no }
+			TIB = { enable_country_integration_60_compliance = yes }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.356
+	title = china_wr.356.t
+	desc = china_wr.356.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.356.a
+		CHI = {
+			create_wargoal = { type = annex_everything target = TIB }
+			every_state = {
+				limit = {
+					is_owned_by = TIB
+				}
+				add_claim_by = CHI
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.357
+	title = china_wr.357.t
+	desc = china_wr.357.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.357.a
+		FROM = { country_event = china_wr.358 }
+		effect_tooltip = {
+			FROM = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Waking the Tiger"
+						}
+					}
+					set_autonomy = {
+						target = ROOT
+						autonomous_state = autonomy_satellite
+						freedom_level = 0.5
+					}
+					else = {
+						puppet = ROOT
+					}
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.357.b
+		FROM = { country_event = china_wr.359 }
+		effect_tooltip = {
+			FROM = {
+				create_wargoal = { type = annex_everything target = ROOT }
+			}
+		}
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.358
+	title = china_wr.358.t
+	desc = china_wr.358.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.358.a
+		ROOT = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+				}
+				set_autonomy = {
+					target = FROM
+					autonomous_state = autonomy_satellite
+					freedom_level = 0.5
+				}
+				else = {
+					puppet = FROM
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.359
+	title = china_wr.359.t
+	desc = china_wr.359.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.359.a
+		ROOT = {
+			create_wargoal = { type = annex_everything target = FROM }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.360
+	title = china_wr.360.t
+	desc = china_wr.360.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.360.a
+		CHI = { country_event = china_wr.361 }
+		CHI = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = large_increase
+			}
+		}
+		GER = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = small_decrease
+			}
+		}
+		ENG = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = small_decrease
+			}
+		}
+		FRA = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = small_decrease
+			}
+		}
+		ITA = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = small_decrease
+			}
+		}
+		USA = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = small_decrease
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.360.b
+		CHI = { country_event = china_wr.362 }
+		CHI = {
+			add_opinion_modifier = {
+				target = SOV
+				modifier = small_decrease
+			}
+		}
+		ai_chance = {
+			base = 0
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.361
+	title = china_wr.361.t
+	desc = china_wr.361.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.361.a
+		SOV = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = large_increase
+			}
+		}
+		GER = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_decrease
+			}
+		}
+		ENG = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_decrease
+			}
+		}
+		FRA = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_decrease
+			}
+		}
+		ITA = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_decrease
+			}
+		}
+		USA = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_decrease
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.362
+	title = china_wr.362.t
+	desc = china_wr.362.d
+	picture = GFX_free_tibet
+	is_triggered_only = yes
+	option = {
+		name = china_wr.362.a
+		SOV = {
+			add_opinion_modifier = {
+				target = CHI
+				modifier = small_decrease
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# 이벤트 1: 투표소 187개소 투표용지 부족
+country_event = {
+	id = china_wr.363
+	title = china_wr.363.t
+	desc = china_wr.363.d
+	picture = CHI_woman_vote_event
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.363.a
+		add_stability = -0.025
+		add_political_power = -30
+		hidden_effect = {
+			country_event = { id = china_wr.364 days = 2 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# 이벤트 2: 투표소 부족으로 인한 산발적 시위
+country_event = {
+	id = china_wr.364
+	title = china_wr.364.t
+	desc = china_wr.364.d
+	picture = CHI_woman_vote_event
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.364.a
+		add_stability = -0.025
+		hidden_effect = {
+			country_event = { id = china_wr.365 days = 4 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# 이벤트 3: 국민당의 선거관리청 고발
+country_event = {
+	id = china_wr.365
+	title = china_wr.365.t
+	desc = china_wr.365.d
+	picture = CHI_woman_vote_event
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.365.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# 이벤트 4: 투표함 잉크 투하 사건
+country_event = {
+	id = china_wr.366
+	title = china_wr.366.t
+	desc = china_wr.366.d
+	picture = CHI_woman_vote_event
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.366.a
+		add_stability = -0.05
+		add_political_power = -25
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.367
+	title = china_wr.367.t
+	desc = china_wr.367.d
+	picture = CHI_Yan_Huiqing
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.367.a
+		custom_effect_tooltip = china_wr_367_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
 	id = china_wr.1000
 	title = china_wr.1000.t
 	desc = china_wr.1000.d
@@ -10841,6 +11819,22 @@ country_event = {
 			}
 			CHI_dec_military_discontent_decrease = yes
 		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.1002
+	title = china_wr.1002.t
+	desc = china_wr.1002.d
+	picture = GFX_report_event_chinese_army_training
+	is_triggered_only = yes
+	hidden = yes
+	option = {
+		name = china_wr.1002.a
+		set_country_flag = propse_purchace_weapons_flag
 		ai_chance = {
 			base = 10
 		}
@@ -11110,6 +12104,15 @@ country_event = {
 			value = -0.05
 		}
 		if = {
+				limit = {
+					has_idea = KMT_illegal_regime
+				}
+				swap_ideas = {
+					remove_idea = KMT_illegal_regime
+					add_idea = KMT_national_assembly_legitimacy_verylow
+				}
+			}
+			else_if = {
 			limit = {
 				has_idea = KMT_national_assembly_legitimacy_verylow
 			}
@@ -11248,6 +12251,15 @@ country_event = {
 			value = -0.05
 		}
 		if = {
+			limit = {
+				has_idea = KMT_illegal_regime
+			}
+			swap_ideas = {
+				remove_idea = KMT_illegal_regime
+				add_idea = KMT_national_assembly_legitimacy_verylow
+			}
+		}
+		else_if = {
 			limit = {
 				has_idea = KMT_national_assembly_legitimacy_verylow
 			}
@@ -11960,6 +12972,9 @@ country_event = {
 	desc = kuomintag_wr.39.d
 	picture = canton_coup
 	is_triggered_only = yes
+	trigger = {
+		has_global_flag = chinese_civil_war
+	}
 	immediate = {
 		hidden_effect = {
 			set_country_flag = Zhongshan_Incident_flag
@@ -11982,6 +12997,9 @@ country_event = {
 	desc = kuomintag_wr.40.d
 	picture = Li_Tsung_jen
 	is_triggered_only = yes
+	trigger = {
+		has_global_flag = chinese_civil_war
+	}
 	option = {
 		name = kuomintag_wr.40.a
 		country_event = { id = kuomintag_wr.41 days = 15 }
@@ -11998,6 +13016,9 @@ country_event = {
 	desc = kuomintag_wr.41.d
 	picture = Li_Tsung_jen
 	is_triggered_only = yes
+	trigger = {
+		has_global_flag = chinese_civil_war
+	}
 	option = {
 		name = kuomintag_wr.41.a
 		country_event = { id = kuomintag_wr.42 days = 25 }
@@ -12012,6 +13033,9 @@ country_event = {
 	id = kuomintag_wr.42
 	title = kuomintag_wr.42.t
 	desc = kuomintag_wr.42.d
+	trigger = {
+		has_global_flag = chinese_civil_war
+	}
 	picture = Li_Tsung_jen
 	is_triggered_only = yes
 	option = {
@@ -12327,15 +13351,15 @@ country_event = {
 						always = yes
 					}
 				}
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
+				hidden_effect = {
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+				}
 			}
 		}
 		else_if = {
@@ -12373,14 +13397,14 @@ country_event = {
 						always = yes
 					}
 				}
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
+				hidden_effect = {
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+				}
 			}
 		}
 		else_if = {
@@ -12417,13 +13441,13 @@ country_event = {
 						always = yes
 					}
 				}
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
+				hidden_effect = {
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+				}
 			}
 		}
 		if = {
@@ -12487,11 +13511,11 @@ country_event = {
 						always = yes
 					}
 				}
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
-				KMT_inc_revolution_5 = yes
+				hidden_effect = {
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+					KMT_inc_revolution_5 = yes
+				}
 			}
 		}
 		KMT = {
@@ -12512,9 +13536,14 @@ country_event = {
 						}
 					}				
 				}
+				KMT_hu_hanmin = {
+					set_nationality = KMR
+					promote_character = yes	
+				}
 			}
 			hidden_effect = {
 				retire_character = KMT_li_zongren
+				retire_character = KMT_hu_hanmin
 			}
 			KMT_Chen_Cheng = {
 				set_nationality = KMR
@@ -12533,10 +13562,6 @@ country_event = {
 				promote_character = yes	
 			}
 			CHI_jiang_dingwen = {
-				set_nationality = KMR
-				promote_character = yes	
-			}
-			KMT_hu_hanmin = {
 				set_nationality = KMR
 				promote_character = yes	
 			}
@@ -12614,6 +13639,7 @@ country_event = {
 			inherit_technology = KMT
 			load_oob = "KMR_1936"
 			add_ideas = CHI_civil_war
+			complete_national_focus = KMR_provisional_government_of_roc
 			every_state = {
 				limit = {
 					is_claimed_by = KMT
@@ -12759,7 +13785,18 @@ country_event = {
 		news_event = kuomintag_wr.55
 		set_country_flag = KMT_left_focus_allow_flag
 		add_ideas = KMT_fracturing_military
-		complete_national_focus = KMT_wang_successor_of_sun
+		if = {
+			limit = {
+				has_country_leader = {
+					character = CHI_wang_jingwei
+					ruling_only = yes
+				}
+			}
+			complete_national_focus = KMT_wang_successor_of_sun
+		}
+		else = {
+			complete_national_focus = KMT_chiang_sun_yatsen_confidant
+		}
 		mark_focus_tree_layout_dirty = yes
 		ai_chance = {
 			base = 10
@@ -13370,7 +14407,7 @@ country_event = {
 	id = kuomintag_wr.79
 	title = kuomintag_wr.79.t
 	desc = kuomintag_wr.79.d
-	picture = CHI_sun_yat_sen
+	picture = GFX_CHI_sun_yat_sen
 	is_triggered_only = yes
 	option = {
 		name = kuomintag_wr.79.a
@@ -14106,6 +15143,867 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = kuomintag_wr.101.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.102
+	title = kuomintag_wr.102.t
+	desc = kuomintag_wr.102.d
+	picture = GFX_kuomintag_nono
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.102.a
+		add_to_variable = { KMT_five_power_separation_political_power_factor = 0.1 }
+		custom_effect_tooltip = KMT_five_power_separation_political_power_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.102.b
+		add_to_variable = { KMT_five_power_separation_stability_factor = 0.1 }
+		custom_effect_tooltip = KMT_five_power_separation_stability_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.103
+	title = kuomintag_wr.103.t
+	desc = kuomintag_wr.103.d
+	picture = GFX_kuomintag_nono
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.103.a
+		add_to_variable = { KMT_five_power_separation_production_speed_buildings_factor = 0.05 }
+		custom_effect_tooltip = KMT_five_power_separation_production_speed_buildings_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.103.b
+		add_to_variable = { KMT_five_power_separation_required_garrison_factor = -0.1 }
+		custom_effect_tooltip = KMT_five_power_separation_required_garrison_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.104
+	title = kuomintag_wr.104.t
+	desc = kuomintag_wr.104.d
+	picture = GFX_kuomintag_nono
+
+	is_triggered_only = yes
+
+	option = {
+		name = kuomintag_wr.104.a
+		add_to_variable = { KMT_five_power_separation_drift_defence_factor = 0.15 }
+		custom_effect_tooltip = KMT_five_power_separation_drift_defence_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = kuomintag_wr.104.b
+		add_to_variable = { KMT_five_power_separation_research_speed_factor = 0.05 }
+		custom_effect_tooltip = KMT_five_power_separation_research_speed_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.105
+	title = kuomintag_wr.105.t
+	desc = kuomintag_wr.105.d
+	picture = GFX_kuomintag_nono
+
+	is_triggered_only = yes
+
+	option = {
+		name = kuomintag_wr.105.a
+		add_to_variable = { KMT_five_power_separation_political_advisor_cost_factor = -0.15 }
+		custom_effect_tooltip = KMT_five_power_separation_political_advisor_cost_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = kuomintag_wr.105.b
+		add_to_variable = { KMT_five_power_separation_consumer_goods_factor = -0.05 }
+		custom_effect_tooltip = KMT_five_power_separation_consumer_goods_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.106
+	title = kuomintag_wr.106.t
+	desc = kuomintag_wr.106.d
+	picture = GFX_kuomintag_nono
+
+	is_triggered_only = yes
+
+	option = {
+		name = kuomintag_wr.106.a
+		add_to_variable = { KMT_five_power_separation_industrial_capacity_factory = 0.05 }
+		custom_effect_tooltip = KMT_five_power_separation_industrial_capacity_factory_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = kuomintag_wr.106.b
+		add_to_variable = { KMT_five_power_separation_mobilization_laws_cost_factor = -0.15 }
+		custom_effect_tooltip = KMT_five_power_separation_mobilization_laws_cost_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.107
+	title = kuomintag_wr.107.t
+	desc = kuomintag_wr.107.d
+	picture = GFX_kuomintag_nono
+
+	is_triggered_only = yes
+
+	option = {
+		name = kuomintag_wr.107.a
+		add_to_variable = { KMT_five_power_separation_economy_cost_factor = -0.15 }
+		custom_effect_tooltip = KMT_five_power_separation_economy_cost_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = kuomintag_wr.107.b
+		add_to_variable = { KMT_five_power_separation_trade_laws_cost_factor = -0.15 }
+		custom_effect_tooltip = KMT_five_power_separation_trade_laws_cost_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.108
+	title = kuomintag_wr.108.t
+	desc = kuomintag_wr.108.d
+	picture = GFX_kuomintag_nono
+
+	is_triggered_only = yes
+
+	option = {
+		name = kuomintag_wr.108.a
+		add_to_variable = { KMT_five_power_separation_war_stability_factor = 0.1 }
+		custom_effect_tooltip = KMT_five_power_separation_war_stability_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = kuomintag_wr.108.b
+		add_to_variable = { KMT_five_power_separation_production_factory_efficiency_gain_factor = 0.1 }
+		custom_effect_tooltip = KMT_five_power_separation_production_factory_efficiency_gain_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.109
+	title = kuomintag_wr.109.t
+	desc = kuomintag_wr.109.d
+	picture = GFX_kuomintag_nono
+
+	is_triggered_only = yes
+
+	option = {
+		name = kuomintag_wr.109.a
+		add_to_variable = { KMT_five_power_separation_production_factory_max_efficiency_factor = 0.1 }
+		custom_effect_tooltip = KMT_five_power_separation_production_factory_max_efficiency_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = kuomintag_wr.109.b
+		add_to_variable = { KMT_five_power_separation_monthly_population = 0.05 }
+		custom_effect_tooltip = KMT_five_power_separation_monthly_population_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.110
+	title = kuomintag_wr.110.t
+	desc = kuomintag_wr.110.d
+	picture = GFX_kuomintag_nono
+
+	is_triggered_only = yes
+
+	option = {
+		name = kuomintag_wr.110.a
+		add_to_variable = { KMT_five_power_separation_war_support_factor = 0.1 }
+		custom_effect_tooltip = KMT_five_power_separation_war_support_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = kuomintag_wr.110.b
+		add_to_variable = { KMT_five_power_separation_high_command_cost_factor = -0.15 }
+		custom_effect_tooltip = KMT_five_power_separation_high_command_cost_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.111
+	title = kuomintag_wr.111.t
+	desc = kuomintag_wr.111.d
+	picture = GFX_kuomintag_nono
+
+	is_triggered_only = yes
+
+	option = {
+		name = kuomintag_wr.111.a
+		add_to_variable = { KMT_five_power_separation_production_lack_of_resource_penalty_factor = -0.05 }
+		custom_effect_tooltip = KMT_five_power_separation_production_lack_of_resource_penalty_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = kuomintag_wr.111.b
+		add_to_variable = { KMT_five_power_separation_production_speed_buildings_factor = 0.05 }
+		custom_effect_tooltip = KMT_five_power_separation_production_speed_buildings_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.112
+	title = kuomintag_wr.112.t
+	desc = kuomintag_wr.112.d
+	picture = GFX_kuomintag_nono
+
+	is_triggered_only = yes
+
+	option = {
+		name = kuomintag_wr.112.a
+		add_to_variable = { KMT_five_power_separation_surrender_limit = 0.05 }
+		custom_effect_tooltip = KMT_five_power_separation_surrender_limit_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = kuomintag_wr.112.b
+		add_to_variable = { KMT_five_power_separation_army_advisor_cost_factor = -0.15 }
+		custom_effect_tooltip = KMT_five_power_separation_army_advisor_cost_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.113
+	title = kuomintag_wr.113.t
+	desc = kuomintag_wr.113.d
+	picture = GFX_kuomintag_nono
+
+	is_triggered_only = yes
+
+	option = {
+		name = kuomintag_wr.113.a
+		add_to_variable = { KMT_five_power_separation_navy_advisor_cost_factor = -0.15 }
+		custom_effect_tooltip = KMT_five_power_separation_navy_advisor_cost_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+
+	option = {
+		name = kuomintag_wr.113.b
+		add_to_variable = { KMT_five_power_separation_air_advisor_cost_factor = -0.15 }
+		custom_effect_tooltip = KMT_five_power_separation_air_advisor_cost_factor_change_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.114
+	title = kuomintag_wr.114.t
+	desc = kuomintag_wr.114.d
+	picture = GFX_kuomintag_nono
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.114.a
+		custom_effect_tooltip = KMT_focus_peace_and_national_reconstruction_tt
+		hidden_effect = {
+			remove_ideas = KMT_chinese_state_socialism
+			remove_ideas = KMT_advancing_workers_spirit
+			remove_ideas = KMT_party_commands_the_gun
+			add_ideas = KMT_focus_peace_and_national_reconstruction
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.115
+	title = kuomintag_wr.115.t
+	desc = kuomintag_wr.115.d
+	picture = KMT_wang_event
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.115.a
+		add_political_power = 5
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.116
+	title = kuomintag_wr.116.t
+	desc = kuomintag_wr.116.d
+	picture = CHI_chiang_kai_shek
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.116.a
+		add_political_power = 5
+		country_event = { id = kuomintag_wr.117 days = 1 }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.117
+	title = kuomintag_wr.117.t
+	desc = kuomintag_wr.117.d
+	picture = CHI_chiang_kai_shek_2
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.117.a
+		news_event = kuomintag_wr.118
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+news_event = {
+	id = kuomintag_wr.118
+	title = kuomintag_wr.118.t
+	desc = kuomintag_wr.118.d
+	picture = CHI_chiang_kai_shek_3
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = kuomintag_wr.118.a
+		trigger = {
+			original_tag = KMT
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.118.b
+		trigger = {
+			NOT = { original_tag = KMT }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.119
+	title = kuomintag_wr.119.t
+	desc = kuomintag_wr.119.d
+	picture = GFX_report_event_PRC_he_long_arrives
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.119.a
+		if = {
+			limit = {
+				has_idea = KMT_blue_shirts_society_dlc
+			}
+			swap_ideas = {
+				remove_idea = KMT_blue_shirts_society_dlc
+				add_idea = KMT_bomilguk_intelligence_spirit_dlc
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = KMT_blue_shirts_society_nodlc
+			}
+			swap_ideas = {
+				remove_idea = KMT_blue_shirts_society_nodlc
+				add_idea = KMT_bomilguk_intelligence_spirit_no_dlc
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = KMT_CC_clique_dlc
+			}
+			swap_ideas = {
+				remove_idea = KMT_CC_clique_dlc
+				add_idea = KMT_bomilguk_intelligence_spirit_dlc
+			}
+		}
+		else_if = {
+			limit = {
+				has_idea = KMT_CC_clique_nodlc
+			}
+			swap_ideas = {
+				remove_idea = KMT_CC_clique_nodlc
+				add_idea = KMT_bomilguk_intelligence_spirit_no_dlc
+			}
+		}
+		else = {
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				add_ideas = KMT_bomilguk_intelligence_spirit_no_before_dlc
+			}
+			else = {
+				add_ideas = KMT_bomilguk_intelligence_spirit_no_before_no_dlc
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.120
+	title = kuomintag_wr.120.t
+	desc = kuomintag_wr.120.d
+	picture = GFX_report_event_chinese_soldiers
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.120.a
+		add_ideas = KMT_military_first_politics_spirit
+		add_war_support = 0.05
+		add_stability = -0.05
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.121
+	title = kuomintag_wr.121.t
+	desc = kuomintag_wr.121.d
+	picture = GFX_report_event_chinese_soldiers
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.121.a
+		add_popularity = {
+			ideology = fascism
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = communism
+			popularity = -0.05
+		}
+		add_popularity = {
+			ideology = neutrality
+			popularity = -0.05
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.122
+	title = kuomintag_wr.122.t
+	desc = kuomintag_wr.122.d
+	picture = GFX_report_event_chinese_soldiers
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.122.a
+		swap_ideas = {
+			remove_idea = KMT_focus_worker_soldier_national_council
+			add_idea = KMT_focus_worker_soldier_national_council_1
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.123
+	title = kuomintag_wr.123.t
+	desc = kuomintag_wr.123.d
+	picture = KMT_soldiers
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.123.a
+		add_political_power = 35
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.124
+	title = kuomintag_wr.124.t
+	desc = kuomintag_wr.124.d
+	picture = KMT_soldiers
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.124.a
+		custom_effect_tooltip = KMT_focus_pan_people_revolution_tt
+		hidden_effect = {
+			remove_ideas = KMT_focus_worker_soldier_national_council_1
+			remove_ideas = KMT_vanguard_of_the_national_revolution_spirit
+			add_ideas = KMT_focus_pan_people_revolution
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.125
+	title = kuomintag_wr.125.t
+	desc = kuomintag_wr.125.d
+	picture = CHI_chiang_kai_shek_2
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.125.a
+		add_political_power = 25
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# 예(禮) 계획 이벤트
+country_event = {
+	id = kuomintag_wr.126
+	title = kuomintag_wr.126.t
+	desc = kuomintag_wr.126.d
+	picture = KMT_new_people_movement
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.126.a
+		KMT_inc_propriety_10 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# 의(義) 계획 이벤트
+country_event = {
+	id = kuomintag_wr.127
+	title = kuomintag_wr.127.t
+	desc = kuomintag_wr.127.d
+	picture = KMT_new_people_movement
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.127.a
+		KMT_decision_inc_righteousness_10 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# 염(廉) 도입 계획 이벤트
+country_event = {
+	id = kuomintag_wr.128
+	title = kuomintag_wr.128.t
+	desc = kuomintag_wr.128.d
+	picture = KMT_new_people_movement
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.128.a
+		KMT_inc_integrity_10 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# 치(恥) 도입 계획 이벤트
+country_event = {
+	id = kuomintag_wr.129
+	title = kuomintag_wr.129.t
+	desc = kuomintag_wr.129.d
+	picture = KMT_new_people_movement
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.129.a
+		KMT_inc_shame_10 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# 계몽 (Enlightenment) 프로젝트 시작
+country_event = {
+	id = kuomintag_wr.130
+	title = kuomintag_wr.130.t
+	desc = kuomintag_wr.130.d
+	picture = KMT_new_people_movement
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.130.a
+		KMT_inc_enlightenment_10 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+# 충정 (Loyalty) 프로젝트 시작
+country_event = {
+	id = kuomintag_wr.131
+	title = kuomintag_wr.131.t
+	desc = kuomintag_wr.131.d
+	picture = KMT_new_people_movement
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.131.a
+		KMT_inc_loyalty_10 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.132
+	title = kuomintag_wr.132.t
+	desc = kuomintag_wr.132.d
+	picture = CHI_woman_work_event
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.132.a
+		KMT_inc_enlightenment_5 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.133
+	title = kuomintag_wr.133.t
+	desc = kuomintag_wr.133.d
+	picture = KMT_new_people_movement
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.133.a
+		KMT_inc_militarization_10 = yes
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.134
+	title = kuomintag_wr.134.t
+	desc = kuomintag_wr.134.d
+	picture = KMT_chiang_3
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.134.a
+		custom_effect_tooltip = KMT_resistance_and_national_construction_tt
+		hidden_effect = {
+			remove_ideas = KMT_focus_new_citizen_new_china
+			remove_ideas = KMT_focus_pan_people_revolution
+			add_ideas = KMT_resistance_and_national_construction
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_right_wr.1
+	title = kuomintag_right_wr.1.t
+	desc = kuomintag_right_wr.1.d
+	picture = KMR_li_and_hu
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_right_wr.1.a
+		unlock_decision_category_tooltip = KMR_right_power_struggle_category
+		set_country_flag = KMR_right_power_struggle_category_flag
+		set_country_flag = KMR_huhanmin_flag
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_right_wr.1.b
+		unlock_decision_category_tooltip = KMR_right_power_struggle_category
+		set_country_flag = KMR_right_power_struggle_category_flag
+		set_country_flag = KMR_lizhongren_flag
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_right_wr.2
+	title = kuomintag_right_wr.2.t
+	desc = kuomintag_right_wr.2.d
+	picture = KMR_li_and_hu
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_right_wr.2.a
+		trigger = {
+			OR = {
+				check_variable = { KMR_faction_average < 50 }
+				check_variable = { KMR_faction_average = 50 }
+			}
+		}
+		set_politics = {
+			ruling_party = neutrality
+			elections_allowed = no
+		}
+		complete_national_focus = KMR_decisive_gamble
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_right_wr.2.b
+		trigger = {
+			check_variable = { KMR_faction_average > 50 }
+		}
+		complete_national_focus = KMR_decisive_gamble
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_right_wr.3
+	title = kuomintag_right_wr.3.t
+	desc = kuomintag_right_wr.3.d
+	picture = GFX_report_event_generic_train
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_right_wr.3.a
+		swap_ideas = {
+			remove_idea = KMR_import_substitution_nationalization
+			add_idea = KMR_successful_localization_spirit
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_right_wr.4
+	title = kuomintag_right_wr.4.t
+	desc = kuomintag_right_wr.4.d
+	picture = CHI_canton
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_right_wr.4.a
 		ai_chance = {
 			base = 10
 		}

@@ -1759,9 +1759,6 @@ ideas = {
 			allowed = {
 				original_tag = CHI
 			}
-			available = {
-				has_war_with = JAP
-			}
 			targeted_modifier = {
 				tag = JAP
 				attack_bonus_against = 0.1
@@ -1980,7 +1977,10 @@ ideas = {
 			}
 			available = {
 				is_subject = no
-				has_war_with = KMT
+				OR = {
+					has_war_with = KMR
+					has_war_with = KMT
+				}
 			}
 			modifier = {
 				conscription_factor = 0.1
@@ -2233,6 +2233,33 @@ ideas = {
 				war_support_factor = 0.05
 				mobilization_speed = 0.05
 				training_time_factor = -0.05
+			}
+		}
+		
+		CHI_prison_autonomy_3 = {
+			name = CHI_prison_autonomy
+			picture = generic_democratic_drift_bonus
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				stability_factor = 0.075
+				war_support_factor = 0.075
+				mobilization_speed = 0.075
+				training_time_factor = -0.05
+			}
+		}
+		
+		CHI_wu_peifu_wartime_plan = {
+			picture = generic_production_bonus
+			available = {
+				has_war = yes
+			}
+			modifier = {
+				stability_factor = -0.1
+				production_factory_efficiency_gain_factor = 0.15
+				production_factory_max_efficiency_factor = 0.15
+				industrial_capacity_factory = 0.05
 			}
 		}
 		
@@ -2564,6 +2591,39 @@ ideas = {
 			}
 		}
 		
+		KOR_sino_korean_economic_cooperation = {
+            allowed = { always = yes }
+            allowed_civil_war = { always = yes }
+            available = {
+				NOT = { has_war_with = CHI }
+			}
+            picture = ARG_public_works_investment
+            
+            modifier = {
+                industrial_capacity_factory = 0.10     # 공장 산출량 +10%
+                production_factory_max_efficiency_factor = 0.05 # 공장 최대 효율 +5%
+                consumer_goods_factor = -0.05          # 소비재 공장 -5%
+                local_resources_factor = 0.05          # 자원 획득 효율 +5%
+            }
+        }
+
+        # 중국용 국민정신
+        CHI_sino_korean_economic_cooperation = {
+            allowed = { always = yes }
+            allowed_civil_war = { always = yes }
+			available = {
+				NOT = { has_war_with = KOR }
+			}
+            
+            picture = BRA_dasp
+            
+            modifier = {
+                production_speed_industrial_complex_factor = 0.05 # 민간공장 건설 속도 +15%
+                production_speed_infrastructure_factor = 0.1      # 인프라 건설 속도 +10%
+                research_sharing_per_country_bonus = 0.05          # 연구 공유 보너스 +5%
+            }
+        }
+		
 		#For KMT
 		KMT_national_revolution = {
 			picture = CHI_endless_national_revolution
@@ -2702,8 +2762,9 @@ ideas = {
 				is_subject = no
 			}
 			modifier = {
-				decryption_factor = 0.05
-				encryption_factor = 0.05
+				operation_cost = -0.05
+				operation_risk = -0.05
+				agency_upgrade_time = -0.1
 			}
 		}
 		
@@ -2732,8 +2793,9 @@ ideas = {
 				is_subject = no
 			}
 			modifier = {
-				decryption_factor = 0.05
-				encryption_factor = 0.05
+				operation_cost = -0.05
+				operation_risk = -0.05
+				agency_upgrade_time = -0.1
 			}
 		}
 		
@@ -2749,6 +2811,352 @@ ideas = {
 			modifier = {
 				decryption = 0.05
 				encryption = 0.05
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_dlc = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				operation_cost = -0.1
+				operation_risk = -0.1
+				agency_upgrade_time = -0.1
+				intel_network_gain_factor = 0.15
+				crypto_strength = 1
+				decryption_power = 2
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_no_dlc = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				decryption = 0.1
+				encryption = 0.1
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_no_before_dlc = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				operation_cost = -0.05
+				operation_risk = -0.05
+				agency_upgrade_time = -0.1
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_no_before_no_dlc = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				decryption = 0.05
+				encryption = 0.05
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_dlc_1 = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				operation_cost = -0.1
+				operation_risk = -0.1
+				agency_upgrade_time = -0.1
+				intel_network_gain_factor = 0.15
+				crypto_strength = 1
+				decryption_power = 2
+				army_org_factor = 0.025
+				war_stability_factor = 0.05
+				command_power_gain = 0.02
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_no_dlc_1 = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				decryption = 0.1
+				encryption = 0.1
+				army_org_factor = 0.025
+				war_stability_factor = 0.05
+				command_power_gain = 0.02
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_no_before_dlc_1 = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				operation_cost = -0.05
+				operation_risk = -0.05
+				agency_upgrade_time = -0.1
+				army_org_factor = 0.025
+				war_stability_factor = 0.05
+				command_power_gain = 0.02
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_no_before_no_dlc_1 = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				decryption = 0.05
+				encryption = 0.05
+				army_org_factor = 0.025
+				war_stability_factor = 0.05
+				command_power_gain = 0.02
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_dlc_2 = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				operation_cost = -0.1
+				operation_risk = -0.1
+				agency_upgrade_time = -0.1
+				intel_network_gain_factor = 0.15
+				crypto_strength = 1
+				decryption_power = 2
+				army_org_factor = 0.025
+				war_stability_factor = 0.05
+				command_power_gain = 0.02
+				drift_defence_factor = 0.1
+				war_support_factor = 0.05
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_no_dlc_2 = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				decryption = 0.1
+				encryption = 0.1
+				army_org_factor = 0.025
+				war_stability_factor = 0.05
+				command_power_gain = 0.02
+				drift_defence_factor = 0.1
+				war_support_factor = 0.05
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_no_before_dlc_2 = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				operation_cost = -0.05
+				operation_risk = -0.05
+				agency_upgrade_time = -0.1
+				army_org_factor = 0.025
+				war_stability_factor = 0.05
+				command_power_gain = 0.02
+				drift_defence_factor = 0.1
+				war_support_factor = 0.05
+			}
+		}
+		
+		KMT_bomilguk_intelligence_spirit_no_before_no_dlc_2 = {
+			name = KMT_bomilguk_intelligence_spirit
+			picture = generic_spy_political
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				decryption = 0.05
+				encryption = 0.05
+				army_org_factor = 0.025
+				war_stability_factor = 0.05
+				command_power_gain = 0.02
+				drift_defence_factor = 0.1
+				war_support_factor = 0.05
+			}
+		}
+		
+		KMT_military_first_politics_spirit = {
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			picture = KMT_military_first_politics_spirit
+			modifier = {
+				conscription_factor = 0.05
+				war_support_factor = 0.10
+				stability_factor = -0.05
+				political_power_gain = -0.05
+				production_speed_bunker_factor = 0.15
+				production_speed_coastal_bunker_factor = 0.15
+			}
+		}
+		
+		KMT_military_first_politics_spirit_1 = {
+			name = KMT_military_first_politics_spirit
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			picture = KMT_military_first_politics_spirit
+			modifier = {
+				conscription_factor = 0.05
+				war_support_factor = 0.10
+				stability_factor = -0.05
+				political_power_gain = -0.05
+				production_speed_bunker_factor = 0.15
+				production_speed_coastal_bunker_factor = 0.15
+				experience_gain_army_factor = 0.1
+				army_strength_factor = 0.05
+			}
+		}
+		
+		KMT_focus_worker_soldier_national_council = {
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			picture = KMT_military_first_politics_spirit
+			modifier = {
+				conscription_factor = 0.05
+				war_support_factor = 0.10
+				political_power_gain = -0.025
+				production_speed_bunker_factor = 0.15
+				production_speed_coastal_bunker_factor = 0.15
+				experience_gain_army_factor = 0.1
+				army_strength_factor = 0.1
+			}
+		}
+		
+		KMT_focus_worker_soldier_national_council_1 = {
+			name = KMT_focus_worker_soldier_national_council
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			picture = KMT_military_first_politics_spirit
+			modifier = {
+				conscription_factor = 0.05
+				war_support_factor = 0.10
+				production_speed_bunker_factor = 0.15
+				production_speed_coastal_bunker_factor = 0.15
+				experience_gain_army_factor = 0.1
+				army_strength_factor = 0.1
+				out_of_supply_factor = -0.1
+				attrition = -0.05
+			}
+		}
+		
+		KMT_vanguard_of_the_national_revolution_spirit = {
+			picture = MEX_revolutionary_army
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				land_reinforce_rate = 0.1
+				refit_speed = 0.05
+				max_training = 0.1
+				special_forces_cap_flat = 5
+			}
+		}
+		
+		KMT_focus_pan_people_revolution = {
+			picture = MEX_revolutionary_army
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				conscription_factor = 0.05
+				war_support_factor = 0.10
+				production_speed_bunker_factor = 0.15
+				production_speed_coastal_bunker_factor = 0.15
+				experience_gain_army_factor = 0.1
+				army_strength_factor = 0.1
+				out_of_supply_factor = -0.1
+				attrition = -0.1
+				land_reinforce_rate = 0.15
+				refit_speed = 0.1
+				max_training = 0.1
+				special_forces_cap_flat = 10
 			}
 		}
 		
@@ -3480,10 +3888,6 @@ ideas = {
 			}
 			available = {
 				is_subject = no
-				OR = {
-					has_war_with = CHI
-					NOT = { has_country_flag = chinese_civil_war_flag }
-				}
 			}
 			modifier = {
 				political_power_factor = -0.15
@@ -4080,6 +4484,225 @@ ideas = {
 			}
 		}
 		
+		KMT_regulation_of_capital = {
+			picture = ARG_political_corruption_modifier
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				consumer_goods_factor = 0.1
+				factory_energy_consumption = -0.1
+				research_speed_factor = 0.1
+			}
+		}
+		
+		KMT_assistance_peasants_workers_1 = {
+			name = KMT_assistance_peasants_workers
+			picture = FRA_liberte_egalite_solidarite
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				consumer_goods_factor = -0.05
+				production_factory_max_efficiency_factor = 0.2
+				production_factory_efficiency_gain_factor = 0.2
+				production_factory_start_efficiency_factor = 0.1
+				drift_defence_factor = 0.15
+				army_morale_factor = 0.15
+			}
+		}
+		
+		KMT_chinese_state_socialism = {
+			picture = KMT_chinese_state_socialism
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				production_factory_max_efficiency_factor = 0.2
+				production_factory_efficiency_gain_factor = 0.2
+				production_factory_start_efficiency_factor = 0.15
+				drift_defence_factor = 0.2
+				army_morale_factor = 0.15
+				factory_energy_consumption = -0.15
+				research_speed_factor = 0.15
+			}
+		}
+		
+		KMT_focus_peace_and_national_reconstruction = {
+			picture = KMT_party_commands_the_gun_idea
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				army_org_factor = 0.1
+				agency_upgrade_time = -0.15
+				intelligence_agency_defense = 0.15
+				army_core_attack_factor = 0.05
+				army_core_defence_factor = 0.05
+				party_popularity_stability_factor = 0.1
+				mobilization_speed = 0.1
+				field_officer_promotion_penalty = -0.15
+				army_leader_cost_factor = -0.15
+				production_factory_max_efficiency_factor = 0.25
+				production_factory_efficiency_gain_factor = 0.25
+				production_factory_start_efficiency_factor = 0.15
+				drift_defence_factor = 0.2
+				army_morale_factor = 0.15
+				factory_energy_consumption = -0.2
+				research_speed_factor = 0.15
+				democratic_drift = 0.02
+				stability_factor = 0.1
+				production_speed_industrial_complex_factor = 0.15
+			}
+		}
+		
+		KMT_focus_anti_corruption_movement = {
+			picture = KMT_focus_anti_corruption_movement
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				consumer_goods_factor = -0.05
+				political_power_factor = 0.05
+				stability_factor = 0.05
+			}
+		}
+		
+		KMT_focus_reform_of_moral_corruption = {
+			picture = KMT_focus_anti_corruption_movement
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				consumer_goods_factor = -0.05
+				political_power_factor = 0.1
+				stability_factor = 0.05
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+			}
+		}
+		
+		KMT_womens_liberation_committee = {
+			picture = ARG_women_in_industry
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				conscription_factor = 0.10
+				research_speed_factor = 0.05
+				female_random_operative_chance = 0.05
+				female_random_army_leader_chance = 0.05
+				female_random_admiral_chance = 0.05
+				female_random_scientist_chance = 0.1
+			}
+		}
+		
+		KMT_focus_patriotic_society = {
+			picture = CHI_protracted_warfare
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				conscription_factor = 0.10
+				research_speed_factor = 0.05
+				female_random_operative_chance = 0.05
+				female_random_army_leader_chance = 0.05
+				female_random_admiral_chance = 0.05
+				female_random_scientist_chance = 0.1
+				army_core_attack_factor = 0.1
+				army_core_defence_factor = 0.1
+				breakthrough_factor = 0.05
+				consumer_goods_factor = -0.05
+			}
+		}
+		
+		KMT_focus_new_citizen_new_china = {
+			picture = CHI_protracted_warfare
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				conscription_factor = 0.10
+				research_speed_factor = 0.075
+				female_random_operative_chance = 0.1
+				female_random_army_leader_chance = 0.1
+				female_random_admiral_chance = 0.1
+				female_random_scientist_chance = 0.1
+				army_core_attack_factor = 0.125
+				army_core_defence_factor = 0.125
+				breakthrough_factor = 0.05
+				consumer_goods_factor = -0.1
+				political_power_factor = 0.15
+				stability_factor = 0.1
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+			}
+		}
+		
+		KMT_resistance_and_national_construction = {
+			picture = CHI_protracted_warfare
+			allowed = {
+				original_tag = KMT
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				conscription_factor = 0.15
+				research_speed_factor = 0.075
+				female_random_operative_chance = 0.1
+				female_random_army_leader_chance = 0.1
+				female_random_admiral_chance = 0.1
+				female_random_scientist_chance = 0.1
+				army_core_attack_factor = 0.125
+				army_core_defence_factor = 0.125
+				breakthrough_factor = 0.075
+				consumer_goods_factor = -0.1
+				political_power_factor = 0.15
+				stability_factor = 0.1
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				war_support_factor = 0.15
+				production_speed_bunker_factor = 0.15
+				production_speed_coastal_bunker_factor = 0.15
+				experience_gain_army_factor = 0.125
+				army_strength_factor = 0.125
+				out_of_supply_factor = -0.125
+				attrition = -0.125
+				land_reinforce_rate = 0.15
+				refit_speed = 0.125
+				max_training = 0.125
+				special_forces_cap_flat = 15
+			}
+		}
+		
 		#KMR
 		KMR_general_staff = {
 			picture = CHI_protracted_warfare
@@ -4096,6 +4719,106 @@ ideas = {
 				army_org_factor = 0.05
 				army_advisor_cost_factor = -0.2
 				army_leader_start_planning_level = 1
+			}
+		}
+		
+		KMR_populism_spirit = {
+			picture = generic_nationalization
+			allowed = {
+				original_tag = KMR
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				consumer_goods_factor = 0.025
+				stability_factor = 0.05
+				political_advisor_cost_factor = -0.05
+			}
+		}
+		
+		KMR_populism_spirit_1 = {
+			name = KMR_populism_spirit
+			picture = generic_nationalization
+			allowed = {
+				original_tag = KMR
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				consumer_goods_factor = 0.05
+				stability_factor = 0.75
+				war_support_factor = 0.05
+				political_advisor_cost_factor = -0.1
+				industrial_capacity_factory = -0.025
+				industrial_capacity_dockyard = -0.025
+			}
+		}
+		
+		KMR_unremitting_self_improvement = {
+			picture = generic_mild_economic_recovery
+			allowed = {
+				original_tag = KMR
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				consumer_goods_factor = -0.05
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				stability_factor = -0.05
+			}
+		}
+		
+		KMR_unremitting_self_improvement_1 = {
+			name = KMR_unremitting_self_improvement
+			picture = generic_mild_economic_recovery
+			allowed = {
+				original_tag = KMR
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				consumer_goods_factor = -0.05
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				stability_factor = 0.025
+				production_factory_efficiency_gain_factor = -0.05
+				production_factory_max_efficiency_factor = -0.05
+			}
+		}
+		
+		KMR_import_substitution_nationalization = {
+			picture = generic_supply_depot
+			allowed = {
+				original_tag = KMR
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				research_speed_factor = 0.05
+				industrial_capacity_factory = -0.05
+				industrial_capacity_dockyard = -0.05
+			}
+		}
+		
+		KMR_successful_localization_spirit = {
+			picture = generic_supply_depot
+			allowed = {
+				original_tag = KMR
+			}
+			available = {
+				is_subject = no
+			}
+			modifier = {
+				research_speed_factor = 0.05
+				industrial_capacity_factory = 0.05
+				industrial_capacity_dockyard = 0.05
+				production_lack_of_resource_penalty_factor = -0.05
 			}
 		}
 		

@@ -3238,6 +3238,7 @@ TSC_allied_occupation_of_japan_category = {
 					}
 				}
 			}
+			is_subject = no
 		}
 		available = {
 			NOT = {
@@ -3260,8 +3261,9 @@ TSC_allied_occupation_of_japan_category = {
 				}
 			}
 			NOT = { has_country_flag = TSC_refuse_coalition_occupied_japan }
+			is_subject = yes
 		}
-		days_mission_timeout = 30
+		days_mission_timeout = 10
 		timeout_effect = {
 			TSC = {
 				inherit_technology = JAP
@@ -3272,38 +3274,60 @@ TSC_allied_occupation_of_japan_category = {
 					is_owned_by = ROOT
 				}
 				transfer_state_to = TSC
+				if = {
+					limit = {
+						state = 282
+					}
+					add_core_of = TSC
+				}
 			}
-			ROOT = { set_country_flag = devied_japan_flag }
-			TSC = { add_to_array = { TSC_allied_occupation_of_japan_list_array = ROOT } }
+			TSC = {
+				every_owned_state = { enable_state_integration_60_compliance = yes }
+			}
 			if = {
 				limit = {
-					original_tag = USA
-				}
-				set_variable = { influence_value = 40 }
-			}
-			else_if = {
-				limit = {
-					OR = {
-						original_tag = CHI
-						original_tag = KMT
-						original_tag = KMR
-						original_tag = MAN
+					NOT = {
+						every_state = {
+							is_core_of = JAP
+							NOT = { is_owned_by = ROOT }
+						}
 					}
 				}
-				set_variable = { influence_value = 25 }
-			}
-			else_if = {
-				limit = {
-					OR = {
-						original_tag = GER
-						original_tag = FRA
-						original_tag = ENG
-					}
-				}
-				set_variable = { influence_value = 20 }
+				country_event = wrwpe.37
 			}
 			else = {
-				set_variable = { influence_value = 15 }
+				ROOT = { set_country_flag = devied_japan_flag }
+				TSC = { add_to_array = { TSC_allied_occupation_of_japan_list_array = ROOT } }
+				if = {
+					limit = {
+						original_tag = USA
+					}
+					set_variable = { influence_value = 40 }
+				}
+				else_if = {
+					limit = {
+						OR = {
+							original_tag = CHI
+							original_tag = KMT
+							original_tag = KMR
+							original_tag = MAN
+						}
+					}
+					set_variable = { influence_value = 25 }
+				}
+				else_if = {
+					limit = {
+						OR = {
+							original_tag = GER
+							original_tag = FRA
+							original_tag = ENG
+						}
+					}
+					set_variable = { influence_value = 20 }
+				}
+				else = {
+					set_variable = { influence_value = 15 }
+				}
 			}
 		}
 	}
@@ -3312,7 +3336,7 @@ TSC_allied_occupation_of_japan_category = {
 		allowed = {
 			has_country_flag = anti_japanese_war_winner
 		}
-		allowed = {
+		visible = {
 			any_state = {
 				is_owned_by = ROOT
 				is_core_of = JAP
@@ -3337,10 +3361,207 @@ TSC_allied_occupation_of_japan_category = {
 					}
 				}
 			}
+			always = no
 		}
 		fire_only_once = yes
 		complete_effect = {
 			set_country_flag = TSC_refuse_coalition_occupied_japan
+			add_stability = -0.05
+			add_political_power = -100
+		}
+	}
+	TSC_dominance_timer = {
+		icon = GFX_decision_hol_war_on_pacifism
+		allowed = {
+			has_country_flag = anti_japanese_war_winner
+		}
+		visible = {
+			has_country_flag = devied_japan_flag
+			NOT = { has_global_flag = devied_japan_done_flag }
+		}
+		activation = {
+			has_country_flag = devied_japan_flag
+			NOT = { has_global_flag = devied_japan_done_flag }
+		}
+		available = {
+			has_global_flag = devied_japan_done_flag
+		}
+		priority = 10
+		days_mission_timeout = 70
+		timeout_effect = {
+			set_global_flag = devied_japan_done_flag
+			if = {
+				limit = {
+					NOT = {
+						any_of_scopes = {
+							array = TSC.TSC_allied_occupation_of_japan_list_array
+							check_variable = { 
+								influence_value > ROOT.influence_value 
+							}
+						}
+					}
+				}
+				country_event = wrwpe.37
+			}
+			else = {
+				custom_effect_tooltip = TSC_dominance_timer_tt
+			}
+		}
+	}
+	TSC_influence_troops = {
+		name = OPG_influence_troops
+		icon = GFX_decision_generic_army_support
+		allowed = {
+			has_country_flag = anti_japanese_war_winner
+		}
+		visible = {
+			has_country_flag = devied_japan_flag
+			NOT = { has_global_flag = devied_japan_done_flag }
+		}
+		available = {
+			has_manpower > 100
+		}
+		cost = 15
+		days_remove = 5
+		complete_effect = {
+			add_manpower = -100
+		}
+		remove_effect = {
+			ROOT = {
+				add_to_variable = {
+					influence_value = 3
+					tooltip = japan_point_var_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 2
+		}
+	}
+	TSC_influence_equipment = {
+		name = OPG_influence_equipment
+		icon = GFX_decision_generic_industry
+		allowed = {
+			has_country_flag = anti_japanese_war_winner
+		}
+		visible = {
+			has_country_flag = devied_japan_flag
+			NOT = { has_global_flag = devied_japan_done_flag }
+		}
+		cost = 15
+		days_remove = 5
+		custom_cost_trigger = {
+			has_equipment = { infantry_equipment > 99 }
+			has_equipment = { artillery_equipment > 9 }
+		}
+		custom_cost_text = 100_infantry_equipment_10_artillery_equipment
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_1
+				amount = -100
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = -10
+			}
+		}
+		remove_effect = {
+			ROOT = {
+				add_to_variable = {
+					influence_value = 3
+					tooltip = japan_point_var_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+	TSC_influence_propaganda = {
+		name = OPG_influence_propaganda
+		icon = GFX_decision_generic_speech
+		allowed = {
+			has_country_flag = anti_japanese_war_winner
+		}
+		visible = {
+			has_country_flag = devied_japan_flag
+			NOT = { has_global_flag = devied_japan_done_flag }
+		}
+		cost = 50
+		days_remove = 10
+		remove_effect = {
+			ROOT = {
+				add_to_variable = {
+					influence_value = 5
+					tooltip = japan_point_var_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	TSC_influence_aid = {
+		name = OPG_influence_aid
+		icon = GFX_decision_gre_paying_ifc_debt
+		allowed = {
+			has_country_flag = anti_japanese_war_winner
+		}
+		visible = {
+			has_country_flag = devied_japan_flag
+			NOT = { has_global_flag = devied_japan_done_flag }
+		}
+		days_remove = 7
+		custom_cost_trigger = {
+			num_of_civilian_factories_available_for_projects > 4
+		}
+		custom_cost_text = decision_cost_5_civ_only
+		modifier = {
+			civilian_factory_use = 5
+		}
+		remove_effect = {
+			ROOT = {
+				add_to_variable = {
+					influence_value = 5
+					tooltip = japan_point_var_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+	TSC_influence_convoy = {
+		name = OPG_influence_convoy
+		icon = GFX_decision_generic_merge_plant_ship
+		allowed = {
+			has_country_flag = anti_japanese_war_winner
+		}
+		visible = {
+			has_country_flag = devied_japan_flag
+			NOT = { has_global_flag = devied_japan_done_flag }
+		}
+		available = {
+			has_equipment = { convoy_1 > 9 }
+		}
+		cost = 15
+		days_remove = 5
+		complete_effect = {
+			add_equipment_to_stockpile = { 
+				type = convoy_1
+				amount = -10
+			}
+		}
+		remove_effect = {
+			ROOT = {
+				add_to_variable = {
+					influence_value = 5
+					tooltip = japan_point_var_tt
+				}
+			}
+		}
+		ai_will_do = {
+			base = 0
 		}
 	}
 }

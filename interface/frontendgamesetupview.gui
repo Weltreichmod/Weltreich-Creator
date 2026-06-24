@@ -118,16 +118,15 @@ guiTypes = {
 
 		buttonType = {
 			name = "country_leader"
-			quadTextureSprite ="GFX_leader_unknown"
-			position = { x = 17 y = 22 }
-			scale=0.75
-			clicksound = click_checkbox
+			quadTextureSprite ="GFX_blank"
+			position = { x = -2500 y = -2500 }
+			scale=0.01
 		}
 
 		iconType = {
 			name = "country_flag"
-			quadTextureSprite ="GFX_shield_medium"
-			position = { x = 34 y = 188 }
+			quadTextureSprite ="GFX_flag_small2"
+			position = { x = 9 y = 8 }
 			Orientation = "UPPER_LEFT"
 			alwaystransparent = yes
 		}
@@ -141,13 +140,12 @@ guiTypes = {
 
 		instantTextBoxType = {
 			name = "country_name"
-			position = { x = 8 y = 247 }
-			font = "hoi_20b"
+			position = { x = -2500 y = -2500 }
+			font = "aldrich_18_outline"
 			borderSize = {x = 0 y = 0}
 			maxWidth = 131
 			maxHeight = 20
 			fixedsize = yes
-			format = center
 			Orientation = "UPPER_LEFT"
 		}
 	}
@@ -192,7 +190,6 @@ guiTypes = {
 			clicksound = click_checkbox
 		}
 	}
-
 
 	### LOAD GAME
 	containerWindowType = {
@@ -423,7 +420,7 @@ guiTypes = {
 			format = centre
 		}
 
-				instantTextBoxType = {
+		instantTextBoxType = {
 			name = "menu_label"
 			position = { x = 145 y = 85 }
 			textureFile = ""
@@ -606,10 +603,27 @@ guiTypes = {
 			shortcut = "RETURN"
 		}
 	}
+	
+	### country filter
+	containerWindowType = {
+		name = "country_filter"
+		size = { width = 149 height = 380 }
+		
+		buttonType = {
+			name = "button"
+			position = { x = 0 y = -270 }
+			quadTextureSprite = "GFX_country_filter_entry"
+			buttonText = "FILTER"
+			buttonFont = "hoi_16mbs"
+			clicksound = click_default
+			oversound = ui_menu_over
+			frame = 2
+		}
+	}
 
 	containerWindowType = {
 		name ="gamesetup_interesting_countries_window"
-		size = { width=1225 height=717 }
+		size = { width=1225 height=817 }
 		Orientation = center
 		origo = center
 		clipping = no
@@ -655,6 +669,56 @@ guiTypes = {
 			oversound = ui_menu_over
 			shortcut = "RETURN"
 		}
+		
+		iconType = {
+			name ="backgraund_factions"
+			spriteType = "GFX_backgraund_factions"
+			position = { x= 11 y = 50 }
+		}
+		
+		OverlappingElementsBoxType = {
+			name = "filters"
+			position = { x = -1165 y = 321 }
+			size = { x = 2221 y = 32 }
+			format = center
+			spacing = 14.0
+		}
+		
+		iconType = {
+			name ="flag_background_3_1"
+			spriteType = "GFX_flag_background_3"
+			position = { x= 26 y = 273 }
+		}
+		iconType = {
+			name ="flag_background_3_2"
+			spriteType = "GFX_flag_background_3"
+			position = { x= 174 y = 273 }
+		}
+		iconType = {
+			name ="flag_background_3_3"
+			spriteType = "GFX_flag_background_3"
+			position = { x= 322 y = 273 }
+		}
+		iconType = {
+			name ="flag_background_3_4"
+			spriteType = "GFX_flag_background_3"
+			position = { x= 470 y = 273 }
+		}
+		iconType = {
+			name ="flag_background_3_5"
+			spriteType = "GFX_flag_background_3"
+			position = { x= 618 y = 273 }
+		}
+		iconType = {
+			name ="flag_background_3_6"
+			spriteType = "GFX_flag_background_3"
+			position = { x= 766 y = 273 }
+		}
+		iconType = {
+			name ="flag_background_3_7"
+			spriteType = "GFX_flag_background_3"
+			position = { x= 914 y = 273 }
+		}
 
 		containerWindowType = {
 			name ="countries"
@@ -663,11 +727,12 @@ guiTypes = {
 
 			gridboxType = {
 				name ="countries_grid"
-				position = { x = 0 y = 0 }
+				position = { x = 10 y = 230 }
 				size = { width = 100% height = 100% }
-				slotsize = { width = 150 height = 0 }
+				slotsize = { width = 148 height = 50 }
 				add_horizontal = yes
-				max_slots_vertical = 1
+				max_slots_vertical = 3
+				max_slots_horizontal = 7
 				format = "UPPER_LEFT"
 			}
 
@@ -678,35 +743,95 @@ guiTypes = {
 			#	pdx_tooltip = "BOOKMARK_FRANCE_INFO"
 			#	pdx_tooltip_delayed = "BOOKMARK_FRANCE_INFO_DELAYED"
 			#}
+		}
+		
+		iconType = {
+			name ="lag_background_3_div2_1"
+			spriteType = "GFX_flag_background_3_div2"
+			position = { x= 26 y = 318 }
+		}
+		
+		iconType = {
+			name ="flag_background_3_div2_2"
+			spriteType = "GFX_flag_background_3_div2"
+			position = { x= 174 y = 318 }
+		}
+		
+		iconType = {
+			name ="flag_background_3_div2_3"
+			spriteType = "GFX_flag_background_3_div2"
+			position = { x= 322 y = 318 }
+		}
+		
+		iconType = {
+			name ="flag_background_3_div1_1"
+			spriteType = "GFX_flag_background_3_div1"
+			position = { x= 470 y = 367 }
+		}
+		
+		iconType = {
+			name ="flag_background_3_div1_2"
+			spriteType = "GFX_flag_background_3_div1"
+			position = { x= 618 y = 367 }
+		}
+		
+		iconType = {
+			name ="flag_background_3_div2_4"
+			spriteType = "GFX_flag_background_3_div2"
+			position = { x= 914 y = 318 }
+		}
+		
+		iconType = { # GERMANY INFO
+			name = "country_selection_info_germany"
+			position = { x = 576 y = 255 }
+			spriteType = "GFX_country_selection_alert_shine"
+			pdx_tooltip = "BOOKMARK_GERMANY_INFO"
+			pdx_tooltip_delayed = "BOOKMARK_GERMANY_INFO_DELAYED"
+		}
 			
-			iconType = { # CHINA INFO
-				name = "country_selection_info_china"
-				position = { x = 970 y = 145 }
-				spriteType = "GFX_country_selection_new_big_shine"
-				pdx_tooltip = "BOOKMARK_CHINA_INFO"
-				pdx_tooltip_delayed = "BOOKMARK_CHINA_INFO_DELAYED"
-			}
+		iconType = { # AUSTRIA-HUNGARY INFO
+			name = "country_selection_info_austriahungary"
+			position = { x = 576 y = 305 }
+			spriteType = "GFX_country_selection_alert_shine"
+			pdx_tooltip = "BOOKMARK_AUSHUN_INFO"
+			pdx_tooltip_delayed = "BOOKMARK_AUSHUN_INFO_DELAYED"
+		}
+		
+		iconType = { # CHINA INFO
+			name = "country_selection_info_china"
+			position = { x = 765 y = 295 }
+			spriteType = "GFX_country_selection_new_big_shine"
+			pdx_tooltip = "BOOKMARK_CHINA_INFO"
+			pdx_tooltip_delayed = "BOOKMARK_CHINA_INFO_DELAYED"
+		}
+		
+		iconType = { # ITALY INFO
+			name = "country_selection_info_italy"
+			position = { x = 428 y = 305 }
+			spriteType = "GFX_country_selection_alert_shine"
+			pdx_tooltip = "BOOKMARK_ITALY_INFO"
+			pdx_tooltip_delayed = "BOOKMARK_ITALY_INFO_DELAYED"
+		}
 			
-			iconType = { # GERMANY INFO
-				name = "country_selection_info_germany"
-				position = { x = 480 y = 160 }
-				spriteType = "GFX_country_selection_alert_shine"
-				pdx_tooltip = "BOOKMARK_GERMANY_INFO"
-				pdx_tooltip_delayed = "BOOKMARK_GERMANY_INFO_DELAYED"
-			}
-			
-			iconType = { # AUSTRIA-HUNGARY INFO
-				name = "country_selection_info_austriahungary"
-				position = { x = 780 y = 160 }
-				spriteType = "GFX_country_selection_alert_shine"
-				pdx_tooltip = "BOOKMARK_AUSHUN_INFO"
-				pdx_tooltip_delayed = "BOOKMARK_AUSHUN_INFO_DELAYED"
-			}
+		iconType = { # MAN_MON INFO
+			name = "country_selection_info_man_mon"
+			position = { x = 765 y = 345 }
+			spriteType = "GFX_country_selection_new_big_shine"
+			pdx_tooltip = "BOOKMARK_MAN_MON_INFO"
+			pdx_tooltip_delayed = "BOOKMARK_MAN_MON_INFO_DELAYED"
+		}
+		
+		iconType = { # Weltreich INFO
+			name = "weltreich_logo_in_select"
+			position = { x = 1055 y = 165 }
+			spriteType = "GFX_weltreich_logo_in_select"
+			pdx_tooltip = "BOOKMARK_WELTREICH_INFO"
+			pdx_tooltip_delayed = "BOOKMARK_WELTREICH_INFO_DELAYED"
 		}
 
 		containerWindowType = {
 			name ="countries_medium"
-			position = { x = 15 y = 330 }
+			position = { x = 15 y = 430 }
 			size = { width = -15 height = 120}
 
 			gridboxType = {
@@ -718,41 +843,11 @@ guiTypes = {
 				max_slots_vertical = 1
 				format = "UPPER_LEFT"
 			}
-
-			iconType = { # ITALY INFO
-				name = "country_selection_info_italy"
-				position = { x = 20 y = 0 }
-				spriteType = "GFX_country_selection_alert_shine"
-				pdx_tooltip = "BOOKMARK_ITALY_INFO"
-				pdx_tooltip_delayed = "BOOKMARK_ITALY_INFO_DELAYED"
-			}
-			
-			iconType = { # MAN_MON INFO
-				name = "country_selection_info_man_mon"
-				position = { x = 660 y = -20 }
-				spriteType = "GFX_country_selection_new_big_shine"
-				pdx_tooltip = "BOOKMARK_MAN_MON_INFO"
-				pdx_tooltip_delayed = "BOOKMARK_MAN_MON_INFO_DELAYED"
-			}
-			
-			#iconType = { # CHINA INFO
-			#	name = "country_selection_info_china_tape"
-			#	position = { x = 555 y = 0 }
-			#	spriteType = "GFX_country_selection_masking_tape"
-			#}
-			
-			#iconType = { # CANADA INFO
-			#	name = "country_selection_info_canada"
-			#	position = { x = 925 y = 34 }
-			#	spriteType = "GFX_country_selection_new_shine"
-			#	pdx_tooltip = "BOOKMARK_CANADA_INFO"
-			#	pdx_tooltip_delayed = "BOOKMARK_CANADA_INFO_DELAYED"
-			#}
 		}
 
 		containerWindowType = {
 			name ="countries_mini"
-			position = { x = 15 y = 340 }
+			position = { x = 15 y = 440 }
 			size = { width = -15 height = 120}
 
 			gridboxType = {
@@ -771,7 +866,7 @@ guiTypes = {
 		iconType = {
 			name = "minor_country_leader"
 			quadTextureSprite ="GFX_leader_unknown"
-			position = { x = 289 y = 441 }
+			position = { x = 289 y = 541 }
 			scale=0.696
 			rotation=-0.04
 		}
@@ -779,13 +874,12 @@ guiTypes = {
 		iconType = {
 				name ="minor_portrait_overlay"
 				spriteType = "GFX_minor_portrait_overlay"
-				position = { x= 280 y = 430 }
+				position = { x= 280 y = 530 }
 		}
-
 
 		instantTextBoxType = {
 			name = "info_title"
-			position = { x = 10 y = 450 }
+			position = { x = 10 y = 550 }
 			font = "hoi4_typewriter22"
 			borderSize = {x = 0 y = 0}
 			text = "FE_COUNTRY_INFO_TITLE"
@@ -796,7 +890,7 @@ guiTypes = {
 
 		containerWindowType = {
 			name = "info"
-			position = { x = 35 y = 485 }
+			position = { x = 35 y = 585 }
 
 			instantTextBoxType = {
 				name = "leader_label"
@@ -900,7 +994,7 @@ guiTypes = {
 
 		instantTextBoxType = {
 			name = "nation_title"
-			position = { x = 442 y = 421 }
+			position = { x = 442 y = 521 }
 			font = "hoi_24header"
 			borderSize = {x = 0 y = 0}
 			maxWidth = 340
@@ -911,7 +1005,7 @@ guiTypes = {
 
 		containerWindowType = {
 			name = "spirit"
-			position = { x = 451 y = 475 }
+			position = { x = 451 y = 575 }
 
 			iconType ={
 				name ="pol_faction_icon"
@@ -955,7 +1049,7 @@ guiTypes = {
 
 		instantTextBoxType = {
 			name = "history_title"
-			position = { x = 830 y = 450 }
+			position = { x = 830 y = 550 }
 			font = "hoi4_typewriter22"
 			borderSize = {x = 0 y = 0}
 			text = "FE_COUNTRY_HISTORY_TITLE"
@@ -966,7 +1060,7 @@ guiTypes = {
 
 		instantTextBoxType = {
 			name = "history"
-			position = { x = 810 y = 490 }
+			position = { x = 810 y = 580 }
 			font = "hoi4_typewriter16"
 			borderSize = {x = 0 y = 0}
 			maxWidth = 380

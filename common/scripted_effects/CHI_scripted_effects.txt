@@ -1879,11 +1879,11 @@ CHI_all_central_var_add_5 = {
 CHI_dec_autonomy_increase_10 = {
     custom_effect_tooltip = CHI_dec_autonomy_increase_10_tt
     if = {
-        limit = { check_variable = { Autonomy_bar > 89 } }
-        set_variable = { var = Autonomy_bar value = 100 }
+        limit = { check_variable = { Autonomy_bar_var > 89 } }
+        set_variable = { var = Autonomy_bar_var value = 100 }
     }
     else = {
-        add_to_variable = { var = Autonomy_bar value = 10 }
+        add_to_variable = { var = Autonomy_bar_var value = 10 }
     }
 }
 
@@ -3428,5 +3428,361 @@ KMT_political_participation_farmer_rate_5 = {
         add_to_variable = { var = KMT_political_participation_farmer_rate_var value = 5 }
 		KMT_inc_rate_of_radicalization_10 = yes
 		SUM_KMT_political_participation_rate = yes
+    }
+}
+
+# ==========================================
+# 1. 충정 (Loyalty) - 최대 15% (1%당 0.0015)
+# ==========================================
+KMT_inc_loyalty_5 = {
+	custom_effect_tooltip = KMT_inc_loyalty_5_tt
+	if = {
+		limit = { check_variable = { KMT_sanhua_loyalty_var > 95 } }
+		set_variable = { var = KMT_sanhua_loyalty_var value = 100 }
+		set_variable = { var = KMT_sanhua_loyalty_modifier_army_recovery_rate value = 0.15 }
+		set_variable = { var = KMT_sanhua_loyalty_modifier_defense_core_factor value = 0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_sanhua_loyalty_var value = 5 }
+		add_to_variable = { var = KMT_sanhua_loyalty_modifier_army_recovery_rate value = 0.0075 }
+		add_to_variable = { var = KMT_sanhua_loyalty_modifier_defense_core_factor value = 0.0075 }
+	}
+}
+KMT_inc_loyalty_10 = {
+	custom_effect_tooltip = KMT_inc_loyalty_10_tt
+	if = {
+		limit = { check_variable = { KMT_sanhua_loyalty_var > 90 } }
+		set_variable = { var = KMT_sanhua_loyalty_var value = 100 }
+		set_variable = { var = KMT_sanhua_loyalty_modifier_army_recovery_rate value = 0.15 }
+		set_variable = { var = KMT_sanhua_loyalty_modifier_defense_core_factor value = 0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_sanhua_loyalty_var value = 10 }
+		add_to_variable = { var = KMT_sanhua_loyalty_modifier_army_recovery_rate value = 0.015 }
+		add_to_variable = { var = KMT_sanhua_loyalty_modifier_defense_core_factor value = 0.015 }
+	}
+}
+
+# ==========================================
+# 2. 군사화 (Militarization) - 최대 15% / -20%
+# ==========================================
+KMT_inc_militarization_5 = {
+	custom_effect_tooltip = KMT_inc_militarization_5_tt
+	if = {
+		limit = { check_variable = { KMT_sanhua_militarization_var > 95 } }
+		set_variable = { var = KMT_sanhua_militarization_var value = 100 }
+		set_variable = { var = KMT_sanhua_militarization_modifier_conscription_factor value = 0.15 }
+		set_variable = { var = KMT_sanhua_militarization_modifier_training_time_factor value = -0.20 }
+	}
+	else = {
+		add_to_variable = { var = KMT_sanhua_militarization_var value = 5 }
+		add_to_variable = { var = KMT_sanhua_militarization_modifier_conscription_factor value = 0.0075 }
+		add_to_variable = { var = KMT_sanhua_militarization_modifier_training_time_factor value = -0.010 }
+	}
+}
+KMT_inc_militarization_10 = {
+	custom_effect_tooltip = KMT_inc_militarization_10_tt
+	if = {
+		limit = { check_variable = { KMT_sanhua_militarization_var > 90 } }
+		set_variable = { var = KMT_sanhua_militarization_var value = 100 }
+		set_variable = { var = KMT_sanhua_militarization_modifier_conscription_factor value = 0.15 }
+		set_variable = { var = KMT_sanhua_militarization_modifier_training_time_factor value = -0.20 }
+	}
+	else = {
+		add_to_variable = { var = KMT_sanhua_militarization_var value = 10 }
+		add_to_variable = { var = KMT_sanhua_militarization_modifier_conscription_factor value = 0.015 }
+		add_to_variable = { var = KMT_sanhua_militarization_modifier_training_time_factor value = -0.020 }
+	}
+}
+
+# ==========================================
+# 3. 계몽 (Enlightenment) - 최대 15% (1%당 0.0015)
+# ==========================================
+KMT_inc_enlightenment_5 = {
+	custom_effect_tooltip = KMT_inc_enlightenment_5_tt
+	if = {
+		limit = { check_variable = { KMT_sanhua_enlightenment_var > 95 } }
+		set_variable = { var = KMT_sanhua_enlightenment_var value = 100 }
+		set_variable = { var = KMT_sanhua_enlightenment_modifier_research_speed_factor value = 0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_sanhua_enlightenment_var value = 5 }
+		add_to_variable = { var = KMT_sanhua_enlightenment_modifier_research_speed_factor value = 0.0075 }
+	}
+}
+KMT_inc_enlightenment_10 = {
+	custom_effect_tooltip = KMT_inc_enlightenment_10_tt
+	if = {
+		limit = { check_variable = { KMT_sanhua_enlightenment_var > 90 } }
+		set_variable = { var = KMT_sanhua_enlightenment_var value = 100 }
+		set_variable = { var = KMT_sanhua_enlightenment_modifier_research_speed_factor value = 0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_sanhua_enlightenment_var value = 10 }
+		add_to_variable = { var = KMT_sanhua_enlightenment_modifier_research_speed_factor value = 0.015 }
+	}
+}
+
+# ==========================================
+# 4. 예 (Propriety) - 최대 15% (1%당 0.0015)
+# ==========================================
+KMT_inc_propriety_5 = {
+	custom_effect_tooltip = KMT_inc_propriety_5_tt
+	if = {
+		limit = { check_variable = { KMT_siyu_propriety_var > 95 } }
+		set_variable = { var = KMT_siyu_propriety_var value = 100 }
+		set_variable = { var = KMT_siyu_propriety_modifier_stability_factor value = 0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_siyu_propriety_var value = 5 }
+		add_to_variable = { var = KMT_siyu_propriety_modifier_stability_factor value = 0.0075 }
+	}
+}
+KMT_inc_propriety_10 = {
+	custom_effect_tooltip = KMT_inc_propriety_10_tt
+	if = {
+		limit = { check_variable = { KMT_siyu_propriety_var > 90 } }
+		set_variable = { var = KMT_siyu_propriety_var value = 100 }
+		set_variable = { var = KMT_siyu_propriety_modifier_stability_factor value = 0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_siyu_propriety_var value = 10 }
+		add_to_variable = { var = KMT_siyu_propriety_modifier_stability_factor value = 0.015 }
+	}
+}
+
+# ==========================================
+# 5. 의 (Righteousness) - 최대 15% (1%당 0.0015)
+# ==========================================
+KMT_inc_righteousness_5 = {
+	custom_effect_tooltip = KMT_inc_righteousness_5_tt
+	if = {
+		limit = { check_variable = { KMT_siyu_righteousness_var > 95 } }
+		set_variable = { var = KMT_siyu_righteousness_var value = 100 }
+		set_variable = { var = KMT_siyu_righteousness_modifier_army_attack_factor value = 0.15 }
+		set_variable = { var = KMT_siyu_righteousness_modifier_army_defence_factor value = 0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_siyu_righteousness_var value = 5 }
+		add_to_variable = { var = KMT_siyu_righteousness_modifier_army_attack_factor value = 0.0075 }
+		add_to_variable = { var = KMT_siyu_righteousness_modifier_army_defence_factor value = 0.0075 }
+	}
+}
+KMT_inc_righteousness_10 = {
+	custom_effect_tooltip = KMT_inc_righteousness_10_tt
+	if = {
+		limit = { check_variable = { KMT_siyu_righteousness_var > 90 } }
+		set_variable = { var = KMT_siyu_righteousness_var value = 100 }
+		set_variable = { var = KMT_siyu_righteousness_modifier_army_attack_factor value = 0.15 }
+		set_variable = { var = KMT_siyu_righteousness_modifier_army_defence_factor value = 0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_siyu_righteousness_var value = 10 }
+		add_to_variable = { var = KMT_siyu_righteousness_modifier_army_attack_factor value = 0.015 }
+		add_to_variable = { var = KMT_siyu_righteousness_modifier_army_defence_factor value = 0.015 }
+	}
+}
+
+# ==========================================
+# 6. 염 (Integrity) - 최대 20% / -15%
+# ==========================================
+KMT_inc_integrity_5 = {
+	custom_effect_tooltip = KMT_inc_integrity_5_tt
+	if = {
+		limit = { check_variable = { KMT_siyu_integrity_var > 95 } }
+		set_variable = { var = KMT_siyu_integrity_var value = 100 }
+		set_variable = { var = KMT_siyu_integrity_modifier_political_power_gain value = 0.20 }
+		set_variable = { var = KMT_siyu_integrity_modifier_consumer_goods_factor value = -0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_siyu_integrity_var value = 5 }
+		add_to_variable = { var = KMT_siyu_integrity_modifier_political_power_gain value = 0.010 }
+		add_to_variable = { var = KMT_siyu_integrity_modifier_consumer_goods_factor value = -0.0075 }
+	}
+}
+KMT_inc_integrity_10 = {
+	custom_effect_tooltip = KMT_inc_integrity_10_tt
+	if = {
+		limit = { check_variable = { KMT_siyu_integrity_var > 90 } }
+		set_variable = { var = KMT_siyu_integrity_var value = 100 }
+		set_variable = { var = KMT_siyu_integrity_modifier_political_power_gain value = 0.20 }
+		set_variable = { var = KMT_siyu_integrity_modifier_consumer_goods_factor value = -0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_siyu_integrity_var value = 10 }
+		add_to_variable = { var = KMT_siyu_integrity_modifier_political_power_gain value = 0.020 }
+		add_to_variable = { var = KMT_siyu_integrity_modifier_consumer_goods_factor value = -0.015 }
+	}
+}
+
+# ==========================================
+# 7. 치 (Shame) - 최대 15% (1%당 0.0015)
+# ==========================================
+KMT_inc_shame_5 = {
+	custom_effect_tooltip = KMT_inc_shame_5_tt
+	if = {
+		limit = { check_variable = { KMT_siyu_shame_var > 95 } }
+		set_variable = { var = KMT_siyu_shame_var value = 100 }
+		set_variable = { var = KMT_siyu_shame_modifier_war_support_factor value = 0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_siyu_shame_var value = 5 }
+		add_to_variable = { var = KMT_siyu_shame_modifier_war_support_factor value = 0.0075 }
+	}
+}
+KMT_inc_shame_10 = {
+	custom_effect_tooltip = KMT_inc_shame_10_tt
+	if = {
+		limit = { check_variable = { KMT_siyu_shame_var > 90 } }
+		set_variable = { var = KMT_siyu_shame_var value = 100 }
+		set_variable = { var = KMT_siyu_shame_modifier_war_support_factor value = 0.15 }
+	}
+	else = {
+		add_to_variable = { var = KMT_siyu_shame_var value = 10 }
+		add_to_variable = { var = KMT_siyu_shame_modifier_war_support_factor value = 0.015 }
+	}
+}
+
+# ============================================
+# Western Hills Group (서산회의파)
+# ============================================
+
+KMT_western_hills_sub_10 = {
+    custom_effect_tooltip = KMT_western_hills_sub_10_tt
+    if = {
+        limit = { check_variable = { KMT_western_hills_var < 10 } }
+        set_variable = { var = KMT_western_hills_var value = 0 }
+    }
+    else = {
+        subtract_from_variable = { var = KMT_western_hills_var value = 10 }
+    }
+}
+
+KMT_western_hills_sub_5 = {
+    custom_effect_tooltip = KMT_western_hills_sub_5_tt
+    if = {
+        limit = { check_variable = { KMT_western_hills_var < 5 } }
+        set_variable = { var = KMT_western_hills_var value = 0 }
+    }
+    else = {
+        subtract_from_variable = { var = KMT_western_hills_var value = 5 }
+    }
+}
+
+KMT_western_hills_add_5 = {
+    custom_effect_tooltip = KMT_western_hills_add_5_tt
+    if = {
+        limit = { check_variable = { KMT_western_hills_var > 95 } }
+        set_variable = { var = KMT_western_hills_var value = 100 }
+    }
+    else = {
+        add_to_variable = { var = KMT_western_hills_var value = 5 }
+    }
+}
+
+KMT_western_hills_add_10 = {
+    custom_effect_tooltip = KMT_western_hills_add_10_tt
+    if = {
+        limit = { check_variable = { KMT_western_hills_var > 90 } }
+        set_variable = { var = KMT_western_hills_var value = 100 }
+    }
+    else = {
+        add_to_variable = { var = KMT_western_hills_var value = 10 }
+    }
+}
+
+# ============================================
+# Political Science Group (정학계)
+# ============================================
+
+KMT_political_science_sub_10 = {
+    custom_effect_tooltip = KMT_political_science_sub_10_tt
+    if = {
+        limit = { check_variable = { KMT_political_science_var < 10 } }
+        set_variable = { var = KMT_political_science_var value = 0 }
+    }
+    else = {
+        subtract_from_variable = { var = KMT_political_science_var value = 10 }
+    }
+}
+
+KMT_political_science_sub_5 = {
+    custom_effect_tooltip = KMT_political_science_sub_5_tt
+    if = {
+        limit = { check_variable = { KMT_political_science_var < 5 } }
+        set_variable = { var = KMT_political_science_var value = 0 }
+    }
+    else = {
+        subtract_from_variable = { var = KMT_political_science_var value = 5 }
+    }
+}
+
+KMT_political_science_add_5 = {
+    custom_effect_tooltip = KMT_political_science_add_5_tt
+    if = {
+        limit = { check_variable = { KMT_political_science_var > 95 } }
+        set_variable = { var = KMT_political_science_var value = 100 }
+    }
+    else = {
+        add_to_variable = { var = KMT_political_science_var value = 5 }
+    }
+}
+
+KMT_political_science_add_10 = {
+    custom_effect_tooltip = KMT_political_science_add_10_tt
+    if = {
+        limit = { check_variable = { KMT_political_science_var > 90 } }
+        set_variable = { var = KMT_political_science_var value = 100 }
+    }
+    else = {
+        add_to_variable = { var = KMT_political_science_var value = 10 }
+    }
+}
+
+# ============================================
+# Reconstruction Faction (개조파)
+# ============================================
+
+KMT_reconstruction_sub_10 = {
+    custom_effect_tooltip = KMT_reconstruction_sub_10_tt
+    if = {
+        limit = { check_variable = { KMT_reconstruction_var < 10 } }
+        set_variable = { var = KMT_reconstruction_var value = 0 }
+    }
+    else = {
+        subtract_from_variable = { var = KMT_reconstruction_var value = 10 }
+    }
+}
+
+KMT_reconstruction_sub_5 = {
+    custom_effect_tooltip = KMT_reconstruction_sub_5_tt
+    if = {
+        limit = { check_variable = { KMT_reconstruction_var < 5 } }
+        set_variable = { var = KMT_reconstruction_var value = 0 }
+    }
+    else = {
+        subtract_from_variable = { var = KMT_reconstruction_var value = 5 }
+    }
+}
+
+KMT_reconstruction_add_5 = {
+    custom_effect_tooltip = KMT_reconstruction_add_5_tt
+    if = {
+        limit = { check_variable = { KMT_reconstruction_var > 95 } }
+        set_variable = { var = KMT_reconstruction_var value = 100 }
+    }
+    else = {
+        add_to_variable = { var = KMT_reconstruction_var value = 5 }
+    }
+}
+
+KMT_reconstruction_add_10 = {
+    custom_effect_tooltip = KMT_reconstruction_add_10_tt
+    if = {
+        limit = { check_variable = { KMT_reconstruction_var > 90 } }
+        set_variable = { var = KMT_reconstruction_var value = 100 }
+    }
+    else = {
+        add_to_variable = { var = KMT_reconstruction_var value = 10 }
     }
 }

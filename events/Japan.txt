@@ -12,7 +12,7 @@ country_event = {
 	picture = GFX_report_event_japanese_officers
 	immediate = {
 		hidden_effect = {
-			remove_ideas = JAP_Inukai_Tsuyoshi
+			retire_character = JAP_tsuyoshi_inukai
 		}
 	}
 	is_triggered_only = yes
@@ -37,7 +37,18 @@ country_event = {
 		name = japan_wr.1.b
 		complete_national_focus = JAP_Showa_Restoration
 		news_event = japan_wr.45
-		set_party_name = { ideology = neutrality long_name = JAP_neutrality_party_kodoha_long name = JAP_neutrality_party_kodoha }
+		set_party_name = { ideology = fascism long_name = JAP_neutrality_party_kodoha_long name = JAP_neutrality_party_kodoha }
+		set_politics = {
+			ruling_party = fascism
+			election_frequency = 48
+			elections_allowed = yes
+		}
+		hidden_effect = {
+			remove_country_leader_role = {
+				character = JAP_fumimaro_konoe
+				ideology = fascism_ideology
+			}
+		}
 		ai_chance = {
 			base = 50
 			modifier = {
@@ -105,12 +116,7 @@ country_event = {
 	option = {
 		name = japan_wr.4.a
 		add_stability = 0.05
-		add_ideas = JAP_Ikki_Kita
-		set_politics = {
-			ruling_party = neutrality
-			election_frequency = 48
-			elections_allowed = yes
-		}
+		retire_character = JAP_kodoha
 		remove_ideas = JAP_the_end_of_Taisho_Democracy
 	}
 }
@@ -227,7 +233,10 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = japan_wr.10.a
-		add_ideas = JAP_Keisuke_Okada
+		remove_country_leader_role = {
+			character = JAP_emergency_cabinet
+			ideology = conservatism
+		}
 		set_country_flag = JAP_Keisuke_Okada
 		ai_chance = {
 			factor = 1
@@ -251,7 +260,16 @@ country_event = {
 	}
 	option = {
 		name = japan_wr.10.b
-		add_ideas = JAP_Fumimaro_Konoe
+		remove_country_leader_role = {
+			character = JAP_emergency_cabinet
+			ideology = conservatism
+		}
+		hidden_effect = {
+			remove_country_leader_role = {
+				character = JAP_keisuke_okada
+				ideology = conservatism
+			}
+		}
 		set_country_flag = JAP_Fumimaro_Konoe
 		ai_chance = {
 			factor = 1

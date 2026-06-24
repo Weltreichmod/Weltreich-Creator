@@ -8220,6 +8220,56 @@ economy_is_good = {
 SOV_fall_in_wwiii = {
 	if = {
 		limit = {
+			TSC = { is_subject_of = SOV }
+		}
+		if = {
+			limit = {
+				any_country = {
+					has_country_flag = defeat_tsc_in_wwiii_flag
+				}
+			}
+			every_country = {
+				limit = {
+					has_country_flag = defeat_tsc_in_wwiii_flag
+					has_country_flag = third_world_war_winner
+				}
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						TSC = { exists = yes }
+					}
+					set_autonomy = {
+						target = TSC
+						autonomous_state = autonomy_occupation_zone
+						freedom_level = 0.5
+					}
+				}
+				else = {
+					puppet = TSC
+				}
+			}
+		}
+		else = {
+			ENT = {
+				if = {
+					limit = {
+						has_dlc = "Together for Victory"
+						TSC = { exists = yes }
+					}
+					set_autonomy = {
+						target = TSC
+						autonomous_state = autonomy_occupation_zone
+						freedom_level = 0.5
+					}
+				}
+				else = {
+					puppet = TSC
+				}
+			}
+		}
+	}
+	if = {
+		limit = {
 			ENG = { has_country_flag = third_world_war_winner }
 		}
 		every_country = {
@@ -9106,6 +9156,32 @@ SOV_fall_in_wwiii = {
 }
 
 death_of_FRA = {
+	if = {
+		limit = {
+			TSC = {
+				overlord = {
+					is_in_faction_with = ENT
+					has_country_flag = third_world_war_loser
+				}
+			}
+		}
+		SOV = {
+			if = {
+				limit = {
+					has_dlc = "Together for Victory"
+					TSC = { exists = yes }
+				}
+				set_autonomy = {
+					target = TSC
+					autonomous_state = autonomy_occupation_zone
+					freedom_level = 0.5
+				}
+			}
+			else = {
+				puppet = TSC
+			}
+		}
+	}
 	every_country = {
 		limit = {
 			has_country_flag = third_world_war_loser
@@ -9967,15 +10043,24 @@ death_of_FRA = {
 	every_state = {
 		limit = {
 			is_owned_by = FRA
-			OR = {
-				state = 6
-				state = 34
-				state = 910
-			}
+			state = 6
 		}
 		add_core_of = BEL
 		remove_core_of = GER
 		transfer_state_to = BEL
+	}
+	every_state = {
+		limit = {
+			is_owned_by = FRA
+			OR = {
+				state = 34
+				state = 910
+			}
+		}
+		add_core_of = WAL
+		remove_core_of = GER
+		transfer_state_to = WAL
+		WAL = { drop_cosmetic_tag = yes }
 	}
 	every_state = {
 		limit = {

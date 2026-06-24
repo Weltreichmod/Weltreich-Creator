@@ -16,6 +16,26 @@ on_actions = {
 			100 = south_africa_wr.7
 		}
 	}
+	on_daily_TSC = {
+		effect = {
+            # 매일 자정마다 배열의 주인인 TSC 스코프에서 검사 시작
+            TSC = {
+                for_each_scope_loop = {
+                    array = TSC_allied_occupation_of_japan_list_array
+                    if = {
+                        limit = {
+                            # 현재 검사받는 국가(THIS)가 누군가의 종속국인가?
+                            is_subject = yes
+                        }
+                        # 종속국이라면 바깥의 TSC(PREV) 스코프에서 이 국가를 명단에서 지움
+                        PREV = {
+                            remove_from_array = { TSC_allied_occupation_of_japan_list_array = THIS }
+                        }
+                    }
+                }
+            }
+        }
+	}
 	on_war = {
 		effect = {
 			if = {
@@ -36,6 +56,14 @@ on_actions = {
 				}
 				FRA = { country_event = { id = france_wr.1002 days = 42 } }
 				FRA = { country_event = { id = france.100 days = 1 } }
+			}
+			if = {
+				limit = {
+					JAP = {
+						has_war_with = CHI
+					}
+				}
+				JAP = { add_timed_idea = { idea = JAP_intervene_in_china_5 days = 300 } }
 			}
 		}
 	}
@@ -714,6 +742,46 @@ on_actions = {
 									has_subject = FROM
 								}
 								set_country_flag = defeat_spain_flag
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						tag = TSC
+						has_global_flag = second_world_war
+					}
+					if = {
+						limit = {
+							FROM = { is_subject = no }
+						}
+						FROM = { set_country_flag = defeat_tsc_flag }
+						else = {
+							every_country = {
+								limit = {
+									has_subject = FROM
+								}
+								set_country_flag = defeat_tsc_flag
+							}
+						}
+					}
+				}
+				if = {
+					limit = {
+						tag = TSC
+						has_global_flag = wwiii_flag
+					}
+					if = {
+						limit = {
+							FROM = { is_subject = no }
+						}
+						FROM = { set_country_flag = defeat_tsc_in_wwiii_flag }
+						else = {
+							every_country = {
+								limit = {
+									has_subject = FROM
+								}
+								set_country_flag = defeat_tsc_in_wwiii_flag
 							}
 						}
 					}

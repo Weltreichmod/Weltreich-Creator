@@ -269,6 +269,12 @@ CHI_northern_pacification_category = {
 					type = annex_everything
 				}
 			}
+			every_state = {
+				limit = {
+					is_core_of = SIK
+				}
+				add_core_of = CHI
+			}
 		}
 	}
 	CHI_attack_mongolia_decision = {
@@ -530,7 +536,16 @@ CHI_europe_in_turmoil_category = {
 				NOT = { has_country_flag = CHI_support_decision_no_flag }
 			}
 		}
+		days_remove = 50
 		complete_effect = {
+			hidden_effect = {
+				FROM = {
+					country_event = { id = china_wr.1002 days = 365 }
+					clr_country_flag = propse_purchace_weapons_flag
+				}
+			}
+		}
+		remove_effect = {
 			custom_effect_tooltip = CHI_support_decision_tt
 			FROM = { country_event = china_wr.169 }
 			set_country_flag = {
@@ -539,11 +554,12 @@ CHI_europe_in_turmoil_category = {
 			}
 		}
 		ai_will_do = {
-			base = 80
+			base = 0
 			modifier = {
-				add = -80
-				has_equipment = { infantry_equipment < 3000 }
-				has_equipment = { artillery_equipment < 1000 }
+				add = 10
+				FROM = { has_country_flag = propse_purchace_weapons_flag }
+				has_equipment = { infantry_equipment > 999 }
+				has_equipment = { artillery_equipment > 299 }
 			}
 		}
 	}
@@ -935,18 +951,25 @@ CHI_congress = {
 		allowed = {
 			original_tag = CHI
 		}
+		available = {
+			NOT = { has_country_flag = CHI_political_is_on_1_flag }
+		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
 			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 15
 		days_remove = 20
+		complete_effect = {
+			set_country_flag = CHI_political_is_on_1_flag
+		}
 		remove_effect = {
 			CHI_inc_progressive_party_support_5 = yes
 			CHI_inc_chinese_youth_party_support_5 = yes
 			CHI_inc_kuomintang_support_5 = yes
 			CHI_inc_others_independent_support_5 = yes
 			CHI_recalc_congress_icon_frames = yes
+			clr_country_flag = CHI_political_is_on_1_flag
 		}
 		ai_will_do = {
 			base = 0
@@ -961,18 +984,25 @@ CHI_congress = {
 		allowed = {
 			original_tag = CHI
 		}
+		available = {
+			NOT = { has_country_flag = CHI_political_is_on_1_flag }
+		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
 			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 45
 		days_remove = 45
+		complete_effect = {
+			set_country_flag = CHI_political_is_on_1_flag
+		}
 		remove_effect = {
 			CHI_inc_progressive_party_support_10 = yes
 			CHI_inc_chinese_youth_party_support_10 = yes
 			CHI_inc_kuomintang_support_10 = yes
 			CHI_inc_others_independent_support_10 = yes
 			CHI_recalc_congress_icon_frames = yes
+			clr_country_flag = CHI_political_is_on_1_flag
 		}
 		ai_will_do = {
 			base = 0
@@ -987,15 +1017,22 @@ CHI_congress = {
 		allowed = {
 			original_tag = CHI
 		}
+		available = {
+			NOT = { has_country_flag = CHI_political_is_on_1_flag }
+		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
 			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 45
 		days_remove = 45
+		complete_effect = {
+			set_country_flag = CHI_political_is_on_1_flag
+		}
 		remove_effect = {
 			CHI_inc_chinese_youth_party_support_20 = yes
 			CHI_recalc_congress_icon_frames = yes
+			clr_country_flag = CHI_political_is_on_1_flag
 		}
 		ai_will_do = {
 			base = 0
@@ -1006,15 +1043,22 @@ CHI_congress = {
 		allowed = {
 			original_tag = CHI
 		}
+		available = {
+			NOT = { has_country_flag = CHI_political_is_on_1_flag }
+		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
 			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 45
 		days_remove = 45
+		complete_effect = {
+			set_country_flag = CHI_political_is_on_1_flag
+		}
 		remove_effect = {
 			CHI_inc_progressive_party_support_20 = yes
 			CHI_recalc_congress_icon_frames = yes
+			clr_country_flag = CHI_political_is_on_1_flag
 		}
 		ai_will_do = {
 			base = 0
@@ -1025,15 +1069,22 @@ CHI_congress = {
 		allowed = {
 			original_tag = CHI
 		}
+		available = {
+			NOT = { has_country_flag = CHI_political_is_on_1_flag }
+		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
 			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 45
 		days_remove = 45
+		complete_effect = {
+			set_country_flag = CHI_political_is_on_1_flag
+		}
 		remove_effect = {
 			CHI_inc_kuomintang_support_15 = yes
 			CHI_recalc_congress_icon_frames = yes
+			clr_country_flag = CHI_political_is_on_1_flag
 		}
 		ai_will_do = {
 			base = 0
@@ -1044,15 +1095,22 @@ CHI_congress = {
 		allowed = {
 			original_tag = CHI
 		}
+		available = {
+			NOT = { has_country_flag = CHI_political_is_on_1_flag }
+		}
 		visible = {
 			has_country_flag = CHI_congress_yes_flag
 			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 		}
 		cost = 35
 		days_remove = 35
+		complete_effect = {
+			set_country_flag = CHI_political_is_on_1_flag
+		}
 		remove_effect = {
 			CHI_inc_others_independent_support_15 = yes
 			CHI_recalc_congress_icon_frames = yes
+			clr_country_flag = CHI_political_is_on_1_flag
 		}
 		ai_will_do = {
 			base = 0
@@ -6087,7 +6145,8 @@ CHI_militia_mobilization_category = {
 				NOT = { has_state_flag = CHI_militia_mobilization_flag }
 			}
 		}
-		cost = 10
+		cost = 35
+		days_remove = 35
 		remove_effect = {
 			if = {
 				limit = { NOT = { has_template = "Feicháng Mínbing" } }
@@ -10125,6 +10184,1252 @@ CHI_recruit_anti_japanese_militia = {
 		}
 		ai_will_do = {
 			base = 1000
+		}
+	}
+}
+
+CHI_reduce_japan_to_agricultural_state_decision = {
+	CHI_agriculturalization_hokkaido = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		cost = 20
+		days_remove = 100
+		ai_will_do = {
+			base = 100
+		}
+		fire_only_once = yes
+		available = {
+			TSC = { controls_state = 536 }
+			536 = { is_owned_by = TSC }
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					536 = { is_owned_by = TSC }
+				}
+				536 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 536
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 536
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					537 = { is_owned_by = TSC }
+				}
+				537 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 536
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 536
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					555 = { is_owned_by = TSC }
+				}
+				555 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 536
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 536
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	CHI_agriculturalization_tohoku = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		cost = 20
+		days_remove = 100
+		ai_will_do = {
+			base = 100
+		}
+		fire_only_once = yes
+		available = {
+			TSC = { controls_state = 533 }
+			533 = { is_owned_by = TSC }
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					533 = { is_owned_by = TSC }
+				}
+				533 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 533
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 533
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 533
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 533
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	CHI_agriculturalization_kanto = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		cost = 20
+		days_remove = 100
+		ai_will_do = {
+			base = 100
+		}
+		fire_only_once = yes
+		available = {
+			TSC = { controls_state = 282 }
+			282 = { is_owned_by = TSC }
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					282 = { is_owned_by = TSC }
+				}
+				282 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 282
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 282
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 282
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 282
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	CHI_agriculturalization_chubu = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		cost = 20
+		days_remove = 100
+		ai_will_do = {
+			base = 100
+		}
+		fire_only_once = yes
+		available = {
+			OR = {
+				AND = {
+					TSC = { controls_state = 534 }
+					534 = { is_owned_by = TSC }
+				}
+				AND = {
+					TSC = { controls_state = 535 }
+					535 = { is_owned_by = TSC }
+				}
+				AND = {
+					TSC = { controls_state = 532 }
+					532 = { is_owned_by = TSC }
+				}
+			}
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					534 = { is_owned_by = TSC }
+				}
+				534 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 534
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 534
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					535 = { is_owned_by = TSC }
+				}
+				535 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 535
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 535
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 535
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 535
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					532 = { is_owned_by = TSC }
+				}
+				532 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 532
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 532
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 532
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 532
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	CHI_agriculturalization_kansai = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		cost = 20
+		days_remove = 100
+		ai_will_do = {
+			base = 100
+		}
+		fire_only_once = yes
+		available = {
+			TSC = { controls_state = 531 }
+			531 = { is_owned_by = TSC }
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					531 = { is_owned_by = TSC }
+				}
+				531 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 531
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 531
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 531
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 531
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	CHI_agriculturalization_chugoku = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		cost = 20
+		days_remove = 100
+		ai_will_do = {
+			base = 100
+		}
+		fire_only_once = yes
+		available = {
+			TSC = { controls_state = 529 }
+			529 = { is_owned_by = TSC }
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					529 = { is_owned_by = TSC }
+				}
+				529 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 529
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 529
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 529
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 529
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	CHI_agriculturalization_shikoku = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		cost = 20
+		days_remove = 100
+		ai_will_do = {
+			base = 100
+		}
+		fire_only_once = yes
+		available = {
+			TSC = { controls_state = 530 }
+			530 = { is_owned_by = TSC }
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					530 = { is_owned_by = TSC }
+				}
+				530 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 530
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 530
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 530
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 530
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+		}
+	}
+	CHI_agriculturalization_kyushu = {
+		icon = GFX_decision_hol_draw_up_staff_plans
+		cost = 20
+		days_remove = 100
+		ai_will_do = {
+			base = 100
+		}
+		fire_only_once = yes
+		available = {
+			TSC = { controls_state = 528 }
+			528 = { is_owned_by = TSC }
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					528 = { is_owned_by = TSC }
+				}
+				528 = {
+					add_dynamic_modifier = { modifier = CHI_reduce_japan_to_agricultural_state }
+				}
+				TSC = {
+					random_owned_controlled_state = {
+						limit = {
+							state = 528
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 528
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 528
+							industrial_complex > 0
+						}
+						remove_building = {
+							type = industrial_complex
+							level = 1
+						}
+					}
+					random_owned_controlled_state = {
+						limit = {
+							state = 528
+							arms_factory > 0
+						}
+						remove_building = {
+							type = arms_factory
+							level = 1
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+KMT_siyu_sanhua_category = {
+	# ==========================================
+	# 1. 충정 (Loyalty) 디시전
+	# ==========================================
+	KMT_decision_inc_loyalty_5 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_nationalism
+		allowed = { tag = KMT }
+		available = { KMT_sanhua_loyalty_var < 100 }
+		
+		cost = 15
+		days_remove = 15
+		visible = {
+			has_completed_focus = KMT_focus_three_transformations
+		}
+		# 디시전이 만료되어 제거될 때 변수 및 효과 증가 실행
+		remove_effect = { KMT_inc_loyalty_5 = yes }
+	}
+	KMT_decision_inc_loyalty_10 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_nationalism
+		allowed = { tag = KMT }
+		available = { KMT_sanhua_loyalty_var < 100 }
+		
+		cost = 25
+		days_remove = 25
+		visible = {
+			has_completed_focus = KMT_focus_three_transformations
+		}
+		remove_effect = { KMT_inc_loyalty_10 = yes }
+	}
+
+	# ==========================================
+	# 2. 군사화 (Militarization) 디시전
+	# ==========================================
+	KMT_decision_inc_militarization_5 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_war_preparation
+		allowed = { tag = KMT }
+		available = { KMT_sanhua_militarization_var < 100 }
+		
+		cost = 15
+		days_remove = 15
+		visible = {
+			has_completed_focus = KMT_focus_three_transformations
+		}
+		remove_effect = { KMT_inc_militarization_5 = yes }
+	}
+	KMT_decision_inc_militarization_10 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_war_preparation
+		allowed = { tag = KMT }
+		available = { KMT_sanhua_militarization_var < 100 }
+		
+		cost = 25
+		days_remove = 25
+		visible = {
+			has_completed_focus = KMT_focus_three_transformations
+		}
+		remove_effect = { KMT_inc_militarization_10 = yes }
+	}
+
+	# ==========================================
+	# 3. 계몽 (Enlightenment) 디시전
+	# ==========================================
+	KMT_decision_inc_enlightenment_5 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_intellectual_property
+		allowed = { tag = KMT }
+		available = { KMT_sanhua_enlightenment_var < 100 }
+		
+		cost = 15
+		days_remove = 15
+		visible = {
+			has_completed_focus = KMT_focus_three_transformations
+		}
+		remove_effect = { KMT_inc_enlightenment_5 = yes }
+	}
+	KMT_decision_inc_enlightenment_10 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_intellectual_property
+		allowed = { tag = KMT }
+		available = { KMT_sanhua_enlightenment_var < 100 }
+		
+		cost = 25
+		days_remove = 25
+		visible = {
+			has_completed_focus = KMT_focus_three_transformations
+		}
+		remove_effect = { KMT_inc_enlightenment_10 = yes }
+	}
+
+	# ==========================================
+	# 4. 예 (Propriety) 디시전
+	# ==========================================
+	KMT_decision_inc_propriety_5 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_political_discourse
+		allowed = { tag = KMT }
+		available = { KMT_siyu_propriety_var < 100 }
+		
+		cost = 15
+		days_remove = 15
+		visible = {
+			has_completed_focus = KMT_focus_four_cardinal_virtues
+		}
+		remove_effect = { KMT_inc_propriety_5 = yes }
+	}
+	KMT_decision_inc_propriety_10 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_political_discourse
+		allowed = { tag = KMT }
+		available = { KMT_siyu_propriety_var < 100 }
+		
+		cost = 25
+		days_remove = 25
+		visible = {
+			has_completed_focus = KMT_focus_four_cardinal_virtues
+		}
+		remove_effect = { KMT_inc_propriety_10 = yes }
+	}
+
+	# ==========================================
+	# 5. 의 (Righteousness) 디시전
+	# ==========================================
+	KMT_decision_inc_righteousness_5 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_democracy_decision
+		allowed = { tag = KMT }
+		available = { KMT_siyu_righteousness_var < 100 }
+		
+		cost = 15
+		days_remove = 15
+		visible = {
+			has_completed_focus = KMT_focus_four_cardinal_virtues
+		}
+		remove_effect = { KMT_inc_righteousness_5 = yes }
+	}
+	KMT_decision_inc_righteousness_10 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_democracy_decision
+		allowed = { tag = KMT }
+		available = { KMT_siyu_righteousness_var < 100 }
+		
+		cost = 25
+		days_remove = 25
+		visible = {
+			has_completed_focus = KMT_focus_four_cardinal_virtues
+		}
+		remove_effect = { KMT_inc_righteousness_10 = yes }
+	}
+
+	# ==========================================
+	# 6. 염 (Integrity) 디시전
+	# ==========================================
+	KMT_decision_inc_integrity_5 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_investigate_deal
+		allowed = { tag = KMT }
+		available = { KMT_siyu_integrity_var < 100 }
+		
+		cost = 15
+		days_remove = 15
+		visible = {
+			has_completed_focus = KMT_focus_four_cardinal_virtues
+		}
+		remove_effect = { KMT_inc_integrity_5 = yes }
+	}
+	KMT_decision_inc_integrity_10 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_investigate_deal
+		allowed = { tag = KMT }
+		available = { KMT_siyu_integrity_var < 100 }
+		
+		cost = 25
+		days_remove = 25
+		visible = {
+			has_completed_focus = KMT_focus_four_cardinal_virtues
+		}
+		remove_effect = { KMT_inc_integrity_10 = yes }
+	}
+
+	# ==========================================
+	# 7. 치 (Shame) 디시전
+	# ==========================================
+	KMT_decision_inc_shame_5 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_protest
+		allowed = { tag = KMT }
+		available = { KMT_siyu_shame_var < 100 }
+		
+		cost = 15
+		days_remove = 15
+		visible = {
+			has_completed_focus = KMT_focus_four_cardinal_virtues
+		}
+		remove_effect = { KMT_inc_shame_5 = yes }
+	}
+	KMT_decision_inc_shame_10 = {
+		category = KMT_siyu_sanhua_category
+		icon = generic_protest
+		allowed = { tag = KMT }
+		available = { KMT_siyu_shame_var < 100 }
+		
+		cost = 25
+		days_remove = 25
+		visible = {
+			has_completed_focus = KMT_focus_four_cardinal_virtues
+		}
+		remove_effect = { KMT_inc_shame_10 = yes }
+	}
+}
+
+KMR_right_power_struggle_category = {
+	KMR_bribe_western_hills_1 = {
+		icon = GFX_decision_JAP_army_faction
+		allowed = { tag = KMR }
+		visible = {
+			OR = {
+				has_completed_focus = KMR_rectify_the_roots
+				has_completed_focus = KMR_horizontal_and_vertical_alliances
+			}
+		}
+		available = {
+			custom_trigger_tooltip = KMR_bribe_western_hills_trigger_tt
+			hidden_trigger = {
+				OR = {
+					AND = {
+						check_variable = { KMR_western_hills_group < 100 }
+						has_country_flag = KMR_lizhongren_flag
+					}
+					AND = {
+						check_variable = { KMR_western_hills_group > 0 }
+						has_country_flag = KMR_huhanmin_flag
+					}
+				}
+			}
+		}
+		cost = 20
+		days_remove = 7
+		modifier = {
+			communism_drift = -0.01
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					has_country_flag = KMR_lizhongren_flag
+				}
+				KMT_western_hills_add_5 = yes
+			}
+			if = {
+				limit = {
+					has_country_flag = KMR_huhanmin_flag
+				}
+				KMT_western_hills_sub_5 = yes
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+	KMR_bribe_western_hills_2 = {
+		icon = GFX_decision_generic_nationalism
+		allowed = { tag = KMR }
+		visible = {
+			OR = {
+				has_completed_focus = KMR_rectify_the_roots
+				has_completed_focus = KMR_horizontal_and_vertical_alliances
+			}
+		}
+		available = {
+			custom_trigger_tooltip = KMR_bribe_western_hills_trigger_tt
+			hidden_trigger = {
+				OR = {
+					AND = {
+						check_variable = { KMR_western_hills_group < 100 }
+						has_country_flag = KMR_lizhongren_flag
+					}
+					AND = {
+						check_variable = { KMR_western_hills_group > 0 }
+						has_country_flag = KMR_huhanmin_flag
+					}
+				}
+			}
+		}
+		cost = 30
+		days_remove = 15
+		modifier = {
+			communism_drift = -0.01
+		}
+		remove_effect = {
+			if = {
+				limit = {
+					has_country_flag = KMR_lizhongren_flag
+				}
+				KMT_western_hills_add_10 = yes
+			}
+			if = {
+				limit = {
+					has_country_flag = KMR_huhanmin_flag
+				}
+				KMT_western_hills_sub_10 = yes
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	KMR_bribe_political_science_1 = {
+		icon = GFX_decision_hol_attract_foreign_investors
+		allowed = { tag = KMR }
+		visible = {
+			OR = {
+				has_completed_focus = KMR_rectify_the_roots
+				has_completed_focus = KMR_horizontal_and_vertical_alliances
+			}
+		}
+		available = {
+			custom_trigger_tooltip = KMT_political_science_trigger_tt
+			hidden_trigger = {
+				OR = {
+					AND = {
+						check_variable = { KMT_political_science_var < 100 }
+						has_country_flag = KMR_lizhongren_flag
+					}
+					AND = {
+						check_variable = { KMT_political_science_var > 0 }
+						has_country_flag = KMR_huhanmin_flag
+					}
+				}
+			}
+		}
+		cost = 20
+		days_remove = 7
+		remove_effect = {
+			if = {
+				limit = {
+					has_country_flag = KMR_lizhongren_flag
+				}
+				KMT_political_science_add_5 = yes
+			}
+			if = {
+				limit = {
+					has_country_flag = KMR_huhanmin_flag
+				}
+				KMT_political_science_sub_5 = yes
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+	KMR_bribe_political_science_2 = {
+		icon = GFX_decision_eng_trade_unions_support
+		allowed = { tag = KMR }
+		visible = {
+			OR = {
+				has_completed_focus = KMR_rectify_the_roots
+				has_completed_focus = KMR_horizontal_and_vertical_alliances
+			}
+		}
+		available = {
+			custom_trigger_tooltip = KMT_political_science_trigger_tt
+			hidden_trigger = {
+				OR = {
+					AND = {
+						check_variable = { KMT_political_science_var < 100 }
+						has_country_flag = KMR_lizhongren_flag
+					}
+					AND = {
+						check_variable = { KMT_political_science_var > 0 }
+						has_country_flag = KMR_huhanmin_flag
+					}
+				}
+			}
+		}
+		cost = 30
+		days_remove = 15
+		remove_effect = {
+			if = {
+				limit = {
+					has_country_flag = KMR_lizhongren_flag
+				}
+				KMT_political_science_add_10 = yes
+			}
+			if = {
+				limit = {
+					has_country_flag = KMR_huhanmin_flag
+				}
+				KMT_political_science_sub_10 = yes
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	KMR_bribe_reconstruction_1 = {
+		icon = GFX_decision_hol_radio_oranje
+		allowed = { tag = KMR }
+		visible = {
+			OR = {
+				has_completed_focus = KMR_rectify_the_roots
+				has_completed_focus = KMR_horizontal_and_vertical_alliances
+			}
+		}
+		available = {
+			custom_trigger_tooltip = KMT_reconstruction_trigger_tt
+			hidden_trigger = {
+				OR = {
+					AND = {
+						check_variable = { KMT_reconstruction_var < 100 }
+						has_country_flag = KMR_lizhongren_flag
+					}
+					AND = {
+						check_variable = { KMT_reconstruction_var > 0 }
+						has_country_flag = KMR_huhanmin_flag
+					}
+				}
+			}
+		}
+		cost = 20
+		days_remove = 7
+		remove_effect = {
+			if = {
+				limit = {
+					has_country_flag = KMR_lizhongren_flag
+				}
+				KMT_reconstruction_add_5 = yes
+			}
+			if = {
+				limit = {
+					has_country_flag = KMR_huhanmin_flag
+				}
+				KMT_reconstruction_sub_5 = yes
+			}
+		}
+		ai_will_do = {
+			base = 0
+		}
+	}
+	KMR_bribe_reconstruction_2 = {
+		icon = GFX_decision_generic_political_rally
+		allowed = { tag = KMR }
+		visible = {
+			OR = {
+				has_completed_focus = KMR_rectify_the_roots
+				has_completed_focus = KMR_horizontal_and_vertical_alliances
+			}
+		}
+		available = {
+			custom_trigger_tooltip = KMT_reconstruction_trigger_tt
+			hidden_trigger = {
+				OR = {
+					AND = {
+						check_variable = { KMT_reconstruction_var < 100 }
+						has_country_flag = KMR_lizhongren_flag
+					}
+					AND = {
+						check_variable = { KMT_reconstruction_var > 0 }
+						has_country_flag = KMR_huhanmin_flag
+					}
+				}
+			}
+		}
+		cost = 30
+		days_remove = 15
+		remove_effect = {
+			if = {
+				limit = {
+					has_country_flag = KMR_lizhongren_flag
+				}
+				KMT_reconstruction_add_10 = yes
+			}
+			if = {
+				limit = {
+					has_country_flag = KMR_huhanmin_flag
+				}
+				KMT_reconstruction_sub_10 = yes
+			}
+		}
+		ai_will_do = {
+			base = 100
+		}
+	}
+	
+	KMR_secure_influence_hu = {
+		icon = GFX_decision_generic_speech
+		allowed = { tag = KMR }
+		visible = {
+			has_completed_focus = KMR_rectify_the_roots
+		}
+		activation = {
+			has_completed_focus = KMR_rectify_the_roots
+		}
+		available = {
+			NOT = { has_country_flag = KMR_right_power_struggle_category_flag }
+		}
+		
+		days_mission_timeout = 5
+		
+		timeout_effect = {
+			random_list = {
+				10 = {
+					KMT_reconstruction_sub_5 = yes
+				}
+				10 = {
+					KMT_reconstruction_sub_10 = yes
+				}
+				10 = {
+					KMT_political_science_sub_5 = yes
+				}
+				10 = {
+					KMT_political_science_sub_10 = yes
+				}
+				10 = {
+					KMT_western_hills_sub_5 = yes
+				}
+				10 = {
+					KMT_western_hills_sub_10 = yes
+				}
+			}
+		}
+	}
+
+	KMR_secure_influence_li = {
+		icon = GFX_decision_generic_speech
+		allowed = { tag = KMR }
+		visible = {
+			has_completed_focus = KMR_horizontal_and_vertical_alliances
+		}
+		activation = {
+			has_completed_focus = KMR_horizontal_and_vertical_alliances
+		}
+		available = {
+			NOT = { has_country_flag = KMR_right_power_struggle_category_flag }
+		}
+		
+		days_mission_timeout = 5
+		
+		timeout_effect = {
+			random_list = {
+				10 = {
+					KMT_reconstruction_add_5 = yes
+				}
+				10 = {
+					KMT_reconstruction_add_10 = yes
+				}
+				10 = {
+					KMT_political_science_add_5 = yes
+				}
+				10 = {
+					KMT_political_science_add_10 = yes
+				}
+				10 = {
+					KMT_western_hills_add_5 = yes
+				}
+				10 = {
+					KMT_western_hills_add_10 = yes
+				}
+			}
+		}
+	}
+	
+	KMR_until_the_power_struggle_ends = {
+		icon = GFX_decision_SWI_no_elected_president
+		priority = 100
+		allowed = { tag = KMR }
+		activation = {
+			has_country_flag = KMR_right_power_struggle_category_flag
+		}
+		available = {
+			NOT = { has_country_flag = KMR_right_power_struggle_category_flag }
+		}
+		days_mission_timeout = 70
+		timeout_effect = {
+			# 1. 평균을 저장할 변수에 첫 번째 파벌의 값을 대입합니다.
+			set_variable = { KMR_faction_average = KMR_new_gui_clique }
+
+			# 2. 나머지 파벌 변수들의 값을 차례대로 더합니다.
+			add_to_variable = { KMR_faction_average = KMR_orthodox_faction }
+			add_to_variable = { KMR_faction_average = KMR_western_hills_group }
+			add_to_variable = { KMR_faction_average = KMR_political_science_group }
+			add_to_variable = { KMR_faction_average = KMR_reconstruction_faction }
+
+			# 3. 총합이 저장된 변수를 파벌의 총 개수인 5로 나누어 최종 평균값을 도출합니다.
+			divide_variable = { KMR_faction_average = 5 }
+			clr_country_flag = KMR_right_power_struggle_category_flag
 		}
 	}
 }
