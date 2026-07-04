@@ -3710,6 +3710,89 @@ country_event = {
 }
 
 country_event = {
+	id = Germany.94
+	title = Germany.94.t
+	desc = Germany.94.d
+	picture = GFX_report_event_generic_read_write
+	is_triggered_only = yes
+	option = {
+		name = Germany.94.a
+		every_state = {
+			limit = {
+				OR = {
+					state = 979
+					state = 984
+					state = 980
+					state = 336
+					state = 983
+					state = 982
+					state = 981
+				}
+			}
+			transfer_state_to = FMS
+		}
+		if = {
+			limit = {
+				OR = {
+					has_dlc = "Together for Victory"
+					has_dlc = "Waking the Tiger"
+				}
+				FMS = { exists = yes }
+			}
+			FMS = {
+				set_cosmetic_tag = GER_PROTECT
+				set_country_flag = protectorate
+			}
+			GER = {
+				set_autonomy = {
+					target = FMS
+					autonomous_state = autonomy_protected_state
+					freedom_level = 0.5
+				}
+			}
+			else = {
+				GER= { puppet = FMS }
+			}
+		}
+		every_state = {
+			limit = {
+				OR = {
+					state = 985
+					state = 986
+				}
+			}
+			transfer_state_to = BRU
+		}
+		if = {
+			limit = {
+				OR = {
+					has_dlc = "Together for Victory"
+					has_dlc = "Waking the Tiger"
+				}
+				BRU = { exists = yes }
+			}
+			BRU = {
+				set_cosmetic_tag = GER_PROTECT
+				set_country_flag = protectorate
+			}
+			GER = {
+				set_autonomy = {
+					target = BRU
+					autonomous_state = autonomy_protected_state
+					freedom_level = 0.5
+				}
+			}
+			else = {
+				GER= { puppet = BRU }
+			}
+		}
+		ai_chance = {
+			factor = 100
+		}
+	}
+}
+
+country_event = {
 	picture = Siegtag
 	id = Germany.1000
 	title = Germany.1000.t

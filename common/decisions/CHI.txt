@@ -10067,6 +10067,216 @@ CHI_one_belt_one_road_category = {
 	}
 }
 
+CHI_indochina_invasion_category = {
+	CHI_war_with_vietnam = {
+		icon = GFX_decision_generic_ignite_civil_war
+		days_mission_timeout = 365
+		activation = {
+			has_global_flag = CHI_VIN_war_flag
+			has_war_with = VIN
+		}
+		available = {
+			NOT = {
+				has_global_flag = CHI_VIN_war_flag
+				has_war_with = VIN
+			}
+		}
+		timeout_effect = {
+			every_country = {
+				limit = {
+					has_war_with = VIN
+				}
+				white_peace = VIN
+			}
+			add_political_power = -100
+			add_stability = -0.1
+			clr_global_flag = CHI_VIN_war_flag
+		}
+	}
+	CHI_war_with_laos = {
+		icon = GFX_decision_generic_ignite_civil_war
+		days_mission_timeout = 365
+		activation = {
+			has_global_flag = CHI_LAO_war_flag
+			has_war_with = LAO
+		}
+		available = {
+			NOT = {
+				has_global_flag = CHI_LAO_war_flag
+				has_war_with = LAO
+			}
+		}
+		timeout_effect = {
+			every_country = {
+				limit = {
+					has_war_with = LAO
+				}
+				white_peace = LAO
+			}
+			add_political_power = -100
+			add_stability = -0.1
+			clr_global_flag = CHI_LAO_war_flag
+		}
+	}
+	CHI_war_with_kampuchea = {
+		icon = GFX_decision_generic_ignite_civil_war
+		days_mission_timeout = 365
+		activation = {
+			has_global_flag = CHI_CAM_war_flag
+			has_war_with = CAM
+		}
+		available = {
+			NOT = {
+				has_global_flag = CHI_CAM_war_flag
+				has_war_with = CAM
+			}
+		}
+		timeout_effect = {
+			every_country = {
+				limit = {
+					has_war_with = CAM
+				}
+				white_peace = CAM
+			}
+			add_political_power = -100
+			add_stability = -0.1
+			clr_global_flag = CHI_CAM_war_flag
+		}
+	}
+}
+
+CHI_ignite_indochina_revolution = {
+	CHI_prepare_vin_civil_war = {
+		icon = GFX_decision_generic_nationalism
+		visible = {
+			has_country_flag = CHI_vin_civil_war_flag
+			NOT = { check_variable = { CHI_vin_civil_war_var = 5 } }
+		}
+		available = {
+			is_subject = no
+		}
+		custom_cost_text = 500_infantry_equipment_50_artillery_equipment
+		custom_cost_trigger = {
+	    	has_equipment = { infantry_equipment > 499 }
+	    	has_equipment = { artillery_equipment > 49 }
+	    }
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = -50
+			}
+		}
+		days_remove = 14
+		remove_effect = {
+			add_to_variable = { CHI_vin_civil_war_var = 1 }
+		}
+	}
+	CHI_ignite_vin_civil_war = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			has_country_flag = CHI_vin_civil_war_flag
+		}
+		available = {
+			check_variable = { CHI_vin_civil_war_var = 5 }
+			custom_trigger_tooltip = CHI_civil_war_var_tt
+		}
+		war_with_on_remove = VIN
+		days_remove = 14
+		remove_effect = {
+		}
+	}
+	CHI_prepare_lao_civil_war = {
+		icon = GFX_decision_generic_nationalism
+		visible = {
+			has_country_flag = CHI_lao_civil_war_flag
+			NOT = { check_variable = { CHI_lao_civil_war_var = 5 } }
+		}
+		available = {
+			is_subject = no
+		}
+		custom_cost_text = 500_infantry_equipment_50_artillery_equipment
+		custom_cost_trigger = {
+	    	has_equipment = { infantry_equipment > 499 }
+	    	has_equipment = { artillery_equipment > 49 }
+	    }
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = -50
+			}
+		}
+		days_remove = 14
+		remove_effect = {
+			add_to_variable = { CHI_lao_civil_war_var = 1 }
+		}
+	}
+	CHI_ignite_lao_civil_war = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			has_country_flag = CHI_lao_civil_war_flag
+		}
+		available = {
+			check_variable = { CHI_lao_civil_war_var = 5 }
+			custom_trigger_tooltip = CHI_civil_war_var_tt
+		}
+		war_with_on_remove = LAO
+		days_remove = 14
+		remove_effect = {
+		}
+	}
+	CHI_prepare_cam_civil_war = {
+		icon = GFX_decision_generic_nationalism
+		visible = {
+			has_country_flag = CHI_cam_civil_war_flag
+			NOT = { check_variable = { CHI_cam_civil_war_var = 5 } }
+		}
+		available = {
+			is_subject = no
+		}
+		custom_cost_text = 500_infantry_equipment_50_artillery_equipment
+		custom_cost_trigger = {
+	    	has_equipment = { infantry_equipment > 499 }
+	    	has_equipment = { artillery_equipment > 49 }
+	    }
+		complete_effect = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+			add_equipment_to_stockpile = {
+				type = artillery_equipment
+				amount = -50
+			}
+		}
+		days_remove = 14
+		remove_effect = {
+			add_to_variable = { CHI_cam_civil_war_var = 1 }
+		}
+	}
+	CHI_ignite_cam_civil_war = {
+		icon = GFX_decision_generic_ignite_civil_war
+		visible = {
+			has_country_flag = CHI_cam_civil_war_flag
+		}
+		available = {
+			check_variable = { CHI_cam_civil_war_var = 5 }
+			custom_trigger_tooltip = CHI_civil_war_var_tt
+		}
+		war_with_on_remove = CAM
+		days_remove = 14
+		remove_effect = {
+		}
+	}
+}
+
 CHI_recruit_anti_japanese_militia = {
 	CHI_recruit_anti_japanese_militia_decision = {
 		icon = GFX_decision_generic_military

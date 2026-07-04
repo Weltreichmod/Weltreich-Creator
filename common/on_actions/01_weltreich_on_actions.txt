@@ -3234,26 +3234,38 @@ on_actions = {
 					}
 					transfer_state_to = KOR
 				}
+				JAP = { end_puppet = CAM }
 				every_state = {
 					limit = {
-						is_owned_by = JAP
+						OR = {
+							is_owned_by = GOA
+							is_owned_by = JAP
+						}
 						is_core_of = CAM
 					}
 					transfer_state_to = CAM
 				}
+				JAP = { end_puppet = VIN }
 				every_state = {
 					limit = {
-						is_owned_by = JAP
-						is_core_of = LAO
-					}
-					transfer_state_to = LAO
-				}
-				every_state = {
-					limit = {
-						is_owned_by = JAP
+						OR = {
+							is_owned_by = GOA
+							is_owned_by = JAP
+						}
 						is_core_of = VIN
 					}
 					transfer_state_to = VIN
+				}
+				JAP = { end_puppet = LAO }
+				every_state = {
+					limit = {
+						OR = {
+							is_owned_by = GOA
+							is_owned_by = JAP
+						}
+						is_core_of = LAO
+					}
+					transfer_state_to = LAO
 				}
 				if = {
 					limit = {
@@ -3867,6 +3879,109 @@ on_actions = {
 						}
 					}
 				}
+			}
+			#중국의 남벌
+			if = {
+				limit = {
+					FROM = {
+						original_tag = VIN
+					}
+					any_enemy_country = CHI
+					has_global_flag = CHI_VIN_war_flag
+				}
+				every_country = {
+					limit = {
+						has_war_with = VIN
+					}
+					white_peace = VIN
+				}
+				CHI = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = VIN
+							autonomous_state = autonomy_protectorate
+							freedom_level = 0.8
+						}
+						else = {
+							puppet = VIN
+						}
+					}
+				}
+				clr_global_flag = CHI_VIN_war_flag
+			}
+			if = {
+				limit = {
+					FROM = {
+						original_tag = LAO
+					}
+					any_enemy_country = CHI
+					has_global_flag = CHI_LAO_war_flag
+				}
+				every_country = {
+					limit = {
+						has_war_with = LAO
+					}
+					white_peace = LAO
+				}
+				CHI = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = LAO
+							autonomous_state = autonomy_protectorate
+							freedom_level = 0.8
+						}
+						else = {
+							puppet = LAO
+						}
+					}
+				}
+				clr_global_flag = CHI_LAO_war_flag
+			}
+			if = {
+				limit = {
+					FROM = {
+						original_tag = CAM
+					}
+					any_enemy_country = CHI
+					has_global_flag = CHI_CAM_war_flag
+				}
+				every_country = {
+					limit = {
+						has_war_with = CAM
+					}
+					white_peace = CAM
+				}
+				CHI = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = CAM
+							autonomous_state = autonomy_protectorate
+							freedom_level = 0.8
+						}
+						else = {
+							puppet = CAM
+						}
+					}
+				}
+				clr_global_flag = CHI_CAM_war_flag
 			}
 			#for achievements
 			if = {

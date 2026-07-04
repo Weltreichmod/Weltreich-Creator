@@ -6176,6 +6176,7 @@ country_event = { #중국내전
 					set_country_flag = chinese_civil_war_flag
 					complete_national_focus = KMT_nanjing_national_government
 					add_ideas = CHI_civil_war
+					add_ideas = KMT_weak_administration
 					add_timed_idea = { idea = KMT_army_fracturing_military days = 80 }
 					hidden_effect = {
 						country_event = { id = china_wr.213 days = 7 }
@@ -6916,6 +6917,73 @@ country_event = { #서남호국군 분리
 							prioritize_location = 1319
 							count = 3
 							owner = NPA
+						}
+					}
+					if = {
+						limit = {
+							KMT = { is_ai = no }
+						}
+						599 = {
+							create_unit = {
+								division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.3"
+								prioritize_location = 7137
+								count = 2
+								owner = NPA
+							}
+							create_unit = {
+								division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+								prioritize_location = 7044
+								count = 1
+								owner = NPA
+							}
+						}
+						754 = {
+							create_unit = {
+								division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.7 start_experience_factor = 0.3"
+								prioritize_location = 1023
+								count = 1
+								owner = NPA
+							}
+							create_unit = {
+								division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+								prioritize_location = 7095
+								count = 1
+								owner = NPA
+							}
+							create_unit = {
+								division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.65 start_experience_factor = 0.3"
+								prioritize_location = 4152
+								count = 1
+								owner = NPA
+							}
+						}
+						603 = {
+							create_unit = {
+								division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+								prioritize_location = 8095
+								count = 1
+								owner = NPA
+							}
+							create_unit = {
+								division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.9 start_experience_factor = 0.3"
+								prioritize_location = 4504
+								count = 1
+								owner = NPA
+							}
+							create_unit = {
+								division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 0.8 start_experience_factor = 0.3"
+								prioritize_location = 7549
+								count = 2
+								owner = NPA
+							}
+						}
+						325 = {
+							create_unit = {
+								division = "name = \"Juntuán\" division_template = \"Juntuán\" start_equipment_factor = 1 start_experience_factor = 0.3"
+								prioritize_location = 1319
+								count = 1
+								owner = NPA
+							}
 						}
 					}
 					country_event = { id = china_wr.233 days = 24 }
@@ -11779,6 +11847,426 @@ country_event = {
 	option = {
 		name = china_wr.367.a
 		custom_effect_tooltip = china_wr_367_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.368
+	title = china_wr.368.t
+	desc = china_wr.368.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.368.a
+		effect_tooltip = {
+			FROM = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Waking the Tiger"
+						}
+					}
+					set_autonomy = {
+						target = ROOT
+						autonomous_state = autonomy_protectorate
+						freedom_level = 0.8
+					}
+					else = {
+						puppet = ROOT
+					}
+				}
+			}
+		}
+		FROM = { country_event = { id = china_wr.369 days = 3 } }
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.368.b
+		effect_tooltip = {
+			FROM = { declare_war_on = { target = ROOT type = puppet_wargoal_focus } }
+		}
+		FROM = { country_event = { id = china_wr.370 days = 3 } }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.369
+	title = china_wr.369.t
+	desc = china_wr.369.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.369.a
+		ROOT = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+				}
+				set_autonomy = {
+					target = FROM
+					autonomous_state = autonomy_protectorate
+					freedom_level = 0.8
+				}
+				else = {
+					puppet = FROM
+				}
+			}
+		}
+		FROM = { set_country_flag = protectorate }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.370
+	title = china_wr.370.t
+	desc = china_wr.370.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.370.a
+		declare_war_on = { target = FROM type = puppet_wargoal_focus }
+		if = {
+			limit = {
+				FROM = { original_tag = VIN }
+			}
+			set_global_flag = CHI_VIN_war_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = CAM }
+			}
+			set_global_flag = CHI_CAM_war_flag
+		}
+		if = {
+			limit = {
+				FROM = { original_tag = LAO }
+			}
+			set_global_flag = CHI_LAO_war_flag
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.371
+	title = china_wr.371.t
+	desc = china_wr.371.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.371.a
+		effect_tooltip = {
+			ROOT = { end_puppet = VIN }
+			FROM = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Waking the Tiger"
+						}
+					}
+					set_autonomy = {
+						target = VIN
+						autonomous_state = autonomy_protectorate
+						freedom_level = 0.8
+					}
+					else = {
+						puppet = VIN
+					}
+				}
+			}
+		}
+		FROM = { country_event = { id = china_wr.372 days = 3 } }
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.371.b
+		custom_effect_tooltip = they_will_prepare_something_tt
+		FROM = { country_event = { id = china_wr.373 days = 3 } }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.372
+	title = china_wr.372.t
+	desc = china_wr.372.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.372.a
+		FROM = { end_puppet = VIN }
+		ROOT = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+				}
+				set_autonomy = {
+					target = VIN
+					autonomous_state = autonomy_protectorate
+					freedom_level = 0.8
+				}
+				else = {
+					puppet = VIN
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.373
+	title = china_wr.373.t
+	desc = china_wr.373.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.373.a
+		unlock_decision_tooltip = CHI_prepare_vin_civil_war
+		unlock_decision_tooltip = CHI_ignite_vin_civil_war
+		set_country_flag = CHI_vin_civil_war_flag
+		set_variable = CHI_vin_civil_war_var
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.374
+	title = china_wr.374.t
+	desc = china_wr.374.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.374.a
+		effect_tooltip = {
+			ROOT = { end_puppet = LAO }
+			FROM = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Waking the Tiger"
+						}
+					}
+					set_autonomy = {
+						target = LAO
+						autonomous_state = autonomy_protectorate
+						freedom_level = 0.8
+					}
+					else = {
+						puppet = LAO
+					}
+				}
+			}
+		}
+		FROM = { country_event = { id = china_wr.375 days = 3 } }
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.374.b
+		custom_effect_tooltip = they_will_prepare_something_tt
+		FROM = { country_event = { id = china_wr.376 days = 3 } }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.375
+	title = china_wr.375.t
+	desc = china_wr.375.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.375.a
+		FROM = { end_puppet = LAO }
+		ROOT = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+				}
+				set_autonomy = {
+					target = LAO
+					autonomous_state = autonomy_protectorate
+					freedom_level = 0.8
+				}
+				else = {
+					puppet = LAO
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.376
+	title = china_wr.376.t
+	desc = china_wr.376.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.376.a
+		unlock_decision_tooltip = CHI_prepare_lao_civil_war
+		unlock_decision_tooltip = CHI_ignite_lao_civil_war
+		set_country_flag = CHI_lao_civil_war_flag
+		set_variable = CHI_lao_civil_war_var
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.377
+	title = china_wr.377.t
+	desc = china_wr.377.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.377.a
+		effect_tooltip = {
+			ROOT = { end_puppet = CAM }
+			FROM = {
+				if = {
+					limit = {
+						OR = {
+							has_dlc = "Together for Victory"
+							has_dlc = "Waking the Tiger"
+						}
+					}
+					set_autonomy = {
+						target = CAM
+						autonomous_state = autonomy_protectorate
+						freedom_level = 0.8
+					}
+					else = {
+						puppet = CAM
+					}
+				}
+			}
+		}
+		FROM = { country_event = { id = china_wr.378 days = 3 } }
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.374.b
+		custom_effect_tooltip = they_will_prepare_something_tt
+		FROM = { country_event = { id = china_wr.379 days = 3 } }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.378
+	title = china_wr.378.t
+	desc = china_wr.378.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.378.a
+		FROM = { end_puppet = CAM }
+		ROOT = {
+			if = {
+				limit = {
+					OR = {
+						has_dlc = "Together for Victory"
+						has_dlc = "Waking the Tiger"
+					}
+				}
+				set_autonomy = {
+					target = CAM
+					autonomous_state = autonomy_protectorate
+					freedom_level = 0.8
+				}
+				else = {
+					puppet = CAM
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.379
+	title = china_wr.379.t
+	desc = china_wr.379.d
+	picture = GFX_report_event_generic_sign_treaty
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.379.a
+		unlock_decision_tooltip = CHI_prepare_cam_civil_war
+		unlock_decision_tooltip = CHI_ignite_cam_civil_war
+		set_country_flag = CHI_cam_civil_war_flag
+		set_variable = CHI_cam_civil_war_var
 		ai_chance = {
 			base = 10
 		}
