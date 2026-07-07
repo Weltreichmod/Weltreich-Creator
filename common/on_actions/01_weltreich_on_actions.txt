@@ -3887,7 +3887,13 @@ on_actions = {
 						original_tag = VIN
 					}
 					any_enemy_country = CHI
-					has_global_flag = CHI_VIN_war_flag
+					OR = {
+						has_global_flag = CHI_VIN_war_flag
+						AND = {
+							VIN = { has_country_flag = liberation_of_indochina_flag }
+							VIN = { is_subject = no }
+						}
+					}
 				}
 				every_country = {
 					limit = {
@@ -3913,6 +3919,51 @@ on_actions = {
 						}
 					}
 				}
+				if = {
+					limit = {
+						CHI = { has_government = democratic }
+					}
+					VIN = {
+						set_politics = {
+							ruling_party = democratic
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						add_popularity = {
+							ideology = democratic
+							popularity = 0.3
+						}
+					}
+				}
+				if = {
+					limit = {
+						CHI = { has_government = neutrality }
+					}
+					VIN = {
+						set_politics = {
+							ruling_party = neutrality
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						add_popularity = {
+							ideology = neutrality
+							popularity = 0.3
+						}
+					}
+				}
+				VIN = {
+					create_country_leader = {
+						name = "VIN_Ngo_Dinh_Diem"
+						picture = "GFX_portrait_VIN_Ngo_Dinh_Diem" 
+						ideology = conservatism
+					}
+					create_country_leader = {
+						name = "VIN_Ngo_Dinh_Diem"
+						picture = "GFX_portrait_VIN_Ngo_Dinh_Diem" 
+						ideology = moderatism
+					}
+					drop_cosmetic_tag = yes
+				}
 				clr_global_flag = CHI_VIN_war_flag
 			}
 			if = {
@@ -3921,7 +3972,13 @@ on_actions = {
 						original_tag = LAO
 					}
 					any_enemy_country = CHI
-					has_global_flag = CHI_LAO_war_flag
+					OR = {
+						has_global_flag = CHI_LAO_war_flag
+						AND = {
+							LAO = { has_country_flag = liberation_of_indochina_flag }
+							LAO = { is_subject = no }
+						}
+					}
 				}
 				every_country = {
 					limit = {
@@ -3947,6 +4004,51 @@ on_actions = {
 						}
 					}
 				}
+				if = {
+					limit = {
+						CHI = { has_government = democratic }
+					}
+					LAO = {
+						set_politics = {
+							ruling_party = democratic
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						add_popularity = {
+							ideology = democratic
+							popularity = 0.3
+						}
+					}
+				}
+				if = {
+					limit = {
+						CHI = { has_government = neutrality }
+					}
+					LAO = {
+						set_politics = {
+							ruling_party = neutrality
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						add_popularity = {
+							ideology = neutrality
+							popularity = 0.3
+						}
+					}
+				}
+				LAO = {
+					create_country_leader = {
+						name = "LAO_Souvanna_Phouma"
+						picture = "GFX_portrait_LAO_Souvanna_Phouma" 
+						ideology = conservatism
+					}
+					create_country_leader = {
+						name = "LAO_Souvanna_Phouma"
+						picture = "GFX_portrait_LAO_Souvanna_Phouma" 
+						ideology = moderatism
+					}
+					drop_cosmetic_tag = yes
+				}
 				clr_global_flag = CHI_LAO_war_flag
 			}
 			if = {
@@ -3955,7 +4057,13 @@ on_actions = {
 						original_tag = CAM
 					}
 					any_enemy_country = CHI
-					has_global_flag = CHI_CAM_war_flag
+					OR = {
+						has_global_flag = CHI_CAM_war_flag
+						AND = {
+							CAM = { has_country_flag = liberation_of_indochina_flag }
+							CAM = { is_subject = no }
+						}
+					}
 				}
 				every_country = {
 					limit = {
@@ -3981,7 +4089,107 @@ on_actions = {
 						}
 					}
 				}
+				if = {
+					limit = {
+						CHI = { has_government = democratic }
+					}
+					CAM = {
+						set_politics = {
+							ruling_party = democratic
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						add_popularity = {
+							ideology = democratic
+							popularity = 0.3
+						}
+					}
+				}
+				if = {
+					limit = {
+						CHI = { has_government = neutrality }
+					}
+					CAM = {
+						set_politics = {
+							ruling_party = neutrality
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						add_popularity = {
+							ideology = neutrality
+							popularity = 0.3
+						}
+					}
+				}
+				CAM = {
+					create_country_leader = {
+						name = "CAM_Son_Ngoc_Thanh"
+						picture = "GFX_portrait_CAM_Son_Ngoc_Thanh" 
+						ideology = conservatism
+					}
+					create_country_leader = {
+						name = "CAM_Son_Ngoc_Thanh"
+						picture = "GFX_portrait_CAM_Son_Ngoc_Thanh" 
+						ideology = moderatism
+					}
+					drop_cosmetic_tag = yes
+				}
 				clr_global_flag = CHI_CAM_war_flag
+			}
+			#말라야 내전
+			if = {
+				limit = {
+					original_tag = MAL
+					FROM = {
+						original_tag = FMS
+					}
+					has_global_flag = MAL_FMS_war_global_flag
+				}
+				FMS = { annex_country = { target = MAL transfer_troops = no } }
+				clr_global_flag = MAL_FMS_war_global_flag
+			}
+			if = {
+				limit = {
+					original_tag = FMS
+					FROM = {
+						original_tag = MAL
+					}
+					has_global_flag = MAL_FMS_war_global_flag
+				}
+				MAL = { annex_country = { target = FMS transfer_troops = no } }
+				give_guarantee = MAL
+				MAL = { give_military_access = CHI }
+				if = {
+					limit = {
+						PRL = { exists = yes }
+					}
+					MAL = { annex_country = { target = PRL transfer_troops = no } }
+				}
+				if = {
+					limit = {
+						KED = { exists = yes }
+					}
+					MAL = { annex_country = { target = KED transfer_troops = no } }
+				}
+				if = {
+					limit = {
+						KEL = { exists = yes }
+					}
+					MAL = { annex_country = { target = KEL transfer_troops = no } }
+				}
+				if = {
+					limit = {
+						TER = { exists = yes }
+					}
+					MAL = { annex_country = { target = TER transfer_troops = no } }
+				}
+				if = {
+					limit = {
+						JOH = { exists = yes }
+					}
+					MAL = { annex_country = { target = JOH transfer_troops = no } }
+				}
+				clr_global_flag = MAL_FMS_war_global_flag
 			}
 			#for achievements
 			if = {

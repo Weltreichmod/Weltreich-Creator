@@ -11857,7 +11857,7 @@ country_event = {
 	id = china_wr.368
 	title = china_wr.368.t
 	desc = china_wr.368.d
-	picture = GFX_report_event_generic_sign_treaty
+	picture = GFX_report_event_generic_sign_treaty1
 	
 	is_triggered_only = yes
 	
@@ -11879,6 +11879,34 @@ country_event = {
 					}
 					else = {
 						puppet = ROOT
+					}
+				}
+				if = {
+					limit = {
+						FROM = { has_government = democratic }
+					}
+					set_politics = {
+						ruling_party = democratic
+						election_frequency = 48
+						elections_allowed = yes
+					}
+					add_popularity = {
+						ideology = democratic
+						popularity = 0.3
+					}
+				}
+				if = {
+					limit = {
+						FROM = { has_government = neutrality }
+					}
+					set_politics = {
+						ruling_party = neutrality
+						election_frequency = 48
+						elections_allowed = yes
+					}
+					add_popularity = {
+						ideology = neutrality
+						popularity = 0.3
 					}
 				}
 			}
@@ -11904,7 +11932,7 @@ country_event = {
 	id = china_wr.369
 	title = china_wr.369.t
 	desc = china_wr.369.d
-	picture = GFX_report_event_generic_sign_treaty
+	picture = GFX_report_event_generic_sign_treaty1
 	
 	is_triggered_only = yes
 	
@@ -11927,6 +11955,90 @@ country_event = {
 					puppet = FROM
 				}
 			}
+			if = {
+				limit = {
+					ROOT = { has_government = democratic }
+				}
+				FROM = {
+					set_politics = {
+						ruling_party = democratic
+						election_frequency = 48
+						elections_allowed = yes
+					}
+					add_popularity = {
+						ideology = democratic
+						popularity = 0.3
+					}
+				}
+			}
+			if = {
+				limit = {
+					ROOT = { has_government = neutrality }
+				}
+				FROM = {
+					set_politics = {
+						ruling_party = neutrality
+						election_frequency = 48
+						elections_allowed = yes
+					}
+					add_popularity = {
+						ideology = neutrality
+						popularity = 0.3
+					}
+				}
+			}
+			FROM = { drop_cosmetic_tag = yes }
+			if = {
+				limit = {
+					FROM = { original_tag = VIN }
+				}
+				VIN = {
+					create_country_leader = {
+						name = "VIN_Ngo_Dinh_Diem"
+						picture = "GFX_portrait_VIN_Ngo_Dinh_Diem" 
+						ideology = conservatism
+					}
+					create_country_leader = {
+						name = "VIN_Ngo_Dinh_Diem"
+						picture = "GFX_portrait_VIN_Ngo_Dinh_Diem" 
+						ideology = moderatism
+					}
+				}
+			}
+			if = {
+				limit = {
+					FROM = { original_tag = LAO }
+				}
+				LAO = {
+					create_country_leader = {
+						name = "LAO_Souvanna_Phouma"
+						picture = "GFX_portrait_LAO_Souvanna_Phouma" 
+						ideology = conservatism
+					}
+					create_country_leader = {
+						name = "LAO_Souvanna_Phouma"
+						picture = "GFX_portrait_LAO_Souvanna_Phouma" 
+						ideology = moderatism
+					}
+				}
+			}
+			if = {
+				limit = {
+					FROM = { original_tag = CAM }
+				}
+				CAM = {
+					create_country_leader = {
+						name = "CAM_Son_Ngoc_Thanh"
+						picture = "GFX_portrait_CAM_Son_Ngoc_Thanh" 
+						ideology = conservatism
+					}
+					create_country_leader = {
+						name = "CAM_Son_Ngoc_Thanh"
+						picture = "GFX_portrait_CAM_Son_Ngoc_Thanh" 
+						ideology = moderatism
+					}
+				}
+			}
 		}
 		FROM = { set_country_flag = protectorate }
 		ai_chance = {
@@ -11939,7 +12051,7 @@ country_event = {
 	id = china_wr.370
 	title = china_wr.370.t
 	desc = china_wr.370.d
-	picture = GFX_report_event_generic_sign_treaty
+	picture = GFX_report_event_generic_sign_treaty1
 	
 	is_triggered_only = yes
 	
@@ -11974,15 +12086,98 @@ country_event = {
 	id = china_wr.371
 	title = china_wr.371.t
 	desc = china_wr.371.d
-	picture = GFX_report_event_generic_sign_treaty
+	picture = GFX_report_event_generic_sign_treaty1
 	
 	is_triggered_only = yes
 	
 	option = {
 		name = china_wr.371.a
 		effect_tooltip = {
-			ROOT = { end_puppet = VIN }
-			FROM = {
+			if = {
+				limit = {
+					has_subject = VIN
+				}
+				ROOT = { end_puppet = VIN }
+				FROM = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = VIN
+							autonomous_state = autonomy_protectorate
+							freedom_level = 0.8
+						}
+						else = {
+							puppet = VIN
+						}
+					}
+				}
+			}
+			if = {
+				limit = {
+					has_subject = LAO
+				}
+				ROOT = { end_puppet = LAO }
+				FROM = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = LAO
+							autonomous_state = autonomy_protectorate
+							freedom_level = 0.8
+						}
+						else = {
+							puppet = LAO
+						}
+					}
+				}
+			}
+		}
+		FROM = { country_event = { id = china_wr.372 days = 3 } }
+		ai_chance = {
+			base = 1
+			modifier = {
+				add = 4000
+				has_country_flag = conditional_surrender_to_CHI_flag
+			}
+		}
+	}
+	option = {
+		name = china_wr.371.b
+		custom_effect_tooltip = they_will_prepare_something_tt
+		set_country_flag = CHI_liberation_of_indochina_not_flag
+		FROM = { country_event = { id = china_wr.373 days = 3 } }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.372
+	title = china_wr.372.t
+	desc = china_wr.372.d
+	picture = GFX_report_event_generic_sign_treaty1
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.372.a
+		if = {
+			limit = {
+				FROM = { has_subject = VIN }
+			}
+			FROM = { end_puppet = VIN }
+			ROOT = {
 				if = {
 					limit = {
 						OR = {
@@ -12000,90 +12195,33 @@ country_event = {
 					}
 				}
 			}
-		}
-		FROM = { country_event = { id = china_wr.372 days = 3 } }
-		ai_chance = {
-			base = 10
-		}
-	}
-	option = {
-		name = china_wr.371.b
-		custom_effect_tooltip = they_will_prepare_something_tt
-		FROM = { country_event = { id = china_wr.373 days = 3 } }
-		ai_chance = {
-			base = 1
-		}
-	}
-}
-
-country_event = {
-	id = china_wr.372
-	title = china_wr.372.t
-	desc = china_wr.372.d
-	picture = GFX_report_event_generic_sign_treaty
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = china_wr.372.a
-		FROM = { end_puppet = VIN }
-		ROOT = {
-			if = {
-				limit = {
-					OR = {
-						has_dlc = "Together for Victory"
-						has_dlc = "Waking the Tiger"
-					}
+			VIN = { drop_cosmetic_tag = yes }
+			VIN = {
+				create_country_leader = {
+					name = "VIN_Ngo_Dinh_Diem"
+					picture = "GFX_portrait_VIN_Ngo_Dinh_Diem" 
+					ideology = conservatism
 				}
-				set_autonomy = {
-					target = VIN
-					autonomous_state = autonomy_protectorate
-					freedom_level = 0.8
-				}
-				else = {
-					puppet = VIN
+				create_country_leader = {
+					name = "VIN_Ngo_Dinh_Diem"
+					picture = "GFX_portrait_VIN_Ngo_Dinh_Diem" 
+					ideology = moderatism
 				}
 			}
+			every_state = {
+				limit = {
+					is_owned_by = FROM
+					is_core_of = VIN
+				}
+				transfer_state_to = VIN
+			}
 		}
-		ai_chance = {
-			base = 10
-		}
-	}
-}
-
-country_event = {
-	id = china_wr.373
-	title = china_wr.373.t
-	desc = china_wr.373.d
-	picture = GFX_report_event_generic_sign_treaty
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = china_wr.373.a
-		unlock_decision_tooltip = CHI_prepare_vin_civil_war
-		unlock_decision_tooltip = CHI_ignite_vin_civil_war
-		set_country_flag = CHI_vin_civil_war_flag
-		set_variable = CHI_vin_civil_war_var
-		ai_chance = {
-			base = 10
-		}
-	}
-}
-
-country_event = {
-	id = china_wr.374
-	title = china_wr.374.t
-	desc = china_wr.374.d
-	picture = GFX_report_event_generic_sign_treaty
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = china_wr.374.a
-		effect_tooltip = {
-			ROOT = { end_puppet = LAO }
-			FROM = {
+		if = {
+			limit = {
+				FROM = { has_subject = LAO }
+			}
+			FROM = { end_puppet = LAO }
+			ROOT = {
 				if = {
 					limit = {
 						OR = {
@@ -12101,90 +12239,26 @@ country_event = {
 					}
 				}
 			}
-		}
-		FROM = { country_event = { id = china_wr.375 days = 3 } }
-		ai_chance = {
-			base = 10
-		}
-	}
-	option = {
-		name = china_wr.374.b
-		custom_effect_tooltip = they_will_prepare_something_tt
-		FROM = { country_event = { id = china_wr.376 days = 3 } }
-		ai_chance = {
-			base = 1
-		}
-	}
-}
-
-country_event = {
-	id = china_wr.375
-	title = china_wr.375.t
-	desc = china_wr.375.d
-	picture = GFX_report_event_generic_sign_treaty
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = china_wr.375.a
-		FROM = { end_puppet = LAO }
-		ROOT = {
-			if = {
-				limit = {
-					OR = {
-						has_dlc = "Together for Victory"
-						has_dlc = "Waking the Tiger"
-					}
+			LAO = { drop_cosmetic_tag = yes }
+			LAO = {
+				create_country_leader = {
+					name = "LAO_Souvanna_Phouma"
+					picture = "GFX_portrait_LAO_Souvanna_Phouma" 
+					ideology = conservatism
 				}
-				set_autonomy = {
-					target = LAO
-					autonomous_state = autonomy_protectorate
-					freedom_level = 0.8
-				}
-				else = {
-					puppet = LAO
+				create_country_leader = {
+					name = "LAO_Souvanna_Phouma"
+					picture = "GFX_portrait_LAO_Souvanna_Phouma" 
+					ideology = moderatism
 				}
 			}
 		}
-		ai_chance = {
-			base = 10
-		}
-	}
-}
-
-country_event = {
-	id = china_wr.376
-	title = china_wr.376.t
-	desc = china_wr.376.d
-	picture = GFX_report_event_generic_sign_treaty
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = china_wr.376.a
-		unlock_decision_tooltip = CHI_prepare_lao_civil_war
-		unlock_decision_tooltip = CHI_ignite_lao_civil_war
-		set_country_flag = CHI_lao_civil_war_flag
-		set_variable = CHI_lao_civil_war_var
-		ai_chance = {
-			base = 10
-		}
-	}
-}
-
-country_event = {
-	id = china_wr.377
-	title = china_wr.377.t
-	desc = china_wr.377.d
-	picture = GFX_report_event_generic_sign_treaty
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = china_wr.377.a
-		effect_tooltip = {
-			ROOT = { end_puppet = CAM }
-			FROM = {
+		if = {
+			limit = {
+				FROM = { has_subject = CAM }
+			}
+			FROM = { end_puppet = CAM }
+			ROOT = {
 				if = {
 					limit = {
 						OR = {
@@ -12202,48 +12276,17 @@ country_event = {
 					}
 				}
 			}
-		}
-		FROM = { country_event = { id = china_wr.378 days = 3 } }
-		ai_chance = {
-			base = 10
-		}
-	}
-	option = {
-		name = china_wr.374.b
-		custom_effect_tooltip = they_will_prepare_something_tt
-		FROM = { country_event = { id = china_wr.379 days = 3 } }
-		ai_chance = {
-			base = 1
-		}
-	}
-}
-
-country_event = {
-	id = china_wr.378
-	title = china_wr.378.t
-	desc = china_wr.378.d
-	picture = GFX_report_event_generic_sign_treaty
-	
-	is_triggered_only = yes
-	
-	option = {
-		name = china_wr.378.a
-		FROM = { end_puppet = CAM }
-		ROOT = {
-			if = {
-				limit = {
-					OR = {
-						has_dlc = "Together for Victory"
-						has_dlc = "Waking the Tiger"
-					}
+			CAM = { drop_cosmetic_tag = yes }
+			CAM = {
+				create_country_leader = {
+					name = "CAM_Son_Ngoc_Thanh"
+					picture = "GFX_portrait_CAM_Son_Ngoc_Thanh" 
+					ideology = conservatism
 				}
-				set_autonomy = {
-					target = CAM
-					autonomous_state = autonomy_protectorate
-					freedom_level = 0.8
-				}
-				else = {
-					puppet = CAM
+				create_country_leader = {
+					name = "CAM_Son_Ngoc_Thanh"
+					picture = "GFX_portrait_CAM_Son_Ngoc_Thanh" 
+					ideology = moderatism
 				}
 			}
 		}
@@ -12254,19 +12297,351 @@ country_event = {
 }
 
 country_event = {
+	id = china_wr.373
+	title = china_wr.373.t
+	desc = china_wr.373.d
+	picture = GFX_report_event_generic_sign_treaty1
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.373.a
+		unlock_decision_category_tooltip = CHI_liberation_of_indochina_category
+		set_country_flag = CHI_liberation_of_indochina_category_flag
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.374
+	title = china_wr.374.t
+	desc = china_wr.374.d
+	picture = GFX_report_event_generic_sign_treaty1
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.374.a
+		effect_tooltip = {
+			end_puppet = FMS
+			if = {
+				limit = {
+					PRL = { is_subject_of = ROOT }
+				}
+				end_puppet = PRL
+			}
+			if = {
+				limit = {
+					KED = { is_subject_of = ROOT }
+				}
+				end_puppet = KED
+			}
+			if = {
+				limit = {
+					KEL = { is_subject_of = ROOT }
+				}
+				end_puppet = KEL
+			}
+			if = {
+				limit = {
+					TER = { is_subject_of = ROOT }
+				}
+				end_puppet = TER
+			}
+			if = {
+				limit = {
+					JOH = { is_subject_of = ROOT }
+				}
+				end_puppet = JOH
+			}
+			MAL = {
+				annex_country = { target = FMS transfer_troops = yes }
+				annex_country = { target = KED transfer_troops = yes }
+				annex_country = { target = KEL transfer_troops = yes }
+				annex_country = { target = TER transfer_troops = yes }
+				annex_country = { target = JOH transfer_troops = yes }
+			}
+		}
+		FROM = { country_event = { id = china_wr.375 days = 3 } }
+		ai_chance = {
+			base = 1
+		}
+	}
+	option = {
+		name = china_wr.374.b
+		custom_effect_tooltip = they_will_prepare_something_tt
+		FROM = { country_event = { id = china_wr.376 days = 3 } }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.375
+	title = china_wr.375.t
+	desc = china_wr.375.d
+	picture = GFX_report_event_generic_sign_treaty1
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.375.a
+		FROM = {
+			end_puppet = FMS
+			if = {
+				limit = {
+					PRL = { is_subject_of = FROM }
+				}
+				end_puppet = PRL
+			}
+			if = {
+				limit = {
+					KED = { is_subject_of = FROM }
+				}
+				end_puppet = KED
+			}
+			if = {
+				limit = {
+					KEL = { is_subject_of = FROM }
+				}
+				end_puppet = KEL
+			}
+			if = {
+				limit = {
+					TER = { is_subject_of = FROM }
+				}
+				end_puppet = TER
+			}
+			if = {
+				limit = {
+					JOH = { is_subject_of = FROM }
+				}
+				end_puppet = JOH
+			}
+		}
+		MAL = {
+			annex_country = { target = FMS transfer_troops = yes }
+			annex_country = { target = KED transfer_troops = yes }
+			annex_country = { target = KEL transfer_troops = yes }
+			annex_country = { target = TER transfer_troops = yes }
+			annex_country = { target = JOH transfer_troops = yes }
+		}
+		give_guarantee = MAL
+		MAL = { give_military_access = CHI }
+		FMS = { drop_cosmetic_tag = yes }
+		PRL = { drop_cosmetic_tag = yes }
+		KED = { drop_cosmetic_tag = yes }
+		KEL = { drop_cosmetic_tag = yes }
+		TER = { drop_cosmetic_tag = yes }
+		JOH = { drop_cosmetic_tag = yes }
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.376
+	title = china_wr.376.t
+	desc = china_wr.376.d
+	picture = GFX_report_event_generic_sign_treaty1
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.376.a
+		unlock_decision_category_tooltip = CHI_liberation_of_malaya_category
+		set_country_flag = CHI_liberation_of_malaya_category_flag
+		set_variable = CHI_liberation_of_malaya_var
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.377
+	title = china_wr.377.t
+	desc = china_wr.377.d
+	picture = GFX_report_event_COG_force_publique_capturing_area
+	
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			every_state = {
+				limit = {
+					OR = {
+						is_core_of = FMS
+						is_core_of = PRL
+						is_core_of = KED
+						is_core_of = KEL
+						is_core_of = TER
+						is_core_of = JOH
+					}
+				}
+				add_core_of = MAL
+			}
+			every_state = {
+				limit = {
+					is_owned_by = FMS
+					OR = {
+						state = 979
+						state = 984
+						state = 1035
+					}
+				}
+				transfer_state_to = MAL
+			}
+			MAL = {
+				set_province_controller = 1348
+				add_ideas = MAL_divided_peninsula
+				division_template = {
+					name = "Askar Wataniah"
+					division_names_group = BRENGL_INFB_01
+					regiments = {
+						militia = {
+							x = 0
+							y = 0
+						}
+						militia = {
+							x = 0
+							y = 1
+						}
+						militia = {
+							x = 0
+							y = 2
+						}
+						militia = {
+							x = 1
+							y = 0
+						}
+					}
+				}
+				1035 = {
+					create_unit = {
+						division = "name = \"Askar Wataniah\" division_template = \"Askar Wataniah\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						prioritize_location = 1376
+						count = 1
+						owner = MAL
+					}
+					create_unit = {
+						division = "name = \"Askar Wataniah\" division_template = \"Askar Wataniah\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						prioritize_location = 1364
+						count = 2
+						owner = MAL
+					}
+					create_unit = {
+						division = "name = \"Askar Wataniah\" division_template = \"Askar Wataniah\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						prioritize_location = 7342
+						count = 1
+						owner = MAL
+					}
+				}
+				336 = {
+					create_unit = {
+						division = "name = \"Askar Wataniah\" division_template = \"Askar Wataniah\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						prioritize_location = 1348
+						count = 2
+						owner = MAL
+					}
+				}
+			}
+			FMS = {
+				set_province_controller = 10227
+				set_province_controller = 4384
+				add_ideas = MAL_divided_peninsula
+				division_template = {
+					name = "Askar Wataniah"
+					division_names_group = BRENGL_INFB_01
+					regiments = {
+						militia = {
+							x = 0
+							y = 0
+						}
+						militia = {
+							x = 0
+							y = 1
+						}
+						militia = {
+							x = 0
+							y = 2
+						}
+						militia = {
+							x = 1
+							y = 0
+						}
+					}
+				}
+				336 = {
+					create_unit = {
+						division = "name = \"Askar Wataniah\" division_template = \"Askar Wataniah\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						prioritize_location = 10297
+						count = 2
+						owner = FMS
+					}
+					create_unit = {
+						division = "name = \"Askar Wataniah\" division_template = \"Askar Wataniah\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						prioritize_location = 12255
+						count = 2
+						owner = FMS
+					}
+					create_unit = {
+						division = "name = \"Askar Wataniah\" division_template = \"Askar Wataniah\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						prioritize_location = 1392
+						count = 1
+						owner = FMS
+					}
+				}
+			}
+			FMS = {
+				overlord = {
+					country_event = china_wr.378
+				}
+			}
+			CHI = { country_event = china_wr.379 }
+		}
+	}
+	option = {
+		name = china_wr.377.a
+		FMS = { declare_war_on = { target = MAL type = annex_everything } }
+		set_global_flag = MAL_FMS_war_global_flag
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.378
+	title = china_wr.378.t
+	desc = china_wr.378.d
+	picture = GFX_report_event_generic_sign_treaty1
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.378.a
+		add_ideas = MAL_limited_intervention
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
 	id = china_wr.379
 	title = china_wr.379.t
 	desc = china_wr.379.d
-	picture = GFX_report_event_generic_sign_treaty
+	picture = GFX_report_event_generic_sign_treaty1
 	
 	is_triggered_only = yes
 	
 	option = {
 		name = china_wr.379.a
-		unlock_decision_tooltip = CHI_prepare_cam_civil_war
-		unlock_decision_tooltip = CHI_ignite_cam_civil_war
-		set_country_flag = CHI_cam_civil_war_flag
-		set_variable = CHI_cam_civil_war_var
+		add_ideas = CHI_malayan_military_aid
 		ai_chance = {
 			base = 10
 		}

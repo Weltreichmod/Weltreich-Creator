@@ -11561,7 +11561,7 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			country_event = china_wr.347
+			KOR = { country_event = china_wr.347 }
 		}
 	}
 	
@@ -11708,7 +11708,7 @@ focus_tree = {
 		id = CHI_focus_haenam
 		icon = GFX_CHI_focus_haenam
 		relative_position_id = CHI_world
-		x = 2
+		x = 1
 		y = 1
 		ai_will_do = {
 			factor = 6
@@ -11738,12 +11738,91 @@ focus_tree = {
 		cost = 2
 		available = {
 			is_subject = no
+			OR = {
+				has_subject = VIN
+				has_subject = LAO
+				has_subject = CAM
+			}
+		}
+		bypass = {
+			OR = {
+				has_country_flag = fail_to_get_indochina_flag
+				AND = {
+					has_country_flag = fail_to_get_VIN_flag
+					has_country_flag = fail_to_get_LAO_flag
+					has_country_flag = fail_to_get_CAM_flag
+				}
+			}
 		}
 		prerequisite = {
 			focus = CHI_focus_haenam
 		}
 		search_filters = {  }
 		completion_reward = {
+			if = {
+				limit = {
+					FMS = { is_subject = no }
+				}
+				FMS = {
+					overlord = {
+						country_event = china_wr.374
+					}
+				}
+			}
+			else = {
+				give_guarantee = FMS
+				FMS = { give_military_access = CHI }
+				if = {
+					limit = {
+						PRL = {
+							is_subject = no
+							exists = yes
+						}
+					}
+					give_guarantee = PRL
+					PRL = { give_military_access = CHI }
+				}
+				if = {
+					limit = {
+						KED = {
+							is_subject = no
+							exists = yes
+						}
+					}
+					give_guarantee = KED
+					KED = { give_military_access = CHI }
+				}
+				if = {
+					limit = {
+						KEL = {
+							is_subject = no
+							exists = yes
+						}
+					}
+					give_guarantee = KEL
+					KEL = { give_military_access = CHI }
+				}
+				if = {
+					limit = {
+						TER = {
+							is_subject = no
+							exists = yes
+						}
+					}
+					give_guarantee = TER
+					TER = { give_military_access = CHI }
+				}
+				if = {
+					limit = {
+						JOH = {
+							is_subject = no
+							exists = yes
+						}
+					}
+					give_guarantee = JOH
+					JOH = { give_military_access = CHI }
+				}
+			}
 		}
 	}
 	
@@ -11772,12 +11851,16 @@ focus_tree = {
 				}
 				VIN = { country_event = china_wr.368 }
 			}
-			else = {
-				every_country = {
-					limit = {
-						has_subject = VIN
+			else_if = {
+				limit = {
+					VIN = { exists = yes }
+					VIN = { is_subject = yes }
+				}
+				VIN = {
+					overlord = {
+						country_event = { id = china_wr.371 }
+						set_country_flag = CHI_indochina_demand_sent
 					}
-					country_event = china_wr.371
 				}
 			}
 			if = {
@@ -11787,12 +11870,19 @@ focus_tree = {
 				}
 				LAO = { country_event = china_wr.368 }
 			}
-			else = {
-				every_country = {
-					limit = {
-						has_subject = LAO
+			else_if = {
+				limit = {
+					LAO = { exists = yes }
+					LAO = { is_subject = yes }
+					LAO = {
+						overlord = { NOT = { has_country_flag = CHI_indochina_demand_sent } }
 					}
-					country_event = china_wr.374
+				}
+				LAO = {
+					overlord = {
+						country_event = { id = china_wr.371 }
+						set_country_flag = CHI_indochina_demand_sent
+					}
 				}
 			}
 			if = {
@@ -11802,12 +11892,19 @@ focus_tree = {
 				}
 				CAM = { country_event = china_wr.368 }
 			}
-			else = {
-				every_country = {
-					limit = {
-						has_subject = CAM
+			else_if = {
+				limit = {
+					CAM = { exists = yes }
+					CAM = { is_subject = yes }
+					CAM = {
+						overlord = { NOT = { has_country_flag = CHI_indochina_demand_sent } }
 					}
-					country_event = china_wr.377
+				}
+				CAM = {
+					overlord = {
+						country_event = { id = china_wr.371 }
+						set_country_flag = CHI_indochina_demand_sent
+					}
 				}
 			}
 		}

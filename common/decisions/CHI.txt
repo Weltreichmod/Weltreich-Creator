@@ -10071,14 +10071,28 @@ CHI_indochina_invasion_category = {
 	CHI_war_with_vietnam = {
 		icon = GFX_decision_generic_ignite_civil_war
 		days_mission_timeout = 365
+		allowed = {
+			OR = {
+				original_tag = VIN
+				original_tag = CHI
+			}
+		}
 		activation = {
 			has_global_flag = CHI_VIN_war_flag
-			has_war_with = VIN
+			OR = {
+				has_war_with = VIN
+				has_war_with = CHI
+			}
 		}
 		available = {
-			NOT = {
-				has_global_flag = CHI_VIN_war_flag
-				has_war_with = VIN
+			hidden_trigger = {
+				NOT = {
+					has_global_flag = CHI_VIN_war_flag
+					OR = {
+						has_war_with = VIN
+						has_war_with = CHI
+					}
+				}
 			}
 		}
 		timeout_effect = {
@@ -10088,22 +10102,46 @@ CHI_indochina_invasion_category = {
 				}
 				white_peace = VIN
 			}
-			add_political_power = -100
-			add_stability = -0.1
+			if = {
+				limit = {
+					original_tag = CHI
+				}
+				remove_wargoal = {
+					type = all
+					target = VIN
+				}
+				add_political_power = -100
+				add_stability = -0.05
+			}
+			CHI = { set_country_flag = fail_to_get_VIN_flag }
 			clr_global_flag = CHI_VIN_war_flag
 		}
 	}
 	CHI_war_with_laos = {
 		icon = GFX_decision_generic_ignite_civil_war
 		days_mission_timeout = 365
+		allowed = {
+			OR = {
+				original_tag = LAO
+				original_tag = CHI
+			}
+		}
 		activation = {
 			has_global_flag = CHI_LAO_war_flag
-			has_war_with = LAO
+			OR = {
+				has_war_with = LAO
+				has_war_with = CHI
+			}
 		}
 		available = {
-			NOT = {
-				has_global_flag = CHI_LAO_war_flag
-				has_war_with = LAO
+			hidden_trigger = {
+				NOT = {
+					has_global_flag = CHI_LAO_war_flag
+					OR = {
+						has_war_with = LAO
+						has_war_with = CHI
+					}
+				}
 			}
 		}
 		timeout_effect = {
@@ -10113,22 +10151,46 @@ CHI_indochina_invasion_category = {
 				}
 				white_peace = LAO
 			}
-			add_political_power = -100
-			add_stability = -0.1
+			if = {
+				limit = {
+					original_tag = CHI
+				}
+				remove_wargoal = {
+					type = all
+					target = LAO
+				}
+				add_political_power = -100
+				add_stability = -0.05
+			}
+			CHI = { set_country_flag = fail_to_get_LAO_flag }
 			clr_global_flag = CHI_LAO_war_flag
 		}
 	}
 	CHI_war_with_kampuchea = {
 		icon = GFX_decision_generic_ignite_civil_war
 		days_mission_timeout = 365
+		allowed = {
+			OR = {
+				original_tag = CAM
+				original_tag = CHI
+			}
+		}
 		activation = {
 			has_global_flag = CHI_CAM_war_flag
-			has_war_with = CAM
+			OR = {
+				has_war_with = CAM
+				has_war_with = CHI
+			}
 		}
 		available = {
-			NOT = {
-				has_global_flag = CHI_CAM_war_flag
-				has_war_with = CAM
+			hidden_trigger = {
+				NOT = {
+					has_global_flag = CHI_CAM_war_flag
+					OR = {
+						has_war_with = CAM
+						has_war_with = CHI
+					}
+				}
 			}
 		}
 		timeout_effect = {
@@ -10138,114 +10200,463 @@ CHI_indochina_invasion_category = {
 				}
 				white_peace = CAM
 			}
-			add_political_power = -100
-			add_stability = -0.1
+			if = {
+				limit = {
+					original_tag = CHI
+				}
+				remove_wargoal = {
+					type = all
+					target = CAM
+				}
+				add_political_power = -100
+				add_stability = -0.05
+			}
+			CHI = { set_country_flag = fail_to_get_CAM_flag }
 			clr_global_flag = CHI_CAM_war_flag
 		}
 	}
 }
 
-CHI_ignite_indochina_revolution = {
-	CHI_prepare_vin_civil_war = {
-		icon = GFX_decision_generic_nationalism
-		visible = {
-			has_country_flag = CHI_vin_civil_war_flag
-			NOT = { check_variable = { CHI_vin_civil_war_var = 5 } }
+CHI_liberation_of_indochina_category = {
+	CHI_indochina_is_under_CHI = {
+		icon = GFX_decision_generic_ignite_civil_war
+		days_mission_timeout = 14
+		allowed = {
+			OR = {
+				has_country_flag = liberation_of_indochina_flag
+				original_tag = CHI
+			}
+		}
+		activation = {
+			has_global_flag = CHI_liberation_of_indochina_flag
+			AND = {
+				1025 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				1026 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				671 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				1033 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				1032 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				670 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				1027 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				1028 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				1034 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				1029 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				1030 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				286 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				741 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				992 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+				1031 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+			}
 		}
 		available = {
-			is_subject = no
-		}
-		custom_cost_text = 500_infantry_equipment_50_artillery_equipment
-		custom_cost_trigger = {
-	    	has_equipment = { infantry_equipment > 499 }
-	    	has_equipment = { artillery_equipment > 49 }
-	    }
-		complete_effect = {
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = -500
+			hidden_trigger = {
+				NOT = {
+					has_global_flag = CHI_liberation_of_indochina_flag
+					AND = {
+						1025 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						1026 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						671 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						1033 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						1032 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						670 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						1027 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						1028 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						1034 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						1029 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						1030 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						286 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						741 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						992 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+						1031 = { controller = { OR = { tag = CHI is_in_faction_with = CHI is_subject_of = CHI } } }
+					}
+				}
 			}
-			add_equipment_to_stockpile = {
-				type = artillery_equipment
-				amount = -50
-			}
 		}
-		days_remove = 14
-		remove_effect = {
-			add_to_variable = { CHI_vin_civil_war_var = 1 }
+		timeout_effect = {
+			if = {
+				limit = {
+					original_tag = CHI
+				}
+				remove_wargoal = {
+					type = all
+					target = VIN
+				}
+				remove_wargoal = {
+					type = all
+					target = LAO
+				}
+				remove_wargoal = {
+					type = all
+					target = CAM
+				}
+			}
+			if = {
+				limit = {
+					NOT = { VIN = { is_subject_of = CHI } }
+					VIN = { exists = yes }
+				}
+				if = {
+					limit = {
+						GER = { has_country_flag = liberation_of_indochina_flag }
+					}
+					every_state = {
+						limit = {
+							is_owned_by = GER
+							is_core_of = VIN
+						}
+						transfer_state_to = VIN
+					}
+				}
+				CHI = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = VIN
+							autonomous_state = autonomy_protectorate
+							freedom_level = 0.8
+						}
+						else = {
+							puppet = VIN
+						}
+					}
+				}
+				if = {
+					limit = {
+						CHI = { has_government = democratic }
+					}
+					VIN = {
+						set_politics = {
+							ruling_party = democratic
+							election_frequency = 48
+							elections_allowed = yes
+							}
+						add_popularity = {
+							ideology = democratic
+							popularity = 0.3
+						}
+					}
+				}
+				if = {
+					limit = {
+						CHI = { has_government = neutrality }
+					}
+					VIN = {
+						set_politics = {
+							ruling_party = neutrality
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						add_popularity = {
+							ideology = neutrality
+							popularity = 0.3
+						}
+					}
+				}
+				VIN = {
+					create_country_leader = {
+						name = "VIN_Ngo_Dinh_Diem"
+						picture = "GFX_portrait_VIN_Ngo_Dinh_Diem" 
+						ideology = conservatism
+					}
+					create_country_leader = {
+						name = "VIN_Ngo_Dinh_Diem"
+						picture = "GFX_portrait_VIN_Ngo_Dinh_Diem" 
+						ideology = moderatism
+					}
+					drop_cosmetic_tag = yes
+				}
+			}
+			if = {
+				limit = {
+					NOT = { LAO = { is_subject_of = CHI } }
+					LAO = { exists = yes }
+				}
+				CHI = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = LAO
+							autonomous_state = autonomy_protectorate
+							freedom_level = 0.8
+						}
+						else = {
+							puppet = LAO
+						}
+					}
+				}
+				if = {
+					limit = {
+						CHI = { has_government = democratic }
+					}
+					LAO = {
+						set_politics = {
+							ruling_party = democratic
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						add_popularity = {
+							ideology = democratic
+							popularity = 0.3
+						}
+					}
+				}
+				if = {
+					limit = {
+						CHI = { has_government = neutrality }
+					}
+					LAO = {
+						set_politics = {
+							ruling_party = neutrality
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						add_popularity = {
+							ideology = neutrality
+							popularity = 0.3
+						}
+					}
+				}
+				LAO = {
+					create_country_leader = {
+						name = "LAO_Souvanna_Phouma"
+						picture = "GFX_portrait_LAO_Souvanna_Phouma" 
+						ideology = conservatism
+					}
+					create_country_leader = {
+						name = "LAO_Souvanna_Phouma"
+						picture = "GFX_portrait_LAO_Souvanna_Phouma" 
+						ideology = moderatism
+					}
+					drop_cosmetic_tag = yes
+				}
+			}
+			if = {
+				limit = {
+					NOT = { CAM = { is_subject_of = CHI } }
+					CAM = { exists = yes }
+				}
+				CHI = {
+					if = {
+						limit = {
+							OR = {
+								has_dlc = "Together for Victory"
+								has_dlc = "Waking the Tiger"
+							}
+						}
+						set_autonomy = {
+							target = CAM
+							autonomous_state = autonomy_protectorate
+							freedom_level = 0.8
+						}
+						else = {
+							puppet = CAM
+						}
+					}
+				}
+				if = {
+					limit = {
+						CHI = { has_government = democratic }
+					}
+					CAM = {
+						set_politics = {
+							ruling_party = democratic
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						add_popularity = {
+							ideology = democratic
+							popularity = 0.3
+						}
+					}
+				}
+				if = {
+					limit = {
+						CHI = { has_government = neutrality }
+					}
+					CAM = {
+						set_politics = {
+							ruling_party = neutrality
+							election_frequency = 48
+							elections_allowed = yes
+						}
+						add_popularity = {
+							ideology = neutrality
+							popularity = 0.3
+						}
+					}
+				}
+				CAM = {
+					create_country_leader = {
+						name = "CAM_Son_Ngoc_Thanh"
+						picture = "GFX_portrait_CAM_Son_Ngoc_Thanh" 
+						ideology = conservatism
+					}
+					create_country_leader = {
+						name = "CAM_Son_Ngoc_Thanh"
+						picture = "GFX_portrait_CAM_Son_Ngoc_Thanh" 
+						ideology = moderatism
+					}
+					drop_cosmetic_tag = yes
+				}
+			}
+			every_country = {
+				limit = {
+					has_war_with = CHI
+					OR = {
+						has_country_flag = liberation_of_indochina_flag
+						any_allied_country = {
+							has_country_flag = liberation_of_indochina_flag
+						}
+					}
+				}
+				white_peace = CHI
+			}
+			clr_global_flag = CHI_liberation_of_indochina_flag
 		}
 	}
-	CHI_ignite_vin_civil_war = {
+	CHI_war_with_impe = {
 		icon = GFX_decision_generic_ignite_civil_war
-		visible = {
-			has_country_flag = CHI_vin_civil_war_flag
+		days_mission_timeout = 365
+		allowed = {
+			OR = {
+				has_country_flag = liberation_of_indochina_flag
+				original_tag = CHI
+			}
+		}
+		activation = {
+			has_global_flag = CHI_liberation_of_indochina_flag
 		}
 		available = {
-			check_variable = { CHI_vin_civil_war_var = 5 }
-			custom_trigger_tooltip = CHI_civil_war_var_tt
+			hidden_trigger = {
+				NOT = {
+					has_global_flag = CHI_liberation_of_indochina_flag
+				}
+			}
 		}
+		timeout_effect = {
+			if = {
+				limit = {
+					original_tag = CHI
+				}
+				remove_wargoal = {
+					type = all
+					target = VIN
+				}
+				remove_wargoal = {
+					type = all
+					target = LAO
+				}
+				remove_wargoal = {
+					type = all
+					target = CAM
+				}
+				add_political_power = -200
+				add_stability = -0.2
+			}
+			every_country = {
+				limit = {
+					has_war_with = CHI
+					OR = {
+						has_country_flag = liberation_of_indochina_flag
+						any_allied_country = {
+							has_country_flag = liberation_of_indochina_flag
+						}
+					}
+				}
+				white_peace = CHI
+			}
+			CHI = { set_country_flag = fail_to_get_indochina_flag }
+			clr_global_flag = CHI_liberation_of_indochina_flag
+		}
+	}
+	CHI_war_with_FROM = {
+		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = CHI
+		}
+		visible = {
+			has_country_flag = CHI_liberation_of_indochina_category_flag
+		}
+		available = {
+			NOT = { has_war_with = VIN }
+			NOT = { has_war_with = LAO }
+			NOT = { has_war_with = CAM }
+		}
+		cost = 25
+		days_remove = 25
 		war_with_on_remove = VIN
-		days_remove = 14
-		remove_effect = {
-		}
-	}
-	CHI_prepare_lao_civil_war = {
-		icon = GFX_decision_generic_nationalism
-		visible = {
-			has_country_flag = CHI_lao_civil_war_flag
-			NOT = { check_variable = { CHI_lao_civil_war_var = 5 } }
-		}
-		available = {
-			is_subject = no
-		}
-		custom_cost_text = 500_infantry_equipment_50_artillery_equipment
-		custom_cost_trigger = {
-	    	has_equipment = { infantry_equipment > 499 }
-	    	has_equipment = { artillery_equipment > 49 }
-	    }
-		complete_effect = {
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = -500
-			}
-			add_equipment_to_stockpile = {
-				type = artillery_equipment
-				amount = -50
-			}
-		}
-		days_remove = 14
-		remove_effect = {
-			add_to_variable = { CHI_lao_civil_war_var = 1 }
-		}
-	}
-	CHI_ignite_lao_civil_war = {
-		icon = GFX_decision_generic_ignite_civil_war
-		visible = {
-			has_country_flag = CHI_lao_civil_war_flag
-		}
-		available = {
-			check_variable = { CHI_lao_civil_war_var = 5 }
-			custom_trigger_tooltip = CHI_civil_war_var_tt
-		}
 		war_with_on_remove = LAO
-		days_remove = 14
+		war_with_on_remove = CAM
+		fire_only_once = yes
 		remove_effect = {
+			if = {
+				limit = {
+					NOT = { VIN = { is_subject_of = CHI } }
+				}
+				declare_war_on = { target = VIN type = puppet_wargoal_focus }
+				VIN = { set_country_flag = liberation_of_indochina_flag }
+			}
+			if = {
+				limit = {
+					NOT = { LAO = { is_subject_of = CHI } }
+				}
+				declare_war_on = { target = LAO type = puppet_wargoal_focus }
+				LAO = { set_country_flag = liberation_of_indochina_flag }
+			}
+			if = {
+				limit = {
+					NOT = { CAM = { is_subject_of = CHI } }
+				}
+				declare_war_on = { target = CAM type = puppet_wargoal_focus }
+				CAM = { set_country_flag = liberation_of_indochina_flag }
+			}
+			set_global_flag = CHI_liberation_of_indochina_flag
+			every_country = {
+				limit = {
+					OR = {
+						has_subject = VIN
+						has_subject = LAO
+						has_subject = CAM
+					}
+				}
+				set_country_flag = liberation_of_indochina_flag
+			}
+			clr_country_flag = CHI_liberation_of_indochina_category_flag
+		}
+		ai_will_do = {
+			base = 100
 		}
 	}
-	CHI_prepare_cam_civil_war = {
+}
+
+CHI_liberation_of_malaya_category = {
+	CHI_promote_malayan_liberation = {
 		icon = GFX_decision_generic_nationalism
-		visible = {
-			has_country_flag = CHI_cam_civil_war_flag
-			NOT = { check_variable = { CHI_cam_civil_war_var = 5 } }
+		allowed = {
+			original_tag = CHI
 		}
-		available = {
-			is_subject = no
+		visible = {
+			has_country_flag = CHI_liberation_of_malaya_category_flag
+			check_variable = { CHI_liberation_of_malaya_var < 5 }
 		}
 		custom_cost_text = 500_infantry_equipment_50_artillery_equipment
 		custom_cost_trigger = {
 	    	has_equipment = { infantry_equipment > 499 }
 	    	has_equipment = { artillery_equipment > 49 }
 	    }
+		available = {
+			is_subject = no
+		}
+		days_remove = 25
 		complete_effect = {
 			add_equipment_to_stockpile = {
 				type = infantry_equipment
@@ -10256,23 +10667,31 @@ CHI_ignite_indochina_revolution = {
 				amount = -50
 			}
 		}
-		days_remove = 14
 		remove_effect = {
-			add_to_variable = { CHI_cam_civil_war_var = 1 }
+			add_to_variable = { CHI_liberation_of_malaya_var = 1 }
+			custom_effect_tooltip = CHI_promote_malayan_liberation_tt
 		}
 	}
-	CHI_ignite_cam_civil_war = {
+	CHI_trigger_malayan_civil_war = {
 		icon = GFX_decision_generic_ignite_civil_war
+		allowed = {
+			original_tag = CHI
+		}
 		visible = {
-			has_country_flag = CHI_cam_civil_war_flag
+			has_country_flag = CHI_liberation_of_malaya_category_flag
 		}
+		fire_only_once = yes
+		cost = 25
 		available = {
-			check_variable = { CHI_cam_civil_war_var = 5 }
-			custom_trigger_tooltip = CHI_civil_war_var_tt
+			hidden_effect = {
+				check_variable = { CHI_liberation_of_malaya_var > 4 }
+			}
 		}
-		war_with_on_remove = CAM
-		days_remove = 14
+		days_remove = 25
+		war_with_on_remove = FMS
 		remove_effect = {
+			FMS = { country_event = china_wr.377 }
+			clr_country_flag = CHI_liberation_of_malaya_category_flag
 		}
 	}
 }
