@@ -828,6 +828,7 @@ peace_deal = {
 	JAP_end_of_war = {
 		icon = GFX_decision_generic_break_treaty
 		activation = {
+			JAP = { exists = yes }
 			OR = {
 				original_tag = JAP
 				original_tag = MAN
@@ -870,40 +871,46 @@ peace_deal = {
 			}
 		}
 		available = {
-			NOT = {
-				OR = {
-					JAP = { surrender_progress > 0.3 }
-					AND = {
-						OR = {
-							MAN = { has_capitulated = yes }
-							MAN = { exists = no }
-						}
-						NOT = {
-							any_allied_country = {
-								is_chinese_country = yes
-								has_capitulated = no
+			OR = {
+				# 조건 1: 기존의 전황 관련 차단 조건
+				NOT = {
+					OR = {
+						JAP = { surrender_progress > 0.3 }
+						AND = {
+							OR = {
+								MAN = { has_capitulated = yes }
+								MAN = { exists = no }
 							}
-						}
-						NOT = {
-							any_state = {
-								# 1. 대상 지역 필터링: 한국 또는 중국 권역
-								OR = {
-									is_korean_area = yes
-									is_chinese_area = yes
+							NOT = {
+								any_allied_country = {
+									is_chinese_country = yes
+									has_capitulated = no
 								}
-								
-								# 2. 통제국 조건: 일본 또는 그 동맹국
-								CONTROLLER = {
+							}
+							NOT = {
+								any_state = {
+									# 1. 대상 지역 필터링: 한국 또는 중국 권역
 									OR = {
-										tag = JAP
-										is_in_faction_with = JAP
-										is_subject_of = JAP
+										is_korean_area = yes
+										is_chinese_area = yes
+									}
+									
+									# 2. 통제국 조건: 일본 또는 그 동맹국
+									CONTROLLER = {
+										OR = {
+											tag = JAP
+											is_in_faction_with = JAP
+											is_subject_of = JAP
+										}
 									}
 								}
 							}
 						}
 					}
 				}
+				
+				# 조건 2: 또는 일본 태그 자체가 존재하지 않을 때
+				JAP = { exists = no }
 			}
 		}
 		days_mission_timeout = 200
@@ -1014,6 +1021,7 @@ peace_deal = {
 	JAP_end_of_war_man = {
 		icon = GFX_decision_generic_break_treaty
 		activation = {
+			JAP = { exists = yes }
 			OR = {
 				original_tag = JAP
 				original_tag = MAN
@@ -1051,36 +1059,42 @@ peace_deal = {
 			}
 		}
 		available = {
-			NOT = {
-				OR = {
-					JAP = { surrender_progress > 0.3 }
-					AND = {
-						NOT = {
-							any_allied_country = {
-								is_chinese_country = yes
-								has_capitulated = no
-							}
-						}
-						NOT = {
-							any_state = {
-								# 1. 대상 지역 필터링: 한국 또는 중국 권역
-								OR = {
-									is_korean_area = yes
-									is_chinese_area = yes
+			OR = {
+				# 조건 1: 기존의 전황 관련 차단 조건
+				NOT = {
+					OR = {
+						JAP = { surrender_progress > 0.3 }
+						AND = {
+							NOT = {
+								any_allied_country = {
+									is_chinese_country = yes
+									has_capitulated = no
 								}
-								
-								# 2. 통제국 조건: 일본 또는 그 동맹국
-								CONTROLLER = {
+							}
+							NOT = {
+								any_state = {
+									# 1. 대상 지역 필터링: 한국 또는 중국 권역
 									OR = {
-										tag = JAP
-										is_in_faction_with = JAP
-										is_subject_of = JAP
+										is_korean_area = yes
+										is_chinese_area = yes
+									}
+									
+									# 2. 통제국 조건: 일본 또는 그 동맹국
+									CONTROLLER = {
+										OR = {
+											tag = JAP
+											is_in_faction_with = JAP
+											is_subject_of = JAP
+										}
 									}
 								}
 							}
 						}
 					}
 				}
+				
+				# 조건 2: 일본 태그가 존재하지 않을 때
+				JAP = { exists = no }
 			}
 		}
 		days_mission_timeout = 200

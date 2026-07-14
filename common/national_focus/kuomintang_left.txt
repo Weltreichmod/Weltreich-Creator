@@ -49,6 +49,7 @@ focus_tree = {
 			NOT = { has_country_flag = kuomintag_wr_46a }
 			NOT = { has_country_flag = kuomintag_wr_46b }
 			NOT = { has_country_flag = KMT_left_focus_allow_flag }
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		available = {
 			always = no
@@ -1357,6 +1358,7 @@ focus_tree = {
 		allow_branch = {
 			has_country_flag = kuomintag_wr_46a
 			NOT = { has_country_flag = KMT_left_focus_allow_flag }
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL}
 		completion_reward = {
@@ -1483,6 +1485,7 @@ focus_tree = {
 		allow_branch = {
 			has_country_flag = kuomintag_wr_46b
 			NOT = { has_country_flag = KMT_left_focus_allow_flag }
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL}
 		completion_reward = {
@@ -1605,6 +1608,7 @@ focus_tree = {
 		}
 		allow_branch = {
 			has_country_flag = KMT_left_focus_allow_flag
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
@@ -2556,6 +2560,7 @@ focus_tree = {
 				character = CHI_wang_jingwei
 				ruling_only = yes
 			}
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -3309,6 +3314,7 @@ focus_tree = {
 				character = CHI_chiang_kaishek
 				ruling_only = yes
 			}
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -4090,6 +4096,7 @@ focus_tree = {
 				has_completed_focus = KMT_continue_national_revolution
 				has_completed_focus = KMT_proclaim_rival_government
 			}
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -4211,6 +4218,1712 @@ focus_tree = {
 		completion_reward = {
 			country_event = kuomintag_wr.112
 			country_event = { id = kuomintag_wr.113 days = 7 }
+		}
+	}
+	
+	#군사
+	focus = {
+		id = KMT_rebuild_the_nra
+		icon = GFX_KMT_rebuild_the_nra
+		x = 40
+		y = 0
+		cost = 1.3
+		available = {
+			is_subject = no
+		}
+		allow_branch = {
+			has_country_flag = KMT_left_focus_allow_flag
+			NOT = { has_country_flag = manchukou_wr_64_flag }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_NAVY_XP FOCUS_FILTER_AIR_XP }
+		completion_reward = {
+			army_experience = 25
+			navy_experience = 25
+			air_experience = 25
+		}
+	}
+	
+	focus = {
+		id = KMT_two_pillars_of_whampoa
+		icon = GFX_KMT_two_pillars_of_whampoa
+		relative_position_id = KMT_rebuild_the_nra
+		x = -8
+		y = 1
+		cost = 2.8
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_rebuild_the_nra
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = kuomintag_wr.135
+			add_doctrine_cost_reduction = {
+				name = KMT_two_pillars_of_whampoa
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_soviet_faction
+		icon = GFX_KMT_soviet_faction
+		relative_position_id = KMT_two_pillars_of_whampoa
+		x = -2
+		y = 1
+		cost = 2.8
+		available = {
+			always = no
+		}
+		mutually_exclusive = {
+			focus = KMT_japanese_faction
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_two_pillars_of_whampoa
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_daily_mastery = {
+				amount = 0.1
+				days = 90	
+				name = KMT_soviet_faction
+				folder = land
+				grand_doctrine = new_mobile_warfare
+				track = armor					
+			}
+			add_ideas = KMT_national_revolutionary_army_soviet_1
+		}
+	}
+	
+	focus = {
+		id = KMT_trust_in_cavalry
+		icon = GFX_KMT_trust_in_cavalry
+		relative_position_id = KMT_soviet_faction
+		x = -4
+		y = 1
+		cost = 3
+		mutually_exclusive = {
+			focus = KMT_expand_armored_forces
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_soviet_faction
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_national_revolutionary_army_soviet_1
+				add_idea = KMT_national_revolutionary_army_soviet_cav_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_establish_cavalry_inspectorate
+		icon = GFX_KMT_establish_cavalry_inspectorate
+		relative_position_id = KMT_trust_in_cavalry
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_trust_in_cavalry
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_national_revolutionary_army_soviet_cav_1
+				add_idea = KMT_national_revolutionary_army_soviet_cav_2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_unconventional_warfare
+		icon = GFX_KMT_unconventional_warfare
+		relative_position_id = KMT_establish_cavalry_inspectorate
+		x = -2
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_establish_cavalry_inspectorate
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_unconventional_warfare = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_expand_cavalry_school
+		icon = GFX_KMT_expand_cavalry_school
+		relative_position_id = KMT_establish_cavalry_inspectorate
+		x = -1
+		y = 2
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_establish_cavalry_inspectorate
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_national_revolutionary_army_soviet_cav_2
+				add_idea = KMT_national_revolutionary_army_soviet_cav_3
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_reinforce_cavalry_firepower
+		icon = GFX_KMT_reinforce_cavalry_firepower
+		relative_position_id = KMT_establish_cavalry_inspectorate
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_establish_cavalry_inspectorate
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = KMT_reinforce_cavalry_firepower
+				bonus = 1
+				uses = 1
+				category = infantry_weapons
+			}
+			add_tech_bonus = {
+				name = KMT_reinforce_cavalry_firepower
+				bonus = 1
+				uses = 1
+				category = artillery
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_mixed_cavalry_brigade
+		icon = GFX_KMT_mixed_cavalry_brigade
+		relative_position_id = KMT_reinforce_cavalry_firepower
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_reinforce_cavalry_firepower
+		}
+		prerequisite = {
+			focus = KMT_mechanization_push
+		}
+		search_filters = {  }
+		completion_reward = {
+			division_template = {
+				name = "Tu Ji Qi Bing"
+				division_names_group = CHI_CAV_01
+				regiments = {
+					cavalry = { x = 0 y = 0 }
+					cavalry = { x = 0 y = 1 }
+					cavalry = { x = 0 y = 2 }
+					cavalry = { x = 1 y = 0 }
+					cavalry = { x = 1 y = 1 }
+					cavalry = { x = 1 y = 2 }
+					mot_artillery_brigade = { x = 2 y = 0 }
+					mot_artillery_brigade = { x = 2 y = 1 }
+					mot_artillery_brigade = { x = 2 y = 2 }
+				}
+				support = {
+					recon = { x = 0 y = 0 }
+					artillery = { x = 0 y = 1 }
+				}
+			}
+			if = {
+				limit = {
+					controls_state = 960
+				}
+				960 = {
+					create_unit = {
+						division = "name = \"Tu Ji Qi Bing\" division_template = \"Tu Ji Qi Bing\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						count = 2
+						owner = KMT
+					}
+				}
+			}
+			if = {
+				limit = {
+					controls_state = 592
+				}
+				592 = {
+					create_unit = {
+						division = "name = \"Tu Ji Qi Bing\" division_template = \"Tu Ji Qi Bing\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						count = 2
+						owner = KMT
+					}
+				}
+			}
+			if = {
+				limit = {
+					controls_state = 748
+				}
+				748 = {
+					create_unit = {
+						division = "name = \"Tu Ji Qi Bing\" division_template = \"Tu Ji Qi Bing\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						count = 2
+						owner = KMT
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_expand_large_scale_mechanized_forces
+		icon = GFX_KMT_expand_large_scale_mechanized_forces
+		relative_position_id = KMT_expand_cavalry_school
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_expand_cavalry_school
+		}
+		prerequisite = {
+			focus = KMT_mixed_cavalry_brigade
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_national_revolutionary_army_soviet_cav_3
+				add_idea = KMT_national_revolutionary_army_soviet_cav_4
+			}
+			add_tech_bonus = {
+				name = KMT_expand_large_scale_mechanized_forces
+				bonus = 0.5
+				uses = 1
+				category = cat_mechanized_equipment
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_study_of_deep_battle_theory
+		icon = GFX_KMT_study_of_deep_battle_theory
+		relative_position_id = KMT_trust_in_cavalry
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_trust_in_cavalry
+			focus = KMT_expand_armored_forces
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_doctrine_cost_reduction = {
+				name = KMT_two_pillars_of_whampoa
+				cost_reduction = 0.25
+				uses = 1
+				category = land_doctrine
+			}
+			add_daily_mastery = {
+				amount = 0.1
+				days = 100	
+				name = KMT_study_of_deep_battle_theory
+				folder = land
+				grand_doctrine = infantry
+				track = armor					
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_mechanization_push
+		icon = GFX_KMT_mechanization_push
+		relative_position_id = KMT_study_of_deep_battle_theory
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_study_of_deep_battle_theory
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = KMT_mechanization_push
+				bonus = 1
+				uses = 2
+				category = cat_mechanized_equipment
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_expand_armored_forces
+		icon = GFX_KMT_expand_armored_forces
+		relative_position_id = KMT_soviet_faction
+		x = -2
+		y = 1
+		cost = 3
+		mutually_exclusive = {
+			focus = KMT_trust_in_cavalry
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_soviet_faction
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_national_revolutionary_army_soviet_1
+				add_idea = KMT_national_revolutionary_army_soviet_tank_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_create_200th_armored_division
+		icon = GFX_KMT_create_200th_armored_division
+		relative_position_id = KMT_expand_armored_forces
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_expand_armored_forces
+		}
+		search_filters = {  }
+		completion_reward = {
+			CHI_spawn_light_tanks = yes
+			division_template = {
+				name = "Di 200 Shī"
+				division_names_group = CHI_ARM_01
+				regiments = {
+					motorized = { x = 0 y = 0 }
+					motorized = { x = 0 y = 1 }
+					motorized = { x = 0 y = 2 }
+					motorized = { x = 1 y = 0 }
+					motorized = { x = 1 y = 1 }
+					light_armor = { x = 2 y = 0 }
+					light_armor = { x = 2 y = 1 }
+					light_armor = { x = 2 y = 2 }
+					light_armor = { x = 2 y = 3 }
+				}
+				support = {
+					artillery = { x = 0 y = 0 }
+					engineer = { x = 0 y = 1 }
+				}
+				priority = 2
+			}
+			random_owned_controlled_state = {
+				prioritize = { 960 }
+				limit = { is_owned_by = KMT }
+				create_unit = {
+					division = "name = \"Di 200 Shī\" division_template = \"Di 200 Shī\" start_equipment_factor = 1 start_experience_factor = 0.15"
+					owner = ROOT
+					count = 4
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_concentrated_tank_deployment
+		icon = GFX_KMT_concentrated_tank_deployment
+		relative_position_id = KMT_create_200th_armored_division
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_create_200th_armored_division
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = KMT_concentrated_tank_deployment
+				bonus = 1
+				uses = 2
+				category = armor
+			}
+			add_ideas = KMT_tank_mass_production
+		}
+	}
+	
+	focus = {
+		id = KMT_quantitative_expansion
+		icon = GFX_KMT_quantitative_expansion
+		relative_position_id = KMT_concentrated_tank_deployment
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_concentrated_tank_deployment
+		}
+		prerequisite = {
+			focus = KMT_mechanization_push
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = KMT_tank_mass_production
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_mechanized_infantry_combined_tactics
+		icon = GFX_KMT_mechanized_infantry_combined_tactics
+		relative_position_id = KMT_quantitative_expansion
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_quantitative_expansion
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_national_revolutionary_army_soviet_tank_1
+				add_idea = KMT_national_revolutionary_army_soviet_tank_2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_qualitative_improvement
+		icon = GFX_KMT_qualitative_improvement
+		relative_position_id = KMT_concentrated_tank_deployment
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_concentrated_tank_deployment
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = KMT_tank_production_specialization
+		}
+	}
+	
+	focus = {
+		id = KMT_domestic_tank_production
+		icon = GFX_KMT_domestic_tank_production
+		relative_position_id = KMT_qualitative_improvement
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_qualitative_improvement
+		}
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+		completion_reward = {
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+			random_owned_controlled_state = {
+				limit = {
+					is_core_of = ROOT
+				}
+				add_building_construction = {
+					type = arms_factory
+					level = 1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_infantry_motorization
+		icon = GFX_KMT_infantry_motorization
+		relative_position_id = KMT_soviet_faction
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_soviet_faction
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_equipment_to_stockpile = {
+				type = train_equipment
+				amount = 100
+				producer = KMT
+			}
+			add_tech_bonus = {
+				name = KMT_infantry_motorization
+				bonus = 2
+				uses = 1
+				category = motorized_equipment
+			}
+			IF = {
+				limit = {
+					has_tech = motorised_infantry
+				}
+				add_equipment_to_stockpile = { 
+					type = motorized_equipment
+					amount = 150
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_japanese_faction
+		icon = GFX_KMT_japanese_faction
+		relative_position_id = KMT_two_pillars_of_whampoa
+		x = 1
+		y = 1
+		cost = 2.8
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		mutually_exclusive = {
+			focus = KMT_soviet_faction
+		}
+		prerequisite = {
+			focus = KMT_two_pillars_of_whampoa
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_daily_mastery = {
+				amount = 0.1
+				days = 90	
+				name = KMT_japanese_faction
+				folder = land
+				grand_doctrine = superior_firepower
+				track = combat_support					
+			}
+			add_ideas = KMT_national_revolutionary_army_japan_1
+		}
+	}
+	
+	focus = {
+		id = KMT_deepen_infiltration_tactics
+		icon = GFX_KMT_deepen_infiltration_tactics
+		relative_position_id = KMT_japanese_faction
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_japanese_faction
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_deepen_infiltration_tactics = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_night_attack
+		icon = GFX_KMT_night_attack
+		relative_position_id = KMT_deepen_infiltration_tactics
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_deepen_infiltration_tactics
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_national_revolutionary_army_japan_1
+				add_idea = KMT_national_revolutionary_army_japan_2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_improve_infantry_firepower
+		icon = GFX_KMT_improve_infantry_firepower
+		relative_position_id = KMT_night_attack
+		x = -1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_night_attack
+			focus = KMT_infantry_motorization
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = KMT_improve_infantry_firepower
+				bonus = 1
+				uses = 1
+				category = infantry_weapons
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_enhance_artillery_precision
+		icon = GFX_KMT_enhance_artillery_precision
+		relative_position_id = KMT_japanese_faction
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_japanese_faction
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_artillery_precision_measurement = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_reinforce_firepower_assets
+		icon = GFX_KMT_reinforce_firepower_assets
+		relative_position_id = KMT_enhance_artillery_precision
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_enhance_artillery_precision
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = KMT_artillery_mass_production
+			add_tech_bonus = {
+				name = KMT_reinforce_firepower_assets
+				bonus = 1
+				uses = 1
+				category = artillery
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_local_superiority
+		icon = GFX_KMT_local_superiority
+		relative_position_id = KMT_night_attack
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_night_attack
+		}
+		prerequisite = {
+			focus = KMT_reinforce_firepower_assets
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_concentrated_breakthrough = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_attrition_warfare_specialization
+		icon = GFX_KMT_attrition_warfare_specialization
+		relative_position_id = KMT_local_superiority
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_local_superiority
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_national_revolutionary_army_japan_2
+				add_idea = KMT_national_revolutionary_army_japan_3
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_rolling_barrage_tactics
+		icon = GFX_KMT_rolling_barrage_tactics
+		relative_position_id = KMT_reinforce_firepower_assets
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_night_attack
+		}
+		prerequisite = {
+			focus = KMT_reinforce_firepower_assets
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_rolling_barrage_tactics = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_expand_infantry_artillery_organization
+		icon = GFX_KMT_expand_infantry_artillery_organization
+		relative_position_id = KMT_rolling_barrage_tactics
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_rolling_barrage_tactics
+		}
+		search_filters = {  }
+		completion_reward = {
+			division_template = {
+				name = "Paobing"
+				is_locked = no
+				regiments = {
+					infantry = { x = 0 y = 0 }
+					infantry = { x = 0 y = 1 }
+					infantry = { x = 0 y = 2 }
+					infantry = { x = 1 y = 0 }
+					infantry = { x = 1 y = 1 }
+					infantry = { x = 1 y = 2 }
+					artillery_brigade = { x = 2 y = 0 }
+					artillery_brigade = { x = 2 y = 1 }
+				}
+				support = {
+					engineer = { x = 0 y = 0 }
+				}
+			}
+			if = {
+				limit = {
+					controls_state = 960
+				}
+				960 = {
+					create_unit = {
+						division = "name = \"Paobing\" division_template = \"Paobing\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						count = 2
+						owner = KMT
+					}
+				}
+			}
+			if = {
+				limit = {
+					controls_state = 592
+				}
+				592 = {
+					create_unit = {
+						division = "name = \"Paobing\" division_template = \"Paobing\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						count = 2
+						owner = KMT
+					}
+				}
+			}
+			if = {
+				limit = {
+					controls_state = 748
+				}
+				748 = {
+					create_unit = {
+						division = "name = \"Paobing\" division_template = \"Paobing\" start_equipment_factor = 0.5 start_experience_factor = 0.15"
+						count = 2
+						owner = KMT
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_bombardment_and_assault
+		icon = GFX_KMT_bombardment_and_assault
+		relative_position_id = KMT_attrition_warfare_specialization
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_expand_infantry_artillery_organization
+		}
+		prerequisite = {
+			focus = KMT_attrition_warfare_specialization
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_national_revolutionary_army_japan_3
+				add_idea = KMT_national_revolutionary_army_japan_4
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_found_the_revolutionary_navy
+		icon = GFX_KMT_found_the_revolutionary_navy
+		relative_position_id = KMT_rebuild_the_nra
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_rebuild_the_nra
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = KMT_revolutionary_navy
+			add_doctrine_cost_reduction = {
+				name = KMT_found_the_revolutionary_navy
+				cost_reduction = 0.5
+				uses = 1
+				category = naval_doctrine
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_utilize_the_river_defense_fleet
+		icon = GFX_KMT_utilize_the_river_defense_fleet
+		relative_position_id = KMT_found_the_revolutionary_navy
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_found_the_revolutionary_navy
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_revolutionary_navy
+				add_idea = KMT_revolutionary_navy_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_strengthen_torpedoes
+		icon = GFX_KMT_strengthen_torpedoes
+		relative_position_id = KMT_utilize_the_river_defense_fleet
+		x = -2
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_utilize_the_river_defense_fleet
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_revolutionary_navy_1
+				add_idea = KMT_revolutionary_navy_2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_commerce_raiding
+		icon = GFX_KMT_commerce_raiding
+		relative_position_id = KMT_utilize_the_river_defense_fleet
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_utilize_the_river_defense_fleet
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_focus_on_torpedo_boats = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_instigate_sailors
+		icon = GFX_KMT_instigate_sailors
+		relative_position_id = KMT_found_the_revolutionary_navy
+		x = 1
+		y = 1
+		cost = 3
+		bypass = {
+			NOT = { has_war_with = CHI }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_found_the_revolutionary_navy
+		}
+		search_filters = {  }
+		completion_reward = {
+			country_event = china_wr.384
+			hidden_effect = {
+				CHI = { country_event = china_wr.384 }
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_focus_on_coastal_defense
+		icon = GFX_KMT_focus_on_coastal_defense
+		relative_position_id = KMT_instigate_sailors
+		x = 0
+		y = 1
+		cost = 3
+		bypass = {
+			NOT = { has_war_with = CHI }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_instigate_sailors
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = KMT_focus_on_coastal_defense
+				bonus = 1
+				uses = 2
+				category = dd_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_destroyer_fleet
+		icon = GFX_KMT_destroyer_fleet
+		relative_position_id = KMT_instigate_sailors
+		x = 2
+		y = 1
+		cost = 3
+		bypass = {
+			NOT = { has_war_with = CHI }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_instigate_sailors
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = KMT_destroyer_fleet
+		}
+	}
+	
+	focus = {
+		id = KMT_death_beneath_the_waves
+		icon = GFX_KMT_death_beneath_the_waves
+		relative_position_id = KMT_strengthen_torpedoes
+		x = 1
+		y = 1
+		cost = 3
+		bypass = {
+			NOT = { has_war_with = CHI }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_strengthen_torpedoes
+		}
+		prerequisite = {
+			focus = KMT_commerce_raiding
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_submarine_wolfpack_tactics = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_mine_laying
+		icon = GFX_KMT_mine_laying
+		relative_position_id = KMT_commerce_raiding
+		x = 1
+		y = 1
+		cost = 3
+		bypass = {
+			NOT = { has_war_with = CHI }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_strengthen_torpedoes
+		}
+		prerequisite = {
+			focus = KMT_focus_on_coastal_defense
+		}
+		prerequisite = {
+			focus = KMT_commerce_raiding
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_revolutionary_navy_2
+				add_idea = KMT_revolutionary_navy_3
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_expand_coastal_artillery
+		icon = GFX_KMT_expand_coastal_artillery
+		relative_position_id = KMT_focus_on_coastal_defense
+		x = 1
+		y = 1
+		cost = 3
+		bypass = {
+			NOT = { has_war_with = CHI }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_focus_on_coastal_defense
+		}
+		prerequisite = {
+			focus = KMT_destroyer_fleet
+		}
+		search_filters = {  }
+		completion_reward = {
+			if = {
+				limit = {
+					controls_state = 613
+				}
+				613 = {
+					add_building_construction = {
+						type = bunker
+						level = 3
+						province = 7014
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 12052
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = bunker
+						level = 2
+						province = 12076
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					controls_state = 596
+				}
+				596 = {
+					add_building_construction = {
+						type = coastal_bunker
+						level = 3
+						province = 7191
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = coastal_bunker
+						level = 3
+						province = 9974
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					controls_state = 592
+				}
+				592 = {
+					add_building_construction = {
+						type = coastal_bunker
+						level = 3
+						province = 1047
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = coastal_bunker
+						level = 3
+						province = 7108
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					controls_state = 595
+				}
+				595 = {
+					add_building_construction = {
+						type = coastal_bunker
+						level = 3
+						province = 4196
+						instant_build = yes
+					}
+					add_building_construction = {
+						type = coastal_bunker
+						level = 3
+						province = 7027
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_jeune_ecole_doctrine
+		icon = GFX_KMT_jeune_ecole_doctrine
+		relative_position_id = KMT_death_beneath_the_waves
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			NOT = { has_global_flag = chinese_civil_war }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_death_beneath_the_waves
+		}
+		prerequisite = {
+			focus = KMT_mine_laying
+		}
+		mutually_exclusive = {
+			focus = KMT_blue_water_navy_doctrine
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_mastery_bonus = {
+				name = KMT_jeune_ecole_doctrine
+				bonus = 0.1
+				days = 240
+				grand_doctrine = new_convoy_raiding
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_mosquito_fleet
+		icon = GFX_KMT_mosquito_fleet
+		relative_position_id = KMT_jeune_ecole_doctrine
+		x = -2
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_jeune_ecole_doctrine
+		}
+		search_filters = {  }
+		completion_reward = {
+			set_technology = { early_ship_hull_light = 1 popup = no }
+			create_equipment_variant = {
+				name = "Feilei Class"
+				type = ship_hull_light_1
+				parent_version = 0
+				modules = {
+					fixed_ship_battery_slot = ship_light_battery_1
+					fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+					fixed_ship_engine_slot = light_ship_engine_1
+					fixed_ship_torpedo_slot = ship_torpedo_1
+				}
+			}
+			create_ship = { type = ship_hull_light_1 equipment_variant = "Feilei Class" name = "Feilei" }
+			create_ship = { type = ship_hull_light_1 equipment_variant = "Feilei Class" name = "Xunlei" }
+			create_ship = { type = ship_hull_light_1 equipment_variant = "Feilei Class" name = "Kuai feng" }
+			create_ship = { type = ship_hull_light_1 equipment_variant = "Feilei Class" name = "Jilang" }
+		}
+	}
+	
+	focus = {
+		id = KMT_coastal_ambush_tactics
+		icon = GFX_KMT_coastal_ambush_tactics
+		relative_position_id = KMT_mosquito_fleet
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_mosquito_fleet
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_coastal_ambush_tactics = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_offensive_minelaying
+		icon = GFX_KMT_offensive_minelaying
+		relative_position_id = KMT_jeune_ecole_doctrine
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_jeune_ecole_doctrine
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_offensive_minelaying = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_disrupt_sloc
+		icon = GFX_KMT_disrupt_sloc
+		relative_position_id = KMT_offensive_minelaying
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_offensive_minelaying
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_revolutionary_navy_3
+				add_idea = KMT_revolutionary_navy_left_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_asymmetric_denial_system
+		icon = GFX_KMT_asymmetric_denial_system
+		relative_position_id = KMT_coastal_ambush_tactics
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_coastal_ambush_tactics
+		}
+		prerequisite = {
+			focus = KMT_disrupt_sloc
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_revolutionary_navy_left_1
+				add_idea = KMT_revolutionary_navy_left_2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_blue_water_navy_doctrine
+		icon = GFX_KMT_blue_water_navy_doctrine
+		relative_position_id = KMT_mine_laying
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			NOT = { has_global_flag = chinese_civil_war }
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_expand_coastal_artillery
+		}
+		prerequisite = {
+			focus = KMT_mine_laying
+		}
+		mutually_exclusive = {
+			focus = KMT_jeune_ecole_doctrine
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_mastery_bonus = {
+				name = KMT_blue_water_navy_doctrine
+				bonus = 0.1
+				days = 240
+				grand_doctrine = new_fleet_in_being
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_secure_capital_ships
+		icon = GFX_KMT_secure_capital_ships
+		relative_position_id = KMT_blue_water_navy_doctrine
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_blue_water_navy_doctrine
+		}
+		search_filters = {  }
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_tech = early_ship_hull_heavy } }
+				set_technology = { early_ship_hull_heavy = 1 }
+			}
+			if = {
+				limit = { NOT = { has_tech = basic_heavy_battery } }
+				set_technology = { basic_heavy_battery = 1 }
+			}
+			create_equipment_variant = {
+				name = "Gong he Class"
+				type = ship_hull_heavy_1
+				modules = {
+					fixed_ship_battery_slot = ship_heavy_battery_2
+					fixed_ship_anti_air_slot = ship_anti_air_1
+					fixed_ship_fire_control_system_slot = ship_fire_control_system_0
+					fixed_ship_radar_slot = empty
+					fixed_ship_engine_slot = heavy_ship_engine_2
+					fixed_ship_secondaries_slot = ship_secondaries_1
+					fixed_ship_armor_slot = ship_armor_bc_1
+					front_1_custom_slot = ship_anti_air_1
+					mid_1_custom_slot = empty
+					mid_2_custom_slot = ship_secondaries_1
+					rear_1_custom_slot = ship_heavy_battery_2
+				}
+			}
+			add_equipment_production = {
+				equipment = {
+					type = ship_hull_heavy_1
+					version_name = "Gong he Class"
+				}
+				name = "Gong he"
+				progress = 0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_fleet_decisive_battle
+		icon = GFX_KMT_fleet_decisive_battle
+		relative_position_id = KMT_secure_capital_ships
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_secure_capital_ships
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_fleet_decisive_battle = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_ocean_cruiser_squadron
+		icon = GFX_KMT_ocean_cruiser_squadron
+		relative_position_id = KMT_blue_water_navy_doctrine
+		x = 2
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_blue_water_navy_doctrine
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = KMT_ocean_cruiser_squadron
+				bonus = 0.5
+				uses = 2
+				category = ca_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_protect_sloc
+		icon = GFX_KMT_protect_sloc
+		relative_position_id = KMT_ocean_cruiser_squadron
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_ocean_cruiser_squadron
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_revolutionary_navy_3
+				add_idea = KMT_revolutionary_navy_right_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_secure_blue_water_sea_control
+		icon = GFX_KMT_secure_blue_water_sea_control
+		relative_position_id = KMT_fleet_decisive_battle
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_fleet_decisive_battle
+		}
+		prerequisite = {
+			focus = KMT_protect_sloc
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMT_revolutionary_navy_right_1
+				add_idea = KMT_revolutionary_navy_right_2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_flying_tigers
+		icon = GFX_KMT_flying_tigers
+		relative_position_id = KMT_rebuild_the_nra
+		x = 8
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_rebuild_the_nra
+		}
+		search_filters = {  }
+		completion_reward = {
+			custom_effect_tooltip = KMT_flying_tigers_tt
+			hidden_effect = {
+				country_event = kuomintag_wr.136
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_from_land_of_liberty
+		icon = GFX_KMT_from_land_of_liberty
+		relative_position_id = KMT_flying_tigers
+		x = -2
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_flying_tigers
+		}
+		search_filters = {  }
+		completion_reward = {
+			effect_tooltip = {
+				country_event = kuomintag_wr.136
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_defend_airspace
+		icon = GFX_KMT_defend_airspace
+		relative_position_id = KMT_from_land_of_liberty
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_from_land_of_liberty
+		}
+		search_filters = {  }
+		completion_reward = {
+		}
+	}
+	
+	focus = {
+		id = KMT_bold_ones_of_rome
+		icon = GFX_KMT_bold_ones_of_rome
+		relative_position_id = KMT_flying_tigers
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_flying_tigers
+		}
+		search_filters = {  }
+		completion_reward = {
+			effect_tooltip = {
+				country_event = kuomintag_wr.137
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_young_eagles
+		icon = GFX_KMT_young_eagles
+		relative_position_id = KMT_flying_tigers
+		x = 2
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_flying_tigers
+		}
+		search_filters = {  }
+		completion_reward = {
+			effect_tooltip = {
+				country_event = kuomintag_wr.138
+			}
 		}
 	}
 }

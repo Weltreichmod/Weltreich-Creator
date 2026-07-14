@@ -2947,11 +2947,16 @@ country_event = { #내전 이후 호법으로 복귀
 				transfer_troops = yes
 			}
 			annex_country = {
-				target = PRC
+				target = NPA
 				transfer_troops = yes
 			}
+		}
+		if = {
+			limit = {
+				NOT = { has_global_flag = Nationalist_Army_flag }
+			}
 			annex_country = {
-				target = NPA
+				target = PRC
 				transfer_troops = yes
 			}
 		}
@@ -2964,7 +2969,6 @@ country_event = { #내전 이후 호법으로 복귀
 					is_core_of = NSM
 					is_core_of = ETS
 					is_core_of = SHX
-					is_core_of = PRC
 					is_core_of = NPA
 				}
 			}
@@ -2974,9 +2978,20 @@ country_event = { #내전 이후 호법으로 복귀
 			remove_core_of = NSM
 			remove_core_of = ETS
 			remove_core_of = SHX
-			remove_core_of = PRC
 			remove_core_of = NPA
 			add_core_of = CHI
+		}
+		if = {
+			limit = {
+				NOT = { has_global_flag = Nationalist_Army_flag }
+			}
+			every_state = {
+				limit = {
+					is_core_of = PRC
+				}
+				remove_core_of = PRC
+				add_core_of = CHI
+			}
 		}
 		617 = { set_demilitarized_zone = no }
 		ai_chance = {
@@ -3711,6 +3726,9 @@ country_event = {
 	option = {
 		name = china_wr.123.a
 		set_country_flag = CHI_cut_throat_friends_focus_flag
+		trigger = {
+			NOT = { FRA = { has_country_flag = second_great_war_loser } }
+		}
 		ai_chance = {
 			base = 10
 		}
@@ -3718,6 +3736,9 @@ country_event = {
 	option = {
 		name = china_wr.123.b
 		set_country_flag = CHI_new_acquaintances_focus_flag
+		trigger = {
+			NOT = { GER = { has_country_flag = second_great_war_loser } }
+		}
 		ai_chance = {
 			base = 10
 		}
@@ -5233,6 +5254,8 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = china_wr.168.a
+		FROM = { set_country_flag = CHI_didnt_give_them_flag }
+		custom_effect_tooltip = china_wr_168_tt
 		ai_chance = {
 			base = 10
 		}
@@ -5544,6 +5567,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		has_global_flag = chinese_civil_war
+		NOT = { has_country_flag = CHI_wu_peifu_in_power }
 	}
 	immediate = {
 		hidden_effect = {
@@ -5575,6 +5599,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		has_global_flag = chinese_civil_war
+		NOT = { has_country_flag = CHI_wu_peifu_in_power }
 	}
 	immediate = {
 		hidden_effect = {
@@ -5633,6 +5658,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		has_global_flag = chinese_civil_war
+		NOT = { has_country_flag = CHI_wu_peifu_in_power }
 	}
 	immediate = {
 		hidden_effect = {
@@ -5664,6 +5690,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		has_global_flag = chinese_civil_war
+		NOT = { has_country_flag = CHI_wu_peifu_in_power }
 	}
 	immediate = {
 		hidden_effect = {
@@ -5695,6 +5722,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		has_global_flag = chinese_civil_war
+		NOT = { has_country_flag = CHI_wu_peifu_in_power }
 	}
 	immediate = {
 		hidden_effect = {
@@ -5726,6 +5754,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		has_global_flag = chinese_civil_war
+		NOT = { has_country_flag = CHI_wu_peifu_in_power }
 	}
 	immediate = {
 		hidden_effect = {
@@ -5757,6 +5786,7 @@ country_event = {
 	is_triggered_only = yes
 	trigger = {
 		has_global_flag = chinese_civil_war
+		NOT = { has_country_flag = CHI_wu_peifu_in_power }
 	}
 	option = {
 		name = china_wr.188.a
@@ -6190,6 +6220,9 @@ country_event = { #중국내전
 						}
 						add_claim_by = KMT
 					}
+					transfer_navy = {
+						target = CHI
+					}
 					if = {
 						limit = {
 							CHI = { has_country_flag = CHI_kmt_unprepared_revolution_flag }
@@ -6349,7 +6382,57 @@ country_event = { #중국내전
 					}
 				}
 				hidden_effect = {
-					CHI = { country_event = { id = china_wr.55 days = 15 } }
+					CHI = {
+						country_event = { id = china_wr.55 days = 15 }
+						transfer_ship = {
+							prefer_name = "Xinhai 3"
+							type = submarine
+							target = KMT
+							exclude_refitting = yes
+						}
+						transfer_ship = {
+							prefer_name = "Xinhai 11"
+							type = submarine
+							target = KMT
+							exclude_refitting = yes
+						}
+						transfer_ship = {
+							prefer_name = "Zejiang"
+							type = destroyer
+							target = KMT
+							exclude_refitting = yes
+						}
+						transfer_ship = {
+							prefer_name = "Ching po"
+							type = destroyer
+							target = KMT
+							exclude_refitting = yes
+						}
+						transfer_ship = {
+							prefer_name = "Zong 4"
+							type = destroyer
+							target = KMT
+							exclude_refitting = yes
+						}
+						transfer_ship = {
+							prefer_name = "Ning Hai"
+							type = destroyer
+							target = KMT
+							exclude_refitting = yes
+						}
+						transfer_ship = {
+							prefer_name = "Shen Yang"
+							type = destroyer
+							target = KMT
+							exclude_refitting = yes
+						}
+						transfer_ship = {
+							prefer_name = "Hu Hanmin"
+							type = light_cruiser
+							target = KMT
+							exclude_refitting = yes
+						}
+					}
 				}
 			}
 		}
@@ -6420,7 +6503,11 @@ country_event = { #광동분리
 					remove_core_of = CHI
 					add_claim_by = CHI
 				}
-				CHI = { country_event = { id = china_wr.207 days = 12 } }
+				CHI = {
+					country_event = { id = china_wr.207 days = 12 }
+					country_event = { id = china_wr.382 days = 4 }
+					country_event = { id = china_wr.383 days = 18 }
+				}
 				591 = { set_demilitarized_zone = no }
 				594 = { set_demilitarized_zone = no }
 				592 = { set_demilitarized_zone = no }
@@ -6428,6 +6515,8 @@ country_event = { #광동분리
 				1005 = { set_demilitarized_zone = no }
 				KMT = {
 					country_event = { id = china_wr.207 days = 12 }
+					country_event = { id = china_wr.382 days = 4 }
+					country_event = { id = china_wr.383 days = 18 }
 					592 = {
 						create_unit = {
 							division = "name = \"12 Bubing Shi\" division_template = \"Sanjiao Jun\" start_equipment_factor = 0.35 start_experience_factor = 0.2"
@@ -8628,7 +8717,7 @@ country_event = { #군사쿠데타
 		add_stability = -0.5
 		add_popularity = {
 			ideology = neutrality
-			popularity = -0.2
+			popularity = 0.4
 		}
 		set_party_name = {
 			ideology = neutrality
@@ -9255,22 +9344,23 @@ country_event = { #총력전
 	}
 }
 
-country_event = { #항일
-	id = china_wr.266
-	title = china_wr.266.t
-	desc = china_wr.266.d
-	picture = GFX_report_event_chinese_soldiers_mountain
-	is_triggered_only = yes
-	option = {
-		name = china_wr.266.a
-		add_war_support = 0.1
-		ai_chance = {
-			base = 5
-		}
-	}
-}
+#country_event = { #항일
+#	id = china_wr.266
+#	title = china_wr.266.t
+#	desc = china_wr.266.d
+#	picture = GFX_report_event_chinese_soldiers_mountain
+#	is_triggered_only = yes
+#	fire_only_once = yes
+#	option = {
+#		name = china_wr.266.a
+#		add_war_support = 0.1
+#		ai_chance = {
+#			base = 5
+#		}
+#	}
+#}
 
-country_event = { #항일
+country_event = {
 	id = china_wr.267
 	title = china_wr.267.t
 	desc = china_wr.267.d
@@ -12076,6 +12166,13 @@ country_event = {
 			}
 			set_global_flag = CHI_LAO_war_flag
 		}
+		if = {
+			limit = {
+				NOT = { has_global_flag = CHI_inva_INDOCHINA_flag }
+			}
+			news_event = china_wr.380
+			set_global_flag = CHI_inva_INDOCHINA_flag
+		}
 		ai_chance = {
 			base = 10
 		}
@@ -12608,6 +12705,7 @@ country_event = {
 		name = china_wr.377.a
 		FMS = { declare_war_on = { target = MAL type = annex_everything } }
 		set_global_flag = MAL_FMS_war_global_flag
+		news_event = china_wr.381
 		ai_chance = {
 			base = 10
 		}
@@ -12642,6 +12740,197 @@ country_event = {
 	option = {
 		name = china_wr.379.a
 		add_ideas = CHI_malayan_military_aid
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+news_event = {
+	id = china_wr.380
+	title = china_wr.380.t
+	desc = china_wr.380.d
+	picture = GFX_news_event_dutch_soldiers_indonesia
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = china_wr.380.a
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+news_event = {
+	id = china_wr.381
+	title = china_wr.381.t
+	desc = china_wr.381.d
+	picture = malaya_civilwar
+	is_triggered_only = yes
+	major = yes
+	option = {
+		name = china_wr.381.a
+		ai_chance = {
+			base = 5
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.382
+	title = china_wr.382.t
+	desc = china_wr.382.d
+	picture = GFX_report_event_merchant_ship_01
+	
+	is_triggered_only = yes
+	option = {
+		name = china_wr.382.a
+		trigger = {
+			original_tag = KMT
+		}
+		CHI = {
+			transfer_ship = {
+				prefer_name = "Xinhai 3"
+				type = submarine
+				target = KMT
+				exclude_refitting = yes
+			}
+			transfer_ship = {
+				prefer_name = "Xinhai 11"
+				type = submarine
+				target = KMT
+				exclude_refitting = yes
+			}
+			transfer_ship = {
+				prefer_name = "Zejiang"
+				type = destroyer
+				target = KMT
+				exclude_refitting = yes
+			}
+			transfer_ship = {
+				prefer_name = "Ching po"
+				type = destroyer
+				target = KMT
+				exclude_refitting = yes
+			}
+			transfer_ship = {
+				prefer_name = "Zong 4"
+				type = destroyer
+				target = KMT
+				exclude_refitting = yes
+			}
+		}
+		custom_effect_tooltip = china_wr_382_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.382.b
+		trigger = {
+			original_tag = CHI
+		}
+		custom_effect_tooltip = china_wr_382_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.383
+	title = china_wr.383.t
+	desc = china_wr.383.d
+	picture = GFX_report_event_merchant_ship_01
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.383.a
+		trigger = {
+			original_tag = KMT
+		}
+		CHI = {
+			transfer_ship = {
+				prefer_name = "Ning Hai"
+				type = destroyer
+				target = KMT
+				exclude_refitting = yes
+			}
+			transfer_ship = {
+				prefer_name = "Shen Yang"
+				type = destroyer
+				target = KMT
+				exclude_refitting = yes
+			}
+			transfer_ship = {
+				prefer_name = "Hu Hanmin"
+				type = light_cruiser
+				target = KMT
+				exclude_refitting = yes
+			}
+		}
+		custom_effect_tooltip = china_wr_383_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.383.b
+		trigger = {
+			original_tag = CHI
+		}
+		custom_effect_tooltip = china_wr_383_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.384
+	title = china_wr.384.t
+	desc = china_wr.384.d
+	picture = GFX_report_event_merchant_ship_01
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.384.a
+		trigger = {
+			original_tag = KMT
+		}
+		CHI = {
+			transfer_ship = {
+				prefer_name = "Tze Kiang"
+				type = destroyer
+				target = KMT
+				exclude_refitting = yes
+			}
+			transfer_ship = {
+				prefer_name = "Zheng He"
+				type = heavy_cruiser
+				target = KMT
+				exclude_refitting = yes
+			}
+			transfer_ship = {
+				prefer_name = "Tuan Ji"
+				type = battleship
+				target = KMT
+				exclude_refitting = yes
+			}
+		}
+		custom_effect_tooltip = china_wr_384_tt
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.384.b
+		trigger = {
+			original_tag = CHI
+		}
+		custom_effect_tooltip = china_wr_384_tt
 		ai_chance = {
 			base = 10
 		}
@@ -16765,6 +17054,147 @@ country_event = {
 			remove_ideas = KMT_focus_new_citizen_new_china
 			remove_ideas = KMT_focus_pan_people_revolution
 			add_ideas = KMT_resistance_and_national_construction
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.135
+	title = kuomintag_wr.135.t
+	desc = kuomintag_wr.135.d
+	picture = Whampoa_Military_Academy
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = kuomintag_wr.135.a
+		complete_national_focus = KMT_soviet_faction
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.135.b
+		complete_national_focus = KMT_japanese_faction
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.136
+	title = kuomintag_wr.136.t
+	desc = kuomintag_wr.136.d
+	picture = FRA_fighter
+	
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = KMT_from_land_of_liberty
+		}
+	}
+	option = {
+		name = kuomintag_wr.136.a
+		if = {
+			limit = {
+				has_dlc = "By Blood Alone"
+			}
+			add_equipment_to_stockpile = {
+				type = small_plane_airframe_0
+				amount = 50
+				producer = FRA
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_0
+				amount = 50
+				producer = FRA
+			}
+		}
+		hidden_effect = {
+			country_event = { kuomintag_wr.137 days = 3 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.137
+	title = kuomintag_wr.137.t
+	desc = kuomintag_wr.137.d
+	picture = ITA_fighter
+	
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = KMT_bold_ones_of_rome
+		}
+	}
+	option = {
+		name = kuomintag_wr.137.a
+		if = {
+			limit = {
+				has_dlc = "By Blood Alone"
+			}
+			add_equipment_to_stockpile = {
+				type = small_plane_airframe_0
+				amount = 50
+				producer = ITA
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_0
+				amount = 50
+				producer = ITA
+			}
+		}
+		hidden_effect = {
+			country_event = { kuomintag_wr.138 days = 3 }
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.138
+	title = kuomintag_wr.138.t
+	desc = kuomintag_wr.138.d
+	picture = JAP_fighter
+	
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			complete_national_focus = KMT_young_eagles
+		}
+	}
+	option = {
+		name = kuomintag_wr.138.a
+		if = {
+			limit = {
+				has_dlc = "By Blood Alone"
+			}
+			add_equipment_to_stockpile = {
+				type = small_plane_airframe_0
+				amount = 50
+				producer = JAP
+			}
+		}
+		else = {
+			add_equipment_to_stockpile = {
+				type = fighter_equipment_0
+				amount = 50
+				producer = JAP
+			}
 		}
 		ai_chance = {
 			base = 10

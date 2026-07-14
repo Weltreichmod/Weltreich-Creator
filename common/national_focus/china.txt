@@ -40,6 +40,7 @@ focus_tree = {
 		}
 		allow_branch = {
 			NOT = { has_country_flag = CHI_sichuan_famine_start_flag }
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -366,6 +367,7 @@ focus_tree = {
 		allow_branch = {
 			has_country_flag = CHI_sichuan_famine_start_flag
 			NOT = { has_country_flag = finally_solve_problem_in_sichan_flag }
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL FOCUS_FILTER_WAR_SUPPORT FOCUS_FILTER_MANPOWER }
 		completion_reward = {
@@ -574,6 +576,7 @@ focus_tree = {
 			has_country_flag = finally_solve_problem_in_sichan_flag
 			NOT = { has_country_flag = north_china_path_flag }
 			NOT = { has_country_flag = south_china_path_flag }
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
@@ -954,6 +957,7 @@ focus_tree = {
 		allow_branch = {
 			has_country_flag = north_china_path_flag
 			NOT = { has_country_flag = chinese_civil_war_flag }
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		available = {
 			hidden_trigger = {
@@ -1043,10 +1047,8 @@ focus_tree = {
 			factor = 6
 		}
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = CHI_kmt_cliques_in_army
-				add_idea = CHI_military_purge_kmt
-			}
+			remove_ideas = CHI_kmt_cliques_in_army
+			add_timed_idea = { idea = CHI_military_purge_kmt days = 150 }
 		}
 	}
 	
@@ -1193,10 +1195,8 @@ focus_tree = {
 			factor = 6
 		}
 		completion_reward = {
-			swap_ideas = {
-				remove_idea = CHI_uncontrolled_military
-				add_idea = CHI_passive_military
-			}
+			remove_ideas = CHI_uncontrolled_military
+			add_timed_idea = { idea = CHI_passive_military days = 150 }
 		}
 	}
 	
@@ -1239,6 +1239,7 @@ focus_tree = {
 		allow_branch = {
 			has_country_flag = south_china_path_flag
 			NOT = { has_country_flag = chinese_civil_war_flag }
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		available = {
 			hidden_trigger = {
@@ -1480,6 +1481,7 @@ focus_tree = {
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		allow_branch = {
 			has_country_flag = chinese_civil_war_flag
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		available = {
 			is_subject = no
@@ -1554,6 +1556,7 @@ focus_tree = {
 		allow_branch = {
 			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 			has_country_flag = chinese_civil_war_flag
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		prerequisite = {
 			focus = CHI_review_threefold_harmony
@@ -1610,6 +1613,7 @@ focus_tree = {
 		allow_branch = {
 			NOT = { has_country_flag = CHI_wu_peifu_in_power }
 			has_country_flag = chinese_civil_war_flag
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		ai_will_do = {
 			factor = 5
@@ -2989,6 +2993,7 @@ focus_tree = {
 				character = CHI_hu_shih
 				ruling_only = yes
 			}
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		available = {
 			is_subject = no
@@ -4109,6 +4114,12 @@ focus_tree = {
 				has_country_flag = CHI_new_acquaintances_focus_flag
 			}
 		}
+		bypass = {
+			GER = { has_country_flag = second_great_war_loser }
+			hidden_trigger = {
+				has_country_flag = CHI_new_acquaintances_focus_flag
+			}
+		}
 		mutually_exclusive = {
 			focus = CHI_cut_throat_friends_focus
 		}
@@ -4143,6 +4154,9 @@ focus_tree = {
 		available = {
 			is_subject = no
 		}
+		bypass = {
+			GER = { has_country_flag = second_great_war_loser }
+		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
 			focus = CHI_new_acquaintances_focus
@@ -4164,6 +4178,12 @@ focus_tree = {
 		cost = 2
 		available = {
 			is_subject = no
+			hidden_trigger = {
+				has_country_flag = CHI_cut_throat_friends_focus_flag
+			}
+		}
+		bypass = {
+			FRA = { has_country_flag = second_great_war_loser }
 			hidden_trigger = {
 				has_country_flag = CHI_cut_throat_friends_focus_flag
 			}
@@ -4201,6 +4221,9 @@ focus_tree = {
 		cost = 3
 		available = {
 			is_subject = no
+		}
+		bypass = {
+			FRA = { has_country_flag = second_great_war_loser }
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -4500,6 +4523,12 @@ focus_tree = {
 		prerequisite = {
 			focus = CHI_northeast_sphere_focus
 		}
+		bypass = {
+			OR = {
+				MAN = { exists = no }
+				has_war_with = MAN
+			}
+		}
 		ai_will_do = {
 			factor = 0
 			modifier = {
@@ -4522,6 +4551,12 @@ focus_tree = {
 		cost = 4
 		available = {
 			is_subject = no
+		}
+		bypass = {
+			OR = {
+				JAP = { exists = no }
+				JAP = { is_subject = yes }
+			}
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		prerequisite = {
@@ -4570,6 +4605,7 @@ focus_tree = {
 				character = CHI_cai_e
 				ruling_only = yes
 			}
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		available = {
 			is_subject = no
@@ -5190,6 +5226,7 @@ focus_tree = {
 			CHI_dec_others_independent_support_10 = yes
 			CHI_recalc_congress_icon_frames = yes
 			add_to_array = { CHI_parliament_law_history_array = 8 }
+			country_event = china_wr.226
 		}
 	}
 	
@@ -5659,6 +5696,7 @@ focus_tree = {
 		allow_branch = {
 			has_country_flag = CHI_wu_peifu_in_power
 			NOT = { has_completed_focus = CHI_national_salvation_emergency_committee }
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		prerequisite = {
 			focus = CHI_review_threefold_harmony
@@ -5763,7 +5801,8 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_POLITICAL }
 		completion_reward = {
-			country_event = china_wr.241
+			add_political_power = 50
+			add_stability = 0.05
 		}
 	}
 	
@@ -5798,12 +5837,13 @@ focus_tree = {
 		id = CHI_national_salvation_government
 		icon = GFX_CHI_national_salvation_government
 		relative_position_id = CHI_review_threefold_harmony
-		x = -5
+		x = -6
 		y = 1
 		cost = 5
 		allow_branch = {
 			has_country_flag = CHI_wu_peifu_in_power
 			has_completed_focus = CHI_national_salvation_emergency_committee
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		prerequisite = {
 			focus = CHI_review_threefold_harmony
@@ -6964,7 +7004,10 @@ focus_tree = {
 					add_idea = CHI_unstable_society_3
 				}
 			}
-			else = {
+			else_if = {
+				limit = {
+					has_idea = CHI_unstable_society_3
+				}
 				remove_ideas = CHI_unstable_society_3
 			}
 		}
@@ -7034,7 +7077,10 @@ focus_tree = {
 					add_idea = CHI_unstable_society_3
 				}
 			}
-			else = {
+			else_if = {
+				limit = {
+					has_idea = CHI_unstable_society_3
+				}
 				remove_ideas = CHI_unstable_society_3
 			}
 			add_timed_idea = { idea = CHI_university_closure_focus days = 100 }
@@ -7102,7 +7148,10 @@ focus_tree = {
 					add_idea = CHI_unstable_society_3
 				}
 			}
-			else = {
+			else_if = {
+				limit = {
+					has_idea = CHI_unstable_society_3
+				}
 				remove_ideas = CHI_unstable_society_3
 			}
 		}
@@ -7150,7 +7199,10 @@ focus_tree = {
 					add_idea = CHI_unstable_society_3
 				}
 			}
-			else = {
+			else_if = {
+				limit = {
+					has_idea = CHI_unstable_society_3
+				}
 				remove_ideas = CHI_unstable_society_3
 			}
 			add_popularity = {
@@ -7202,7 +7254,10 @@ focus_tree = {
 					add_idea = CHI_unstable_society_3
 				}
 			}
-			else = {
+			else_if = {
+				limit = {
+					has_idea = CHI_unstable_society_3
+				}
 				remove_ideas = CHI_unstable_society_3
 			}
 			swap_ideas = {
@@ -7482,114 +7537,114 @@ focus_tree = {
 		}
 	}
 	
-	focus = {
-		id = CHI_anti_japanese_resistance
-		icon = GFX_CHI_anti_japanese_resistance
-		relative_position_id = CHI_general_mobilization
-		x = 2
-		y = 1
-		cost = 1
-		ai_will_do = {
-			factor = 6
-		}
-		available = {
-			always = no
-		}
-		allow_branch = {
-			has_country_flag = CHI_wu_peifu_in_power
-			has_completed_focus = CHI_national_salvation_emergency_committee
-		}
-		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
-		completion_reward = {
-			country_event = china_wr.266
-		}
-	}
+	#focus = {
+	#	id = CHI_anti_japanese_resistance
+	#	icon = GFX_CHI_anti_japanese_resistance
+	#	relative_position_id = CHI_general_mobilization
+	#	x = 2
+	#	y = 1
+	#	cost = 1
+	#	ai_will_do = {
+	#		factor = 6
+	#	}
+	#	available = {
+	#		always = no
+	#	}
+	#	allow_branch = {
+	#		has_country_flag = CHI_wu_peifu_in_power
+	#		has_completed_focus = CHI_national_salvation_emergency_committee
+	#	}
+	#	search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+	#	completion_reward = {
+	#		country_event = china_wr.266
+	#	}
+	#}
 	
-	focus = {
-		id = CHI_emergency_mobilization_order
-		icon = GFX_CHI_emergency_mobilization_order
-		relative_position_id = CHI_anti_japanese_resistance
-		x = -1
-		y = 1
-		cost = 2
-		ai_will_do = {
-			factor = 100
-		}
-		prerequisite = {
-			focus = CHI_anti_japanese_resistance
-		}
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			add_ideas = CHI_emergency_mobilization_order
-			custom_effect_tooltip = CHI_collapsed_economy_non_tt
-		}
-	}
+	#focus = {
+	#	id = CHI_emergency_mobilization_order
+	#	icon = GFX_CHI_emergency_mobilization_order
+	#	relative_position_id = CHI_anti_japanese_resistance
+	#	x = -1
+	#	y = 1
+	#	cost = 2
+	#	ai_will_do = {
+	#		factor = 100
+	#	}
+	#	prerequisite = {
+	#		focus = CHI_anti_japanese_resistance
+	#	}
+	#	search_filters = { FOCUS_FILTER_INDUSTRY }
+	#	completion_reward = {
+	#		add_ideas = CHI_emergency_mobilization_order
+	#		custom_effect_tooltip = CHI_collapsed_economy_non_tt
+	#	}
+	#}
 	
-	focus = {
-		id = CHI_establish_wartime_emergency_system
-		icon = GFX_CHI_establish_wartime_emergency_system
-		relative_position_id = CHI_anti_japanese_resistance
-		x = 1
-		y = 1
-		cost = 2
-		ai_will_do = {
-			factor = 100
-		}
-		prerequisite = {
-			focus = CHI_anti_japanese_resistance
-		}
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			add_ideas = CHI_establish_wartime_emergency_system
-			custom_effect_tooltip = CHI_collapsed_economy_non_tt
-		}
-	}
+	#focus = {
+	#	id = CHI_establish_wartime_emergency_system
+	#	icon = GFX_CHI_establish_wartime_emergency_system
+	#	relative_position_id = CHI_anti_japanese_resistance
+	#	x = 1
+	#	y = 1
+	#	cost = 2
+	#	ai_will_do = {
+	#		factor = 100
+	#	}
+	#	prerequisite = {
+	#		focus = CHI_anti_japanese_resistance
+	#	}
+	#	search_filters = { FOCUS_FILTER_INDUSTRY }
+	#	completion_reward = {
+	#		add_ideas = CHI_establish_wartime_emergency_system
+	#		custom_effect_tooltip = CHI_collapsed_economy_non_tt
+	#	}
+	#}
 	
-	focus = {
-		id = CHI_enter_mobilized_war_economy
-		icon = GFX_CHI_enter_mobilized_war_economy
-		relative_position_id = CHI_emergency_mobilization_order
-		x = 1
-		y = 1
-		cost = 2
-		ai_will_do = {
-			factor = 100
-		}
-		prerequisite = {
-			focus = CHI_emergency_mobilization_order
-		}
-		prerequisite = {
-			focus = CHI_establish_wartime_emergency_system
-		}
-		search_filters = { FOCUS_FILTER_INDUSTRY }
-		completion_reward = {
-			if = {
-				limit = {
-					has_idea = CHI_collapsed_economy_low
-				}
-				remove_ideas = CHI_emergency_mobilization_order
-				remove_ideas = CHI_establish_wartime_emergency_system
-				add_ideas = CHI_enter_mobilized_war_economy_low
-			}
-			if = {
-				limit = {
-					has_idea = CHI_collapsed_economy_middle
-				}
-				remove_ideas = CHI_emergency_mobilization_order
-				remove_ideas = CHI_establish_wartime_emergency_system
-				add_ideas = CHI_enter_mobilized_war_economy_middle
-			}
-			if = {
-				limit = {
-					has_idea = CHI_collapsed_economy_high
-				}
-				remove_ideas = CHI_emergency_mobilization_order
-				remove_ideas = CHI_establish_wartime_emergency_system
-				add_ideas = CHI_enter_mobilized_war_economy_high
-			}
-			custom_effect_tooltip = CHI_collapsed_economy_total_non_tt
-		}
-	}
+	#focus = {
+	#	id = CHI_enter_mobilized_war_economy
+	#	icon = GFX_CHI_enter_mobilized_war_economy
+	#	relative_position_id = CHI_emergency_mobilization_order
+	#	x = 1
+	#	y = 1
+	#	cost = 2
+	#	ai_will_do = {
+	#		factor = 100
+	#	}
+	#	prerequisite = {
+	#		focus = CHI_emergency_mobilization_order
+	#	}
+	#	prerequisite = {
+	#		focus = CHI_establish_wartime_emergency_system
+	#	}
+	#	search_filters = { FOCUS_FILTER_INDUSTRY }
+	#	completion_reward = {
+	#		if = {
+	#			limit = {
+	#				has_idea = CHI_collapsed_economy_low
+	#			}
+	#			remove_ideas = CHI_emergency_mobilization_order
+	#			remove_ideas = CHI_establish_wartime_emergency_system
+	#			add_ideas = CHI_enter_mobilized_war_economy_low
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = CHI_collapsed_economy_middle
+	#			}
+	#			remove_ideas = CHI_emergency_mobilization_order
+	#			remove_ideas = CHI_establish_wartime_emergency_system
+	#			add_ideas = CHI_enter_mobilized_war_economy_middle
+	#		}
+	#		if = {
+	#			limit = {
+	#				has_idea = CHI_collapsed_economy_high
+	#			}
+	#			remove_ideas = CHI_emergency_mobilization_order
+	#			remove_ideas = CHI_establish_wartime_emergency_system
+	#			add_ideas = CHI_enter_mobilized_war_economy_high
+	#		}
+	#		custom_effect_tooltip = CHI_collapsed_economy_total_non_tt
+	#	}
+	#}
 	
 	#군사
 	focus = {
@@ -7603,6 +7658,7 @@ focus_tree = {
 		}
 		allow_branch = {
 			has_country_flag = chinese_civil_war_flag
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_NAVY_XP FOCUS_FILTER_AIR_XP }
 		completion_reward = {
@@ -8051,7 +8107,7 @@ focus_tree = {
 			}
 			custom_effect_tooltip = CHI_backward_military_modifier_tt
 			add_to_variable = {
-				CHI_backward_military_modifier_special_forces_cap = 5
+				CHI_backward_military_modifier_special_forces_cap = 0.1
 				tooltip = special_forces_cap_tt
 			}
 			add_to_variable = {
@@ -9264,6 +9320,7 @@ focus_tree = {
 		}
 		allow_branch = {
 			has_country_flag = chinese_civil_war_flag
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		completion_reward = {
 			add_doctrine_cost_reduction = {
@@ -10420,6 +10477,7 @@ focus_tree = {
 		cost = 4
 		allow_branch = {
 			has_country_flag = chinese_civil_war_flag
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		available = {
 			is_subject = no
@@ -10757,11 +10815,12 @@ focus_tree = {
 		cost = 2
 		allow_branch = {
 			has_country_flag = chinese_civil_war_flag
+			NOT = { has_country_flag = manchukou_wr_64_flag }
 		}
 		available = {
 			NOT = { has_global_flag = chinese_civil_war }
 			custom_trigger_tooltip = {
-				tooltip = { has_country_flag = sino_japanese_war_winner }
+				tooltip = CHI_yu_guo_tian_qing_tt
 				OR = {
 					has_country_flag = anti_japanese_war_winner
 					has_country_flag = sino_japanese_war_winner
@@ -11678,11 +11737,11 @@ focus_tree = {
 		bypass = {
 			OR = {
 				NEP = { is_subject = yes }
-				NEP = { exists = yes }
+				NEP = { exists = no }
 			}
 			OR = {
 				BHU = { is_subject = yes }
-				BHU = { exists = yes }
+				BHU = { exists = no }
 			}
 		}
 		search_filters = {  }

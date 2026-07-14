@@ -3872,3 +3872,87 @@ KMR_canton_merchants_sub_5 = {
 		}
 	}
 }
+
+CHI_spawn_light_tanks = {
+	if = {
+		limit = { has_dlc = "No Step Back" }
+		if = { #Light tank
+			limit = {
+				has_tech = advanced_light_tank_chassis
+			}
+			create_equipment_variant = {
+				name = "Guomin Geming"
+				show_position = no
+				type = light_tank_chassis_3
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_medium_cannon_2 #F-44 (ZiS-4)
+					turret_type_slot = tank_light_three_man_tank_turret
+					suspension_type_slot = tank_torsion_bar_suspension
+					armor_type_slot = tank_welded_armor
+					engine_type_slot = tank_diesel_engine #V-4
+					special_type_slot_1 = sloped_armor
+					special_type_slot_2 = tank_radio_2 #10-RT
+					special_type_slot_3 = additional_machine_guns #machine-gun mounting at the top of the turret
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 12 #V-4
+					tank_nsb_armor_upgrade = 8 #25-45mm
+				}
+			}
+		}
+		else = {
+			create_equipment_variant = {
+				name = "ZTQ-15"
+				show_position = no
+				type = light_tank_chassis_1
+				parent_version = 0
+				modules = {
+					main_armament_slot = tank_small_cannon_2 #45mm 20-P
+					turret_type_slot = tank_light_two_man_tank_turret
+					suspension_type_slot = tank_christie_suspension
+					armor_type_slot = tank_riveted_armor
+					engine_type_slot = tank_gasoline_engine #MT-5
+					special_type_slot_1 = tank_radio_1 #71-TK
+					special_type_slot_2 = smoke_launchers
+					special_type_slot_3 = empty
+					special_type_slot_4 = empty
+				}
+				upgrades = {
+					tank_nsb_engine_upgrade = 7 #MT-5
+					tank_nsb_armor_upgrade = 5 #15-22mm
+				}
+			}
+		}
+	}
+	else = {
+		if = {
+			limit = { has_tech = advanced_light_tank }
+			create_equipment_variant = {
+				name = "Guomin Geming"
+				show_position = no
+				type = light_tank_equipment_3
+				upgrades = {
+					tank_gun_upgrade = 2
+					tank_armor_upgrade = 1
+					tank_reliability_upgrade = 2
+					tank_engine_upgrade = 3
+				}
+			}
+		}
+		else_if = {
+			limit = { has_tech = improved_light_tank }
+			create_equipment_variant = {
+				name = "ZTQ-15"
+				show_position = no
+				type = light_tank_equipment_2
+				upgrades = {
+					tank_gun_upgrade = 2
+					tank_armor_upgrade = 1
+					tank_reliability_upgrade = 2
+					tank_engine_upgrade = 3
+				}
+			}
+		}
+	}
+}
