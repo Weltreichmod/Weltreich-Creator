@@ -583,7 +583,8 @@ focus_tree = {
 		}
 		search_filters = {  }
 		completion_reward = {
-			country_event = kuomintag_wr.15
+			army_experience = 25
+			#country_event = kuomintag_wr.15
 		}
 	}
 	
@@ -5257,9 +5258,6 @@ focus_tree = {
 		x = 1
 		y = 1
 		cost = 3
-		bypass = {
-			NOT = { has_war_with = CHI }
-		}
 		ai_will_do = {
 			factor = 3
 		}
@@ -5268,10 +5266,11 @@ focus_tree = {
 		}
 		search_filters = {  }
 		completion_reward = {
-			country_event = china_wr.384
-			hidden_effect = {
-				CHI = { country_event = china_wr.384 }
-			}
+			navy_experience = 50
+			#country_event = china_wr.384
+			#hidden_effect = {
+			#	CHI = { country_event = china_wr.384 }
+			#}
 		}
 	}
 	
@@ -5874,8 +5873,48 @@ focus_tree = {
 		prerequisite = {
 			focus = KMT_from_land_of_liberty
 		}
-		search_filters = {  }
+		prerequisite = {
+			focus = KMT_bold_ones_of_rome
+		}
+		prerequisite = {
+			focus = KMT_young_eagles
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
 		completion_reward = {
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.75
+			}
+			add_tech_bonus = {
+				name = KMT_defend_airspace
+				bonus = 0.5
+				uses = 2
+				category = light_fighter
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_air_support_tactics
+		icon = GFX_KMT_air_support_tactics
+		relative_position_id = KMT_defend_airspace
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_defend_airspace
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = KMT_air_support_tactics
+				bonus = 0.5
+				uses = 2
+				category = cas_bomber
+			}
 		}
 	}
 	
@@ -5904,6 +5943,107 @@ focus_tree = {
 	}
 	
 	focus = {
+		id = KMT_knights_of_the_sky
+		icon = GFX_KMT_knights_of_the_sky
+		relative_position_id = KMT_bold_ones_of_rome
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_from_land_of_liberty
+		}
+		prerequisite = {
+			focus = KMT_bold_ones_of_rome
+		}
+		prerequisite = {
+			focus = KMT_young_eagles
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_knights_of_the_sky = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_additional_aircraft_purchase
+		icon = GFX_KMT_additional_aircraft_purchase
+		relative_position_id = KMT_knights_of_the_sky
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_knights_of_the_sky
+		}
+		search_filters = {  }
+		completion_reward = {
+			unlock_decision_category_tooltip = KMT_aircraft_procurement
+		}
+	}
+	
+	focus = {
+		id = KMT_cas_modification
+		icon = GFX_KMT_cas_modification
+		relative_position_id = KMT_knights_of_the_sky
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_knights_of_the_sky
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "By Blood Alone" }
+				create_equipment_variant = {
+					name = "C-9" #CAS 1
+					type = small_plane_cas_airframe_0
+					modules = {
+						fixed_main_weapon_slot = small_bomb_bay
+						engine_type_slot = engine_1_2x
+						special_type_slot_1 = lmg_defense_turret_2x
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = small_plane_cas_airframe_0
+					amount = 100
+					variant_name = "C-9"
+				}
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = CAS1
+					producer = KMT
+					amount = 100
+				}
+				add_tech_bonus = {
+					name = KMT_civilian_aircraft_conversion
+					bonus = 0.5
+					uses = 1
+					category = cas_bomber
+				}
+			}
+		}
+	}
+	
+	focus = {
 		id = KMT_young_eagles
 		icon = GFX_KMT_young_eagles
 		relative_position_id = KMT_flying_tigers
@@ -5923,6 +6063,505 @@ focus_tree = {
 		completion_reward = {
 			effect_tooltip = {
 				country_event = kuomintag_wr.138
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_civilian_aircraft_conversion
+		icon = GFX_KMT_civilian_aircraft_conversion
+		relative_position_id = KMT_young_eagles
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_from_land_of_liberty
+		}
+		prerequisite = {
+			focus = KMT_bold_ones_of_rome
+		}
+		prerequisite = {
+			focus = KMT_young_eagles
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "By Blood Alone" }
+				create_equipment_variant = {
+					name = "I-15" #fighter 1
+					type = small_plane_airframe_0
+					modules = {
+						fixed_main_weapon_slot = light_mg_2x
+						engine_type_slot = engine_1_1x
+						special_type_slot_1 = empty
+					}
+				}
+				add_equipment_to_stockpile = {
+					type = small_plane_airframe_0
+					amount = 100
+					variant_name = "I-15"
+				}
+			}
+			else = {
+				add_equipment_to_stockpile = {
+					type = fighter_equipment_1
+					producer = KMT
+					amount = 100
+				}
+				add_tech_bonus = {
+					name = KMT_civilian_aircraft_conversion
+					bonus = 0.5
+					uses = 1
+					category = light_fighter
+					category = cat_heavy_fighter
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_whampoa_air_class_early_graduation
+		icon = GFX_KMT_whampoa_air_class_early_graduation
+		relative_position_id = KMT_civilian_aircraft_conversion
+		x = 0
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_civilian_aircraft_conversion
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = KMT_ace_pilots
+		}
+	}
+	
+	focus = {
+		id = KMT_founding_revolutionary_air_force
+		icon = GFX_KMT_founding_revolutionary_air_force
+		relative_position_id = KMT_additional_aircraft_purchase
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_additional_aircraft_purchase
+		}
+		prerequisite = {
+			focus = KMT_cas_modification
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = ROC_air_force
+		}
+	}
+	
+	focus = {
+		id = KMT_thousand_li_eye
+		icon = GFX_KMT_thousand_li_eye
+		relative_position_id = KMT_founding_revolutionary_air_force
+		x = -3
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_founding_revolutionary_air_force
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_tech_bonus = {
+				name = KMT_thousand_li_eye
+				bonus = 2
+				uses = 1
+				category = radar_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_reconnaissance_aircraft
+		icon = GFX_KMT_reconnaissance_aircraft
+		relative_position_id = KMT_founding_revolutionary_air_force
+		x = 3
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_founding_revolutionary_air_force
+		}
+		search_filters = {  }
+		completion_reward = {
+			add_ideas = KMT_large_scale_recon_operation
+		}
+	}
+	
+	focus = {
+		id = KMT_expand_licensed_production
+		icon = GFX_KMT_expand_licensed_production
+		relative_position_id = KMT_founding_revolutionary_air_force
+		x = -1
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		mutually_exclusive = {
+			focus = KMT_domestic_aircraft_production
+		}
+		prerequisite = {
+			focus = KMT_founding_revolutionary_air_force
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ROC_air_force
+				add_idea = ROC_air_force_left_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_domestic_aircraft_production
+		icon = GFX_KMT_domestic_aircraft_production
+		relative_position_id = KMT_founding_revolutionary_air_force
+		x = 1
+		y = 1
+		cost = 3
+		available = {
+			always = no
+		}
+		ai_will_do = {
+			factor = 3
+		}
+		mutually_exclusive = {
+			focus = KMT_expand_licensed_production
+		}
+		prerequisite = {
+			focus = KMT_founding_revolutionary_air_force
+		}
+		search_filters = {  }
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = ROC_air_force
+				add_idea = ROC_air_force_right_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_air_artillery_doctrine
+		icon = GFX_KMT_air_artillery_doctrine
+		relative_position_id = KMT_expand_licensed_production
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		mutually_exclusive = {
+			focus = KMT_expand_fighter_production
+		}
+		mutually_exclusive = {
+			focus = KMT_strategic_air_doctrine
+		}
+		prerequisite = {
+			focus = KMT_expand_licensed_production
+			focus = KMT_domestic_aircraft_production
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_mastery_bonus = {
+				name = KMT_air_artillery_doctrine
+				bonus = 0.1
+				days = 240
+				grand_doctrine = new_battlefield_support
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_air_artillery
+		icon = GFX_KMT_air_artillery
+		relative_position_id = KMT_air_artillery_doctrine
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_air_artillery_doctrine
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_air_artillery = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_improve_aerial_bombs
+		icon = GFX_KMT_improve_aerial_bombs
+		relative_position_id = KMT_air_artillery
+		x = 0
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_air_artillery
+		}
+		search_filters = {  }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = ROC_air_force_left_1
+				}
+				swap_ideas = {
+					remove_idea = ROC_air_force_left_1
+					add_idea = ROC_air_force_left_CAS_1
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = ROC_air_force_right_1
+					add_idea = ROC_air_force_right_CAS_1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_expand_fighter_production
+		icon = GFX_KMT_expand_fighter_production
+		relative_position_id = KMT_expand_licensed_production
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		mutually_exclusive = {
+			focus = KMT_air_artillery_doctrine
+		}
+		mutually_exclusive = {
+			focus = KMT_strategic_air_doctrine
+		}
+		prerequisite = {
+			focus = KMT_expand_licensed_production
+			focus = KMT_domestic_aircraft_production
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_mastery_bonus = {
+				name = KMT_expand_fighter_production
+				bonus = 0.1
+				days = 240
+				grand_doctrine = new_operational_integrity
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_strategic_air_doctrine
+		icon = GFX_KMT_strategic_air_doctrine
+		relative_position_id = KMT_domestic_aircraft_production
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		mutually_exclusive = {
+			focus = KMT_expand_fighter_production
+		}
+		mutually_exclusive = {
+			focus = KMT_air_artillery_doctrine
+		}
+		prerequisite = {
+			focus = KMT_expand_licensed_production
+			focus = KMT_domestic_aircraft_production
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_mastery_bonus = {
+				name = KMT_strategic_air_doctrine
+				bonus = 0.1
+				days = 240
+				grand_doctrine = new_strategic_destruction
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_lancers_of_the_sky
+		icon = GFX_KMT_lancers_of_the_sky
+		relative_position_id = KMT_expand_fighter_production
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_expand_fighter_production
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_lancers_of_the_sky = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_swarm_of_the_sea
+		icon = GFX_KMT_swarm_of_the_sea
+		relative_position_id = KMT_expand_fighter_production
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_expand_fighter_production
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			if = {
+				limit = { has_dlc = "By Blood Alone" }
+				add_tech_bonus = {
+					name = KMT_swarm_of_the_sea
+					bonus = 1
+					uses = 1
+					category = cat_torpedoes
+				}
+				add_tech_bonus = {
+					name = KMT_swarm_of_the_sea
+					bonus = 1
+					uses = 1
+					category = naval_bomber
+				}
+			}
+			else = {
+				add_tech_bonus = {
+					name = KMT_swarm_of_the_sea
+					bonus = 2
+					uses = 1
+					category = naval_bomber
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_age_of_jets
+		icon = GFX_KMT_age_of_jets
+		relative_position_id = KMT_lancers_of_the_sky
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_lancers_of_the_sky
+		}
+		prerequisite = {
+			focus = KMT_swarm_of_the_sea
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_breakthrough_progress = {
+				specialization = specialization_air
+				value = 0.5
+			}
+			add_tech_bonus = {
+				name = generic_rocket_effort
+				ahead_reduction = 2
+				uses = 1
+				category = rocketry
+				category = jet_technology
+			}
+		}
+	}
+	
+	focus = {
+		id = KMT_carpet_bombing
+		icon = GFX_KMT_carpet_bombing
+		relative_position_id = KMT_strategic_air_doctrine
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_strategic_air_doctrine
+		}
+		search_filters = {  }
+		completion_reward = {
+			enable_tech_carpet_bombing = yes
+		}
+	}
+	
+	focus = {
+		id = KMT_improve_bombers
+		icon = GFX_KMT_improve_bombers
+		relative_position_id = KMT_carpet_bombing
+		x = 1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 3
+		}
+		prerequisite = {
+			focus = KMT_carpet_bombing
+		}
+		search_filters = {  }
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = ROC_air_force_left_1
+				}
+				swap_ideas = {
+					remove_idea = ROC_air_force_left_1
+					add_idea = ROC_air_force_left_BOM_1
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = ROC_air_force_right_1
+					add_idea = ROC_air_force_right_BOM_1
+				}
 			}
 		}
 	}

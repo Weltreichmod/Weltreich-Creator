@@ -1444,6 +1444,47 @@ on_actions = {
 			}
 			if = {
 				limit = {
+					original_tag = SHA
+					any_enemy_country = {
+						OR = {
+							original_tag = KMT
+							original_tag = KMR
+						}
+					}
+				}
+				if = {
+					limit = {
+						KMT = { exists = yes }
+					}
+					KMT = {
+						annex_country = { target = SHA transfer_troops = no }
+						SHA = { enable_country_integration_60_compliance = yes }
+					}
+					every_state = {
+						limit = {
+							is_core_of = SHA
+						}
+						remove_core_of = SHA
+					}
+				}
+				else_if = {
+					limit = {
+						KMR = { exists = yes }
+					}
+					KMR = {
+						annex_country = { target = SHA transfer_troops = no }
+						SHA = { enable_country_integration_60_compliance = yes }
+					}
+					every_state = {
+						limit = {
+							is_core_of = SHA
+						}
+						remove_core_of = SHA
+					}
+				}
+			}
+			if = {
+				limit = {
 					original_tag = PRC
 					has_global_flag = Nationalist_Army_flag
 				}

@@ -1411,6 +1411,65 @@ country_event = { #난징-우한 분리
 				every_state = {
 					limit = {
 						is_owned_by = CHI
+						state = 613
+					}
+					transfer_state_to = SHA
+					add_core_of = SHA
+				}
+				SHA = {
+					division_template = {
+						name = "mínbing"
+						is_locked = no
+						regiments = {
+							militia = {
+								x = 0
+								y = 0
+							}
+							militia = {
+								x = 0
+								y = 1
+							}
+							militia = {
+								x = 0
+								y = 2
+							}
+							militia = {
+								x = 1
+								y = 0
+							}
+							militia = {
+								x = 1
+								y = 1
+							}
+						}
+					}
+					613 = {
+						create_unit = {
+							division = "name = \"1 mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.4 start_experience_factor = 0.1"
+							prioritize_location = 12052
+							count = 1
+							owner = SHA
+						}
+						create_unit = {
+							division = "name = \"1 mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.55 start_experience_factor = 0.1"
+							prioritize_location = 10034
+							count = 2
+							owner = SHA
+						}
+						create_unit = {
+							division = "name = \"1 mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.35 start_experience_factor = 0.1"
+							prioritize_location = 12076
+							count = 2
+							owner = SHA
+						}
+					}
+				}
+				#상하이 전역 이벤트
+				CHI = { country_event = { id = china_wr.387 hours = 6 } }
+				KMT = { country_event = { id = china_wr.387 hours = 6 } }
+				every_state = {
+					limit = {
+						is_owned_by = CHI
 						OR = {
 							state = 85
 							state = 596
@@ -2950,6 +3009,10 @@ country_event = { #내전 이후 호법으로 복귀
 				target = NPA
 				transfer_troops = yes
 			}
+			annex_country = {
+				target = SHA
+				transfer_troops = yes
+			}
 		}
 		if = {
 			limit = {
@@ -2970,6 +3033,7 @@ country_event = { #내전 이후 호법으로 복귀
 					is_core_of = ETS
 					is_core_of = SHX
 					is_core_of = NPA
+					is_core_of = SHA
 				}
 			}
 			remove_core_of = SIK
@@ -2979,6 +3043,7 @@ country_event = { #내전 이후 호법으로 복귀
 			remove_core_of = ETS
 			remove_core_of = SHX
 			remove_core_of = NPA
+			remove_core_of = SHA
 			add_core_of = CHI
 		}
 		if = {
@@ -6114,10 +6179,15 @@ country_event = { #중국내전
 					country_event = { id = china_wr.89 days = 3 }
 					country_event = { id = china_wr.213 days = 7 }
 					country_event = { id = china_wr.337 days = 4 }
+					country_event = { id = china_wr.385 days = 10 }
 					set_country_flag = chinese_civil_war_flag
 					mark_focus_tree_layout_dirty = yes
 					complete_national_focus = CHI_hufa_establish_emergency_government
 					add_ideas = CHI_civil_war
+					swap_ideas = {
+						remove_idea = CHI_pervasive_corruption_modifier_0
+						add_idea = CHI_pervasive_corruption_modifier
+					}
 					if = {
 						limit = {
 							has_country_flag = south_china_path_flag
@@ -6137,9 +6207,9 @@ country_event = { #중국내전
 					eles = {
 						transfer_units_fraction = {
 							target = KMT
-							size = 0.0125
-							stockpile_ratio = 0.0125
-							army_ratio = 0.0125
+							size = 0.25
+							stockpile_ratio = 0.25
+							army_ratio = 0.25
 							navy_ratio = 0
 							air_ratio = 0.01
 							keep_unit_leaders_trigger = {
@@ -12938,6 +13008,103 @@ country_event = {
 }
 
 country_event = {
+	id = china_wr.385
+	title = china_wr.385.t
+	desc = china_wr.385.d
+	picture = GFX_report_event_generic_rifles
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.385.a
+		CHI = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = -500
+			}
+		}
+		KMT = {
+			add_equipment_to_stockpile = {
+				type = infantry_equipment
+				amount = 500
+			}
+			country_event = china_wr.386
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.386
+	title = china_wr.386.t
+	desc = china_wr.386.d
+	picture = GFX_report_event_generic_rifles
+	
+	is_triggered_only = yes
+	
+	option = {
+		name = china_wr.386.a
+		effect_tooltip = {
+			CHI = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -500
+				}
+			}
+			KMT = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 500
+				}
+			}
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = china_wr.387
+	title = china_wr.387.t
+	desc = china_wr.387.d
+	picture = GFX_report_event_nationalist_china_machinegun_firing
+	
+	is_triggered_only = yes
+	immediate = {
+		hidden_effect = {
+			if = {
+				limit = {
+					original_tag = KMT
+				}
+				declare_war_on = { target = SHA type = annex_everything }
+				complete_national_focus = KMT_shanghai_campaign
+			}
+		}
+	}
+	option = {
+		name = china_wr.387.a
+		trigger = {
+			original_tag = KMT
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = china_wr.387.b
+		trigger = {
+			original_tag = CHI
+		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
 	id = china_wr.1000
 	title = china_wr.1000.t
 	desc = china_wr.1000.d
@@ -17157,7 +17324,7 @@ country_event = {
 			}
 		}
 		hidden_effect = {
-			country_event = { kuomintag_wr.138 days = 3 }
+			country_event = { id = kuomintag_wr.138 days = 3 }
 		}
 		ai_chance = {
 			base = 10
@@ -17196,6 +17363,83 @@ country_event = {
 				producer = JAP
 			}
 		}
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.139
+	title = kuomintag_wr.139.t
+	desc = kuomintag_wr.139.d
+	picture = GFX_report_event_SOV_purge_aircraft_2
+	
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.139.a
+		effect_tooltip = {
+			send_equipment = {
+				equipment = fighter_equipment
+				amount = 50
+				target = KMT
+			}
+			add_timed_idea = { idea = FROM_aircraft_payment days = 100 }
+			KMT = {
+				add_timed_idea = { KMT_aircraft_payment }
+			}
+		}
+		FROM = { country_event = kuomintag_wr.140 }
+		ai_chance = {
+			base = 10
+		}
+	}
+	option = {
+		name = kuomintag_wr.139.b
+		FROM = { country_event = kuomintag_wr.141 }
+		ai_chance = {
+			base = 1
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.140
+	title = kuomintag_wr.140.t
+	desc = kuomintag_wr.140.d
+	picture = GFX_report_event_SOV_purge_aircraft_2
+	
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.140.a
+		FROM = {
+			send_equipment = {
+				equipment = fighter_equipment
+				amount = 50
+				target = KMT
+			}
+			add_timed_idea = { idea = FROM_aircraft_payment days = 100 }
+		}
+		KMT = {
+			add_timed_idea = { KMT_aircraft_payment }
+		}
+		clr_country_flag = purchse_aircraft_from_FROM_flag
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.141
+	title = kuomintag_wr.141.t
+	desc = kuomintag_wr.141.d
+	picture = GFX_report_event_SOV_purge_aircraft_2
+	
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.141.a
+		clr_country_flag = purchse_aircraft_from_FROM_flag
 		ai_chance = {
 			base = 10
 		}
