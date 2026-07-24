@@ -1,5 +1,4 @@
 NDefines.NGame.END_DATE = "1956.1.1.1"
-NDefines.NCharacter.DEFAULT_PP_COST_FOR_MILITARY_ADVISOR = 150
 NDefines.NDiplomacy.VOLUNTEERS_DIVISIONS_REQUIRED = 10
 
 NDefines.NCareerProfile.MOD_STATISTICS_GROUP = "weltreich_career_profile"
