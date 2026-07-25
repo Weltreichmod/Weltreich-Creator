@@ -2617,6 +2617,57 @@ ideas = {
                 local_resources_factor = 0.05          # 자원 획득 효율 +5%
             }
         }
+		
+		INS_chinese_investment = {
+            allowed = { always = yes }
+			available = {
+				NOT = {
+					any_enemy_country = {
+						has_idea = CHI_nanhai_economic_hegemony
+					}
+				}
+			}
+            picture = INS_cheap_lumber
+            
+            modifier = {
+				country_resource_rubber = -15
+                production_speed_buildings_factor = 0.10 # 모든 건물 건설 속도 +10%
+                industrial_capacity_factory = 0.05            # 전체 공장 출력 +5%
+                consumer_goods_factor = -0.03             # 소비재 공장 비율 -3%
+            }
+        }
+		
+		CHI_nanhai_economic_hegemony = {
+            allowed = { always = yes }
+            picture = INS_cheap_lumber
+            available = {
+				NOT = {
+					any_enemy_country = {
+						has_idea = INS_chinese_investment
+					}
+				}
+			}
+            modifier = {
+				country_resource_rubber = 15
+                civilian_factory_use = 2          # 인니 투자로 인한 민공 2개 차출 (오프맵 -2)
+            }
+        }
+		
+		CHI_advisors_in_indonesia = {
+            allowed = { always = yes }
+            picture = german_advisors
+            available = {
+				NOT = { has_war_with = CHI }
+				NOT = { has_war_with = KMT }
+				NOT = { has_war_with = KMR }
+				has_war_with = INS
+			}
+            modifier = {
+				army_attack_factor = 0.1
+                experience_gain_army = 0.1         # 일간 육군 경험치 +0.05
+                command_power_gain_mult = -0.05      # 지휘력 획득량 -5%
+            }
+        }
 
         # 중국용 국민정신
         CHI_sino_korean_economic_cooperation = {
