@@ -432,14 +432,40 @@ on_actions = {
 						}
 						transfer_state_to = SIK
 					}
-					else = {
-						every_state = {
-							limit = {
-								is_owned_by = SEF
-								state = 618
-							}
-							transfer_state_to = CHI
+				}
+				else_if = {
+					limit = {
+						SIK = { exists = no }
+						CHI = { exists = yes }
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SEF
+							state = 618
 						}
+						transfer_state_to = CHI
+					}
+				}
+				else_if = {
+					limit = {
+						SIK = { exists = no }
+						KMT = { exists = yes }
+					}
+					every_state = {
+						limit = {
+							is_owned_by = SEF
+							state = 618
+						}
+						transfer_state_to = KMT
+					}
+				}
+				else = {
+					every_state = {
+						limit = {
+							is_owned_by = SEF
+							state = 618
+						}
+						transfer_state_to = KMR
 					}
 				}
 				every_state = {
@@ -648,6 +674,11 @@ on_actions = {
 						CHI = { exists = yes }
 						KMR = { exists = yes }
 					}
+					KMT = {
+						transfer_navy = {
+							target = KMR
+						}
+					}
 					every_country = {
 						limit = {
 							is_chinese_country = yes
@@ -671,6 +702,11 @@ on_actions = {
 					limit = {
 						CHI = { exists = yes }
 						KMR = { exists = no }
+					}
+					KMT = {
+						transfer_navy = {
+							target = CHI
+						}
 					}
 					CHI = {
 						country_event = { id = china_wr.88 days = 7 }
@@ -797,6 +833,11 @@ on_actions = {
 						CHI = { exists = no }
 						KMR = { exists = yes }
 					}
+					KMT = {
+						transfer_navy = {
+							target = KMR
+						}
+					}
 					KMR = {
 						KMT = { enable_country_integration_60_compliance = yes }
 						CHI = { enable_country_integration_60_compliance = yes }
@@ -910,6 +951,11 @@ on_actions = {
 						KMT = { exists = yes }
 						KMR = { exists = yes }
 					}
+					CHI = {
+						transfer_navy = {
+							target = KMT
+						}
+					}
 					every_country = {
 						limit = {
 							is_chinese_country = yes
@@ -933,6 +979,11 @@ on_actions = {
 					limit = {
 						KMR = { exists = no }
 						KMT = { exists = yes }
+					}
+					CHI = {
+						transfer_navy = {
+							target = KMT
+						}
 					}
 					KMT = {
 						annex_country = {
@@ -1039,6 +1090,11 @@ on_actions = {
 					limit = {
 						KMR = { exists = yes }
 						KMT = { exists = no }
+					}
+					CHI = {
+						transfer_navy = {
+							target = KMR
+						}
 					}
 					KMR = {
 						annex_country = {
@@ -1152,6 +1208,11 @@ on_actions = {
 						KMT = { exists = yes }
 						CHI = { exists = yes }
 					}
+					KMR = {
+						transfer_navy = {
+							target = KMT
+						}
+					}
 					every_country = {
 						limit = {
 							is_chinese_country = yes
@@ -1175,6 +1236,11 @@ on_actions = {
 					limit = {
 						CHI = { exists = no }
 						KMT = { exists = yes }
+					}
+					KMR = {
+						transfer_navy = {
+							target = KMT
+						}
 					}
 					KMT = {
 						annex_country = {
@@ -1273,6 +1339,11 @@ on_actions = {
 					limit = {
 						CHI = { exists = yes }
 						KMT = { exists = no }
+					}
+					KMR = {
+						transfer_navy = {
+							target = CHI
+						}
 					}
 					CHI = {
 						country_event = { id = china_wr.88 days = 7 }

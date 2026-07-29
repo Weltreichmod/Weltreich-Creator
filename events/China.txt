@@ -1453,13 +1453,13 @@ country_event = { #난징-우한 분리
 						create_unit = {
 							division = "name = \"1 mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.55 start_experience_factor = 0.1"
 							prioritize_location = 10034
-							count = 2
+							count = 1
 							owner = SHA
 						}
 						create_unit = {
 							division = "name = \"1 mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.35 start_experience_factor = 0.1"
 							prioritize_location = 12076
-							count = 2
+							count = 1
 							owner = SHA
 						}
 					}
@@ -6160,6 +6160,7 @@ country_event = { #중국내전
 					set_country_flag = chinese_civil_war_flag
 					mark_focus_tree_layout_dirty = yes
 					complete_national_focus = CHI_hufa_establish_emergency_government
+					country_lock_all_division_template = no
 					add_ideas = CHI_civil_war
 					swap_ideas = {
 						remove_idea = CHI_pervasive_corruption_modifier_0
@@ -6167,7 +6168,7 @@ country_event = { #중국내전
 					}
 					if = {
 						limit = {
-							has_country_flag = south_china_path_flag
+							CHI = { has_country_flag = south_china_path_flag }
 						}
 						transfer_units_fraction = {
 							target = KMT
@@ -6228,7 +6229,7 @@ country_event = { #중국내전
 							create_unit = {
 								division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.1 start_experience_factor = 0.3"
 								prioritize_location = 9843
-								count = 5
+								count = 9
 								owner = CHI
 							}
 						}
@@ -6336,7 +6337,7 @@ country_event = { #중국내전
 						create_unit = {
 							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.4 start_experience_factor = 0.3"
 							prioritize_location = 12055
-							count = 2
+							count = 3
 							owner = KMT
 						}
 					}
@@ -6344,7 +6345,7 @@ country_event = { #중국내전
 						create_unit = {
 							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.4 start_experience_factor = 0.3"
 							prioritize_location = 1099
-							count = 1
+							count = 2
 							owner = KMT
 						}
 					}
@@ -6352,7 +6353,7 @@ country_event = { #중국내전
 						create_unit = {
 							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
 							prioritize_location = 7097
-							count = 1
+							count = 2
 							owner = KMT
 						}
 					}
@@ -6360,7 +6361,7 @@ country_event = { #중국내전
 						create_unit = {
 							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.3 start_experience_factor = 0.3"
 							prioritize_location = 4050
-							count = 1
+							count = 2
 							owner = KMT
 						}
 					}
@@ -6376,7 +6377,7 @@ country_event = { #중국내전
 						create_unit = {
 							division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.35 start_experience_factor = 0.3"
 							prioritize_location = 1047
-							count = 1
+							count = 2
 							owner = KMT
 						}
 					}
@@ -11498,9 +11499,9 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = china_wr.351.a
-		CHI = { country_event = china_wr.353 }
+		FROM = { country_event = china_wr.353 }
 		effect_tooltip = {
-			CHI = {
+			FROM = {
 				if = {
 					limit = {
 						OR = {
@@ -11525,15 +11526,15 @@ country_event = {
 	}
 	option = {
 		name = china_wr.351.b
-		CHI = { country_event = china_wr.354 }
+		FROM = { country_event = china_wr.354 }
 		effect_tooltip = {
-			CHI = {
+			FROM = {
 				create_wargoal = { type = annex_everything target = TIB }
 				every_state = {
 					limit = {
 						is_owned_by = TIB
 					}
-					add_claim_by = CHI
+					add_claim_by = FROM
 				}
 			}
 		}
@@ -11551,9 +11552,9 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = china_wr.352.a
-		CHI = { country_event = china_wr.355 }
+		FROM = { country_event = china_wr.355 }
 		effect_tooltip = {
-			CHI = {
+			FROM = {
 				annex_country = { target = TIB transfer_troops = no }
 				TIB = { enable_country_integration_60_compliance = yes }
 			}
@@ -11564,15 +11565,15 @@ country_event = {
 	}
 	option = {
 		name = china_wr.352.b
-		CHI = { country_event = china_wr.356 }
+		FROM = { country_event = china_wr.356 }
 		effect_tooltip = {
-			CHI = {
+			FROM = {
 				create_wargoal = { type = annex_everything target = TIB }
 				every_state = {
 					limit = {
 						is_owned_by = TIB
 					}
-					add_claim_by = CHI
+					add_claim_by = FROM
 				}
 			}
 		}
@@ -11590,7 +11591,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = china_wr.353.a
-		CHI = {
+		ROOT = {
 			if = {
 				limit = {
 					OR = {
@@ -11622,13 +11623,13 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = china_wr.354.a
-		CHI = {
+		ROOT = {
 			create_wargoal = { type = annex_everything target = TIB }
 			every_state = {
 				limit = {
 					is_owned_by = TIB
 				}
-				add_claim_by = CHI
+				add_claim_by = ROOT
 			}
 		}
 		ai_chance = {
@@ -11645,7 +11646,7 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = china_wr.355.a
-		CHI = {
+		ROOT = {
 			annex_country = { target = TIB transfer_troops = no }
 			TIB = { enable_country_integration_60_compliance = yes }
 		}
@@ -11663,13 +11664,13 @@ country_event = {
 	is_triggered_only = yes
 	option = {
 		name = china_wr.356.a
-		CHI = {
+		ROOT = {
 			create_wargoal = { type = annex_everything target = TIB }
 			every_state = {
 				limit = {
 					is_owned_by = TIB
 				}
-				add_claim_by = CHI
+				add_claim_by = ROOT
 			}
 		}
 		ai_chance = {
@@ -13016,18 +13017,38 @@ country_event = {
 	
 	option = {
 		name = china_wr.385.a
-		CHI = {
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = -500
+		if = {
+			limit = {
+				CHI = { has_country_flag = south_china_path_flag }
+			}
+			CHI = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -1500
+				}
+			}
+			KMT = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 1500
+				}
+				country_event = china_wr.386
 			}
 		}
-		KMT = {
-			add_equipment_to_stockpile = {
-				type = infantry_equipment
-				amount = 500
+		eles = {
+			CHI = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = -500
+				}
 			}
-			country_event = china_wr.386
+			KMT = {
+				add_equipment_to_stockpile = {
+					type = infantry_equipment
+					amount = 500
+				}
+				country_event = china_wr.386
+			}
 		}
 		ai_chance = {
 			base = 10
@@ -13045,17 +13066,38 @@ country_event = {
 	
 	option = {
 		name = china_wr.386.a
-		effect_tooltip = {
-			CHI = {
-				add_equipment_to_stockpile = {
-					type = infantry_equipment
-					amount = -500
+		if = {
+			limit = {
+				CHI = { has_country_flag = south_china_path_flag }
+			}
+			effect_tooltip = {
+				CHI = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = -1500
+					}
+				}
+				KMT = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = 1500
+					}
 				}
 			}
-			KMT = {
-				add_equipment_to_stockpile = {
-					type = infantry_equipment
-					amount = 500
+		}
+		else = {
+			effect_tooltip = {
+				CHI = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = -500
+					}
+				}
+				KMT = {
+					add_equipment_to_stockpile = {
+						type = infantry_equipment
+						amount = 500
+					}
 				}
 			}
 		}
@@ -13418,7 +13460,7 @@ country_event = {
 	id = china_wr.1000
 	title = china_wr.1000.t
 	desc = china_wr.1000.d
-	picture = GFX_report_event_chinese_army_training
+	picture = GFX_1000_picture
 	is_triggered_only = yes
 	option = {
 		name = china_wr.1000.a
@@ -13438,7 +13480,7 @@ country_event = {
 	id = china_wr.1001
 	title = china_wr.1001.t
 	desc = china_wr.1001.d
-	picture = GFX_report_event_chinese_army_training
+	picture = GFX_1001_picture
 	is_triggered_only = yes
 	option = {
 		name = china_wr.1001.a
@@ -17984,11 +18026,12 @@ country_event = {
 		}
 	}
 }
+
 country_event = {
 	id = kuomintag_wr.152
 	title = kuomintag_wr.152.t
 	desc = kuomintag_wr.152.d
-	picture = GFX_report_event_generic_strike
+	picture = KMT_wang_ending
 	
 	is_triggered_only = yes
 	option = {
@@ -18003,11 +18046,26 @@ country_event = {
 	id = kuomintag_wr.153
 	title = kuomintag_wr.153.t
 	desc = kuomintag_wr.153.d
-	picture = GFX_report_event_generic_strike
+	picture = KMT_chiang_ending
 	
 	is_triggered_only = yes
 	option = {
 		name = kuomintag_wr.153.a
+		ai_chance = {
+			base = 10
+		}
+	}
+}
+
+country_event = {
+	id = kuomintag_wr.154
+	title = kuomintag_wr.154.t
+	desc = kuomintag_wr.154.d
+	picture = KMT_wang_ending
+	
+	is_triggered_only = yes
+	option = {
+		name = kuomintag_wr.154.a
 		ai_chance = {
 			base = 10
 		}
