@@ -4227,3 +4227,425 @@ KMR_public_discontent_sub_10 = {
         add_to_variable = { var = KMR_democratization_decisions_modifier_war_support_factor value = 0.02 tooltip = war_support_factor_tt }
     }
 }
+
+		  ##################################
+#########################################################
+  ### #  # #  # ### ###       ##  ### ###   ##  #   ### 
+   #  ## # ## # #   #  #     #  #  #  #  # #  # #   #   
+   #  # ## # ## ##  ###      #     #  ###  #    #   ##  
+   #  #  # #  # #   #  #     #  #  #  #  # #  # #   #   
+  ### #  # #  # ### #  #      ##  ### #  #  ##  ### ### 
+#########################################################
+		  ##################################
+
+KMR_remove_replaced_advisor_1_effects = {
+	custom_effect_tooltip = {
+		localization_key = replace_ascended_advisor_tt
+		CHARACTER = [GetKMRAscendedAdvisorName1]
+		TRAIT = [GetKMRAscendedAdvisorTrait1]
+	}
+	hidden_effect = {
+		if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_1 = 1 }
+			}
+			set_variable = { KMR_ascended_advisor_1 = 0 }
+			remove_ideas = KMR_bai_chongxi_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_wolves_of_guangxi
+					check_variable = { KMR_wolves_of_guangxi_focus_advisor = 1 }
+				}
+				deactivate_shine_on_focus = KMR_wolves_of_guangxi
+				clr_country_flag = KMR_wolves_of_guangxi_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_new_commandant_of_whampoa
+				}
+				deactivate_shine_on_focus = KMR_new_commandant_of_whampoa
+				clr_country_flag = KMR_new_commandant_of_whampoa_in_progress_flag
+			}
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_brilliant_deputy_commander
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_1 = 2 }
+			}
+			set_variable = { KMR_ascended_advisor_1 = 0 }
+			remove_ideas = KMR_huang_shaohong_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_wolves_of_guangxi
+					check_variable = { KMR_wolves_of_guangxi_focus_advisor = 2 }
+				}
+				deactivate_shine_on_focus = KMR_wolves_of_guangxi
+				clr_country_flag = KMR_wolves_of_guangxi_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_loyal_bureaucracy
+				}
+				deactivate_shine_on_focus = KMR_loyal_bureaucracy
+				clr_country_flag = KMR_loyal_bureaucracy_in_progress_flag
+			}
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_reliable_administrator
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_1 = 4 }
+			}
+			set_variable = { KMR_ascended_advisor_1 = 0 }
+			remove_ideas = KMR_canton_merchants_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_mutual_benefit
+				}
+				deactivate_shine_on_focus = KMR_mutual_benefit
+				clr_country_flag = KMR_mutual_benefit_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_sustainable_relation
+				}
+				deactivate_shine_on_focus = KMR_sustainable_relation
+				clr_country_flag = KMR_sustainable_relation_in_progress_flag
+			}
+			remove_ideas = KMR_free_market_economy_idea
+			remove_ideas = KMR_free_market_economy_idea_1
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_canton_merchant_corps
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_1 = 5 }
+			}
+			set_variable = { KMR_ascended_advisor_1 = 0 }
+			remove_ideas = KMR_tang_shengzhi_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_great_compassion
+				}
+				deactivate_shine_on_focus = KMR_great_compassion
+				clr_country_flag = KMR_great_compassion_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_accepting_appeasement
+				}
+				deactivate_shine_on_focus = KMR_accepting_appeasement
+				clr_country_flag = KMR_accepting_appeasement_in_progress_flag
+			}
+			remove_ideas = KMR_state_intervention_economy_idea
+			remove_ideas = KMR_state_intervention_economy_idea_1
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_buddhist_general
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else = {
+			log = "Something bad happened trying to remove advisor [?KMR_ascended_advisor_1] effects."
+		}
+	}
+}
+
+KMR_remove_replaced_advisor_2_effects = {
+	custom_effect_tooltip = {
+		localization_key = replace_ascended_advisor_tt
+		CHARACTER = [GetKMRAscendedAdvisorName2]
+		TRAIT = [GetKMRAscendedAdvisorTrait2]
+	}
+	hidden_effect = {
+		if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_2 = 1 }
+			}
+			set_variable = { KMR_ascended_advisor_2 = 0 }
+			remove_ideas = KMR_bai_chongxi_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_wolves_of_guangxi
+					check_variable = { KMR_wolves_of_guangxi_focus_advisor = 1 }
+				}
+				deactivate_shine_on_focus = KMR_wolves_of_guangxi
+				clr_country_flag = KMR_wolves_of_guangxi_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_new_commandant_of_whampoa
+				}
+				deactivate_shine_on_focus = KMR_new_commandant_of_whampoa
+				clr_country_flag = KMR_new_commandant_of_whampoa_in_progress_flag
+			}
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_brilliant_deputy_commander
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_2 = 2 }
+			}
+			set_variable = { KMR_ascended_advisor_2 = 0 }
+			remove_ideas = KMR_huang_shaohong_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_wolves_of_guangxi
+					check_variable = { KMR_wolves_of_guangxi_focus_advisor = 2 }
+				}
+				deactivate_shine_on_focus = KMR_wolves_of_guangxi
+				clr_country_flag = KMR_wolves_of_guangxi_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_loyal_bureaucracy
+				}
+				deactivate_shine_on_focus = KMR_loyal_bureaucracy
+				clr_country_flag = KMR_loyal_bureaucracy_in_progress_flag
+			}
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_reliable_administrator
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_2 = 4 }
+			}
+			set_variable = { KMR_ascended_advisor_2 = 0 }
+			remove_ideas = KMR_canton_merchants_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_mutual_benefit
+				}
+				deactivate_shine_on_focus = KMR_mutual_benefit
+				clr_country_flag = KMR_mutual_benefit_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_sustainable_relation
+				}
+				deactivate_shine_on_focus = KMR_sustainable_relation
+				clr_country_flag = KMR_sustainable_relation_in_progress_flag
+			}
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_canton_merchant_corps
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_2 = 5 }
+			}
+			set_variable = { KMR_ascended_advisor_2 = 0 }
+			remove_ideas = KMR_tang_shengzhi_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_great_compassion
+				}
+				deactivate_shine_on_focus = KMR_great_compassion
+				clr_country_flag = KMR_great_compassion_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_accepting_appeasement
+				}
+				deactivate_shine_on_focus = KMR_accepting_appeasement
+				clr_country_flag = KMR_accepting_appeasement_in_progress_flag
+			}
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_buddhist_general
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else = {
+			log = "Something bad happened trying to remove advisor [?KMR_ascended_advisor_2] effects."
+		}
+	}
+}
+
+KMR_remove_replaced_advisor_3_effects = {
+	custom_effect_tooltip = {
+		localization_key = replace_ascended_advisor_tt
+		CHARACTER = [GetKMRAscendedAdvisorName3]
+		TRAIT = [GetKMRAscendedAdvisorTrait3]
+	}
+	hidden_effect = {
+		if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_3 = 1 }
+			}
+			set_variable = { KMR_ascended_advisor_3 = 0 }
+			remove_ideas = KMR_bai_chongxi_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_wolves_of_guangxi
+					check_variable = { KMR_wolves_of_guangxi_focus_advisor = 1 }
+				}
+				deactivate_shine_on_focus = KMR_wolves_of_guangxi
+				clr_country_flag = KMR_wolves_of_guangxi_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_new_commandant_of_whampoa
+				}
+				deactivate_shine_on_focus = KMR_new_commandant_of_whampoa
+				clr_country_flag = KMR_new_commandant_of_whampoa_in_progress_flag
+			}
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_brilliant_deputy_commander
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_3 = 2 }
+			}
+			set_variable = { KMR_ascended_advisor_3 = 0 }
+			remove_ideas = KMR_huang_shaohong_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_wolves_of_guangxi
+					check_variable = { KMR_wolves_of_guangxi_focus_advisor = 2 }
+				}
+				deactivate_shine_on_focus = KMR_wolves_of_guangxi
+				clr_country_flag = KMR_wolves_of_guangxi_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_loyal_bureaucracy
+				}
+				deactivate_shine_on_focus = KMR_loyal_bureaucracy
+				clr_country_flag = KMR_loyal_bureaucracy_in_progress_flag
+			}
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_reliable_administrator
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_3 = 4 }
+			}
+			set_variable = { KMR_ascended_advisor_3 = 0 }
+			remove_ideas = KMR_canton_merchants_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_mutual_benefit
+				}
+				deactivate_shine_on_focus = KMR_mutual_benefit
+				clr_country_flag = KMR_mutual_benefit_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_sustainable_relation
+				}
+				deactivate_shine_on_focus = KMR_sustainable_relation
+				clr_country_flag = KMR_sustainable_relation_in_progress_flag
+			}
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_canton_merchant_corps
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else_if = {
+			limit = {
+				check_variable = { KMR_ascended_advisor_3 = 5 }
+			}
+			set_variable = { KMR_ascended_advisor_3 = 0 }
+			remove_ideas = KMR_tang_shengzhi_idea
+			if = { #STOP ANY FOCUS IN-PROGRESS (WITH SHINY EFFECT)
+				limit = {
+					has_shine_effect_on_focus = KMR_great_compassion
+				}
+				deactivate_shine_on_focus = KMR_great_compassion
+				clr_country_flag = KMR_great_compassion_in_progress_flag
+			}
+			else_if = {
+				limit = {
+					has_shine_effect_on_focus = KMR_accepting_appeasement
+				}
+				deactivate_shine_on_focus = KMR_accepting_appeasement
+				clr_country_flag = KMR_accepting_appeasement_in_progress_flag
+			}
+
+			#Uncomplete Ascension focus so that he can be picked later on
+			uncomplete_national_focus = {
+				focus = KMR_buddhist_general
+				uncomplete_children = no
+				refund_political_power = no
+			}
+		}
+		else = {
+			log = "Something bad happened trying to remove advisor [?KMR_ascended_advisor_3] effects."
+		}
+	}
+}
+
+add_ascended_advisor_effect = {
+	if = {
+		limit = {
+			check_variable = { KMR_ascending_advisor = 1 }
+		}
+		add_ideas = KMR_bai_chongxi_idea
+	}
+	else_if = {
+		limit = {
+			check_variable = { KMR_ascending_advisor = 2 }
+		}
+		add_ideas = KMR_huang_shaohong_idea
+	}
+	else_if = {
+		limit = {
+			check_variable = { KMR_ascending_advisor = 4 }
+		}
+		add_ideas = KMR_canton_merchants_idea
+	}
+	else_if = {
+		limit = {
+			check_variable = { KMR_ascending_advisor = 5 }
+		}
+		add_ideas = KMR_tang_shengzhi_idea
+	}
+}

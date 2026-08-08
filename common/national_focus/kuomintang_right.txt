@@ -15,6 +15,8 @@
 ### search_filters = {FOCUS_FILTER_INTERNATIONAL_TRADE}
 ### search_filters = {FOCUS_FILTER_HISTORICAL}
 
+@KMR_inner_circle_time_tier = 10
+
 focus_tree = {
 	id = kuomintang_right_focus
 	
@@ -157,14 +159,14 @@ focus_tree = {
 			add_political_power = 25
 			unlock_decision_category_tooltip = KMR_democratization_decisions
 			add_dynamic_modifier = { modifier = KMR_democratization_decisions_modifier }
-			set_variable = { KMR_democratization_decisions_modifier_political_advisor_cost_factor = 0.04 }
-			set_variable = { KMR_democratization_decisions_modifier_army_advisor_cost_factor = 0.04 }
-			set_variable = { KMR_democratization_decisions_modifier_navy_advisor_cost_factor = 0.04 }
-			set_variable = { KMR_democratization_decisions_modifier_air_advisor_cost_factor = 0.04 }
-			set_variable = { KMR_democratization_decisions_modifier_high_command_cost_factor = 0.04 }
-			set_variable = { KMR_democratization_decisions_modifier_trade_laws_cost_factor = 0.04 }
-			set_variable = { KMR_democratization_decisions_modifier_economy_cost_factor = 0.04 }
-			set_variable = { KMR_democratization_decisions_modifier_mobilization_laws_cost_factor = 0.04 }
+			set_variable = { KMR_democratization_decisions_modifier_political_advisor_cost_factor = -0.04 }
+			set_variable = { KMR_democratization_decisions_modifier_army_advisor_cost_factor = -0.04 }
+			set_variable = { KMR_democratization_decisions_modifier_navy_advisor_cost_factor = -0.04 }
+			set_variable = { KMR_democratization_decisions_modifier_air_advisor_cost_factor = -0.04 }
+			set_variable = { KMR_democratization_decisions_modifier_high_command_cost_factor = -0.04 }
+			set_variable = { KMR_democratization_decisions_modifier_trade_laws_cost_factor = -0.04 }
+			set_variable = { KMR_democratization_decisions_modifier_economy_cost_factor = -0.04 }
+			set_variable = { KMR_democratization_decisions_modifier_mobilization_laws_cost_factor = -0.04 }
 		}
 	}
 	
@@ -263,8 +265,8 @@ focus_tree = {
 	}
 	
 	focus = {
-		id = KMR_annei_yangwai
-		icon = GFX_KMR_annei_yangwai
+		id = KMR_root_out_corrupt_officials
+		icon = GFX_KMR_root_out_corrupt_officials
 		relative_position_id = KMR_annei_yangwai
 		x = -3
 		y = 1
@@ -330,7 +332,7 @@ focus_tree = {
 		}
 		search_filters = { FOCUS_FILTER_INDUSTRY }
 		completion_reward = {
-			KMR_democratization_sub_5 = yes
+			KMR_democratization_add_5 = yes
 			add_ideas = KMR_guangxi_model_idea
 		}
 	}
@@ -519,11 +521,1987 @@ focus_tree = {
 		}
 	}
 	
+	focus = {
+		id = KMR_end_of_special_governance
+		icon = GFX_KMR_end_of_special_governance
+		relative_position_id = KMR_establishment_of_premier_responsibility
+		x = -1
+		y = 1
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMR_judicial_reform
+		}
+		prerequisite = {
+			focus = KMR_establishment_of_premier_responsibility
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_right_wr.23
+		}
+	}
+	
+	focus = {
+		id = KMR_restoration_of_order
+		icon = GFX_KMR_restoration_of_order
+		relative_position_id = KMR_end_of_special_governance
+		x = 0
+		y = 1
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			NOT = { has_global_flag = chinese_civil_war }
+			custom_trigger_tooltip = {
+				check_variable = { KMR_democratization_var = 100 }
+				check_variable = { KMR_public_discontent_var = 0 }
+				tooltip = KMR_restoration_of_order_tt
+			}
+		}
+		prerequisite = {
+			focus = KMR_clean_public_service
+		}
+		prerequisite = {
+			focus = KMR_end_of_special_governance
+		}
+		prerequisite = {
+			focus = KMR_tuanfei_lianzuo_law
+		}
+		search_filters = { FOCUS_FILTER_POLITICAL }
+		completion_reward = {
+			country_event = kuomintag_right_wr.24
+		}
+	}
+	
+	#이너서클
+	focus = {
+		id = KMR_key_to_power
+		icon = GFX_KMR_key_to_power
+		relative_position_id = KMR_sun_yatsens_sword
+		x = 7
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 16
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMR_sun_yatsens_sword
+		}
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+		completion_reward = {
+			add_political_power = 15
+		}
+	}
+	
+	focus = {
+		id = KMR_kwangsi_loyalists
+		icon = GFX_KMR_kwangsi_loyalists
+		relative_position_id = KMR_key_to_power
+		x = -1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 16
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMR_key_to_power
+		}
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+		completion_reward = {
+			add_political_power = 15
+			if = {
+				limit = {
+					has_completed_focus = KMR_southern_strongmen
+				}
+				custom_effect_tooltip = KMR_kwangsi_loyalists_tt
+				set_country_flag = KMR_inner_circle_button_gui_open
+			}
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				random_list = {
+					50 = {
+						set_country_flag = KMR_brilliant_deputy_commander_flag
+					}
+					50 = {
+						set_country_flag = KMR_reliable_administrator_flag
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_southern_strongmen
+		icon = GFX_KMR_southern_strongmen
+		relative_position_id = KMR_key_to_power
+		x = 1
+		y = 1
+		cost = 2
+		ai_will_do = {
+			factor = 16
+		}
+		available = {
+			is_subject = no
+		}
+		prerequisite = {
+			focus = KMR_key_to_power
+		}
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+		completion_reward = {
+			add_political_power = 15
+			if = {
+				limit = {
+					has_completed_focus = KMR_kwangsi_loyalists
+				}
+				custom_effect_tooltip = KMR_kwangsi_loyalists_tt
+				set_country_flag = KMR_inner_circle_button_gui_open
+			}
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				random_list = {
+					50 = {
+						set_country_flag = KMR_canton_merchant_corps_flag
+					}
+					50 = {
+						set_country_flag = KMR_buddhist_general_flag
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_brilliant_deputy_commander
+		icon = GFX_KMR_brilliant_deputy_commander
+		prerequisite = { focus = KMR_kwangsi_loyalists }
+
+		x = -6
+		y = 1
+		relative_position_id = KMR_southern_strongmen
+		cost = 2
+		ai_will_do = {
+			factor = 16
+			modifier = {
+				add = -16
+				has_country_flag = KMR_reliable_administrator_flag
+			}
+		}
+		available = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				hidden_trigger = {
+					NOT = { has_country_flag = KMR_bai_chongxi_was_ascended_flag }
+				}
+			}
+			NOT = { has_country_flag = KMR_inner_circle_80_flag }
+			is_subject = no
+			has_completed_focus = KMR_kwangsi_loyalists
+			has_completed_focus = KMR_key_to_power
+			has_completed_focus = KMR_southern_strongmen
+			has_completed_focus = KMR_king_of_the_southern_heavens
+			if = {
+				limit = {
+					has_completed_focus = KMR_reliable_administrator
+				}
+				has_completed_focus = KMR_wolves_of_guangxi
+			}
+			if = {
+				limit = {
+					has_country_flag = KMR_inner_circle_event_pending_flag
+				}
+				NOT = { has_country_flag = KMR_inner_circle_event_pending_flag }
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			custom_effect_tooltip = {
+				localization_key = KMR_ascension_of_character_tt
+				CHARACTER = KMT_Bai_Chongxi
+			}
+			set_country_flag = KMR_bai_chongxi_was_ascended_flag
+			if = { #Just to make it easy to debug stuff for development
+				limit = {
+					OR = {
+						check_variable = { KMR_ascended_advisor_1 = 1 }
+						check_variable = { KMR_ascended_advisor_2 = 1 }
+						check_variable = { KMR_ascended_advisor_3 = 1 }
+					}
+				}
+				log = "Advisor was already there. STOP CHEATING!"
+			}
+			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				limit = {
+					check_variable = { KMR_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { KMR_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { KMR_ascended_advisor_3 = 0 compare = not_equals }
+				}
+				hidden_effect = {
+					set_variable = { KMR_ascending_advisor = 1 }
+					country_event = KMR_inner_circle.01
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_1 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_1 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_2 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_2 = 1 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_3 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_3 = 1 }
+				}
+				add_ideas = KMR_bai_chongxi_idea
+			}
+			set_country_flag = {
+				flag = KMR_inner_circle_80_flag
+				days = 80
+			}
+			hidden_effect = {
+				country_event = { id = KMR_inner_circle_bai_chongxi.01 days = KMR_inner_circle_days_to_start_focus random_days = KMR_inner_circle_random_days }
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_wolves_of_guangxi
+		icon = GFX_KMR_wolves_of_guangxi
+		prerequisite = {
+			focus = KMR_brilliant_deputy_commander
+			focus = KMR_reliable_administrator
+		}
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 1
+		y = 1
+		relative_position_id = KMR_brilliant_deputy_commander
+		cost = @KMR_inner_circle_time_tier
+		
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = KMR_wolves_of_guangxi_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @KMR_inner_circle_time_tier } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				if = {
+					limit = {
+						check_variable = { KMR_wolves_of_guangxi_focus_advisor = 1 }
+					}
+					custom_override_tooltip = {
+						tooltip = {
+							localization_key = GER_inner_circle_focus_in_progress_tt
+							CHARACTER = KMT_Bai_Chongxi
+							FLAG_DAYS = [?KMR_wolves_of_guangxi_in_progress_flag:days]
+						}
+						always = no 
+					}
+				}
+				else = {
+					custom_override_tooltip = {
+						tooltip = {
+							localization_key = GER_inner_circle_focus_in_progress_tt
+							CHARACTER = KMR_Huang_Shaoxiong
+							FLAG_DAYS = [?KMR_wolves_of_guangxi_in_progress_flag:days]
+						}
+						always = no 
+					}
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_multiple_tt
+						CHARACTER = KMT_Bai_Chongxi
+						FOCUS = KMR_brilliant_deputy_commander
+						CHARACTER_2 = KMR_Huang_Shaoxiong
+						FOCUS_2 = KMR_reliable_administrator
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			custom_effect_tooltip = KMR_wolves_of_guangxi_tt
+		}
+	}
+	
+	focus = {
+		id = KMR_new_commandant_of_whampoa
+		icon = GFX_KMR_new_commandant_of_whampoa
+		prerequisite = { focus = KMR_brilliant_deputy_commander }
+		prerequisite = { focus = KMR_wolves_of_guangxi }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 2
+		relative_position_id = KMR_brilliant_deputy_commander
+		cost = @KMR_inner_circle_time_tier
+		
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = KMR_new_commandant_of_whampoa_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @KMR_inner_circle_time_tier } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = KMT_Bai_Chongxi
+						FLAG_DAYS = [?KMR_new_commandant_of_whampoa_in_progress_flag:days]
+					}
+					always = no 
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = KMT_Bai_Chongxi
+						FOCUS = KMR_brilliant_deputy_commander
+					}
+					always = no
+				}
+			}
+
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			add_ideas = KMR_whampoa_military_academy
+		}
+	}
+
+	
+	focus = {
+		id = KMR_reliable_administrator
+		icon = GFX_KMR_reliable_administrator
+		prerequisite = { focus = KMR_kwangsi_loyalists }
+
+		x = -4
+		y = 1
+		relative_position_id = KMR_southern_strongmen
+		cost = 2
+		ai_will_do = {
+			factor = 16
+			modifier = {
+				add = -16
+				has_country_flag = KMR_brilliant_deputy_commander_flag
+			}
+		}
+		available = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				hidden_trigger = {
+					NOT = { has_country_flag = KMR_huang_shaohong_was_ascended_flag }
+				}
+			}
+			NOT = { has_country_flag = KMR_inner_circle_80_flag }
+			is_subject = no
+			has_completed_focus = KMR_kwangsi_loyalists
+			has_completed_focus = KMR_key_to_power
+			has_completed_focus = KMR_southern_strongmen
+			has_completed_focus = KMR_king_of_the_southern_heavens
+			if = {
+				limit = {
+					has_completed_focus = KMR_brilliant_deputy_commander
+				}
+				has_completed_focus = KMR_wolves_of_guangxi
+			}
+			if = {
+				limit = {
+					has_country_flag = KMR_inner_circle_event_pending_flag
+				}
+				NOT = { has_country_flag = KMR_inner_circle_event_pending_flag }
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			custom_effect_tooltip = {
+				localization_key = KMR_ascension_of_character_tt
+				CHARACTER = KMR_Huang_Shaoxiong
+			}
+			set_country_flag = KMR_huang_shaohong_was_ascended_flag
+			if = { #Just to make it easy to debug stuff for development
+				limit = {
+					OR = {
+						check_variable = { KMR_ascended_advisor_1 = 2 }
+						check_variable = { KMR_ascended_advisor_2 = 2 }
+						check_variable = { KMR_ascended_advisor_3 = 2 }
+					}
+				}
+				log = "Advisor was already there. STOP CHEATING!"
+			}
+			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				limit = {
+					check_variable = { KMR_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { KMR_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { KMR_ascended_advisor_3 = 0 compare = not_equals }
+				}
+				hidden_effect = {
+					set_variable = { KMR_ascending_advisor = 2 }
+					country_event = KMR_inner_circle.01
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_1 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_1 = 2 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_2 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_2 = 2 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_3 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_3 = 2 }
+				}
+				add_ideas = KMR_huang_shaohong_idea
+			}
+			set_country_flag = {
+				flag = KMR_inner_circle_80_flag
+				days = 80
+			}
+			hidden_effect = {
+				country_event = { id = KMR_inner_circle_huang_shaoxiong.01 days = KMR_inner_circle_days_to_start_focus random_days = KMR_inner_circle_random_days }
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_loyal_bureaucracy
+		icon = GFX_KMR_loyal_bureaucracy
+		prerequisite = { focus = KMR_reliable_administrator }
+		prerequisite = { focus = KMR_wolves_of_guangxi }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 2
+		relative_position_id = KMR_reliable_administrator
+		cost = @KMR_inner_circle_time_tier
+		
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = KMR_loyal_bureaucracy_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @KMR_inner_circle_time_tier } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = KMR_Huang_Shaoxiong
+						FLAG_DAYS = [?KMR_loyal_bureaucracy_in_progress_flag:days]
+					}
+					always = no 
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = KMR_Huang_Shaoxiong
+						FOCUS = KMR_reliable_administrator
+					}
+					always = no
+				}
+			}
+
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			add_ideas = KMR_loyal_bureaucracy_idea
+		}
+	}
+	
+	focus = {
+		id = KMR_solid_guangxi_clique
+		icon = GFX_KMR_solid_guangxi_clique
+		prerequisite = { focus = KMR_new_commandant_of_whampoa }
+		prerequisite = { focus = KMR_loyal_bureaucracy }
+
+		x = 1
+		y = 1
+		relative_position_id = KMR_new_commandant_of_whampoa
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			country_event = kuomintag_right_wr.28
+		}
+	}
+	
+	focus = {
+		id = KMR_king_of_the_southern_heavens
+		icon = GFX_KMR_king_of_the_southern_heavens
+		prerequisite = { focus = KMR_key_to_power }
+
+		x = 0
+		y = 2
+		relative_position_id = KMR_key_to_power
+		cost = 2
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			country_event = kuomintag_right_wr.25
+		}
+	}
+	
+	focus = {
+		id = KMR_securing_dominance
+		icon = GFX_KMR_securing_dominance
+		prerequisite = { focus = KMR_king_of_the_southern_heavens }
+
+		x = -1
+		y = 1
+		relative_position_id = KMR_king_of_the_southern_heavens
+		mutually_exclusive = {
+			focus = KMR_request_cooperation
+		}
+		cost = 100
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+			has_country_flag = KMR_securing_dominance
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMR_li_chen_duarchy_idea
+				add_idea = KMR_li_chen_duarchy_securing_dominance_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_united_liangguang
+		icon = GFX_KMR_united_liangguang
+		prerequisite = { focus = KMR_securing_dominance }
+
+		x = 0
+		y = 1
+		relative_position_id = KMR_securing_dominance
+		cost = 4
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			country_event = kuomintag_right_wr.26
+		}
+	}
+	
+	focus = {
+		id = KMR_request_cooperation
+		icon = GFX_KMR_request_cooperation
+		prerequisite = { focus = KMR_king_of_the_southern_heavens }
+
+		x = 1
+		y = 1
+		relative_position_id = KMR_king_of_the_southern_heavens
+		mutually_exclusive = {
+			focus = KMR_securing_dominance
+		}
+		cost = 4
+		ai_will_do = {
+			factor = 100
+		}
+		available = {
+			is_subject = no
+			has_country_flag = KMR_request_cooperation
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMR_li_chen_duarchy_idea
+				add_idea = KMR_li_chen_duarchy_request_cooperation_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_guarantee_kwangtung_autonomy
+		icon = GFX_KMR_guarantee_kwangtung_autonomy
+		prerequisite = { focus = KMR_request_cooperation }
+
+		x = 0
+		y = 1
+		relative_position_id = KMR_request_cooperation
+		cost = 4
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			country_event = kuomintag_right_wr.27
+		}
+	}
+	
+	focus = {
+		id = KMR_unification_of_power
+		icon = GFX_KMR_unification_of_power
+		prerequisite = { focus = KMR_united_liangguang focus = KMR_guarantee_kwangtung_autonomy }
+
+		x = 1
+		y = 1
+		relative_position_id = KMR_united_liangguang
+		cost = 4
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = KMR_li_chen_duarchy_securing_dominance_2
+				}
+				remove_ideas = KMR_li_chen_duarchy_securing_dominance_2
+			}
+			else = {
+				remove_ideas = KMR_li_chen_duarchy_request_cooperation_2
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_canton_merchant_corps
+		icon = GFX_KMR_canton_merchant_corps
+		prerequisite = { focus = KMR_southern_strongmen }
+
+		x = 2
+		y = 1
+		relative_position_id = KMR_southern_strongmen
+		cost = 2
+		ai_will_do = {
+			factor = 16
+			modifier = {
+				add = -16
+				has_country_flag = KMR_buddhist_general_flag
+			}
+		}
+		available = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				hidden_trigger = {
+					NOT = { has_country_flag = KMR_canton_merchant_was_ascended_flag }
+				}
+			}
+			NOT = { has_country_flag = KMR_inner_circle_80_flag }
+			is_subject = no
+			has_completed_focus = KMR_kwangsi_loyalists
+			has_completed_focus = KMR_key_to_power
+			has_completed_focus = KMR_southern_strongmen
+			has_completed_focus = KMR_king_of_the_southern_heavens
+			if = {
+				limit = {
+					has_country_flag = KMR_inner_circle_event_pending_flag
+				}
+				NOT = { has_country_flag = KMR_inner_circle_event_pending_flag }
+			}
+			if = {
+				limit = {
+					check_variable = { KMR_industrialist_prevailed = 0 compare = not_equals }
+				}
+				if = {
+					limit = {
+						check_variable = { KMR_industrialist_prevailed = 4 }
+					}
+					custom_override_tooltip = {
+						tooltip = {
+							localization_key = GER_industrialists_intrigue_prevailed_tt
+							PREVAILED_CHARACTER = KMR_canton_merchants_category
+						}
+						always = yes
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_industrialist_prevailed = 5 }
+					}
+					custom_override_tooltip = {
+						tooltip = {
+							localization_key = GER_industrialists_intrigue_prevailed_tt
+							PREVAILED_CHARACTER = KMT_Tang_Shengzhi
+						}
+						always = no
+					}
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			custom_effect_tooltip = {
+				localization_key = KMR_ascension_of_character_tt
+				CHARACTER = KMR_canton_merchants_category
+			}
+			set_country_flag = KMR_canton_merchant_was_ascended_flag
+			if = { #Just to make it easy to debug stuff for development
+				limit = {
+					OR = {
+						check_variable = { KMR_ascended_advisor_1 = 4 }
+						check_variable = { KMR_ascended_advisor_2 = 4 }
+						check_variable = { KMR_ascended_advisor_3 = 4 }
+					}
+				}
+				log = "Advisor was already there. STOP CHEATING!"
+			}
+			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				limit = {
+					check_variable = { KMR_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { KMR_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { KMR_ascended_advisor_3 = 0 compare = not_equals }
+				}
+				hidden_effect = {
+					set_variable = { KMR_ascending_advisor = 4 }
+					country_event = KMR_inner_circle.01
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_1 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_1 = 4 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_2 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_2 = 4 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_3 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_3 = 4 }
+				}
+				add_ideas = KMR_canton_merchants_idea
+			}
+			set_country_flag = {
+				flag = KMR_inner_circle_80_flag
+				days = 80
+			}
+			hidden_effect = {
+				country_event = { id = KMR_inner_circle_canton_merchants.01 days = KMR_inner_circle_days_to_start_focus random_days = KMR_inner_circle_random_days }
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_mutual_benefit
+		icon = GFX_KMR_mutual_benefit
+		prerequisite = { focus = KMR_canton_merchant_corps }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 1
+		relative_position_id = KMR_canton_merchant_corps
+		cost = @KMR_inner_circle_time_tier
+		
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = KMR_mutual_benefit_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @KMR_inner_circle_time_tier } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = KMR_canton_merchants_category
+						FLAG_DAYS = [?KMR_mutual_benefit_in_progress_flag:days]
+					}
+					always = no 
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = KMR_canton_merchants_category
+						FOCUS = KMR_canton_merchant_corps
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_country_flag = has_country_flag = KMR_canton_merchants_category_flag
+				}
+				KMR_canton_merchants_add_5 = yes
+			}
+			add_ideas = KMR_free_market_economy_idea
+		}
+	}
+	
+	focus = {
+		id = KMR_sustainable_relation
+		icon = GFX_KMR_sustainable_relation
+		mutually_exclusive = { focus = KMR_accepting_appeasement }
+		prerequisite = { focus = KMR_mutual_benefit }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 1
+		relative_position_id = KMR_mutual_benefit
+		cost = @KMR_inner_circle_time_tier
+		
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = KMR_sustainable_relation_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @KMR_inner_circle_time_tier } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = KMR_canton_merchants_category
+						FLAG_DAYS = [?KMR_sustainable_relation_in_progress_flag:days]
+					}
+					always = no 
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = KMR_canton_merchants_category
+						FOCUS = KMR_canton_merchant_corps
+					}
+					always = no
+				}
+			}
+
+			if = {
+				limit = {
+					check_variable = { KMR_industrialist_prevailed = 0 compare = not_equals }
+				}
+				if = {
+					limit = {
+						check_variable = { KMR_industrialist_prevailed = 4 }
+					}
+					custom_override_tooltip = {
+						tooltip = {
+							localization_key = GER_industrialists_intrigue_prevailed_tt
+							PREVAILED_CHARACTER = KMR_canton_merchants_category
+						}
+						always = yes
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_industrialist_prevailed = 5 }
+					}
+					custom_override_tooltip = {
+						tooltip = {
+							localization_key = GER_industrialists_intrigue_prevailed_tt
+							PREVAILED_CHARACTER = KMT_Tang_Shengzhi
+						}
+						always = no
+					}
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMR_free_market_economy_idea
+				add_idea = KMR_free_market_economy_idea_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_buddhist_general
+		icon = GFX_KMR_buddhist_general
+		prerequisite = { focus = KMR_southern_strongmen }
+
+		x = 4
+		y = 1
+		relative_position_id = KMR_southern_strongmen
+		cost = 2
+		ai_will_do = {
+			factor = 16
+			modifier = {
+				add = -16
+				has_country_flag = KMR_canton_merchant_corps_flag
+			}
+		}
+		available = {
+			if = {
+				limit = {
+					is_ai = yes
+				}
+				hidden_trigger = {
+					NOT = { has_country_flag = KMR_tang_shengzhi_was_ascended_flag }
+				}
+			}
+			NOT = { has_country_flag = KMR_inner_circle_80_flag }
+			is_subject = no
+			has_completed_focus = KMR_kwangsi_loyalists
+			has_completed_focus = KMR_key_to_power
+			has_completed_focus = KMR_southern_strongmen
+			has_completed_focus = KMR_king_of_the_southern_heavens
+			controls_state = 602
+			controls_state = 750
+			if = {
+				limit = {
+					has_country_flag = KMR_inner_circle_event_pending_flag
+				}
+				NOT = { has_country_flag = KMR_inner_circle_event_pending_flag }
+			}
+			if = {
+				limit = {
+					check_variable = { KMR_industrialist_prevailed = 0 compare = not_equals }
+				}
+				if = {
+					limit = {
+						check_variable = { KMR_industrialist_prevailed = 4 }
+					}
+					custom_override_tooltip = {
+						tooltip = {
+							localization_key = GER_industrialists_intrigue_prevailed_tt
+							PREVAILED_CHARACTER = KMR_canton_merchants_category
+						}
+						always = no
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_industrialist_prevailed = 5 }
+					}
+					custom_override_tooltip = {
+						tooltip = {
+							localization_key = GER_industrialists_intrigue_prevailed_tt
+							PREVAILED_CHARACTER = KMT_Tang_Shengzhi
+						}
+						always = yes
+					}
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			custom_effect_tooltip = {
+				localization_key = KMR_ascension_of_character_tt
+				CHARACTER = KMT_Tang_Shengzhi
+			}
+			set_country_flag = KMR_tang_shengzhi_was_ascended_flag
+			if = { #Just to make it easy to debug stuff for development
+				limit = {
+					OR = {
+						check_variable = { KMR_ascended_advisor_1 = 5 }
+						check_variable = { KMR_ascended_advisor_2 = 5 }
+						check_variable = { KMR_ascended_advisor_3 = 5 }
+					}
+				}
+				log = "Advisor was already there. STOP CHEATING!"
+			}
+			else_if = { # ASCENDED ADVISORS FULL - NEED TO REPLACE SOMEONE
+				limit = {
+					check_variable = { KMR_ascended_advisor_1 = 0 compare = not_equals }
+					check_variable = { KMR_ascended_advisor_2 = 0 compare = not_equals }
+					check_variable = { KMR_ascended_advisor_3 = 0 compare = not_equals }
+				}
+				hidden_effect = {
+					set_variable = { KMR_ascending_advisor = 5 }
+					country_event = KMR_inner_circle.01
+				}
+			}
+			else = {
+				if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_1 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_1 = 5 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_2 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_2 = 5 }
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_ascended_advisor_3 = 0 }
+					}
+					set_variable = { KMR_ascended_advisor_3 = 5 }
+				}
+				add_ideas = KMR_tang_shengzhi_idea
+			}
+			set_country_flag = {
+				flag = KMR_inner_circle_80_flag
+				days = 80
+			}
+			hidden_effect = {
+				country_event = { id = KMR_inner_circle_tang_shengzhi.01 days = KMR_inner_circle_days_to_start_focus random_days = KMR_inner_circle_random_days }
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_great_compassion
+		icon = GFX_KMR_great_compassion
+		prerequisite = { focus = KMR_buddhist_general }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 1
+		relative_position_id = KMR_buddhist_general
+		cost = @KMR_inner_circle_time_tier
+		
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = KMR_great_compassion_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @KMR_inner_circle_time_tier } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = KMT_Tang_Shengzhi
+						FLAG_DAYS = [?KMR_great_compassion_in_progress_flag:days]
+					}
+					always = no 
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = KMT_Tang_Shengzhi
+						FOCUS = KMR_buddhist_general
+					}
+					always = no
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			add_ideas = KMR_state_intervention_economy_idea
+		}
+	}
+	
+	focus = {
+		id = KMR_accepting_appeasement
+		icon = GFX_KMR_accepting_appeasement
+		mutually_exclusive = { focus = KMR_accepting_appeasement }
+		prerequisite = { focus = KMR_great_compassion }
+
+		text_icon = GER_inner_circle_focus_style
+
+		x = 0
+		y = 1
+		relative_position_id = KMR_great_compassion
+		cost = @KMR_inner_circle_time_tier
+		
+		available = {
+			if = { #ADVISOR WORKING ON THE FOCUS (Show progress)
+				limit = {
+					has_country_flag = KMR_accepting_appeasement_in_progress_flag
+				}
+				set_temp_variable = { temp_focus_days = @KMR_inner_circle_time_tier } #For tooltip purposes
+				multiply_temp_variable = { temp_focus_days = 7 } #The constant uses focus cost which is in weeks, so convert to days
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_inner_circle_focus_in_progress_tt
+						CHARACTER = KMT_Tang_Shengzhi
+						FLAG_DAYS = [?KMR_accepting_appeasement_in_progress_flag:days]
+					}
+					always = no 
+				}
+			}
+			else = { #NOT BEEN WORKED ON (Just Explain)
+				custom_override_tooltip = {
+					tooltip = {
+						localization_key = GER_focus_can_only_be_completed_by_advisor_tt
+						CHARACTER = KMT_Tang_Shengzhi
+						FOCUS = KMR_buddhist_general
+					}
+					always = no
+				}
+			}
+
+			if = {
+				limit = {
+					check_variable = { KMR_industrialist_prevailed = 0 compare = not_equals }
+				}
+				if = {
+					limit = {
+						check_variable = { KMR_industrialist_prevailed = 4 }
+					}
+					custom_override_tooltip = {
+						tooltip = {
+							localization_key = GER_industrialists_intrigue_prevailed_tt
+							PREVAILED_CHARACTER = KMR_canton_merchants_category
+						}
+						always = yes
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = { KMR_industrialist_prevailed = 5 }
+					}
+					custom_override_tooltip = {
+						tooltip = {
+							localization_key = GER_industrialists_intrigue_prevailed_tt
+							PREVAILED_CHARACTER = KMT_Tang_Shengzhi
+						}
+						always = no
+					}
+				}
+			}
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMR_state_intervention_economy_idea
+				add_idea = KMR_state_intervention_economy_idea_1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_securing_local_gentry_support
+		icon = GFX_KMR_securing_local_gentry_support
+		prerequisite = { focus = KMR_sustainable_relation focus = KMR_accepting_appeasement }
+
+		x = 1
+		y = 1
+		relative_position_id = KMR_sustainable_relation
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_INTERNAL_AFFAIRS }
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = KMR_state_intervention_economy_idea_1
+				}
+				swap_ideas = {
+					remove_idea = KMR_state_intervention_economy_idea_1
+					add_idea = KMR_state_intervention_economy_idea_2
+				}
+			}
+			else_if = {
+				limit = {
+					has_idea = KMR_free_market_economy_idea_1
+				}
+				swap_ideas = {
+					remove_idea = KMR_free_market_economy_idea_1
+					add_idea = KMR_free_market_economy_idea_2
+				}
+			}
+			else = {
+				custom_effect_tooltip = KMR_securing_local_gentry_support_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_stabilization_of_liangguang
+		icon = GFX_KMR_stabilization_of_liangguang
+		relative_position_id = KMR_unification_of_power
+		x = 0
+		y = 1
+		prerequisite = {
+			focus = KMR_solid_guangxi_clique
+		}
+		prerequisite = {
+			focus = KMR_unification_of_power
+		}
+		prerequisite = {
+			focus = KMR_securing_local_gentry_support
+		}
+		cost = 3
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			country_event = kuomintag_right_wr.29
+		}
+	}
+	
+	focus = {
+		id = KMR_defending_the_constitution
+		icon = GFX_KMR_defending_the_constitution
+		relative_position_id = KMR_restoration_of_order
+		x = 6
+		y = 1
+		prerequisite = {
+			focus = KMR_stabilization_of_liangguang
+		}
+		prerequisite = {
+			focus = KMR_restoration_of_order
+		}
+		cost = 5
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			country_event = kuomintag_right_wr.30
+		}
+	}
+	
+	#광시군
+	focus = {
+		id = KMR_guangxi_army
+		icon = GFX_KMR_guangxi_army
+		relative_position_id = KMR_sharing_joy_with_the_people
+		x = 2
+		y = 2
+		cost = 3
+		allow_branch = {
+			OR = {
+				has_completed_focus = KMR_sun_yatsens_chief_of_staff
+				has_completed_focus = KMR_sun_yatsens_sword
+			}
+			NOT = { has_country_flag = manchukou_wr_64_flag }
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_ARMY_XP FOCUS_FILTER_AIR_XP FOCUS_FILTER_NAVY_XP }
+
+		completion_reward = {
+			army_experience = 20
+			navy_experience = 20
+			air_experience = 20
+			add_dynamic_modifier = { modifier = KMR_guangxi_army }
+		}
+	}
+	
+	focus = {
+		id = KMR_facing_our_enemies
+		icon = GFX_KMR_facing_our_enemies
+		relative_position_id = KMR_guangxi_army
+		x = -6
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = KMR_guangxi_army
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_WAR_SUPPORT }
+
+		completion_reward = {
+			add_war_support = 0.05
+		}
+	}
+	
+	focus = {
+		id = KMR_expanding_guerrilla_forces
+		icon = GFX_KMR_expanding_guerrilla_forces
+		relative_position_id = KMR_facing_our_enemies
+		x = -2
+		y = 1
+		cost = 3
+		prerequisite = {
+			focus = KMR_facing_our_enemies
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = {  }
+
+		completion_reward = {
+			add_to_variable = {
+				KMR_guangxi_army_special_forces_training_time_factor = -0.1
+				tooltip = special_forces_training_time_factor_tt
+			}
+			add_to_variable = {
+				KMR_guangxi_army_special_forces_cap_flat = 5
+				tooltip = special_forces_cap_flat_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_countering_the_fifth_column
+		icon = GFX_KMR_countering_the_fifth_column
+		relative_position_id = KMR_facing_our_enemies
+		x = 0
+		y = 1
+		cost = 3
+		prerequisite = {
+			focus = KMR_facing_our_enemies
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = {  }
+
+		completion_reward = {
+			add_to_variable = {
+				KMR_guangxi_army_resistance_growth = -0.15
+				tooltip = resistance_growth_tt
+			}
+			add_to_variable = {
+				KMR_guangxi_army_resistance_target = -0.15
+				tooltip = resistance_target_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_winning_over_pro_kmt_militias
+		icon = GFX_KMR_winning_over_pro_kmt_militias
+		relative_position_id = KMR_facing_our_enemies
+		x = 2
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = KMR_facing_our_enemies
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+		bypass = {
+			NOT = { has_war_with = KMT }
+			NOT = { has_war_with = CHI }
+		}
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		completion_reward = {	
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "name = \"mínbing\" division_template = \"mínbing\" start_equipment_factor = 0.35 start_experience_factor = 0.1"
+					count = 4
+					owner = KMR
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_defending_the_national_revolution
+		icon = GFX_KMR_defending_the_national_revolution
+		relative_position_id = KMR_countering_the_fifth_column
+		x = 0
+		y = 1
+		cost = 3
+		prerequisite = {
+			focus = KMR_expanding_guerrilla_forces
+		}
+		prerequisite = {
+			focus = KMR_countering_the_fifth_column
+		}
+		prerequisite = {
+			focus = KMR_winning_over_pro_kmt_militias
+		}
+		bypass = {
+			NOT = { has_war_with = KMT }
+			NOT = { has_war_with = CHI }
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = {  }
+
+		completion_reward = {
+			add_ideas = KMR_new_national_revolution
+		}
+	}
+	
+	focus = {
+		id = KMR_extraordinary_measures
+		icon = GFX_KMR_extraordinary_measures
+		relative_position_id = KMR_guangxi_army
+		x = 0
+		y = 1
+		cost = 3
+		bypass = {
+			NOT = { has_war_with = KMT }
+			NOT = { has_war_with = CHI }
+		}
+		prerequisite = {
+			focus = KMR_guangxi_army
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY FOCUS_FILTER_MANPOWER }
+
+		completion_reward = {
+			add_ideas = KMR_emergency_mobilization_idea
+		}
+	}
+	
+	focus = {
+		id = KMR_incorporating_civil_militias
+		icon = GFX_KMR_incorporating_civil_militias
+		relative_position_id = KMR_extraordinary_measures
+		x = -2
+		y = 1
+		cost = 2
+		bypass = {
+			NOT = { has_war_with = KMT }
+			NOT = { has_war_with = CHI }
+		}
+		prerequisite = {
+			focus = KMR_extraordinary_measures
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_INDUSTRY }
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = KMR_emergency_mobilization_idea_2
+				}
+				swap_ideas = {
+					remove_idea = KMR_emergency_mobilization_idea_2
+					add_idea = KMR_emergency_mobilization_idea_3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = KMR_emergency_mobilization_idea
+					add_idea = KMR_emergency_mobilization_idea_1
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_mobilizing_security_corps
+		icon = GFX_KMR_mobilizing_security_corps
+		relative_position_id = KMR_extraordinary_measures
+		x = 0
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = KMR_extraordinary_measures
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		completion_reward = {
+			division_template = {
+				name = "bao an duì"
+				is_locked = no
+				regiments = {
+					militia = {
+						x = 0
+						y = 0
+					}
+					militia = {
+						x = 0
+						y = 1
+					}
+					militia = {
+						x = 0
+						y = 2
+					}
+					infantry = {
+						x = 1
+						y = 0
+					}
+					infantry = {
+						x = 1
+						y = 1
+					}
+				}
+			}
+			random_owned_controlled_state = {
+				create_unit = {
+					division = "name = \"bao an duì\" division_template = \"bao an duì\" start_equipment_factor = 0.35 start_experience_factor = 0.1"
+					count = 3
+					owner = KMR
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_emergency_decree_number_one
+		icon = GFX_KMR_emergency_decree_number_one
+		relative_position_id = KMR_extraordinary_measures
+		x = 2
+		y = 1
+		cost = 3
+		bypass = {
+			NOT = { has_war_with = KMT }
+			NOT = { has_war_with = CHI }
+		}
+		prerequisite = {
+			focus = KMR_extraordinary_measures
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_MANPOWER }
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_idea = KMR_emergency_mobilization_idea_1
+				}
+				swap_ideas = {
+					remove_idea = KMR_emergency_mobilization_idea_1
+					add_idea = KMR_emergency_mobilization_idea_3
+				}
+			}
+			else = {
+				swap_ideas = {
+					remove_idea = KMR_emergency_mobilization_idea
+					add_idea = KMR_emergency_mobilization_idea_2
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_opening_merchant_armories
+		icon = GFX_KMR_opening_merchant_armories
+		relative_position_id = KMR_incorporating_civil_militias
+		x = 1
+		y = 1
+		cost = 2
+		bypass = {
+			NOT = { has_war_with = KMT }
+			NOT = { has_war_with = CHI }
+		}
+		prerequisite = {
+			focus = KMR_incorporating_civil_militias
+		}
+		prerequisite = {
+			focus = KMR_mobilizing_security_corps
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = {  }
+
+		completion_reward = {
+			if = {
+				limit = { NOT = { has_tech = improv_weapons } }
+				set_technology = {
+					improv_weapons = 1
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = infantry_equipment_worst
+				amount = 500
+			}
+			if = {
+				limit = { NOT = { has_tech = improv_weapons_art } }
+				set_technology = {
+					improv_weapons_art = 1
+				}
+			}
+			add_equipment_to_stockpile = {
+				type = artiliary_equipment_worst
+				amount = 80
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_john_bull_of_hong_kong
+		icon = GFX_KMR_john_bull_of_hong_kong
+		relative_position_id = KMR_mobilizing_security_corps
+		x = 1
+		y = 1
+		cost = 2
+		bypass = {
+			NOT = { has_war_with = KMT }
+			NOT = { has_war_with = CHI }
+			OR = {
+				ENG = { exists = no }
+				ENG = { is_subject = no }
+			}
+		}
+		prerequisite = {
+			focus = KMR_incorporating_civil_militias
+		}
+		prerequisite = {
+			focus = KMR_mobilizing_security_corps
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = {  }
+
+		completion_reward = {
+			country_event = kuomintag_right_wr.31
+		}
+	}
+	
+	focus = {
+		id = KMR_moral_rearmament
+		icon = GFX_KMR_moral_rearmament
+		relative_position_id = KMR_guangxi_army
+		x = 6
+		y = 1
+		cost = 3
+		prerequisite = {
+			focus = KMR_guangxi_army
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = {  }
+
+		completion_reward = {
+			add_to_variable = {
+				KMR_guangxi_army_army_morale_factor = 0.1
+				tooltip = army_morale_factor_tt
+			}
+			add_to_variable = {
+				KMR_guangxi_army_out_of_supply_factor = -0.05
+				tooltip = out_of_supply_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_expanding_military_police_authority
+		icon = GFX_KMR_expanding_military_police_authority
+		relative_position_id = KMR_moral_rearmament
+		x = -2
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = KMR_moral_rearmament
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_RESEARCH }
+
+		completion_reward = {
+			add_tech_bonus = {
+				name = KMR_expanding_military_police_authority
+				bonus = 1
+				uses = 2
+				category = military_police_tech
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_establishing_bureau_of_investigation_and_statistics
+		icon = GFX_KMR_establishing_bureau_of_investigation_and_statistics
+		relative_position_id = KMR_moral_rearmament
+		x = 0
+		y = 1
+		cost = 2
+		prerequisite = {
+			focus = KMR_moral_rearmament
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = {  }
+
+		completion_reward = {
+			if = {
+				limit = {
+					has_dlc = "La Resistance"
+				}
+				add_ideas = KMT_CC_clique_dlc
+			}
+			else = {
+				add_ideas = KMT_CC_clique_nodlc
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_purging_leftists_in_the_military
+		icon = GFX_KMR_purging_leftists_in_the_military
+		relative_position_id = KMR_moral_rearmament
+		x = 2
+		y = 1
+		cost = 1
+		prerequisite = {
+			focus = KMR_moral_rearmament
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = { FOCUS_FILTER_POLITICAL }
+
+		completion_reward = {
+			add_popularity = {
+				ideology = communism
+				popularity = -0.1
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_instilling_loyalty
+		icon = GFX_KMR_instilling_loyalty
+		relative_position_id = KMR_establishing_bureau_of_investigation_and_statistics
+		x = 0
+		y = 1
+		cost = 4
+		prerequisite = {
+			focus = KMR_expanding_military_police_authority
+		}
+		prerequisite = {
+			focus = KMR_purging_leftists_in_the_military
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = {  }
+
+		completion_reward = {
+			add_to_variable = {
+				KMR_guangxi_army_army_core_defence_factor = 0.1
+				tooltip = army_core_defence_factor_tt
+			}
+			add_to_variable = {
+				KMR_guangxi_army_army_strength_factor = 0.1
+				tooltip = army_strength_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_northern_expedition
+		icon = GFX_KMR_northern_expedition
+		relative_position_id = KMR_opening_merchant_armories
+		x = 1
+		y = 1
+		cost = 3
+		bypass = {
+			NOT = { has_war_with = KMT }
+			NOT = { has_war_with = CHI }
+		}
+		prerequisite = {
+			focus = KMR_defending_the_national_revolution
+		}
+		prerequisite = {
+			focus = KMR_opening_merchant_armories
+		}
+		prerequisite = {
+			focus = KMR_john_bull_of_hong_kong
+		}
+		prerequisite = {
+			focus = KMR_instilling_loyalty
+		}
+		ai_will_do = {
+			factor = 6
+		}
+		available = {
+			is_subject = no
+		}
+
+		search_filters = {  }
+
+		completion_reward = {
+			swap_ideas = {
+				remove_idea = KMR_new_national_revolution
+				add_idea = KMR_new_national_revolution_1
+			}
+		}
+	}
+	
 	#경제
 	focus = {
 		id = KMR_governance_focus
 		icon = GFX_KMR_governance_focus
-		x = 20
+		x = 21
 		y = 0
 		allow_branch = {
 			OR = {
@@ -1282,6 +3260,344 @@ focus_tree = {
 				remove_idea = KMR_unremitting_self_improvement_3
 				add_idea = KMR_unremitting_self_improvement_4
 			}
+		}
+	}
+	
+	#중일전쟁 중점
+	focus = {
+		id = KMR_unsparing_sacrifice
+		icon = GFX_CHI_unsparing_sacrifice
+		relative_position_id = KMR_guangxi_army
+		x = -14
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 4
+		allow_branch = {
+			has_country_flag = KMR_left_focus_allow_flag
+			NOT = { has_country_flag = manchukou_wr_64_flag }
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			country_event = china_wr.335
+		}
+	}
+	
+	focus = {
+		id = KMR_mighty_river_flows_east
+		icon = GFX_CHI_mighty_river_flows_east
+		relative_position_id = KMR_unsparing_sacrifice
+		x = -2
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 5
+		prerequisite = {
+			focus = KMR_unsparing_sacrifice
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			add_to_variable = {
+				CHI_anti_japanese_national_salvation_production_speed_arms_factory_factor = 0.15
+				tooltip = production_speed_arms_factory_factor_tt
+			}
+			add_to_variable = {
+				CHI_anti_japanese_national_salvation_production_speed_industrial_complex_factor = 0.05
+				tooltip = production_speed_industrial_complex_factor_tt
+			}
+			if = {
+				limit = {
+					744 = { is_controlled_by = KMR }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 744 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					748 = { is_controlled_by = KMR }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 748 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = industrial_complex
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					755 = { is_controlled_by = KMR }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 755 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					752 = { is_controlled_by = KMR }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 752 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+			if = {
+				limit = {
+					605 = { is_controlled_by = KMR }
+				}
+				random_owned_controlled_state = {
+					prioritize = { 605 }
+					add_extra_state_shared_building_slots = 1
+					add_building_construction = {
+						type = arms_factory
+						level = 1
+						instant_build = yes
+					}
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_hundred_thousand_troops
+		icon = GFX_CHI_hundred_thousand_troops
+		relative_position_id = KMR_mighty_river_flows_east
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 2
+		prerequisite = {
+			focus = KMR_mighty_river_flows_east
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			unlock_decision_category_tooltip = KMR_recruit_anti_japanese_militia
+		}
+	}
+	
+	focus = {
+		id = KMR_dwarf_pirates_knowledge
+		icon = GFX_CHI_dwarf_pirates_knowledge
+		relative_position_id = KMR_mighty_river_flows_east
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 3
+		prerequisite = {
+			focus = KMR_mighty_river_flows_east
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			add_to_variable = {
+				CHI_anti_japanese_national_salvation_army_strength_factor = 0.1
+				tooltip = army_strength_factor_tt
+			}
+			add_to_variable = {
+				CHI_anti_japanese_national_salvation_army_org_factor = 0.1
+				tooltip = army_org_factor_tt
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_who_secures_the_border
+		icon = GFX_CHI_who_secures_the_border
+		relative_position_id = KMR_hundred_thousand_troops
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 4
+		prerequisite = {
+			focus = KMR_hundred_thousand_troops
+		}
+		prerequisite = {
+			focus = KMR_dwarf_pirates_knowledge
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = { FOCUS_FILTER_RESEARCH }
+		completion_reward = {
+			add_ideas = CHI_railway_guns
+			add_equipment_to_stockpile = {
+				type = train_equipment
+				amount = 30
+				producer = KMR
+			}
+			add_tech_bonus = {
+				name = motorized_bonus
+				ahead_reduction = 2
+				uses = 1
+				category = motorized_equipment
+			}
+			IF = {
+				limit = {
+					has_tech = motorised_infantry
+				}
+				add_equipment_to_stockpile = { 
+					type = motorized_equipment
+					amount = 150
+				}
+			}
+			if = {
+				limit = { has_dlc = "No Step Back" }
+				if = {
+					limit = { NOT = { has_tech = armored_train } }
+					set_technology = { armored_train = 1 }
+				}
+				if = {
+					limit = { NOT = { has_tech = railway_gun } }
+					set_technology = { railway_gun = 1 }
+				}
+				create_railway_gun = {
+					equipment = railway_gun_equipment_1
+					name = "Fuxing"
+				}
+				create_railway_gun = {
+					equipment = railway_gun_equipment_1
+					name = "Hexie"
+				}
+			}
+		}
+	}
+	
+	focus = {
+		id = KMR_ten_thousand_li_expedition
+		icon = GFX_CHI_ten_thousand_li_expedition
+		relative_position_id = KMR_unsparing_sacrifice
+		x = 2
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 4
+		prerequisite = {
+			focus = KMR_unsparing_sacrifice
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			enable_tech_the_myriad_torrent = yes
+		}
+	}
+	
+	focus = {
+		id = KMR_expelling_invaders
+		icon = GFX_CHI_expelling_invaders
+		relative_position_id = KMR_ten_thousand_li_expedition
+		x = -1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 4
+		prerequisite = {
+			focus = KMR_ten_thousand_li_expedition
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			enable_tech_storming_the_azure_sky = yes
+		}
+	}
+	
+	focus = {
+		id = KMR_transcending_life_and_death
+		icon = GFX_CHI_transcending_life_and_death
+		relative_position_id = KMR_ten_thousand_li_expedition
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 3
+		prerequisite = {
+			focus = KMR_ten_thousand_li_expedition
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			add_timed_idea = { idea = CHI_transcending_life_and_death days = 150 }
+		}
+	}
+	
+	focus = {
+		id = KMR_vow_of_the_patriot
+		icon = GFX_CHI_vow_of_the_patriot
+		relative_position_id = KMR_expelling_invaders
+		x = 1
+		y = 1
+		ai_will_do = {
+			factor = 150
+		}
+		cost = 3
+		prerequisite = {
+			focus = KMR_expelling_invaders
+		}
+		prerequisite = {
+			focus = KMR_transcending_life_and_death
+		}
+		available = {
+			is_subject = no
+			has_war_with = JAP
+		}
+		search_filters = {}
+		completion_reward = {
+			add_ideas = CHI_vow_of_the_patriot
 		}
 	}
 }
